@@ -1,0 +1,31 @@
+{
+  "name": "pokenurse",
+  "version": "1.0.0",
+  "description": "A tool for Pokémon Go to aid in transferring and evolving Pokémon",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duhminick/PokeNurse.git"
+  },
+  "keywords": [
+    "pokemon",
+    "go"
+  ],
+  "author": "duhminick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duhminick/PokeNurse/issues"
+  },
+  "homepage": "https://github.com/duhminick/PokeNurse#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^1.3.1"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.0",
+    "pokemon-go-node-api": "^1.4.0"
+  }
+}
