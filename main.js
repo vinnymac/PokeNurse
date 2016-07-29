@@ -1,13 +1,15 @@
 const {app, BrowserWindow, ipcMain, dialog} = require('electron')
 const fs = require('fs')
+const path = require('path')
 // var pokemon = require('pokemon-go-node-api')
 
-const accountPath = app.getPath('appData') + '/pokenurse/account.json'
+const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
 let win
 
 function createWindow () {
-  win = new BrowserWindow({width: 800, height: 370})
+  win = new BrowserWindow({width: 800, height: 375})
+  win.setMenu(null)
   win.loadURL(`file://${__dirname}/login.html`)
 
   win.on('closed', () => {
