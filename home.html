@@ -2,10 +2,32 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/pokenurse.css">
     <title>PokéNurse &bull; Home</title>
   </head>
   <body>
-    Home
+    <header class="header" id="header">
+      <h1 id="username-h"></h1>
+      <!--<h5 id="pokestorage-h"></h5>
+      <h5 id="bagstorage-h"></h5>-->
+    </header>
+
+    <div class="container">
+      <h1>Pokemons <span class="glyphicon glyphicon-refresh" id="refresh-btn"></span></h1>
+
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <td>Pokédex #</td>
+            <td>Name</td>
+            <td>CP</td>
+          </tr>
+        </thead>
+        <tbody id="pokemon-list">
+        </tbody>
+      </table>
+    </div>
+
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
     <script>require('./js/home')</script>
   </body>
