@@ -35,7 +35,7 @@ loginBtn.addEventListener('click', () => {
     ipc.send('check-and-delete-credentials')
   }
 
-  ipc.send('pokemon-login', method)
+  ipc.send('pokemon-login', method, usernameTxt.value, passwordTxt.value)
 })
 
 function getAuthMethod () {
