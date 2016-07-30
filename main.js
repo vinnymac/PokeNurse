@@ -8,7 +8,7 @@ const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 let win
 let client
 
-function createWindow() {
+function createWindow () {
   win = new BrowserWindow({ width: 800, height: 375, title: 'PokéNurse', icon: 'imgs/emojioneicon.png' })
   win.setMenu(null)
   win.loadURL(`file://${__dirname}/login.html`)
@@ -150,6 +150,40 @@ ipcMain.on('get-players-pokemons', (event) => {
       success: true,
       pokemon: pokemons
     }
+  })
+})
+
+ipcMain.on('transfer-pokemon', (event, ids) => {
+  dialog.showMessageBox(win, {
+    type: 'question',
+    buttons: ['Yes', 'Cancel'],
+    title: 'Confirmation',
+    message: 'Are you sure you want to transfer the selected Pokemon?'
+  }, (response) => {
+    if (response === 1) {
+      console.log('[!] Transfer cancelled')
+      return
+    }
+
+    console.log('[+] Transferring Pokemon')
+    // IMPLEMENT
+  })
+})
+
+ipcMain.on('evolve-pokemon', (event, ids) => {
+  dialog.showMessageBox(win, {
+    type: 'question',
+    buttons: ['Yes', 'Cancel'],
+    title: 'Confirmation',
+    message: 'Are you sure you want to evolve the selected Pokemon?'
+  }, (response) => {
+    if (response === 1) {
+      console.log('[!] Evolve cancelled')
+      return
+    }
+
+    console.log('[+] Evolving Pokemon')
+    // IMPLEMENT
   })
 })
 // END OF POKEMON
