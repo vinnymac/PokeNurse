@@ -2,8 +2,19 @@
   background-image: url('../imgs/bg.jpg');
   background-position: center top;
   background-size: cover;
-  text-align: center;
   padding: 5vh 5vw;
   margin-bottom: 15px;
   color: #fff;
+}
+
+#profile-header {
+  padding-left: 30%;
+  font-weight: bold;
+}
+
+#refresh-btn {
+  font-size: 0.5em;
+}
+#refresh-btn:hover {
+  cursor: pointer;
 }
