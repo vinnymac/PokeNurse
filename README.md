@@ -13,4 +13,5 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
     npm start
 
 ## Credit
-* [cyraxx](https://github.com/cyraxx) for [pogobuf](https://github.com/cyraxx/pogobuf)
+* [cyraxx](https://github.com/cyraxx) for [pogobuf](https://github.com/cyraxx/pogobuf) and [node-pogo-protos](https://github.com/cyraxx/node-pogo-protos)
+* [AeonLucid](https://github.com/AeonLucid) for [POGOProtos](https://github.com/AeonLucid/POGOProtos)
