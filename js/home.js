@@ -49,7 +49,7 @@ evolveBtn.addEventListener('click', () => {
 
   if (ipc.sendSync('confirmation-dialog', 'evolve').success) {
     selectedPokemon.forEach((pokemon, index) => {
-      ipc.send('transfer-pokemon', pokemon.value, index * 15000)
+      ipc.send('evolve-pokemon', pokemon.value, index * 15000)
     })
   }
 })
