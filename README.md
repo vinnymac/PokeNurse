@@ -1,10 +1,18 @@
 # PokeNurse
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
 
+![Main Window](http://i.imgur.com/B5f1EgX.png)
+
 This is my first project using [Electron](http://electron.atom.io/) and [Node.js](https://nodejs.org/en/).  Criticism is welcome and encouraged.
 
 ## Features
-* View Pokemon
+* List Pokemon
+    * Pokedex Number
+    * Name
+    * CP
+    * IV
+* Transfer Pokemon
+* Evolve Pokemon
 
 ## Development
     git clone https://github.com/duhminick/PokeNurse

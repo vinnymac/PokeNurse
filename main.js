@@ -11,7 +11,7 @@ let client
 
 function createWindow () {
   win = new BrowserWindow({ width: 800, height: 375, title: 'PokéNurse', icon: 'imgs/emojioneicon.png' })
-  // win.setMenu(null)
+  win.setMenu(null)
   win.loadURL(`file://${__dirname}/login.html`)
 
   client = new pogobuf.Client()
