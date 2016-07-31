@@ -175,6 +175,7 @@ ipcMain.on('get-players-pokemons', (event) => {
 
       if (pokemon['cp'] === 0) continue
 
+      var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id']);
       reducedPokemonList.push({
         cp: pokemon['cp'],
         creation_time_ms: pokemon['creation_time_ms'].toString(),
@@ -185,7 +186,10 @@ ipcMain.on('get-players-pokemons', (event) => {
         stamina: pokemon['individual_stamina'],
         iv: parseInt(((pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']) / 45) * 100),
         pokemon_id: pokemon['pokemon_id'],
-        name: pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
+        name: pokemonName,
+        nickname: pokemon['nickname'] || pokemonName,
+        // Multiply by -1 for sorting
+        favorite: pokemon['favorite'] * -1
       })
     }
 
