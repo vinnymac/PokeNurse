@@ -1,6 +1,4 @@
 const ipc         = require('electron').ipcRenderer
-const pogoUtils   = require('pogobuf').Utils
-const POGOProtos  = require('node-pogo-protos')
 
 const header      = document.getElementById('profile-header')
 const usernameH   = document.getElementById('username-h')
@@ -66,15 +64,15 @@ evolveBtn.addEventListener('click', () => {
   }
 })
 
-for(var i=0; i<sortLinks.length; i++)
-  sortLinks[i].addEventListener('click', function(e) {
-    sortPokemonList(this.dataset.sort);
-  });
+for (var i = 0; i < sortLinks.length; i++) {
+  sortLinks[i].addEventListener('click', function (e) {
+    sortPokemonList(this.dataset.sort)
+  })
+}
 
 function refreshPokemonList () {
   pokemons = ipc.sendSync('get-players-pokemons')
-  if (pokemons.success)
-    sortPokemonList(currSorting, true);
+  if (pokemons.success) sortPokemonList(currSorting, true)
 }
 
 function sortPokemonList (sorting, refresh) {
@@ -84,7 +82,7 @@ function sortPokemonList (sorting, refresh) {
   pokemonList.innerHTML = ''
 
   pokemons.pokemon.forEach(poke => {
-    var checkBox  = '<input type="checkbox" value="' + poke['id'].toString() + '"'
+    var checkBox = '<input type="checkbox" value="' + poke['id'].toString() + '"'
 
     if (poke['deployed']) checkBox += ' disabled'
 
@@ -113,15 +111,14 @@ function countDown (method, index) {
   }, 1000)
 }
 
-function randomDelay(min, max) {
+function randomDelay (min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
-function sortBy(prop) {
+function sortBy (prop) {
   var order = prop.substr(0, 1) == '-' ? -1 : 1;
 
-  if (prop.substr(0, 1) == '-')
-    prop = prop.substr(1);
+  if (prop.substr(0, 1) === '-') prop = prop.substr(1)
 
   return function (a, b) {
     return  (a[prop] < b[prop]) ? -1 * order :
