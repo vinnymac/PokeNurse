@@ -4,10 +4,13 @@ const POGOProtos = require('node-pogo-protos')
 
 const header = document.getElementById('profile-header')
 const usernameH = document.getElementById('username-h')
+const statusH = document.getElementById('status-h')
 const refreshBtn = document.getElementById('refresh-btn')
 const transferBtn = document.getElementById('transfer-btn')
 const evolveBtn = document.getElementById('evolve-btn')
 const pokemonList = document.getElementById('pokemon-list')
+
+var running = false
 
 var playerInfo = ipc.sendSync('get-player-info')
 if (playerInfo.success) {
@@ -35,22 +38,30 @@ refreshBtn.addEventListener('click', () => {
 })
 
 transferBtn.addEventListener('click', () => {
+  if (runningCheck()) return
+
   var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked')
 
   if (ipc.sendSync('confirmation-dialog', 'transfer').success) {
+    running = true
     selectedPokemon.forEach((pokemon, index) => {
       ipc.send('transfer-pokemon', pokemon.value, index * 2000)
     })
+    countDown('Transfer', selectedPokemon.length * 2)
   }
 })
 
 evolveBtn.addEventListener('click', () => {
+  if (runningCheck()) return
+
   var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked')
 
   if (ipc.sendSync('confirmation-dialog', 'evolve').success) {
+    running = true
     selectedPokemon.forEach((pokemon, index) => {
       ipc.send('evolve-pokemon', pokemon.value, index * 15000)
     })
+    countDown('Evolve', selectedPokemon.length * 15)
   }
 })
 
@@ -78,4 +89,25 @@ function refreshPokemonList () {
       pokemonList.innerHTML += '<tr><td>' + checkBox + '></td><td>' + pokemonId + '</td><td>' + pokemonName + '</td><td>' + poke['cp'] + '</td><td>' + poke['iv'] + '%</td></tr>'
     })
   }
+}
+
+function runningCheck () {
+  if (running) {
+    ipc.send('error-message', 'An action is already running')
+    return true
+  }
+  return false
+}
+
+function countDown (method, index) {
+  var interval = setInterval(() => {
+    statusH.innerHTML = method + ' / ' + index + ' second(s) left'
+    index--
+    if (index === 0) {
+      clearInterval(interval)
+      running = false
+      statusH.innerHTML = 'Idle'
+      ipc.send('error-message', 'Complete!')
+    }
+  }, 1000)
 }
