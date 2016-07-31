@@ -1,7 +1,8 @@
 const {app, BrowserWindow, ipcMain, dialog} = require('electron')
-const fs = require('fs')
-const path = require('path')
-const pogobuf = require('pogobuf')
+const fs          = require('fs')
+const path        = require('path')
+const pogobuf     = require('pogobuf')
+const POGOProtos  = require('node-pogo-protos')
 // const sleep = require('sleep')
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
@@ -182,8 +183,9 @@ ipcMain.on('get-players-pokemons', (event) => {
         attack: pokemon['individual_attack'],
         defense: pokemon['individual_defense'],
         stamina: pokemon['individual_stamina'],
-        iv: (((pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']) / 45) * 100).toFixed(0),
-        pokemon_id: pokemon['pokemon_id']
+        iv: parseInt(((pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']) / 45) * 100),
+        pokemon_id: pokemon['pokemon_id'],
+        name: pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
       })
     }
 
