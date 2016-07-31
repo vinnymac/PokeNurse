@@ -18,3 +18,7 @@
 #refresh-btn:hover {
   cursor: pointer;
 }
+
+thead > tr > td {
+  cursor: pointer;
+}
