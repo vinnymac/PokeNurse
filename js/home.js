@@ -35,27 +35,43 @@ refreshBtn.addEventListener('click', () => {
 })
 
 transferBtn.addEventListener('click', () => {
-  // IMPLEMENT
   var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked')
 
   if (ipc.sendSync('confirmation-dialog', 'transfer').success) {
+    disableButtons(true)
     selectedPokemon.forEach(pokemon => {
       ipc.send('transfer-pokemon', pokemon.value)
     })
+    disableButtons(false)
   }
 })
 
 evolveBtn.addEventListener('click', () => {
-  // IMPLEMENT
+  var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked')
+
   if (ipc.sendSync('confirmation-dialog', 'evolve').success) {
-    ipc.send('error-message', 'ALL GOOD')
+    disableButtons(true)
+    selectedPokemon.forEach(pokemon => {
+      ipc.send('transfer-pokemon', pokemon.value)
+    })
+    disableButtons(false)
   }
-  // ipc.send('evolve-pokemon', [])
 })
+
+function disableButtons (state) {
+  transferBtn.disabled = state
+  evolveBtn.disabled = state
+}
 
 function refreshPokemonList () {
   var pokemons = ipc.sendSync('get-players-pokemons')
   if (pokemons.success) {
+    pokemons.pokemon.sort((a, b) => {
+      if (a['pokemon_id'] < b['pokemon_id']) return -1
+      if (a['pokemon_id'] > b['pokemon_id']) return 1
+      return 0
+    })
+
     pokemonList.innerHTML = ''
 
     pokemons.pokemon.forEach(poke => {
