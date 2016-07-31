@@ -2,7 +2,7 @@ const {app, BrowserWindow, ipcMain, dialog} = require('electron')
 const fs = require('fs')
 const path = require('path')
 const pogobuf = require('pogobuf')
-const sleep = require('sleep')
+// const sleep = require('sleep')
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -194,15 +194,17 @@ ipcMain.on('get-players-pokemons', (event) => {
   })
 })
 
-ipcMain.on('transfer-pokemon', (event, id) => {
-  console.log('[+] Releasing Pokemon with id: ' + id + ' in two seconds')
-  sleep.sleep(2)
-  client.releasePokemon(id)
+ipcMain.on('transfer-pokemon', (event, id, delay) => {
+  setTimeout(() => {
+    client.releasePokemon(id)
+    console.log('[+] Released')
+  }, delay)
 })
 
-ipcMain.on('evolve-pokemon', (event, id) => {
-  console.log('[+] Evolving Pokemon with id: ' + id + ' in 15 seconds')
-  sleep.sleep(15)
-  client.evolvePokemon(id)
+ipcMain.on('evolve-pokemon', (event, id, delay) => {
+  setTimeout(() => {
+    client.evolvePokemon(id)
+    console.log('[+] Evolved')
+  }, delay)
 })
 // END OF POKEMON
