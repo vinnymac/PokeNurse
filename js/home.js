@@ -1,5 +1,5 @@
 const ipc = require('electron').ipcRenderer
-const pogobuf = require('pogobuf')
+const pogoUtils = require('pogobuf').Utils
 const POGOProtos = require('node-pogo-protos')
 
 const header = document.getElementById('profile-header')
@@ -36,12 +36,21 @@ refreshBtn.addEventListener('click', () => {
 
 transferBtn.addEventListener('click', () => {
   // IMPLEMENT
-  ipc.send('transfer-pokemon', [])
+  var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked')
+
+  if (ipc.sendSync('confirmation-dialog', 'transfer').success) {
+    selectedPokemon.forEach(pokemon => {
+      ipc.send('transfer-pokemon', pokemon.value)
+    })
+  }
 })
 
 evolveBtn.addEventListener('click', () => {
   // IMPLEMENT
-  ipc.send('evolve-pokemon', [])
+  if (ipc.sendSync('confirmation-dialog', 'evolve').success) {
+    ipc.send('error-message', 'ALL GOOD')
+  }
+  // ipc.send('evolve-pokemon', [])
 })
 
 function refreshPokemonList () {
@@ -50,9 +59,14 @@ function refreshPokemonList () {
     pokemonList.innerHTML = ''
 
     pokemons.pokemon.forEach(poke => {
-      if (poke['pokemon_id'] === 0) return
-      var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, poke['pokemon_id'])
-      pokemonList.innerHTML += '<tr><td>' + poke['pokemon_id'] + '</td><td>' + pokemonName + '</td><td>' + poke['cp'] + '</td></tr>'
+      var pokemonId = poke['pokemon_id']
+
+      var pokemonName = pogoUtils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemonId)
+
+      var checkBox = '<input type="checkbox" value="' + poke['id'].toString() + '"'
+      if (poke['deployed']) checkBox += ' disabled'
+
+      pokemonList.innerHTML += '<tr><td>' + checkBox + '></td><td>' + pokemonId + '</td><td>' + pokemonName + '</td><td>' + poke['cp'] + '</td><td>' + poke['iv'] + '%</td></tr>'
     })
   }
 }
