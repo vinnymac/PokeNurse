@@ -9,7 +9,8 @@ const evolveBtn   = document.getElementById('evolve-btn')
 const pokemonList = document.getElementById('pokemon-list')
 const sortLinks   = document.querySelectorAll('td[data-sort]')
 
-var currSorting   = 'pokemon_id'
+// Default sort, sort first by pokemon_id then by cp
+var currSortings   = ['pokemon_id', 'cp']
 var pokemons      = []
 var running       = false
 
@@ -72,12 +73,22 @@ for (var i = 0; i < sortLinks.length; i++) {
 
 function refreshPokemonList () {
   pokemons = ipc.sendSync('get-players-pokemons')
-  if (pokemons.success) sortPokemonList(currSorting, true)
+  if (pokemons.success) sortPokemonList(currSortings[0], true)
 }
 
 function sortPokemonList (sorting, refresh) {
-  currSorting = (!refresh && sorting == currSorting ? '-' : '') + sorting
-  pokemons.pokemon.sort(sortBy(currSorting))
+  var lastSort = currSortings[0]
+  var isSameSort = sorting === lastSort || '-' + sorting ===  lastSort
+  newSort = (!refresh && sorting == lastSort ? '-' : '') + sorting
+
+  if (isSameSort) {
+    currSortings[0] = newSort
+  } else {
+    currSortings.pop()
+    currSortings.unshift(newSort)
+  }
+
+  pokemons.pokemon.sort(sortBy(currSortings))
 
   pokemonList.innerHTML = ''
 
@@ -117,16 +128,24 @@ function randomDelay (min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
-function sortBy (prop) {
-  var order = prop.substr(0, 1) == '-' ? -1 : 1;
+function sortBy (props) {
+  var orders = props.map((prop) => {
+    return prop.substr(0, 1) == '-' ? -1 : 1
+  })
 
-  if (prop.substr(0, 1) === '-') prop = prop.substr(1)
+  props = props.map((prop) => {
+    if (prop.substr(0, 1) === '-') prop = prop.substr(1)
+    return prop
+  })
+
+  function doSort(a, b, i) {
+    if (i === props.length) return 0
+    return (a[props[i]] < b[props[i]]) ? -1 * orders[i] :
+           (a[props[i]] > b[props[i]]) ? 1 * orders[i] :
+           doSort(a, b, ++i);
+  }
 
   return function (a, b) {
-    return  (a[prop] < b[prop]) ? -1 * order :
-            (a[prop] > b[prop]) ? 1 * order :
-            (a['cp'] < b['cp']) ? 1 :
-            (a['cp'] > b['cp']) ? -1 :
-            0;
+    return doSort(a, b, 0)
   }
 }
