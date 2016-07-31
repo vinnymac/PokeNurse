@@ -2,6 +2,7 @@ const {app, BrowserWindow, ipcMain, dialog} = require('electron')
 const fs = require('fs')
 const path = require('path')
 const pogobuf = require('pogobuf')
+const sleep = require('sleep')
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -10,7 +11,7 @@ let client
 
 function createWindow () {
   win = new BrowserWindow({ width: 800, height: 375, title: 'PokéNurse', icon: 'imgs/emojioneicon.png' })
-  win.setMenu(null)
+  // win.setMenu(null)
   win.loadURL(`file://${__dirname}/login.html`)
 
   client = new pogobuf.Client()
@@ -41,6 +42,27 @@ ipcMain.on('error-message', (event, errorMessage) => {
     buttons: ['Ok'],
     title: 'Error',
     message: errorMessage
+  })
+})
+
+ipcMain.on('confirmation-dialog', (event, method) => {
+  dialog.showMessageBox(win, {
+    type: 'question',
+    buttons: ['Yes', 'Cancel'],
+    title: 'Confirmation',
+    message: 'Are you sure you want to ' + method + ' the selected Pokemon?'
+  }, response => {
+    if (response === 1) {
+      console.log('[!] ' + method + ' cancelled')
+      event.returnValue = {
+        success: false
+      }
+      return
+    }
+
+    event.returnValue = {
+      success: true
+    }
   })
 })
 // END OF GENERAL
@@ -145,45 +167,42 @@ ipcMain.on('get-players-pokemons', (event) => {
     }
 
     var pokemons = pogobuf.Utils.splitInventory(inventory)['pokemon']
+    var reducedPokemonList = []
+
+    for (var i = 0; i < pokemons.length; i++) {
+      var pokemon = pokemons[i]
+
+      if (pokemon['cp'] === 0) continue
+
+      reducedPokemonList.push({
+        cp: pokemon['cp'],
+        creation_time_ms: pokemon['creation_time_ms'].toString(),
+        deployed: pokemon['deployed_fort_id'] !== '',
+        id: pokemon['id'].toString(),
+        attack: pokemon['individual_attack'],
+        defense: pokemon['individual_defense'],
+        stamina: pokemon['individual_stamina'],
+        iv: (((pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']) / 45) * 100).toFixed(0),
+        pokemon_id: pokemon['pokemon_id']
+      })
+    }
 
     event.returnValue = {
       success: true,
-      pokemon: pokemons
+      pokemon: reducedPokemonList
     }
   })
 })
 
-ipcMain.on('transfer-pokemon', (event, ids) => {
-  dialog.showMessageBox(win, {
-    type: 'question',
-    buttons: ['Yes', 'Cancel'],
-    title: 'Confirmation',
-    message: 'Are you sure you want to transfer the selected Pokemon?'
-  }, (response) => {
-    if (response === 1) {
-      console.log('[!] Transfer cancelled')
-      return
-    }
-
-    console.log('[+] Transferring Pokemon')
-    // IMPLEMENT
-  })
+ipcMain.on('transfer-pokemon', (event, id) => {
+  console.log('[+] Releasing Pokemon with id: ' + id + ' in two seconds')
+  sleep.sleep(2)
+  client.releasePokemon(id)
 })
 
-ipcMain.on('evolve-pokemon', (event, ids) => {
-  dialog.showMessageBox(win, {
-    type: 'question',
-    buttons: ['Yes', 'Cancel'],
-    title: 'Confirmation',
-    message: 'Are you sure you want to evolve the selected Pokemon?'
-  }, (response) => {
-    if (response === 1) {
-      console.log('[!] Evolve cancelled')
-      return
-    }
-
-    console.log('[+] Evolving Pokemon')
-    // IMPLEMENT
-  })
+ipcMain.on('evolve-pokemon', (event, id) => {
+  console.log('[+] Evolving Pokemon with id: ' + id + ' in 15 seconds')
+  sleep.sleep(15)
+  client.evolvePokemon(id)
 })
 // END OF POKEMON
