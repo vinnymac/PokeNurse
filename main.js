@@ -1,9 +1,8 @@
 const {app, BrowserWindow, ipcMain, dialog} = require('electron')
-const fs          = require('fs')
-const path        = require('path')
-const pogobuf     = require('pogobuf')
-const POGOProtos  = require('node-pogo-protos')
-// const sleep = require('sleep')
+const fs = require('fs')
+const path = require('path')
+const pogobuf = require('pogobuf')
+const POGOProtos = require('node-pogo-protos')
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -175,7 +174,7 @@ ipcMain.on('get-players-pokemons', (event) => {
 
       if (pokemon['cp'] === 0) continue
 
-      var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id']);
+      var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
       reducedPokemonList.push({
         cp: pokemon['cp'],
         creation_time_ms: pokemon['creation_time_ms'].toString(),
@@ -212,5 +211,10 @@ ipcMain.on('evolve-pokemon', (event, id, delay) => {
     client.evolvePokemon(id)
     console.log('[+] Evolved Pokemon with id: ' + id)
   }, delay)
+})
+
+ipcMain.on('favorite-pokemon', (event, id, isFavorite) => {
+  client.setFavoritePokemon(id, isFavorite)
+  console.log('[+] Pokemon favorite status set to ' + isFavorite)
 })
 // END OF POKEMON

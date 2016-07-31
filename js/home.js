@@ -1,20 +1,20 @@
-const ipc         = require('electron').ipcRenderer
+const ipc = require('electron').ipcRenderer
 
-const header      = document.getElementById('profile-header')
-const usernameH   = document.getElementById('username-h')
-const statusH     = document.getElementById('status-h')
-const refreshBtn  = document.getElementById('refresh-btn')
+const header = document.getElementById('profile-header')
+const usernameH = document.getElementById('username-h')
+const statusH = document.getElementById('status-h')
+const refreshBtn = document.getElementById('refresh-btn')
 const transferBtn = document.getElementById('transfer-btn')
-const evolveBtn   = document.getElementById('evolve-btn')
+const evolveBtn = document.getElementById('evolve-btn')
 const pokemonList = document.getElementById('pokemon-list')
-const sortLinks   = document.querySelectorAll('td[data-sort]')
+const sortLinks = document.querySelectorAll('td[data-sort]')
 
 // Default sort, sort first by pokemon_id then by cp
-var currSortings   = ['pokemon_id', 'cp']
-var pokemons      = []
-var running       = false
+var currSortings = ['pokemon_id', 'cp']
+var pokemons = []
+var running = false
 
-var playerInfo    = ipc.sendSync('get-player-info')
+var playerInfo = ipc.sendSync('get-player-info')
 if (playerInfo.success) {
   switch (playerInfo.player_data['team']) {
     case 1:
@@ -78,8 +78,8 @@ function refreshPokemonList () {
 
 function sortPokemonList (sorting, refresh) {
   var lastSort = currSortings[0]
-  var isSameSort = sorting === lastSort || '-' + sorting ===  lastSort
-  newSort = (!refresh && sorting == lastSort ? '-' : '') + sorting
+  var isSameSort = sorting === lastSort || '-' + sorting === lastSort
+  var newSort = (!refresh && sorting === lastSort ? '-' : '') + sorting
 
   if (isSameSort) {
     currSortings[0] = newSort
@@ -99,7 +99,16 @@ function sortPokemonList (sorting, refresh) {
     if (poke['deployed']) checkBox += ' disabled'
     if (poke['favorite']) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
-    pokemonList.innerHTML += '<tr><td>' + checkBox + '></td><td><span class="favorite ' + favorite + '"/></td><td>' + poke['pokemon_id'] + '</td><td>' + poke['name'] + '</td><td>' + poke['nickname'] + '</td><td>' + poke['cp'] + '</td><td>' + poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')</td></tr>'
+    var html = '<tr>'
+    html += '<td>' + checkBox + '></td>'
+    html += '<td><span class="favorite ' + favorite + '" /></td>'
+    html += '<td>' + poke['pokemon_id'] + '</td>'
+    html += '<td>' + poke['name'] + '</td>'
+    html += '<td>' + poke['nickname'] + '</td>'
+    html += '<td>' + poke['cp'] + '</td>'
+    html += '<td>' + poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')</td>'
+    html += '</tr>'
+    pokemonList.innerHTML += html
   })
 }
 
@@ -130,7 +139,7 @@ function randomDelay (min, max) {
 
 function sortBy (props) {
   var orders = props.map((prop) => {
-    return prop.substr(0, 1) == '-' ? -1 : 1
+    return prop.substr(0, 1) === '-' ? -1 : 1
   })
 
   props = props.map((prop) => {
@@ -138,11 +147,11 @@ function sortBy (props) {
     return prop
   })
 
-  function doSort(a, b, i) {
+  function doSort (a, b, i) {
     if (i === props.length) return 0
-    return (a[props[i]] < b[props[i]]) ? -1 * orders[i] :
-           (a[props[i]] > b[props[i]]) ? 1 * orders[i] :
-           doSort(a, b, ++i);
+    return (a[props[i]] < b[props[i]]) ? -1 * orders[i]
+           : (a[props[i]] > b[props[i]]) ? 1 * orders[i]
+           : doSort(a, b, ++i)
   }
 
   return function (a, b) {

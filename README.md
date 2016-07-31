@@ -1,5 +1,6 @@
 # PokeNurse
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
+[![style](https://img.shields.io/badge/style-standard-brightgreen.svg)]()
 
 ![Main Window](http://i.imgur.com/wsfNrJf.png)
 
@@ -13,6 +14,7 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
     * IV
 * Transfer Pokemon
 * Evolve Pokemon
+* Favorite Pokemon
 
 ## Development
     git clone https://github.com/duhminick/PokeNurse
@@ -25,7 +27,6 @@ This project follows the [JS Standard Code Style](http://standardjs.com/index.ht
 ## Todo
 * Evolve Pokemon with x amount of times
 * Show Pokemon moveset
-* Favorite Pokemon
 * Pictures would be nice
 * Change the table into something more appealing
 
@@ -35,6 +36,7 @@ This project follows the [JS Standard Code Style](http://standardjs.com/index.ht
 ## Contributors
 * yungfrancis (First pull!)
 * nrdxn
+* jackyjieliu
 
 ## Credit
 * [cyraxx](https://github.com/cyraxx) for [pogobuf](https://github.com/cyraxx/pogobuf) and [node-pogo-protos](https://github.com/cyraxx/node-pogo-protos)
