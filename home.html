@@ -8,20 +8,23 @@
   <body>
     <header class="header" id="profile-header">
       <p id="username-h"></p>
+      <p>Status: <span id="status-h"></span></p>
       <!--<h5 id="pokestorage-h"></h5>
       <h5 id="bagstorage-h"></h5>-->
     </header>
 
     <div class="container">
       <h1>
-        Pokémon <span class="glyphicon glyphicon-refresh" id="refresh-btn"></span>
+        <span>Pokémon</span>
+        <span class="glyphicon glyphicon-refresh" id="refresh-btn"></span>
+
         <span class="pull-right">
           <input type="button" class="btn btn-warning" id="transfer-btn" value="Transfer selected">
           <input type="button" class="btn btn-danger" id="evolve-btn" value="Evolve selected">
         </span>
       </h1>
 
-      <table class="table table-condensed">
+      <table class="table table-condensed table-hover">
         <thead>
           <tr>
             <td></td>
