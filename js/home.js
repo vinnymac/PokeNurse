@@ -83,10 +83,12 @@ function sortPokemonList (sorting, refresh) {
 
   pokemons.pokemon.forEach(poke => {
     var checkBox = '<input type="checkbox" value="' + poke['id'].toString() + '"'
+    var favorite = 'glyphicon glyphicon-star-empty'
 
     if (poke['deployed']) checkBox += ' disabled'
+    if (poke['favorite']) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
-    pokemonList.innerHTML += '<tr><td>' + checkBox + '></td><td>' + poke['pokemon_id'] + '</td><td>' + poke['name'] + '</td><td>' + poke['cp'] + '</td><td>' + poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')</td></tr>'
+    pokemonList.innerHTML += '<tr><td>' + checkBox + '></td><td><span class="favorite ' + favorite + '"/></td><td>' + poke['pokemon_id'] + '</td><td>' + poke['name'] + '</td><td>' + poke['nickname'] + '</td><td>' + poke['cp'] + '</td><td>' + poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')</td></tr>'
   })
 }
 
