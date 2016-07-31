@@ -23,7 +23,7 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
 ## Todo
 * Make delays more human
 * Additional sorting methods
-* Prevent users from running transfers/evolves while one is occuring
+* Prevent users from running transfers/evolves while one is occuring (Hackily implemented)
 * Pictures would be nice
 * Change the table into something more appealing
 
