@@ -60,6 +60,8 @@ function refreshPokemonList () {
     pokemons.pokemon.sort((a, b) => {
       if (a['pokemon_id'] < b['pokemon_id']) return -1
       if (a['pokemon_id'] > b['pokemon_id']) return 1
+      if (a['cp'] > b['cp']) return -1
+      if (a['cp'] < b['cp']) return 1
       return 0
     })
 

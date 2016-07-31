@@ -197,14 +197,14 @@ ipcMain.on('get-players-pokemons', (event) => {
 ipcMain.on('transfer-pokemon', (event, id, delay) => {
   setTimeout(() => {
     client.releasePokemon(id)
-    console.log('[+] Released')
+    console.log('[+] Released Pokemon with id: ' + id)
   }, delay)
 })
 
 ipcMain.on('evolve-pokemon', (event, id, delay) => {
   setTimeout(() => {
     client.evolvePokemon(id)
-    console.log('[+] Evolved')
+    console.log('[+] Evolved Pokemon with id: ' + id)
   }, delay)
 })
 // END OF POKEMON
