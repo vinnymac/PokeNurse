@@ -21,7 +21,17 @@ if (credentials.success) {
   rememberCb.checked = true
 }
 
-loginBtn.addEventListener('click', () => {
+loginBtn.addEventListener('click', handleLogin)
+
+usernameTxt.addEventListener('keypress', (e) => {
+  if (e.keyCode == 13) handleLogin()
+})
+
+passwordTxt.addEventListener('keypress', (e) => {
+  if (e.keyCode == 13) handleLogin()
+})
+
+function handleLogin () {
   var method = getAuthMethod()
 
   if (usernameTxt.value === '' || passwordTxt.value === '') {
@@ -36,7 +46,7 @@ loginBtn.addEventListener('click', () => {
   }
 
   ipc.send('pokemon-login', method, usernameTxt.value, passwordTxt.value)
-})
+}
 
 function getAuthMethod () {
   var authMethodRadio = document.getElementsByName('auth-radio')
