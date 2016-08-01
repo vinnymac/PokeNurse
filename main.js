@@ -1,17 +1,12 @@
 const {app, BrowserWindow, ipcMain, dialog} = require('electron')
-<<<<<<< 2cac1ddd3851cd57ee25d0537e6bd3e7d0b5b746
-const fs = require('fs')
-const path = require('path')
-const pogobuf = require('pogobuf')
-const POGOProtos = require('node-pogo-protos')
-=======
+
 const fs          = require('fs')
 const path        = require('path')
 const pogobuf     = require('pogobuf')
 const POGOProtos  = require('node-pogo-protos')
 const Baby       = require('babyparse')
 // const sleep = require('sleep')
->>>>>>> Evolves List
+
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -211,8 +206,6 @@ ipcMain.on('get-players-pokemons', (event) => {
     for (var i = 0; i < pokemons.length; i++) {
       var pokemon = pokemons[i]
 
-      var pname = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
-
       if (pokemon['cp'] === 0) continue
 
       var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
@@ -226,22 +219,18 @@ ipcMain.on('get-players-pokemons', (event) => {
         stamina: pokemon['individual_stamina'],
         iv: parseInt(((pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']) / 45) * 100),
         pokemon_id: pokemon['pokemon_id'],
-<<<<<<< 2cac1ddd3851cd57ee25d0537e6bd3e7d0b5b746
         name: pokemonName,
         nickname: pokemon['nickname'] || pokemonName,
         // Multiply by -1 for sorting
         favorite: pokemon['favorite'] * -1
-=======
-        name: pname
->>>>>>> Evolves List
       })
 
-      if (evolveList[pname]) {
-        evolveList[pname].count = evolveList[pname].count + 1
+      if (evolveList[pokemonName]) {
+        evolveList[pokemonName].count = evolveList[pokemonName].count + 1
       } else {
-        evolveList[pname] = {
+        evolveList[pokemonName] = {
           id: pokemon['pokemon_id'],
-          name: pname,
+          name: pokemonName,
           count: +1
         }
       }
@@ -265,7 +254,7 @@ ipcMain.on('get-players-pokemons', (event) => {
       })
     }
 
-    //console.log(reducedEvolveList)
+    console.log(reducedEvolveList)
 
     event.returnValue = {
       success: true,
