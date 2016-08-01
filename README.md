@@ -28,6 +28,7 @@ This project follows the [JS Standard Code Style](http://standardjs.com/index.ht
 * Favorite/unfavorite Pokemon
 * Evolve Pokemon with x amount of times
 * Show Pokemon moveset
+* Nickname Pokemon
 * Pictures would be nice
 * Change the table into something more appealing
 
@@ -39,6 +40,7 @@ This project follows the [JS Standard Code Style](http://standardjs.com/index.ht
 * nrdxn
 * jackyjieliu
 * vinnymac
+* mackhankins
 
 ## Credit
 * [cyraxx](https://github.com/cyraxx) for [pogobuf](https://github.com/cyraxx/pogobuf) and [node-pogo-protos](https://github.com/cyraxx/node-pogo-protos)
