@@ -104,7 +104,7 @@ function sortPokemonList (sorting, refresh) {
     html += '<td><span class="favorite ' + favorite + '" /></td>'
     html += '<td>' + poke['pokemon_id'] + '</td>'
     html += '<td>' + poke['name'] + '</td>'
-    html += '<td>' + poke['nickname'] + '</td>'
+    html += '<td class="nickname" data-toggle="modal" data-target="#bulbasaurModal">' + poke['nickname'] + '</td>'
     html += '<td>' + poke['cp'] + '</td>'
     html += '<td>' + poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')</td>'
     html += '</tr>'
