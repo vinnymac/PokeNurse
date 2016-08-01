@@ -161,7 +161,7 @@ display:none;
 }
 
 .pokemon-sprite {
-background: url('/images/sprites.png');
+background: url('../imgs/sprites.png');
 height: 128px;
 width: 128px;
 position:relative;
