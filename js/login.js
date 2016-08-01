@@ -24,11 +24,11 @@ if (credentials.success) {
 loginBtn.addEventListener('click', handleLogin)
 
 usernameTxt.addEventListener('keypress', (e) => {
-  if (e.keyCode == 13) handleLogin()
+  if (e.keyCode === 13) handleLogin()
 })
 
 passwordTxt.addEventListener('keypress', (e) => {
-  if (e.keyCode == 13) handleLogin()
+  if (e.keyCode === 13) handleLogin()
 })
 
 function handleLogin () {
