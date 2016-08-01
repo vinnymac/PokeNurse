@@ -25,6 +25,7 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
 This project follows the [JS Standard Code Style](http://standardjs.com/index.html) for the most part.
 
 ## Todo
+* Favorite/unfavorite Pokemon
 * Evolve Pokemon with x amount of times
 * Show Pokemon moveset
 * Pictures would be nice
@@ -37,6 +38,7 @@ This project follows the [JS Standard Code Style](http://standardjs.com/index.ht
 * yungfrancis (First pull!)
 * nrdxn
 * jackyjieliu
+* vinnymac
 
 ## Credit
 * [cyraxx](https://github.com/cyraxx) for [pogobuf](https://github.com/cyraxx/pogobuf) and [node-pogo-protos](https://github.com/cyraxx/node-pogo-protos)
