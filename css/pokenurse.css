@@ -34,6 +34,15 @@ thead > tr > td {
 
 /* Pokemon Detail CSS */
 
+.pokemon-avatar {
+  width: 80px;
+  height: 85px;
+}
+
+.pokemon-avatar > .pokemon-sprite {
+  transform: translate3d(-40px, -4px, 0px);
+}
+
 #mv_contents {
 margin-left: 30px;
 margin-right: 10px;

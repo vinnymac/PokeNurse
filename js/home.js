@@ -104,6 +104,7 @@ function sortPokemonList (sorting, refresh) {
     html += '<td>' + checkBox + '></td>'
     html += '<td><span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke['id'] + '" data-pokemon-favorited="' + favoriteBool + '" /></td>'
     html += '<td>' + poke['pokemon_id'] + '</td>'
+    html += '<td>' + '<div class="pokemon-avatar"><div class="pokemon-sprite ' + poke['name'].toLowerCase() + '"></div></div>' + '</td>'
     html += '<td>' + poke['name'] + '</td>'
     html += '<td class="nickname" data-toggle="modal" data-target="#bulbasaurModal">' + poke['nickname'] + '</td>'
     html += '<td>' + poke['cp'] + '</td>'
