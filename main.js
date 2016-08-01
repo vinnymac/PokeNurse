@@ -134,6 +134,8 @@ ipcMain.on('pokemon-login', (event, method, username, password) => {
 
     win.loadURL(`file://${__dirname}/home.html`)
     win.setSize(900, 600, true)
+  }).catch(error => {
+    console.error(error)
   })
 })
 // END OF LOGIN
