@@ -1,8 +1,17 @@
 const {app, BrowserWindow, ipcMain, dialog} = require('electron')
+<<<<<<< 2cac1ddd3851cd57ee25d0537e6bd3e7d0b5b746
 const fs = require('fs')
 const path = require('path')
 const pogobuf = require('pogobuf')
 const POGOProtos = require('node-pogo-protos')
+=======
+const fs          = require('fs')
+const path        = require('path')
+const pogobuf     = require('pogobuf')
+const POGOProtos  = require('node-pogo-protos')
+const Baby       = require('babyparse')
+// const sleep = require('sleep')
+>>>>>>> Evolves List
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -159,7 +168,7 @@ ipcMain.on('get-player-info', (event) => {
 })
 
 ipcMain.on('get-players-pokemons', (event) => {
-  console.log('[+] Retrieving player\'s Pokemons')
+  console.log('[+] Retrieving player\'s Pokemons and Calculating Evolves')
   client.getInventory(0).then(inventory => {
     if (!inventory['success']) {
       event.returnValue = {
@@ -168,11 +177,41 @@ ipcMain.on('get-players-pokemons', (event) => {
       return
     }
 
+    var evolves = Baby.parseFiles('evolves.csv', {header: true, skipEmptyLines: true})
+    var formattedEvolves = {}
+
+    for (var i = 0; i < evolves.data.length; i++) {
+      var evolve = evolves.data[i]
+
+      formattedEvolves[ evolve.id.toString() ] = evolve.cost
+    }
+
+    var families = Baby.parseFiles('families.csv', {header: true, skipEmptyLines: true})
+    var formattedFamilies = {}
+
+    for (var i = 0; i < families.data.length; i++) {
+      var family = families.data[i]
+
+      formattedFamilies[ family.id.toString() ] = family.family
+    }
+
+    var candies = pogobuf.Utils.splitInventory(inventory)['candies']
+    var formattedCandies = {}
+
+    for (var i = 0; i < candies.length; i++) {
+      var candy = candies[i]
+      
+      formattedCandies[ candy.family_id.toString() ] = candy.candy
+    }
+
     var pokemons = pogobuf.Utils.splitInventory(inventory)['pokemon']
     var reducedPokemonList = []
+    var evolveList = []
 
     for (var i = 0; i < pokemons.length; i++) {
       var pokemon = pokemons[i]
+
+      var pname = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
 
       if (pokemon['cp'] === 0) continue
 
@@ -187,12 +226,46 @@ ipcMain.on('get-players-pokemons', (event) => {
         stamina: pokemon['individual_stamina'],
         iv: parseInt(((pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']) / 45) * 100),
         pokemon_id: pokemon['pokemon_id'],
+<<<<<<< 2cac1ddd3851cd57ee25d0537e6bd3e7d0b5b746
         name: pokemonName,
         nickname: pokemon['nickname'] || pokemonName,
         // Multiply by -1 for sorting
         favorite: pokemon['favorite'] * -1
+=======
+        name: pname
+>>>>>>> Evolves List
+      })
+
+      if (evolveList[pname]) {
+        evolveList[pname].count = evolveList[pname].count + 1
+      } else {
+        evolveList[pname] = {
+          id: pokemon['pokemon_id'],
+          name: pname,
+          count: +1
+        }
+      }
+
+    }
+
+    var reducedEvolveList = []
+
+    for (var key in evolveList) {
+      var candy = formattedCandies[formattedFamilies[evolveList[key].id]]
+      var count = evolveList[key].count
+      var evolves = Math.floor(candy / formattedEvolves[evolveList[key].id])
+
+      if (evolves === Infinity || evolves === 0 || isNaN(evolves)) continue
+
+      reducedEvolveList.push({
+        name: evolveList[key].name,
+        count: count,
+        candy: candy,
+        evolves: (evolves > count ? count : evolves)
       })
     }
+
+    //console.log(reducedEvolveList)
 
     event.returnValue = {
       success: true,
