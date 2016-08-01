@@ -98,10 +98,11 @@ function sortPokemonList (sorting, refresh) {
 
     if (poke['deployed']) checkBox += ' disabled'
     if (poke['favorite']) favorite = 'glyphicon glyphicon-star favorite-yellow'
+    var favoriteBool = poke['favorite'] ? 'true' : 'false'
 
     var html = '<tr>'
     html += '<td>' + checkBox + '></td>'
-    html += '<td><span class="favorite ' + favorite + '" /></td>'
+    html += '<td><span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke['id'] + '" data-pokemon-favorited="' + favoriteBool + '" /></td>'
     html += '<td>' + poke['pokemon_id'] + '</td>'
     html += '<td>' + poke['name'] + '</td>'
     html += '<td class="nickname" data-toggle="modal" data-target="#bulbasaurModal">' + poke['nickname'] + '</td>'
@@ -110,6 +111,8 @@ function sortPokemonList (sorting, refresh) {
     html += '</tr>'
     pokemonList.innerHTML += html
   })
+
+  addFavoriteButtonEvent()
 }
 
 function runningCheck () {
@@ -157,4 +160,17 @@ function sortBy (props) {
   return function (a, b) {
     return doSort(a, b, 0)
   }
+}
+
+function addFavoriteButtonEvent () {
+  var buttons = document.querySelectorAll('#favoriteBtn')
+  buttons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      var setToFavorite = button.dataset.pokemonFavorited === 'false'
+      ipc.send('favorite-pokemon', button.dataset.pokemonId, setToFavorite)
+      var newClass = setToFavorite ? 'favorite glyphicon glyphicon-star favorite-yellow' : 'favorite glyphicon glyphicon-star-empty'
+      button.className = newClass
+      button.dataset.pokemonFavorited = setToFavorite.toString()
+    })
+  })
 }
