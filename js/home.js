@@ -100,11 +100,20 @@ function sortPokemonList (sorting, refresh) {
     if (poke['favorite']) favorite = 'glyphicon glyphicon-star favorite-yellow'
     var favoriteBool = poke['favorite'] ? 'true' : 'false'
 
+    let spriteClassName = poke['name'].toLowerCase()
+
+    if (spriteClassName.indexOf('nidoran') > -1) {
+      let spriteParts = spriteClassName.split(' ')
+      spriteClassName = `${spriteParts[0]}-${spriteParts[1][0]}`
+    }
+
+    console.log(spriteClassName)
+
     var html = '<tr>'
     html += '<td>' + checkBox + '></td>'
     html += '<td><span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke['id'] + '" data-pokemon-favorited="' + favoriteBool + '" /></td>'
     html += '<td>' + poke['pokemon_id'] + '</td>'
-    html += '<td>' + '<div class="pokemon-avatar"><div class="pokemon-sprite ' + poke['name'].toLowerCase() + '"></div></div>' + '</td>'
+    html += '<td>' + '<div class="pokemon-avatar"><div class="pokemon-sprite ' + spriteClassName + '"></div></div>' + '</td>'
     html += '<td>' + poke['name'] + '</td>'
     html += '<td class="nickname" data-toggle="modal" data-target="#bulbasaurModal">' + poke['nickname'] + '</td>'
     html += '<td>' + poke['cp'] + '</td>'
