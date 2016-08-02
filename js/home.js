@@ -102,6 +102,8 @@ function sortPokemonList (sorting, refresh) {
 
   pokemonList.innerHTML = ''
 
+  console.log(pokemons)
+
   pokemons.pokemon.forEach(poke => {
     var checkBox = '<input type="checkbox" value="' + poke['id'].toString() + '"'
     var favorite = 'glyphicon glyphicon-star-empty'
@@ -116,13 +118,14 @@ function sortPokemonList (sorting, refresh) {
       let spriteParts = spriteClassName.split(' ')
       spriteClassName = `${spriteParts[0]}-${spriteParts[1][0]}`
     }
+
     var html = '<tr>'
     html += '<td>' + checkBox + '></td>'
     html += '<td><span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke['id'] + '" data-pokemon-favorited="' + favoriteBool + '" /></td>'
     html += '<td>' + poke['pokemon_id'] + '</td>'
     html += '<td>' + '<div class="pokemon-avatar"><div class="pokemon-sprite ' + spriteClassName + '"></div></div>' + '</td>'
     html += '<td>' + poke['name'] + '</td>'
-    html += '<td class="nickname" data-pokemon-id="' + poke['id'] + '">' + poke['nickname'] + '</td>'
+    html += '<td><a class="nickname" data-pokemon-id="' + poke['id'] + '">' + poke['nickname'] + '</a></td>'
     html += '<td>' + poke['cp'] + '</td>'
     html += '<td>' + poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')</td>'
     html += '</tr>'
@@ -192,7 +195,7 @@ function addFavoriteButtonEvent () {
   })
 }
 
-document.querySelectorAll('td.nickname').forEach(el => {
+document.querySelectorAll('td a.nickname').forEach(el => {
   el.addEventListener('click', showModal.bind(this, $(el).data('pokemon-id')), false);
 })
 
@@ -208,6 +211,7 @@ function showModal (id, event) {
 
   let $detailModal = $(detailModal)
 
+  $detailModal.find('.modal-title').text(pokemon.name)
   $detailModal.find('.modal-body').html(detailModalBody(pokemon))
   $detailModal.modal('show')
 }
