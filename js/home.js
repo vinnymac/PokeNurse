@@ -107,8 +107,6 @@ function sortPokemonList (sorting, refresh) {
       spriteClassName = `${spriteParts[0]}-${spriteParts[1][0]}`
     }
 
-    console.log(spriteClassName)
-
     var html = '<tr>'
     html += '<td>' + checkBox + '></td>'
     html += '<td><span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke['id'] + '" data-pokemon-favorited="' + favoriteBool + '" /></td>'
