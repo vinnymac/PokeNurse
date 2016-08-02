@@ -23,7 +23,7 @@ thead > tr > td {
   cursor: pointer;
 }
 
-thead > tr > td > a {
+tbody > tr > td > a {
   cursor: pointer;
 }
 
@@ -222,7 +222,7 @@ bottom: 0;
 right: 0px;
 height: 10px;
 width: 10px;
-background: white;
+background: #d8d8d8;
 border-radius: 100%;
 }
 
