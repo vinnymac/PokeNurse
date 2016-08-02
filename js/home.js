@@ -1,13 +1,17 @@
 const ipc = require('electron').ipcRenderer
+const pogoUtils = require('pogobuf').Utils
+const POGOProtos = require('node-pogo-protos')
 
 const header = document.getElementById('profile-header')
 const usernameH = document.getElementById('username-h')
 const statusH = document.getElementById('status-h')
 const refreshBtn = document.getElementById('refresh-btn')
+const refreshBtnCandy = document.getElementById('refresh-btn-candy')
 const transferBtn = document.getElementById('transfer-btn')
 const evolveBtn = document.getElementById('evolve-btn')
 const pokemonList = document.getElementById('pokemon-list')
 const sortLinks = document.querySelectorAll('td[data-sort]')
+const candyList = document.getElementById('candy-list')
 
 // Default sort, sort first by pokemon_id then by cp
 var currSortings = ['pokemon_id', 'cp']
@@ -31,11 +35,14 @@ if (playerInfo.success) {
   usernameH.innerHTML = playerInfo.player_data['username']
 
   refreshPokemonList()
+  refreshCandyList()
 } else {
   ipc.send('error-message', 'Failed in retrieving player info.  Please restart.')
 }
 
 refreshBtn.addEventListener('click', refreshPokemonList)
+
+refreshBtnCandy.addEventListener('click' , refreshCandyList)
 
 transferBtn.addEventListener('click', () => {
   if (runningCheck()) return
@@ -121,6 +128,69 @@ function sortPokemonList (sorting, refresh) {
   })
 
   addFavoriteButtonEvent()
+}
+
+function refreshCandyList(){
+  var candyInfo = ipc.sendSync('get-candy-info')
+  if (candyInfo.success) {
+    candyInfo.candy.sort((a, b) => {
+      if (a['family_id'] < b['family_id']) return -1
+      if (a['family_id'] > b['family_id']) return 1
+      return 0
+  })
+
+
+    candyList.innerHTML = ''
+
+    candyInfo.candy.forEach(fam => {
+    var familyId = fam['family_id']
+    var numOfPkm = fam['quantity']
+    var candies = fam['candies']
+    var costPerEv = calcEvolveCost(familyId)
+    var numOfEvoPos = (candies / costPerEv).toFixed(0).toString()
+    var toNextEvo = costPerEv - (candies % costPerEv)
+
+    var familyName = pogoUtils.getEnumKeyByValue(POGOProtos.Enums.PokemonFamilyId, familyId)
+
+    candyList.innerHTML += '<tr><td>' + familyId + '</td><td>' + familyName + '</td><td>' + numOfPkm + '</td>' +
+    '<td>' + candies +'</td><td>' +costPerEv +'</td><td>' + numOfEvoPos + '</td><td>' +toNextEvo+'</td></tr>'
+    })
+  }
+}
+
+function calcEvolveCost(famid){
+  switch(famid){
+    case 10:
+    case 13:
+    case 16:
+      return 12
+      break;
+
+    case 147:
+    case 133:
+    case 92:
+    case 74:
+    case 69:
+    case 63:
+    case 60:
+    case 43:
+    case 32:
+    case 29:
+    case 19:
+    case 7:
+    case 4:
+    case 1:
+      return 25
+      break;
+
+    case 129:
+      return 400
+      break;
+
+    default:
+      return 50
+      break;
+  }
 }
 
 function runningCheck () {

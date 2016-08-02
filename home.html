@@ -16,10 +16,10 @@
     <div class="container">
       <h1>
         <span>Pokémon</span>
-        <span class="glyphicon glyphicon-refresh" id="refresh-btn"></span>
+        <span class="glyphicon glyphicon-refresh refresh-btn" id="refresh-btn"></span>
 
         <span class="pull-right">
-          <input type="button" class="btn btn-warning" id="transfer-btn" value="Transfer selected">
+          <input type="button" class="refresh-btn btn btn-warning" id="transfer-btn" value="Transfer selected">
           <input type="button" class="btn btn-danger" id="evolve-btn" value="Evolve selected">
         </span>
       </h1>
@@ -153,6 +153,30 @@
         </div>
       </div>
     </div>
+
+    <div class="container">
+      <h1>
+      <span>Candies</span>
+      <span class="glyphicon glyphicon-refresh refresh-btn" id="refresh-btn-candy"></span>
+      <span class="sub-headline"> All numbers are for the first Evolution only </span>
+
+      <table id="candy-table" class="table table-condensed table-hover">
+        <thead>
+          <tr>
+            <td data-sort = "fam_id"> Family #</td>
+            <td data-sort = "fam_name"> Name </td>
+            <td> # Pokémon </td>
+            <td data-sort = "current_candy"> Candies Current </td>
+            <td data-sort = "cost"> Cost per Evolution</td>
+            <td data-sort = "num_evo"> Possible 1st Evolutions </td>
+            <td data-sort = "missing_candy"> # Candies missing</td>
+          </tr>
+        </thead>
+        <tbody id="candy-list">
+        </tbody>
+      </table>
+    </div>
+
 
     <script>window.$ = window.jQuery = require('jquery')</script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
