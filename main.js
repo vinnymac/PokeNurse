@@ -219,4 +219,61 @@ ipcMain.on('favorite-pokemon', (event, id, isFavorite) => {
   client.setFavoritePokemon(id, isFavorite)
   console.log('[+] Pokemon favorite status set to ' + isFavorite)
 })
+
+ipcMain.on('get-candy-info', (event) => {
+  console.log('[+] Getting Candy information')
+  client.getInventory(0).then(inventory => {
+    if (!inventory['success']) {
+      event.returnValue = {
+        success: false
+      }
+      return
+    }
+
+  var candies = pogobuf.Utils.splitInventory(inventory)['candies']
+  var pokemons = pogobuf.Utils.splitInventory(inventory)['pokemon']
+
+  var counts = {};
+  var finalList = []
+  
+  for( var i = 0 ; i < pokemons.length; i++){
+    var id = getFamIdFromEnum(pokemons[i]['pokemon_id'], POGOProtos.Enums.PokemonFamilyId)
+
+    if(id != 0 ){
+      counts[id] = counts[id] ? counts[id]+1 : 1;
+    }
+  }
+
+  for (var o = 0; o < candies.length; o++){
+    var famId = candies[o]['family_id']
+    counts[famId] = typeof counts[famId] == 'undefined' ? 0 : counts[famId]
+    finalList.push( {
+      family_id: famId,
+      quantity: counts[famId],
+      candies: candies[o]['candy'],
+    })
+  }
+    event.returnValue = {
+      success: true,
+      candy: finalList
+    }
+  })
+})
+
+
+//returns the the id of the pkm if its the first evolution
+function getFamIdFromEnum(val, enumObj){
+  var val = Number(val)
+  if (val == 0){
+    return 0
+  }
+  for (var key of Object.keys(enumObj)) {
+    if (enumObj[key] === val) {
+      return val
+    }
+  }
+  //only returning the first Evolution
+  //return getFamIdFromEnum(val - 1, enumObj)
+  return 0
+}
 // END OF POKEMON

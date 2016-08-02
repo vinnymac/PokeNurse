@@ -12,11 +12,15 @@
   font-weight: bold;
 }
 
-#refresh-btn {
+.refresh-btn:hover {
+  cursor: pointer;
+}
+.refresh-btn {
   font-size: 0.5em;
 }
-#refresh-btn:hover {
-  cursor: pointer;
+.sub-headline{
+  font-size: 0.4em;
+  display: block;
 }
 
 thead > tr > td {
