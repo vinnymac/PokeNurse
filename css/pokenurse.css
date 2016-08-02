@@ -28,6 +28,7 @@ thead > tr > td {
 }
 
 .favorite {
+  cursor: pointer;
   top: 4px;
 }
 
