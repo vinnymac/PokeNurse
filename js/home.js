@@ -132,6 +132,10 @@ function sortPokemonList (sorting, refresh) {
     pokemonList.innerHTML += html
   })
 
+  document.querySelectorAll('td a.nickname').forEach(el => {
+    el.addEventListener('click', showModal.bind(this, $(el).data('pokemon-id')), false);
+  })
+
   addFavoriteButtonEvent()
 }
 
@@ -195,10 +199,6 @@ function addFavoriteButtonEvent () {
   })
 }
 
-document.querySelectorAll('td a.nickname').forEach(el => {
-  el.addEventListener('click', showModal.bind(this, $(el).data('pokemon-id')), false);
-})
-
 function showModal (id, event) {
   let pokemon = pokemons.pokemon.find(poke => {
     return poke['id'] === id
@@ -217,6 +217,15 @@ function showModal (id, event) {
 }
 
 function detailModalBody (pokemon) {
+  // Calculate CP Progress dot position
+  let minCP = 10
+  let maxCP = 1000 - minCP // TODO need data to get true max
+  let minDeg = 0
+  let maxDeg = 180
+  let degree = Math.max(Math.min((pokemon.cp / maxCP) * maxDeg, maxDeg), minDeg)
+
+  let transform = `rotate(${degree}deg) translate(-192px);`
+
   let html = ''
 
   // TODO find and use some JSON data
@@ -228,7 +237,7 @@ function detailModalBody (pokemon) {
   html += '<div id="pokemon_sprite_wrapper">'
   html += '<div id="pokemon_sprite_sphere_wrapper">'
   html += '<div id="pokemon_sprite_sphere"></div>'
-  html += '<div id="pokemon_sprite_sphere_dot"></div>'
+  html += '<div id="pokemon_sprite_sphere_dot" style="transform:' + transform + '"></div>'
   html += '</div>'
   // TODO stop downloading these from pogo-dex
   html += '<img id="pokemon_profile_sprite" src="http://www.pogo-dex.com/images/sprites/' + pokemon.name.toLowerCase() + '.png">'
