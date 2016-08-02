@@ -102,6 +102,8 @@ function sortPokemonList (sorting, refresh) {
 
   pokemonList.innerHTML = ''
 
+  console.log(pokemons)
+
   pokemons.pokemon.forEach(poke => {
     var checkBox = '<input type="checkbox" value="' + poke['id'].toString() + '"'
     var favorite = 'glyphicon glyphicon-star-empty'
@@ -109,14 +111,13 @@ function sortPokemonList (sorting, refresh) {
     if (poke['deployed']) checkBox += ' disabled'
     if (poke['favorite']) favorite = 'glyphicon glyphicon-star favorite-yellow'
     var favoriteBool = poke['favorite'] ? 'true' : 'false'
-    console.log(poke);
     var html = '<tr>'
     html += '<td>' + checkBox + '></td>'
     html += '<td><span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke['id'] + '" data-pokemon-favorited="' + favoriteBool + '" /></td>'
     html += '<td>' + poke['pokemon_id'] + '</td>'
     html += '<td>' + '<div class="pokemon-avatar"><div class="pokemon-sprite ' + poke['name'].toLowerCase() + '"></div></div>' + '</td>'
     html += '<td>' + poke['name'] + '</td>'
-    html += '<td class="nickname" data-pokemon-id="' + poke['id'] + '">' + poke['nickname'] + '</td>'
+    html += '<td><a class="nickname" data-pokemon-id="' + poke['id'] + '">' + poke['nickname'] + '</a></td>'
     html += '<td>' + poke['cp'] + '</td>'
     html += '<td>' + poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')</td>'
     html += '</tr>'
@@ -186,7 +187,7 @@ function addFavoriteButtonEvent () {
   })
 }
 
-document.querySelectorAll('td.nickname').forEach(el => {
+document.querySelectorAll('td a.nickname').forEach(el => {
   el.addEventListener('click', showModal.bind(this, $(el).data('pokemon-id')), false);
 })
 
@@ -202,6 +203,7 @@ function showModal (id, event) {
 
   let $detailModal = $(detailModal)
 
+  $detailModal.find('.modal-title').text(pokemon.name)
   $detailModal.find('.modal-body').html(detailModalBody(pokemon))
   $detailModal.modal('show')
 }

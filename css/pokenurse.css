@@ -23,6 +23,10 @@ thead > tr > td {
   cursor: pointer;
 }
 
+thead > tr > td > a {
+  cursor: pointer;
+}
+
 .favorite-yellow {
   color: #F3BC0A;
 }
