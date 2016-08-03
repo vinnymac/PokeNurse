@@ -191,7 +191,7 @@ function prep_display(d) {
 
       poke.checkbox = checkBox + '>'
       poke.favorited = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
-      poke.nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
+      poke.nicknamed = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
       poke.pokeiv = pokeiv
     }
 
@@ -209,7 +209,7 @@ function prep_display(d) {
       { data: "checkbox", orderable: false },
       { data: "favorited" },
       { data: "name" },
-      { data: "nickname" },
+      { data: "nicknamed" },
       { data: "cp" },
       { data: "pokeiv" },
       ],
