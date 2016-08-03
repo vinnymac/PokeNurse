@@ -88,8 +88,6 @@ function sortPokemonList (sorting, refresh) {
 
   pokemonList.innerHTML = ''
 
-  console.log(pokemons)
-
   pokemons.pokemon.forEach(poke => {
     var checkBox = '<input type="checkbox" value="' + poke['id'].toString() + '"'
     var favorite = 'glyphicon glyphicon-star-empty'
