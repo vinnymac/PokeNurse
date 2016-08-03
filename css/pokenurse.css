@@ -648,3 +648,25 @@ border-radius:5px;
 .pokemon-sprite.dragonite {background-position: -512px -2308px;}
 .pokemon-sprite.mewtwo {background-position: -640px -2308px;}
 .pokemon-sprite.mew {background-position: -1024px -2308px;}
+
+/***
+Custom Datatables
+***/
+
+td.details-control:before {
+  font-family:"Glyphicons Halflings";
+  content:"\e081";
+  cursor: pointer;
+}
+
+tr.shown td.details-control:before {  
+  font-family:"Glyphicons Halflings";
+  content:"\e082";
+}
+
+table.dataTable.display tbody tr.child {
+    background: white;
+}
+table.dataTable.display tbody tr table tr:hover {
+    background: none;
+}

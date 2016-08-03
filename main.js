@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const pogobuf = require('pogobuf')
 const POGOProtos = require('node-pogo-protos')
+const Baby = require('babyparse')
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -159,7 +160,7 @@ ipcMain.on('get-player-info', (event) => {
 })
 
 ipcMain.on('get-players-pokemons', (event) => {
-  console.log('[+] Retrieving player\'s Pokemons')
+  console.log('[+] Retrieving player\'s Pokemons and Calculating Evolves')
   client.getInventory(0).then(inventory => {
     if (!inventory['success']) {
       event.returnValue = {
@@ -168,8 +169,36 @@ ipcMain.on('get-players-pokemons', (event) => {
       return
     }
 
+    var evolves = Baby.parseFiles('evolves.csv', {header: true, skipEmptyLines: true})
+    var formattedEvolves = {}
+
+    for (var i = 0; i < evolves.data.length; i++) {
+      var evolve = evolves.data[i]
+
+      formattedEvolves[ evolve.id.toString() ] = evolve.cost
+    }
+
+    var families = Baby.parseFiles('families.csv', {header: true, skipEmptyLines: true})
+    var formattedFamilies = {}
+
+    for (var i = 0; i < families.data.length; i++) {
+      var family = families.data[i]
+
+      formattedFamilies[ family.id.toString() ] = family.family
+    }
+
+    var candies = pogobuf.Utils.splitInventory(inventory)['candies']
+    var formattedCandies = {}
+
+    for (var i = 0; i < candies.length; i++) {
+      var candy = candies[i]
+      
+      formattedCandies[ candy.family_id.toString() ] = candy.candy
+    }
+
     var pokemons = pogobuf.Utils.splitInventory(inventory)['pokemon']
     var reducedPokemonList = []
+    var combinedPokemonList = []
 
     for (var i = 0; i < pokemons.length; i++) {
       var pokemon = pokemons[i]
@@ -192,11 +221,60 @@ ipcMain.on('get-players-pokemons', (event) => {
         // Multiply by -1 for sorting
         favorite: pokemon['favorite'] * -1
       })
+
+      if (combinedPokemonList[pokemonName]) {
+        combinedPokemonList[pokemonName].count = combinedPokemonList[pokemonName].count + 1
+      } else {
+        combinedPokemonList[pokemonName] = {
+          pokemon_id: pokemon['pokemon_id'],
+          name: pokemonName,
+          count: +1,
+          pokes: []
+        }
+      }
+
     }
+
+    // console.log(reducedPokemonList)
+
+    for (var i = 0; i < reducedPokemonList.length; i++) {
+      var pokemon = reducedPokemonList[i]
+
+      if (combinedPokemonList[pokemon.name].pokemon_id === pokemon.pokemon_id) {
+        combinedPokemonList[pokemon.name].pokes.push(pokemon)
+      }
+    }
+
+    //console.log(combinedPokemonList)
+
+    var finalList = []
+
+    for (key in combinedPokemonList) {
+      var pokemon = combinedPokemonList[key]
+      var candy = formattedCandies[formattedFamilies[pokemon.pokemon_id]]
+      var count = pokemon.count
+      var evolves = Math.floor(candy / formattedEvolves[pokemon.pokemon_id])
+
+      if ((evolves === Infinity || isNaN(evolves))) {
+        var evolves = 0
+      }
+
+      finalList.push({
+        pokemon_id: pokemon.pokemon_id.toString(),
+        name: pokemon.name,
+        count: count,
+        candy: candy,
+        evolves: (evolves > count ? count : evolves),
+        pokemon: pokemon.pokes
+      })
+
+    }
+
+    // console.log(finalList)
 
     event.returnValue = {
       success: true,
-      pokemon: reducedPokemonList
+      pokemon: finalList
     }
   })
 })

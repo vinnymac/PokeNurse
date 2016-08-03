@@ -2,6 +2,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/datatables.net-bs/css/dataTables.bootstrap.css">
     <link rel="stylesheet" href="./css/pokenurse.css">
     <title>PokéNurse &bull; Home</title>
   </head>
@@ -24,24 +25,18 @@
         </span>
       </h1>
 
-      <table class="table table-condensed table-hover">
-        <thead>
-          <tr>
-            <td></td>
-            <td data-sort="favorite">
-              <span class="favorite glyphicon glyphicon-star favorite-yellow"></span>
-            </td>
-            <td data-sort="pokemon_id">Pokédex #</td>
-            <td data-sort="name">Sprite</td>
-            <td data-sort="name">Name</td>
-            <td data-sort="nickname">Nickname</td>
-            <td data-sort="cp">CP</td>
-            <td data-sort="iv">IV (A/D/S)</td>
-          </tr>
-        </thead>
-        <tbody id="pokemon-list">
-        </tbody>
-      </table>
+      <table class="table table-condensed table-hover display" id="pokemon-data">
+      <thead>
+        <tr>
+          <th></th>
+          <th width="18%">Pokédex #</th>
+          <th>Name</th>
+          <th>Count</th>
+          <th>Candy</th>
+          <th>Evolves</th>
+        </tr>
+      </thead>
+     </table>      
     </div>
 
     <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel">
@@ -62,6 +57,8 @@
 
     <script>window.$ = window.jQuery = require('jquery')</script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="./node_modules/datatables.net/js/jquery.dataTables.js" charset="utf-8"></script>
+    <script src="./node_modules/datatables.net-bs/js/dataTables.bootstrap.js" charset="utf-8"></script>    
     <script>require('./js/home')</script>
   </body>
 </html>
