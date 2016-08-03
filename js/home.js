@@ -172,8 +172,6 @@ function dataTables(pokemon) {
           var tr = $(this).closest('tr');
           var row = table.row( tr );
 
-          sub_datatable(row.data(), prepped)
-
           if ( row.child.isShown() ) {
             // This row is already open - close it
             row.child.hide();
@@ -184,6 +182,7 @@ function dataTables(pokemon) {
             row.child( format(row.data()), 'child').show();
             tr.addClass('shown');
             var prepped = prep_diplay(row.data())
+            sub_datatable(row.data(), prepped)
           }
         } );
 
