@@ -247,11 +247,27 @@ function addFavoriteButtonEvent () {
     button.addEventListener('click', (event) => {
       var setToFavorite = button.dataset.pokemonFavorited === 'false'
       ipc.send('favorite-pokemon', button.dataset.pokemonId, setToFavorite)
+      updatePokemonById(button.dataset.pokemonId, 'favorite', setToFavorite)
       var newClass = setToFavorite ? 'favorite glyphicon glyphicon-star favorite-yellow' : 'favorite glyphicon glyphicon-star-empty'
       button.className = newClass
       button.dataset.pokemonFavorited = setToFavorite.toString()
     })
   })
+}
+
+function updatePokemonById (id, key, value) {
+  let updated = false
+
+  pokemons.pokemon.forEach(species => {
+    species.pokemon.forEach(pokemonById => {
+      if (pokemonById['id'] === id) {
+        pokemonById[key] = value
+        updated = true
+      }
+    })
+  })
+
+  return updated
 }
 
 function findPokemonMapById (id) {
