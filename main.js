@@ -207,11 +207,17 @@ ipcMain.on('get-players-pokemons', (event) => {
       if (pokemon['cp'] === 0) continue
 
       var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
+
+      let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
+      let stamina = ((pokemon['stamina_max'] * 2) + pokemon['individual_stamina']) * totalCpMultiplier
+      let attack = pokemon['individual_attack']
+      let defense = pokemon['individual_defense']
+
       reducedPokemonList.push({
         cp: pokemon['cp'],
         // TODO Rest of formula
         // https://www.reddit.com/r/TheSilphRoad/comments/4t7r4d/exact_pokemon_cp_formula/
-        cp_max: Math.max(10, Math.floor((pokemon['individual_stamina'] * pokemon['individual_attack'] * pokemon['individual_defense']) / 10)),
+        cp_max: Math.max(10, Math.floor((stamina * attack * defense) / 10)),
         creation_time_ms: pokemon['creation_time_ms'].toString(),
         deployed: pokemon['deployed_fort_id'] !== '',
         id: pokemon['id'].toString(),
