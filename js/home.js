@@ -228,7 +228,7 @@ function prep_diplay(d) {
     } );
 
     // Check all boxes
-    $('#'+d.name+' #checkall').click(function () {
+    $('#'+d.pokemon_id+' #checkall').click(function () {
       $(':checkbox', table.rows().nodes()).prop('checked', this.checked).not('#checkall');
     } );
 
