@@ -41,7 +41,7 @@ refreshBtn.addEventListener('click', refreshPokemonList)
 transferBtn.addEventListener('click', () => {
   if (runningCheck()) return
 
-  var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked')
+  var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall)')
 
   if (ipc.sendSync('confirmation-dialog', 'transfer').success) {
     running = true
@@ -228,7 +228,7 @@ function prep_diplay(d) {
 
     // Check all boxes
     $('#'+d.pokemon_id+' #checkall').click(function () {
-      $(':checkbox', table.rows().nodes()).prop('checked', this.checked).not('#checkall');
+      $(':checkbox', table.rows().nodes()).prop('checked', this.checked);
     } );
 
   document.querySelectorAll('td a.nickname').forEach(el => {
