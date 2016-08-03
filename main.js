@@ -192,7 +192,6 @@ ipcMain.on('get-players-pokemons', (event) => {
 
     for (var i = 0; i < candies.length; i++) {
       var candy = candies[i]
-      
       formattedCandies[ candy.family_id.toString() ] = candy.candy
     }
 
@@ -274,7 +273,7 @@ ipcMain.on('get-players-pokemons', (event) => {
 
     event.returnValue = {
       success: true,
-      pokemon: finalList
+      species: finalList
     }
   })
 })

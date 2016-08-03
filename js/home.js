@@ -21,7 +21,7 @@ const detailModal = document.getElementById('detailModal')
 
 // Default sort, sort first by pokemon_id then by cp
 var currSortings = ['pokemon_id', 'cp']
-var pokemons = []
+var monsters = []
 var running = false
 
 var playerInfo = ipc.sendSync('get-player-info')
@@ -77,8 +77,8 @@ evolveBtn.addEventListener('click', () => {
 
 function refreshPokemonList () {
   $("#pokemon-data").DataTable().destroy();
-  pokemons = ipc.sendSync('get-players-pokemons')
-  if (pokemons.success) dataTables(pokemons.pokemon)
+  monsters = ipc.sendSync('get-players-pokemons')
+  if (monsters.success) dataTables(monsters.species)
 }
 
 function format ( d ) {
@@ -258,7 +258,7 @@ function addFavoriteButtonEvent () {
 function updatePokemonById (id, key, value) {
   let updated = false
 
-  pokemons.pokemon.forEach(species => {
+  monsters.species.forEach(species => {
     species.pokemon.forEach(pokemonById => {
       if (pokemonById['id'] === id) {
         pokemonById[key] = value
@@ -273,7 +273,7 @@ function updatePokemonById (id, key, value) {
 function findPokemonMapById (id) {
   let pokemonMap = null
 
-  pokemons.pokemon.forEach(species => {
+  monsters.species.forEach(species => {
     let pokemon = species.pokemon.find(pokemonById => {
       return pokemonById['id'] === id
     })
