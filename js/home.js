@@ -10,15 +10,6 @@ const pokemonList = document.getElementById('pokemon-list')
 const sortLinks = document.querySelectorAll('td[data-sort]')
 const detailModal = document.getElementById('detailModal')
 
-// const $detailModal = $(detailModal)
-//
-// $detailModal.on('show.bs.modal', (event) => {
-//   let $nickname = $(event.relatedTarget)
-//
-//   console.log(event, $nickname, $nickname.data('pokemon-id'));
-//   $(this).find('.modal-body').html(detailModalBody({}))
-// })
-
 // Default sort, sort first by pokemon_id then by cp
 var currSortings = ['pokemon_id', 'cp']
 var monsters = []
@@ -302,11 +293,9 @@ function showModal (id, event) {
 
 function detailModalBody ({pokemon, species}) {
   // Calculate CP Progress dot position
-  let minCP = 10
-  let maxCP = 1000 - minCP // TODO need data to get true max
   let minDeg = 0
   let maxDeg = 180
-  let degree = Math.max(Math.min((pokemon.cp / maxCP) * maxDeg, maxDeg), minDeg)
+  let degree = Math.max(Math.min((pokemon.cp / pokemon.max_cp) * maxDeg, maxDeg), minDeg)
 
   let transform = `rotate(${degree}deg) translate(-192px);`
 
@@ -319,8 +308,8 @@ function detailModalBody ({pokemon, species}) {
   let defense = `${baseDefense + pokemon.defense}`
   let type = 'Unknown' // 'grass / poison'
   let cpPerUpgrade = 'Unknown' // '+13 CP (+/-)'
-  let height = 'Unknown' //'0.61 - 0.79 <span class="pokemon-stat-unit">m</span>'
-  let weight = 'Unknown' //'6.04 - 7.76 <span class="pokemon-stat-unit">kg</span>'
+  let height = `${pokemon.height.toFixed(2)} <span class="pokemon-stat-unit">m</span>`
+  let weight = `${pokemon.weight.toFixed(2)} <span class="pokemon-stat-unit">kg</span>`
 
   let candies = species.candy
   let name = species.name

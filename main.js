@@ -199,6 +199,8 @@ ipcMain.on('get-players-pokemons', (event) => {
     var reducedPokemonList = []
     var combinedPokemonList = []
 
+    console.log(pokemons)
+
     for (var i = 0; i < pokemons.length; i++) {
       var pokemon = pokemons[i]
 
@@ -207,6 +209,9 @@ ipcMain.on('get-players-pokemons', (event) => {
       var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
       reducedPokemonList.push({
         cp: pokemon['cp'],
+        // TODO Rest of formula
+        // https://www.reddit.com/r/TheSilphRoad/comments/4t7r4d/exact_pokemon_cp_formula/
+        cp_max: Math.max(10, Math.floor((pokemon['individual_stamina'] * pokemon['individual_attack'] * pokemon['individual_defense']) / 10)),
         creation_time_ms: pokemon['creation_time_ms'].toString(),
         deployed: pokemon['deployed_fort_id'] !== '',
         id: pokemon['id'].toString(),
@@ -216,6 +221,8 @@ ipcMain.on('get-players-pokemons', (event) => {
         iv: parseInt(((pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']) / 45) * 100),
         pokemon_id: pokemon['pokemon_id'],
         name: pokemonName,
+        height: pokemon['height_m'],
+        weight: pokemon['weight_kg'],
         nickname: pokemon['nickname'] || pokemonName,
         // Multiply by -1 for sorting
         favorite: pokemon['favorite'] * -1
