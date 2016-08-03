@@ -2,7 +2,9 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
 [![style](https://img.shields.io/badge/style-standard-brightgreen.svg)]()
 
-![Main Window](http://i.imgur.com/wsfNrJf.png)
+## Examples
+![Login Window](http://i.imgur.com/UuWTue6.png)
+![Main Window](http://i.imgur.com/lZp3xB3.png)
 
 This is my first project using [Electron](http://electron.atom.io/) and [Node.js](https://nodejs.org/en/).  Criticism is welcome and encouraged.
 
