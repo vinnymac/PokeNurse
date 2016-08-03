@@ -128,7 +128,7 @@ function sortPokemonList (sorting, refresh) {
 
 function format ( d ) {
     // `d` is the original data object for the row
-     return '<table class="table table-condensed table-hover" id="'+d.name+'" style="width:100%;">'
+     return '<table class="table table-condensed table-hover" id="'+d.pokemon_id+'" style="width:100%;">'
         + '<thead>'
           + '<tr>'
             + '<th><input type="checkbox" id="checkall"></th>'
@@ -211,7 +211,7 @@ function prep_diplay(d) {
 
   function sub_datatable(d, p) {
 
-    var table = $('#' + d.name).DataTable( {
+    var table = $('#' + d.pokemon_id).DataTable( {
       data: p,
       bPaginate: false,
       info: false,
