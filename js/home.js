@@ -303,7 +303,7 @@ function detailModalBody ({pokemon, species}) {
   let baseDefense = 0
 
   // TODO Need additional information to calculate these
-  let hp = 'Unknown' // '90 / 90'
+  let hp = `${pokemon.current_stamina} / ${pokemon.stamina_max}`
   let attack = `${baseAttack + pokemon.attack}`
   let defense = `${baseDefense + pokemon.defense}`
   let type = 'Unknown' // 'grass / poison'

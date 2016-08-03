@@ -199,7 +199,7 @@ ipcMain.on('get-players-pokemons', (event) => {
     var reducedPokemonList = []
     var combinedPokemonList = []
 
-    console.log(pokemons)
+    // console.log(pokemons)
 
     for (var i = 0; i < pokemons.length; i++) {
       var pokemon = pokemons[i]
@@ -218,6 +218,8 @@ ipcMain.on('get-players-pokemons', (event) => {
         attack: pokemon['individual_attack'],
         defense: pokemon['individual_defense'],
         stamina: pokemon['individual_stamina'],
+        current_stamina: pokemon['stamina'],
+        stamina_max: pokemon['stamina_max'],
         iv: parseInt(((pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']) / 45) * 100),
         pokemon_id: pokemon['pokemon_id'],
         name: pokemonName,
