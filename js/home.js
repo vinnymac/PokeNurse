@@ -66,15 +66,10 @@ evolveBtn.addEventListener('click', () => {
   }
 })
 
-for (var i = 0; i < sortLinks.length; i++) {
-  sortLinks[i].addEventListener('click', function (e) {
-    sortPokemonList(this.dataset.sort)
-  })
-}
-
 function refreshPokemonList () {
+  $("#pokemon-data").DataTable().destroy();
   pokemons = ipc.sendSync('get-players-pokemons')
-  if (pokemons.success) sortPokemonList(currSortings[0], true)
+  if (pokemons.success) dataTables(pokemons.pokemon)
 }
 
 function sortPokemonList (sorting, refresh) {
@@ -128,6 +123,119 @@ function sortPokemonList (sorting, refresh) {
   })
 
   addFavoriteButtonEvent()
+}
+
+function format ( d ) {
+    // `d` is the original data object for the row
+     return '<table class="table table-condensed table-hover" id="'+d.name+'" style="width:100%;">'
+        + '<thead>'
+          + '<tr>'
+            + '<th><input type="checkbox" id="checkall"></th>'
+            + '<th>'
+              + '<span class="glyphicon glyphicon-star favorite-yellow"></span>'
+            + '</th>'
+            + '<th>Name</th>'
+            + '<th>Nickname</th>'
+            + '<th>CP</th>'
+            + '<th>IV (A/D/S)</th>'
+          + '</tr>'
+        + '</thead>'
+        + '</table>';
+}
+
+function dataTables(pokemon) {
+    var table = $('#pokemon-data').DataTable( {
+      data: pokemon,
+      className: 'details-control',
+      bPaginate: false,
+      bInfo: false,
+      columns: [
+      {
+        className:      'details-control',
+        orderable:      false,
+        data:           null,
+        defaultContent: ''
+
+      },
+      { data: "pokemon_id" },
+      { data: "name" },
+      { data: "count" },
+      { data: "candy" },
+      { data: "evolves" }
+      ],
+      order: [[1, 'asc']]
+    } );
+
+        // Add event listener for opening and closing details
+        $('#pokemon-data tbody').on('click', 'td.details-control', function () {
+          var tr = $(this).closest('tr');
+          var row = table.row( tr );
+
+          if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+          }
+          else {
+            // Open this row
+            row.child( format(row.data()), 'child').show();
+            tr.addClass('shown');
+            var prepped = prep_diplay(row.data())
+            sub_datatable(row.data(), prepped)
+          }
+        } );
+
+}
+
+function prep_diplay(d) {
+
+  for (var i = 0; i < d.pokemon.length; i++) {
+    var poke = d.pokemon[i]
+    var checkBox = '<input type="checkbox" value="' + poke.id.toString() + '"'
+    var favorite = 'glyphicon glyphicon-star-empty'
+    var pokeiv = poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
+    var favoriteBool = poke['favorite'] ? 'true' : 'false'
+
+    if (poke.deployed) checkBox += ' disabled'
+    if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
+
+      poke.checkbox = checkBox + '>'
+      poke.favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
+      poke.nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
+      poke.pokeiv = pokeiv
+    }
+
+  return d.pokemon
+  }
+
+  function sub_datatable(d, p) {
+
+    var table = $('#' + d.name).DataTable( {
+      data: p,
+      bPaginate: false,
+      info: false,
+      bFilter: false,
+      columns: [
+      { data: "checkbox", orderable: false },
+      { data: "favorite" },
+      { data: "name" },
+      { data: "nickname" },
+      { data: "cp" },
+      { data: "pokeiv" },
+      ],
+      order: [[4, 'asc']],
+    } );
+
+    // Check all boxes
+    $('#'+d.name+' #checkall').click(function () {
+      $(':checkbox', table.rows().nodes()).prop('checked', this.checked).not('#checkall');
+    } );
+
+  document.querySelectorAll('td a.nickname').forEach(el => {
+    el.addEventListener('click', showModal.bind(this, $(el).data('pokemon-id')), false);
+  })
+
+  addFavoriteButtonEvent()    
 }
 
 function runningCheck () {
