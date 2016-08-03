@@ -187,14 +187,14 @@ function dataTables(pokemon) {
             // Open this row
             row.child( format(row.data()), 'child').show();
             tr.addClass('shown');
-            var prepped = prep_diplay(row.data())
+            var prepped = prep_display(row.data())
             sub_datatable(row.data(), prepped)
           }
         } );
 
 }
 
-function prep_diplay(d) {
+function prep_display(d) {
 
   for (var i = 0; i < d.pokemon.length; i++) {
     var poke = d.pokemon[i]
