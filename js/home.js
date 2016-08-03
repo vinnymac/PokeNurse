@@ -64,7 +64,7 @@ transferBtn.addEventListener('click', () => {
 evolveBtn.addEventListener('click', () => {
   if (runningCheck()) return
 
-  var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked')
+  var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall)')
 
   if (ipc.sendSync('confirmation-dialog', 'evolve').success) {
     running = true
