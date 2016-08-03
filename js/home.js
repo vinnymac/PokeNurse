@@ -325,11 +325,11 @@ function showModal (id, event) {
   let $detailModal = $(detailModal)
 
   $detailModal.find('.modal-title').text(pokemonMap.species.name)
-  $detailModal.find('.modal-body').html(detailModalBody(pokemonMap.pokemon))
+  $detailModal.find('.modal-body').html(detailModalBody(pokemonMap))
   $detailModal.modal('show')
 }
 
-function detailModalBody (pokemon) {
+function detailModalBody ({pokemon, species}) {
   // Calculate CP Progress dot position
   let minCP = 10
   let maxCP = 1000 - minCP // TODO need data to get true max
@@ -338,6 +338,28 @@ function detailModalBody (pokemon) {
   let degree = Math.max(Math.min((pokemon.cp / maxCP) * maxDeg, maxDeg), minDeg)
 
   let transform = `rotate(${degree}deg) translate(-192px);`
+
+  let baseAttack = 0
+  let baseDefense = 0
+
+  // TODO Need additional information to calculate these
+  let hp = 'Unknown' // '90 / 90'
+  let attack = `${baseAttack + pokemon.attack}`
+  let defense = `${baseDefense + pokemon.defense}`
+  let type = 'Unknown' // 'grass / poison'
+  let cpPerUpgrade = 'Unknown' // '+13 CP (+/-)'
+  let height = 'Unknown' //'0.61 - 0.79 <span class="pokemon-stat-unit">m</span>'
+  let weight = 'Unknown' //'6.04 - 7.76 <span class="pokemon-stat-unit">kg</span>'
+
+  let candies = species.candy
+  let name = species.name
+  let nickname = pokemon.nickname
+
+  let spriteImageName = name.toLowerCase()
+  if (spriteImageName.indexOf('nidoran') > -1) {
+    let spriteParts = spriteImageName.split(' ')
+    spriteImageName = `${spriteParts[0]}-${spriteParts[1][0]}`
+  }
 
   let html = ''
 
@@ -353,47 +375,47 @@ function detailModalBody (pokemon) {
   html += '<div id="pokemon_sprite_sphere_dot" style="transform:' + transform + '"></div>'
   html += '</div>'
   // TODO stop downloading these from pogo-dex
-  html += '<img id="pokemon_profile_sprite" src="http://www.pogo-dex.com/images/sprites/' + pokemon.name.toLowerCase() + '.png">'
+  html += '<img id="pokemon_profile_sprite" src="http://www.pogo-dex.com/images/sprites/' + spriteImageName + '.png">'
   html += '</div>'
 
   // TODO Base Attack and Defense
   // Contents - Name, HP, Type, Weight, Height, Attack, Defense, CP, Candies
   html += '<div id="pokemon_contents">'
-  html += '<div id="pokemon_name">' + pokemon.nickname + '</div>'
+  html += '<div id="pokemon_name">' + nickname + '</div>'
   html += '<div id="pokemon_health_bar"></div>'
-  html += '<div id="pokemon_health">HP 90 / 90</div>'
+  html += '<div id="pokemon_health">HP ' + hp + '</div>'
   html += '<div id="pokemon_info">'
   html += '<div class="pokemon-info-item">'
-  html += '<div class="pokemon-info-item-text">grass / poison</div>'
+  html += '<div class="pokemon-info-item-text">' + type + '</div>'
   html += '<div class="pokemon-info-item-title">Type</div>'
   html += '</div>'
   html += '<div class="pokemon-info-item">'
-  html += '<div class="pokemon-info-item-text">6.04 - 7.76 <span class="pokemon-stat-unit">kg</span></div>'
+  html += '<div class="pokemon-info-item-text">' + weight + '</div>'
   html += '<div class="pokemon-info-item-title">Weight</div>'
   html += '</div>'
   html += '<div class="pokemon-info-item">'
-  html += '<div class="pokemon-info-item-text">0.61 - 0.79 <span class="pokemon-stat-unit">m</span></div>'
+  html += '<div class="pokemon-info-item-text">' + height + '</div>'
   html += '<div class="pokemon-info-item-title">Height</div>'
   html += '</div>'
   html += '</div>'
   html += '<div id="pokemon_info">'
   html += '<div class="pokemon-combat-info-item">'
-  html += '<div class="pokemon-combat-info-item-text">' + pokemon.attack + '</div>'
+  html += '<div class="pokemon-combat-info-item-text">' + attack + '</div>'
   html += '<div class="pokemon-info-item-title">Attack</div>'
   html += '</div>'
   html += '<div class="pokemon-combat-info-item">'
-  html += '<div class="pokemon-combat-info-item-text">' + pokemon.defense + '</div>'
+  html += '<div class="pokemon-combat-info-item-text">' + defense + '</div>'
   html += '<div class="pokemon-info-item-title">Defense</div>'
   html += '</div>'
   html += '</div>'
   html += '<div id="pokemon_upgrade_info">'
   html += '<div class="pokemon-upgrade-info-item">'
-  html += '<div class="pokemon-upgrade-info-item-text cp-upgrade">+13 CP (+/-)</div>'
+  html += '<div class="pokemon-upgrade-info-item-text cp-upgrade">' + cpPerUpgrade + '</div>'
   html += '<div class="pokemon-upgrade-info-item-title">CP Per Upgrade</div>'
   html += '</div>'
   html += '<div class="pokemon-upgrade-info-item">'
-  html += '<div class="pokemon-upgrade-info-item-text">25</div>'
-  html += '<div class="pokemon-upgrade-info-item-title">' + pokemon.name + ' CANDIES</div>'
+  html += '<div class="pokemon-upgrade-info-item-text">' + candies + '</div>'
+  html += '<div class="pokemon-upgrade-info-item-title">' + name + ' CANDIES</div>'
   html += '</div>'
   html += '</div>'
 
