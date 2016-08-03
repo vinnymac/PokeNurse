@@ -207,7 +207,7 @@ function prep_display(d) {
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
       poke.checkbox = checkBox + '>'
-      poke.favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
+      poke.favorited = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
       poke.nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
       poke.pokeiv = pokeiv
     }
@@ -224,7 +224,7 @@ function prep_display(d) {
       bFilter: false,
       columns: [
       { data: "checkbox", orderable: false },
-      { data: "favorite" },
+      { data: "favorited" },
       { data: "name" },
       { data: "nickname" },
       { data: "cp" },
