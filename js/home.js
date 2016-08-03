@@ -289,19 +289,26 @@ function addFavoriteButtonEvent () {
 }
 
 function showModal (id, event) {
-  let pokemon = pokemons.pokemon.find(poke => {
-    return poke['id'] === id
+
+  let pokemonMap = null
+
+  pokemons.pokemon.forEach(species => {
+    let pokemon = species.pokemon.find(pokemonById => {
+      return pokemonById['id'] === id
+    })
+
+    if (pokemon) pokemonMap = {species, pokemon}
   })
 
-  if (!pokemon) {
+  if (!pokemonMap) {
     console.error("No Pokemon Found to Display Detail")
     return
   }
 
   let $detailModal = $(detailModal)
 
-  $detailModal.find('.modal-title').text(pokemon.name)
-  $detailModal.find('.modal-body').html(detailModalBody(pokemon))
+  $detailModal.find('.modal-title').text(pokemonMap.species.name)
+  $detailModal.find('.modal-body').html(detailModalBody(pokemonMap.pokemon))
   $detailModal.modal('show')
 }
 
