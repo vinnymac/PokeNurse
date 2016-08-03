@@ -131,7 +131,7 @@ function format ( d ) {
      return '<table class="table table-condensed table-hover" id="'+d.pokemon_id+'" style="width:100%;">'
         + '<thead>'
           + '<tr>'
-            + '<th><input type="checkbox" id="checkall"></th>'
+            + '<th width="5%"><input type="checkbox" id="checkall"></th>'
             + '<th>'
               + '<span class="glyphicon glyphicon-star favorite-yellow"></span>'
             + '</th>'
