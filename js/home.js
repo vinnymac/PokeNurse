@@ -10,15 +10,6 @@ const pokemonList = document.getElementById('pokemon-list')
 const sortLinks = document.querySelectorAll('td[data-sort]')
 const detailModal = document.getElementById('detailModal')
 
-// const $detailModal = $(detailModal)
-//
-// $detailModal.on('show.bs.modal', (event) => {
-//   let $nickname = $(event.relatedTarget)
-//
-//   console.log(event, $nickname, $nickname.data('pokemon-id'));
-//   $(this).find('.modal-body').html(detailModalBody({}))
-// })
-
 // Default sort, sort first by pokemon_id then by cp
 var currSortings = ['pokemon_id', 'cp']
 var pokemons = []
@@ -101,8 +92,6 @@ function sortPokemonList (sorting, refresh) {
   pokemons.pokemon.sort(sortBy(currSortings))
 
   pokemonList.innerHTML = ''
-
-  console.log(pokemons)
 
   pokemons.pokemon.forEach(poke => {
     var checkBox = '<input type="checkbox" value="' + poke['id'].toString() + '"'
