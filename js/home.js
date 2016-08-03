@@ -8,6 +8,7 @@ const transferBtn = document.getElementById('transfer-btn')
 const evolveBtn = document.getElementById('evolve-btn')
 const pokemonList = document.getElementById('pokemon-list')
 const sortLinks = document.querySelectorAll('td[data-sort]')
+const detailModal = document.getElementById('detailModal')
 
 // Default sort, sort first by pokemon_id then by cp
 var currSortings = ['pokemon_id', 'cp']
@@ -113,11 +114,15 @@ function sortPokemonList (sorting, refresh) {
     html += '<td>' + poke['pokemon_id'] + '</td>'
     html += '<td>' + '<div class="pokemon-avatar"><div class="pokemon-sprite ' + spriteClassName + '"></div></div>' + '</td>'
     html += '<td>' + poke['name'] + '</td>'
-    html += '<td class="nickname" data-toggle="modal" data-target="#bulbasaurModal">' + poke['nickname'] + '</td>'
+    html += '<td><a class="nickname" data-pokemon-id="' + poke['id'] + '">' + poke['nickname'] + '</a></td>'
     html += '<td>' + poke['cp'] + '</td>'
     html += '<td>' + poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')</td>'
     html += '</tr>'
     pokemonList.innerHTML += html
+  })
+
+  document.querySelectorAll('td a.nickname').forEach(el => {
+    el.addEventListener('click', showModal.bind(this, $(el).data('pokemon-id')), false);
   })
 
   addFavoriteButtonEvent()
@@ -181,4 +186,149 @@ function addFavoriteButtonEvent () {
       button.dataset.pokemonFavorited = setToFavorite.toString()
     })
   })
+}
+
+function showModal (id, event) {
+  let pokemon = pokemons.pokemon.find(poke => {
+    return poke['id'] === id
+  })
+
+  if (!pokemon) {
+    console.error("No Pokemon Found to Display Detail")
+    return
+  }
+
+  let $detailModal = $(detailModal)
+
+  $detailModal.find('.modal-title').text(pokemon.name)
+  $detailModal.find('.modal-body').html(detailModalBody(pokemon))
+  $detailModal.modal('show')
+}
+
+function detailModalBody (pokemon) {
+  // Calculate CP Progress dot position
+  let minCP = 10
+  let maxCP = 1000 - minCP // TODO need data to get true max
+  let minDeg = 0
+  let maxDeg = 180
+  let degree = Math.max(Math.min((pokemon.cp / maxCP) * maxDeg, maxDeg), minDeg)
+
+  let transform = `rotate(${degree}deg) translate(-192px);`
+
+  let html = ''
+
+  // TODO find and use some JSON data
+  // Examples
+  // https://gist.github.com/shri/9754992
+  // https://gist.github.com/ihciah/71b0bf44322431bd34dea4ff193267e5
+
+  // Sprite and CP Bar
+  html += '<div id="pokemon_sprite_wrapper">'
+  html += '<div id="pokemon_sprite_sphere_wrapper">'
+  html += '<div id="pokemon_sprite_sphere"></div>'
+  html += '<div id="pokemon_sprite_sphere_dot" style="transform:' + transform + '"></div>'
+  html += '</div>'
+  // TODO stop downloading these from pogo-dex
+  html += '<img id="pokemon_profile_sprite" src="http://www.pogo-dex.com/images/sprites/' + pokemon.name.toLowerCase() + '.png">'
+  html += '</div>'
+
+  // TODO Base Attack and Defense
+  // Contents - Name, HP, Type, Weight, Height, Attack, Defense, CP, Candies
+  html += '<div id="pokemon_contents">'
+  html += '<div id="pokemon_name">' + pokemon.nickname + '</div>'
+  html += '<div id="pokemon_health_bar"></div>'
+  html += '<div id="pokemon_health">HP 90 / 90</div>'
+  html += '<div id="pokemon_info">'
+  html += '<div class="pokemon-info-item">'
+  html += '<div class="pokemon-info-item-text">grass / poison</div>'
+  html += '<div class="pokemon-info-item-title">Type</div>'
+  html += '</div>'
+  html += '<div class="pokemon-info-item">'
+  html += '<div class="pokemon-info-item-text">6.04 - 7.76 <span class="pokemon-stat-unit">kg</span></div>'
+  html += '<div class="pokemon-info-item-title">Weight</div>'
+  html += '</div>'
+  html += '<div class="pokemon-info-item">'
+  html += '<div class="pokemon-info-item-text">0.61 - 0.79 <span class="pokemon-stat-unit">m</span></div>'
+  html += '<div class="pokemon-info-item-title">Height</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '<div id="pokemon_info">'
+  html += '<div class="pokemon-combat-info-item">'
+  html += '<div class="pokemon-combat-info-item-text">' + pokemon.attack + '</div>'
+  html += '<div class="pokemon-info-item-title">Attack</div>'
+  html += '</div>'
+  html += '<div class="pokemon-combat-info-item">'
+  html += '<div class="pokemon-combat-info-item-text">' + pokemon.defense + '</div>'
+  html += '<div class="pokemon-info-item-title">Defense</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '<div id="pokemon_upgrade_info">'
+  html += '<div class="pokemon-upgrade-info-item">'
+  html += '<div class="pokemon-upgrade-info-item-text cp-upgrade">+13 CP (+/-)</div>'
+  html += '<div class="pokemon-upgrade-info-item-title">CP Per Upgrade</div>'
+  html += '</div>'
+  html += '<div class="pokemon-upgrade-info-item">'
+  html += '<div class="pokemon-upgrade-info-item-text">25</div>'
+  html += '<div class="pokemon-upgrade-info-item-title">' + pokemon.name + ' CANDIES</div>'
+  html += '</div>'
+  html += '</div>'
+
+  // TODO basic moves
+  // Base Attacks
+  // html += '<div id="pokemon_basic_move_info">'
+  // html += '<div class="pokemon-moves-info-title">Basic Attacks</div>'
+  // html += '<div class="pokemon-move-item">'
+  // html += '<span class="pokemon-move-title">vine whip</span>'
+  // html += '<span class="pokemon-move-type grass">grass</span>'
+  // html += '<span class="pokemon-move-damage">10</span>'
+  // html += '</div>'
+  // html += '<div class="pokemon-move-item">'
+  // html += '<span class="pokemon-move-title">tackle</span>'
+  // html += '<span class="pokemon-move-type normal">normal</span>'
+  // html += '<span class="pokemon-move-damage">12</span>'
+  // html += '</div>'
+  // html += '</div>'
+
+  // TODO Potential special movesets for each pokemon
+  // Special Attacks
+  // html += '<div id="pokemon_special_move_info">'
+  // html += '<div class="pokemon-moves-info-title">Special Attacks</div>'
+  // html += '<div class="pokemon-move-item">'
+  // html += '<div class="pokemon-move-title">sludge bomb</div>'
+  // html += '<div class="pokemon-move-cost">'
+  // html += '<div class="pokemon-move-cost-item" style="width:67px;"></div><div class="pokemon-move-cost-item" style="width:67px;"></div>'
+  // html += '</div>'
+  // html += '<span class="pokemon-move-type poison">poison</span>'
+  // html += '<span class="pokemon-move-damage">50</span>'
+  // html += '</div>'
+  // html += '<div class="pokemon-move-item">'
+  // html += '<div class="pokemon-move-title">seed bomb</div>'
+  // html += '<div class="pokemon-move-cost">'
+  // html += '<div class="pokemon-move-cost-item" style="width:41.5px;"></div><div class="pokemon-move-cost-item" style="width:41.5px;"></div><div class="pokemon-move-cost-item" style="width:41.5px;"></div>'
+  // html += '</div>'
+  // html += '<span class="pokemon-move-type grass">grass</span>'
+  // html += '<span class="pokemon-move-damage">30</span>'
+  // html += '</div>'
+  // html += '<div class="pokemon-move-item">'
+  // html += '<div class="pokemon-move-title">power whip</div>'
+  // html += '<div class="pokemon-move-cost">'
+  // html += '<div class="pokemon-move-cost-item" style="width:142px;"></div>'
+  // html += '</div>'
+  // html += '<span class="pokemon-move-type grass">grass</span>'
+  // html += '<span class="pokemon-move-damage">60</span>'
+  // html += '</div>'
+  // html += '</div>'
+
+  // TODO JSON list of evolutions
+  // Evolutions
+  // html += '<div id="pokemon_evolve_info">'
+  // html += '<div class="pokemon-evolve-info-title">Evolutions</div>'
+  // html += '<a href="/pokemon/ivysaur" class="pokemon-evolve-info-item">'
+  // html += '<div class="pokemon-sprite ivysaur"></div>'
+  // html += '<div class="pokemon-evolve-info-item-title">ivysaur</div>'
+  // html += '</a>'
+  // html += '</div>'
+  // html += '</div>'
+
+  return html
 }
