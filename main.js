@@ -4,6 +4,7 @@ const path = require('path')
 const pogobuf = require('pogobuf')
 const POGOProtos = require('node-pogo-protos')
 const Baby = require('babyparse')
+const baseStats = require('./baseStats')
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -208,16 +209,23 @@ ipcMain.on('get-players-pokemons', (event) => {
 
       var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
 
+      let stats = baseStats[pokemon['pokemon_id']]
+
       let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
-      let stamina = ((pokemon['stamina_max'] * 2) + pokemon['individual_stamina']) * totalCpMultiplier
-      let attack = pokemon['individual_attack']
-      let defense = pokemon['individual_defense']
+
+      let attack = stats.BaseAttack + pokemon['individual_attack']
+      let defense = Math.pow((stats.BaseDefense + pokemon['individual_defense']), 0.5)
+      let stamina = Math.pow((stats.BaseStamina + pokemon['individual_stamina']), 0.5)
+
+      var maxCP = Math.floor(attack * defense * stamina * Math.pow(0.790300, 2) / 10)
+
+      // (BaseAtk + IndAtk) * (BaseDef + IndDef)^0.5 * (BaseSta + IndSta)^0.5 * (0.790300)^2 / 10
 
       reducedPokemonList.push({
         cp: pokemon['cp'],
         // TODO Rest of formula
         // https://www.reddit.com/r/TheSilphRoad/comments/4t7r4d/exact_pokemon_cp_formula/
-        cp_max: Math.max(10, Math.floor((stamina * attack * defense) / 10)),
+        max_cp: maxCP,
         creation_time_ms: pokemon['creation_time_ms'].toString(),
         deployed: pokemon['deployed_fort_id'] !== '',
         id: pokemon['id'].toString(),

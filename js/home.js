@@ -1,5 +1,7 @@
 const ipc = require('electron').ipcRenderer
 
+const baseStats = require('../baseStats')
+
 const header = document.getElementById('profile-header')
 const usernameH = document.getElementById('username-h')
 const statusH = document.getElementById('status-h')
@@ -299,14 +301,16 @@ function detailModalBody ({pokemon, species}) {
 
   let transform = `rotate(${degree}deg) translate(-192px);`
 
-  let baseAttack = 0
-  let baseDefense = 0
+  let stats = baseStats[pokemon['pokemon_id']]
+
+  let baseAttack = stats.BaseAttack
+  let baseDefense = stats.BaseDefense
 
   // TODO Need additional information to calculate these
   let hp = `${pokemon.current_stamina} / ${pokemon.stamina_max}`
   let attack = `${baseAttack + pokemon.attack}`
   let defense = `${baseDefense + pokemon.defense}`
-  let type = 'Unknown' // 'grass / poison'
+  let type = stats.types.join(' / ')
   let cpPerUpgrade = 'Unknown' // '+13 CP (+/-)'
   let height = `${pokemon.height.toFixed(2)} <span class="pokemon-stat-unit">m</span>`
   let weight = `${pokemon.weight.toFixed(2)} <span class="pokemon-stat-unit">kg</span>`
