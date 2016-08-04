@@ -226,7 +226,7 @@ ipcMain.on('get-players-pokemons', (event) => {
         stamina: pokemon['individual_stamina'],
         current_stamina: pokemon['stamina'],
         stamina_max: pokemon['stamina_max'],
-        iv: parseInt(((pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']) / 45) * 100),
+        iv: parseInt(pogobuf.Utils.getIVsFromPokemon(pokemon).percent),
         pokemon_id: pokemon['pokemon_id'],
         name: pokemonName,
         height: pokemon['height_m'],
