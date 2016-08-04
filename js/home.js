@@ -149,10 +149,12 @@ function prep_display(d) {
     if (poke.deployed) checkBox += ' disabled'
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
-      poke.checkbox = checkBox + '>'
-      poke.favorited = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
-      poke.nicknamed = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
-      poke.pokeiv = pokeiv
+      poke.td_checkbox = checkBox + '>'
+      poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
+      poke.td_name = poke.name
+      poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
+      poke.td_cp = poke.cp
+      poke.td_pokeiv = pokeiv
     }
 
   return d.pokemon
@@ -166,14 +168,14 @@ function prep_display(d) {
       info: false,
       bFilter: false,
       columns: [
-      { data: "checkbox", orderable: false },
-      { data: "favorited" },
-      { data: "name" },
-      { data: "nicknamed" },
-      { data: "cp" },
-      { data: "pokeiv" },
+      { data: "td_checkbox", orderable: false },
+      { data: "td_favorite" },
+      { data: "td_name" },
+      { data: "td_nickname" },
+      { data: "td_cp" },
+      { data: "td_pokeiv" },
       ],
-      order: [[4, 'asc']],
+      order: [[4, 'desc']],
     } );
 
     // Check all boxes
