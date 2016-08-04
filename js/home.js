@@ -59,6 +59,11 @@ ipc.on('transfer-pokemon-success', (e, event, id) => {
   refreshPokemonList()
 })
 
+ipc.on('evolve-pokemon-success', (e, event, id) => {
+  // TODO not refreshing the entire UI just because of one change
+  refreshPokemonList()
+})
+
 evolveBtn.addEventListener('click', () => {
   if (runningCheck()) return
 

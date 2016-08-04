@@ -319,7 +319,20 @@ ipcMain.on('transfer-pokemon', (event, id, delay) => {
 
 ipcMain.on('evolve-pokemon', (event, id, delay) => {
   setTimeout(() => {
-    client.evolvePokemon(id)
+    client.evolvePokemon(id).then(response => {
+      if (!response['success']) {
+        event.returnValue = {
+          success: false
+        }
+        return
+      }
+
+      event.returnValue = {
+        success: 'true',
+        response: response
+      }
+      event.sender.send('evolve-pokemon-success', event, id)
+    }).catch(error => console.error(error))
     console.log('[+] Evolved Pokemon with id: ' + id)
   }, delay)
 })
