@@ -4,6 +4,7 @@ const path = require('path')
 const pogobuf = require('pogobuf')
 const POGOProtos = require('node-pogo-protos')
 const Baby = require('babyparse')
+const baseStats = require('./baseStats')
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -199,23 +200,45 @@ ipcMain.on('get-players-pokemons', (event) => {
     var reducedPokemonList = []
     var combinedPokemonList = []
 
+    // console.log(pokemons)
+
     for (var i = 0; i < pokemons.length; i++) {
       var pokemon = pokemons[i]
 
       if (pokemon['cp'] === 0) continue
 
       var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
+
+      let stats = baseStats[pokemon['pokemon_id']]
+
+      let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
+
+      let attack = stats.BaseAttack + pokemon['individual_attack']
+      let defense = Math.pow((stats.BaseDefense + pokemon['individual_defense']), 0.5)
+      let stamina = Math.pow((stats.BaseStamina + pokemon['individual_stamina']), 0.5)
+
+      var maxCP = Math.floor(attack * defense * stamina * Math.pow(0.790300, 2) / 10)
+
+      // (BaseAtk + IndAtk) * (BaseDef + IndDef)^0.5 * (BaseSta + IndSta)^0.5 * (0.790300)^2 / 10
+
       reducedPokemonList.push({
         cp: pokemon['cp'],
+        // TODO Rest of formula
+        // https://www.reddit.com/r/TheSilphRoad/comments/4t7r4d/exact_pokemon_cp_formula/
+        max_cp: maxCP,
         creation_time_ms: pokemon['creation_time_ms'].toString(),
         deployed: pokemon['deployed_fort_id'] !== '',
         id: pokemon['id'].toString(),
         attack: pokemon['individual_attack'],
         defense: pokemon['individual_defense'],
         stamina: pokemon['individual_stamina'],
-        iv: parseInt(((pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']) / 45) * 100),
+        current_stamina: pokemon['stamina'],
+        stamina_max: pokemon['stamina_max'],
+        iv: parseInt(pogobuf.Utils.getIVsFromPokemon(pokemon).percent),
         pokemon_id: pokemon['pokemon_id'],
         name: pokemonName,
+        height: pokemon['height_m'],
+        weight: pokemon['weight_kg'],
         nickname: pokemon['nickname'] || pokemonName,
         // Multiply by -1 for sorting
         favorite: pokemon['favorite'] * -1

@@ -1,0 +1,1277 @@
+{
+  "1": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "BaseStamina": 90,
+    "BaseAttack": 126,
+    "BaseDefense": 126
+  },
+  "2": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 156,
+    "BaseDefense": 158
+  },
+  "3": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "BaseStamina": 160,
+    "BaseAttack": 198,
+    "BaseDefense": 200
+  },
+  "4": {
+    "types": [
+      "fire"
+    ],
+    "BaseStamina": 78,
+    "BaseAttack": 128,
+    "BaseDefense": 108
+  },
+  "5": {
+    "types": [
+      "fire"
+    ],
+    "BaseStamina": 116,
+    "BaseAttack": 160,
+    "BaseDefense": 140
+  },
+  "6": {
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "BaseStamina": 156,
+    "BaseAttack": 212,
+    "BaseDefense": 182
+  },
+  "7": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 88,
+    "BaseAttack": 112,
+    "BaseDefense": 142
+  },
+  "8": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 118,
+    "BaseAttack": 144,
+    "BaseDefense": 176
+  },
+  "9": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 158,
+    "BaseAttack": 186,
+    "BaseDefense": 222
+  },
+  "10": {
+    "types": [
+      "bug"
+    ],
+    "BaseStamina": 90,
+    "BaseAttack": 62,
+    "BaseDefense": 66
+  },
+  "11": {
+    "types": [
+      "bug"
+    ],
+    "BaseStamina": 100,
+    "BaseAttack": 56,
+    "BaseDefense": 86
+  },
+  "12": {
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 144,
+    "BaseDefense": 144
+  },
+  "13": {
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 68,
+    "BaseDefense": 64
+  },
+  "14": {
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "BaseStamina": 90,
+    "BaseAttack": 62,
+    "BaseDefense": 82
+  },
+  "15": {
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 144,
+    "BaseDefense": 130
+  },
+  "16": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 94,
+    "BaseDefense": 90
+  },
+  "17": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "BaseStamina": 126,
+    "BaseAttack": 126,
+    "BaseDefense": 122
+  },
+  "18": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "BaseStamina": 166,
+    "BaseAttack": 170,
+    "BaseDefense": 166
+  },
+  "19": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 60,
+    "BaseAttack": 92,
+    "BaseDefense": 86
+  },
+  "20": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 110,
+    "BaseAttack": 146,
+    "BaseDefense": 150
+  },
+  "21": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 102,
+    "BaseDefense": 78
+  },
+  "22": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 168,
+    "BaseDefense": 146
+  },
+  "23": {
+    "types": [
+      "poison"
+    ],
+    "BaseStamina": 70,
+    "BaseAttack": 112,
+    "BaseDefense": 112
+  },
+  "24": {
+    "types": [
+      "poison"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 166,
+    "BaseDefense": 166
+  },
+  "25": {
+    "types": [
+      "electric"
+    ],
+    "BaseStamina": 70,
+    "BaseAttack": 124,
+    "BaseDefense": 108
+  },
+  "26": {
+    "types": [
+      "electric"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 200,
+    "BaseDefense": 154
+  },
+  "27": {
+    "types": [
+      "ground"
+    ],
+    "BaseStamina": 100,
+    "BaseAttack": 90,
+    "BaseDefense": 114
+  },
+  "28": {
+    "types": [
+      "ground"
+    ],
+    "BaseStamina": 150,
+    "BaseAttack": 150,
+    "BaseDefense": 172
+  },
+  "29": {
+    "types": [
+      "poison"
+    ],
+    "BaseStamina": 110,
+    "BaseAttack": 100,
+    "BaseDefense": 104
+  },
+  "30": {
+    "types": [
+      "poison"
+    ],
+    "BaseStamina": 140,
+    "BaseAttack": 132,
+    "BaseDefense": 136
+  },
+  "31": {
+    "types": [
+      "poison",
+      "ground"
+    ],
+    "BaseStamina": 180,
+    "BaseAttack": 184,
+    "BaseDefense": 190
+  },
+  "32": {
+    "types": [
+      "poison"
+    ],
+    "BaseStamina": 92,
+    "BaseAttack": 110,
+    "BaseDefense": 94
+  },
+  "33": {
+    "types": [
+      "poison"
+    ],
+    "BaseStamina": 122,
+    "BaseAttack": 142,
+    "BaseDefense": 128
+  },
+  "34": {
+    "types": [
+      "poison",
+      "ground"
+    ],
+    "BaseStamina": 162,
+    "BaseAttack": 204,
+    "BaseDefense": 170
+  },
+  "35": {
+    "types": [
+      "fairy"
+    ],
+    "BaseStamina": 140,
+    "BaseAttack": 116,
+    "BaseDefense": 124
+  },
+  "36": {
+    "types": [
+      "fairy"
+    ],
+    "BaseStamina": 190,
+    "BaseAttack": 178,
+    "BaseDefense": 178
+  },
+  "37": {
+    "types": [
+      "fire"
+    ],
+    "BaseStamina": 76,
+    "BaseAttack": 106,
+    "BaseDefense": 118
+  },
+  "38": {
+    "types": [
+      "fire"
+    ],
+    "BaseStamina": 146,
+    "BaseAttack": 176,
+    "BaseDefense": 194
+  },
+  "39": {
+    "types": [
+      "normal",
+      "fairy"
+    ],
+    "BaseStamina": 230,
+    "BaseAttack": 98,
+    "BaseDefense": 54
+  },
+  "40": {
+    "types": [
+      "normal",
+      "fairy"
+    ],
+    "BaseStamina": 280,
+    "BaseAttack": 168,
+    "BaseDefense": 108
+  },
+  "41": {
+    "types": [
+      "poison",
+      "flying"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 88,
+    "BaseDefense": 90
+  },
+  "42": {
+    "types": [
+      "poison",
+      "flying"
+    ],
+    "BaseStamina": 150,
+    "BaseAttack": 164,
+    "BaseDefense": 164
+  },
+  "43": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "BaseStamina": 90,
+    "BaseAttack": 134,
+    "BaseDefense": 130
+  },
+  "44": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 162,
+    "BaseDefense": 158
+  },
+  "45": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "BaseStamina": 150,
+    "BaseAttack": 202,
+    "BaseDefense": 190
+  },
+  "46": {
+    "types": [
+      "bug",
+      "grass"
+    ],
+    "BaseStamina": 70,
+    "BaseAttack": 122,
+    "BaseDefense": 120
+  },
+  "47": {
+    "types": [
+      "bug",
+      "grass"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 162,
+    "BaseDefense": 170
+  },
+  "48": {
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 108,
+    "BaseDefense": 118
+  },
+  "49": {
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "BaseStamina": 140,
+    "BaseAttack": 172,
+    "BaseDefense": 154
+  },
+  "50": {
+    "types": [
+      "ground"
+    ],
+    "BaseStamina": 20,
+    "BaseAttack": 108,
+    "BaseDefense": 86
+  },
+  "51": {
+    "types": [
+      "ground"
+    ],
+    "BaseStamina": 70,
+    "BaseAttack": 148,
+    "BaseDefense": 140
+  },
+  "52": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 104,
+    "BaseDefense": 94
+  },
+  "53": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 156,
+    "BaseDefense": 146
+  },
+  "54": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 100,
+    "BaseAttack": 132,
+    "BaseDefense": 112
+  },
+  "55": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 160,
+    "BaseAttack": 194,
+    "BaseDefense": 176
+  },
+  "56": {
+    "types": [
+      "fighting"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 122,
+    "BaseDefense": 96
+  },
+  "57": {
+    "types": [
+      "fighting"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 178,
+    "BaseDefense": 150
+  },
+  "58": {
+    "types": [
+      "fire"
+    ],
+    "BaseStamina": 110,
+    "BaseAttack": 156,
+    "BaseDefense": 110
+  },
+  "59": {
+    "types": [
+      "fire"
+    ],
+    "BaseStamina": 180,
+    "BaseAttack": 230,
+    "BaseDefense": 180
+  },
+  "60": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 108,
+    "BaseDefense": 98
+  },
+  "61": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 132,
+    "BaseDefense": 132
+  },
+  "62": {
+    "types": [
+      "water",
+      "fighting"
+    ],
+    "BaseStamina": 180,
+    "BaseAttack": 180,
+    "BaseDefense": 202
+  },
+  "63": {
+    "types": [
+      "psychic"
+    ],
+    "BaseStamina": 50,
+    "BaseAttack": 110,
+    "BaseDefense": 76
+  },
+  "64": {
+    "types": [
+      "psychic"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 150,
+    "BaseDefense": 112
+  },
+  "65": {
+    "types": [
+      "psychic"
+    ],
+    "BaseStamina": 110,
+    "BaseAttack": 186,
+    "BaseDefense": 152
+  },
+  "66": {
+    "types": [
+      "fighting"
+    ],
+    "BaseStamina": 140,
+    "BaseAttack": 118,
+    "BaseDefense": 96
+  },
+  "67": {
+    "types": [
+      "fighting"
+    ],
+    "BaseStamina": 160,
+    "BaseAttack": 154,
+    "BaseDefense": 144
+  },
+  "68": {
+    "types": [
+      "fighting"
+    ],
+    "BaseStamina": 180,
+    "BaseAttack": 198,
+    "BaseDefense": 180
+  },
+  "69": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "BaseStamina": 100,
+    "BaseAttack": 158,
+    "BaseDefense": 78
+  },
+  "70": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 190,
+    "BaseDefense": 110
+  },
+  "71": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "BaseStamina": 160,
+    "BaseAttack": 222,
+    "BaseDefense": 152
+  },
+  "72": {
+    "types": [
+      "water",
+      "poison"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 106,
+    "BaseDefense": 136
+  },
+  "73": {
+    "types": [
+      "water",
+      "poison"
+    ],
+    "BaseStamina": 160,
+    "BaseAttack": 170,
+    "BaseDefense": 196
+  },
+  "74": {
+    "types": [
+      "rock",
+      "ground"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 106,
+    "BaseDefense": 118
+  },
+  "75": {
+    "types": [
+      "rock",
+      "ground"
+    ],
+    "BaseStamina": 110,
+    "BaseAttack": 142,
+    "BaseDefense": 156
+  },
+  "76": {
+    "types": [
+      "rock",
+      "ground"
+    ],
+    "BaseStamina": 160,
+    "BaseAttack": 176,
+    "BaseDefense": 198
+  },
+  "77": {
+    "types": [
+      "fire"
+    ],
+    "BaseStamina": 100,
+    "BaseAttack": 168,
+    "BaseDefense": 138
+  },
+  "78": {
+    "types": [
+      "fire"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 200,
+    "BaseDefense": 170
+  },
+  "79": {
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "BaseStamina": 180,
+    "BaseAttack": 110,
+    "BaseDefense": 110
+  },
+  "80": {
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "BaseStamina": 190,
+    "BaseAttack": 184,
+    "BaseDefense": 198
+  },
+  "81": {
+    "types": [
+      "electric",
+      "steel"
+    ],
+    "BaseStamina": 50,
+    "BaseAttack": 128,
+    "BaseDefense": 138
+  },
+  "82": {
+    "types": [
+      "electric",
+      "steel"
+    ],
+    "BaseStamina": 100,
+    "BaseAttack": 186,
+    "BaseDefense": 180
+  },
+  "83": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "BaseStamina": 104,
+    "BaseAttack": 138,
+    "BaseDefense": 132
+  },
+  "84": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "BaseStamina": 70,
+    "BaseAttack": 126,
+    "BaseDefense": 96
+  },
+  "85": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 182,
+    "BaseDefense": 150
+  },
+  "86": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 104,
+    "BaseDefense": 138
+  },
+  "87": {
+    "types": [
+      "water",
+      "ice"
+    ],
+    "BaseStamina": 180,
+    "BaseAttack": 156,
+    "BaseDefense": 192
+  },
+  "88": {
+    "types": [
+      "poison"
+    ],
+    "BaseStamina": 160,
+    "BaseAttack": 124,
+    "BaseDefense": 110
+  },
+  "89": {
+    "types": [
+      "poison"
+    ],
+    "BaseStamina": 210,
+    "BaseAttack": 180,
+    "BaseDefense": 188
+  },
+  "90": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 60,
+    "BaseAttack": 120,
+    "BaseDefense": 112
+  },
+  "91": {
+    "types": [
+      "water",
+      "ice"
+    ],
+    "BaseStamina": 100,
+    "BaseAttack": 196,
+    "BaseDefense": 196
+  },
+  "92": {
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "BaseStamina": 60,
+    "BaseAttack": 136,
+    "BaseDefense": 82
+  },
+  "93": {
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "BaseStamina": 90,
+    "BaseAttack": 172,
+    "BaseDefense": 118
+  },
+  "94": {
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 204,
+    "BaseDefense": 156
+  },
+  "95": {
+    "types": [
+      "rock",
+      "ground"
+    ],
+    "BaseStamina": 70,
+    "BaseAttack": 90,
+    "BaseDefense": 186
+  },
+  "96": {
+    "types": [
+      "psychic"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 104,
+    "BaseDefense": 140
+  },
+  "97": {
+    "types": [
+      "psychic"
+    ],
+    "BaseStamina": 170,
+    "BaseAttack": 162,
+    "BaseDefense": 196
+  },
+  "98": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 60,
+    "BaseAttack": 116,
+    "BaseDefense": 110
+  },
+  "99": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 110,
+    "BaseAttack": 178,
+    "BaseDefense": 168
+  },
+  "100": {
+    "types": [
+      "electric"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 102,
+    "BaseDefense": 124
+  },
+  "101": {
+    "types": [
+      "electric"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 150,
+    "BaseDefense": 174
+  },
+  "102": {
+    "types": [
+      "grass",
+      "psychic"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 110,
+    "BaseDefense": 132
+  },
+  "103": {
+    "types": [
+      "grass",
+      "psychic"
+    ],
+    "BaseStamina": 190,
+    "BaseAttack": 232,
+    "BaseDefense": 164
+  },
+  "104": {
+    "types": [
+      "ground"
+    ],
+    "BaseStamina": 100,
+    "BaseAttack": 102,
+    "BaseDefense": 150
+  },
+  "105": {
+    "types": [
+      "ground"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 140,
+    "BaseDefense": 202
+  },
+  "106": {
+    "types": [
+      "fighting"
+    ],
+    "BaseStamina": 100,
+    "BaseAttack": 148,
+    "BaseDefense": 172
+  },
+  "107": {
+    "types": [
+      "fighting"
+    ],
+    "BaseStamina": 100,
+    "BaseAttack": 138,
+    "BaseDefense": 204
+  },
+  "108": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 180,
+    "BaseAttack": 126,
+    "BaseDefense": 160
+  },
+  "109": {
+    "types": [
+      "poison"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 136,
+    "BaseDefense": 142
+  },
+  "110": {
+    "types": [
+      "poison"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 190,
+    "BaseDefense": 198
+  },
+  "111": {
+    "types": [
+      "ground",
+      "rock"
+    ],
+    "BaseStamina": 160,
+    "BaseAttack": 110,
+    "BaseDefense": 116
+  },
+  "112": {
+    "types": [
+      "ground",
+      "rock"
+    ],
+    "BaseStamina": 210,
+    "BaseAttack": 166,
+    "BaseDefense": 160
+  },
+  "113": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 500,
+    "BaseAttack": 40,
+    "BaseDefense": 60
+  },
+  "114": {
+    "types": [
+      "grass"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 164,
+    "BaseDefense": 152
+  },
+  "115": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 210,
+    "BaseAttack": 142,
+    "BaseDefense": 178
+  },
+  "116": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 60,
+    "BaseAttack": 122,
+    "BaseDefense": 100
+  },
+  "117": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 110,
+    "BaseAttack": 176,
+    "BaseDefense": 150
+  },
+  "118": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 90,
+    "BaseAttack": 112,
+    "BaseDefense": 126
+  },
+  "119": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 160,
+    "BaseAttack": 172,
+    "BaseDefense": 160
+  },
+  "120": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 60,
+    "BaseAttack": 130,
+    "BaseDefense": 128
+  },
+  "121": {
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 194,
+    "BaseDefense": 192
+  },
+  "122": {
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "BaseStamina": 80,
+    "BaseAttack": 154,
+    "BaseDefense": 196
+  },
+  "123": {
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "BaseStamina": 140,
+    "BaseAttack": 176,
+    "BaseDefense": 180
+  },
+  "124": {
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 172,
+    "BaseDefense": 134
+  },
+  "125": {
+    "types": [
+      "electric"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 198,
+    "BaseDefense": 160
+  },
+  "126": {
+    "types": [
+      "fire"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 214,
+    "BaseDefense": 158
+  },
+  "127": {
+    "types": [
+      "bug"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 184,
+    "BaseDefense": 186
+  },
+  "128": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 150,
+    "BaseAttack": 148,
+    "BaseDefense": 184
+  },
+  "129": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 40,
+    "BaseAttack": 42,
+    "BaseDefense": 84
+  },
+  "130": {
+    "types": [
+      "water",
+      "flying"
+    ],
+    "BaseStamina": 190,
+    "BaseAttack": 192,
+    "BaseDefense": 196
+  },
+  "131": {
+    "types": [
+      "water",
+      "ice"
+    ],
+    "BaseStamina": 260,
+    "BaseAttack": 186,
+    "BaseDefense": 190
+  },
+  "132": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 96,
+    "BaseAttack": 110,
+    "BaseDefense": 110
+  },
+  "133": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 110,
+    "BaseAttack": 114,
+    "BaseDefense": 128
+  },
+  "134": {
+    "types": [
+      "water"
+    ],
+    "BaseStamina": 260,
+    "BaseAttack": 186,
+    "BaseDefense": 168
+  },
+  "135": {
+    "types": [
+      "electric"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 192,
+    "BaseDefense": 174
+  },
+  "136": {
+    "types": [
+      "fire"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 238,
+    "BaseDefense": 178
+  },
+  "137": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 130,
+    "BaseAttack": 156,
+    "BaseDefense": 158
+  },
+  "138": {
+    "types": [
+      "rock",
+      "water"
+    ],
+    "BaseStamina": 70,
+    "BaseAttack": 132,
+    "BaseDefense": 160
+  },
+  "139": {
+    "types": [
+      "rock",
+      "water"
+    ],
+    "BaseStamina": 140,
+    "BaseAttack": 180,
+    "BaseDefense": 202
+  },
+  "140": {
+    "types": [
+      "rock",
+      "water"
+    ],
+    "BaseStamina": 60,
+    "BaseAttack": 148,
+    "BaseDefense": 142
+  },
+  "141": {
+    "types": [
+      "rock",
+      "water"
+    ],
+    "BaseStamina": 120,
+    "BaseAttack": 190,
+    "BaseDefense": 190
+  },
+  "142": {
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "BaseStamina": 160,
+    "BaseAttack": 182,
+    "BaseDefense": 162
+  },
+  "143": {
+    "types": [
+      "normal"
+    ],
+    "BaseStamina": 320,
+    "BaseAttack": 180,
+    "BaseDefense": 180
+  },
+  "144": {
+    "types": [
+      "ice",
+      "flying"
+    ],
+    "BaseStamina": 180,
+    "BaseAttack": 198,
+    "BaseDefense": 242
+  },
+  "145": {
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "BaseStamina": 180,
+    "BaseAttack": 232,
+    "BaseDefense": 194
+  },
+  "146": {
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "BaseStamina": 180,
+    "BaseAttack": 242,
+    "BaseDefense": 194
+  },
+  "147": {
+    "types": [
+      "dragon"
+    ],
+    "BaseStamina": 82,
+    "BaseAttack": 128,
+    "BaseDefense": 110
+  },
+  "148": {
+    "types": [
+      "dragon"
+    ],
+    "BaseStamina": 122,
+    "BaseAttack": 170,
+    "BaseDefense": 152
+  },
+  "149": {
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "BaseStamina": 182,
+    "BaseAttack": 250,
+    "BaseDefense": 212
+  },
+  "150": {
+    "types": [
+      "psychic"
+    ],
+    "BaseStamina": 212,
+    "BaseAttack": 284,
+    "BaseDefense": 202
+  },
+  "151": {
+    "types": [
+      "psychic"
+    ],
+    "BaseStamina": 200,
+    "BaseAttack": 220,
+    "BaseDefense": 220
+  }
+}
