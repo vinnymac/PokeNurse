@@ -9,11 +9,11 @@ function writeBaseStats () {
     if (item.TemplateId && item.Pokemon && item.Pokemon.Stats) {
       let pokemonId = String(parseInt(item.Pokemon.UniqueId.match(/\d+/g)[0]))
       let types = []
-      if (item.Pokemon.Type1) types.push(item.Pokemon.Type1.split("POKEMON_TYPE_")[1].toLowerCase())
-      if (item.Pokemon.Type2) types.push(item.Pokemon.Type2.split("POKEMON_TYPE_")[1].toLowerCase())
+      if (item.Pokemon.Type1) types.push(item.Pokemon.Type1.split('POKEMON_TYPE_')[1].toLowerCase())
+      if (item.Pokemon.Type2) types.push(item.Pokemon.Type2.split('POKEMON_TYPE_')[1].toLowerCase())
 
       baseStats[pokemonId] = {
-        types: types,
+        types: types
       }
 
       Object.assign(baseStats[pokemonId], item.Pokemon.Stats)

@@ -76,7 +76,7 @@ ipcMain.on('get-account-credentials', (event) => {
   var credentials = {}
 
   if (!fs.existsSync(accountPath)) {
-    console.log('[!] account.json doesn\'t exist')
+    console.log("[!] account.json doesn't exist")
     event.returnValue = {
       success: false
     }
@@ -161,7 +161,7 @@ ipcMain.on('get-player-info', (event) => {
 })
 
 ipcMain.on('get-players-pokemons', (event) => {
-  console.log('[+] Retrieving player\'s Pokemons and Calculating Evolves')
+  console.log("[+] Retrieving player's Pokemons and Calculating Evolves")
   client.getInventory(0).then(inventory => {
     if (!inventory['success']) {
       event.returnValue = {
@@ -173,7 +173,7 @@ ipcMain.on('get-players-pokemons', (event) => {
     var evolves = Baby.parseFiles('evolves.csv', {header: true, skipEmptyLines: true})
     var formattedEvolves = {}
 
-    for (var i = 0; i < evolves.data.length; i++) {
+    for (let i = 0; i < evolves.data.length; i++) {
       var evolve = evolves.data[i]
 
       formattedEvolves[ evolve.id.toString() ] = evolve.cost
@@ -182,7 +182,7 @@ ipcMain.on('get-players-pokemons', (event) => {
     var families = Baby.parseFiles('families.csv', {header: true, skipEmptyLines: true})
     var formattedFamilies = {}
 
-    for (var i = 0; i < families.data.length; i++) {
+    for (let i = 0; i < families.data.length; i++) {
       var family = families.data[i]
 
       formattedFamilies[ family.id.toString() ] = family.family
@@ -191,7 +191,7 @@ ipcMain.on('get-players-pokemons', (event) => {
     var candies = pogobuf.Utils.splitInventory(inventory)['candies']
     var formattedCandies = {}
 
-    for (var i = 0; i < candies.length; i++) {
+    for (let i = 0; i < candies.length; i++) {
       var candy = candies[i]
       formattedCandies[ candy.family_id.toString() ] = candy.candy
     }
@@ -200,9 +200,7 @@ ipcMain.on('get-players-pokemons', (event) => {
     var reducedPokemonList = []
     var combinedPokemonList = []
 
-    // console.log(pokemons)
-
-    for (var i = 0; i < pokemons.length; i++) {
+    for (let i = 0; i < pokemons.length; i++) {
       var pokemon = pokemons[i]
 
       if (pokemon['cp'] === 0) continue
@@ -211,7 +209,7 @@ ipcMain.on('get-players-pokemons', (event) => {
 
       let stats = baseStats[pokemon['pokemon_id']]
 
-      let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
+      // let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
 
       let attack = stats.BaseAttack + pokemon['individual_attack']
       let defense = Math.pow((stats.BaseDefense + pokemon['individual_defense']), 0.5)
@@ -254,31 +252,30 @@ ipcMain.on('get-players-pokemons', (event) => {
           pokes: []
         }
       }
-
     }
 
     // console.log(reducedPokemonList)
 
-    for (var i = 0; i < reducedPokemonList.length; i++) {
-      var pokemon = reducedPokemonList[i]
+    for (let i = 0; i < reducedPokemonList.length; i++) {
+      let pokemon = reducedPokemonList[i]
 
       if (combinedPokemonList[pokemon.name].pokemon_id === pokemon.pokemon_id) {
         combinedPokemonList[pokemon.name].pokes.push(pokemon)
       }
     }
 
-    //console.log(combinedPokemonList)
+    // console.log(combinedPokemonList)
 
     var finalList = []
 
-    for (key in combinedPokemonList) {
-      var pokemon = combinedPokemonList[key]
-      var candy = formattedCandies[formattedFamilies[pokemon.pokemon_id]]
+    for (let key in combinedPokemonList) {
+      let pokemon = combinedPokemonList[key]
+      let candy = formattedCandies[formattedFamilies[pokemon.pokemon_id]]
       var count = pokemon.count
-      var evolves = Math.floor(candy / formattedEvolves[pokemon.pokemon_id])
+      let evolves = Math.floor(candy / formattedEvolves[pokemon.pokemon_id])
 
       if ((evolves === Infinity || isNaN(evolves))) {
-        var evolves = 0
+        evolves = 0
       }
 
       finalList.push({
@@ -289,7 +286,6 @@ ipcMain.on('get-players-pokemons', (event) => {
         evolves: (evolves > count ? count : evolves),
         pokemon: pokemon.pokes
       })
-
     }
 
     // console.log(finalList)

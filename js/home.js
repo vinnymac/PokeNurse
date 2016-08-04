@@ -1,7 +1,8 @@
 const ipc = require('electron').ipcRenderer
+const $ = require('jquery')
 
 const baseStats = require('../baseStats')
-const cpStats   = require('../cpStats')
+const cpStats = require('../cpStats')
 
 const header = document.getElementById('profile-header')
 const usernameH = document.getElementById('username-h')
@@ -9,12 +10,10 @@ const statusH = document.getElementById('status-h')
 const refreshBtn = document.getElementById('refresh-btn')
 const transferBtn = document.getElementById('transfer-btn')
 const evolveBtn = document.getElementById('evolve-btn')
-const pokemonList = document.getElementById('pokemon-list')
-const sortLinks = document.querySelectorAll('td[data-sort]')
 const detailModal = document.getElementById('detailModal')
 
 // Default sort, sort first by pokemon_id then by cp
-var currSortings = ['pokemon_id', 'cp']
+// var currSortings = ['pokemon_id', 'cp']
 var monsters = []
 var running = false
 
@@ -70,75 +69,75 @@ evolveBtn.addEventListener('click', () => {
 })
 
 function refreshPokemonList () {
-  $("#pokemon-data").DataTable().destroy();
+  $('#pokemon-data').DataTable().destroy()
   monsters = ipc.sendSync('get-players-pokemons')
   if (monsters.success) dataTables(monsters.species)
 }
 
-function format ( d ) {
-    // `d` is the original data object for the row
-     return '<table class="table table-condensed table-hover" id="'+d.pokemon_id+'" style="width:100%;">'
-        + '<thead>'
-          + '<tr>'
-            + '<th width="5%"><input type="checkbox" id="checkall"></th>'
-            + '<th>'
-              + '<span class="glyphicon glyphicon-star favorite-yellow"></span>'
-            + '</th>'
-            + '<th>Name</th>'
-            + '<th>Nickname</th>'
-            + '<th>CP</th>'
-            + '<th>IV (A/D/S)</th>'
-          + '</tr>'
-        + '</thead>'
-        + '</table>';
+function format (d) {
+  // `d` is the original data object for the row
+  let html = ''
+
+  html += '<table class="table table-condensed table-hover" id="' + d.pokemon_id + '" style="width:100%;">'
+  html += '<thead>'
+  html += '<tr>'
+  html += '<th width="5%"><input type="checkbox" id="checkall"></th>'
+  html += '<th>'
+  html += '<span class="glyphicon glyphicon-star favorite-yellow"></span>'
+  html += '</th>'
+  html += '<th>Name</th>'
+  html += '<th>Nickname</th>'
+  html += '<th>CP</th>'
+  html += '<th>IV (A/D/S)</th>'
+  html += '</tr>'
+  html += '</thead>'
+  html += '</table>'
+
+  return html
 }
 
-function dataTables(pokemon) {
-    var table = $('#pokemon-data').DataTable( {
-      data: pokemon,
-      className: 'details-control',
-      bPaginate: false,
-      bInfo: false,
-      columns: [
+function dataTables (pokemon) {
+  var table = $('#pokemon-data').DataTable({
+    data: pokemon,
+    className: 'details-control',
+    bPaginate: false,
+    bInfo: false,
+    columns: [
       {
-        className:      'details-control',
-        orderable:      false,
-        data:           null,
+        className: 'details-control',
+        orderable: false,
+        data: null,
         defaultContent: ''
-
       },
-      { data: "pokemon_id" },
-      { data: "name" },
-      { data: "count" },
-      { data: "candy" },
-      { data: "evolves" }
-      ],
-      order: [[1, 'asc']]
-    } );
+      { data: 'pokemon_id' },
+      { data: 'name' },
+      { data: 'count' },
+      { data: 'candy' },
+      { data: 'evolves' }
+    ],
+    order: [[1, 'asc']]
+  })
 
-        // Add event listener for opening and closing details
-        $('#pokemon-data tbody').on('click', 'td.details-control', function () {
-          var tr = $(this).closest('tr');
-          var row = table.row( tr );
+  // Add event listener for opening and closing details
+  $('#pokemon-data tbody').on('click', 'td.details-control', function () {
+    var tr = $(this).closest('tr')
+    var row = table.row(tr)
 
-          if ( row.child.isShown() ) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-          }
-          else {
-            // Open this row
-            row.child( format(row.data()), 'child').show();
-            tr.addClass('shown');
-            var prepped = prep_display(row.data())
-            sub_datatable(row.data(), prepped)
-          }
-        } );
-
+    if (row.child.isShown()) {
+      // This row is already open - close it
+      row.child.hide()
+      tr.removeClass('shown')
+    } else {
+      // Open this row
+      row.child(format(row.data()), 'child').show()
+      tr.addClass('shown')
+      var prepped = prepDisplay(row.data())
+      subDataTable(row.data(), prepped)
+    }
+  })
 }
 
-function prep_display(d) {
-
+function prepDisplay (d) {
   for (var i = 0; i < d.pokemon.length; i++) {
     var poke = d.pokemon[i]
     var checkBox = '<input type="checkbox" value="' + poke.id.toString() + '"'
@@ -149,42 +148,41 @@ function prep_display(d) {
     if (poke.deployed) checkBox += ' disabled'
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
-      poke.td_checkbox = checkBox + '>'
-      poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
-      poke.td_name = poke.name
-      poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
-      poke.td_cp = poke.cp
-      poke.td_pokeiv = pokeiv
-    }
-
-  return d.pokemon
+    poke.td_checkbox = checkBox + '>'
+    poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
+    poke.td_name = poke.name
+    poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
+    poke.td_cp = poke.cp
+    poke.td_pokeiv = pokeiv
   }
 
-  function sub_datatable(d, p) {
+  return d.pokemon
+}
 
-    var table = $('#' + d.pokemon_id).DataTable( {
-      data: p,
-      bPaginate: false,
-      info: false,
-      bFilter: false,
-      columns: [
-      { data: "td_checkbox", orderable: false },
-      { data: "td_favorite" },
-      { data: "td_name" },
-      { data: "td_nickname" },
-      { data: "td_cp" },
-      { data: "td_pokeiv" },
-      ],
-      order: [[4, 'desc']],
-    } );
+function subDataTable (d, p) {
+  var table = $('#' + d.pokemon_id).DataTable({
+    data: p,
+    bPaginate: false,
+    info: false,
+    bFilter: false,
+    columns: [
+      { data: 'td_checkbox', orderable: false },
+      { data: 'td_favorite' },
+      { data: 'td_name' },
+      { data: 'td_nickname' },
+      { data: 'td_cp' },
+      { data: 'td_pokeiv' }
+    ],
+    order: [[4, 'desc']]
+  })
 
-    // Check all boxes
-    $('#'+d.pokemon_id+' #checkall').click(function () {
-      $(':checkbox', table.rows().nodes()).prop('checked', this.checked);
-    } );
+  // Check all boxes
+  $('#' + d.pokemon_id + ' #checkall').click(function () {
+    $(':checkbox', table.rows().nodes()).prop('checked', this.checked)
+  })
 
   document.querySelectorAll('td a.nickname').forEach(el => {
-    el.addEventListener('click', showModal.bind(this, $(el).data('pokemon-id')), false);
+    el.addEventListener('click', showModal.bind(this, $(el).data('pokemon-id')), false)
   })
 
   addFavoriteButtonEvent()
@@ -213,28 +211,6 @@ function countDown (method, index) {
 
 function randomDelay (min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
-}
-
-function sortBy (props) {
-  var orders = props.map((prop) => {
-    return prop.substr(0, 1) === '-' ? -1 : 1
-  })
-
-  props = props.map((prop) => {
-    if (prop.substr(0, 1) === '-') prop = prop.substr(1)
-    return prop
-  })
-
-  function doSort (a, b, i) {
-    if (i === props.length) return 0
-    return (a[props[i]] < b[props[i]]) ? -1 * orders[i]
-           : (a[props[i]] > b[props[i]]) ? 1 * orders[i]
-           : doSort(a, b, ++i)
-  }
-
-  return function (a, b) {
-    return doSort(a, b, 0)
-  }
 }
 
 function addFavoriteButtonEvent () {
@@ -281,11 +257,10 @@ function findPokemonMapById (id) {
 }
 
 function showModal (id, event) {
-
   let pokemonMap = findPokemonMapById(id)
 
   if (!pokemonMap) {
-    console.error("No Pokemon Found to Display Detail")
+    console.error('No Pokemon Found to Display Detail')
     return
   }
 
