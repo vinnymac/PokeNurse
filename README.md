@@ -36,6 +36,7 @@ This project follows the [JS Standard Code Style](http://standardjs.com/index.ht
 
 ## Known Issues
 * Sometimes after login, the page will stay white instead of showing the list of Pokemon
+* Google 2 Factor Authentication cannot be used. However you can use an [AppPassword](https://security.google.com/settings/security/apppasswords) instead.
 
 ## Contributors
 * yungfrancis (First pull!)
