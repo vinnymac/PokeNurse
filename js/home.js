@@ -1,6 +1,7 @@
 const ipc = require('electron').ipcRenderer
 
 const baseStats = require('../baseStats')
+const cpStats   = require('../cpStats')
 
 const header = document.getElementById('profile-header')
 const usernameH = document.getElementById('username-h')
@@ -311,7 +312,10 @@ function detailModalBody ({pokemon, species}) {
   let attack = `${baseAttack + pokemon.attack}`
   let defense = `${baseDefense + pokemon.defense}`
   let type = stats.types.join(' / ')
-  let cpPerUpgrade = 'Unknown' // '+13 CP (+/-)'
+
+  let cppu = cpStats.cpPerUpgrade[pokemon['pokemon_id'] - 1]
+  let cpPerUpgrade = cppu ? `+${cppu} CP (+/-)` : 'Unknown'
+
   let height = `${pokemon.height.toFixed(2)} <span class="pokemon-stat-unit">m</span>`
   let weight = `${pokemon.weight.toFixed(2)} <span class="pokemon-stat-unit">kg</span>`
 
