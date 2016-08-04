@@ -299,7 +299,20 @@ ipcMain.on('get-players-pokemons', (event) => {
 
 ipcMain.on('transfer-pokemon', (event, id, delay) => {
   setTimeout(() => {
-    client.releasePokemon(id)
+    client.releasePokemon(id).then(response => {
+      if (!response['success']) {
+        event.returnValue = {
+          success: false
+        }
+        return
+      }
+
+      event.returnValue = {
+        success: 'true',
+        response: response
+      }
+      event.sender.send('transfer-pokemon-success', event, id)
+    }).catch(error => console.error(error))
     console.log('[+] Released Pokemon with id: ' + id)
   }, delay)
 })
