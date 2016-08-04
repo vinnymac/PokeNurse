@@ -299,21 +299,18 @@ ipcMain.on('get-players-pokemons', (event) => {
 
 ipcMain.on('transfer-pokemon', (event, id, delay) => {
   setTimeout(() => {
-    // client.releasePokemon(id)
-    // promise = client.releasePokemon(id)
-    promise = new Promise(function(res,rej){res()})
-    promise.then(response => {
-      // if (!response['success']) {
-      //   event.returnValue = {
-      //     success: false
-      //   }
-      //   return
-      // }
-      //
-      // event.returnValue = {
-      //   success: 'true',
-      //   response: response
-      // }
+    client.releasePokemon(id).then(response => {
+      if (!response['success']) {
+        event.returnValue = {
+          success: false
+        }
+        return
+      }
+
+      event.returnValue = {
+        success: 'true',
+        response: response
+      }
       event.sender.send('transfer-pokemon-success', event, id)
     }).catch(error => console.error(error))
     console.log('[+] Released Pokemon with id: ' + id)

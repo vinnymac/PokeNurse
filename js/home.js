@@ -55,14 +55,8 @@ transferBtn.addEventListener('click', () => {
 })
 
 ipc.on('transfer-pokemon-success', (e, event, id) => {
-  console.log("COMPLETED", event, id)
-  // TODO Update UI to reflect pokemon of id is now gone
-  // Remove the Pokemon Object
-  removePokemonById(id)
-  // Dirty trick to get the row
-  let $row = $(`span[data-pokemon-id="${id}"]`).parent().parent()
-  // Remove from the DOM, does this cleanup events/make DataTable angry?
-  $row.remove()
+  // TODO not refreshing the entire UI just because of one change
+  refreshPokemonList()
 })
 
 evolveBtn.addEventListener('click', () => {
@@ -236,22 +230,6 @@ function addFavoriteButtonEvent () {
       button.dataset.pokemonFavorited = setToFavorite.toString()
     })
   })
-}
-
-function removePokemonById (id) {
-  let removed = false
-
-  monsters.species.forEach(species => {
-    species.pokemon = species.pokemon.filter(pokemonById => {
-      if (pokemonById['id'] === id) {
-        removed = true
-        return false
-      }
-      return true
-    })
-  })
-
-  return removed
 }
 
 function updatePokemonById (id, key, value) {
