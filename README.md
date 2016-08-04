@@ -1,6 +1,7 @@
 # PokeNurse
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
 [![style](https://img.shields.io/badge/style-standard-brightgreen.svg)]()
+[![Discord](https://img.shields.io/badge/discord-PokéNurse-738bd7.svg)](https://discord.gg/vfxTYPe)
 
 ## Examples
 ![Login Window](http://i.imgur.com/UuWTue6.png)
