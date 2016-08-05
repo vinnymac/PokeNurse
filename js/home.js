@@ -81,7 +81,8 @@ function format (d) {
   html += '<table class="table table-condensed table-hover" id="' + d.pokemon_id + '" style="width:100%;">'
   html += '<thead>'
   html += '<tr>'
-  html += '<th width="5%"><input type="checkbox" id="checkall"></th>'
+  html += '<th width="5%" data-orderable="' + false + '" data-searchable="' + false + '">'
+  html += '<input type="checkbox" id="checkall"></th>'
   html += '<th>'
   html += '<span class="glyphicon glyphicon-star favorite-yellow"></span>'
   html += '</th>'
@@ -91,6 +92,19 @@ function format (d) {
   html += '<th>IV (A/D/S)</th>'
   html += '</tr>'
   html += '</thead>'
+  html += '<tbody>'
+  for (var i = 0; i < d.pokemon.length; i++) {
+    var poke = d.pokemon[i]
+    html += '<tr>'
+    html += '<td>' + poke.td_checkbox + '</td>'
+    html += '<td data-order="' + poke.favorite + '">' + poke.td_favorite + '</td>'
+    html += '<td data-order="' + poke.name + i + '">' + poke.td_name + '</td>'
+    html += '<td data-order="' + poke.nickname + i + '">' + poke.td_nickname + '</td>'
+    html += '<td>' + poke.td_cp + '</td>'
+    html += '<td>' + poke.td_pokeiv + '</td>'
+    html += '</tr>'
+  }
+  html += '</tbody>'
   html += '</table>'
 
   return html
@@ -129,10 +143,10 @@ function dataTables (pokemon) {
       tr.removeClass('shown')
     } else {
       // Open this row
+      var prepped = prepDisplay(row.data())
       row.child(format(row.data()), 'child').show()
       tr.addClass('shown')
-      var prepped = prepDisplay(row.data())
-      subDataTable(row.data(), prepped)
+      subDataTable(row.data())
     }
   })
 }
@@ -159,20 +173,11 @@ function prepDisplay (d) {
   return d.pokemon
 }
 
-function subDataTable (d, p) {
+function subDataTable (d) {
   var table = $('#' + d.pokemon_id).DataTable({
-    data: p,
     bPaginate: false,
     info: false,
     bFilter: false,
-    columns: [
-      { data: 'td_checkbox', orderable: false },
-      { data: 'td_favorite' },
-      { data: 'td_name' },
-      { data: 'td_nickname' },
-      { data: 'td_cp' },
-      { data: 'td_pokeiv' }
-    ],
     order: [[4, 'desc']]
   })
 
