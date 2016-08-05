@@ -143,7 +143,7 @@ function dataTables (pokemon) {
       tr.removeClass('shown')
     } else {
       // Open this row
-      var prepped = prepDisplay(row.data())
+      prepDisplay(row.data())
       row.child(format(row.data()), 'child').show()
       tr.addClass('shown')
       subDataTable(row.data())
