@@ -1,3 +1,5 @@
+/* Global style */
+
 .header {
   background-image: url('../imgs/bg.jpg');
   background-position: center top;
@@ -36,6 +38,9 @@ tbody > tr > td > a {
   top: 4px;
 }
 
+.pointer {
+  cursor: pointer;
+}
 
 /* Pokemon Detail CSS */
 
@@ -659,7 +664,7 @@ td.details-control:before {
   cursor: pointer;
 }
 
-tr.shown td.details-control:before {  
+tr.shown td.details-control:before {
   font-family:"Glyphicons Halflings";
   content:"\e082";
 }
