@@ -4,7 +4,8 @@ const fs = require('fs')
 const path = require('path')
 const pogobuf = require('pogobuf')
 const POGOProtos = require('node-pogo-protos')
-const Baby = require('babyparse')
+const evolveCost = require('./evolveCost')
+const familiesById = require('./familiesById')
 const baseStats = require('./baseStats')
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
@@ -182,20 +183,18 @@ ipcMain.on('get-players-pokemons', (event) => {
       return
     }
 
-    var evolves = Baby.parseFiles('evolves.csv', {header: true, skipEmptyLines: true})
     var formattedEvolves = {}
 
-    for (let i = 0; i < evolves.data.length; i++) {
-      var evolve = evolves.data[i]
+    for (let i = 0; i < evolveCost.data.length; i++) {
+      var evolve = evolveCost.data[i]
 
       formattedEvolves[ evolve.id.toString() ] = evolve.cost
     }
 
-    var families = Baby.parseFiles('families.csv', {header: true, skipEmptyLines: true})
     var formattedFamilies = {}
 
-    for (let i = 0; i < families.data.length; i++) {
-      var family = families.data[i]
+    for (let i = 0; i < familiesById.data.length; i++) {
+      var family = familiesById.data[i]
 
       formattedFamilies[ family.id.toString() ] = family.family
     }
@@ -286,9 +285,11 @@ ipcMain.on('get-players-pokemons', (event) => {
       var count = pokemon.count
       let evolves = Math.floor(candy / formattedEvolves[pokemon.pokemon_id])
 
-      if ((evolves === Infinity || isNaN(evolves))) {
+      if ( (evolves === Infinity || isNaN(evolves))) {
         evolves = 0
       }
+
+      // console.log(formattedFamilies[pokemon.pokemon_id])
 
       finalList.push({
         pokemon_id: pokemon.pokemon_id.toString(),
