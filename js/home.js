@@ -54,16 +54,6 @@ transferBtn.addEventListener('click', () => {
   }
 })
 
-ipc.on('transfer-pokemon-success', (e, event, id) => {
-  // TODO not refreshing the entire UI just because of one change
-  refreshPokemonList()
-})
-
-ipc.on('evolve-pokemon-success', (e, event, id) => {
-  // TODO not refreshing the entire UI just because of one change
-  refreshPokemonList()
-})
-
 evolveBtn.addEventListener('click', () => {
   if (runningCheck()) return
 
@@ -215,6 +205,7 @@ function countDown (method, index) {
       running = false
       statusH.innerHTML = 'Idle'
       ipc.send('error-message', 'Complete!')
+      refreshPokemonList()
     }
   }, 1000)
 }

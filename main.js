@@ -65,6 +65,7 @@ ipcMain.on('confirmation-dialog', (event, method) => {
     event.returnValue = {
       success: true
     }
+
   })
 })
 // END OF GENERAL
@@ -299,40 +300,14 @@ ipcMain.on('get-players-pokemons', (event) => {
 
 ipcMain.on('transfer-pokemon', (event, id, delay) => {
   setTimeout(() => {
-    client.releasePokemon(id).then(response => {
-      if (!response['success']) {
-        event.returnValue = {
-          success: false
-        }
-        return
-      }
-
-      event.returnValue = {
-        success: 'true',
-        response: response
-      }
-      event.sender.send('transfer-pokemon-success', event, id)
-    }).catch(error => console.error(error))
-    console.log('[+] Released Pokemon with id: ' + id)
+      client.releasePokemon(id)
+      console.log('[+] Released Pokemon with id: ' + id)
   }, delay)
 })
 
 ipcMain.on('evolve-pokemon', (event, id, delay) => {
   setTimeout(() => {
-    client.evolvePokemon(id).then(response => {
-      if (!response['success']) {
-        event.returnValue = {
-          success: false
-        }
-        return
-      }
-
-      event.returnValue = {
-        success: 'true',
-        response: response
-      }
-      event.sender.send('evolve-pokemon-success', event, id)
-    }).catch(error => console.error(error))
+    client.evolvePokemon(id)
     console.log('[+] Evolved Pokemon with id: ' + id)
   }, delay)
 })
