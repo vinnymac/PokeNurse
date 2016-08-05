@@ -9,6 +9,12 @@
 
 This is my first project using [Electron](http://electron.atom.io/) and [Node.js](https://nodejs.org/en/).  Criticism is welcome and encouraged.
 
+## Download v1.1.0
+You may view all the release [here](https://github.com/duhminick/PokeNurse/releases)
+* [PokeNurse-darwin-x64.zip (Mac)](https://github.com/duhminick/PokeNurse/releases/download/v1.1.0/PokeNurse-darwin-x64.zip)
+* [PokeNurse-win32-ia32.zip (Windows 32 bit)](https://github.com/duhminick/PokeNurse/releases/download/v1.1.0/PokeNurse-win32-ia32.zip)
+* [PokeNurse-win32-x64.zip (Windows 64 bit)](https://github.com/duhminick/PokeNurse/releases/download/v1.1.0/PokeNurse-win32-x64.zip)
+
 ## Features
 * List Pokemon
     * Pokedex Number
