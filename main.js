@@ -1,4 +1,5 @@
-const {app, BrowserWindow, ipcMain, dialog} = require('electron')
+const {app, BrowserWindow, ipcMain, dialog, Menu} = require('electron')
+const menuTemplate = require('./main_menu')
 const fs = require('fs')
 const path = require('path')
 const pogobuf = require('pogobuf')
@@ -13,14 +14,25 @@ let client
 
 function createWindow () {
   win = new BrowserWindow({ width: 800, height: 375, title: 'PokéNurse', icon: 'imgs/emojioneicon.png' })
-  win.setMenu(null)
+  // win.setMenu(null)
   win.loadURL(`file://${__dirname}/login.html`)
+  win.show()
 
-  client = new pogobuf.Client()
+  // Prevent BrowserWindow from navigating when user drags/drops files
+  win.webContents.on('will-navigate', (e) => {
+    e.preventDefault()
+  })
 
+  // allow garbage collection to occur on win when closed
   win.on('closed', () => {
     win = null
   })
+
+  // Create/set the main menu
+  let menu = Menu.buildFromTemplate(menuTemplate)
+  Menu.setApplicationMenu(menu)
+
+  client = new pogobuf.Client()
 }
 
 app.on('ready', createWindow)
@@ -65,7 +77,6 @@ ipcMain.on('confirmation-dialog', (event, method) => {
     event.returnValue = {
       success: true
     }
-
   })
 })
 // END OF GENERAL
@@ -300,8 +311,8 @@ ipcMain.on('get-players-pokemons', (event) => {
 
 ipcMain.on('transfer-pokemon', (event, id, delay) => {
   setTimeout(() => {
-      client.releasePokemon(id)
-      console.log('[+] Released Pokemon with id: ' + id)
+    client.releasePokemon(id)
+    console.log('[+] Released Pokemon with id: ' + id)
   }, delay)
 })
 
