@@ -38,7 +38,6 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
 This project follows the [JS Standard Code Style](http://standardjs.com/index.html) for the most part.
 
 ## Todo
-* Evolve Pokemon with x amount of times
 * Show Pokemon moveset
 * Nickname Pokemon
 * Pictures would be nice
