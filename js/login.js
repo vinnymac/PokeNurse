@@ -8,8 +8,6 @@ const passwordTxt = document.getElementById('password-txt')
 const loginBtn = document.getElementById('login-btn')
 const rememberCb = document.getElementById('remember-cb')
 
-require('./testReact')
-
 var credentials = ipc.sendSync('get-account-credentials')
 if (credentials.success) {
   // Google is selected by default
