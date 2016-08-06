@@ -3,17 +3,21 @@
 [![style](https://img.shields.io/badge/style-standard-brightgreen.svg)]()
 [![Discord](https://img.shields.io/badge/discord-PokéNurse-738bd7.svg)](https://discord.gg/sSXCruy)
 
-## Examples
-![Login Window](http://i.imgur.com/UuWTue6.png)
-![Main Window](http://i.imgur.com/lZp3xB3.png)
+<img src="https://github.com/duhminick/PokeNurse/blob/master/imgs/emojioneicon.png?raw=true" width="32px" align="left" hspace="10" vspace="10">
 
-This is my first project using [Electron](http://electron.atom.io/) and [Node.js](https://nodejs.org/en/).  Criticism is welcome and encouraged.
+**PokéNurse** is a desktop application for Windows and Mac that allows you to manage your pokémon from Pokémon Go without the need for a mobile device. You can now favorite, transfer, and evolve from the comfort of your own home!
 
 ## Download v1.1.0
 You may view all the release [here](https://github.com/duhminick/PokeNurse/releases)
 * [PokeNurse-darwin-x64.zip (Mac)](https://github.com/duhminick/PokeNurse/releases/download/v1.1.0/PokeNurse-darwin-x64.zip)
 * [PokeNurse-win32-ia32.zip (Windows 32 bit)](https://github.com/duhminick/PokeNurse/releases/download/v1.1.0/PokeNurse-win32-ia32.zip)
 * [PokeNurse-win32-x64.zip (Windows 64 bit)](https://github.com/duhminick/PokeNurse/releases/download/v1.1.0/PokeNurse-win32-x64.zip)
+
+## Examples
+![Login Window](http://i.imgur.com/QaeO99H.png)
+![Main Window](http://i.imgur.com/ZGU0ee7.png)
+
+This is my first project using [Electron](http://electron.atom.io/) and [Node.js](https://nodejs.org/en/).  Criticism is welcome and encouraged.
 
 ## Features
 * List Pokemon
