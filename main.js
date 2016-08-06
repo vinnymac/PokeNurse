@@ -14,10 +14,12 @@ let win
 let client
 
 function createWindow () {
-  win = new BrowserWindow({ width: 800, height: 375, title: 'PokéNurse', icon: 'imgs/emojioneicon.png' })
+  win = new BrowserWindow({ width: 800, height: 375, title: 'PokéNurse', icon: 'imgs/emojioneicon.png', show: false })
   // win.setMenu(null)
   win.loadURL(`file://${__dirname}/login.html`)
-  win.show()
+  win.once('ready-to-show', () => {
+    win.show()
+  })
 
   // Prevent BrowserWindow from navigating when user drags/drops files
   win.webContents.on('will-navigate', (e) => {
