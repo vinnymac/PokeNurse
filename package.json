@@ -33,6 +33,7 @@
     "bootstrap": "^3.3.7",
     "datatables.net": "^1.10.12",
     "datatables.net-bs": "^1.10.12",
+    "electron-devtools-installer": "^2.0.0",
     "jquery": "^2.2.4",
     "node-pogo-protos": "^1.1.2",
     "pogobuf": "^1.4.0",

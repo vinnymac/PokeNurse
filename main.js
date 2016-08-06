@@ -8,6 +8,12 @@ const evolveCost = require('./evolveCost')
 const familiesById = require('./familiesById')
 const baseStats = require('./baseStats')
 
+const installExtension = require('electron-devtools-installer').default
+
+installExtension(installExtension.REACT_DEVELOPER_TOOLS)
+  .then((name) => console.log(`Added Extension:  ${name}`))
+  .catch((err) => console.log('An error occurred: ', err))
+
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
 let win
