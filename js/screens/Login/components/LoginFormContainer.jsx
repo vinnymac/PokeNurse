@@ -1,14 +1,23 @@
 import React from 'react'
 import {ipcRenderer} from 'electron'
 
+const AUTH_METHODS = {
+  ptc: 'ptc',
+  google: 'google'
+}
+
 const Login = React.createClass({
   getInitialState () {
     return {
-      authMethod: this.props.credentials.method || 'google'
+      authMethod: this.props.credentials.method || AUTH_METHODS.google
     }
   },
 
   render () {
+    let {
+      credentials
+    } = this.props
+
     return (
       <div className='container'>
         <div className='form-group btn-group' data-toggle='buttons'>
@@ -17,8 +26,8 @@ const Login = React.createClass({
               type='radio'
               name='auth-radio'
               id='auth0'
-              value='google'
-              checked={this.state.authMethod !== 'ptc'}
+              value={AUTH_METHODS.google}
+              checked={this.state.authMethod === AUTH_METHODS.google}
               onChange={this._handleChangeAuth}
             />
             Google
@@ -28,8 +37,8 @@ const Login = React.createClass({
               type='radio'
               name='auth-radio'
               id='auth1'
-              value='ptc'
-              checked={this.state.authMethod === 'ptc'}
+              value={AUTH_METHODS.ptc}
+              checked={this.state.authMethod === AUTH_METHODS.ptc}
               onChange={this._handleChangeAuth}
             />
             Pokémon Trainer Club
@@ -44,7 +53,7 @@ const Login = React.createClass({
             placeholder='Username'
             ref='username'
             onKeyPress={this._handleEnterKey}
-            defaultValue={this.props.credentials.username || ''}
+            defaultValue={credentials.username || ''}
           />
         </div>
 
@@ -56,7 +65,7 @@ const Login = React.createClass({
             placeholder='Password'
             ref='password'
             onKeyPress={this._handleEnterKey}
-            defaultValue={this.props.credentials.password || ''}
+            defaultValue={credentials.password || ''}
           />
         </div>
 
@@ -65,10 +74,10 @@ const Login = React.createClass({
             <input
               type='checkbox'
               id='remember-cb'
-              defaultChecked={this.props.credentials.success || false}
+              defaultChecked={credentials.success || false}
               ref='rememberMe'
             />
-            Remember me
+            {" Remember me"}
           </label>
           <input
             type='button'
