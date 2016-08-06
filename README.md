@@ -8,7 +8,7 @@
 **PokéNurse** is a desktop application for Windows and Mac that allows you to manage your pokémon from Pokémon Go without the need for a mobile device. You can now favorite, transfer, and evolve from the comfort of your own home!
 
 ## Download v1.1.0
-You may view all the release [here](https://github.com/duhminick/PokeNurse/releases)
+You may view all the releases [here](https://github.com/duhminick/PokeNurse/releases)
 * [PokeNurse-darwin-x64.zip (Mac)](https://github.com/duhminick/PokeNurse/releases/download/v1.1.0/PokeNurse-darwin-x64.zip)
 * [PokeNurse-win32-ia32.zip (Windows 32 bit)](https://github.com/duhminick/PokeNurse/releases/download/v1.1.0/PokeNurse-win32-ia32.zip)
 * [PokeNurse-win32-x64.zip (Windows 64 bit)](https://github.com/duhminick/PokeNurse/releases/download/v1.1.0/PokeNurse-win32-x64.zip)
