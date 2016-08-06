@@ -6,7 +6,7 @@ import LoginFormContainer from './components/LoginFormContainer'
 
 let credentials = ipcRenderer.sendSync('get-account-credentials')
 
-const SignInApp = React.createClass({
+const Login = React.createClass({
   render () {
     return (
       <div>
@@ -21,4 +21,4 @@ const SignInApp = React.createClass({
   }
 })
 
-ReactDOM.render(<SignInApp />, document.getElementById('content'))
+export default Login

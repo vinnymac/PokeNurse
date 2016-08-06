@@ -18,7 +18,7 @@ let client
 function createWindow () {
   win = new BrowserWindow({ width: 800, height: 375, title: 'PokéNurse', icon: 'imgs/emojioneicon.png', show: false })
   // win.setMenu(null)
-  win.loadURL(`file://${__dirname}/login.html`)
+  win.loadURL(`file://${__dirname}/index.html`)
   win.once('ready-to-show', () => {
     win.show()
   })
@@ -157,8 +157,8 @@ ipcMain.on('pokemon-login', (event, method, username, password) => {
     client.setAuthInfo(method, token)
     client.init()
 
-    win.loadURL(`file://${__dirname}/home.html`)
     win.setSize(900, 600, true)
+    event.sender.send('pokemon-logged-in')
   }).catch(error => {
     console.error(error)
   })
