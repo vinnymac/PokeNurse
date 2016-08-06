@@ -285,7 +285,7 @@ ipcMain.on('get-players-pokemons', (event) => {
       var count = pokemon.count
       let evolves = Math.floor(candy / formattedEvolves[pokemon.pokemon_id])
 
-      if ( (evolves === Infinity || isNaN(evolves))) {
+      if ((evolves === Infinity || isNaN(evolves))) {
         evolves = 0
       }
 
