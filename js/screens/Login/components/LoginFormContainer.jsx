@@ -1,19 +1,37 @@
 import React from 'react';
-const {ipcRenderer} = require('electron')
-
-let credentials = ipcRenderer.sendSync('get-account-credentials')
+import {ipcRenderer} from 'electron'
 
 const Login = React.createClass({
+  getInitialState () {
+    return {
+      authMethod: this.props.credentials.method || 'google'
+    }
+  },
+
   render() {
     return (
       <div className="container">
         <div className="form-group btn-group" data-toggle="buttons">
           <label className="btn btn-info active noselect">
-            <input type="radio" name="auth-radio" id="auth0" value="google" defaultChecked={credentials.method !== 'ptc'}/>
+            <input
+              type="radio"
+              name="auth-radio"
+              id="auth0"
+              value="google"
+              checked={this.state.authMethod !== 'ptc'}
+              onChange={this._handleChangeAuth}
+            />
             Google
           </label>
           <label className="btn btn-info noselect">
-            <input type="radio" name="auth-radio" id="auth1" value="ptc" defaultChecked={credentials.method === 'ptc'}/>
+            <input
+              type="radio"
+              name="auth-radio"
+              id="auth1"
+              value="ptc"
+              checked={this.state.authMethod === 'ptc'}
+              onChange={this._handleChangeAuth}
+            />
             Pokémon Trainer Club
           </label>
         </div>
@@ -26,7 +44,7 @@ const Login = React.createClass({
             placeholder="Username"
             ref="username"
             onKeyPress={this._handleEnterKey}
-            defaultValue={credentials.username || ""}
+            defaultValue={this.props.credentials.username || ""}
           />
         </div>
 
@@ -38,7 +56,7 @@ const Login = React.createClass({
             placeholder="Password"
             ref="password"
             onKeyPress={this._handleEnterKey}
-            defaultValue={credentials.password || ""}
+            defaultValue={this.props.credentials.password || ""}
           />
         </div>
 
@@ -47,7 +65,7 @@ const Login = React.createClass({
             <input
               type="checkbox"
               id="remember-cb"
-              defaultChecked={credentials.success}
+              defaultChecked={this.props.credentials.success || false}
               ref="rememberMe"
             />
             Remember me
@@ -63,14 +81,10 @@ const Login = React.createClass({
     );
   },
 
-  _getAuthMethod () {
-    var authMethodRadio = document.getElementsByName('auth-radio')
-    for (var i = 0; i < authMethodRadio.length; i++) {
-      if (authMethodRadio[i].checked) {
-        return authMethodRadio[i].value
-      }
-    }
-    return undefined
+  _handleChangeAuth (e) {
+    this.setState({
+      authMethod: e.target.value
+    })
   },
 
   _handleEnterKey (e) {
@@ -78,7 +92,7 @@ const Login = React.createClass({
   },
 
   _handleLogin () {
-    let method = this._getAuthMethod()
+    let method = this.state.authMethod
     let {username, password, rememberMe} = this.refs
 
     if (username.value === '' || password.value === '') {
