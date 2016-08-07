@@ -8,6 +8,7 @@ const evolveCost = require('./evolveCost')
 const familiesById = require('./familiesById')
 const baseStats = require('./baseStats')
 
+let {REACT_DEVELOPER_TOOLS} = require('electron-devtools-installer')
 const installExtension = require('electron-devtools-installer').default
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
@@ -43,7 +44,7 @@ function createWindow () {
 app.on('ready', () => {
   createWindow()
 
-  installExtension(installExtension.REACT_DEVELOPER_TOOLS)
+  installExtension(REACT_DEVELOPER_TOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
     .catch((err) => console.log('An error occurred: ', err))
 })
