@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import {ipcRenderer} from 'electron'
 
 import LoginFormContainer from './components/LoginFormContainer'
