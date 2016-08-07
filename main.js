@@ -158,13 +158,16 @@ ipcMain.on('pokemon-login', (event, method, username, password) => {
     client.setAuthInfo(method, token)
     client.init()
 
-    win.setSize(900, 600, true)
     event.sender.send('pokemon-logged-in')
   }).catch(error => {
     console.error(error)
   })
 })
 // END OF LOGIN
+
+ipcMain.on('table-did-mount', () => {
+  win.setSize(900, 600, true)
+})
 
 // POKEMON
 ipcMain.on('get-player-info', (event) => {

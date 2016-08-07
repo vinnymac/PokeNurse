@@ -10,11 +10,10 @@ require('datatables.net-bs')(window, $)
 const ipc = require('electron').ipcRenderer
 
 const Table = React.createClass({
-  componentWillMount () {
-    document.title = 'PokéNurse • Home'
-  },
 
   componentDidMount () {
+    document.title = 'PokéNurse • Home'
+
     const header = document.getElementById('profile-header')
     const usernameH = document.getElementById('username-h')
     const statusH = document.getElementById('status-h')
@@ -283,6 +282,9 @@ const Table = React.createClass({
 
       renderModal($(detailModal), pokemonMap)
     }
+
+
+    ipc.send('table-did-mount')
   },
 
   render () {
