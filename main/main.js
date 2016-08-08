@@ -58,14 +58,18 @@ app.on('activate', () => {
   }
 })
 
-// GENERAL
-ipcMain.on('error-message', (event, errorMessage) => {
+function showErrorMessage (message) {
   dialog.showMessageBox(win, {
     type: 'error',
     buttons: ['Ok'],
     title: 'Error',
-    message: errorMessage
+    message: message
   })
+}
+
+// GENERAL
+ipcMain.on('error-message', (event, errorMessage) => {
+  showErrorMessage(errorMessage)
 })
 
 ipcMain.on('confirmation-dialog', (event, method) => {
@@ -143,7 +147,6 @@ ipcMain.on('check-and-delete-credentials', (event) => {
 
 ipcMain.on('pokemon-login', (event, method, username, password) => {
   console.log('[+] Attempting to login')
-
   var login
   if (method === 'google') {
     login = new pogobuf.GoogleLogin()
@@ -158,6 +161,7 @@ ipcMain.on('pokemon-login', (event, method, username, password) => {
     event.sender.send('pokemon-logged-in')
   }).catch(error => {
     console.error(error)
+    showErrorMessage(error.message)
   })
 })
 // END OF LOGIN
