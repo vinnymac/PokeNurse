@@ -8,6 +8,9 @@ const evolveCost = require('./evolveCost')
 const familiesById = require('./familiesById')
 const baseStats = require('./baseStats')
 
+let {REACT_DEVELOPER_TOOLS} = require('electron-devtools-installer')
+const installExtension = require('electron-devtools-installer').default
+
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
 let win
@@ -16,7 +19,7 @@ let client
 function createWindow () {
   win = new BrowserWindow({ width: 800, height: 375, title: 'PokéNurse', icon: 'imgs/emojioneicon.png', show: false })
   // win.setMenu(null)
-  win.loadURL(`file://${__dirname}/login.html`)
+  win.loadURL(`file://${__dirname}/index.html`)
   win.once('ready-to-show', () => {
     win.show()
   })
@@ -38,7 +41,13 @@ function createWindow () {
   client = new pogobuf.Client()
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+  createWindow()
+
+  installExtension(REACT_DEVELOPER_TOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err))
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -149,13 +158,16 @@ ipcMain.on('pokemon-login', (event, method, username, password) => {
     client.setAuthInfo(method, token)
     client.init()
 
-    win.loadURL(`file://${__dirname}/home.html`)
-    win.setSize(900, 600, true)
+    event.sender.send('pokemon-logged-in')
   }).catch(error => {
     console.error(error)
   })
 })
 // END OF LOGIN
+
+ipcMain.on('table-did-mount', () => {
+  win.setSize(900, 600, true)
+})
 
 // POKEMON
 ipcMain.on('get-player-info', (event) => {
