@@ -10,17 +10,20 @@ function writeBaseStats () {
 
   gameMaster.Items.forEach(item => {
     if (item.TemplateId && item.Pokemon && item.Pokemon.Stats) {
-      let pokemonId = parseInt(item.Pokemon.UniqueId.match(/\d+/g)[0])
+      let pokemonIndex = parseInt(item.Pokemon.UniqueId.match(/\d+/g)[0]) - 1
+      let pokemonId = String(pokemonIndex + 1)
       let types = []
       if (item.Pokemon.Type1) types.push(item.Pokemon.Type1.split('POKEMON_TYPE_')[1].toLowerCase())
       if (item.Pokemon.Type2) types.push(item.Pokemon.Type2.split('POKEMON_TYPE_')[1].toLowerCase())
 
       baseStats[pokemonId] = {
         types: types,
-        cpPerUpgrade: cpStats.cpPerUpgrade[pokemonId - 1]
+        cpPerUpgrade: cpStats.cpPerUpgrade[pokemonIndex],
+        evolveCost: evolveCost.data[pokemonIndex].cost,
+        familyId: familiesById.data[pokemonIndex].family
       }
 
-      Object.assign(baseStats[String(pokemonId)], item.Pokemon.Stats)
+      Object.assign(baseStats[pokemonId], item.Pokemon.Stats)
     }
   })
 

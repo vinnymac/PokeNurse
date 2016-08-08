@@ -5,6 +5,8 @@
       "poison"
     ],
     "cpPerUpgrade": 13.5,
+    "evolveCost": "25",
+    "familyId": "1",
     "BaseStamina": 90,
     "BaseAttack": 126,
     "BaseDefense": 126
@@ -15,6 +17,8 @@
       "poison"
     ],
     "cpPerUpgrade": 22,
+    "evolveCost": "100",
+    "familyId": "1",
     "BaseStamina": 120,
     "BaseAttack": 156,
     "BaseDefense": 158
@@ -25,6 +29,8 @@
       "poison"
     ],
     "cpPerUpgrade": 33.5,
+    "evolveCost": "0",
+    "familyId": "1",
     "BaseStamina": 160,
     "BaseAttack": 198,
     "BaseDefense": 200
@@ -34,6 +40,8 @@
       "fire"
     ],
     "cpPerUpgrade": 13.6,
+    "evolveCost": "25",
+    "familyId": "4",
     "BaseStamina": 78,
     "BaseAttack": 128,
     "BaseDefense": 108
@@ -43,6 +51,8 @@
       "fire"
     ],
     "cpPerUpgrade": 23,
+    "evolveCost": "100",
+    "familyId": "4",
     "BaseStamina": 116,
     "BaseAttack": 160,
     "BaseDefense": 140
@@ -53,6 +63,8 @@
       "flying"
     ],
     "cpPerUpgrade": 33,
+    "evolveCost": "0",
+    "familyId": "4",
     "BaseStamina": 156,
     "BaseAttack": 212,
     "BaseDefense": 182
@@ -62,6 +74,8 @@
       "water"
     ],
     "cpPerUpgrade": 13,
+    "evolveCost": "25",
+    "familyId": "7",
     "BaseStamina": 88,
     "BaseAttack": 112,
     "BaseDefense": 142
@@ -71,6 +85,8 @@
       "water"
     ],
     "cpPerUpgrade": 21,
+    "evolveCost": "100",
+    "familyId": "7",
     "BaseStamina": 118,
     "BaseAttack": 144,
     "BaseDefense": 176
@@ -80,6 +96,8 @@
       "water"
     ],
     "cpPerUpgrade": 31.5,
+    "evolveCost": "0",
+    "familyId": "7",
     "BaseStamina": 158,
     "BaseAttack": 186,
     "BaseDefense": 222
@@ -89,6 +107,8 @@
       "bug"
     ],
     "cpPerUpgrade": 5,
+    "evolveCost": "12",
+    "familyId": "10",
     "BaseStamina": 90,
     "BaseAttack": 62,
     "BaseDefense": 66
@@ -98,6 +118,8 @@
       "bug"
     ],
     "cpPerUpgrade": 5.5,
+    "evolveCost": "50",
+    "familyId": "10",
     "BaseStamina": 100,
     "BaseAttack": 56,
     "BaseDefense": 86
@@ -108,6 +130,8 @@
       "flying"
     ],
     "cpPerUpgrade": 18.5,
+    "evolveCost": "0",
+    "familyId": "10",
     "BaseStamina": 120,
     "BaseAttack": 144,
     "BaseDefense": 144
@@ -118,6 +142,8 @@
       "poison"
     ],
     "cpPerUpgrade": 5.3,
+    "evolveCost": "12",
+    "familyId": "13",
     "BaseStamina": 80,
     "BaseAttack": 68,
     "BaseDefense": 64
@@ -128,6 +154,8 @@
       "poison"
     ],
     "cpPerUpgrade": 6.5,
+    "evolveCost": "50",
+    "familyId": "13",
     "BaseStamina": 90,
     "BaseAttack": 62,
     "BaseDefense": 82
@@ -138,6 +166,8 @@
       "poison"
     ],
     "cpPerUpgrade": 19.2,
+    "evolveCost": "0",
+    "familyId": "13",
     "BaseStamina": 130,
     "BaseAttack": 144,
     "BaseDefense": 130
@@ -148,6 +178,8 @@
       "flying"
     ],
     "cpPerUpgrade": 10.2,
+    "evolveCost": "12",
+    "familyId": "16",
     "BaseStamina": 80,
     "BaseAttack": 94,
     "BaseDefense": 90
@@ -158,6 +190,8 @@
       "flying"
     ],
     "cpPerUpgrade": 18.2,
+    "evolveCost": "50",
+    "familyId": "16",
     "BaseStamina": 126,
     "BaseAttack": 126,
     "BaseDefense": 122
@@ -168,6 +202,8 @@
       "flying"
     ],
     "cpPerUpgrade": 27.7,
+    "evolveCost": "0",
+    "familyId": "16",
     "BaseStamina": 166,
     "BaseAttack": 170,
     "BaseDefense": 166
@@ -177,6 +213,8 @@
       "normal"
     ],
     "cpPerUpgrade": 7.5,
+    "evolveCost": "25",
+    "familyId": "19",
     "BaseStamina": 60,
     "BaseAttack": 92,
     "BaseDefense": 86
@@ -186,6 +224,8 @@
       "normal"
     ],
     "cpPerUpgrade": 19.7,
+    "evolveCost": "0",
+    "familyId": "19",
     "BaseStamina": 110,
     "BaseAttack": 146,
     "BaseDefense": 150
@@ -196,6 +236,8 @@
       "flying"
     ],
     "cpPerUpgrade": 8.7,
+    "evolveCost": "50",
+    "familyId": "21",
     "BaseStamina": 80,
     "BaseAttack": 102,
     "BaseDefense": 78
@@ -206,6 +248,8 @@
       "flying"
     ],
     "cpPerUpgrade": 24.5,
+    "evolveCost": "0",
+    "familyId": "21",
     "BaseStamina": 130,
     "BaseAttack": 168,
     "BaseDefense": 146
@@ -215,6 +259,8 @@
       "poison"
     ],
     "cpPerUpgrade": 11,
+    "evolveCost": "50",
+    "familyId": "23",
     "BaseStamina": 70,
     "BaseAttack": 112,
     "BaseDefense": 112
@@ -224,6 +270,8 @@
       "poison"
     ],
     "cpPerUpgrade": 22.8,
+    "evolveCost": "0",
+    "familyId": "23",
     "BaseStamina": 120,
     "BaseAttack": 166,
     "BaseDefense": 166
@@ -233,6 +281,8 @@
       "electric"
     ],
     "cpPerUpgrade": 11.5,
+    "evolveCost": "50",
+    "familyId": "25",
     "BaseStamina": 70,
     "BaseAttack": 124,
     "BaseDefense": 108
@@ -242,6 +292,8 @@
       "electric"
     ],
     "cpPerUpgrade": 27,
+    "evolveCost": "0",
+    "familyId": "25",
     "BaseStamina": 120,
     "BaseAttack": 200,
     "BaseDefense": 154
@@ -251,6 +303,8 @@
       "ground"
     ],
     "cpPerUpgrade": 11,
+    "evolveCost": "50",
+    "familyId": "27",
     "BaseStamina": 100,
     "BaseAttack": 90,
     "BaseDefense": 114
@@ -260,6 +314,8 @@
       "ground"
     ],
     "cpPerUpgrade": 22.3,
+    "evolveCost": "0",
+    "familyId": "27",
     "BaseStamina": 150,
     "BaseAttack": 150,
     "BaseDefense": 172
@@ -269,6 +325,8 @@
       "poison"
     ],
     "cpPerUpgrade": 11,
+    "evolveCost": "25",
+    "familyId": "29",
     "BaseStamina": 110,
     "BaseAttack": 100,
     "BaseDefense": 104
@@ -278,6 +336,8 @@
       "poison"
     ],
     "cpPerUpgrade": 19,
+    "evolveCost": "100",
+    "familyId": "29",
     "BaseStamina": 140,
     "BaseAttack": 132,
     "BaseDefense": 136
@@ -288,6 +348,8 @@
       "ground"
     ],
     "cpPerUpgrade": 34,
+    "evolveCost": "0",
+    "familyId": "29",
     "BaseStamina": 180,
     "BaseAttack": 184,
     "BaseDefense": 190
@@ -297,6 +359,8 @@
       "poison"
     ],
     "cpPerUpgrade": 12,
+    "evolveCost": "25",
+    "familyId": "32",
     "BaseStamina": 92,
     "BaseAttack": 110,
     "BaseDefense": 94
@@ -306,6 +370,8 @@
       "poison"
     ],
     "cpPerUpgrade": 19.8,
+    "evolveCost": "100",
+    "familyId": "32",
     "BaseStamina": 122,
     "BaseAttack": 142,
     "BaseDefense": 128
@@ -316,6 +382,8 @@
       "ground"
     ],
     "cpPerUpgrade": 34,
+    "evolveCost": "0",
+    "familyId": "32",
     "BaseStamina": 162,
     "BaseAttack": 204,
     "BaseDefense": 170
@@ -325,6 +393,8 @@
       "fairy"
     ],
     "cpPerUpgrade": 16,
+    "evolveCost": "50",
+    "familyId": "35",
     "BaseStamina": 140,
     "BaseAttack": 116,
     "BaseDefense": 124
@@ -334,6 +404,8 @@
       "fairy"
     ],
     "cpPerUpgrade": 31.6,
+    "evolveCost": "0",
+    "familyId": "35",
     "BaseStamina": 190,
     "BaseAttack": 178,
     "BaseDefense": 178
@@ -343,6 +415,8 @@
       "fire"
     ],
     "cpPerUpgrade": 12,
+    "evolveCost": "50",
+    "familyId": "37",
     "BaseStamina": 76,
     "BaseAttack": 106,
     "BaseDefense": 118
@@ -352,6 +426,8 @@
       "fire"
     ],
     "cpPerUpgrade": 31,
+    "evolveCost": "0",
+    "familyId": "37",
     "BaseStamina": 146,
     "BaseAttack": 176,
     "BaseDefense": 194
@@ -362,6 +438,8 @@
       "fairy"
     ],
     "cpPerUpgrade": 11,
+    "evolveCost": "50",
+    "familyId": "39",
     "BaseStamina": 230,
     "BaseAttack": 98,
     "BaseDefense": 54
@@ -372,6 +450,8 @@
       "fairy"
     ],
     "cpPerUpgrade": 31,
+    "evolveCost": "0",
+    "familyId": "39",
     "BaseStamina": 280,
     "BaseAttack": 168,
     "BaseDefense": 108
@@ -382,6 +462,8 @@
       "flying"
     ],
     "cpPerUpgrade": 8.5,
+    "evolveCost": "50",
+    "familyId": "41",
     "BaseStamina": 80,
     "BaseAttack": 88,
     "BaseDefense": 90
@@ -392,6 +474,8 @@
       "flying"
     ],
     "cpPerUpgrade": 26.7,
+    "evolveCost": "0",
+    "familyId": "41",
     "BaseStamina": 150,
     "BaseAttack": 164,
     "BaseDefense": 164
@@ -402,6 +486,8 @@
       "poison"
     ],
     "cpPerUpgrade": 15,
+    "evolveCost": "25",
+    "familyId": "43",
     "BaseStamina": 90,
     "BaseAttack": 134,
     "BaseDefense": 130
@@ -412,6 +498,8 @@
       "poison"
     ],
     "cpPerUpgrade": 21,
+    "evolveCost": "100",
+    "familyId": "43",
     "BaseStamina": 120,
     "BaseAttack": 162,
     "BaseDefense": 158
@@ -422,6 +510,8 @@
       "poison"
     ],
     "cpPerUpgrade": 34,
+    "evolveCost": "0",
+    "familyId": "43",
     "BaseStamina": 150,
     "BaseAttack": 202,
     "BaseDefense": 190
@@ -432,6 +522,8 @@
       "grass"
     ],
     "cpPerUpgrade": 12,
+    "evolveCost": "50",
+    "familyId": "46",
     "BaseStamina": 70,
     "BaseAttack": 122,
     "BaseDefense": 120
@@ -442,6 +534,8 @@
       "grass"
     ],
     "cpPerUpgrade": 23.3,
+    "evolveCost": "0",
+    "familyId": "46",
     "BaseStamina": 120,
     "BaseAttack": 162,
     "BaseDefense": 170
@@ -452,6 +546,8 @@
       "poison"
     ],
     "cpPerUpgrade": 14,
+    "evolveCost": "50",
+    "familyId": "48",
     "BaseStamina": 120,
     "BaseAttack": 108,
     "BaseDefense": 118
@@ -462,6 +558,8 @@
       "poison"
     ],
     "cpPerUpgrade": 26.5,
+    "evolveCost": "0",
+    "familyId": "48",
     "BaseStamina": 140,
     "BaseAttack": 172,
     "BaseDefense": 154
@@ -471,6 +569,8 @@
       "ground"
     ],
     "cpPerUpgrade": 7,
+    "evolveCost": "50",
+    "familyId": "50",
     "BaseStamina": 20,
     "BaseAttack": 108,
     "BaseDefense": 86
@@ -480,6 +580,8 @@
       "ground"
     ],
     "cpPerUpgrade": 15.5,
+    "evolveCost": "0",
+    "familyId": "50",
     "BaseStamina": 70,
     "BaseAttack": 148,
     "BaseDefense": 140
@@ -489,6 +591,8 @@
       "normal"
     ],
     "cpPerUpgrade": 10.5,
+    "evolveCost": "50",
+    "familyId": "52",
     "BaseStamina": 80,
     "BaseAttack": 104,
     "BaseDefense": 94
@@ -498,6 +602,8 @@
       "normal"
     ],
     "cpPerUpgrade": 23,
+    "evolveCost": "0",
+    "familyId": "52",
     "BaseStamina": 130,
     "BaseAttack": 156,
     "BaseDefense": 146
@@ -507,6 +613,8 @@
       "water"
     ],
     "cpPerUpgrade": 14,
+    "evolveCost": "50",
+    "familyId": "54",
     "BaseStamina": 100,
     "BaseAttack": 132,
     "BaseDefense": 112
@@ -516,6 +624,8 @@
       "water"
     ],
     "cpPerUpgrade": 32.3,
+    "evolveCost": "0",
+    "familyId": "54",
     "BaseStamina": 160,
     "BaseAttack": 194,
     "BaseDefense": 176
@@ -525,6 +635,8 @@
       "fighting"
     ],
     "cpPerUpgrade": 12,
+    "evolveCost": "50",
+    "familyId": "56",
     "BaseStamina": 80,
     "BaseAttack": 122,
     "BaseDefense": 96
@@ -534,6 +646,8 @@
       "fighting"
     ],
     "cpPerUpgrade": 25,
+    "evolveCost": "0",
+    "familyId": "56",
     "BaseStamina": 130,
     "BaseAttack": 178,
     "BaseDefense": 150
@@ -543,6 +657,8 @@
       "fire"
     ],
     "cpPerUpgrade": 19,
+    "evolveCost": "50",
+    "familyId": "58",
     "BaseStamina": 110,
     "BaseAttack": 156,
     "BaseDefense": 110
@@ -552,6 +668,8 @@
       "fire"
     ],
     "cpPerUpgrade": 38.4,
+    "evolveCost": "0",
+    "familyId": "58",
     "BaseStamina": 180,
     "BaseAttack": 230,
     "BaseDefense": 180
@@ -561,6 +679,8 @@
       "water"
     ],
     "cpPerUpgrade": 10,
+    "evolveCost": "25",
+    "familyId": "60",
     "BaseStamina": 80,
     "BaseAttack": 108,
     "BaseDefense": 98
@@ -570,6 +690,8 @@
       "water"
     ],
     "cpPerUpgrade": 16,
+    "evolveCost": "100",
+    "familyId": "60",
     "BaseStamina": 130,
     "BaseAttack": 132,
     "BaseDefense": 132
@@ -580,6 +702,8 @@
       "fighting"
     ],
     "cpPerUpgrade": 34,
+    "evolveCost": "0",
+    "familyId": "60",
     "BaseStamina": 180,
     "BaseAttack": 180,
     "BaseDefense": 202
@@ -589,6 +713,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 6.8,
+    "evolveCost": "25",
+    "familyId": "63",
     "BaseStamina": 50,
     "BaseAttack": 110,
     "BaseDefense": 76
@@ -598,6 +724,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 14,
+    "evolveCost": "100",
+    "familyId": "63",
     "BaseStamina": 80,
     "BaseAttack": 150,
     "BaseDefense": 112
@@ -607,6 +735,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 25,
+    "evolveCost": "0",
+    "familyId": "63",
     "BaseStamina": 110,
     "BaseAttack": 186,
     "BaseDefense": 152
@@ -616,6 +746,8 @@
       "fighting"
     ],
     "cpPerUpgrade": 14.5,
+    "evolveCost": "25",
+    "familyId": "66",
     "BaseStamina": 140,
     "BaseAttack": 118,
     "BaseDefense": 96
@@ -625,6 +757,8 @@
       "fighting"
     ],
     "cpPerUpgrade": 24,
+    "evolveCost": "100",
+    "familyId": "66",
     "BaseStamina": 160,
     "BaseAttack": 154,
     "BaseDefense": 144
@@ -634,6 +768,8 @@
       "fighting"
     ],
     "cpPerUpgrade": 35.7,
+    "evolveCost": "0",
+    "familyId": "66",
     "BaseStamina": 180,
     "BaseAttack": 198,
     "BaseDefense": 180
@@ -644,6 +780,8 @@
       "poison"
     ],
     "cpPerUpgrade": 13,
+    "evolveCost": "25",
+    "familyId": "69",
     "BaseStamina": 100,
     "BaseAttack": 158,
     "BaseDefense": 78
@@ -654,6 +792,8 @@
       "poison"
     ],
     "cpPerUpgrade": 21,
+    "evolveCost": "100",
+    "familyId": "69",
     "BaseStamina": 130,
     "BaseAttack": 190,
     "BaseDefense": 110
@@ -664,6 +804,8 @@
       "poison"
     ],
     "cpPerUpgrade": 35,
+    "evolveCost": "0",
+    "familyId": "69",
     "BaseStamina": 160,
     "BaseAttack": 222,
     "BaseDefense": 152
@@ -674,6 +816,8 @@
       "poison"
     ],
     "cpPerUpgrade": 12,
+    "evolveCost": "50",
+    "familyId": "72",
     "BaseStamina": 80,
     "BaseAttack": 106,
     "BaseDefense": 136
@@ -684,6 +828,8 @@
       "poison"
     ],
     "cpPerUpgrade": 30.2,
+    "evolveCost": "0",
+    "familyId": "72",
     "BaseStamina": 160,
     "BaseAttack": 170,
     "BaseDefense": 196
@@ -694,6 +840,8 @@
       "ground"
     ],
     "cpPerUpgrade": 11,
+    "evolveCost": "25",
+    "familyId": "74",
     "BaseStamina": 80,
     "BaseAttack": 106,
     "BaseDefense": 118
@@ -704,6 +852,8 @@
       "ground"
     ],
     "cpPerUpgrade": 19,
+    "evolveCost": "100",
+    "familyId": "74",
     "BaseStamina": 110,
     "BaseAttack": 142,
     "BaseDefense": 156
@@ -714,6 +864,8 @@
       "ground"
     ],
     "cpPerUpgrade": 31,
+    "evolveCost": "0",
+    "familyId": "74",
     "BaseStamina": 160,
     "BaseAttack": 176,
     "BaseDefense": 198
@@ -723,6 +875,8 @@
       "fire"
     ],
     "cpPerUpgrade": 20.8,
+    "evolveCost": "50",
+    "familyId": "77",
     "BaseStamina": 100,
     "BaseAttack": 168,
     "BaseDefense": 138
@@ -732,6 +886,8 @@
       "fire"
     ],
     "cpPerUpgrade": 30.5,
+    "evolveCost": "0",
+    "familyId": "77",
     "BaseStamina": 130,
     "BaseAttack": 200,
     "BaseDefense": 170
@@ -742,6 +898,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 16,
+    "evolveCost": "50",
+    "familyId": "79",
     "BaseStamina": 180,
     "BaseAttack": 110,
     "BaseDefense": 110
@@ -752,6 +910,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 35.2,
+    "evolveCost": "0",
+    "familyId": "79",
     "BaseStamina": 190,
     "BaseAttack": 184,
     "BaseDefense": 198
@@ -762,6 +922,8 @@
       "steel"
     ],
     "cpPerUpgrade": 12,
+    "evolveCost": "50",
+    "familyId": "81",
     "BaseStamina": 50,
     "BaseAttack": 128,
     "BaseDefense": 138
@@ -772,6 +934,8 @@
       "steel"
     ],
     "cpPerUpgrade": 25,
+    "evolveCost": "0",
+    "familyId": "81",
     "BaseStamina": 100,
     "BaseAttack": 186,
     "BaseDefense": 180
@@ -782,6 +946,8 @@
       "flying"
     ],
     "cpPerUpgrade": null,
+    "evolveCost": "0",
+    "familyId": "83",
     "BaseStamina": 104,
     "BaseAttack": 138,
     "BaseDefense": 132
@@ -792,6 +958,8 @@
       "flying"
     ],
     "cpPerUpgrade": 12,
+    "evolveCost": "50",
+    "familyId": "84",
     "BaseStamina": 70,
     "BaseAttack": 126,
     "BaseDefense": 96
@@ -802,6 +970,8 @@
       "flying"
     ],
     "cpPerUpgrade": 24,
+    "evolveCost": "0",
+    "familyId": "84",
     "BaseStamina": 120,
     "BaseAttack": 182,
     "BaseDefense": 150
@@ -811,6 +981,8 @@
       "water"
     ],
     "cpPerUpgrade": 16,
+    "evolveCost": "50",
+    "familyId": "86",
     "BaseStamina": 130,
     "BaseAttack": 104,
     "BaseDefense": 138
@@ -821,6 +993,8 @@
       "ice"
     ],
     "cpPerUpgrade": 31,
+    "evolveCost": "0",
+    "familyId": "86",
     "BaseStamina": 180,
     "BaseAttack": 156,
     "BaseDefense": 192
@@ -830,6 +1004,8 @@
       "poison"
     ],
     "cpPerUpgrade": 17,
+    "evolveCost": "50",
+    "familyId": "88",
     "BaseStamina": 160,
     "BaseAttack": 124,
     "BaseDefense": 110
@@ -839,6 +1015,8 @@
       "poison"
     ],
     "cpPerUpgrade": 38,
+    "evolveCost": "0",
+    "familyId": "88",
     "BaseStamina": 210,
     "BaseAttack": 180,
     "BaseDefense": 188
@@ -848,6 +1026,8 @@
       "water"
     ],
     "cpPerUpgrade": 10,
+    "evolveCost": "50",
+    "familyId": "90",
     "BaseStamina": 60,
     "BaseAttack": 120,
     "BaseDefense": 112
@@ -858,6 +1038,8 @@
       "ice"
     ],
     "cpPerUpgrade": 26,
+    "evolveCost": "0",
+    "familyId": "90",
     "BaseStamina": 100,
     "BaseAttack": 196,
     "BaseDefense": 196
@@ -868,6 +1050,8 @@
       "poison"
     ],
     "cpPerUpgrade": 11.3,
+    "evolveCost": "25",
+    "familyId": "92",
     "BaseStamina": 60,
     "BaseAttack": 136,
     "BaseDefense": 82
@@ -878,6 +1062,8 @@
       "poison"
     ],
     "cpPerUpgrade": 18,
+    "evolveCost": "100",
+    "familyId": "92",
     "BaseStamina": 90,
     "BaseAttack": 172,
     "BaseDefense": 118
@@ -888,6 +1074,8 @@
       "poison"
     ],
     "cpPerUpgrade": 29.3,
+    "evolveCost": "0",
+    "familyId": "92",
     "BaseStamina": 120,
     "BaseAttack": 204,
     "BaseDefense": 156
@@ -898,6 +1086,8 @@
       "ground"
     ],
     "cpPerUpgrade": 11.5,
+    "evolveCost": "0",
+    "familyId": "95",
     "BaseStamina": 70,
     "BaseAttack": 90,
     "BaseDefense": 186
@@ -907,6 +1097,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 14.5,
+    "evolveCost": "50",
+    "familyId": "96",
     "BaseStamina": 120,
     "BaseAttack": 104,
     "BaseDefense": 140
@@ -916,6 +1108,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 30,
+    "evolveCost": "0",
+    "familyId": "96",
     "BaseStamina": 170,
     "BaseAttack": 162,
     "BaseDefense": 196
@@ -925,6 +1119,8 @@
       "water"
     ],
     "cpPerUpgrade": 10.5,
+    "evolveCost": "50",
+    "familyId": "98",
     "BaseStamina": 60,
     "BaseAttack": 116,
     "BaseDefense": 110
@@ -934,6 +1130,8 @@
       "water"
     ],
     "cpPerUpgrade": 25.3,
+    "evolveCost": "0",
+    "familyId": "98",
     "BaseStamina": 110,
     "BaseAttack": 178,
     "BaseDefense": 168
@@ -943,6 +1141,8 @@
       "electric"
     ],
     "cpPerUpgrade": 10,
+    "evolveCost": "50",
+    "familyId": "100",
     "BaseStamina": 80,
     "BaseAttack": 102,
     "BaseDefense": 124
@@ -952,6 +1152,8 @@
       "electric"
     ],
     "cpPerUpgrade": 22.5,
+    "evolveCost": "0",
+    "familyId": "100",
     "BaseStamina": 120,
     "BaseAttack": 150,
     "BaseDefense": 174
@@ -962,6 +1164,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 18,
+    "evolveCost": "50",
+    "familyId": "102",
     "BaseStamina": 120,
     "BaseAttack": 110,
     "BaseDefense": 132
@@ -972,6 +1176,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 40.5,
+    "evolveCost": "0",
+    "familyId": "102",
     "BaseStamina": 190,
     "BaseAttack": 232,
     "BaseDefense": 164
@@ -981,6 +1187,8 @@
       "ground"
     ],
     "cpPerUpgrade": 13,
+    "evolveCost": "50",
+    "familyId": "104",
     "BaseStamina": 100,
     "BaseAttack": 102,
     "BaseDefense": 150
@@ -990,6 +1198,8 @@
       "ground"
     ],
     "cpPerUpgrade": 22.5,
+    "evolveCost": "0",
+    "familyId": "104",
     "BaseStamina": 120,
     "BaseAttack": 140,
     "BaseDefense": 202
@@ -999,6 +1209,8 @@
       "fighting"
     ],
     "cpPerUpgrade": 21,
+    "evolveCost": "0",
+    "familyId": "106",
     "BaseStamina": 100,
     "BaseAttack": 148,
     "BaseDefense": 172
@@ -1008,6 +1220,8 @@
       "fighting"
     ],
     "cpPerUpgrade": 21,
+    "evolveCost": "0",
+    "familyId": "107",
     "BaseStamina": 100,
     "BaseAttack": 138,
     "BaseDefense": 204
@@ -1017,6 +1231,8 @@
       "normal"
     ],
     "cpPerUpgrade": 22,
+    "evolveCost": "0",
+    "familyId": "108",
     "BaseStamina": 180,
     "BaseAttack": 126,
     "BaseDefense": 160
@@ -1026,6 +1242,8 @@
       "poison"
     ],
     "cpPerUpgrade": 16,
+    "evolveCost": "50",
+    "familyId": "109",
     "BaseStamina": 80,
     "BaseAttack": 136,
     "BaseDefense": 142
@@ -1035,6 +1253,8 @@
       "poison"
     ],
     "cpPerUpgrade": 32.8,
+    "evolveCost": "0",
+    "familyId": "109",
     "BaseStamina": 130,
     "BaseAttack": 190,
     "BaseDefense": 198
@@ -1045,6 +1265,8 @@
       "rock"
     ],
     "cpPerUpgrade": 16,
+    "evolveCost": "50",
+    "familyId": "111",
     "BaseStamina": 160,
     "BaseAttack": 110,
     "BaseDefense": 116
@@ -1055,6 +1277,8 @@
       "rock"
     ],
     "cpPerUpgrade": 29,
+    "evolveCost": "0",
+    "familyId": "111",
     "BaseStamina": 210,
     "BaseAttack": 166,
     "BaseDefense": 160
@@ -1064,6 +1288,8 @@
       "normal"
     ],
     "cpPerUpgrade": 9.5,
+    "evolveCost": "0",
+    "familyId": "113",
     "BaseStamina": 500,
     "BaseAttack": 40,
     "BaseDefense": 60
@@ -1073,6 +1299,8 @@
       "grass"
     ],
     "cpPerUpgrade": 24.9,
+    "evolveCost": "0",
+    "familyId": "114",
     "BaseStamina": 130,
     "BaseAttack": 164,
     "BaseDefense": 152
@@ -1082,6 +1310,8 @@
       "normal"
     ],
     "cpPerUpgrade": 29,
+    "evolveCost": "0",
+    "familyId": "115",
     "BaseStamina": 210,
     "BaseAttack": 142,
     "BaseDefense": 178
@@ -1091,6 +1321,8 @@
       "water"
     ],
     "cpPerUpgrade": 11.5,
+    "evolveCost": "50",
+    "familyId": "116",
     "BaseStamina": 60,
     "BaseAttack": 122,
     "BaseDefense": 100
@@ -1100,6 +1332,8 @@
       "water"
     ],
     "cpPerUpgrade": 23.5,
+    "evolveCost": "0",
+    "familyId": "116",
     "BaseStamina": 110,
     "BaseAttack": 176,
     "BaseDefense": 150
@@ -1109,6 +1343,8 @@
       "water"
     ],
     "cpPerUpgrade": 13.5,
+    "evolveCost": "50",
+    "familyId": "118",
     "BaseStamina": 90,
     "BaseAttack": 112,
     "BaseDefense": 126
@@ -1118,6 +1354,8 @@
       "water"
     ],
     "cpPerUpgrade": 29,
+    "evolveCost": "0",
+    "familyId": "118",
     "BaseStamina": 160,
     "BaseAttack": 172,
     "BaseDefense": 160
@@ -1127,6 +1365,8 @@
       "water"
     ],
     "cpPerUpgrade": 12,
+    "evolveCost": "50",
+    "familyId": "120",
     "BaseStamina": 60,
     "BaseAttack": 130,
     "BaseDefense": 128
@@ -1137,6 +1377,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 30,
+    "evolveCost": "0",
+    "familyId": "120",
     "BaseStamina": 120,
     "BaseAttack": 194,
     "BaseDefense": 192
@@ -1147,6 +1389,8 @@
       "fairy"
     ],
     "cpPerUpgrade": 21,
+    "evolveCost": "0",
+    "familyId": "122",
     "BaseStamina": 80,
     "BaseAttack": 154,
     "BaseDefense": 196
@@ -1157,6 +1401,8 @@
       "flying"
     ],
     "cpPerUpgrade": 30.4,
+    "evolveCost": "0",
+    "familyId": "123",
     "BaseStamina": 140,
     "BaseAttack": 176,
     "BaseDefense": 180
@@ -1167,6 +1413,8 @@
       "psychic"
     ],
     "cpPerUpgrade": 23,
+    "evolveCost": "0",
+    "familyId": "124",
     "BaseStamina": 130,
     "BaseAttack": 172,
     "BaseDefense": 134
@@ -1176,6 +1424,8 @@
       "electric"
     ],
     "cpPerUpgrade": 29.5,
+    "evolveCost": "0",
+    "familyId": "125",
     "BaseStamina": 130,
     "BaseAttack": 198,
     "BaseDefense": 160
@@ -1185,6 +1435,8 @@
       "fire"
     ],
     "cpPerUpgrade": 31.5,
+    "evolveCost": "0",
+    "familyId": "126",
     "BaseStamina": 130,
     "BaseAttack": 214,
     "BaseDefense": 158
@@ -1194,6 +1446,8 @@
       "bug"
     ],
     "cpPerUpgrade": 29.7,
+    "evolveCost": "0",
+    "familyId": "127",
     "BaseStamina": 130,
     "BaseAttack": 184,
     "BaseDefense": 186
@@ -1203,6 +1457,8 @@
       "normal"
     ],
     "cpPerUpgrade": 25.3,
+    "evolveCost": "0",
+    "familyId": "128",
     "BaseStamina": 150,
     "BaseAttack": 148,
     "BaseDefense": 184
@@ -1212,6 +1468,8 @@
       "water"
     ],
     "cpPerUpgrade": 3.3,
+    "evolveCost": "400",
+    "familyId": "129",
     "BaseStamina": 40,
     "BaseAttack": 42,
     "BaseDefense": 84
@@ -1222,6 +1480,8 @@
       "flying"
     ],
     "cpPerUpgrade": 38,
+    "evolveCost": "0",
+    "familyId": "129",
     "BaseStamina": 190,
     "BaseAttack": 192,
     "BaseDefense": 196
@@ -1232,6 +1492,8 @@
       "ice"
     ],
     "cpPerUpgrade": 44.9,
+    "evolveCost": "0",
+    "familyId": "131",
     "BaseStamina": 260,
     "BaseAttack": 186,
     "BaseDefense": 190
@@ -1241,6 +1503,8 @@
       "normal"
     ],
     "cpPerUpgrade": null,
+    "evolveCost": "0",
+    "familyId": "132",
     "BaseStamina": 96,
     "BaseAttack": 110,
     "BaseDefense": 110
@@ -1250,6 +1514,8 @@
       "normal"
     ],
     "cpPerUpgrade": 16,
+    "evolveCost": "25",
+    "familyId": "133",
     "BaseStamina": 110,
     "BaseAttack": 114,
     "BaseDefense": 128
@@ -1259,6 +1525,8 @@
       "water"
     ],
     "cpPerUpgrade": 39.5,
+    "evolveCost": "0",
+    "familyId": "133",
     "BaseStamina": 260,
     "BaseAttack": 186,
     "BaseDefense": 168
@@ -1268,6 +1536,8 @@
       "electric"
     ],
     "cpPerUpgrade": 30.1,
+    "evolveCost": "0",
+    "familyId": "133",
     "BaseStamina": 130,
     "BaseAttack": 192,
     "BaseDefense": 174
@@ -1277,6 +1547,8 @@
       "fire"
     ],
     "cpPerUpgrade": 36.8,
+    "evolveCost": "0",
+    "familyId": "133",
     "BaseStamina": 130,
     "BaseAttack": 238,
     "BaseDefense": 178
@@ -1286,6 +1558,8 @@
       "normal"
     ],
     "cpPerUpgrade": 23.8,
+    "evolveCost": "0",
+    "familyId": "137",
     "BaseStamina": 130,
     "BaseAttack": 156,
     "BaseDefense": 158
@@ -1296,6 +1570,8 @@
       "water"
     ],
     "cpPerUpgrade": 16,
+    "evolveCost": "50",
+    "familyId": "138",
     "BaseStamina": 70,
     "BaseAttack": 132,
     "BaseDefense": 160
@@ -1306,6 +1582,8 @@
       "water"
     ],
     "cpPerUpgrade": 32,
+    "evolveCost": "0",
+    "familyId": "138",
     "BaseStamina": 140,
     "BaseAttack": 180,
     "BaseDefense": 202
@@ -1316,6 +1594,8 @@
       "water"
     ],
     "cpPerUpgrade": 16,
+    "evolveCost": "50",
+    "familyId": "140",
     "BaseStamina": 60,
     "BaseAttack": 148,
     "BaseDefense": 142
@@ -1326,6 +1606,8 @@
       "water"
     ],
     "cpPerUpgrade": 30,
+    "evolveCost": "0",
+    "familyId": "140",
     "BaseStamina": 120,
     "BaseAttack": 190,
     "BaseDefense": 190
@@ -1336,6 +1618,8 @@
       "flying"
     ],
     "cpPerUpgrade": 29.9,
+    "evolveCost": "0",
+    "familyId": "142",
     "BaseStamina": 160,
     "BaseAttack": 182,
     "BaseDefense": 162
@@ -1345,6 +1629,8 @@
       "normal"
     ],
     "cpPerUpgrade": 44.6,
+    "evolveCost": "0",
+    "familyId": "143",
     "BaseStamina": 320,
     "BaseAttack": 180,
     "BaseDefense": 180
@@ -1355,6 +1641,8 @@
       "flying"
     ],
     "cpPerUpgrade": null,
+    "evolveCost": "0",
+    "familyId": "144",
     "BaseStamina": 180,
     "BaseAttack": 198,
     "BaseDefense": 242
@@ -1365,6 +1653,8 @@
       "flying"
     ],
     "cpPerUpgrade": null,
+    "evolveCost": "0",
+    "familyId": "145",
     "BaseStamina": 180,
     "BaseAttack": 232,
     "BaseDefense": 194
@@ -1375,6 +1665,8 @@
       "flying"
     ],
     "cpPerUpgrade": null,
+    "evolveCost": "0",
+    "familyId": "146",
     "BaseStamina": 180,
     "BaseAttack": 242,
     "BaseDefense": 194
@@ -1384,6 +1676,8 @@
       "dragon"
     ],
     "cpPerUpgrade": 13,
+    "evolveCost": "25",
+    "familyId": "147",
     "BaseStamina": 82,
     "BaseAttack": 128,
     "BaseDefense": 110
@@ -1393,6 +1687,8 @@
       "dragon"
     ],
     "cpPerUpgrade": 25,
+    "evolveCost": "100",
+    "familyId": "147",
     "BaseStamina": 122,
     "BaseAttack": 170,
     "BaseDefense": 152
@@ -1403,6 +1699,8 @@
       "flying"
     ],
     "cpPerUpgrade": 44.8,
+    "evolveCost": "0",
+    "familyId": "147",
     "BaseStamina": 182,
     "BaseAttack": 250,
     "BaseDefense": 212
@@ -1412,6 +1710,8 @@
       "psychic"
     ],
     "cpPerUpgrade": null,
+    "evolveCost": "0",
+    "familyId": "150",
     "BaseStamina": 212,
     "BaseAttack": 284,
     "BaseDefense": 202
@@ -1421,6 +1721,8 @@
       "psychic"
     ],
     "cpPerUpgrade": null,
+    "evolveCost": "0",
+    "familyId": "151",
     "BaseStamina": 200,
     "BaseAttack": 220,
     "BaseDefense": 220
