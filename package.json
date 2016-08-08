@@ -5,6 +5,7 @@
   "main": "main",
   "scripts": {
     "start": "electron .",
+    "buildstats": "node ./generateBaseStats",
     "buildmac": "electron-packager . PokeNurse --platform=darwin --arch=x64 --icon=imgs/emojioneicon.icns --overwrite",
     "buildwindows": "electron-packager . PokeNurse --platform=win32 --arch=all --icon=imgs/emojioneicon.ico --overwrite"
   },

@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 import ModalBody from './components/ModalBody'
 
 import baseStats from '../../../baseStats'
-import cpStats from '../../../cpStats'
 
 const ModalDialog = React.createClass({
   componentDidMount () {
@@ -50,7 +49,7 @@ export default ($detailModal, {pokemon, species}) => {
   let defense = `${baseDefense + pokemon.defense}`
   let type = stats.types.join(' / ')
 
-  let cppu = cpStats.cpPerUpgrade[pokemon['pokemon_id'] - 1]
+  let cppu = stats.cpPerUpgrade
   let cpPerUpgrade = cppu ? `+${cppu} CP (+/-)` : 'Unknown'
 
   let height = `${pokemon.height.toFixed(2)}`

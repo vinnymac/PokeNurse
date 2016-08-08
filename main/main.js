@@ -6,8 +6,6 @@ import POGOProtos from 'node-pogo-protos'
 import installExtension, {REACT_DEVELOPER_TOOLS} from 'electron-devtools-installer'
 
 import menuTemplate from './main_menu'
-import evolveCost from '../evolveCost'
-import familiesById from '../familiesById'
 import baseStats from '../baseStats'
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
@@ -196,22 +194,6 @@ ipcMain.on('get-players-pokemons', (event) => {
       return
     }
 
-    var formattedEvolves = {}
-
-    for (let i = 0; i < evolveCost.data.length; i++) {
-      var evolve = evolveCost.data[i]
-
-      formattedEvolves[ evolve.id.toString() ] = evolve.cost
-    }
-
-    var formattedFamilies = {}
-
-    for (let i = 0; i < familiesById.data.length; i++) {
-      var family = familiesById.data[i]
-
-      formattedFamilies[ family.id.toString() ] = family.family
-    }
-
     var candies = pogobuf.Utils.splitInventory(inventory)['candies']
     var formattedCandies = {}
 
@@ -294,15 +276,13 @@ ipcMain.on('get-players-pokemons', (event) => {
 
     for (let key in combinedPokemonList) {
       let pokemon = combinedPokemonList[key]
-      let candy = formattedCandies[formattedFamilies[pokemon.pokemon_id]]
+      let candy = formattedCandies[baseStats[pokemon.pokemon_id].familyId]
       var count = pokemon.count
-      let evolves = Math.floor(candy / formattedEvolves[pokemon.pokemon_id])
+      let evolves = Math.floor(candy / baseStats[pokemon.pokemon_id].evolveCost)
 
       if ((evolves === Infinity || isNaN(evolves))) {
         evolves = 0
       }
-
-      // console.log(formattedFamilies[pokemon.pokemon_id])
 
       finalList.push({
         pokemon_id: pokemon.pokemon_id.toString(),
