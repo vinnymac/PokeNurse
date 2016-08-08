@@ -4,6 +4,7 @@
       "grass",
       "poison"
     ],
+    "cpPerUpgrade": 13.5,
     "BaseStamina": 90,
     "BaseAttack": 126,
     "BaseDefense": 126
@@ -13,6 +14,7 @@
       "grass",
       "poison"
     ],
+    "cpPerUpgrade": 22,
     "BaseStamina": 120,
     "BaseAttack": 156,
     "BaseDefense": 158
@@ -22,6 +24,7 @@
       "grass",
       "poison"
     ],
+    "cpPerUpgrade": 33.5,
     "BaseStamina": 160,
     "BaseAttack": 198,
     "BaseDefense": 200
@@ -30,6 +33,7 @@
     "types": [
       "fire"
     ],
+    "cpPerUpgrade": 13.6,
     "BaseStamina": 78,
     "BaseAttack": 128,
     "BaseDefense": 108
@@ -38,6 +42,7 @@
     "types": [
       "fire"
     ],
+    "cpPerUpgrade": 23,
     "BaseStamina": 116,
     "BaseAttack": 160,
     "BaseDefense": 140
@@ -47,6 +52,7 @@
       "fire",
       "flying"
     ],
+    "cpPerUpgrade": 33,
     "BaseStamina": 156,
     "BaseAttack": 212,
     "BaseDefense": 182
@@ -55,6 +61,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 13,
     "BaseStamina": 88,
     "BaseAttack": 112,
     "BaseDefense": 142
@@ -63,6 +70,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 21,
     "BaseStamina": 118,
     "BaseAttack": 144,
     "BaseDefense": 176
@@ -71,6 +79,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 31.5,
     "BaseStamina": 158,
     "BaseAttack": 186,
     "BaseDefense": 222
@@ -79,6 +88,7 @@
     "types": [
       "bug"
     ],
+    "cpPerUpgrade": 5,
     "BaseStamina": 90,
     "BaseAttack": 62,
     "BaseDefense": 66
@@ -87,6 +97,7 @@
     "types": [
       "bug"
     ],
+    "cpPerUpgrade": 5.5,
     "BaseStamina": 100,
     "BaseAttack": 56,
     "BaseDefense": 86
@@ -96,6 +107,7 @@
       "bug",
       "flying"
     ],
+    "cpPerUpgrade": 18.5,
     "BaseStamina": 120,
     "BaseAttack": 144,
     "BaseDefense": 144
@@ -105,6 +117,7 @@
       "bug",
       "poison"
     ],
+    "cpPerUpgrade": 5.3,
     "BaseStamina": 80,
     "BaseAttack": 68,
     "BaseDefense": 64
@@ -114,6 +127,7 @@
       "bug",
       "poison"
     ],
+    "cpPerUpgrade": 6.5,
     "BaseStamina": 90,
     "BaseAttack": 62,
     "BaseDefense": 82
@@ -123,6 +137,7 @@
       "bug",
       "poison"
     ],
+    "cpPerUpgrade": 19.2,
     "BaseStamina": 130,
     "BaseAttack": 144,
     "BaseDefense": 130
@@ -132,6 +147,7 @@
       "normal",
       "flying"
     ],
+    "cpPerUpgrade": 10.2,
     "BaseStamina": 80,
     "BaseAttack": 94,
     "BaseDefense": 90
@@ -141,6 +157,7 @@
       "normal",
       "flying"
     ],
+    "cpPerUpgrade": 18.2,
     "BaseStamina": 126,
     "BaseAttack": 126,
     "BaseDefense": 122
@@ -150,6 +167,7 @@
       "normal",
       "flying"
     ],
+    "cpPerUpgrade": 27.7,
     "BaseStamina": 166,
     "BaseAttack": 170,
     "BaseDefense": 166
@@ -158,6 +176,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 7.5,
     "BaseStamina": 60,
     "BaseAttack": 92,
     "BaseDefense": 86
@@ -166,6 +185,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 19.7,
     "BaseStamina": 110,
     "BaseAttack": 146,
     "BaseDefense": 150
@@ -175,6 +195,7 @@
       "normal",
       "flying"
     ],
+    "cpPerUpgrade": 8.7,
     "BaseStamina": 80,
     "BaseAttack": 102,
     "BaseDefense": 78
@@ -184,6 +205,7 @@
       "normal",
       "flying"
     ],
+    "cpPerUpgrade": 24.5,
     "BaseStamina": 130,
     "BaseAttack": 168,
     "BaseDefense": 146
@@ -192,6 +214,7 @@
     "types": [
       "poison"
     ],
+    "cpPerUpgrade": 11,
     "BaseStamina": 70,
     "BaseAttack": 112,
     "BaseDefense": 112
@@ -200,6 +223,7 @@
     "types": [
       "poison"
     ],
+    "cpPerUpgrade": 22.8,
     "BaseStamina": 120,
     "BaseAttack": 166,
     "BaseDefense": 166
@@ -208,6 +232,7 @@
     "types": [
       "electric"
     ],
+    "cpPerUpgrade": 11.5,
     "BaseStamina": 70,
     "BaseAttack": 124,
     "BaseDefense": 108
@@ -216,6 +241,7 @@
     "types": [
       "electric"
     ],
+    "cpPerUpgrade": 27,
     "BaseStamina": 120,
     "BaseAttack": 200,
     "BaseDefense": 154
@@ -224,6 +250,7 @@
     "types": [
       "ground"
     ],
+    "cpPerUpgrade": 11,
     "BaseStamina": 100,
     "BaseAttack": 90,
     "BaseDefense": 114
@@ -232,6 +259,7 @@
     "types": [
       "ground"
     ],
+    "cpPerUpgrade": 22.3,
     "BaseStamina": 150,
     "BaseAttack": 150,
     "BaseDefense": 172
@@ -240,6 +268,7 @@
     "types": [
       "poison"
     ],
+    "cpPerUpgrade": 11,
     "BaseStamina": 110,
     "BaseAttack": 100,
     "BaseDefense": 104
@@ -248,6 +277,7 @@
     "types": [
       "poison"
     ],
+    "cpPerUpgrade": 19,
     "BaseStamina": 140,
     "BaseAttack": 132,
     "BaseDefense": 136
@@ -257,6 +287,7 @@
       "poison",
       "ground"
     ],
+    "cpPerUpgrade": 34,
     "BaseStamina": 180,
     "BaseAttack": 184,
     "BaseDefense": 190
@@ -265,6 +296,7 @@
     "types": [
       "poison"
     ],
+    "cpPerUpgrade": 12,
     "BaseStamina": 92,
     "BaseAttack": 110,
     "BaseDefense": 94
@@ -273,6 +305,7 @@
     "types": [
       "poison"
     ],
+    "cpPerUpgrade": 19.8,
     "BaseStamina": 122,
     "BaseAttack": 142,
     "BaseDefense": 128
@@ -282,6 +315,7 @@
       "poison",
       "ground"
     ],
+    "cpPerUpgrade": 34,
     "BaseStamina": 162,
     "BaseAttack": 204,
     "BaseDefense": 170
@@ -290,6 +324,7 @@
     "types": [
       "fairy"
     ],
+    "cpPerUpgrade": 16,
     "BaseStamina": 140,
     "BaseAttack": 116,
     "BaseDefense": 124
@@ -298,6 +333,7 @@
     "types": [
       "fairy"
     ],
+    "cpPerUpgrade": 31.6,
     "BaseStamina": 190,
     "BaseAttack": 178,
     "BaseDefense": 178
@@ -306,6 +342,7 @@
     "types": [
       "fire"
     ],
+    "cpPerUpgrade": 12,
     "BaseStamina": 76,
     "BaseAttack": 106,
     "BaseDefense": 118
@@ -314,6 +351,7 @@
     "types": [
       "fire"
     ],
+    "cpPerUpgrade": 31,
     "BaseStamina": 146,
     "BaseAttack": 176,
     "BaseDefense": 194
@@ -323,6 +361,7 @@
       "normal",
       "fairy"
     ],
+    "cpPerUpgrade": 11,
     "BaseStamina": 230,
     "BaseAttack": 98,
     "BaseDefense": 54
@@ -332,6 +371,7 @@
       "normal",
       "fairy"
     ],
+    "cpPerUpgrade": 31,
     "BaseStamina": 280,
     "BaseAttack": 168,
     "BaseDefense": 108
@@ -341,6 +381,7 @@
       "poison",
       "flying"
     ],
+    "cpPerUpgrade": 8.5,
     "BaseStamina": 80,
     "BaseAttack": 88,
     "BaseDefense": 90
@@ -350,6 +391,7 @@
       "poison",
       "flying"
     ],
+    "cpPerUpgrade": 26.7,
     "BaseStamina": 150,
     "BaseAttack": 164,
     "BaseDefense": 164
@@ -359,6 +401,7 @@
       "grass",
       "poison"
     ],
+    "cpPerUpgrade": 15,
     "BaseStamina": 90,
     "BaseAttack": 134,
     "BaseDefense": 130
@@ -368,6 +411,7 @@
       "grass",
       "poison"
     ],
+    "cpPerUpgrade": 21,
     "BaseStamina": 120,
     "BaseAttack": 162,
     "BaseDefense": 158
@@ -377,6 +421,7 @@
       "grass",
       "poison"
     ],
+    "cpPerUpgrade": 34,
     "BaseStamina": 150,
     "BaseAttack": 202,
     "BaseDefense": 190
@@ -386,6 +431,7 @@
       "bug",
       "grass"
     ],
+    "cpPerUpgrade": 12,
     "BaseStamina": 70,
     "BaseAttack": 122,
     "BaseDefense": 120
@@ -395,6 +441,7 @@
       "bug",
       "grass"
     ],
+    "cpPerUpgrade": 23.3,
     "BaseStamina": 120,
     "BaseAttack": 162,
     "BaseDefense": 170
@@ -404,6 +451,7 @@
       "bug",
       "poison"
     ],
+    "cpPerUpgrade": 14,
     "BaseStamina": 120,
     "BaseAttack": 108,
     "BaseDefense": 118
@@ -413,6 +461,7 @@
       "bug",
       "poison"
     ],
+    "cpPerUpgrade": 26.5,
     "BaseStamina": 140,
     "BaseAttack": 172,
     "BaseDefense": 154
@@ -421,6 +470,7 @@
     "types": [
       "ground"
     ],
+    "cpPerUpgrade": 7,
     "BaseStamina": 20,
     "BaseAttack": 108,
     "BaseDefense": 86
@@ -429,6 +479,7 @@
     "types": [
       "ground"
     ],
+    "cpPerUpgrade": 15.5,
     "BaseStamina": 70,
     "BaseAttack": 148,
     "BaseDefense": 140
@@ -437,6 +488,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 10.5,
     "BaseStamina": 80,
     "BaseAttack": 104,
     "BaseDefense": 94
@@ -445,6 +497,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 23,
     "BaseStamina": 130,
     "BaseAttack": 156,
     "BaseDefense": 146
@@ -453,6 +506,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 14,
     "BaseStamina": 100,
     "BaseAttack": 132,
     "BaseDefense": 112
@@ -461,6 +515,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 32.3,
     "BaseStamina": 160,
     "BaseAttack": 194,
     "BaseDefense": 176
@@ -469,6 +524,7 @@
     "types": [
       "fighting"
     ],
+    "cpPerUpgrade": 12,
     "BaseStamina": 80,
     "BaseAttack": 122,
     "BaseDefense": 96
@@ -477,6 +533,7 @@
     "types": [
       "fighting"
     ],
+    "cpPerUpgrade": 25,
     "BaseStamina": 130,
     "BaseAttack": 178,
     "BaseDefense": 150
@@ -485,6 +542,7 @@
     "types": [
       "fire"
     ],
+    "cpPerUpgrade": 19,
     "BaseStamina": 110,
     "BaseAttack": 156,
     "BaseDefense": 110
@@ -493,6 +551,7 @@
     "types": [
       "fire"
     ],
+    "cpPerUpgrade": 38.4,
     "BaseStamina": 180,
     "BaseAttack": 230,
     "BaseDefense": 180
@@ -501,6 +560,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 10,
     "BaseStamina": 80,
     "BaseAttack": 108,
     "BaseDefense": 98
@@ -509,6 +569,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 16,
     "BaseStamina": 130,
     "BaseAttack": 132,
     "BaseDefense": 132
@@ -518,6 +579,7 @@
       "water",
       "fighting"
     ],
+    "cpPerUpgrade": 34,
     "BaseStamina": 180,
     "BaseAttack": 180,
     "BaseDefense": 202
@@ -526,6 +588,7 @@
     "types": [
       "psychic"
     ],
+    "cpPerUpgrade": 6.8,
     "BaseStamina": 50,
     "BaseAttack": 110,
     "BaseDefense": 76
@@ -534,6 +597,7 @@
     "types": [
       "psychic"
     ],
+    "cpPerUpgrade": 14,
     "BaseStamina": 80,
     "BaseAttack": 150,
     "BaseDefense": 112
@@ -542,6 +606,7 @@
     "types": [
       "psychic"
     ],
+    "cpPerUpgrade": 25,
     "BaseStamina": 110,
     "BaseAttack": 186,
     "BaseDefense": 152
@@ -550,6 +615,7 @@
     "types": [
       "fighting"
     ],
+    "cpPerUpgrade": 14.5,
     "BaseStamina": 140,
     "BaseAttack": 118,
     "BaseDefense": 96
@@ -558,6 +624,7 @@
     "types": [
       "fighting"
     ],
+    "cpPerUpgrade": 24,
     "BaseStamina": 160,
     "BaseAttack": 154,
     "BaseDefense": 144
@@ -566,6 +633,7 @@
     "types": [
       "fighting"
     ],
+    "cpPerUpgrade": 35.7,
     "BaseStamina": 180,
     "BaseAttack": 198,
     "BaseDefense": 180
@@ -575,6 +643,7 @@
       "grass",
       "poison"
     ],
+    "cpPerUpgrade": 13,
     "BaseStamina": 100,
     "BaseAttack": 158,
     "BaseDefense": 78
@@ -584,6 +653,7 @@
       "grass",
       "poison"
     ],
+    "cpPerUpgrade": 21,
     "BaseStamina": 130,
     "BaseAttack": 190,
     "BaseDefense": 110
@@ -593,6 +663,7 @@
       "grass",
       "poison"
     ],
+    "cpPerUpgrade": 35,
     "BaseStamina": 160,
     "BaseAttack": 222,
     "BaseDefense": 152
@@ -602,6 +673,7 @@
       "water",
       "poison"
     ],
+    "cpPerUpgrade": 12,
     "BaseStamina": 80,
     "BaseAttack": 106,
     "BaseDefense": 136
@@ -611,6 +683,7 @@
       "water",
       "poison"
     ],
+    "cpPerUpgrade": 30.2,
     "BaseStamina": 160,
     "BaseAttack": 170,
     "BaseDefense": 196
@@ -620,6 +693,7 @@
       "rock",
       "ground"
     ],
+    "cpPerUpgrade": 11,
     "BaseStamina": 80,
     "BaseAttack": 106,
     "BaseDefense": 118
@@ -629,6 +703,7 @@
       "rock",
       "ground"
     ],
+    "cpPerUpgrade": 19,
     "BaseStamina": 110,
     "BaseAttack": 142,
     "BaseDefense": 156
@@ -638,6 +713,7 @@
       "rock",
       "ground"
     ],
+    "cpPerUpgrade": 31,
     "BaseStamina": 160,
     "BaseAttack": 176,
     "BaseDefense": 198
@@ -646,6 +722,7 @@
     "types": [
       "fire"
     ],
+    "cpPerUpgrade": 20.8,
     "BaseStamina": 100,
     "BaseAttack": 168,
     "BaseDefense": 138
@@ -654,6 +731,7 @@
     "types": [
       "fire"
     ],
+    "cpPerUpgrade": 30.5,
     "BaseStamina": 130,
     "BaseAttack": 200,
     "BaseDefense": 170
@@ -663,6 +741,7 @@
       "water",
       "psychic"
     ],
+    "cpPerUpgrade": 16,
     "BaseStamina": 180,
     "BaseAttack": 110,
     "BaseDefense": 110
@@ -672,6 +751,7 @@
       "water",
       "psychic"
     ],
+    "cpPerUpgrade": 35.2,
     "BaseStamina": 190,
     "BaseAttack": 184,
     "BaseDefense": 198
@@ -681,6 +761,7 @@
       "electric",
       "steel"
     ],
+    "cpPerUpgrade": 12,
     "BaseStamina": 50,
     "BaseAttack": 128,
     "BaseDefense": 138
@@ -690,6 +771,7 @@
       "electric",
       "steel"
     ],
+    "cpPerUpgrade": 25,
     "BaseStamina": 100,
     "BaseAttack": 186,
     "BaseDefense": 180
@@ -699,6 +781,7 @@
       "normal",
       "flying"
     ],
+    "cpPerUpgrade": null,
     "BaseStamina": 104,
     "BaseAttack": 138,
     "BaseDefense": 132
@@ -708,6 +791,7 @@
       "normal",
       "flying"
     ],
+    "cpPerUpgrade": 12,
     "BaseStamina": 70,
     "BaseAttack": 126,
     "BaseDefense": 96
@@ -717,6 +801,7 @@
       "normal",
       "flying"
     ],
+    "cpPerUpgrade": 24,
     "BaseStamina": 120,
     "BaseAttack": 182,
     "BaseDefense": 150
@@ -725,6 +810,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 16,
     "BaseStamina": 130,
     "BaseAttack": 104,
     "BaseDefense": 138
@@ -734,6 +820,7 @@
       "water",
       "ice"
     ],
+    "cpPerUpgrade": 31,
     "BaseStamina": 180,
     "BaseAttack": 156,
     "BaseDefense": 192
@@ -742,6 +829,7 @@
     "types": [
       "poison"
     ],
+    "cpPerUpgrade": 17,
     "BaseStamina": 160,
     "BaseAttack": 124,
     "BaseDefense": 110
@@ -750,6 +838,7 @@
     "types": [
       "poison"
     ],
+    "cpPerUpgrade": 38,
     "BaseStamina": 210,
     "BaseAttack": 180,
     "BaseDefense": 188
@@ -758,6 +847,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 10,
     "BaseStamina": 60,
     "BaseAttack": 120,
     "BaseDefense": 112
@@ -767,6 +857,7 @@
       "water",
       "ice"
     ],
+    "cpPerUpgrade": 26,
     "BaseStamina": 100,
     "BaseAttack": 196,
     "BaseDefense": 196
@@ -776,6 +867,7 @@
       "ghost",
       "poison"
     ],
+    "cpPerUpgrade": 11.3,
     "BaseStamina": 60,
     "BaseAttack": 136,
     "BaseDefense": 82
@@ -785,6 +877,7 @@
       "ghost",
       "poison"
     ],
+    "cpPerUpgrade": 18,
     "BaseStamina": 90,
     "BaseAttack": 172,
     "BaseDefense": 118
@@ -794,6 +887,7 @@
       "ghost",
       "poison"
     ],
+    "cpPerUpgrade": 29.3,
     "BaseStamina": 120,
     "BaseAttack": 204,
     "BaseDefense": 156
@@ -803,6 +897,7 @@
       "rock",
       "ground"
     ],
+    "cpPerUpgrade": 11.5,
     "BaseStamina": 70,
     "BaseAttack": 90,
     "BaseDefense": 186
@@ -811,6 +906,7 @@
     "types": [
       "psychic"
     ],
+    "cpPerUpgrade": 14.5,
     "BaseStamina": 120,
     "BaseAttack": 104,
     "BaseDefense": 140
@@ -819,6 +915,7 @@
     "types": [
       "psychic"
     ],
+    "cpPerUpgrade": 30,
     "BaseStamina": 170,
     "BaseAttack": 162,
     "BaseDefense": 196
@@ -827,6 +924,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 10.5,
     "BaseStamina": 60,
     "BaseAttack": 116,
     "BaseDefense": 110
@@ -835,6 +933,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 25.3,
     "BaseStamina": 110,
     "BaseAttack": 178,
     "BaseDefense": 168
@@ -843,6 +942,7 @@
     "types": [
       "electric"
     ],
+    "cpPerUpgrade": 10,
     "BaseStamina": 80,
     "BaseAttack": 102,
     "BaseDefense": 124
@@ -851,6 +951,7 @@
     "types": [
       "electric"
     ],
+    "cpPerUpgrade": 22.5,
     "BaseStamina": 120,
     "BaseAttack": 150,
     "BaseDefense": 174
@@ -860,6 +961,7 @@
       "grass",
       "psychic"
     ],
+    "cpPerUpgrade": 18,
     "BaseStamina": 120,
     "BaseAttack": 110,
     "BaseDefense": 132
@@ -869,6 +971,7 @@
       "grass",
       "psychic"
     ],
+    "cpPerUpgrade": 40.5,
     "BaseStamina": 190,
     "BaseAttack": 232,
     "BaseDefense": 164
@@ -877,6 +980,7 @@
     "types": [
       "ground"
     ],
+    "cpPerUpgrade": 13,
     "BaseStamina": 100,
     "BaseAttack": 102,
     "BaseDefense": 150
@@ -885,6 +989,7 @@
     "types": [
       "ground"
     ],
+    "cpPerUpgrade": 22.5,
     "BaseStamina": 120,
     "BaseAttack": 140,
     "BaseDefense": 202
@@ -893,6 +998,7 @@
     "types": [
       "fighting"
     ],
+    "cpPerUpgrade": 21,
     "BaseStamina": 100,
     "BaseAttack": 148,
     "BaseDefense": 172
@@ -901,6 +1007,7 @@
     "types": [
       "fighting"
     ],
+    "cpPerUpgrade": 21,
     "BaseStamina": 100,
     "BaseAttack": 138,
     "BaseDefense": 204
@@ -909,6 +1016,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 22,
     "BaseStamina": 180,
     "BaseAttack": 126,
     "BaseDefense": 160
@@ -917,6 +1025,7 @@
     "types": [
       "poison"
     ],
+    "cpPerUpgrade": 16,
     "BaseStamina": 80,
     "BaseAttack": 136,
     "BaseDefense": 142
@@ -925,6 +1034,7 @@
     "types": [
       "poison"
     ],
+    "cpPerUpgrade": 32.8,
     "BaseStamina": 130,
     "BaseAttack": 190,
     "BaseDefense": 198
@@ -934,6 +1044,7 @@
       "ground",
       "rock"
     ],
+    "cpPerUpgrade": 16,
     "BaseStamina": 160,
     "BaseAttack": 110,
     "BaseDefense": 116
@@ -943,6 +1054,7 @@
       "ground",
       "rock"
     ],
+    "cpPerUpgrade": 29,
     "BaseStamina": 210,
     "BaseAttack": 166,
     "BaseDefense": 160
@@ -951,6 +1063,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 9.5,
     "BaseStamina": 500,
     "BaseAttack": 40,
     "BaseDefense": 60
@@ -959,6 +1072,7 @@
     "types": [
       "grass"
     ],
+    "cpPerUpgrade": 24.9,
     "BaseStamina": 130,
     "BaseAttack": 164,
     "BaseDefense": 152
@@ -967,6 +1081,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 29,
     "BaseStamina": 210,
     "BaseAttack": 142,
     "BaseDefense": 178
@@ -975,6 +1090,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 11.5,
     "BaseStamina": 60,
     "BaseAttack": 122,
     "BaseDefense": 100
@@ -983,6 +1099,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 23.5,
     "BaseStamina": 110,
     "BaseAttack": 176,
     "BaseDefense": 150
@@ -991,6 +1108,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 13.5,
     "BaseStamina": 90,
     "BaseAttack": 112,
     "BaseDefense": 126
@@ -999,6 +1117,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 29,
     "BaseStamina": 160,
     "BaseAttack": 172,
     "BaseDefense": 160
@@ -1007,6 +1126,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 12,
     "BaseStamina": 60,
     "BaseAttack": 130,
     "BaseDefense": 128
@@ -1016,6 +1136,7 @@
       "water",
       "psychic"
     ],
+    "cpPerUpgrade": 30,
     "BaseStamina": 120,
     "BaseAttack": 194,
     "BaseDefense": 192
@@ -1025,6 +1146,7 @@
       "psychic",
       "fairy"
     ],
+    "cpPerUpgrade": 21,
     "BaseStamina": 80,
     "BaseAttack": 154,
     "BaseDefense": 196
@@ -1034,6 +1156,7 @@
       "bug",
       "flying"
     ],
+    "cpPerUpgrade": 30.4,
     "BaseStamina": 140,
     "BaseAttack": 176,
     "BaseDefense": 180
@@ -1043,6 +1166,7 @@
       "ice",
       "psychic"
     ],
+    "cpPerUpgrade": 23,
     "BaseStamina": 130,
     "BaseAttack": 172,
     "BaseDefense": 134
@@ -1051,6 +1175,7 @@
     "types": [
       "electric"
     ],
+    "cpPerUpgrade": 29.5,
     "BaseStamina": 130,
     "BaseAttack": 198,
     "BaseDefense": 160
@@ -1059,6 +1184,7 @@
     "types": [
       "fire"
     ],
+    "cpPerUpgrade": 31.5,
     "BaseStamina": 130,
     "BaseAttack": 214,
     "BaseDefense": 158
@@ -1067,6 +1193,7 @@
     "types": [
       "bug"
     ],
+    "cpPerUpgrade": 29.7,
     "BaseStamina": 130,
     "BaseAttack": 184,
     "BaseDefense": 186
@@ -1075,6 +1202,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 25.3,
     "BaseStamina": 150,
     "BaseAttack": 148,
     "BaseDefense": 184
@@ -1083,6 +1211,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 3.3,
     "BaseStamina": 40,
     "BaseAttack": 42,
     "BaseDefense": 84
@@ -1092,6 +1221,7 @@
       "water",
       "flying"
     ],
+    "cpPerUpgrade": 38,
     "BaseStamina": 190,
     "BaseAttack": 192,
     "BaseDefense": 196
@@ -1101,6 +1231,7 @@
       "water",
       "ice"
     ],
+    "cpPerUpgrade": 44.9,
     "BaseStamina": 260,
     "BaseAttack": 186,
     "BaseDefense": 190
@@ -1109,6 +1240,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": null,
     "BaseStamina": 96,
     "BaseAttack": 110,
     "BaseDefense": 110
@@ -1117,6 +1249,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 16,
     "BaseStamina": 110,
     "BaseAttack": 114,
     "BaseDefense": 128
@@ -1125,6 +1258,7 @@
     "types": [
       "water"
     ],
+    "cpPerUpgrade": 39.5,
     "BaseStamina": 260,
     "BaseAttack": 186,
     "BaseDefense": 168
@@ -1133,6 +1267,7 @@
     "types": [
       "electric"
     ],
+    "cpPerUpgrade": 30.1,
     "BaseStamina": 130,
     "BaseAttack": 192,
     "BaseDefense": 174
@@ -1141,6 +1276,7 @@
     "types": [
       "fire"
     ],
+    "cpPerUpgrade": 36.8,
     "BaseStamina": 130,
     "BaseAttack": 238,
     "BaseDefense": 178
@@ -1149,6 +1285,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 23.8,
     "BaseStamina": 130,
     "BaseAttack": 156,
     "BaseDefense": 158
@@ -1158,6 +1295,7 @@
       "rock",
       "water"
     ],
+    "cpPerUpgrade": 16,
     "BaseStamina": 70,
     "BaseAttack": 132,
     "BaseDefense": 160
@@ -1167,6 +1305,7 @@
       "rock",
       "water"
     ],
+    "cpPerUpgrade": 32,
     "BaseStamina": 140,
     "BaseAttack": 180,
     "BaseDefense": 202
@@ -1176,6 +1315,7 @@
       "rock",
       "water"
     ],
+    "cpPerUpgrade": 16,
     "BaseStamina": 60,
     "BaseAttack": 148,
     "BaseDefense": 142
@@ -1185,6 +1325,7 @@
       "rock",
       "water"
     ],
+    "cpPerUpgrade": 30,
     "BaseStamina": 120,
     "BaseAttack": 190,
     "BaseDefense": 190
@@ -1194,6 +1335,7 @@
       "rock",
       "flying"
     ],
+    "cpPerUpgrade": 29.9,
     "BaseStamina": 160,
     "BaseAttack": 182,
     "BaseDefense": 162
@@ -1202,6 +1344,7 @@
     "types": [
       "normal"
     ],
+    "cpPerUpgrade": 44.6,
     "BaseStamina": 320,
     "BaseAttack": 180,
     "BaseDefense": 180
@@ -1211,6 +1354,7 @@
       "ice",
       "flying"
     ],
+    "cpPerUpgrade": null,
     "BaseStamina": 180,
     "BaseAttack": 198,
     "BaseDefense": 242
@@ -1220,6 +1364,7 @@
       "electric",
       "flying"
     ],
+    "cpPerUpgrade": null,
     "BaseStamina": 180,
     "BaseAttack": 232,
     "BaseDefense": 194
@@ -1229,6 +1374,7 @@
       "fire",
       "flying"
     ],
+    "cpPerUpgrade": null,
     "BaseStamina": 180,
     "BaseAttack": 242,
     "BaseDefense": 194
@@ -1237,6 +1383,7 @@
     "types": [
       "dragon"
     ],
+    "cpPerUpgrade": 13,
     "BaseStamina": 82,
     "BaseAttack": 128,
     "BaseDefense": 110
@@ -1245,6 +1392,7 @@
     "types": [
       "dragon"
     ],
+    "cpPerUpgrade": 25,
     "BaseStamina": 122,
     "BaseAttack": 170,
     "BaseDefense": 152
@@ -1254,6 +1402,7 @@
       "dragon",
       "flying"
     ],
+    "cpPerUpgrade": 44.8,
     "BaseStamina": 182,
     "BaseAttack": 250,
     "BaseDefense": 212
@@ -1262,6 +1411,7 @@
     "types": [
       "psychic"
     ],
+    "cpPerUpgrade": null,
     "BaseStamina": 212,
     "BaseAttack": 284,
     "BaseDefense": 202
@@ -1270,6 +1420,7 @@
     "types": [
       "psychic"
     ],
+    "cpPerUpgrade": null,
     "BaseStamina": 200,
     "BaseAttack": 220,
     "BaseDefense": 220
