@@ -1,15 +1,14 @@
-const {app, BrowserWindow, ipcMain, dialog, Menu} = require('electron')
-const menuTemplate = require('./main_menu')
-const fs = require('fs')
-const path = require('path')
-const pogobuf = require('pogobuf')
-const POGOProtos = require('node-pogo-protos')
-const evolveCost = require('./evolveCost')
-const familiesById = require('./familiesById')
-const baseStats = require('./baseStats')
+import {app, BrowserWindow, ipcMain, dialog, Menu} from 'electron'
+import fs from 'fs'
+import path from 'path'
+import pogobuf from 'pogobuf'
+import POGOProtos from 'node-pogo-protos'
+import installExtension, {REACT_DEVELOPER_TOOLS} from 'electron-devtools-installer'
 
-let {REACT_DEVELOPER_TOOLS} = require('electron-devtools-installer')
-const installExtension = require('electron-devtools-installer').default
+import menuTemplate from './main_menu'
+import evolveCost from '../evolveCost'
+import familiesById from '../familiesById'
+import baseStats from '../baseStats'
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -19,7 +18,7 @@ let client
 function createWindow () {
   win = new BrowserWindow({ width: 800, height: 375, title: 'PokéNurse', icon: 'imgs/emojioneicon.png', show: false })
   // win.setMenu(null)
-  win.loadURL(`file://${__dirname}/index.html`)
+  win.loadURL(`file://${__dirname}/../index.html`)
   win.once('ready-to-show', () => {
     win.show()
   })
