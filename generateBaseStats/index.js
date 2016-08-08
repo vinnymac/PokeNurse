@@ -27,7 +27,7 @@ function writeBaseStats () {
     }
   })
 
-  fs.writeFileSync('./generateBaseStats/baseStats.json', JSON.stringify(baseStats, null, 2))
+  fs.writeFileSync('./baseStats.json', JSON.stringify(baseStats, null, 2))
 }
 
 writeBaseStats()
