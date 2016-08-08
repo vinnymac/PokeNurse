@@ -9,7 +9,18 @@
     "familyId": "1",
     "BaseStamina": 90,
     "BaseAttack": 126,
-    "BaseDefense": 126
+    "BaseDefense": 126,
+    "evolvesTo": "Ivysaur",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Vine Whip",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Sludge Bomb",
+      "Seed Bomb",
+      "Power Whip"
+    ]
   },
   "2": {
     "types": [
@@ -21,7 +32,18 @@
     "familyId": "1",
     "BaseStamina": 120,
     "BaseAttack": 156,
-    "BaseDefense": 158
+    "BaseDefense": 158,
+    "evolvesTo": "Venusaur",
+    "evolvesFrom": "Bulbasaur",
+    "quickMoves": [
+      "Razor Leaf",
+      "Vine Whip"
+    ],
+    "cinematicMoves": [
+      "Sludge Bomb",
+      "Solar Beam",
+      "Power Whip"
+    ]
   },
   "3": {
     "types": [
@@ -33,7 +55,18 @@
     "familyId": "1",
     "BaseStamina": 160,
     "BaseAttack": 198,
-    "BaseDefense": 200
+    "BaseDefense": 200,
+    "evolvesTo": 0,
+    "evolvesFrom": "Ivysaur",
+    "quickMoves": [
+      "Razor Leaf",
+      "Vine Whip"
+    ],
+    "cinematicMoves": [
+      "Sludge Bomb",
+      "Petal Blizzard",
+      "Solar Beam"
+    ]
   },
   "4": {
     "types": [
@@ -44,7 +77,18 @@
     "familyId": "4",
     "BaseStamina": 78,
     "BaseAttack": 128,
-    "BaseDefense": 108
+    "BaseDefense": 108,
+    "evolvesTo": "Charmeleon",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Ember",
+      "Scratch"
+    ],
+    "cinematicMoves": [
+      "Flame Charge",
+      "Flame Burst",
+      "Flamethrower"
+    ]
   },
   "5": {
     "types": [
@@ -55,7 +99,18 @@
     "familyId": "4",
     "BaseStamina": 116,
     "BaseAttack": 160,
-    "BaseDefense": 140
+    "BaseDefense": 140,
+    "evolvesTo": "Charizard",
+    "evolvesFrom": "Charmander",
+    "quickMoves": [
+      "Ember",
+      "Scratch"
+    ],
+    "cinematicMoves": [
+      "Fire Punch",
+      "Flame Burst",
+      "Flamethrower"
+    ]
   },
   "6": {
     "types": [
@@ -67,7 +122,18 @@
     "familyId": "4",
     "BaseStamina": 156,
     "BaseAttack": 212,
-    "BaseDefense": 182
+    "BaseDefense": 182,
+    "evolvesTo": 0,
+    "evolvesFrom": "Charmeleon",
+    "quickMoves": [
+      "Ember",
+      "Wing Attack"
+    ],
+    "cinematicMoves": [
+      "Fire Blast",
+      "Dragon Claw",
+      "Flamethrower"
+    ]
   },
   "7": {
     "types": [
@@ -78,7 +144,18 @@
     "familyId": "7",
     "BaseStamina": 88,
     "BaseAttack": 112,
-    "BaseDefense": 142
+    "BaseDefense": 142,
+    "evolvesTo": "Wartortle",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Bubble",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Aqua Jet",
+      "Aqua Tail",
+      "Water Pulse"
+    ]
   },
   "8": {
     "types": [
@@ -89,7 +166,18 @@
     "familyId": "7",
     "BaseStamina": 118,
     "BaseAttack": 144,
-    "BaseDefense": 176
+    "BaseDefense": 176,
+    "evolvesTo": "Blastoise",
+    "evolvesFrom": "Squirtle",
+    "quickMoves": [
+      "Water Gun",
+      "Bite"
+    ],
+    "cinematicMoves": [
+      "Aqua Jet",
+      "Ice Beam",
+      "Hydro Pump"
+    ]
   },
   "9": {
     "types": [
@@ -100,7 +188,18 @@
     "familyId": "7",
     "BaseStamina": 158,
     "BaseAttack": 186,
-    "BaseDefense": 222
+    "BaseDefense": 222,
+    "evolvesTo": 0,
+    "evolvesFrom": "Wartortle",
+    "quickMoves": [
+      "Water Gun",
+      "Bite"
+    ],
+    "cinematicMoves": [
+      "Flash Cannon",
+      "Ice Beam",
+      "Hydro Pump"
+    ]
   },
   "10": {
     "types": [
@@ -111,7 +210,16 @@
     "familyId": "10",
     "BaseStamina": 90,
     "BaseAttack": 62,
-    "BaseDefense": 66
+    "BaseDefense": 66,
+    "evolvesTo": "Metapod",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Bug Bite",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Struggle"
+    ]
   },
   "11": {
     "types": [
@@ -122,7 +230,16 @@
     "familyId": "10",
     "BaseStamina": 100,
     "BaseAttack": 56,
-    "BaseDefense": 86
+    "BaseDefense": 86,
+    "evolvesTo": "Butterfree",
+    "evolvesFrom": "Caterpie",
+    "quickMoves": [
+      "Bug Bite",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Struggle"
+    ]
   },
   "12": {
     "types": [
@@ -134,7 +251,18 @@
     "familyId": "10",
     "BaseStamina": 120,
     "BaseAttack": 144,
-    "BaseDefense": 144
+    "BaseDefense": 144,
+    "evolvesTo": 0,
+    "evolvesFrom": "Metapod",
+    "quickMoves": [
+      "Bug Bite",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Bug Buzz",
+      "Psychic",
+      "Signal Beam"
+    ]
   },
   "13": {
     "types": [
@@ -146,7 +274,16 @@
     "familyId": "13",
     "BaseStamina": 80,
     "BaseAttack": 68,
-    "BaseDefense": 64
+    "BaseDefense": 64,
+    "evolvesTo": "Kakuna",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Bug Bite",
+      "Poison Sting"
+    ],
+    "cinematicMoves": [
+      "Struggle"
+    ]
   },
   "14": {
     "types": [
@@ -158,7 +295,16 @@
     "familyId": "13",
     "BaseStamina": 90,
     "BaseAttack": 62,
-    "BaseDefense": 82
+    "BaseDefense": 82,
+    "evolvesTo": "Beedrill",
+    "evolvesFrom": "Weedle",
+    "quickMoves": [
+      "Bug Bite",
+      "Poison Sting"
+    ],
+    "cinematicMoves": [
+      "Struggle"
+    ]
   },
   "15": {
     "types": [
@@ -170,7 +316,18 @@
     "familyId": "13",
     "BaseStamina": 130,
     "BaseAttack": 144,
-    "BaseDefense": 130
+    "BaseDefense": 130,
+    "evolvesTo": 0,
+    "evolvesFrom": "Kakuna",
+    "quickMoves": [
+      "Bug Bite",
+      "Poison Jab"
+    ],
+    "cinematicMoves": [
+      "Sludge Bomb",
+      "Aerial Ace",
+      "X Scissor"
+    ]
   },
   "16": {
     "types": [
@@ -182,7 +339,18 @@
     "familyId": "16",
     "BaseStamina": 80,
     "BaseAttack": 94,
-    "BaseDefense": 90
+    "BaseDefense": 90,
+    "evolvesTo": "Pidgeotto",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Quick Attack",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Twister",
+      "Aerial Ace",
+      "Air Cutter"
+    ]
   },
   "17": {
     "types": [
@@ -194,7 +362,18 @@
     "familyId": "16",
     "BaseStamina": 126,
     "BaseAttack": 126,
-    "BaseDefense": 122
+    "BaseDefense": 122,
+    "evolvesTo": "Pidgeot",
+    "evolvesFrom": "Pidgey",
+    "quickMoves": [
+      "Wing Attack",
+      "Steel Wing"
+    ],
+    "cinematicMoves": [
+      "Twister",
+      "Aerial Ace",
+      "Air Cutter"
+    ]
   },
   "18": {
     "types": [
@@ -206,7 +385,18 @@
     "familyId": "16",
     "BaseStamina": 166,
     "BaseAttack": 170,
-    "BaseDefense": 166
+    "BaseDefense": 166,
+    "evolvesTo": 0,
+    "evolvesFrom": "Pidgeotto",
+    "quickMoves": [
+      "Wing Attack",
+      "Steel Wing"
+    ],
+    "cinematicMoves": [
+      "Hurricane",
+      "Aerial Ace",
+      "Air Cutter"
+    ]
   },
   "19": {
     "types": [
@@ -217,7 +407,18 @@
     "familyId": "19",
     "BaseStamina": 60,
     "BaseAttack": 92,
-    "BaseDefense": 86
+    "BaseDefense": 86,
+    "evolvesTo": "Raticate",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Tackle",
+      "Quick Attack"
+    ],
+    "cinematicMoves": [
+      "Dig",
+      "Hyper Fang",
+      "Body Slam"
+    ]
   },
   "20": {
     "types": [
@@ -228,7 +429,18 @@
     "familyId": "19",
     "BaseStamina": 110,
     "BaseAttack": 146,
-    "BaseDefense": 150
+    "BaseDefense": 150,
+    "evolvesTo": 0,
+    "evolvesFrom": "Rattata",
+    "quickMoves": [
+      "Bite",
+      "Quick Attack"
+    ],
+    "cinematicMoves": [
+      "Dig",
+      "Hyper Fang",
+      "Hyper Beam"
+    ]
   },
   "21": {
     "types": [
@@ -240,7 +452,18 @@
     "familyId": "21",
     "BaseStamina": 80,
     "BaseAttack": 102,
-    "BaseDefense": 78
+    "BaseDefense": 78,
+    "evolvesTo": "Fearow",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Peck",
+      "Quick Attack"
+    ],
+    "cinematicMoves": [
+      "Aerial Ace",
+      "Drill Peck",
+      "Twister"
+    ]
   },
   "22": {
     "types": [
@@ -252,7 +475,18 @@
     "familyId": "21",
     "BaseStamina": 130,
     "BaseAttack": 168,
-    "BaseDefense": 146
+    "BaseDefense": 146,
+    "evolvesTo": 0,
+    "evolvesFrom": "Spearow",
+    "quickMoves": [
+      "Peck",
+      "Steel Wing"
+    ],
+    "cinematicMoves": [
+      "Aerial Ace",
+      "Drill Run",
+      "Twister"
+    ]
   },
   "23": {
     "types": [
@@ -263,7 +497,18 @@
     "familyId": "23",
     "BaseStamina": 70,
     "BaseAttack": 112,
-    "BaseDefense": 112
+    "BaseDefense": 112,
+    "evolvesTo": "Arbok",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Poison Sting",
+      "Acid"
+    ],
+    "cinematicMoves": [
+      "Wrap",
+      "Sludge Bomb",
+      "Gunk Shot"
+    ]
   },
   "24": {
     "types": [
@@ -274,7 +519,18 @@
     "familyId": "23",
     "BaseStamina": 120,
     "BaseAttack": 166,
-    "BaseDefense": 166
+    "BaseDefense": 166,
+    "evolvesTo": 0,
+    "evolvesFrom": "Ekans",
+    "quickMoves": [
+      "Bite",
+      "Acid"
+    ],
+    "cinematicMoves": [
+      "Dark Pulse",
+      "Sludge Wave",
+      "Gunk Shot"
+    ]
   },
   "25": {
     "types": [
@@ -285,7 +541,18 @@
     "familyId": "25",
     "BaseStamina": 70,
     "BaseAttack": 124,
-    "BaseDefense": 108
+    "BaseDefense": 108,
+    "evolvesTo": "Raichu",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Thunder Shock",
+      "Quick Attack"
+    ],
+    "cinematicMoves": [
+      "Discharge",
+      "Thunderbolt",
+      "Thunder"
+    ]
   },
   "26": {
     "types": [
@@ -296,7 +563,18 @@
     "familyId": "25",
     "BaseStamina": 120,
     "BaseAttack": 200,
-    "BaseDefense": 154
+    "BaseDefense": 154,
+    "evolvesTo": 0,
+    "evolvesFrom": "Pikachu",
+    "quickMoves": [
+      "Thunder Shock",
+      "Spark"
+    ],
+    "cinematicMoves": [
+      "Brick Break",
+      "Thunder Punch",
+      "Thunder"
+    ]
   },
   "27": {
     "types": [
@@ -307,7 +585,18 @@
     "familyId": "27",
     "BaseStamina": 100,
     "BaseAttack": 90,
-    "BaseDefense": 114
+    "BaseDefense": 114,
+    "evolvesTo": "Sandslash",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Scratch",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Dig",
+      "Rock Slide",
+      "Rock Tomb"
+    ]
   },
   "28": {
     "types": [
@@ -318,7 +607,18 @@
     "familyId": "27",
     "BaseStamina": 150,
     "BaseAttack": 150,
-    "BaseDefense": 172
+    "BaseDefense": 172,
+    "evolvesTo": 0,
+    "evolvesFrom": "Sandshrew",
+    "quickMoves": [
+      "Metal Claw",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Earthquake",
+      "Rock Tomb",
+      "Bulldoze"
+    ]
   },
   "29": {
     "types": [
@@ -329,7 +629,18 @@
     "familyId": "29",
     "BaseStamina": 110,
     "BaseAttack": 100,
-    "BaseDefense": 104
+    "BaseDefense": 104,
+    "evolvesTo": "Nidorina",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Bite",
+      "Poison Sting"
+    ],
+    "cinematicMoves": [
+      "Poison Fang",
+      "Body Slam",
+      "Sludge Bomb"
+    ]
   },
   "30": {
     "types": [
@@ -340,7 +651,18 @@
     "familyId": "29",
     "BaseStamina": 140,
     "BaseAttack": 132,
-    "BaseDefense": 136
+    "BaseDefense": 136,
+    "evolvesTo": "Nidoqueen",
+    "evolvesFrom": "Nidoran",
+    "quickMoves": [
+      "Bite",
+      "Poison Sting"
+    ],
+    "cinematicMoves": [
+      "Poison Fang",
+      "Dig",
+      "Sludge Bomb"
+    ]
   },
   "31": {
     "types": [
@@ -352,7 +674,18 @@
     "familyId": "29",
     "BaseStamina": 180,
     "BaseAttack": 184,
-    "BaseDefense": 190
+    "BaseDefense": 190,
+    "evolvesTo": 0,
+    "evolvesFrom": "Nidorina",
+    "quickMoves": [
+      "Poison Jab",
+      "Bite"
+    ],
+    "cinematicMoves": [
+      "Earthquake",
+      "Sludge Wave",
+      "Stone Edge"
+    ]
   },
   "32": {
     "types": [
@@ -363,7 +696,18 @@
     "familyId": "32",
     "BaseStamina": 92,
     "BaseAttack": 110,
-    "BaseDefense": 94
+    "BaseDefense": 94,
+    "evolvesTo": "Nidorino",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Peck",
+      "Poison Sting"
+    ],
+    "cinematicMoves": [
+      "Horn Attack",
+      "Body Slam",
+      "Sludge Bomb"
+    ]
   },
   "33": {
     "types": [
@@ -374,7 +718,18 @@
     "familyId": "32",
     "BaseStamina": 122,
     "BaseAttack": 142,
-    "BaseDefense": 128
+    "BaseDefense": 128,
+    "evolvesTo": "Nidoking",
+    "evolvesFrom": "Nidoran",
+    "quickMoves": [
+      "Poison Jab",
+      "Poison Sting"
+    ],
+    "cinematicMoves": [
+      "Horn Attack",
+      "Dig",
+      "Sludge Bomb"
+    ]
   },
   "34": {
     "types": [
@@ -386,7 +741,18 @@
     "familyId": "32",
     "BaseStamina": 162,
     "BaseAttack": 204,
-    "BaseDefense": 170
+    "BaseDefense": 170,
+    "evolvesTo": 0,
+    "evolvesFrom": "Nidorino",
+    "quickMoves": [
+      "Poison Jab",
+      "Fury Cutter"
+    ],
+    "cinematicMoves": [
+      "Earthquake",
+      "Sludge Wave",
+      "Megahorn"
+    ]
   },
   "35": {
     "types": [
@@ -397,7 +763,18 @@
     "familyId": "35",
     "BaseStamina": 140,
     "BaseAttack": 116,
-    "BaseDefense": 124
+    "BaseDefense": 124,
+    "evolvesTo": "Clefable",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Pound",
+      "Zen Headbutt"
+    ],
+    "cinematicMoves": [
+      "Disarming Voice",
+      "Body Slam",
+      "Moonblast"
+    ]
   },
   "36": {
     "types": [
@@ -408,7 +785,18 @@
     "familyId": "35",
     "BaseStamina": 190,
     "BaseAttack": 178,
-    "BaseDefense": 178
+    "BaseDefense": 178,
+    "evolvesTo": 0,
+    "evolvesFrom": "Clefairy",
+    "quickMoves": [
+      "Pound",
+      "Zen Headbutt"
+    ],
+    "cinematicMoves": [
+      "Dazzling Gleam",
+      "Psychic",
+      "Moonblast"
+    ]
   },
   "37": {
     "types": [
@@ -419,7 +807,18 @@
     "familyId": "37",
     "BaseStamina": 76,
     "BaseAttack": 106,
-    "BaseDefense": 118
+    "BaseDefense": 118,
+    "evolvesTo": "Ninetales",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Quick Attack",
+      "Ember"
+    ],
+    "cinematicMoves": [
+      "Body Slam",
+      "Flamethrower",
+      "Flame Charge"
+    ]
   },
   "38": {
     "types": [
@@ -430,7 +829,18 @@
     "familyId": "37",
     "BaseStamina": 146,
     "BaseAttack": 176,
-    "BaseDefense": 194
+    "BaseDefense": 194,
+    "evolvesTo": 0,
+    "evolvesFrom": "Vulpix",
+    "quickMoves": [
+      "Feint Attack",
+      "Ember"
+    ],
+    "cinematicMoves": [
+      "Heat Wave",
+      "Flamethrower",
+      "Fire Blast"
+    ]
   },
   "39": {
     "types": [
@@ -442,7 +852,18 @@
     "familyId": "39",
     "BaseStamina": 230,
     "BaseAttack": 98,
-    "BaseDefense": 54
+    "BaseDefense": 54,
+    "evolvesTo": "Wigglytuff",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Pound",
+      "Feint Attack"
+    ],
+    "cinematicMoves": [
+      "Disarming Voice",
+      "Body Slam",
+      "Play Rough"
+    ]
   },
   "40": {
     "types": [
@@ -454,7 +875,18 @@
     "familyId": "39",
     "BaseStamina": 280,
     "BaseAttack": 168,
-    "BaseDefense": 108
+    "BaseDefense": 108,
+    "evolvesTo": 0,
+    "evolvesFrom": "Jigglypuff",
+    "quickMoves": [
+      "Pound",
+      "Feint Attack"
+    ],
+    "cinematicMoves": [
+      "Dazzling Gleam",
+      "Hyper Beam",
+      "Play Rough"
+    ]
   },
   "41": {
     "types": [
@@ -466,7 +898,18 @@
     "familyId": "41",
     "BaseStamina": 80,
     "BaseAttack": 88,
-    "BaseDefense": 90
+    "BaseDefense": 90,
+    "evolvesTo": "Golbat",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Quick Attack",
+      "Bite"
+    ],
+    "cinematicMoves": [
+      "Poison Fang",
+      "Air Cutter",
+      "Sludge Bomb"
+    ]
   },
   "42": {
     "types": [
@@ -478,7 +921,18 @@
     "familyId": "41",
     "BaseStamina": 150,
     "BaseAttack": 164,
-    "BaseDefense": 164
+    "BaseDefense": 164,
+    "evolvesTo": 0,
+    "evolvesFrom": "Zubat",
+    "quickMoves": [
+      "Wing Attack",
+      "Bite"
+    ],
+    "cinematicMoves": [
+      "Poison Fang",
+      "Air Cutter",
+      "Ominous Wind"
+    ]
   },
   "43": {
     "types": [
@@ -490,7 +944,18 @@
     "familyId": "43",
     "BaseStamina": 90,
     "BaseAttack": 134,
-    "BaseDefense": 130
+    "BaseDefense": 130,
+    "evolvesTo": "Gloom",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Razor Leaf",
+      "Acid"
+    ],
+    "cinematicMoves": [
+      "Seed Bomb",
+      "Sludge Bomb",
+      "Moonblast"
+    ]
   },
   "44": {
     "types": [
@@ -502,7 +967,18 @@
     "familyId": "43",
     "BaseStamina": 120,
     "BaseAttack": 162,
-    "BaseDefense": 158
+    "BaseDefense": 158,
+    "evolvesTo": "Vileplume",
+    "evolvesFrom": "Oddish",
+    "quickMoves": [
+      "Razor Leaf",
+      "Acid"
+    ],
+    "cinematicMoves": [
+      "Petal Blizzard",
+      "Sludge Bomb",
+      "Moonblast"
+    ]
   },
   "45": {
     "types": [
@@ -514,7 +990,18 @@
     "familyId": "43",
     "BaseStamina": 150,
     "BaseAttack": 202,
-    "BaseDefense": 190
+    "BaseDefense": 190,
+    "evolvesTo": 0,
+    "evolvesFrom": "Gloom",
+    "quickMoves": [
+      "Razor Leaf",
+      "Acid"
+    ],
+    "cinematicMoves": [
+      "Petal Blizzard",
+      "Solar Beam",
+      "Moonblast"
+    ]
   },
   "46": {
     "types": [
@@ -526,7 +1013,18 @@
     "familyId": "46",
     "BaseStamina": 70,
     "BaseAttack": 122,
-    "BaseDefense": 120
+    "BaseDefense": 120,
+    "evolvesTo": "Parasect",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Scratch",
+      "Bug Bite"
+    ],
+    "cinematicMoves": [
+      "Cross Poison",
+      "X Scissor",
+      "Seed Bomb"
+    ]
   },
   "47": {
     "types": [
@@ -538,7 +1036,18 @@
     "familyId": "46",
     "BaseStamina": 120,
     "BaseAttack": 162,
-    "BaseDefense": 170
+    "BaseDefense": 170,
+    "evolvesTo": 0,
+    "evolvesFrom": "Paras",
+    "quickMoves": [
+      "Bug Bite",
+      "Fury Cutter"
+    ],
+    "cinematicMoves": [
+      "Cross Poison",
+      "X Scissor",
+      "Solar Beam"
+    ]
   },
   "48": {
     "types": [
@@ -550,7 +1059,18 @@
     "familyId": "48",
     "BaseStamina": 120,
     "BaseAttack": 108,
-    "BaseDefense": 118
+    "BaseDefense": 118,
+    "evolvesTo": "Venomoth",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Bug Bite",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Psybeam",
+      "Dazzling Gleam",
+      "Shadow Ball"
+    ]
   },
   "49": {
     "types": [
@@ -562,7 +1082,18 @@
     "familyId": "48",
     "BaseStamina": 140,
     "BaseAttack": 172,
-    "BaseDefense": 154
+    "BaseDefense": 154,
+    "evolvesTo": 0,
+    "evolvesFrom": "Venonat",
+    "quickMoves": [
+      "Bug Bite",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Poison Fang",
+      "Psychic",
+      "Bug Buzz"
+    ]
   },
   "50": {
     "types": [
@@ -573,7 +1104,18 @@
     "familyId": "50",
     "BaseStamina": 20,
     "BaseAttack": 108,
-    "BaseDefense": 86
+    "BaseDefense": 86,
+    "evolvesTo": "Dugtrio",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Mud Shot",
+      "Scratch"
+    ],
+    "cinematicMoves": [
+      "Dig",
+      "Mud Bomb",
+      "Rock Tomb"
+    ]
   },
   "51": {
     "types": [
@@ -584,7 +1126,18 @@
     "familyId": "50",
     "BaseStamina": 70,
     "BaseAttack": 148,
-    "BaseDefense": 140
+    "BaseDefense": 140,
+    "evolvesTo": 0,
+    "evolvesFrom": "Diglett",
+    "quickMoves": [
+      "Sucker Punch",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Earthquake",
+      "Mud Bomb",
+      "Stone Edge"
+    ]
   },
   "52": {
     "types": [
@@ -595,7 +1148,18 @@
     "familyId": "52",
     "BaseStamina": 80,
     "BaseAttack": 104,
-    "BaseDefense": 94
+    "BaseDefense": 94,
+    "evolvesTo": "Persian",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Scratch",
+      "Bite"
+    ],
+    "cinematicMoves": [
+      "Night Slash",
+      "Dark Pulse",
+      "Body Slam"
+    ]
   },
   "53": {
     "types": [
@@ -606,7 +1170,18 @@
     "familyId": "52",
     "BaseStamina": 130,
     "BaseAttack": 156,
-    "BaseDefense": 146
+    "BaseDefense": 146,
+    "evolvesTo": 0,
+    "evolvesFrom": "Meowth",
+    "quickMoves": [
+      "Scratch",
+      "Feint Attack"
+    ],
+    "cinematicMoves": [
+      "Night Slash",
+      "Power Gem",
+      "Play Rough"
+    ]
   },
   "54": {
     "types": [
@@ -617,7 +1192,18 @@
     "familyId": "54",
     "BaseStamina": 100,
     "BaseAttack": 132,
-    "BaseDefense": 112
+    "BaseDefense": 112,
+    "evolvesTo": "Golduck",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Water Gun",
+      "Zen Headbutt"
+    ],
+    "cinematicMoves": [
+      "Psybeam",
+      "Aqua Tail",
+      "Cross Chop"
+    ]
   },
   "55": {
     "types": [
@@ -628,7 +1214,18 @@
     "familyId": "54",
     "BaseStamina": 160,
     "BaseAttack": 194,
-    "BaseDefense": 176
+    "BaseDefense": 176,
+    "evolvesTo": 0,
+    "evolvesFrom": "Psyduck",
+    "quickMoves": [
+      "Water Gun",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Psychic",
+      "Hydro Pump",
+      "Ice Beam"
+    ]
   },
   "56": {
     "types": [
@@ -639,7 +1236,18 @@
     "familyId": "56",
     "BaseStamina": 80,
     "BaseAttack": 122,
-    "BaseDefense": 96
+    "BaseDefense": 96,
+    "evolvesTo": "Primeape",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Karate Chop",
+      "Scratch"
+    ],
+    "cinematicMoves": [
+      "Cross Chop",
+      "Low Sweep",
+      "Brick Break"
+    ]
   },
   "57": {
     "types": [
@@ -650,7 +1258,18 @@
     "familyId": "56",
     "BaseStamina": 130,
     "BaseAttack": 178,
-    "BaseDefense": 150
+    "BaseDefense": 150,
+    "evolvesTo": 0,
+    "evolvesFrom": "Mankey",
+    "quickMoves": [
+      "Low Kick",
+      "Karate Chop"
+    ],
+    "cinematicMoves": [
+      "Cross Chop",
+      "Low Sweep",
+      "Night Slash"
+    ]
   },
   "58": {
     "types": [
@@ -661,7 +1280,18 @@
     "familyId": "58",
     "BaseStamina": 110,
     "BaseAttack": 156,
-    "BaseDefense": 110
+    "BaseDefense": 110,
+    "evolvesTo": "Arcanine",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Ember",
+      "Bite"
+    ],
+    "cinematicMoves": [
+      "Flame Wheel",
+      "Body Slam",
+      "Flamethrower"
+    ]
   },
   "59": {
     "types": [
@@ -672,7 +1302,18 @@
     "familyId": "58",
     "BaseStamina": 180,
     "BaseAttack": 230,
-    "BaseDefense": 180
+    "BaseDefense": 180,
+    "evolvesTo": 0,
+    "evolvesFrom": "Growlithe",
+    "quickMoves": [
+      "Fire Fang",
+      "Bite"
+    ],
+    "cinematicMoves": [
+      "Fire Blast",
+      "Flamethrower",
+      "Bulldoze"
+    ]
   },
   "60": {
     "types": [
@@ -683,7 +1324,18 @@
     "familyId": "60",
     "BaseStamina": 80,
     "BaseAttack": 108,
-    "BaseDefense": 98
+    "BaseDefense": 98,
+    "evolvesTo": "Poliwhirl",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Bubble",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Bubble Beam",
+      "Mud Bomb",
+      "Body Slam"
+    ]
   },
   "61": {
     "types": [
@@ -694,7 +1346,18 @@
     "familyId": "60",
     "BaseStamina": 130,
     "BaseAttack": 132,
-    "BaseDefense": 132
+    "BaseDefense": 132,
+    "evolvesTo": "Poliwrath",
+    "evolvesFrom": "Poliwag",
+    "quickMoves": [
+      "Bubble",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Scald",
+      "Mud Bomb",
+      "Bubble Beam"
+    ]
   },
   "62": {
     "types": [
@@ -706,7 +1369,18 @@
     "familyId": "60",
     "BaseStamina": 180,
     "BaseAttack": 180,
-    "BaseDefense": 202
+    "BaseDefense": 202,
+    "evolvesTo": 0,
+    "evolvesFrom": "Poliwhirl",
+    "quickMoves": [
+      "Bubble",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Hydro Pump",
+      "Submission",
+      "Ice Punch"
+    ]
   },
   "63": {
     "types": [
@@ -717,7 +1391,17 @@
     "familyId": "63",
     "BaseStamina": 50,
     "BaseAttack": 110,
-    "BaseDefense": 76
+    "BaseDefense": 76,
+    "evolvesTo": "Kadabra",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Zen Headbutt"
+    ],
+    "cinematicMoves": [
+      "Psyshock",
+      "Signal Beam",
+      "Shadow Ball"
+    ]
   },
   "64": {
     "types": [
@@ -728,7 +1412,18 @@
     "familyId": "63",
     "BaseStamina": 80,
     "BaseAttack": 150,
-    "BaseDefense": 112
+    "BaseDefense": 112,
+    "evolvesTo": "Alakazam",
+    "evolvesFrom": "Abra",
+    "quickMoves": [
+      "Psycho Cut",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Psybeam",
+      "Dazzling Gleam",
+      "Shadow Ball"
+    ]
   },
   "65": {
     "types": [
@@ -739,7 +1434,18 @@
     "familyId": "63",
     "BaseStamina": 110,
     "BaseAttack": 186,
-    "BaseDefense": 152
+    "BaseDefense": 152,
+    "evolvesTo": 0,
+    "evolvesFrom": "Kadabra",
+    "quickMoves": [
+      "Psycho Cut",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Psychic",
+      "Dazzling Gleam",
+      "Shadow Ball"
+    ]
   },
   "66": {
     "types": [
@@ -750,7 +1456,18 @@
     "familyId": "66",
     "BaseStamina": 140,
     "BaseAttack": 118,
-    "BaseDefense": 96
+    "BaseDefense": 96,
+    "evolvesTo": "Machoke",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Low Kick",
+      "Karate Chop"
+    ],
+    "cinematicMoves": [
+      "Low Sweep",
+      "Brick Break",
+      "Cross Chop"
+    ]
   },
   "67": {
     "types": [
@@ -761,7 +1478,18 @@
     "familyId": "66",
     "BaseStamina": 160,
     "BaseAttack": 154,
-    "BaseDefense": 144
+    "BaseDefense": 144,
+    "evolvesTo": "Machamp",
+    "evolvesFrom": "Machop",
+    "quickMoves": [
+      "Low Kick",
+      "Karate Chop"
+    ],
+    "cinematicMoves": [
+      "Submission",
+      "Brick Break",
+      "Cross Chop"
+    ]
   },
   "68": {
     "types": [
@@ -772,7 +1500,18 @@
     "familyId": "66",
     "BaseStamina": 180,
     "BaseAttack": 198,
-    "BaseDefense": 180
+    "BaseDefense": 180,
+    "evolvesTo": 0,
+    "evolvesFrom": "Machoke",
+    "quickMoves": [
+      "Bullet Punch",
+      "Karate Chop"
+    ],
+    "cinematicMoves": [
+      "Stone Edge",
+      "Submission",
+      "Cross Chop"
+    ]
   },
   "69": {
     "types": [
@@ -784,7 +1523,18 @@
     "familyId": "69",
     "BaseStamina": 100,
     "BaseAttack": 158,
-    "BaseDefense": 78
+    "BaseDefense": 78,
+    "evolvesTo": "Weepinbell",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Vine Whip",
+      "Acid"
+    ],
+    "cinematicMoves": [
+      "Power Whip",
+      "Sludge Bomb",
+      "Wrap"
+    ]
   },
   "70": {
     "types": [
@@ -796,7 +1546,18 @@
     "familyId": "69",
     "BaseStamina": 130,
     "BaseAttack": 190,
-    "BaseDefense": 110
+    "BaseDefense": 110,
+    "evolvesTo": "Victreebel",
+    "evolvesFrom": "Bellsprout",
+    "quickMoves": [
+      "Razor Leaf",
+      "Acid"
+    ],
+    "cinematicMoves": [
+      "Power Whip",
+      "Sludge Bomb",
+      "Seed Bomb"
+    ]
   },
   "71": {
     "types": [
@@ -808,7 +1569,18 @@
     "familyId": "69",
     "BaseStamina": 160,
     "BaseAttack": 222,
-    "BaseDefense": 152
+    "BaseDefense": 152,
+    "evolvesTo": 0,
+    "evolvesFrom": "Weepinbell",
+    "quickMoves": [
+      "Razor Leaf",
+      "Acid"
+    ],
+    "cinematicMoves": [
+      "Leaf Blade",
+      "Sludge Bomb",
+      "Solar Beam"
+    ]
   },
   "72": {
     "types": [
@@ -820,7 +1592,18 @@
     "familyId": "72",
     "BaseStamina": 80,
     "BaseAttack": 106,
-    "BaseDefense": 136
+    "BaseDefense": 136,
+    "evolvesTo": "Tentacruel",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Bubble",
+      "Poison Sting"
+    ],
+    "cinematicMoves": [
+      "Bubble Beam",
+      "Water Pulse",
+      "Wrap"
+    ]
   },
   "73": {
     "types": [
@@ -832,7 +1615,18 @@
     "familyId": "72",
     "BaseStamina": 160,
     "BaseAttack": 170,
-    "BaseDefense": 196
+    "BaseDefense": 196,
+    "evolvesTo": 0,
+    "evolvesFrom": "Tentacool",
+    "quickMoves": [
+      "Acid",
+      "Poison Jab"
+    ],
+    "cinematicMoves": [
+      "Hydro Pump",
+      "Sludge Wave",
+      "Blizzard"
+    ]
   },
   "74": {
     "types": [
@@ -844,7 +1638,18 @@
     "familyId": "74",
     "BaseStamina": 80,
     "BaseAttack": 106,
-    "BaseDefense": 118
+    "BaseDefense": 118,
+    "evolvesTo": "Graveler",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Rock Throw",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Rock Slide",
+      "Rock Tomb",
+      "Dig"
+    ]
   },
   "75": {
     "types": [
@@ -856,7 +1661,18 @@
     "familyId": "74",
     "BaseStamina": 110,
     "BaseAttack": 142,
-    "BaseDefense": 156
+    "BaseDefense": 156,
+    "evolvesTo": "Golem",
+    "evolvesFrom": "Geodude",
+    "quickMoves": [
+      "Rock Throw",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Dig",
+      "Stone Edge",
+      "Rock Slide"
+    ]
   },
   "76": {
     "types": [
@@ -868,7 +1684,18 @@
     "familyId": "74",
     "BaseStamina": 160,
     "BaseAttack": 176,
-    "BaseDefense": 198
+    "BaseDefense": 198,
+    "evolvesTo": 0,
+    "evolvesFrom": "Graveler",
+    "quickMoves": [
+      "Rock Throw",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Stone Edge",
+      "Ancient Power",
+      "Earthquake"
+    ]
   },
   "77": {
     "types": [
@@ -879,7 +1706,18 @@
     "familyId": "77",
     "BaseStamina": 100,
     "BaseAttack": 168,
-    "BaseDefense": 138
+    "BaseDefense": 138,
+    "evolvesTo": "Rapidash",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Tackle",
+      "Ember"
+    ],
+    "cinematicMoves": [
+      "Flame Charge",
+      "Flame Wheel",
+      "Fire Blast"
+    ]
   },
   "78": {
     "types": [
@@ -890,7 +1728,18 @@
     "familyId": "77",
     "BaseStamina": 130,
     "BaseAttack": 200,
-    "BaseDefense": 170
+    "BaseDefense": 170,
+    "evolvesTo": 0,
+    "evolvesFrom": "Ponyta",
+    "quickMoves": [
+      "Low Kick",
+      "Ember"
+    ],
+    "cinematicMoves": [
+      "Fire Blast",
+      "Drill Run",
+      "Heat Wave"
+    ]
   },
   "79": {
     "types": [
@@ -902,7 +1751,18 @@
     "familyId": "79",
     "BaseStamina": 180,
     "BaseAttack": 110,
-    "BaseDefense": 110
+    "BaseDefense": 110,
+    "evolvesTo": "Slowbro",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Water Gun",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Water Pulse",
+      "Psyshock",
+      "Psychic"
+    ]
   },
   "80": {
     "types": [
@@ -914,7 +1774,18 @@
     "familyId": "79",
     "BaseStamina": 190,
     "BaseAttack": 184,
-    "BaseDefense": 198
+    "BaseDefense": 198,
+    "evolvesTo": 0,
+    "evolvesFrom": "Slowpoke",
+    "quickMoves": [
+      "Water Gun",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Water Pulse",
+      "Psychic",
+      "Ice Beam"
+    ]
   },
   "81": {
     "types": [
@@ -926,7 +1797,18 @@
     "familyId": "81",
     "BaseStamina": 50,
     "BaseAttack": 128,
-    "BaseDefense": 138
+    "BaseDefense": 138,
+    "evolvesTo": "Magneton",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Spark",
+      "Thunder Shock"
+    ],
+    "cinematicMoves": [
+      "Discharge",
+      "Magnet Bomb",
+      "Thunderbolt"
+    ]
   },
   "82": {
     "types": [
@@ -938,7 +1820,18 @@
     "familyId": "81",
     "BaseStamina": 100,
     "BaseAttack": 186,
-    "BaseDefense": 180
+    "BaseDefense": 180,
+    "evolvesTo": 0,
+    "evolvesFrom": "Magnemite",
+    "quickMoves": [
+      "Spark",
+      "Thunder Shock"
+    ],
+    "cinematicMoves": [
+      "Discharge",
+      "Magnet Bomb",
+      "Flash Cannon"
+    ]
   },
   "83": {
     "types": [
@@ -950,7 +1843,18 @@
     "familyId": "83",
     "BaseStamina": 104,
     "BaseAttack": 138,
-    "BaseDefense": 132
+    "BaseDefense": 132,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Cut",
+      "Fury Cutter"
+    ],
+    "cinematicMoves": [
+      "Aerial Ace",
+      "Air Cutter",
+      "Leaf Blade"
+    ]
   },
   "84": {
     "types": [
@@ -962,7 +1866,18 @@
     "familyId": "84",
     "BaseStamina": 70,
     "BaseAttack": 126,
-    "BaseDefense": 96
+    "BaseDefense": 96,
+    "evolvesTo": "Dodrio",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Peck",
+      "Quick Attack"
+    ],
+    "cinematicMoves": [
+      "Drill Peck",
+      "Aerial Ace",
+      "Swift"
+    ]
   },
   "85": {
     "types": [
@@ -974,7 +1889,18 @@
     "familyId": "84",
     "BaseStamina": 120,
     "BaseAttack": 182,
-    "BaseDefense": 150
+    "BaseDefense": 150,
+    "evolvesTo": 0,
+    "evolvesFrom": "Doduo",
+    "quickMoves": [
+      "Feint Attack",
+      "Steel Wing"
+    ],
+    "cinematicMoves": [
+      "Drill Peck",
+      "Aerial Ace",
+      "Air Cutter"
+    ]
   },
   "86": {
     "types": [
@@ -985,7 +1911,18 @@
     "familyId": "86",
     "BaseStamina": 130,
     "BaseAttack": 104,
-    "BaseDefense": 138
+    "BaseDefense": 138,
+    "evolvesTo": "Dewgong",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Ice Shard",
+      "Water Gun"
+    ],
+    "cinematicMoves": [
+      "Aqua Jet",
+      "Icy Wind",
+      "Aqua Tail"
+    ]
   },
   "87": {
     "types": [
@@ -997,7 +1934,18 @@
     "familyId": "86",
     "BaseStamina": 180,
     "BaseAttack": 156,
-    "BaseDefense": 192
+    "BaseDefense": 192,
+    "evolvesTo": 0,
+    "evolvesFrom": "Seel",
+    "quickMoves": [
+      "Frost Breath",
+      "Ice Shard"
+    ],
+    "cinematicMoves": [
+      "Icy Wind",
+      "Aqua Jet",
+      "Blizzard"
+    ]
   },
   "88": {
     "types": [
@@ -1008,7 +1956,18 @@
     "familyId": "88",
     "BaseStamina": 160,
     "BaseAttack": 124,
-    "BaseDefense": 110
+    "BaseDefense": 110,
+    "evolvesTo": "Muk",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Acid",
+      "Mud Slap"
+    ],
+    "cinematicMoves": [
+      "Sludge",
+      "Mud Bomb",
+      "Sludge Bomb"
+    ]
   },
   "89": {
     "types": [
@@ -1019,7 +1978,18 @@
     "familyId": "88",
     "BaseStamina": 210,
     "BaseAttack": 180,
-    "BaseDefense": 188
+    "BaseDefense": 188,
+    "evolvesTo": 0,
+    "evolvesFrom": "Grimer",
+    "quickMoves": [
+      "Acid",
+      "Poison Jab"
+    ],
+    "cinematicMoves": [
+      "Dark Pulse",
+      "Gunk Shot",
+      "Sludge Wave"
+    ]
   },
   "90": {
     "types": [
@@ -1030,7 +2000,18 @@
     "familyId": "90",
     "BaseStamina": 60,
     "BaseAttack": 120,
-    "BaseDefense": 112
+    "BaseDefense": 112,
+    "evolvesTo": "Cloyster",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Ice Shard",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Bubble Beam",
+      "Water Pulse",
+      "Icy Wind"
+    ]
   },
   "91": {
     "types": [
@@ -1042,7 +2023,18 @@
     "familyId": "90",
     "BaseStamina": 100,
     "BaseAttack": 196,
-    "BaseDefense": 196
+    "BaseDefense": 196,
+    "evolvesTo": 0,
+    "evolvesFrom": "Shellder",
+    "quickMoves": [
+      "Frost Breath",
+      "Ice Shard"
+    ],
+    "cinematicMoves": [
+      "Icy Wind",
+      "Hydro Pump",
+      "Blizzard"
+    ]
   },
   "92": {
     "types": [
@@ -1054,7 +2046,18 @@
     "familyId": "92",
     "BaseStamina": 60,
     "BaseAttack": 136,
-    "BaseDefense": 82
+    "BaseDefense": 82,
+    "evolvesTo": "Haunter",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Lick",
+      "Sucker Punch"
+    ],
+    "cinematicMoves": [
+      "Ominous Wind",
+      "Dark Pulse",
+      "Sludge Bomb"
+    ]
   },
   "93": {
     "types": [
@@ -1066,7 +2069,18 @@
     "familyId": "92",
     "BaseStamina": 90,
     "BaseAttack": 172,
-    "BaseDefense": 118
+    "BaseDefense": 118,
+    "evolvesTo": "Gengar",
+    "evolvesFrom": "Gastly",
+    "quickMoves": [
+      "Shadow Claw",
+      "Lick"
+    ],
+    "cinematicMoves": [
+      "Shadow Ball",
+      "Dark Pulse",
+      "Sludge Bomb"
+    ]
   },
   "94": {
     "types": [
@@ -1078,7 +2092,18 @@
     "familyId": "92",
     "BaseStamina": 120,
     "BaseAttack": 204,
-    "BaseDefense": 156
+    "BaseDefense": 156,
+    "evolvesTo": 0,
+    "evolvesFrom": "Haunter",
+    "quickMoves": [
+      "Sucker Punch",
+      "Shadow Claw"
+    ],
+    "cinematicMoves": [
+      "Shadow Ball",
+      "Dark Pulse",
+      "Sludge Wave"
+    ]
   },
   "95": {
     "types": [
@@ -1090,7 +2115,18 @@
     "familyId": "95",
     "BaseStamina": 70,
     "BaseAttack": 90,
-    "BaseDefense": 186
+    "BaseDefense": 186,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Rock Throw",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Rock Slide",
+      "Stone Edge",
+      "Iron Head"
+    ]
   },
   "96": {
     "types": [
@@ -1101,7 +2137,18 @@
     "familyId": "96",
     "BaseStamina": 120,
     "BaseAttack": 104,
-    "BaseDefense": 140
+    "BaseDefense": 140,
+    "evolvesTo": "Hypno",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Pound",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Psybeam",
+      "Psyshock",
+      "Psychic"
+    ]
   },
   "97": {
     "types": [
@@ -1112,7 +2159,18 @@
     "familyId": "96",
     "BaseStamina": 170,
     "BaseAttack": 162,
-    "BaseDefense": 196
+    "BaseDefense": 196,
+    "evolvesTo": 0,
+    "evolvesFrom": "Drowzee",
+    "quickMoves": [
+      "Zen Headbutt",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Psyshock",
+      "Psychic",
+      "Shadow Ball"
+    ]
   },
   "98": {
     "types": [
@@ -1123,7 +2181,18 @@
     "familyId": "98",
     "BaseStamina": 60,
     "BaseAttack": 116,
-    "BaseDefense": 110
+    "BaseDefense": 110,
+    "evolvesTo": "Kingler",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Bubble",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Vice Grip",
+      "Bubble Beam",
+      "Water Pulse"
+    ]
   },
   "99": {
     "types": [
@@ -1134,7 +2203,18 @@
     "familyId": "98",
     "BaseStamina": 110,
     "BaseAttack": 178,
-    "BaseDefense": 168
+    "BaseDefense": 168,
+    "evolvesTo": 0,
+    "evolvesFrom": "Krabby",
+    "quickMoves": [
+      "Metal Claw",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Vice Grip",
+      "X Scissor",
+      "Water Pulse"
+    ]
   },
   "100": {
     "types": [
@@ -1145,7 +2225,18 @@
     "familyId": "100",
     "BaseStamina": 80,
     "BaseAttack": 102,
-    "BaseDefense": 124
+    "BaseDefense": 124,
+    "evolvesTo": "Electrode",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Spark",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Discharge",
+      "Thunderbolt",
+      "Signal Beam"
+    ]
   },
   "101": {
     "types": [
@@ -1156,7 +2247,18 @@
     "familyId": "100",
     "BaseStamina": 120,
     "BaseAttack": 150,
-    "BaseDefense": 174
+    "BaseDefense": 174,
+    "evolvesTo": 0,
+    "evolvesFrom": "Voltorb",
+    "quickMoves": [
+      "Spark",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Discharge",
+      "Thunderbolt",
+      "Hyper Beam"
+    ]
   },
   "102": {
     "types": [
@@ -1168,7 +2270,17 @@
     "familyId": "102",
     "BaseStamina": 120,
     "BaseAttack": 110,
-    "BaseDefense": 132
+    "BaseDefense": 132,
+    "evolvesTo": "Exeggutor",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Seed Bomb",
+      "Psychic",
+      "Ancient Power"
+    ]
   },
   "103": {
     "types": [
@@ -1180,7 +2292,18 @@
     "familyId": "102",
     "BaseStamina": 190,
     "BaseAttack": 232,
-    "BaseDefense": 164
+    "BaseDefense": 164,
+    "evolvesTo": 0,
+    "evolvesFrom": "Exeggcute",
+    "quickMoves": [
+      "Confusion",
+      "Zen Headbutt"
+    ],
+    "cinematicMoves": [
+      "Seed Bomb",
+      "Psychic",
+      "Solar Beam"
+    ]
   },
   "104": {
     "types": [
@@ -1191,7 +2314,18 @@
     "familyId": "104",
     "BaseStamina": 100,
     "BaseAttack": 102,
-    "BaseDefense": 150
+    "BaseDefense": 150,
+    "evolvesTo": "Marowak",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Mud Slap",
+      "Rock Smash"
+    ],
+    "cinematicMoves": [
+      "Bone Club",
+      "Dig",
+      "Bulldoze"
+    ]
   },
   "105": {
     "types": [
@@ -1202,7 +2336,18 @@
     "familyId": "104",
     "BaseStamina": 120,
     "BaseAttack": 140,
-    "BaseDefense": 202
+    "BaseDefense": 202,
+    "evolvesTo": 0,
+    "evolvesFrom": "Cubone",
+    "quickMoves": [
+      "Mud Slap",
+      "Rock Smash"
+    ],
+    "cinematicMoves": [
+      "Bone Club",
+      "Dig",
+      "Earthquake"
+    ]
   },
   "106": {
     "types": [
@@ -1213,7 +2358,18 @@
     "familyId": "106",
     "BaseStamina": 100,
     "BaseAttack": 148,
-    "BaseDefense": 172
+    "BaseDefense": 172,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Low Kick",
+      "Rock Smash"
+    ],
+    "cinematicMoves": [
+      "Stomp",
+      "Low Sweep",
+      "Stone Edge"
+    ]
   },
   "107": {
     "types": [
@@ -1224,7 +2380,19 @@
     "familyId": "107",
     "BaseStamina": 100,
     "BaseAttack": 138,
-    "BaseDefense": 204
+    "BaseDefense": 204,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Bullet Punch",
+      "Rock Smash"
+    ],
+    "cinematicMoves": [
+      "Fire Punch",
+      "Ice Punch",
+      "Thunder Punch",
+      "Brick Break"
+    ]
   },
   "108": {
     "types": [
@@ -1235,7 +2403,18 @@
     "familyId": "108",
     "BaseStamina": 180,
     "BaseAttack": 126,
-    "BaseDefense": 160
+    "BaseDefense": 160,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Lick",
+      "Zen Headbutt"
+    ],
+    "cinematicMoves": [
+      "Hyper Beam",
+      "Stomp",
+      "Power Whip"
+    ]
   },
   "109": {
     "types": [
@@ -1246,7 +2425,18 @@
     "familyId": "109",
     "BaseStamina": 80,
     "BaseAttack": 136,
-    "BaseDefense": 142
+    "BaseDefense": 142,
+    "evolvesTo": "Weezing",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Acid",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Sludge",
+      "Sludge Bomb",
+      "Dark Pulse"
+    ]
   },
   "110": {
     "types": [
@@ -1257,7 +2447,18 @@
     "familyId": "109",
     "BaseStamina": 130,
     "BaseAttack": 190,
-    "BaseDefense": 198
+    "BaseDefense": 198,
+    "evolvesTo": 0,
+    "evolvesFrom": "Koffing",
+    "quickMoves": [
+      "Acid",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Sludge Bomb",
+      "Shadow Ball",
+      "Dark Pulse"
+    ]
   },
   "111": {
     "types": [
@@ -1269,7 +2470,18 @@
     "familyId": "111",
     "BaseStamina": 160,
     "BaseAttack": 110,
-    "BaseDefense": 116
+    "BaseDefense": 116,
+    "evolvesTo": "Rhydon",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Mud Slap",
+      "Rock Smash"
+    ],
+    "cinematicMoves": [
+      "Bulldoze",
+      "Horn Attack",
+      "Stomp"
+    ]
   },
   "112": {
     "types": [
@@ -1281,7 +2493,18 @@
     "familyId": "111",
     "BaseStamina": 210,
     "BaseAttack": 166,
-    "BaseDefense": 160
+    "BaseDefense": 160,
+    "evolvesTo": 0,
+    "evolvesFrom": "Rhyhorn",
+    "quickMoves": [
+      "Mud Slap",
+      "Rock Smash"
+    ],
+    "cinematicMoves": [
+      "Megahorn",
+      "Earthquake",
+      "Stone Edge"
+    ]
   },
   "113": {
     "types": [
@@ -1292,7 +2515,18 @@
     "familyId": "113",
     "BaseStamina": 500,
     "BaseAttack": 40,
-    "BaseDefense": 60
+    "BaseDefense": 60,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Pound",
+      "Zen Headbutt"
+    ],
+    "cinematicMoves": [
+      "Psychic",
+      "Psybeam",
+      "Dazzling Gleam"
+    ]
   },
   "114": {
     "types": [
@@ -1303,7 +2537,17 @@
     "familyId": "114",
     "BaseStamina": 130,
     "BaseAttack": 164,
-    "BaseDefense": 152
+    "BaseDefense": 152,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Vine Whip"
+    ],
+    "cinematicMoves": [
+      "Power Whip",
+      "Sludge Bomb",
+      "Solar Beam"
+    ]
   },
   "115": {
     "types": [
@@ -1314,7 +2558,18 @@
     "familyId": "115",
     "BaseStamina": 210,
     "BaseAttack": 142,
-    "BaseDefense": 178
+    "BaseDefense": 178,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Mud Slap",
+      "Low Kick"
+    ],
+    "cinematicMoves": [
+      "Brick Break",
+      "Earthquake",
+      "Stomp"
+    ]
   },
   "116": {
     "types": [
@@ -1325,7 +2580,18 @@
     "familyId": "116",
     "BaseStamina": 60,
     "BaseAttack": 122,
-    "BaseDefense": 100
+    "BaseDefense": 100,
+    "evolvesTo": "Seadra",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Water Gun",
+      "Bubble"
+    ],
+    "cinematicMoves": [
+      "Bubble Beam",
+      "Dragon Pulse",
+      "Flash Cannon"
+    ]
   },
   "117": {
     "types": [
@@ -1336,7 +2602,18 @@
     "familyId": "116",
     "BaseStamina": 110,
     "BaseAttack": 176,
-    "BaseDefense": 150
+    "BaseDefense": 150,
+    "evolvesTo": 0,
+    "evolvesFrom": "Horsea",
+    "quickMoves": [
+      "Water Gun",
+      "Dragon Breath"
+    ],
+    "cinematicMoves": [
+      "Blizzard",
+      "Dragon Pulse",
+      "Hydro Pump"
+    ]
   },
   "118": {
     "types": [
@@ -1347,7 +2624,18 @@
     "familyId": "118",
     "BaseStamina": 90,
     "BaseAttack": 112,
-    "BaseDefense": 126
+    "BaseDefense": 126,
+    "evolvesTo": "Seaking",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Peck",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Water Pulse",
+      "Horn Attack",
+      "Aqua Tail"
+    ]
   },
   "119": {
     "types": [
@@ -1358,7 +2646,18 @@
     "familyId": "118",
     "BaseStamina": 160,
     "BaseAttack": 172,
-    "BaseDefense": 160
+    "BaseDefense": 160,
+    "evolvesTo": 0,
+    "evolvesFrom": "Goldeen",
+    "quickMoves": [
+      "Peck",
+      "Poison Jab"
+    ],
+    "cinematicMoves": [
+      "Icy Wind",
+      "Drill Run",
+      "Megahorn"
+    ]
   },
   "120": {
     "types": [
@@ -1369,7 +2668,18 @@
     "familyId": "120",
     "BaseStamina": 60,
     "BaseAttack": 130,
-    "BaseDefense": 128
+    "BaseDefense": 128,
+    "evolvesTo": "Starmie",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Quick Attack",
+      "Water Gun"
+    ],
+    "cinematicMoves": [
+      "Swift",
+      "Bubble Beam",
+      "Power Gem"
+    ]
   },
   "121": {
     "types": [
@@ -1381,7 +2691,18 @@
     "familyId": "120",
     "BaseStamina": 120,
     "BaseAttack": 194,
-    "BaseDefense": 192
+    "BaseDefense": 192,
+    "evolvesTo": 0,
+    "evolvesFrom": "Staryu",
+    "quickMoves": [
+      "Quick Attack",
+      "Water Gun"
+    ],
+    "cinematicMoves": [
+      "Hydro Pump",
+      "Power Gem",
+      "Psybeam"
+    ]
   },
   "122": {
     "types": [
@@ -1393,7 +2714,18 @@
     "familyId": "122",
     "BaseStamina": 80,
     "BaseAttack": 154,
-    "BaseDefense": 196
+    "BaseDefense": 196,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Confusion",
+      "Zen Headbutt"
+    ],
+    "cinematicMoves": [
+      "Psybeam",
+      "Psychic",
+      "Shadow Ball"
+    ]
   },
   "123": {
     "types": [
@@ -1405,7 +2737,18 @@
     "familyId": "123",
     "BaseStamina": 140,
     "BaseAttack": 176,
-    "BaseDefense": 180
+    "BaseDefense": 180,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Fury Cutter",
+      "Steel Wing"
+    ],
+    "cinematicMoves": [
+      "Night Slash",
+      "X Scissor",
+      "Bug Buzz"
+    ]
   },
   "124": {
     "types": [
@@ -1417,7 +2760,18 @@
     "familyId": "124",
     "BaseStamina": 130,
     "BaseAttack": 172,
-    "BaseDefense": 134
+    "BaseDefense": 134,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Frost Breath",
+      "Pound"
+    ],
+    "cinematicMoves": [
+      "Draining Kiss",
+      "Ice Punch",
+      "Psyshock"
+    ]
   },
   "125": {
     "types": [
@@ -1428,7 +2782,18 @@
     "familyId": "125",
     "BaseStamina": 130,
     "BaseAttack": 198,
-    "BaseDefense": 160
+    "BaseDefense": 160,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Thunder Shock",
+      "Low Kick"
+    ],
+    "cinematicMoves": [
+      "Thunder Punch",
+      "Thunderbolt",
+      "Thunder"
+    ]
   },
   "126": {
     "types": [
@@ -1439,7 +2804,18 @@
     "familyId": "126",
     "BaseStamina": 130,
     "BaseAttack": 214,
-    "BaseDefense": 158
+    "BaseDefense": 158,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Ember",
+      "Karate Chop"
+    ],
+    "cinematicMoves": [
+      "Fire Blast",
+      "Fire Punch",
+      "Flamethrower"
+    ]
   },
   "127": {
     "types": [
@@ -1450,7 +2826,18 @@
     "familyId": "127",
     "BaseStamina": 130,
     "BaseAttack": 184,
-    "BaseDefense": 186
+    "BaseDefense": 186,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Rock Smash",
+      "Fury Cutter"
+    ],
+    "cinematicMoves": [
+      "Vice Grip",
+      "X Scissor",
+      "Submission"
+    ]
   },
   "128": {
     "types": [
@@ -1461,7 +2848,18 @@
     "familyId": "128",
     "BaseStamina": 150,
     "BaseAttack": 148,
-    "BaseDefense": 184
+    "BaseDefense": 184,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Tackle",
+      "Zen Headbutt"
+    ],
+    "cinematicMoves": [
+      "Horn Attack",
+      "Iron Head",
+      "Earthquake"
+    ]
   },
   "129": {
     "types": [
@@ -1472,7 +2870,15 @@
     "familyId": "129",
     "BaseStamina": 40,
     "BaseAttack": 42,
-    "BaseDefense": 84
+    "BaseDefense": 84,
+    "evolvesTo": "Gyarados",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Splash"
+    ],
+    "cinematicMoves": [
+      "Struggle"
+    ]
   },
   "130": {
     "types": [
@@ -1484,7 +2890,18 @@
     "familyId": "129",
     "BaseStamina": 190,
     "BaseAttack": 192,
-    "BaseDefense": 196
+    "BaseDefense": 196,
+    "evolvesTo": null,
+    "evolvesFrom": "Magikarp",
+    "quickMoves": [
+      "Dragon Breath",
+      "Bite"
+    ],
+    "cinematicMoves": [
+      "Hydro Pump",
+      "Twister",
+      "Dragon Pulse"
+    ]
   },
   "131": {
     "types": [
@@ -1496,7 +2913,18 @@
     "familyId": "131",
     "BaseStamina": 260,
     "BaseAttack": 186,
-    "BaseDefense": 190
+    "BaseDefense": 190,
+    "evolvesTo": null,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Frost Breath",
+      "Ice Shard"
+    ],
+    "cinematicMoves": [
+      "Dragon Pulse",
+      "Ice Beam",
+      "Blizzard"
+    ]
   },
   "132": {
     "types": [
@@ -1507,7 +2935,15 @@
     "familyId": "132",
     "BaseStamina": 96,
     "BaseAttack": 110,
-    "BaseDefense": 110
+    "BaseDefense": 110,
+    "evolvesTo": null,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Pound"
+    ],
+    "cinematicMoves": [
+      "Struggle"
+    ]
   },
   "133": {
     "types": [
@@ -1518,7 +2954,18 @@
     "familyId": "133",
     "BaseStamina": 110,
     "BaseAttack": 114,
-    "BaseDefense": 128
+    "BaseDefense": 128,
+    "evolvesTo": "Vaporeon/Jolteon/Flareon",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Quick Attack",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Dig",
+      "Swift",
+      "Body Slam"
+    ]
   },
   "134": {
     "types": [
@@ -1529,7 +2976,17 @@
     "familyId": "133",
     "BaseStamina": 260,
     "BaseAttack": 186,
-    "BaseDefense": 168
+    "BaseDefense": 168,
+    "evolvesTo": 0,
+    "evolvesFrom": "Eevee",
+    "quickMoves": [
+      "Water Gun"
+    ],
+    "cinematicMoves": [
+      "Water Pulse",
+      "Hydro Pump",
+      "Aqua Tail"
+    ]
   },
   "135": {
     "types": [
@@ -1540,7 +2997,17 @@
     "familyId": "133",
     "BaseStamina": 130,
     "BaseAttack": 192,
-    "BaseDefense": 174
+    "BaseDefense": 174,
+    "evolvesTo": 0,
+    "evolvesFrom": "Eevee",
+    "quickMoves": [
+      "Thunder Shock"
+    ],
+    "cinematicMoves": [
+      "Discharge",
+      "Thunderbolt",
+      "Thunder"
+    ]
   },
   "136": {
     "types": [
@@ -1551,7 +3018,17 @@
     "familyId": "133",
     "BaseStamina": 130,
     "BaseAttack": 238,
-    "BaseDefense": 178
+    "BaseDefense": 178,
+    "evolvesTo": 0,
+    "evolvesFrom": "Eevee",
+    "quickMoves": [
+      "Ember"
+    ],
+    "cinematicMoves": [
+      "Fire Blast",
+      "Flamethrower",
+      "Heat Wave"
+    ]
   },
   "137": {
     "types": [
@@ -1562,7 +3039,18 @@
     "familyId": "137",
     "BaseStamina": 130,
     "BaseAttack": 156,
-    "BaseDefense": 158
+    "BaseDefense": 158,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Quick Attack",
+      "Tackle"
+    ],
+    "cinematicMoves": [
+      "Psybeam",
+      "Signal Beam",
+      "Discharge"
+    ]
   },
   "138": {
     "types": [
@@ -1574,7 +3062,18 @@
     "familyId": "138",
     "BaseStamina": 70,
     "BaseAttack": 132,
-    "BaseDefense": 160
+    "BaseDefense": 160,
+    "evolvesTo": "Omastar",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Water Gun",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Ancient Power",
+      "Brine",
+      "Rock Tomb"
+    ]
   },
   "139": {
     "types": [
@@ -1586,7 +3085,18 @@
     "familyId": "138",
     "BaseStamina": 140,
     "BaseAttack": 180,
-    "BaseDefense": 202
+    "BaseDefense": 202,
+    "evolvesTo": 0,
+    "evolvesFrom": "Omanyte",
+    "quickMoves": [
+      "Rock Throw",
+      "Water Gun"
+    ],
+    "cinematicMoves": [
+      "Ancient Power",
+      "Hydro Pump",
+      "Rock Slide"
+    ]
   },
   "140": {
     "types": [
@@ -1598,7 +3108,18 @@
     "familyId": "140",
     "BaseStamina": 60,
     "BaseAttack": 148,
-    "BaseDefense": 142
+    "BaseDefense": 142,
+    "evolvesTo": "Kabutops",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Scratch",
+      "Mud Shot"
+    ],
+    "cinematicMoves": [
+      "Ancient Power",
+      "Aqua Jet",
+      "Rock Tomb"
+    ]
   },
   "141": {
     "types": [
@@ -1610,7 +3131,18 @@
     "familyId": "140",
     "BaseStamina": 120,
     "BaseAttack": 190,
-    "BaseDefense": 190
+    "BaseDefense": 190,
+    "evolvesTo": 0,
+    "evolvesFrom": "Kabuto",
+    "quickMoves": [
+      "Mud Shot",
+      "Fury Cutter"
+    ],
+    "cinematicMoves": [
+      "Ancient Power",
+      "Water Pulse",
+      "Stone Edge"
+    ]
   },
   "142": {
     "types": [
@@ -1622,7 +3154,18 @@
     "familyId": "142",
     "BaseStamina": 160,
     "BaseAttack": 182,
-    "BaseDefense": 162
+    "BaseDefense": 162,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Steel Wing",
+      "Bite"
+    ],
+    "cinematicMoves": [
+      "Ancient Power",
+      "Iron Head",
+      "Hyper Beam"
+    ]
   },
   "143": {
     "types": [
@@ -1633,7 +3176,18 @@
     "familyId": "143",
     "BaseStamina": 320,
     "BaseAttack": 180,
-    "BaseDefense": 180
+    "BaseDefense": 180,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Zen Headbutt",
+      "Lick"
+    ],
+    "cinematicMoves": [
+      "Body Slam",
+      "Hyper Beam",
+      "Earthquake"
+    ]
   },
   "144": {
     "types": [
@@ -1645,7 +3199,17 @@
     "familyId": "144",
     "BaseStamina": 180,
     "BaseAttack": 198,
-    "BaseDefense": 242
+    "BaseDefense": 242,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Frost Breath"
+    ],
+    "cinematicMoves": [
+      "Ice Beam",
+      "Icy Wind",
+      "Blizzard"
+    ]
   },
   "145": {
     "types": [
@@ -1657,7 +3221,17 @@
     "familyId": "145",
     "BaseStamina": 180,
     "BaseAttack": 232,
-    "BaseDefense": 194
+    "BaseDefense": 194,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Thunder Shock"
+    ],
+    "cinematicMoves": [
+      "Discharge",
+      "Thunderbolt",
+      "Thunder"
+    ]
   },
   "146": {
     "types": [
@@ -1669,7 +3243,17 @@
     "familyId": "146",
     "BaseStamina": 180,
     "BaseAttack": 242,
-    "BaseDefense": 194
+    "BaseDefense": 194,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Ember"
+    ],
+    "cinematicMoves": [
+      "Fire Blast",
+      "Heat Wave",
+      "Flamethrower"
+    ]
   },
   "147": {
     "types": [
@@ -1680,7 +3264,17 @@
     "familyId": "147",
     "BaseStamina": 82,
     "BaseAttack": 128,
-    "BaseDefense": 110
+    "BaseDefense": 110,
+    "evolvesTo": "Dragonair",
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Dragon Breath"
+    ],
+    "cinematicMoves": [
+      "Wrap",
+      "Twister",
+      "Aqua Tail"
+    ]
   },
   "148": {
     "types": [
@@ -1691,7 +3285,17 @@
     "familyId": "147",
     "BaseStamina": 122,
     "BaseAttack": 170,
-    "BaseDefense": 152
+    "BaseDefense": 152,
+    "evolvesTo": "Dragonite",
+    "evolvesFrom": "Dratini",
+    "quickMoves": [
+      "Dragon Breath"
+    ],
+    "cinematicMoves": [
+      "Wrap",
+      "Aqua Tail",
+      "Dragon Pulse"
+    ]
   },
   "149": {
     "types": [
@@ -1703,7 +3307,18 @@
     "familyId": "147",
     "BaseStamina": 182,
     "BaseAttack": 250,
-    "BaseDefense": 212
+    "BaseDefense": 212,
+    "evolvesTo": 0,
+    "evolvesFrom": "Dragonair",
+    "quickMoves": [
+      "Dragon Breath",
+      "Steel Wing"
+    ],
+    "cinematicMoves": [
+      "Dragon Pulse",
+      "Hyper Beam",
+      "Dragon Claw"
+    ]
   },
   "150": {
     "types": [
@@ -1714,7 +3329,18 @@
     "familyId": "150",
     "BaseStamina": 212,
     "BaseAttack": 284,
-    "BaseDefense": 202
+    "BaseDefense": 202,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Psycho Cut",
+      "Confusion"
+    ],
+    "cinematicMoves": [
+      "Psychic",
+      "Shadow Ball",
+      "Hyper Beam"
+    ]
   },
   "151": {
     "types": [
@@ -1725,6 +3351,22 @@
     "familyId": "151",
     "BaseStamina": 200,
     "BaseAttack": 220,
-    "BaseDefense": 220
+    "BaseDefense": 220,
+    "evolvesTo": 0,
+    "evolvesFrom": 0,
+    "quickMoves": [
+      "Pound"
+    ],
+    "cinematicMoves": [
+      "Hurricane",
+      "Earthquake",
+      "Psychic",
+      "Dragon Pulse",
+      "Thunder",
+      "Moonblast",
+      "Fire Blast",
+      "Solar Beam",
+      "Hyper Beam"
+    ]
   }
 }
