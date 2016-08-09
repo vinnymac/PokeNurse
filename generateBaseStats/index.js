@@ -13,7 +13,7 @@ function writeBaseStats () {
     let pokemonIndex = item.PkMn - 1
     let pokemonId = String(item.PkMn)
     let types = [item.Type1.toLowerCase()]
-    if (item.Type2 !== "NONE") types.push(item.Type2.toLowerCase())
+    if (item.Type2 !== 'NONE') types.push(item.Type2.toLowerCase())
 
     baseStats[pokemonId] = {
       types: types,
@@ -26,8 +26,8 @@ function writeBaseStats () {
       BaseDefense: item.BaseDefense,
       evolvesTo: item.EvolvesTo,
       evolvesFrom: item.EvolvesFrom,
-      quickMoves: item.QuickMoves.split(", "),
-      cinematicMoves: item.CinematicMoves.split(", ")
+      quickMoves: item.QuickMoves.split(', '),
+      cinematicMoves: item.CinematicMoves.split(', ')
     }
   })
 

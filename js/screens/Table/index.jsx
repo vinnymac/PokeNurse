@@ -68,9 +68,12 @@ function prepDisplay (d) {
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
     poke.td_checkbox = checkBox + '>'
-    let tip = `Cost: Stardust ${1000} | Candy ${1}`
-    let tooltip = 'data-toggle="tooltip" data-placement="right" title="' + tip + '"'
+
+    let tip = `Stardust Cost = ${poke.stardust_cost} <br> Candy Cost = ${poke.candy_cost} <br> CP After ≅ ${Math.round(poke.next_cp) + poke.cp}`
+
+    let tooltip = 'data-toggle="tooltip" data-placement="right" data-html=true title="' + tip + '"'
     poke.td_powerup = '<a id="powerUp" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + tooltip + '>P↑</a>'
+
     poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
     poke.td_name = poke.name
     poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'

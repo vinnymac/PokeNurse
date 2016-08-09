@@ -235,19 +235,23 @@ ipcMain.on('get-players-pokemons', (event) => {
 
       let stats = baseStats[pokemon['pokemon_id']]
 
-      // let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
+      let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
 
       let attack = stats.BaseAttack + pokemon['individual_attack']
       let defense = stats.BaseDefense + pokemon['individual_defense']
       let stamina = stats.BaseStamina + pokemon['individual_stamina']
 
       let maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
+      let candyCost = utils.getStartdustCostsForPowerup(totalCpMultiplier, pokemon['num_upgrades'])
+      let stardustCost = utils.getCandyCostsForPowerup(totalCpMultiplier, pokemon['num_upgrades'])
+      let nextCP = utils.getCpAfterPowerup(pokemon['cp'], totalCpMultiplier)
 
       reducedPokemonList.push({
         cp: pokemon['cp'],
-        // TODO Rest of formula
-        // https://www.reddit.com/r/TheSilphRoad/comments/4t7r4d/exact_pokemon_cp_formula/
+        next_cp: nextCP,
         max_cp: maxCP,
+        candy_cost: candyCost,
+        stardust_cost: stardustCost,
         creation_time_ms: pokemon['creation_time_ms'].toString(),
         deployed: pokemon['deployed_fort_id'] !== '',
         id: pokemon['id'].toString(),
