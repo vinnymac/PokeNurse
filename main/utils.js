@@ -96,6 +96,32 @@ function getLevel (cpMultiplier) {
   return Math.round((level) * 2) / 2.0
 }
 
+function getMaxCostsForPowerup (trainerLevel, powerups, pokemonsCPMultiplier, transform, upgradesPerLevel = 2, allowedLevelsAbovePlayer = 2) {
+  let maxLevelOfPokemon = trainerLevel + allowedLevelsAbovePlayer
+  let currentLevelOfPokemon = utils.getLevelFromCpMultiplier(pokemonsCPMultiplier)
+
+  let numberOfUpgrades = (maxLevelOfPokemon - currentLevelOfPokemon) //* 2
+
+  let total = 0
+  let upgrades = 0
+
+  for (let key in levelCpMultiplier) {
+    if (parseFloat(key) >= currentLevelOfPokemon) {
+      if (upgrades === numberOfUpgrades) break
+      total += transform(levelCpMultiplier[key], powerups)
+      upgrades++
+    }
+  }
+
+  // just making an iterable array out of the numberOfUpgrades value
+  // Array.apply(null, Array(numberOfUpgrades)).forEach((v, i) => {
+  //   let multiplier = levelCpMultiplier[i + currentLevelOfPokemon]
+  //   total += utils.getCandyCostsForPowerup(multiplier, powerups)
+  // })
+
+  return total * 2
+}
+
 let utils = {
   levelCpMultiplier: levelCpMultiplier,
   getLevelFromCpMultiplier: (multiplier) => {
@@ -200,30 +226,19 @@ let utils = {
     }
     return (cp * 0.00445946079) / Math.pow(cpMultiplier, 2)
   },
-  getMaxCandyCostsForPowerup: (trainerLevel, powerups, pokemonsCPMultiplier, upgradesPerLevel = 2, allowedLevelsAbovePlayer = 2) => {
-    let maxLevelOfPokemon = trainerLevel + allowedLevelsAbovePlayer
-    let currentLevelOfPokemon = utils.getLevelFromCpMultiplier(pokemonsCPMultiplier)
-
-    let numberOfUpgrades = (maxLevelOfPokemon - currentLevelOfPokemon) //* 2
-
-    let total = 0
-    let upgrades = 0
-
-    for (let key in levelCpMultiplier) {
-      if (parseFloat(key) >= currentLevelOfPokemon) {
-        if (upgrades === numberOfUpgrades) break
-        total += utils.getCandyCostsForPowerup(levelCpMultiplier[key], powerups)
-        upgrades++
-      }
-    }
-    // just making an iterable array out of the numberOfUpgrades value
-    // Array.apply(null, Array(numberOfUpgrades)).forEach((v, i) => {
-    //   console.log(v, i)
-    //   let multiplier = levelCpMultiplier[i + currentLevelOfPokemon]
-    //   total += utils.getCandyCostsForPowerup(multiplier, powerups)
-    // })
-
-    return total * 2
+  testy: () => {
+    return [
+      utils.getMaxCandyCostsForPowerup(20, 0, 0.5974000096321106),
+      utils.getMaxStardustCostsForPowerup(20, 0, 0.5974000096321106),
+      utils.getMaxCandyCostsForPowerup(20, 0, 0.5507926940917969),
+      utils.getMaxStardustCostsForPowerup(20, 0, 0.5507926940917969)
+    ]
+  },
+  getMaxCandyCostsForPowerup: (trainerLevel, powerups, pokemonsCPMultiplier, upgradesPerLevel, allowedLevelsAbovePlayer) => {
+    return getMaxCostsForPowerup(trainerLevel, powerups, pokemonsCPMultiplier, utils.getCandyCostsForPowerup, upgradesPerLevel, allowedLevelsAbovePlayer)
+  },
+  getMaxStardustCostsForPowerup: (trainerLevel, powerups, pokemonsCPMultiplier, upgradesPerLevel, allowedLevelsAbovePlayer) => {
+    return getMaxCostsForPowerup(trainerLevel, powerups, pokemonsCPMultiplier, utils.getStardustCostsForPowerup, upgradesPerLevel, allowedLevelsAbovePlayer)
   }
 }
 
