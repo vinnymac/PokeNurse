@@ -22,14 +22,15 @@ function format (d) {
   // `d` is the original data object for the row
   let html = ''
 
+  let notSearchableAndOrderable = 'data-orderable="' + false + '" data-searchable="' + false + '"'
+
   html += '<table class="table table-condensed table-hover" id="' + d.pokemon_id + '" style="width:100%;">'
   html += '<thead>'
   html += '<tr>'
-  html += '<th width="5%" data-orderable="' + false + '" data-searchable="' + false + '">'
+  html += '<th width="5%" ' + notSearchableAndOrderable + '>'
   html += '<input type="checkbox" id="checkall"></th>'
-  html += '<th>'
-  html += '<span class="glyphicon glyphicon-star favorite-yellow"></span>'
-  html += '</th>'
+  html += '<th><span class="glyphicon glyphicon-star favorite-yellow"></span></th>'
+  html += '<th ' + notSearchableAndOrderable + '>P↑</th>'
   html += '<th>Name</th>'
   html += '<th>Nickname</th>'
   html += '<th>CP</th>'
@@ -42,6 +43,7 @@ function format (d) {
     html += '<tr>'
     html += '<td>' + poke.td_checkbox + '</td>'
     html += '<td data-order="' + poke.favorite + '">' + poke.td_favorite + '</td>'
+    html += '<td><a class="power-up">P↑</a></td>'
     html += '<td data-order="' + poke.name + i + '">' + poke.td_name + '</td>'
     html += '<td data-order="' + poke.nickname + i + '">' + poke.td_nickname + '</td>'
     html += '<td>' + poke.td_cp + '</td>'
