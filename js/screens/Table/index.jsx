@@ -14,6 +14,27 @@ let running = false
 
 // Helper Methods
 
+function runningCheck () {
+  if (running) {
+    ipc.send('error-message', 'An action is already running')
+    return true
+  }
+  return false
+}
+
+function countDown (method, index, statusH, callback) {
+  var interval = setInterval(() => {
+    statusH.innerHTML = method + ' / ' + index + ' second(s) left'
+    index--
+    if (index <= 0) {
+      clearInterval(interval)
+      running = false
+      statusH.innerHTML = 'Idle'
+      callback()
+    }
+  }, 1000)
+}
+
 function randomDelay (min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
@@ -22,14 +43,15 @@ function format (d) {
   // `d` is the original data object for the row
   let html = ''
 
+  let notSearchableAndOrderable = 'data-orderable="' + false + '" data-searchable="' + false + '"'
+
   html += '<table class="table table-condensed table-hover" id="' + d.pokemon_id + '" style="width:100%;">'
   html += '<thead>'
   html += '<tr>'
-  html += '<th width="5%" data-orderable="' + false + '" data-searchable="' + false + '">'
+  html += '<th width="5%" ' + notSearchableAndOrderable + '>'
   html += '<input type="checkbox" id="checkall"></th>'
-  html += '<th>'
-  html += '<span class="glyphicon glyphicon-star favorite-yellow"></span>'
-  html += '</th>'
+  html += '<th><span class="glyphicon glyphicon-star favorite-yellow"></span></th>'
+  html += '<th ' + notSearchableAndOrderable + '>P↑</th>'
   html += '<th>Name</th>'
   html += '<th>Nickname</th>'
   html += '<th>CP</th>'
@@ -42,6 +64,7 @@ function format (d) {
     html += '<tr>'
     html += '<td>' + poke.td_checkbox + '</td>'
     html += '<td data-order="' + poke.favorite + '">' + poke.td_favorite + '</td>'
+    html += '<td>' + poke.td_powerup + '</td>'
     html += '<td data-order="' + poke.name + i + '">' + poke.td_name + '</td>'
     html += '<td data-order="' + poke.nickname + i + '">' + poke.td_nickname + '</td>'
     html += '<td>' + poke.td_cp + '</td>'
@@ -66,6 +89,12 @@ function prepDisplay (d) {
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
     poke.td_checkbox = checkBox + '>'
+
+    let tip = `Stardust Cost = ${poke.stardust_cost} <br> Candy Cost = ${poke.candy_cost} <br> CP After ≅ ${Math.round(poke.next_cp) + poke.cp}`
+
+    let tooltip = 'data-toggle="tooltip" data-placement="right" data-html=true title="' + tip + '"'
+    poke.td_powerup = '<a id="powerUp" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + tooltip + '>P↑</a>'
+
     poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
     poke.td_name = poke.name
     poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
@@ -74,6 +103,22 @@ function prepDisplay (d) {
   }
 
   return d.pokemon
+}
+
+function addPowerUpButtonEvent () {
+  let buttons = document.querySelectorAll('#powerUp')
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      if (ipc.sendSync('confirmation-dialog', 'power up').success) {
+        ipc.send('power-up-pokemon', button.dataset.pokemonId, button.dataset.nickname)
+        setTimeout(() => {document.getElementById('refresh-btn').click()}, 1500)
+      }
+    })
+  })
+
+  // Enable Tooltips
+  $('[data-toggle="tooltip"]').tooltip()
 }
 
 function addFavoriteButtonEvent () {
@@ -220,7 +265,7 @@ const Table = React.createClass({
   },
 
   _handleTransfer () {
-    if (this._runningCheck()) return
+    if (runningCheck()) return
 
     var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall)')
 
@@ -234,7 +279,7 @@ const Table = React.createClass({
   },
 
   _handleEvolve () {
-    if (this._runningCheck()) return
+    if (runningCheck()) return
 
     var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall)')
 
@@ -247,28 +292,13 @@ const Table = React.createClass({
     }
   },
 
-  _runningCheck () {
-    if (running) {
-      ipc.send('error-message', 'An action is already running')
-      return true
-    }
-    return false
-  },
-
   _countDown (method, index) {
     let {statusH} = this.refs
 
-    var interval = setInterval(() => {
-      statusH.innerHTML = method + ' / ' + index + ' second(s) left'
-      index--
-      if (index <= 0) {
-        clearInterval(interval)
-        running = false
-        statusH.innerHTML = 'Idle'
-        ipc.send('error-message', 'Complete!')
-        this._refreshPokemonList()
-      }
-    }, 1000)
+    countDown(method, index, statusH, () => {
+      ipc.send('error-message', 'Complete!')
+      this._refreshPokemonList()
+    })
   },
 
   _refreshPokemonList () {
@@ -338,6 +368,7 @@ const Table = React.createClass({
     })
 
     addFavoriteButtonEvent()
+    addPowerUpButtonEvent()
   },
 
   _showModal (id, event) {

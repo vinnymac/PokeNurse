@@ -68,9 +68,22 @@ function showErrorMessage (message) {
   })
 }
 
+function showInformationMessage (message, title) {
+  dialog.showMessageBox(win, {
+    type: 'info',
+    buttons: ['OK'],
+    title: title,
+    message: message
+  })
+}
+
 // GENERAL
 ipcMain.on('error-message', (event, errorMessage) => {
   showErrorMessage(errorMessage)
+})
+
+ipcMain.on('information-dialog', (event, message, title) => {
+  showInformationMessage(message, title)
 })
 
 ipcMain.on('confirmation-dialog', (event, method) => {
@@ -78,7 +91,7 @@ ipcMain.on('confirmation-dialog', (event, method) => {
     type: 'question',
     buttons: ['Yes', 'Cancel'],
     title: 'Confirmation',
-    message: 'Are you sure you want to ' + method + ' the selected Pokemon?'
+    message: `Are you sure you want to ${method} the selected Pokemon?`
   }, response => {
     if (response === 1) {
       console.log('[!] ' + method + ' cancelled')
@@ -222,19 +235,23 @@ ipcMain.on('get-players-pokemons', (event) => {
 
       let stats = baseStats[pokemon['pokemon_id']]
 
-      // let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
+      let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
 
       let attack = stats.BaseAttack + pokemon['individual_attack']
       let defense = stats.BaseDefense + pokemon['individual_defense']
       let stamina = stats.BaseStamina + pokemon['individual_stamina']
 
       let maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
+      let candyCost = utils.getStartdustCostsForPowerup(totalCpMultiplier, pokemon['num_upgrades'])
+      let stardustCost = utils.getCandyCostsForPowerup(totalCpMultiplier, pokemon['num_upgrades'])
+      let nextCP = utils.getCpAfterPowerup(pokemon['cp'], totalCpMultiplier)
 
       reducedPokemonList.push({
         cp: pokemon['cp'],
-        // TODO Rest of formula
-        // https://www.reddit.com/r/TheSilphRoad/comments/4t7r4d/exact_pokemon_cp_formula/
+        next_cp: nextCP,
         max_cp: maxCP,
+        candy_cost: candyCost,
+        stardust_cost: stardustCost,
         creation_time_ms: pokemon['creation_time_ms'].toString(),
         deployed: pokemon['deployed_fort_id'] !== '',
         id: pokemon['id'].toString(),
@@ -306,6 +323,17 @@ ipcMain.on('get-players-pokemons', (event) => {
       species: finalList
     }
   })
+})
+
+ipcMain.on('power-up-pokemon', (event, id, nickname) => {
+  client.upgradePokemon(id)
+    .then(() => {
+      console.log(`[+] Upgraded Pokemon with id: ${id}`)
+      let message = `Upgraded ${nickname} succesfully!`
+      let title = `Power Up ${nickname}`
+      showInformationMessage(message, title)
+    })
+    .catch(console.error)
 })
 
 ipcMain.on('transfer-pokemon', (event, id, delay) => {
