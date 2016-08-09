@@ -296,7 +296,7 @@ const Table = React.createClass({
     let {statusH} = this.refs
 
     countDown(method, index, statusH, () => {
-      ipc.send('error-message', 'Complete!')
+      ipc.send('information-dialog', 'Complete!', `Finished ${method}`)
       this._refreshPokemonList()
     })
   },
