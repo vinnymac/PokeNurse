@@ -43,7 +43,7 @@ function format (d) {
     html += '<tr>'
     html += '<td>' + poke.td_checkbox + '</td>'
     html += '<td data-order="' + poke.favorite + '">' + poke.td_favorite + '</td>'
-    html += '<td><a class="power-up">P↑</a></td>'
+    html += '<td>' + poke.td_powerup + '</td>'
     html += '<td data-order="' + poke.name + i + '">' + poke.td_name + '</td>'
     html += '<td data-order="' + poke.nickname + i + '">' + poke.td_nickname + '</td>'
     html += '<td>' + poke.td_cp + '</td>'
@@ -68,6 +68,7 @@ function prepDisplay (d) {
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
     poke.td_checkbox = checkBox + '>'
+    poke.td_powerup = '<a id="powerUp" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '">P↑</a>'
     poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
     poke.td_name = poke.name
     poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
@@ -76,6 +77,16 @@ function prepDisplay (d) {
   }
 
   return d.pokemon
+}
+
+function addPowerUpButtonEvent () {
+  let buttons = document.querySelectorAll('#powerUp')
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      ipc.send('power-up-pokemon', button.dataset.pokemonId, button.dataset.nickname)
+    })
+  })
 }
 
 function addFavoriteButtonEvent () {
@@ -340,6 +351,7 @@ const Table = React.createClass({
     })
 
     addFavoriteButtonEvent()
+    addPowerUpButtonEvent()
   },
 
   _showModal (id, event) {

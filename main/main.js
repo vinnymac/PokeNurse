@@ -68,9 +68,22 @@ function showErrorMessage (message) {
   })
 }
 
+function showInformationMessage (message, title) {
+  dialog.showMessageBox(win, {
+    type: 'info',
+    buttons: ['OK'],
+    title: title,
+    message: message
+  })
+}
+
 // GENERAL
 ipcMain.on('error-message', (event, errorMessage) => {
   showErrorMessage(errorMessage)
+})
+
+ipcMain.on('information-dialog', (event, message, title) => {
+  showInformationMessage(message, title)
 })
 
 ipcMain.on('confirmation-dialog', (event, method) => {
@@ -306,6 +319,17 @@ ipcMain.on('get-players-pokemons', (event) => {
       species: finalList
     }
   })
+})
+
+ipcMain.on('power-up-pokemon', (event, id, nickname) => {
+  client.upgradePokemon(id)
+    .then(() => {
+      console.log(`[+] Upgraded Pokemon with id: ${id}`)
+      let message = `Upgraded ${nickname} succesfully!`
+      let title = `Power Up ${nickname}`
+      showInformationMessage(message, title)
+    })
+    .catch(console.error)
 })
 
 ipcMain.on('transfer-pokemon', (event, id, delay) => {
