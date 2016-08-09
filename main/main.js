@@ -91,7 +91,7 @@ ipcMain.on('confirmation-dialog', (event, method) => {
     type: 'question',
     buttons: ['Yes', 'Cancel'],
     title: 'Confirmation',
-    message: 'Are you sure you want to ' + method + ' the selected Pokemon?'
+    message: `Are you sure you want to ${method} the selected Pokemon?`
   }, response => {
     if (response === 1) {
       console.log('[!] ' + method + ' cancelled')

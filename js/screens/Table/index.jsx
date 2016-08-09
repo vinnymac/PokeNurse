@@ -14,6 +14,27 @@ let running = false
 
 // Helper Methods
 
+function runningCheck () {
+  if (running) {
+    ipc.send('error-message', 'An action is already running')
+    return true
+  }
+  return false
+}
+
+function countDown (method, index, statusH, callback) {
+  var interval = setInterval(() => {
+    statusH.innerHTML = method + ' / ' + index + ' second(s) left'
+    index--
+    if (index <= 0) {
+      clearInterval(interval)
+      running = false
+      statusH.innerHTML = 'Idle'
+      callback()
+    }
+  }, 1000)
+}
+
 function randomDelay (min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
@@ -89,7 +110,10 @@ function addPowerUpButtonEvent () {
 
   buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
-      ipc.send('power-up-pokemon', button.dataset.pokemonId, button.dataset.nickname)
+      if (ipc.sendSync('confirmation-dialog', 'power up').success) {
+        ipc.send('power-up-pokemon', button.dataset.pokemonId, button.dataset.nickname)
+        setTimeout(() => {document.getElementById('refresh-btn').click()}, 1500)
+      }
     })
   })
 
@@ -241,7 +265,7 @@ const Table = React.createClass({
   },
 
   _handleTransfer () {
-    if (this._runningCheck()) return
+    if (runningCheck()) return
 
     var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall)')
 
@@ -255,7 +279,7 @@ const Table = React.createClass({
   },
 
   _handleEvolve () {
-    if (this._runningCheck()) return
+    if (runningCheck()) return
 
     var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall)')
 
@@ -268,28 +292,13 @@ const Table = React.createClass({
     }
   },
 
-  _runningCheck () {
-    if (running) {
-      ipc.send('error-message', 'An action is already running')
-      return true
-    }
-    return false
-  },
-
   _countDown (method, index) {
     let {statusH} = this.refs
 
-    var interval = setInterval(() => {
-      statusH.innerHTML = method + ' / ' + index + ' second(s) left'
-      index--
-      if (index <= 0) {
-        clearInterval(interval)
-        running = false
-        statusH.innerHTML = 'Idle'
-        ipc.send('error-message', 'Complete!')
-        this._refreshPokemonList()
-      }
-    }, 1000)
+    countDown(method, index, statusH, () => {
+      ipc.send('error-message', 'Complete!')
+      this._refreshPokemonList()
+    })
   },
 
   _refreshPokemonList () {
