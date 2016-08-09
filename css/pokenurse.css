@@ -197,7 +197,7 @@ right: 0;
 }
 
 #pokemon_sprite_wrapper {
-height:215px;
+height:245px;
 position: relative;
 }
 
@@ -226,7 +226,7 @@ opacity: 0.3;
 position: absolute;
 bottom: 15px;
 right: 0px;
-left: 264.9px;
+left: 279px;
 height: 10px;
 width: 10px;
 background: #d8d8d8;

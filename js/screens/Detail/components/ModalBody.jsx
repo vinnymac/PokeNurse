@@ -67,6 +67,8 @@ const ModalBody = React.createClass({
       nickname,
       name,
       hp,
+      cp,
+      maxCP,
       type,
       weight,
       height,
@@ -79,6 +81,11 @@ const ModalBody = React.createClass({
 
     return (<div className='modal-body'>
       <div id='pokemon_sprite_wrapper'>
+        <div style={{textAlign: "center", fontSize: "11px"}}>
+          <span>CP</span>
+          <span style={{fontSize: "20px"}}>{cp}</span>
+          <span>{` (Max ${Math.floor(maxCP)})`}</span>
+        </div>
         <div id='pokemon_sprite_sphere_wrapper'>
           <div id='pokemon_sprite_sphere'></div>
           <div id='pokemon_sprite_sphere_dot' style={{WebkitTransform: transform}}></div>

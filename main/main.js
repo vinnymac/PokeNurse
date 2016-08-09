@@ -7,6 +7,7 @@ import installExtension, {REACT_DEVELOPER_TOOLS} from 'electron-devtools-install
 
 import menuTemplate from './main_menu'
 import baseStats from '../baseStats'
+import utils from './utils'
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -198,6 +199,8 @@ ipcMain.on('get-players-pokemons', (event) => {
       return
     }
 
+    let player = pogobuf.Utils.splitInventory(inventory)['player']
+
     var candies = pogobuf.Utils.splitInventory(inventory)['candies']
     var formattedCandies = {}
 
@@ -222,12 +225,10 @@ ipcMain.on('get-players-pokemons', (event) => {
       // let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
 
       let attack = stats.BaseAttack + pokemon['individual_attack']
-      let defense = Math.pow((stats.BaseDefense + pokemon['individual_defense']), 0.5)
-      let stamina = Math.pow((stats.BaseStamina + pokemon['individual_stamina']), 0.5)
+      let defense = stats.BaseDefense + pokemon['individual_defense']
+      let stamina = stats.BaseStamina + pokemon['individual_stamina']
 
-      var maxCP = Math.floor(attack * defense * stamina * Math.pow(0.790300, 2) / 10)
-
-      // (BaseAtk + IndAtk) * (BaseDef + IndDef)^0.5 * (BaseSta + IndSta)^0.5 * (0.790300)^2 / 10
+      let maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
 
       reducedPokemonList.push({
         cp: pokemon['cp'],
