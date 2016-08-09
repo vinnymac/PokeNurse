@@ -45,13 +45,11 @@ tbody > tr > td > a {
 
 /* Pokemon Detail CSS */
 
-.pokemon-avatar {
-  width: 80px;
-  height: 85px;
-}
-
-.pokemon-avatar > .pokemon-sprite {
-  transform: translate3d(-40px, -4px, 0px);
+.pokemon-avatar-sprite {
+  width: 48px;
+  height: 48px;
+  margin-top: -10px;
+  margin-bottom: -10px;
 }
 
 #mv_contents {
@@ -194,10 +192,11 @@ bottom: -30px;
 margin: auto;
 left: 0;
 right: 0;
+cursor: pointer;
 }
 
 #pokemon_sprite_wrapper {
-height:215px;
+height:245px;
 position: relative;
 }
 
@@ -226,7 +225,7 @@ opacity: 0.3;
 position: absolute;
 bottom: 15px;
 right: 0px;
-left: 264.9px;
+left: 279px;
 height: 10px;
 width: 10px;
 background: #d8d8d8;

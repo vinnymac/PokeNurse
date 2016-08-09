@@ -18,9 +18,7 @@ const ModalDialog = React.createClass({
             <button type='button' className='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
             <h4 className='modal-title' id='detailModalLabel'>{this.props.name}</h4>
           </div>
-          <div className='modal-body'>
-            <ModalBody {...this.props} />
-          </div>
+          <ModalBody {...this.props} />
           <div className='modal-footer'>
             <button type='button' className='btn btn-default' data-dismiss='modal'>Close</button>
           </div>
@@ -36,7 +34,7 @@ export default ($detailModal, {pokemon, species}) => {
   let maxDeg = 180
   let degree = Math.max(Math.min((pokemon.cp / pokemon.max_cp) * maxDeg, maxDeg), minDeg)
 
-  let transform = `rotate(${degree}deg) translate(-192px)`
+  let transform = `rotate(${degree}deg) translate(-193px)`
 
   let stats = baseStats[pokemon['pokemon_id']]
 
@@ -62,7 +60,7 @@ export default ($detailModal, {pokemon, species}) => {
   let spriteImageName = name.toLowerCase()
   if (spriteImageName.indexOf('nidoran') > -1) {
     let spriteParts = spriteImageName.split(' ')
-    spriteImageName = `${spriteParts[0]}-${spriteParts[1][0]}`
+    spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === '♂') ? 'm' : 'f'}`
   }
 
   let modalDialog = <ModalDialog
@@ -71,8 +69,11 @@ export default ($detailModal, {pokemon, species}) => {
     transform={transform}
     attack={attack}
     defense={defense}
+    id={species.pokemon_id}
     hp={hp}
     candies={candies}
+    cp={pokemon.cp}
+    maxCP={pokemon.max_cp}
     cpPerUpgrade={cpPerUpgrade}
     spriteImageName={spriteImageName}
     type={type}
