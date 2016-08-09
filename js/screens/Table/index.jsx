@@ -112,7 +112,7 @@ function addPowerUpButtonEvent () {
     button.addEventListener('click', (event) => {
       if (ipc.sendSync('confirmation-dialog', 'power up').success) {
         ipc.send('power-up-pokemon', button.dataset.pokemonId, button.dataset.nickname)
-        setTimeout(() => {document.getElementById('refresh-btn').click()}, 1500)
+        setTimeout(() => { document.getElementById('refresh-btn').click() }, 1500)
       }
     })
   })
@@ -323,7 +323,7 @@ const Table = React.createClass({
         },
         { data: 'pokemon_id' },
         {
-          className: "sprites",
+          className: 'sprites',
           orderable: false,
           data: ((p) => {
             return `<td><img class="pokemon-avatar-sprite" src="./imgs/pokemonSprites/${p.pokemon_id}.png"/></td>`

@@ -68,6 +68,7 @@ const ModalBody = React.createClass({
       name,
       hp,
       cp,
+      id,
       maxCP,
       type,
       weight,
@@ -90,7 +91,23 @@ const ModalBody = React.createClass({
           <div id='pokemon_sprite_sphere'></div>
           <div id='pokemon_sprite_sphere_dot' style={{WebkitTransform: transform}}></div>
         </div>
-        <img id='pokemon_profile_sprite' src={`http://www.pogo-dex.com/images/sprites/${spriteImageName}.png`} />
+
+        <img
+          onClick={this._handleCry}
+          title='Listen to Cry'
+          alt='Profile Sprite'
+          id='pokemon_profile_sprite'
+          src={`http://www.pogo-dex.com/images/sprites/${spriteImageName}.png`}
+        />
+        <audio
+          id='pokemonCry'
+          ref='cry'
+        >
+          <source
+            src={`./cries/${id}.ogg`}
+            type='audio/ogg'
+          />
+        </audio>
       </div>
 
       <div id='pokemon_contents'>
@@ -139,6 +156,9 @@ const ModalBody = React.createClass({
         </div>
       </div>
     </div>)
+  },
+  _handleCry () {
+    this.refs.cry.play()
   }
 })
 

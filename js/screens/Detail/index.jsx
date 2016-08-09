@@ -60,7 +60,7 @@ export default ($detailModal, {pokemon, species}) => {
   let spriteImageName = name.toLowerCase()
   if (spriteImageName.indexOf('nidoran') > -1) {
     let spriteParts = spriteImageName.split(' ')
-    spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === "♂") ? "m" : "f"}`
+    spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === '♂') ? 'm' : 'f'}`
   }
 
   let modalDialog = <ModalDialog
@@ -69,6 +69,7 @@ export default ($detailModal, {pokemon, species}) => {
     transform={transform}
     attack={attack}
     defense={defense}
+    id={species.pokemon_id}
     hp={hp}
     candies={candies}
     cp={pokemon.cp}

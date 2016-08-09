@@ -192,6 +192,7 @@ bottom: -30px;
 margin: auto;
 left: 0;
 right: 0;
+cursor: pointer;
 }
 
 #pokemon_sprite_wrapper {
