@@ -219,6 +219,7 @@ ipcMain.on('get-players-pokemons', (event) => {
       if (pokemon['cp'] === 0) continue
 
       var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
+	  pokemonName = pokemonName.replace("Female", "♀").replace("Male", "♂")
 
       let stats = baseStats[pokemon['pokemon_id']]
 
