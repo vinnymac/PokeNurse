@@ -239,6 +239,7 @@ const Table = React.createClass({
               <tr>
                 <th></th>
                 <th width='18%'>Pokédex #</th>
+                <th>Sprite</th>
                 <th>Name</th>
                 <th>Count</th>
                 <th>Candy</th>
@@ -321,6 +322,14 @@ const Table = React.createClass({
           defaultContent: ''
         },
         { data: 'pokemon_id' },
+        {
+          className: "sprites",
+          orderable: false,
+          data: ((p) => {
+            return `<td><img class="pokemon-avatar-sprite" src="./imgs/pokemonSprites/${p.pokemon_id}.png"/></td>`
+          }),
+          defaultContent: '<td><img src="./imgs/pokemonSprites/0.png"/></td>'
+        },
         { data: 'name' },
         { data: 'count' },
         { data: 'candy' },

@@ -45,13 +45,11 @@ tbody > tr > td > a {
 
 /* Pokemon Detail CSS */
 
-.pokemon-avatar {
-  width: 80px;
-  height: 85px;
-}
-
-.pokemon-avatar > .pokemon-sprite {
-  transform: translate3d(-40px, -4px, 0px);
+.pokemon-avatar-sprite {
+  width: 48px;
+  height: 48px;
+  margin-top: -10px;
+  margin-bottom: -10px;
 }
 
 #mv_contents {
