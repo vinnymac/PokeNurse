@@ -68,7 +68,9 @@ function prepDisplay (d) {
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
     poke.td_checkbox = checkBox + '>'
-    poke.td_powerup = '<a id="powerUp" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '">P↑</a>'
+    let tip = `Cost: Stardust ${1000} | Candy ${1}`
+    let tooltip = 'data-toggle="tooltip" data-placement="right" title="' + tip + '"'
+    poke.td_powerup = '<a id="powerUp" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + tooltip + '>P↑</a>'
     poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
     poke.td_name = poke.name
     poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
@@ -87,6 +89,9 @@ function addPowerUpButtonEvent () {
       ipc.send('power-up-pokemon', button.dataset.pokemonId, button.dataset.nickname)
     })
   })
+
+  // Enable Tooltips
+  $('[data-toggle="tooltip"]').tooltip()
 }
 
 function addFavoriteButtonEvent () {
