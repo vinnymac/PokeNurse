@@ -41,3 +41,7 @@ jspm_packages
 PokeNurse-darwin-x64
 PokeNurse-win32-ia32
 PokeNurse-win32-x64
+
+#Webstorm IDE
+.idea
+.idea/
