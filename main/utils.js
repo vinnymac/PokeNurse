@@ -103,8 +103,8 @@ function getMaxCostsForPowerup (trainerLevel, powerups, pokemonsCPMultiplier, tr
   let currentLevelOfPokemon = utils.getLevelFromCpMultiplier(pokemonsCPMultiplier)
 
   // Number of Upgrades to Maximum
-  // So if your current level was 3 and if it could max at 20, that would be 17 Upgrades * 2 Upl - 1 = 33 Upgrades
-  let numberOfUpgrades = ((maxLevelOfPokemon - currentLevelOfPokemon) * upgradesPerLevel) - 1
+  // So if your current level was 3 and if it could max at 20, that would be 17 Upgrades * 2 Upl = 34 Upgrades
+  let numberOfUpgrades = (maxLevelOfPokemon - currentLevelOfPokemon) * upgradesPerLevel
 
   // initialize our total cost for candies or dust
   let total = transform(levelCpMultiplier[currentLevelOfPokemon], powerups)
