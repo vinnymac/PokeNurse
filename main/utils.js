@@ -100,7 +100,7 @@ function getMaxCostsForPowerup (trainerLevel, powerups, pokemonsCPMultiplier, tr
   let maxLevelOfPokemon = trainerLevel + allowedLevelsAbovePlayer
   let currentLevelOfPokemon = utils.getLevelFromCpMultiplier(pokemonsCPMultiplier)
 
-  let numberOfUpgrades = (maxLevelOfPokemon - currentLevelOfPokemon) * 2
+  let numberOfUpgrades = (maxLevelOfPokemon - currentLevelOfPokemon) * upgradesPerLevel
 
   let total = 0
 
