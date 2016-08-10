@@ -108,7 +108,7 @@ function getMaxCostsForPowerup (trainerLevel, powerups, pokemonsCPMultiplier, tr
     let upgradeNumber = i + 1
     let levelSize = .5
     let level = (upgradeNumber * levelSize) + currentLevelOfPokemon
-    let currentPowerUps = powerups + upgradeNumber
+    let currentPowerUps = powerups + i
 
     total += transform(levelCpMultiplier[level], currentPowerUps)
   }
