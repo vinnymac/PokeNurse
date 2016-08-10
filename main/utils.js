@@ -103,14 +103,11 @@ function getMaxCostsForPowerup (trainerLevel, powerups, pokemonsCPMultiplier, tr
   let numberOfUpgrades = (maxLevelOfPokemon - currentLevelOfPokemon) * 2
 
   let total = 0
-  let upgrades = 0
 
-  // just making an iterable array out of the numberOfUpgrades value
-  Array.apply(null, Array(numberOfUpgrades)).forEach((v, index) => {
-    let level = ((index + 1) * .5) + currentLevelOfPokemon
-    let multiplier = levelCpMultiplier[level]
-    total += transform(multiplier, powerups)
-  })
+  for (let i = 0; i < numberOfUpgrades; i++) {
+    let level = ((i + 1) * .5) + currentLevelOfPokemon
+    total += transform(levelCpMultiplier[level], powerups)
+  }
 
   return total
 }
