@@ -110,7 +110,7 @@ let utils = {
 
     return attack * Math.pow(defense, 0.5) * Math.pow(stamina, 0.5) * Math.pow(maxCpMultiplier, 2.0) / 10.0
   },
-  getStartdustCostsForPowerup: (cpMultiplier, powerups) => {
+  getStardustCostsForPowerup: (cpMultiplier, powerups) => {
     let level = utils.getLevelFromCpMultiplier(cpMultiplier)
 
     if (level <= 3 && powerups <= 4) {
