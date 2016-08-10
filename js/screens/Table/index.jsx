@@ -313,6 +313,9 @@ const Table = React.createClass({
   },
 
   _refreshPokemonList () {
+	 document.querySelectorAll('td a.nickname').forEach(el => {
+      el.removeEventListener('click', this._showModal.bind(this, $(el).data('pokemon-id')), false)
+    })
     $('#pokemon-data').DataTable().destroy()
     monsters = ipc.sendSync('get-players-pokemons')
     if (monsters.success) this._dataTables(monsters.species)
