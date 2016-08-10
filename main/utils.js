@@ -96,6 +96,41 @@ function getLevel (cpMultiplier) {
   return Math.round((level) * 2) / 2.0
 }
 
+function getMaxCostsForPowerup (trainerLevel, powerups, pokemonsCPMultiplier, transform, upgradesPerLevel = 2, allowedLevelsAbovePlayer = 2) {
+  // The Maximum Level this pokemon can reach
+  let maxLevelOfPokemon = trainerLevel + allowedLevelsAbovePlayer
+  // The current level of the pokemon based on its `cp_multiplier` property
+  let currentLevelOfPokemon = utils.getLevelFromCpMultiplier(pokemonsCPMultiplier)
+
+  // Number of Upgrades to Maximum
+  // So if your current level was 3 and if it could max at 20, that would be 17 Upgrades * 2 Upl = 34 Upgrades
+  let numberOfUpgrades = (maxLevelOfPokemon - currentLevelOfPokemon) * upgradesPerLevel
+
+  // initialize our total cost for candies or dust
+  let total = transform(levelCpMultiplier[currentLevelOfPokemon], powerups)
+  powerups++
+
+  // The difference between any two adjacent levels +-
+  let levelSize = .5
+
+  for (let i = 0; i < numberOfUpgrades; i++) {
+    // The number that represents the current upgrade
+    let upgradeNumber = i + 1
+    // The level the pokemon will become if upgraded
+    // currentLevelOfPokemon could be 3, if the index is 0, upgradeNumber is 1
+    // so we get (1 * .5) + 3
+    let level = (upgradeNumber * levelSize) + currentLevelOfPokemon
+    // the number of power ups previously applied and the number we are applying
+    // so if you used 4, the first index is 0 so 4
+    let currentPowerUps = powerups + i
+
+    // a candy or dust cost calculated from a levels cp multiplier and the current number of power ups used
+    total += transform(levelCpMultiplier[level], currentPowerUps)
+  }
+
+  return total
+}
+
 let utils = {
   levelCpMultiplier: levelCpMultiplier,
   getLevelFromCpMultiplier: (multiplier) => {
@@ -113,61 +148,61 @@ let utils = {
   getStardustCostsForPowerup: (cpMultiplier, powerups) => {
     let level = utils.getLevelFromCpMultiplier(cpMultiplier)
 
-    if (level <= 3 && powerups <= 4) {
+    if (level <= 2.5 && powerups <= 5) {
       return 200
     }
-    if (level <= 4 && powerups <= 8) {
+    if (level <= 4.5 && powerups <= 9) {
       return 400
     }
-    if (level <= 7 && powerups <= 12) {
+    if (level <= 6.5 && powerups <= 13) {
       return 600
     }
-    if (level <= 8 && powerups <= 16) {
+    if (level <= 8.5 && powerups <= 17) {
       return 800
     }
-    if (level <= 11 && powerups <= 20) {
+    if (level <= 10.5 && powerups <= 21) {
       return 1000
     }
-    if (level <= 13 && powerups <= 24) {
+    if (level <= 12.5 && powerups <= 25) {
       return 1300
     }
-    if (level <= 15 && powerups <= 28) {
+    if (level <= 14.5 && powerups <= 29) {
       return 1600
     }
-    if (level <= 17 && powerups <= 32) {
+    if (level <= 16.5 && powerups <= 33) {
       return 1900
     }
-    if (level <= 19 && powerups <= 36) {
+    if (level <= 18.5 && powerups <= 37) {
       return 2200
     }
-    if (level <= 21 && powerups <= 40) {
+    if (level <= 20.5 && powerups <= 41) {
       return 2500
     }
-    if (level <= 23 && powerups <= 44) {
+    if (level <= 22.5 && powerups <= 45) {
       return 3000
     }
-    if (level <= 25 && powerups <= 48) {
+    if (level <= 24.5 && powerups <= 49) {
       return 3500
     }
-    if (level <= 27 && powerups <= 52) {
+    if (level <= 26.5 && powerups <= 53) {
       return 4000
     }
-    if (level <= 29 && powerups <= 56) {
+    if (level <= 28.5 && powerups <= 57) {
       return 4500
     }
-    if (level <= 31 && powerups <= 60) {
+    if (level <= 30.5 && powerups <= 61) {
       return 5000
     }
-    if (level <= 33 && powerups <= 64) {
+    if (level <= 32.5 && powerups <= 65) {
       return 6000
     }
-    if (level <= 35 && powerups <= 68) {
+    if (level <= 34.5 && powerups <= 69) {
       return 7000
     }
-    if (level <= 37 && powerups <= 72) {
+    if (level <= 36.5 && powerups <= 73) {
       return 8000
     }
-    if (level <= 39 && powerups <= 76) {
+    if (level <= 38.5 && powerups <= 77) {
       return 9000
     }
     return 10000
@@ -175,16 +210,31 @@ let utils = {
   getCandyCostsForPowerup: (cpMultiplier, powerups) => {
     let level = utils.getLevelFromCpMultiplier(cpMultiplier)
 
-    if (level <= 13 && powerups <= 20) {
+    if (level <= 10.5 && powerups <= 21) {
       return 1
     }
-    if (level <= 21 && powerups <= 36) {
+    if (level <= 20.5 && powerups <= 41) {
       return 2
     }
-    if (level <= 31 && powerups <= 60) {
+    if (level <= 25.5 && powerups <= 51) {
       return 3
     }
-    return 4
+    if (level <= 30.5 && powerups <= 61) {
+      return 4
+    }
+    if (level <= 32.5 && powerups <= 65) {
+      return 6
+    }
+    if (level <= 34.5 && powerups <= 69) {
+      return 8
+    }
+    if (level <= 36.5 && powerups <= 73) {
+      return 10
+    }
+    if (level <= 38.5 && powerups <= 77) {
+      return 12
+    }
+    return 15
   },
   getCpAfterPowerup: (cp, cpMultiplier) => {
     let level = utils.getLevelFromCpMultiplier(cpMultiplier)
@@ -199,6 +249,12 @@ let utils = {
       return (cp * 0.008924905903) / Math.pow(cpMultiplier, 2)
     }
     return (cp * 0.00445946079) / Math.pow(cpMultiplier, 2)
+  },
+  getMaxCandyCostsForPowerup: (trainerLevel, powerups, pokemonsCPMultiplier, upgradesPerLevel, allowedLevelsAbovePlayer) => {
+    return getMaxCostsForPowerup(trainerLevel, powerups, pokemonsCPMultiplier, utils.getCandyCostsForPowerup, upgradesPerLevel, allowedLevelsAbovePlayer)
+  },
+  getMaxStardustCostsForPowerup: (trainerLevel, powerups, pokemonsCPMultiplier, upgradesPerLevel, allowedLevelsAbovePlayer) => {
+    return getMaxCostsForPowerup(trainerLevel, powerups, pokemonsCPMultiplier, utils.getStardustCostsForPowerup, upgradesPerLevel, allowedLevelsAbovePlayer)
   }
 }
 

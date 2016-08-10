@@ -243,8 +243,10 @@ ipcMain.on('get-players-pokemons', (event) => {
       let stamina = stats.BaseStamina + pokemon['individual_stamina']
 
       let maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
-      let candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, pokemon['num_upgrades'])
-      let stardustCost = utils.getStardustCostsForPowerup(totalCpMultiplier, pokemon['num_upgrades'])
+      let candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
+      let stardustCost = utils.getStardustCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
+      let candyMaxCost = utils.getMaxCandyCostsForPowerup(player.level, pokemon.num_upgrades, pokemon.cp_multiplier)
+      let stardustMaxCost = utils.getMaxStardustCostsForPowerup(player.level, pokemon.num_upgrades, pokemon.cp_multiplier)
       let nextCP = utils.getCpAfterPowerup(pokemon['cp'], totalCpMultiplier)
 
       reducedPokemonList.push({
@@ -252,7 +254,9 @@ ipcMain.on('get-players-pokemons', (event) => {
         next_cp: nextCP,
         max_cp: maxCP,
         candy_cost: candyCost,
+        candy_max_cost: candyMaxCost,
         stardust_cost: stardustCost,
+        stardust_max_cost: stardustMaxCost,
         creation_time_ms: pokemon['creation_time_ms'].toString(),
         deployed: pokemon['deployed_fort_id'] !== '',
         id: pokemon['id'].toString(),
