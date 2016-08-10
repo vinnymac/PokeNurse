@@ -245,8 +245,8 @@ ipcMain.on('get-players-pokemons', (event) => {
       let maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
       let candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
       let stardustCost = utils.getStardustCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
-      let candyMaxCost = utils.getMaxCandyCostsForPowerup(player.level, pokemon.num_upgrades, pokemon.cp_multiplier)
-      let stardustMaxCost = utils.getMaxStardustCostsForPowerup(player.level, pokemon.num_upgrades, pokemon.cp_multiplier)
+      let candyMaxCost = utils.getMaxCandyCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
+      let stardustMaxCost = utils.getMaxStardustCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
       let nextCP = utils.getCpAfterPowerup(pokemon['cp'], totalCpMultiplier)
 
       reducedPokemonList.push({
