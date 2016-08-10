@@ -148,61 +148,61 @@ let utils = {
   getStardustCostsForPowerup: (cpMultiplier, powerups) => {
     let level = utils.getLevelFromCpMultiplier(cpMultiplier)
 
-    if (level <= 2.5 && powerups <= 4) {
+    if (level <= 2.5 && powerups <= 5) {
       return 200
     }
-    if (level <= 4.5 && powerups <= 8) {
+    if (level <= 4.5 && powerups <= 9) {
       return 400
     }
-    if (level <= 6.5 && powerups <= 12) {
+    if (level <= 6.5 && powerups <= 13) {
       return 600
     }
-    if (level <= 8.5 && powerups <= 16) {
+    if (level <= 8.5 && powerups <= 17) {
       return 800
     }
-    if (level <= 10.5 && powerups <= 20) {
+    if (level <= 10.5 && powerups <= 21) {
       return 1000
     }
-    if (level <= 12.5 && powerups <= 24) {
+    if (level <= 12.5 && powerups <= 25) {
       return 1300
     }
-    if (level <= 14.5 && powerups <= 28) {
+    if (level <= 14.5 && powerups <= 29) {
       return 1600
     }
-    if (level <= 16.5 && powerups <= 32) {
+    if (level <= 16.5 && powerups <= 33) {
       return 1900
     }
-    if (level <= 18.5 && powerups <= 36) {
+    if (level <= 18.5 && powerups <= 37) {
       return 2200
     }
-    if (level <= 20.5 && powerups <= 40) {
+    if (level <= 20.5 && powerups <= 41) {
       return 2500
     }
-    if (level <= 22.5 && powerups <= 44) {
+    if (level <= 22.5 && powerups <= 45) {
       return 3000
     }
-    if (level <= 24.5 && powerups <= 48) {
+    if (level <= 24.5 && powerups <= 49) {
       return 3500
     }
-    if (level <= 26.5 && powerups <= 52) {
+    if (level <= 26.5 && powerups <= 53) {
       return 4000
     }
-    if (level <= 28.5 && powerups <= 56) {
+    if (level <= 28.5 && powerups <= 57) {
       return 4500
     }
-    if (level <= 30.5 && powerups <= 60) {
+    if (level <= 30.5 && powerups <= 61) {
       return 5000
     }
-    if (level <= 32.5 && powerups <= 64) {
+    if (level <= 32.5 && powerups <= 65) {
       return 6000
     }
-    if (level <= 34.5 && powerups <= 68) {
+    if (level <= 34.5 && powerups <= 69) {
       return 7000
     }
-    if (level <= 36.5 && powerups <= 72) {
+    if (level <= 36.5 && powerups <= 73) {
       return 8000
     }
-    if (level <= 38.5 && powerups <= 76) {
+    if (level <= 38.5 && powerups <= 77) {
       return 9000
     }
     return 10000
@@ -210,16 +210,31 @@ let utils = {
   getCandyCostsForPowerup: (cpMultiplier, powerups) => {
     let level = utils.getLevelFromCpMultiplier(cpMultiplier)
 
-    if (level <= 10.5 && powerups <= 20) {
+    if (level <= 10.5 && powerups <= 21) {
       return 1
     }
-    if (level <= 20.5 && powerups <= 36) {
+    if (level <= 20.5 && powerups <= 41) {
       return 2
     }
-    if (level <= 30.5 && powerups <= 60) {
+    if (level <= 25.5 && powerups <= 51) {
       return 3
     }
-    return 4
+    if (level <= 30.5 && powerups <= 61) {
+      return 4
+    }
+    if (level <= 32.5 && powerups <= 65) {
+      return 6
+    }
+    if (level <= 34.5 && powerups <= 69) {
+      return 8
+    }
+    if (level <= 36.5 && powerups <= 73) {
+      return 10
+    }
+    if (level <= 38.5 && powerups <= 77) {
+      return 12
+    }
+    return 15
   },
   getCpAfterPowerup: (cp, cpMultiplier) => {
     let level = utils.getLevelFromCpMultiplier(cpMultiplier)
