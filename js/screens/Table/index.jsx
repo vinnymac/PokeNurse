@@ -90,7 +90,13 @@ function prepDisplay (d) {
 
     poke.td_checkbox = checkBox + '>'
 
-    let tip = `Stardust Cost = ${poke.stardust_cost} <br> Candy Cost = ${poke.candy_cost} <br> CP After ≅ ${Math.round(poke.next_cp) + poke.cp}`
+    let tip = `
+    Stardust Cost = ${poke.stardust_cost} <br>
+    Candy Cost = ${poke.candy_cost} <br>
+    CP After ≅ ${Math.round(poke.next_cp) + poke.cp} <br>
+    Max Stardust = ${poke.stardust_max_cost} <br>
+    Max Candy = ${poke.candy_max_cost}
+    `
 
     let tooltip = 'data-toggle="tooltip" data-placement="right" data-html=true title="' + tip + '"'
     poke.td_powerup = '<a id="powerUp" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + tooltip + '>P↑</a>'
