@@ -143,7 +143,7 @@ let utils = {
     let maxPokemonLevel = Math.min(40.5, trainerLevel + 1.5)
     let maxCpMultiplier = levelCpMultiplier[maxPokemonLevel]
 
-    return attack * Math.pow(defense, 0.5) * Math.pow(stamina, 0.5) * Math.pow(maxCpMultiplier, 2.0) / 10.0
+    return Math.floor(attack * Math.pow(defense, 0.5) * Math.pow(stamina, 0.5) * Math.pow(maxCpMultiplier, 2.0) / 10)
   },
   getStardustCostsForPowerup: (cpMultiplier, powerups) => {
     let level = utils.getLevelFromCpMultiplier(cpMultiplier)

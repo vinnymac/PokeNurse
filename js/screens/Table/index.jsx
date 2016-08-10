@@ -77,6 +77,10 @@ function format (d) {
   return html
 }
 
+function getTooltipAttributes (tip) {
+  return `data-toggle="tooltip" data-placement="right" data-html=true title="${tip}"`
+}
+
 function prepDisplay (d) {
   for (var i = 0; i < d.pokemon.length; i++) {
     var poke = d.pokemon[i]
@@ -90,16 +94,20 @@ function prepDisplay (d) {
 
     poke.td_checkbox = checkBox + '>'
 
-    let tip = `
-    Stardust Cost = ${poke.stardust_cost} <br>
-    Candy Cost = ${poke.candy_cost} <br>
-    CP After ≅ ${Math.round(poke.next_cp) + poke.cp} <br>
-    Max Stardust = ${poke.stardust_max_cost} <br>
-    Max Candy = ${poke.candy_max_cost}
-    `
+    if (poke.cp === poke.max_cp) {
+      let tip = `Max CP ${poke.max_cp}`
+      poke.td_powerup = '<span ' + getTooltipAttributes(tip) + '>P↑</span>'
+    } else {
+      let tip = `
+      Stardust Cost = ${poke.stardust_cost} <br>
+      Candy Cost = ${poke.candy_cost} <br>
+      CP After ≅ ${Math.round(poke.next_cp) + poke.cp} <br>
+      Max Stardust = ${poke.stardust_max_cost} <br>
+      Max Candy = ${poke.candy_max_cost}
+      `
+      poke.td_powerup = '<a id="powerUp" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + getTooltipAttributes(tip) + '>P↑</a>'
+    }
 
-    let tooltip = 'data-toggle="tooltip" data-placement="right" data-html=true title="' + tip + '"'
-    poke.td_powerup = '<a id="powerUp" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + tooltip + '>P↑</a>'
 
     poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
     poke.td_name = poke.name
