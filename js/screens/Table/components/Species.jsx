@@ -31,6 +31,9 @@ const Species = React.createClass({
                             Pokedex #
                         </th>
                         <th>
+                          Sprite
+                        </th>
+                        <th>
                             Name
                         </th>
                         <th>
@@ -66,6 +69,9 @@ const Species = React.createClass({
               onClick={this.handleCollapse.bind(this, species.pokemon_id)}
             />
             <td>{species.pokemon_id}</td>
+            <td className='sprites'>
+              <img className='pokemon-avatar-sprite' src={`./imgs/pokemonSprites/${species.pokemon_id || 0}.png`}/>
+            </td>
             <td>{species.name}</td>
             <td>{species.count}</td>
             <td>{species.candy}</td>
