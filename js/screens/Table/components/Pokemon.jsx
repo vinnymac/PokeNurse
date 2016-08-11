@@ -1,5 +1,4 @@
 import React from 'react'
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 
 function prepDisplay(d) {
     for (var i = 0; i < d.pokemon.length; i++) {
