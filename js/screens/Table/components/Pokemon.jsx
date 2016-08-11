@@ -3,39 +3,39 @@ import renderModal from '../../Detail'
 
 const Pokemon = React.createClass({
     render () {
-        let {species} = this.props
+      let {species} = this.props
 
-        return (
-            <tr className='child' key={'sub' + species.pokemon_id}>
-                <td colSpan='7'>
-                    <table className='table table-condensed table-hover'>
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>
-                                <span className='glyphicon glyphicon-star favorite-yellow'></span>
-                            </th>
-                            <th>
-                                Name
-                            </th>
-                            <th>
-                                Nickname
-                            </th>
-                            <th>
-                                CP
-                            </th>
-                            <th>
-                                IV
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.getPokemonComponents(species)}
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        )
+      return (
+        <tr className='child' key={'sub' + species.pokemon_id}>
+          <td colSpan='7'>
+            <table className='table table-condensed table-hover'>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>
+                    <span className='glyphicon glyphicon-star favorite-yellow'></span>
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Nickname
+                  </th>
+                  <th>
+                    CP
+                  </th>
+                  <th>
+                    IV
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.getPokemonComponents(species)}
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      )
     },
 
     getPokemonComponents (species) {
