@@ -78,6 +78,7 @@ const Pokemon = React.createClass({
               id='favoriteBtn'
               data-pokemon-id={pokemon.id}
               data-pokemon-favorited={favoriteBool}
+              onClick={this.handleClickFavorite(this, pokemon)}
             />
           </td>
           <td>
@@ -94,6 +95,10 @@ const Pokemon = React.createClass({
           </td>
         </tr>)
     })
+  },
+
+  handleClickFavorite (pokemon, e) {
+    console.log(pokemon)
   },
 
   handleClickNickname (pokemon, species, e) {
