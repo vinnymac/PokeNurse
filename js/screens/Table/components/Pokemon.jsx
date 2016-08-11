@@ -1,28 +1,6 @@
 import React from 'react'
 import renderModal from '../../Detail'
 
-function prepDisplay (d) {
-  for (var i = 0; i < d.pokemon.length; i++) {
-    var poke = d.pokemon[i]
-    var checkBox = '<input type="checkbox" value="' + poke.id.toString() + '"'
-    // var favorite = 'glyphicon glyphicon-star-empty'
-    var pokeiv = poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
-    // var favoriteBool = poke['favorite'] ? 'true' : 'false'
-
-    if (poke.deployed) checkBox += ' disabled'
-    // if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
-
-    poke.td_checkbox = checkBox + '>'
-    // poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
-    poke.td_name = poke.name
-    poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
-    poke.td_cp = poke.cp
-    poke.td_pokeiv = pokeiv
-  }
-
-  return d.pokemon
-}
-
 const Pokemon = React.createClass({
   render () {
     let {species} = this.props
@@ -61,16 +39,19 @@ const Pokemon = React.createClass({
   },
 
   getPokemonComponents (species) {
-    return prepDisplay(species).map((pokemon) => {
-      // let checkBox = '<input type="checkbox" value="' + pokemon.id.toString() + '"'
+    return species.pokemon.map((pokemon) => {
       let favorite = pokemon.favorite ? 'glyphicon glyphicon-star favorite-yellow' : 'glyphicon glyphicon-star-empty'
-      // let pokeiv = pokemon['iv'] + '% (' + pokemon['attack'] + '/' + pokemon['defense'] + '/' + pokemon['stamina'] + ')'
       let favoriteBool = pokemon.favorite ? 'true' : 'false'
+      let pokeiv = pokemon['iv'] + '% (' + pokemon['attack'] + '/' + pokemon['defense'] + '/' + pokemon['stamina'] + ')'
 
       return (
         <tr key={pokemon.id}>
           <td>
-            <span dangerouslySetInnerHTML={{__html: pokemon.td_checkbox}}></span>
+            <input
+              type='checkbox'
+              value={String(pokemon.id)}
+              disabled={pokemon.deployed}
+            />
           </td>
           <td>
             <span
@@ -78,20 +59,25 @@ const Pokemon = React.createClass({
               id='favoriteBtn'
               data-pokemon-id={pokemon.id}
               data-pokemon-favorited={favoriteBool}
-              onClick={this.handleClickFavorite(this, pokemon)}
+              onClick={this.handleClickFavorite.bind(this, pokemon)}
             />
           </td>
           <td>
-            {pokemon.td_name}
+            {pokemon.name}
           </td>
           <td onClick={this.handleClickNickname.bind(this, pokemon, species)}>
-            <span dangerouslySetInnerHTML={{__html: pokemon.td_nickname}}></span>
+            <a
+              className='nickname'
+              data-pokemon-id={pokemon.id}
+            >
+              {pokemon.nickname}
+            </a>
           </td>
           <td>
-            {pokemon.td_cp}
+            {pokemon.cp}
           </td>
           <td>
-            {pokemon.td_pokeiv}
+            {pokeiv}
           </td>
         </tr>)
     })
