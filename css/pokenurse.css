@@ -669,9 +669,9 @@ tr.shown td.details-control:before {
   content:"\e082";
 }
 
-table.dataTable.display tbody tr.child {
+table tbody tr.child {
     background: white;
 }
-table.dataTable.display tbody tr table tr:hover {
+table tbody tr.child:hover {
     background: none;
 }
