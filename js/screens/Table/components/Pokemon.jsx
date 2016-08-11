@@ -4,39 +4,47 @@ import renderModal from '../../Detail'
 const Pokemon = React.createClass({
 
   getInitialState () {
-    var rowState = []
-    for (var i = 0; i < this.props.species.pokemon.length; i++) {
-      rowState[ i ] = false
-    }
+    let rowState = []
+    this.props.species.pokemon.forEach((p, i) => {
+      rowState.push(false)
+    })
+
     return {
       checkAll: false,
       rowState: rowState
     }
   },
 
-  checkRow (id, value) {
-    this.state.rowState[ id ] = value
-    if (this.state.checkAll) {
-      this.state.checkAll = !this.state.checkAll
-    }
+  checkRow (index, event) {
+    let newRowState = []
+
+    this.state.rowState.forEach((v, i) => {
+      if (i === index) {
+        newRowState.push(event.target.checked)
+      } else {
+        newRowState.push(v)
+      }
+    })
+
+    let newCheckAllState = this.state.checkAll ? !this.state.checkAll : false
+
     this.setState({
-      rowState: this.state.rowState,
-      checkAll: this.state.checkAll
+      rowState: newRowState,
+      checkAll: newCheckAllState
     })
   },
 
   checkAll () {
-    var rowState = [];
-    var checkState = !this.state.checkAll
-    for (var i = 0; i < this.state.rowState.length; i++) {
-      rowState[ i ] = checkState
-    }
+    let rowState = []
+    let checkState = !this.state.checkAll
 
-    this.state.checkAll = checkState
+    this.state.rowState.forEach((row, i) => {
+      rowState[ i ] = checkState
+    })
 
     this.setState({
       rowState: rowState,
-      checkAll: this.state.checkAll
+      checkAll: checkState
     })
   },
 
@@ -139,7 +147,6 @@ const Pokemon = React.createClass({
           <td>
             <input
               type='checkbox'
-              value={String(pokemon.id)}
               key={i}
               disabled={pokemon.deployed || pokemon.favorite}
               checked={this.state.rowState[ i ]}
