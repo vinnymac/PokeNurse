@@ -1,4 +1,5 @@
 import React from 'react'
+import renderModal from '../../Detail'
 
 function prepDisplay(d) {
     for (var i = 0; i < d.pokemon.length; i++) {
@@ -54,23 +55,37 @@ const Pokemon = React.createClass({
                         </tr>
                         </thead>
                         <tbody>
-                        {prepDisplay(species).map(function (pokemon) {
-                            return (
-                                <tr key={pokemon.id}>
-                                    <td><span dangerouslySetInnerHTML={{__html: pokemon.td_checkbox}}></span></td>
-                                    <td><span dangerouslySetInnerHTML={{__html: pokemon.td_favorite}}></span></td>
-                                    <td>{pokemon.td_name}</td>
-                                    <td><span dangerouslySetInnerHTML={{__html: pokemon.td_nickname}}></span></td>
-                                    <td>{pokemon.td_cp}</td>
-                                    <td>{pokemon.td_pokeiv}</td>
-                                </tr>)
-                        })}
+                        {this.getPokemonComponents(species)}
                         </tbody>
                     </table>
                 </td>
             </tr>
         )
     },
+
+    getPokemonComponents (species) {
+      return prepDisplay(species).map( (pokemon) => {
+        return (
+          <tr key={pokemon.id}>
+            <td>
+              <span dangerouslySetInnerHTML={{__html: pokemon.td_checkbox}}></span>
+            </td>
+            <td>
+              <span dangerouslySetInnerHTML={{__html: pokemon.td_favorite}}></span>
+            </td>
+            <td>{pokemon.td_name}</td>
+            <td onClick = {this.handleClickNickname.bind(this, pokemon, species)}>
+              <span dangerouslySetInnerHTML={{__html: pokemon.td_nickname}}></span>
+            </td>
+            <td>{pokemon.td_cp}</td>
+            <td>{pokemon.td_pokeiv}</td>
+          </tr>)
+      })
+    },
+
+    handleClickNickname (pokemon, species, e) {
+      renderModal($(document.getElementById('detailModal')), pokemon, species)
+    }
 
 })
 
