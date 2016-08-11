@@ -2,8 +2,47 @@ import React from 'react'
 import renderModal from '../../Detail'
 
 const Pokemon = React.createClass({
+
+  getInitialState () {
+    var rowState = []
+    for (var i = 0; i < this.props.species.pokemon.length; i++) {
+      rowState[ i ] = false
+    }
+    return {
+      checkAll: false,
+      rowState: rowState
+    }
+  },
+
+  checkRow (id, value) {
+    this.state.rowState[ id ] = value
+    if (this.state.checkAll) {
+      this.state.checkAll = !this.state.checkAll
+    }
+    this.setState({
+      rowState: this.state.rowState,
+      checkAll: this.state.checkAll
+    })
+  },
+
+  checkAll () {
+    var rowState = [];
+    var checkState = !this.state.checkAll
+    for (var i = 0; i < this.state.rowState.length; i++) {
+      rowState[ i ] = checkState
+    }
+
+    this.state.checkAll = checkState
+
+    this.setState({
+      rowState: rowState,
+      checkAll: this.state.checkAll
+    })
+  },
+
   componentDidMount () {
     $(this.refs.tooltip).tooltip()
+    console.log(this.state.rowState)
   },
 
   componentDidUpdate () {
@@ -11,37 +50,43 @@ const Pokemon = React.createClass({
   },
 
   render () {
-    let {species} = this.props
+    let { species } = this.props
 
     return (
       <tr className='child' key={'sub' + species.pokemon_id}>
         <td colSpan='7'>
           <table className='table table-condensed table-hover'>
             <thead>
-              <tr>
-                <th width='5%'><input type='checkbox' /></th>
-                <th width='5%'>
-                  <span className='glyphicon glyphicon-star favorite-yellow'></span>
-                </th>
-                <th>
-                  P↑
-                </th>
-                <th width='15%'>
-                  Name
-                </th>
-                <th>
-                  Nickname
-                </th>
-                <th>
-                  CP
-                </th>
-                <th>
-                  IV
-                </th>
-              </tr>
+            <tr>
+              <th width='5%'>
+                <input
+                  type='checkbox'
+                  checked={this.state.checkAll}
+                  onChange={this.checkAll}
+                />
+              </th>
+              <th width='5%'>
+                <span className='glyphicon glyphicon-star favorite-yellow'></span>
+              </th>
+              <th>
+                P↑
+              </th>
+              <th width='15%'>
+                Name
+              </th>
+              <th>
+                Nickname
+              </th>
+              <th>
+                CP
+              </th>
+              <th>
+                IV
+              </th>
+            </tr>
             </thead>
             <tbody>
-              {this.getPokemonComponents(species)}
+            {this.getPokemonComponents(species)}
             </tbody>
           </table>
         </td>
@@ -50,10 +95,10 @@ const Pokemon = React.createClass({
   },
 
   getPokemonComponents (species) {
-    return species.pokemon.map((pokemon) => {
+    return species.pokemon.map((pokemon, i) => {
       let favorite = pokemon.favorite ? 'glyphicon glyphicon-star favorite-yellow' : 'glyphicon glyphicon-star-empty'
       let favoriteBool = pokemon.favorite ? 'true' : 'false'
-      let pokeiv = pokemon['iv'] + '% (' + pokemon['attack'] + '/' + pokemon['defense'] + '/' + pokemon['stamina'] + ')'
+      let pokeiv = pokemon[ 'iv' ] + '% (' + pokemon[ 'attack' ] + '/' + pokemon[ 'defense' ] + '/' + pokemon[ 'stamina' ] + ')'
       let powerupComponent
 
       if (pokemon.cp === pokemon.max_cp) {
@@ -95,7 +140,10 @@ const Pokemon = React.createClass({
             <input
               type='checkbox'
               value={String(pokemon.id)}
+              key={i}
               disabled={pokemon.deployed || pokemon.favorite}
+              checked={this.state.rowState[ i ]}
+              onChange={this.checkRow.bind(this, i)}
             />
           </td>
         </tr>
