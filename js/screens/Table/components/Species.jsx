@@ -54,8 +54,13 @@ const Species = React.createClass({
 
     getPokemonComponents (monsterSpecies) {
       return monsterSpecies.map((species) => {
+        let collapsed = this.state.species[species.pokemon_id].collapsed
+
         return ([
-          <tr key={"header" + species.pokemon_id}>
+          <tr
+            className={collapsed ? '' : 'shown'}
+            key={"header" + species.pokemon_id}
+          >
             <td
               className="details-control"
               onClick={this.handleCollapse.bind(this, species.pokemon_id)}
@@ -65,13 +70,13 @@ const Species = React.createClass({
             <td>{species.count}</td>
             <td>{species.candy}</td>
             <td>{species.evolves}</td>
-          </tr>, this.getPokemonTable(species)
+          </tr>, this.getPokemonTable(species, collapsed)
         ])
       })
     },
 
-    getPokemonTable (species) {
-      if (this.state.species[species.pokemon_id].collapsed) return null
+    getPokemonTable (species, collapsed) {
+      if (collapsed) return null
 
       return (<PokemonTable
         species={species}
