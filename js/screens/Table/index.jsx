@@ -181,6 +181,30 @@ function findPokemonMapById (id) {
 
 const Table = React.createClass({
 
+  childContextTypes: {
+    monsterUpdater: React.PropTypes.func.isRequired
+  },
+
+  getChildContext () {
+    return {
+      monsterUpdater: this.updateMonster
+    }
+  },
+
+  updateMonster (pokemon) {
+    // TODO do this immutably, or at least pass in the speciesIndex and pokemonIndex
+    let speciesIndex = this.state.monsters.species.findIndex((s) => {return s.pokemon_id === String(pokemon.pokemon_id)})
+    let species = this.state.monsters.species[speciesIndex]
+    let index = species.pokemon.findIndex((p) => {return p.id === pokemon.id})
+    species.pokemon[index] = pokemon
+    this.state.monsters.species[speciesIndex] = species
+
+    this.setState({
+      monsters: Object.assign({}, this.state.monsters)
+    })
+    console.log("UPDATING monsters with", pokemon)
+  },
+
   getInitialState () {
     return {
       monsters: ipc.sendSync('get-players-pokemons')

@@ -5,6 +5,10 @@ import $ from 'jquery'
 
 const Pokemon = React.createClass({
 
+  contextTypes: {
+    monsterUpdater : React.PropTypes.func.isRequired
+  },
+
   getInitialState () {
     let rowState = []
     this.props.species.pokemon.forEach((p, i) => {
@@ -189,6 +193,8 @@ const Pokemon = React.createClass({
 
   handleClickFavorite (pokemon, e) {
     ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
+    let updatedPokemon = Object.assign(pokemon, {favorite: !pokemon.favorite ? -1 : -0})
+    this.context.monsterUpdater(updatedPokemon)
     // TODO Update the data immediately to reflect favorite
     // updatePokemonById(button.dataset.pokemonId, 'favorite', setToFavorite)
   },
