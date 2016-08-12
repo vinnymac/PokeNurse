@@ -89,11 +89,7 @@ function prepDisplay (d) {
     var pokeiv = poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
     var favoriteBool = poke['favorite'] ? 'true' : 'false'
 
-    if (poke.deployed || poke.favorite) {
-      checkBox += ' disabled'
-    } else {
-      checkBox += ' enabled'
-    }
+    if (poke.deployed || poke.favorite) checkBox += ' disabled'
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
     poke.td_checkbox = checkBox + '>'
