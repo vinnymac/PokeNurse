@@ -15,7 +15,7 @@ let win
 let client
 
 function createWindow () {
-  win = new BrowserWindow({ width: 800, height: 375, title: 'PokéNurse', icon: 'imgs/emojioneicon.png', show: false })
+  win = new BrowserWindow({ width: 800, height: 550, title: 'PokéNurse', icon: 'imgs/emojioneicon.png', show: false })
   // win.setMenu(null)
   win.loadURL(`file://${__dirname}/../index.html`)
   win.once('ready-to-show', () => {

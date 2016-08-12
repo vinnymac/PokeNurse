@@ -19,72 +19,79 @@ const Login = React.createClass({
     } = this.props
 
     return (
-      <div className='container'>
-        <div className='form-group btn-group' data-toggle='buttons'>
-          <label className='btn btn-info active noselect'>
-            <input
-              type='radio'
-              name='auth-radio'
-              id='auth0'
-              value={AUTH_METHODS.google}
-              checked={this.state.authMethod === AUTH_METHODS.google}
-              onChange={this._handleChangeAuth}
-            />
-            Google
-          </label>
-          <label className='btn btn-info noselect'>
-            <input
-              type='radio'
-              name='auth-radio'
-              id='auth1'
-              value={AUTH_METHODS.ptc}
-              checked={this.state.authMethod === AUTH_METHODS.ptc}
-              onChange={this._handleChangeAuth}
-            />
-            Pokémon Trainer Club
-          </label>
+      <div className='bg-holder login-holder'>
+        <div id='leaves'>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
         </div>
+        <div className='main'>
+          <form className='container_login'>
+            <div className='switch switch--horizontal'>
+              <input
+                type='radio'
+                name='auth-radio'
+                id='auth0'
+                value={AUTH_METHODS.google}
+                checked={this.state.authMethod === AUTH_METHODS.google}
+                onChange={this._handleChangeAuth}
+              />
+              <label htmlFor='auth0'>Google</label>
+              <input
+                type='radio'
+                name='auth-radio'
+                id='auth1'
+                value={AUTH_METHODS.ptc}
+                checked={this.state.authMethod === AUTH_METHODS.ptc}
+                onChange={this._handleChangeAuth}
+              />
+              <label htmlFor='auth1'>PTC</label>
+              <span className="toggle-outside"><span className="toggle-inside"></span></span>
+            </div>
 
-        <div className='form-group input-group'>
-          <span className='input-group-addon'><span className='glyphicon glyphicon-user' aria-hidden='true'></span></span>
-          <input
-            type='text'
-            className='form-control'
-            placeholder='Username'
-            ref='username'
-            onKeyPress={this._handleEnterKey}
-            defaultValue={credentials.username || ''}
-          />
-        </div>
-
-        <div className='form-group input-group'>
-          <span className='input-group-addon'><span className='glyphicon glyphicon-lock' aria-hidden='true'></span></span>
-          <input
-            type='password'
-            className='form-control'
-            placeholder='Password'
-            ref='password'
-            onKeyPress={this._handleEnterKey}
-            defaultValue={credentials.password || ''}
-          />
-        </div>
-
-        <div className='form-group'>
-          <label htmlFor='remember-cb' className='pointer'>
             <input
-              type='checkbox'
-              id='remember-cb'
-              defaultChecked={credentials.success || false}
-              ref='rememberMe'
+              type='text'
+              placeholder='Username'
+              ref='username'
+              onKeyPress={this._handleEnterKey}
+              defaultValue={credentials.username || ''}
             />
-            {" Remember me"}
-          </label>
-          <input
-            type='button'
-            className='btn btn-success pull-right'
-            value='Login'
-            onClick={this._handleLogin}
-          />
+            <input
+              type='password'
+              placeholder='Password'
+              ref='password'
+              onKeyPress={this._handleEnterKey}
+              defaultValue={credentials.password || ''}
+            />
+
+            <div className='checkbox_container noselect'>
+              <input
+                type='checkbox'
+                id='remember-cb'
+                defaultChecked={credentials.success || false}
+                ref='rememberMe'
+              />
+              <label className='pointer' htmlFor='remember-cb'>{" Remember me"}</label>
+              <input
+                type='button'
+                id='login-btn'
+                value='Login'
+                onClick={this._handleLogin}
+              />
+            </div>
+          </form>
         </div>
       </div>
     )
