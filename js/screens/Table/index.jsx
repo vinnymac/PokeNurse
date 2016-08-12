@@ -250,15 +250,15 @@ const Table = React.createClass({
 
           <table className='table table-condensed table-hover display' id='pokemon-data'>
             <thead>
-              <tr>
-                <th></th>
-                <th width='18%'>Pokédex #</th>
-                <th>Sprite</th>
-                <th>Name</th>
-                <th>Count</th>
-                <th>Candy</th>
-                <th>Evolves</th>
-              </tr>
+            <tr>
+              <th></th>
+              <th width='18%'>Pokédex #</th>
+              <th>Sprite</th>
+              <th>Name</th>
+              <th>Count</th>
+              <th>Candy</th>
+              <th>Evolves</th>
+            </tr>
             </thead>
           </table>
         </div>
