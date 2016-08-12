@@ -255,20 +255,6 @@ const Table = React.createClass({
             </span>
           </h1>
 
-          {/*<table className='table table-condensed table-hover display' id='pokemon-data'>*/}
-            {/*<thead>*/}
-              {/*<tr>*/}
-                {/*<th></th>*/}
-                {/*<th width='18%'>Pokédex #</th>*/}
-                {/*<th>Sprite</th>*/}
-                {/*<th>Name</th>*/}
-                {/*<th>Count</th>*/}
-                {/*<th>Candy</th>*/}
-                {/*<th>Evolves</th>*/}
-              {/*</tr>*/}
-            {/*</thead>*/}
-          {/*</table>*/}
-
           <SpeciesTable monsters={this.state.monsters} />
 
         </div>
