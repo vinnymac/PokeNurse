@@ -1,5 +1,6 @@
 import React from 'react'
 import renderModal from '../../Detail'
+import {ipcRenderer} from 'electron'
 
 const Pokemon = React.createClass({
 
@@ -204,7 +205,10 @@ const Pokemon = React.createClass({
   },
 
   handleClickPowerup (pokemon, e) {
-    console.log(pokemon)
+    if (ipcRenderer.sendSync('confirmation-dialog', 'power up').success) {
+      ipcRenderer.send('power-up-pokemon', pokemon.id, pokemon.nickname)
+      setTimeout(() => { document.getElementById('refresh-btn').click() }, 1500)
+    }
   },
 
   handleClickFavorite (pokemon, e) {
