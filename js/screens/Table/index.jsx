@@ -89,7 +89,10 @@ function prepDisplay (d) {
     var pokeiv = poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
     var favoriteBool = poke['favorite'] ? 'true' : 'false'
 
-    if (poke.deployed) checkBox += ' disabled'
+    if (poke.deployed || poke.favorite)
+		checkBox += ' disabled'
+	else
+		checkBox += ' enabled'
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
     poke.td_checkbox = checkBox + '>'
@@ -145,6 +148,7 @@ function addFavoriteButtonEvent () {
       var newClass = setToFavorite ? 'favorite glyphicon glyphicon-star favorite-yellow' : 'favorite glyphicon glyphicon-star-empty'
       button.className = newClass
       button.dataset.pokemonFavorited = setToFavorite.toString()
+	  setTimeout(() => { document.getElementById('refresh-btn').click() }, 1500)
     })
   })
 }
@@ -317,6 +321,9 @@ const Table = React.createClass({
   },
 
   _refreshPokemonList () {
+	 document.querySelectorAll('td a.nickname').forEach(el => {
+      el.removeEventListener('click', this._showModal.bind(this, $(el).data('pokemon-id')), false)
+    })
     $('#pokemon-data').DataTable().destroy()
     monsters = ipc.sendSync('get-players-pokemons')
     if (monsters.success) this._dataTables(monsters.species)
@@ -383,7 +390,7 @@ const Table = React.createClass({
 
     // Check all boxes
     $('#' + d.pokemon_id + ' #checkall').click(function () {
-      $(':checkbox', table.rows().nodes()).prop('checked', this.checked)
+	  $(':checkbox', table.rows().nodes()).filter(':enabled').prop('checked', this.checked)
     })
 
     document.querySelectorAll('td a.nickname').forEach(el => {
