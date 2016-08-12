@@ -103,7 +103,6 @@ const Pokemon = React.createClass({
   getPokemonComponents (species) {
     return species.pokemon.map((pokemon, i) => {
       let favorite = pokemon.favorite ? 'glyphicon glyphicon-star favorite-yellow' : 'glyphicon glyphicon-star-empty'
-      let favoriteBool = pokemon.favorite ? 'true' : 'false'
       let pokeiv = pokemon[ 'iv' ] + '% (' + pokemon[ 'attack' ] + '/' + pokemon[ 'defense' ] + '/' + pokemon[ 'stamina' ] + ')'
       let powerupComponent
 
@@ -149,55 +148,35 @@ const Pokemon = React.createClass({
               onChange={this.checkRow.bind(this, i)}
             />
           </td>
-        </tr>
-      )
-    },
-
-    getPokemonComponents (species) {
-        return species.pokemon.map((pokemon) => {
-            let favorite = pokemon.favorite ? 'glyphicon glyphicon-star favorite-yellow' : 'glyphicon glyphicon-star-empty'
-            let favoriteBool = pokemon.favorite ? 'true' : 'false'
-            let pokeiv = pokemon['iv'] + '% (' + pokemon['attack'] + '/' + pokemon['defense'] + '/' + pokemon['stamina'] + ')'
-
-            return (
-                <tr key={pokemon.id}>
-                  <td>
-                    <input
-                        type='checkbox'
-                        value={String(pokemon.id)}
-                        disabled={pokemon.deployed}
-                    />
-                  </td>
-                  <td>
-                    <span
-                        className={`favorite ${favorite}`}
-                        id='favoriteBtn'
-                        data-pokemon-id={pokemon.id}
-                        data-pokemon-favorited={favoriteBool}
-                        onClick={this.handleClickFavorite.bind(this, pokemon)}
-                    />
-                  </td>
-                  <td onClick={this.handleClickPowerup.bind(this, pokemon)}>
-                    {powerupComponent}
-                  </td>
-                  <td>
-                    {pokemon.name}
-                  </td>
-                  <td onClick={this.handleClickNickname.bind(this, pokemon, species)}>
-                    <a
-                      className='nickname'
-                      data-pokemon-id={pokemon.id}
-                    >
-                      {pokemon.nickname}
-                    </a>
-                  </td>
-                  <td>
-                    {pokemon.cp}
-                  </td>
-                  <td>
-                    {pokeiv}
-                  </td>
-                </tr>)
+          <td>
+            <span
+              className={`favorite ${favorite}`}
+              id='favoriteBtn'
+              data-pokemon-id={pokemon.id}
+              onClick={this.handleClickFavorite.bind(this, pokemon)}
+            />
+          </td>
+          <td onClick={this.handleClickPowerup.bind(this, pokemon)}>
+            {powerupComponent}
+          </td>
+          <td>
+            {pokemon.name}
+          </td>
+          <td onClick={this.handleClickNickname.bind(this, pokemon, species)}>
+            <a
+              className='nickname'
+              data-pokemon-id={pokemon.id}
+            >
+              {pokemon.nickname}
+            </a>
+          </td>
+          <td>
+            {pokemon.cp}
+          </td>
+          <td>
+            {pokeiv}
+          </td>
+        </tr>)
     })
   },
 
@@ -209,7 +188,7 @@ const Pokemon = React.createClass({
   },
 
   handleClickFavorite (pokemon, e) {
-    ipcRenderer.send('favorite-pokemon', pokemon.id, pokemon.favorite)
+    ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
     // TODO Update the data immediately to reflect favorite
     // updatePokemonById(button.dataset.pokemonId, 'favorite', setToFavorite)
   },
