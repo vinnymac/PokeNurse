@@ -38,9 +38,9 @@ jspm_packages
 
 .DS_Store
 .vscode
-PokeNurse-darwin-x64
-PokeNurse-win32-ia32
-PokeNurse-win32-x64
+PokeNurse-darwin-*
+PokeNurse-win32-*
+PokeNurse-linux-*
 
 #Webstorm IDE
 .idea
