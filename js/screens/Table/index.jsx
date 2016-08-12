@@ -190,6 +190,10 @@ const Table = React.createClass({
   componentDidMount () {
     document.title = 'PokéNurse • Home'
 
+    ipc.on('receive-players-pokemons', (event, data) => {
+      this.setState({monsters: data})
+    })
+
     const header = document.getElementById('profile-header')
     const usernameH = document.getElementById('username-h')
 
