@@ -89,7 +89,11 @@ function prepDisplay (d) {
     var pokeiv = poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
     var favoriteBool = poke['favorite'] ? 'true' : 'false'
 
-    if (poke.deployed || poke.favorite) checkBox += ' disabled'
+    if (poke.deployed || poke.favorite) {
+      checkBox += ' disabled'
+    } else {
+      checkBox += ' enabled'
+    }
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
     poke.td_checkbox = checkBox + '>'
@@ -282,7 +286,7 @@ const Table = React.createClass({
   _handleTransfer () {
     if (runningCheck()) return
 
-    var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall)')
+    var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall):not(:disabled)')
 
     if (ipc.sendSync('confirmation-dialog', 'transfer').success) {
       running = true
@@ -296,7 +300,7 @@ const Table = React.createClass({
   _handleEvolve () {
     if (runningCheck()) return
 
-    var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall)')
+    var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall):not(:disabled)')
 
     if (ipc.sendSync('confirmation-dialog', 'evolve').success) {
       running = true
@@ -361,7 +365,8 @@ const Table = React.createClass({
 
       if (row.child.isShown()) {
         // This row is already open - close it
-        $('#' + row.data().pokemon_id).DataTable().destroy()
+        // Not working
+        //$('#' + row.data().pokemon_id).DataTable().destroy(true)
         row.child.hide()
         tr.removeClass('shown')
       } else {
