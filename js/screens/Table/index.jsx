@@ -68,7 +68,7 @@ function format (d) {
     html += '<td data-order="' + poke.name + i + '">' + poke.td_name + '</td>'
     html += '<td data-order="' + poke.nickname + i + '">' + poke.td_nickname + '</td>'
     html += '<td>' + poke.td_cp + '</td>'
-    html += '<td>' + poke.td_pokeiv + '</td>'
+    html += '<td data-order="' + poke.iv + '">' + poke.td_pokeiv + '</td>'
     html += '</tr>'
   }
   html += '</tbody>'
@@ -250,15 +250,15 @@ const Table = React.createClass({
 
           <table className='table table-condensed table-hover display' id='pokemon-data'>
             <thead>
-              <tr>
-                <th></th>
-                <th width='18%'>Pokédex #</th>
-                <th>Sprite</th>
-                <th>Name</th>
-                <th>Count</th>
-                <th>Candy</th>
-                <th>Evolves</th>
-              </tr>
+            <tr>
+              <th></th>
+              <th width='18%'>Pokédex #</th>
+              <th>Sprite</th>
+              <th>Name</th>
+              <th>Count</th>
+              <th>Candy</th>
+              <th>Evolves</th>
+            </tr>
             </thead>
           </table>
         </div>
