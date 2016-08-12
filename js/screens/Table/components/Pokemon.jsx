@@ -18,17 +18,14 @@ const Pokemon = React.createClass({
   },
 
   checkRow (index, event) {
-    let newRowState = []
+    let {rowState, checkAll} = this.state
+    let newRowState = [
+      ...this.state.rowState.slice(0, index),
+      !rowState[index],
+      ...this.state.rowState.slice(index + 1)
+    ]
 
-    this.state.rowState.forEach((v, i) => {
-      if (i === index) {
-        newRowState.push(event.target.checked)
-      } else {
-        newRowState.push(v)
-      }
-    })
-
-    let newCheckAllState = this.state.checkAll ? !this.state.checkAll : false
+    let newCheckAllState = checkAll ? !checkAll : false
 
     this.setState({
       rowState: newRowState,
