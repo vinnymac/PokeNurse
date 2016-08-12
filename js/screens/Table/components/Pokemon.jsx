@@ -1,6 +1,7 @@
 import React from 'react'
 import renderModal from '../../Detail'
 import {ipcRenderer} from 'electron'
+import $ from 'jquery'
 
 const Pokemon = React.createClass({
 
@@ -16,7 +17,7 @@ const Pokemon = React.createClass({
     }
   },
 
-  checkRow (index) {
+  checkRow (index, event) {
     let newRowState = []
 
     this.state.rowState.forEach((v, i) => {
@@ -51,7 +52,6 @@ const Pokemon = React.createClass({
 
   componentDidMount () {
     $(this.refs.tBody).find('[data-toggle="tooltip"]').tooltip()
-    console.log(this.state.rowState)
   },
 
   componentDidUpdate () {
@@ -66,35 +66,35 @@ const Pokemon = React.createClass({
         <td colSpan='7'>
           <table className='table table-condensed table-hover'>
             <thead>
-            <tr>
-              <th width='5%'>
-                <input
-                  type='checkbox'
-                  checked={this.state.checkAll}
-                  onChange={this.checkAll}
-                />
-              </th>
-              <th width='5%'>
-                <span className='glyphicon glyphicon-star favorite-yellow'></span>
-              </th>
-              <th>
-                P↑
-              </th>
-              <th width='15%'>
-                Name
-              </th>
-              <th>
-                Nickname
-              </th>
-              <th>
-                CP
-              </th>
-              <th>
-                IV
-              </th>
-            </tr>
+              <tr>
+                <th width='5%'>
+                  <input
+                    type='checkbox'
+                    checked={this.state.checkAll}
+                    onChange={this.checkAll}
+                  />
+                </th>
+                <th width='5%'>
+                  <span className='glyphicon glyphicon-star favorite-yellow'></span>
+                </th>
+                <th>
+                  P↑
+                </th>
+                <th width='15%'>
+                  Name
+                </th>
+                <th>
+                  Nickname
+                </th>
+                <th>
+                  CP
+                </th>
+                <th>
+                  IV
+                </th>
+              </tr>
             </thead>
-            <tbody ref = "tBody">
+            <tbody ref='tBody'>
               {this.getPokemonComponents(species)}
             </tbody>
           </table>

@@ -1,6 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
-//import renderModal from '../Detail'
+// import renderModal from '../Detail'
 import SpeciesTable from './components/Species'
 
 window.$ = window.jQuery = $
