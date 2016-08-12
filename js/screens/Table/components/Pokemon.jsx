@@ -3,6 +3,8 @@ import renderModal from '../../Detail'
 import {ipcRenderer} from 'electron'
 import $ from 'jquery'
 
+import {Immutable} from '../../../utils'
+
 const Pokemon = React.createClass({
 
   contextTypes: {
@@ -23,11 +25,7 @@ const Pokemon = React.createClass({
 
   checkRow (index, event) {
     let {rowState, checkAll} = this.state
-    let newRowState = [
-      ...this.state.rowState.slice(0, index),
-      !rowState[index],
-      ...this.state.rowState.slice(index + 1)
-    ]
+    let newRowState = Immutable.array.set(this.state.rowState, index, !rowState[index])
 
     let newCheckAllState = checkAll ? !checkAll : false
 
@@ -105,6 +103,10 @@ const Pokemon = React.createClass({
   },
 
   getPokemonComponents (species) {
+    let {
+      speciesIndex
+    } = this.props
+
     return species.pokemon.map((pokemon, i) => {
       let favorite = pokemon.favorite ? 'glyphicon glyphicon-star favorite-yellow' : 'glyphicon glyphicon-star-empty'
       let pokeiv = pokemon[ 'iv' ] + '% (' + pokemon[ 'attack' ] + '/' + pokemon[ 'defense' ] + '/' + pokemon[ 'stamina' ] + ')'
@@ -157,7 +159,7 @@ const Pokemon = React.createClass({
               className={`favorite ${favorite}`}
               id='favoriteBtn'
               data-pokemon-id={pokemon.id}
-              onClick={this.handleClickFavorite.bind(this, pokemon)}
+              onClick={this.handleClickFavorite.bind(this, pokemon, i, speciesIndex)}
             />
           </td>
           <td onClick={this.handleClickPowerup.bind(this, pokemon)}>
@@ -191,10 +193,10 @@ const Pokemon = React.createClass({
     }
   },
 
-  handleClickFavorite (pokemon, e) {
+  handleClickFavorite (pokemon, index, speciesIndex, e) {
     ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
     let updatedPokemon = Object.assign(pokemon, {favorite: !pokemon.favorite ? -1 : -0})
-    this.context.monsterUpdater(updatedPokemon)
+    this.context.monsterUpdater(updatedPokemon, index, speciesIndex)
     // TODO Update the data immediately to reflect favorite
     // updatePokemonById(button.dataset.pokemonId, 'favorite', setToFavorite)
   },

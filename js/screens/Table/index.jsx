@@ -3,6 +3,8 @@ import $ from 'jquery'
 // import renderModal from '../Detail'
 import SpeciesTable from './components/Species'
 
+import {Immutable} from '../../utils'
+
 window.$ = window.jQuery = $
 require('bootstrap')
 require('datatables.net')(window, $)
@@ -191,16 +193,19 @@ const Table = React.createClass({
     }
   },
 
-  updateMonster (pokemon) {
-    // TODO do this immutably, or at least pass in the speciesIndex and pokemonIndex
-    let speciesIndex = this.state.monsters.species.findIndex((s) => {return s.pokemon_id === String(pokemon.pokemon_id)})
-    let species = this.state.monsters.species[speciesIndex]
-    let index = species.pokemon.findIndex((p) => {return p.id === pokemon.id})
-    species.pokemon[index] = pokemon
-    this.state.monsters.species[speciesIndex] = species
+  updateMonster (pokemon, index, speciesIndex) {
+    let speciesAtIndex = this.state.monsters.species[speciesIndex]
+
+    let updatedSpecies = Object.assign({}, speciesAtIndex, {
+      pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
+    })
+
+    let updatedMonsters = Object.assign({}, this.state.monsters, {
+      species: Immutable.array.set(this.state.monsters.species, speciesIndex, updatedSpecies)
+    })
 
     this.setState({
-      monsters: Object.assign({}, this.state.monsters)
+      monsters: updatedMonsters
     })
     console.log("UPDATING monsters with", pokemon)
   },
