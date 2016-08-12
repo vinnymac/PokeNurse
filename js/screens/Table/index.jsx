@@ -89,7 +89,11 @@ function prepDisplay (d) {
     var pokeiv = poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
     var favoriteBool = poke['favorite'] ? 'true' : 'false'
 
-    if (poke.deployed) checkBox += ' disabled'
+    if (poke.deployed || poke.favorite) {
+      checkBox += ' disabled'
+    } else {
+      checkBox += ' enabled'
+    }
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
 
     poke.td_checkbox = checkBox + '>'
@@ -361,6 +365,7 @@ const Table = React.createClass({
 
       if (row.child.isShown()) {
         // This row is already open - close it
+        $('#' + row.data().pokemon_id).DataTable().destroy()
         row.child.hide()
         tr.removeClass('shown')
       } else {
@@ -384,6 +389,15 @@ const Table = React.createClass({
     // Check all boxes
     $('#' + d.pokemon_id + ' #checkall').click(function () {
       $(':checkbox', table.rows().nodes()).prop('checked', this.checked)
+      $(':checkbox', table.rows().nodes()).filter(':disabled').attr('disabled', true)
+    })
+
+    $('#' + d.pokemon_id + ' td span.favorite').click(function () {
+      if ($(this).hasClass('favorite-yellow')) {
+        $(this).closest('tr').find(':checkbox').attr('disabled', false)
+      } else {
+        $(this).closest('tr').find(':checkbox').attr('disabled', true)
+      }
     })
 
     document.querySelectorAll('td a.nickname').forEach(el => {
