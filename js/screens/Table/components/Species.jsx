@@ -56,7 +56,15 @@ const Species = React.createClass({
   },
 
   getPokemonComponents (monsterSpecies) {
+    let {
+      filterBy
+    } = this.props
+
     return monsterSpecies.map((species, i) => {
+      if (String(species['name']).toLowerCase().indexOf(filterBy) === -1) {
+        return null
+      }
+
       let collapsed = this.state.species[species.pokemon_id].collapsed
 
       return ([

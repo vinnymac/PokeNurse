@@ -196,7 +196,7 @@ const Table = React.createClass({
   getInitialState () {
     return {
       monsters: ipc.sendSync('get-players-pokemons'),
-      filteredMonsters: {species: []}
+      filterBy: ''
     }
   },
 
@@ -237,13 +237,10 @@ const Table = React.createClass({
   render () {
     // <!--<h5 id="pokestorage-h"></h5>
     // <h5 id="bagstorage-h"></h5>-->
-    let monsters
-
-    if (this.state.filteredMonsters.species.length > 0) {
-      monsters = this.state.filteredMonsters
-    } else {
-      monsters = this.state.monsters
-    }
+    let {
+      monsters,
+      filterBy
+    } = this.state
 
     return (
       <div>
@@ -283,11 +280,11 @@ const Table = React.createClass({
           <span className='pull-right'>
             <input
               style={{width:90+'%'}}
-              onChange={this._onFilterChange.bind(this, 'name')}
+              onChange={this._onFilterChange}
             />
           </span>
 
-          <SpeciesTable monsters={monsters} />
+          <SpeciesTable monsters={monsters} filterBy={filterBy} />
 
         </div>
 
@@ -320,24 +317,9 @@ const Table = React.createClass({
     console.log("UPDATING monsters with", pokemon)
   },
 
-  _onFilterChange (key, event) {
-    if (!event.target.value) {
-      this.setState({filteredMonsters: {species: []}})
-    }
-
-    let filterBy = String(event.target.value).toLowerCase()
-    console.log(filterBy)
-    let filteredSpecies = []
-    this.state.monsters.species.forEach((species) => {
-      let i = String(species[key]).toLowerCase().indexOf(filterBy)
-      console.log(String(species[key]).toLowerCase(), i)
-      if (i !== -1) {
-        filteredSpecies.push(species)
-      }
-    })
-
+  _onFilterChange (event) {
     this.setState({
-      filteredMonsters: Object.assign({}, this.state.monsters, {species: filteredSpecies})
+      filterBy: String(event.target.value).toLowerCase()
     })
   },
 
