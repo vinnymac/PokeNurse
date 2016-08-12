@@ -64,12 +64,12 @@ tbody > tr > td > a {
   overflow-x: hidden;
   overflow-y: auto;
 }
-form {
+.login-holder form {
   padding: 0;
   position: relative;
   z-index: 2;
 }
-form input {
+.login-holder form input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -88,15 +88,15 @@ form input {
   transition-duration: 0.25s;
   font-weight: 300;
 }
-form input[type="text"]:hover, form input[type="password"]:hover {
+.login-holder form input[type="text"]:hover, form input[type="password"]:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
-form input[type="text"]:focus, form input[type="password"]:focus {
+.login-holder form input[type="text"]:focus, form input[type="password"]:focus {
   background-color: white;
   width: 300px;
   color: darkgray;
 }
-form input[type="button"] {
+.login-holder form input[type="button"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -112,21 +112,21 @@ form input[type="button"] {
   -webkit-transition-duration: 0.25s;
   transition-duration: 0.25s;
 }
-form button:hover {
+.login-holder form button:hover {
   background-color: #f5f7f9;
 }
-input[type=checkbox] {
+.login-holder input[type=checkbox] {
   display: none;
 }
-input[type=checkbox] + label:before {
+.login-holder input[type=checkbox] + label:before {
   font-family: 'Glyphicons Halflings' !important;
   display: inline-block;
 }
-input[type=checkbox] + label:before {
+.login-holder input[type=checkbox] + label:before {
   content: "\e157";
   letter-spacing: 10px;
 }
-input[type=checkbox]:checked + label:before {
+.login-holder input[type=checkbox]:checked + label:before {
   content: "\e067";
   letter-spacing: 10px;
 }

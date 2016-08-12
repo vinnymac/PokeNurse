@@ -19,7 +19,7 @@ const Login = React.createClass({
     } = this.props
 
     return (
-      <div className='bg-holder'>
+      <div className='bg-holder login-holder'>
         <div id='leaves'>
           <i></i>
           <i></i>
