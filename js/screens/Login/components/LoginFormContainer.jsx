@@ -18,27 +18,32 @@ const Login = React.createClass({
       credentials
     } = this.props
 
+    let labelClassName = 'btn btn-info noselect'
+
+    let googleClassName = this.state.authMethod === AUTH_METHODS.google ? ' active' : ''
+    let ptcClassName = this.state.authMethod === AUTH_METHODS.ptc ? ' active' : ''
+
     return (
       <div className='container'>
         <div className='form-group btn-group' data-toggle='buttons'>
-          <label className='btn btn-info active noselect'>
+          <label className={labelClassName + googleClassName} htmlFor='authGoogle' onClick={this._radioLabelClick}>
             <input
               type='radio'
               name='auth-radio'
-              id='auth0'
+              id='authGoogle'
               value={AUTH_METHODS.google}
-              checked={this.state.authMethod === AUTH_METHODS.google}
+              defaultChecked={this.state.authMethod === AUTH_METHODS.google}
               onChange={this._handleChangeAuth}
             />
             Google
           </label>
-          <label className='btn btn-info noselect'>
+          <label className={labelClassName + ptcClassName} htmlFor='authPTC' onClick={this._radioLabelClick}>
             <input
               type='radio'
               name='auth-radio'
-              id='auth1'
+              id='authPTC'
               value={AUTH_METHODS.ptc}
-              checked={this.state.authMethod === AUTH_METHODS.ptc}
+              defaultChecked={this.state.authMethod === AUTH_METHODS.ptc}
               onChange={this._handleChangeAuth}
             />
             Pokémon Trainer Club
@@ -88,6 +93,12 @@ const Login = React.createClass({
         </div>
       </div>
     )
+  },
+
+  _radioLabelClick (e) {
+    if (e.target.children[0]) {
+      e.target.children[0].click()
+    }
   },
 
   _handleChangeAuth (e) {
