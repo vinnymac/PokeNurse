@@ -22,37 +22,41 @@ const Species = React.createClass({
         } = this.props
 
     return (
-            <div>
-                <table className='table table-condensed table-hover'>
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>
-                            Pokedex #
-                        </th>
-                        <th>
-                          Sprite
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Count
-                        </th>
-                        <th>
-                            Candy
-                        </th>
-                        <th>
-                            Evolves
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.getPokemonComponents(monsters.species)}
-                    </tbody>
-                </table>
-            </div>
-        )
+      <div>
+        <table className='table table-condensed table-hover'>
+          <thead>
+            {this.getSpeciesHeader()}
+          </thead>
+          <tbody>
+            {this.getPokemonComponents(monsters.species)}
+          </tbody>
+        </table>
+      </div>
+    )
+  },
+
+  getSpeciesHeader () {
+    return (<tr>
+      <th></th>
+      <th>
+          Pokedex #
+      </th>
+      <th>
+        Sprite
+      </th>
+      <th>
+          Name
+      </th>
+      <th>
+          Count
+      </th>
+      <th>
+          Candy
+      </th>
+      <th>
+          Evolves
+      </th>
+    </tr>)
   },
 
   getPokemonComponents (monsterSpecies) {
