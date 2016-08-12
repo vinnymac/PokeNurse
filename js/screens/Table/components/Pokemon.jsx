@@ -15,7 +15,7 @@ const Pokemon = React.createClass({
     }
   },
 
-  checkRow (index, event) {
+  checkRow (index) {
     let newRowState = []
 
     this.state.rowState.forEach((v, i) => {
@@ -49,12 +49,12 @@ const Pokemon = React.createClass({
   },
 
   componentDidMount () {
-    $(this.refs.tooltip).tooltip()
+    $(this.refs.tBody).find('[data-toggle="tooltip"]').tooltip()
     console.log(this.state.rowState)
   },
 
   componentDidUpdate () {
-    $(this.refs.tooltip).tooltip()
+    $(this.refs.tBody).find('[data-toggle="tooltip"]').tooltip()
   },
 
   render () {
@@ -93,8 +93,8 @@ const Pokemon = React.createClass({
               </th>
             </tr>
             </thead>
-            <tbody>
-            {this.getPokemonComponents(species)}
+            <tbody ref = "tBody">
+              {this.getPokemonComponents(species)}
             </tbody>
           </table>
         </td>
@@ -116,7 +116,6 @@ const Pokemon = React.createClass({
           data-placement='right'
           data-html='true'
           title={tip}
-          ref='tooltip'
         >
           P↑
         </span>
@@ -136,7 +135,6 @@ const Pokemon = React.createClass({
           data-placement='right'
           data-html='true'
           title={tip}
-          ref='tooltip'
         >
           P↑
         </a>
