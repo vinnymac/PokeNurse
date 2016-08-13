@@ -93,7 +93,7 @@ function prepDisplay (d) {
     var poke = d.pokemon[i]
     var checkBox = '<input type="checkbox" value="' + poke.id.toString() + '"'
     var favorite = 'glyphicon glyphicon-star-empty'
-    var pokeiv = poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
+    var pokeiv = poke['iv'].toFixed(1) + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
     var favoriteBool = poke['favorite'] ? 'true' : 'false'
 
     if (poke.deployed || poke.favorite) {
