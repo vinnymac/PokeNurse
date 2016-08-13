@@ -384,7 +384,7 @@ const Table = React.createClass({
       bPaginate: false,
       info: false,
       bFilter: false,
-      order: [[4, 'desc']]
+      order: [[5, 'desc']]
     })
 
     // Check all boxes
