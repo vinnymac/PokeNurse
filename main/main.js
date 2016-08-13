@@ -228,7 +228,6 @@ ipcMain.on('get-players-pokemons', (event) => {
 
     for (let i = 0; i < pokemons.length; i++) {
       var pokemon = pokemons[i]
-
       if (pokemon['cp'] === 0) continue
 
       var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
@@ -248,7 +247,7 @@ ipcMain.on('get-players-pokemons', (event) => {
       let candyMaxCost = utils.getMaxCandyCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
       let stardustMaxCost = utils.getMaxStardustCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
       let nextCP = utils.getCpAfterPowerup(pokemon['cp'], totalCpMultiplier)
-
+	  
       reducedPokemonList.push({
         cp: pokemon['cp'],
         next_cp: nextCP,
@@ -272,7 +271,9 @@ ipcMain.on('get-players-pokemons', (event) => {
         weight: pokemon['weight_kg'],
         nickname: pokemon['nickname'] || pokemonName,
         // Multiply by -1 for sorting
-        favorite: pokemon['favorite'] * -1
+        favorite: pokemon['favorite'] * -1,
+		move_1: pokemon['move_1'],
+		move_2: pokemon['move_2']
       })
 
       if (combinedPokemonList[pokemonName]) {

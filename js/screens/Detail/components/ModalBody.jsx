@@ -77,7 +77,9 @@ const ModalBody = React.createClass({
       defense,
       cpPerUpgrade,
       candies,
-      spriteImageName
+      spriteImageName,
+	  fast_move,
+	  charged_move
     } = this.props
 
     return (<div className='modal-body'>
@@ -154,6 +156,32 @@ const ModalBody = React.createClass({
             <div className='pokemon-upgrade-info-item-title'>{`${name} CANDIES`}</div>
           </div>
         </div>
+		<div className='pokemon-move-info'>
+		  <div className='pokemon-combat-info-item' data-toggle='tooltip' data-placement='right' data-html='true' title='{`${fast_move.durationMs} This is Broken :(`}'>
+		    <div className='pokemon-info-item-text'>{`${fast_move.name} `}</div>
+			<div className='pokemon-info-item-title'>{`${fast_move.type}`}</div>
+			<div className='pokemon-combat-info-item-text'>
+				{`${fast_move.power} `}
+				<span className='pokemon-stat-unit'> damage</span>
+			</div>
+			<div className='pokemon-combat-info-item-text'>
+				{`${fast_move.dps}`}
+				<span className='pokemon-stat-unit'> dps est.</span>
+			</div>
+		  </div>
+		  <div className='pokemon-combat-info-item' data-toggle='tooltip' data-placement='left' data-html='true' title='{`${fast_move.crit} This is Broken :(`}'>
+		    <div className='pokemon-info-item-text'>{`${charged_move.name} `}</div>
+			<div className='pokemon-info-item-title'>{`${charged_move.type}`}</div>
+			<div className='pokemon-combat-info-item-text'>
+				{`${charged_move.power} `}
+				<span className='pokemon-stat-unit'> damage</span>
+			</div>
+			<div className='pokemon-combat-info-item-text'>
+				{`${charged_move.energyCost}`}
+				<span className='pokemon-stat-unit'> energy</span>
+			</div>
+		  </div>
+		</div>
       </div>
     </div>)
   },

@@ -323,6 +323,15 @@ color: #8e4646;
 text-transform: capitalize;
 }
 
+.pokemon-move-info {
+display: block;
+width: 100%;
+height: 140px;
+margin-top: 20px;
+position:relative;
+border-bottom: 1px solid #e2e2e2;
+}
+
 #pokemon_upgrade_info {
 display: block;
 width: 100%;

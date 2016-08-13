@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import ModalBody from './components/ModalBody'
 
 import baseStats from '../../../baseStats'
+import attackData from '../../../attackData'
 
 const ModalDialog = React.createClass({
   componentDidMount () {
@@ -56,8 +57,11 @@ export default ($detailModal, {pokemon, species}) => {
   let candies = species.candy
   let name = species.name
   let nickname = pokemon.nickname
-
   let spriteImageName = name.toLowerCase()
+  
+  let move_1 = attackData[pokemon['move_1']]
+  let move_2 = attackData[pokemon['move_2']]
+  
   if (spriteImageName.indexOf('nidoran') > -1) {
     let spriteParts = spriteImageName.split(' ')
     spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === '♂') ? 'm' : 'f'}`
@@ -80,6 +84,8 @@ export default ($detailModal, {pokemon, species}) => {
     weight={weight}
     height={height}
     detailModal={$detailModal}
+	fast_move={move_1}
+	charged_move={move_2}
   />
 
   $detailModal.on('hidden.bs.modal', () => {
