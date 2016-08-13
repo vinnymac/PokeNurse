@@ -277,15 +277,16 @@ const Table = React.createClass({
           </h1>
 
           <div className="row">
-            <div className="col-md-6">
-            </div>
-            <div className="col-md-6">
-          <span className='pull-right'>
-            <input
-              onChange={this._onFilterChange}
-              style={{width:100+'%'}}
-            />
-          </span>
+            <div id="custom-search-input">
+              <div className="input-group col-md-12">
+                <span className='pull-right'>
+                  <input
+                    className="form-control input-lg"
+                    placeholder="Search"
+                    onChange={this._onFilterChange}
+                  />
+                </span>
+              </div>
             </div>
           </div>
 
