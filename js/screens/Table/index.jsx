@@ -14,6 +14,13 @@ let running = false
 
 // Helper Methods
 
+function removeAllEventListeners () {
+  $('td a.nickname').off('click')
+  $('.power-up').off('click')
+  $('.favorite-button').off('click')
+  $('#pokemon-data tbody').find('td.details-control').off('click')
+}
+
 function runningCheck () {
   if (running) {
     ipc.send('error-message', 'An action is already running')
@@ -109,11 +116,11 @@ function prepDisplay (d) {
       Max Stardust = ${poke.stardust_max_cost} <br>
       Max Candy = ${poke.candy_max_cost}
       `
-      poke.td_powerup = '<a id="powerUp" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + getTooltipAttributes(tip) + '>P↑</a>'
+      poke.td_powerup = '<a class="power-up" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + getTooltipAttributes(tip) + '>P↑</a>'
     }
 
 
-    poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
+    poke.td_favorite = '<span class="favorite favorite-button ' + favorite + '" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
     poke.td_name = poke.name
     poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
     poke.td_cp = poke.cp
@@ -124,7 +131,7 @@ function prepDisplay (d) {
 }
 
 function addPowerUpButtonEvent () {
-  let buttons = document.querySelectorAll('#powerUp')
+  let buttons = document.querySelectorAll('.power-up')
 
   buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
@@ -140,7 +147,7 @@ function addPowerUpButtonEvent () {
 }
 
 function addFavoriteButtonEvent () {
-  var buttons = document.querySelectorAll('#favoriteBtn')
+  var buttons = document.querySelectorAll('.favorite-button')
   buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
       var setToFavorite = button.dataset.pokemonFavorited === 'false'
@@ -321,6 +328,7 @@ const Table = React.createClass({
   },
 
   _refreshPokemonList () {
+    removeAllEventListeners()
     $('#pokemon-data').DataTable().destroy()
     monsters = ipc.sendSync('get-players-pokemons')
     if (monsters.success) this._dataTables(monsters.species)
@@ -365,16 +373,18 @@ const Table = React.createClass({
 
       if (row.child.isShown()) {
         // This row is already open - close it
-        // Not working
-        //$('#' + row.data().pokemon_id).DataTable().destroy(true)
+        removeAllEventListeners()
         row.child.hide()
         tr.removeClass('shown')
       } else {
         // Open this row
-        prepDisplay(row.data())
-        row.child(format(row.data()), 'child').show()
+        let data = row.data()
+
+        $(`#${data.pokemon_id}`).DataTable().destroy()
+        prepDisplay(data)
+        row.child(format(data), 'child').show()
         tr.addClass('shown')
-        _this._subDataTable(row.data())
+        _this._subDataTable(data)
       }
     })
   },
