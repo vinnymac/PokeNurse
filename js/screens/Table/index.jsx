@@ -279,13 +279,16 @@ const Table = React.createClass({
           <div className="row">
             <div id="custom-search-input">
               <div className="input-group col-md-12">
-                <span className='pull-right'>
                   <input
-                    className="form-control input-lg"
+                    className="form-control input-sm"
                     placeholder="Search"
                     onChange={this._onFilterChange}
                   />
-                </span>
+                <span className="input-group-btn">
+                        <button className="btn btn-info btn-sm" type="button">
+                            <i className="glyphicon glyphicon-search"></i>
+                        </button>
+                  </span>
               </div>
             </div>
           </div>
