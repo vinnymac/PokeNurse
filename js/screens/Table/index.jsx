@@ -276,20 +276,16 @@ const Table = React.createClass({
             </span>
           </h1>
 
-          <div className="row">
-            <div id="custom-search-input">
-              <div className="input-group col-md-12">
-                  <input
-                    className="form-control input-sm"
-                    placeholder="Search"
-                    onChange={this._onFilterChange}
-                  />
-                <span className="input-group-btn">
-                        <button className="btn btn-info btn-sm" type="button">
-                            <i className="glyphicon glyphicon-search"></i>
-                        </button>
-                  </span>
-              </div>
+          <div className="row col-md-12">
+            <div className='form-group input-group'>
+              <span className='input-group-addon'><span className='glyphicon glyphicon-search' aria-hidden='true'></span></span>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='Search'
+                ref='search'
+                onChange={this._onFilterChange}
+              />
             </div>
           </div>
 
