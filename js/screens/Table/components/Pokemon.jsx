@@ -1,14 +1,14 @@
 import React from 'react'
 import renderModal from '../../Detail'
-import {ipcRenderer} from 'electron'
+import { ipcRenderer } from 'electron'
 import $ from 'jquery'
 
-import {Immutable} from '../../../utils'
+import { Immutable } from '../../../utils'
 
 const Pokemon = React.createClass({
 
   contextTypes: {
-    monsterUpdater : React.PropTypes.func.isRequired
+    monsterUpdater: React.PropTypes.func.isRequired
   },
 
   getInitialState () {
@@ -24,8 +24,8 @@ const Pokemon = React.createClass({
   },
 
   checkRow (index, event) {
-    let {rowState, checkAll} = this.state
-    let newRowState = Immutable.array.set(this.state.rowState, index, !rowState[index])
+    let { rowState, checkAll } = this.state
+    let newRowState = Immutable.array.set(this.state.rowState, index, !rowState[ index ])
 
     let newCheckAllState = checkAll ? !checkAll : false
 
@@ -65,36 +65,36 @@ const Pokemon = React.createClass({
         <td colSpan='7'>
           <table className='table table-condensed table-hover'>
             <thead>
-              <tr>
-                <th width='5%'>
-                  <input
-                    type='checkbox'
-                    checked={this.state.checkAll}
-                    onChange={this.checkAll}
-                  />
-                </th>
-                <th width='5%'>
-                  <span className='glyphicon glyphicon-star favorite-yellow'></span>
-                </th>
-                <th>
-                  P↑
-                </th>
-                <th width='15%'>
-                  Name
-                </th>
-                <th>
-                  Nickname
-                </th>
-                <th>
-                  CP
-                </th>
-                <th>
-                  IV
-                </th>
-              </tr>
+            <tr>
+              <th width='5%'>
+                <input
+                  type='checkbox'
+                  checked={this.state.checkAll}
+                  onChange={this.checkAll}
+                />
+              </th>
+              <th width='5%'>
+                <span className='glyphicon glyphicon-star favorite-yellow'></span>
+              </th>
+              <th>
+                P↑
+              </th>
+              <th width='15%'>
+                Name
+              </th>
+              <th>
+                Nickname
+              </th>
+              <th>
+                CP
+              </th>
+              <th>
+                IV
+              </th>
+            </tr>
             </thead>
             <tbody ref='tBody'>
-              {this.getPokemonComponents(species)}
+            {this.getPokemonComponents(species)}
             </tbody>
           </table>
         </td>
@@ -195,14 +195,14 @@ const Pokemon = React.createClass({
 
   handleClickFavorite (pokemon, index, speciesIndex, e) {
     ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
-    let updatedPokemon = Object.assign(pokemon, {favorite: !pokemon.favorite ? -1 : -0})
+    let updatedPokemon = Object.assign(pokemon, { favorite: !pokemon.favorite ? -1 : -0 })
     this.context.monsterUpdater(updatedPokemon, index, speciesIndex)
     // TODO Update the data immediately to reflect favorite
     // updatePokemonById(button.dataset.pokemonId, 'favorite', setToFavorite)
   },
 
   handleClickNickname (pokemon, species, e) {
-      renderModal($(document.getElementById('detailModal')), pokemon, species)
+    renderModal($(document.getElementById('detailModal')), pokemon, species)
   }
 
 })

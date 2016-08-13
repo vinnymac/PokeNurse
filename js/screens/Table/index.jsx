@@ -3,7 +3,7 @@ import $ from 'jquery'
 // import renderModal from '../Detail'
 import SpeciesTable from './components/Species'
 
-import {Immutable} from '../../utils'
+import { Immutable } from '../../utils'
 
 window.$ = window.jQuery = $
 require('bootstrap')
@@ -63,7 +63,7 @@ function format (d) {
   html += '</thead>'
   html += '<tbody>'
   for (var i = 0; i < d.pokemon.length; i++) {
-    var poke = d.pokemon[i]
+    var poke = d.pokemon[ i ]
     html += '<tr>'
     html += '<td>' + poke.td_checkbox + '</td>'
     html += '<td data-order="' + poke.favorite + '">' + poke.td_favorite + '</td>'
@@ -86,11 +86,11 @@ function getTooltipAttributes (tip) {
 
 function prepDisplay (d) {
   for (var i = 0; i < d.pokemon.length; i++) {
-    var poke = d.pokemon[i]
+    var poke = d.pokemon[ i ]
     var checkBox = '<input type="checkbox" value="' + poke.id.toString() + '"'
     var favorite = 'glyphicon glyphicon-star-empty'
-    var pokeiv = poke['iv'] + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
-    var favoriteBool = poke['favorite'] ? 'true' : 'false'
+    var pokeiv = poke[ 'iv' ] + '% (' + poke[ 'attack' ] + '/' + poke[ 'defense' ] + '/' + poke[ 'stamina' ] + ')'
+    var favoriteBool = poke[ 'favorite' ] ? 'true' : 'false'
 
     if (poke.deployed || poke.favorite) checkBox += ' disabled'
     if (poke.favorite) favorite = 'glyphicon glyphicon-star favorite-yellow'
@@ -110,7 +110,6 @@ function prepDisplay (d) {
       `
       poke.td_powerup = '<a id="powerUp" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + getTooltipAttributes(tip) + '>P↑</a>'
     }
-
 
     poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
     poke.td_name = poke.name
@@ -157,8 +156,8 @@ function updatePokemonById (id, key, value) {
 
   monsters.species.forEach(species => {
     species.pokemon.forEach(pokemonById => {
-      if (pokemonById['id'] === id) {
-        pokemonById[key] = value
+      if (pokemonById[ 'id' ] === id) {
+        pokemonById[ key ] = value
         updated = true
       }
     })
@@ -172,10 +171,10 @@ function findPokemonMapById (id) {
 
   monsters.species.forEach(species => {
     let pokemon = species.pokemon.find(pokemonById => {
-      return pokemonById['id'] === id
+      return pokemonById[ 'id' ] === id
     })
 
-    if (pokemon) pokemonMap = {species, pokemon}
+    if (pokemon) pokemonMap = { species, pokemon }
   })
 
   return pokemonMap
@@ -204,7 +203,7 @@ const Table = React.createClass({
     document.title = 'PokéNurse • Home'
 
     ipc.on('receive-players-pokemons', (event, data) => {
-      this.setState({monsters: data})
+      this.setState({ monsters: data })
     })
 
     const header = document.getElementById('profile-header')
@@ -212,7 +211,7 @@ const Table = React.createClass({
 
     var playerInfo = ipc.sendSync('get-player-info')
     if (playerInfo.success) {
-      switch (playerInfo.player_data['team']) {
+      switch (playerInfo.player_data[ 'team' ]) {
         case 1:
           header.style.backgroundImage = 'url("./imgs/mystic.jpg")'
           break
@@ -224,7 +223,7 @@ const Table = React.createClass({
           break
       }
 
-      usernameH.innerHTML = playerInfo.player_data['username']
+      usernameH.innerHTML = playerInfo.player_data[ 'username' ]
 
       this._refreshPokemonList()
     } else {
@@ -277,15 +276,20 @@ const Table = React.createClass({
             </span>
           </h1>
 
+          <div className="row">
+            <div className="col-md-6">
+            </div>
+            <div className="col-md-6">
           <span className='pull-right'>
             <input
-              style={{width:90+'%'}}
               onChange={this._onFilterChange}
+              style={{width:100+'%'}}
             />
           </span>
+            </div>
+          </div>
 
-          <SpeciesTable monsters={monsters} filterBy={filterBy} />
-
+          <SpeciesTable monsters={monsters} filterBy={filterBy}/>
         </div>
 
         <div
@@ -301,7 +305,7 @@ const Table = React.createClass({
   },
 
   updateMonster (pokemon, index, speciesIndex) {
-    let speciesAtIndex = this.state.monsters.species[speciesIndex]
+    let speciesAtIndex = this.state.monsters.species[ speciesIndex ]
 
     let updatedSpecies = Object.assign({}, speciesAtIndex, {
       pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
@@ -356,7 +360,7 @@ const Table = React.createClass({
   },
 
   _countDown (method, index) {
-    let {statusH} = this.refs
+    let { statusH } = this.refs
 
     countDown(method, index, statusH, () => {
       ipc.send('information-dialog', 'Complete!', `Finished ${method}`)
@@ -397,7 +401,7 @@ const Table = React.createClass({
         { data: 'candy' },
         { data: 'evolves' }
       ],
-      order: [[1, 'asc']]
+      order: [ [ 1, 'asc' ] ]
     })
 
     let _this = this
@@ -427,7 +431,7 @@ const Table = React.createClass({
       bPaginate: false,
       info: false,
       bFilter: false,
-      order: [[4, 'desc']]
+      order: [ [ 4, 'desc' ] ]
     })
 
     // Check all boxes
