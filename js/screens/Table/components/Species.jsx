@@ -116,14 +116,14 @@ const Species = React.createClass({
   },
 
   handleCollapse (id, e) {
-    let newState = {}
-    newState[ String(id) ] = {
-      collapsed: !this.state.species[ String(id) ].collapsed,
-      pokemonState: this.state.species[ String(id) ].pokemonState,
-      checkAll: this.state.species[ String(id) ].checkAll,
-    }
+    let newSpecieState = {}
+    let existingSpecieState = this.state.species[ String(id) ]
 
-    let species = Object.assign({}, this.state.species, newState)
+    newSpecieState[ String(id) ] = Object.assign({}, existingSpecieState, {
+      collapsed: !existingSpecieState.collapsed
+    })
+
+    let species = Object.assign({}, this.state.species, newSpecieState)
     this.setState({
       species: species
     })
