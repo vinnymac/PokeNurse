@@ -12,9 +12,9 @@ const Species = React.createClass({
 
     for (let specie of monsters.species) {
       species[ String(specie.pokemon_id) ] = {
-        collapsed: true,
-        pokemonChecked: this.handleInitRowState(specie),
-        checkAll: false
+        pokemonState: this.handleInitPokemonState(specie),
+        checkAll: false,
+        collapsed: true
       }
     }
 
@@ -78,7 +78,7 @@ const Species = React.createClass({
       }
 
       let collapsed = this.state.species[ species.pokemon_id ].collapsed
-      let pokemonChecked = this.state.species[ species.pokemon_id ].pokemonChecked
+      let pokemonState = this.state.species[ species.pokemon_id ].pokemonState
 
       return ([
         <tr
@@ -91,25 +91,27 @@ const Species = React.createClass({
           />
           <td>{species.pokemon_id}</td>
           <td className='sprites'>
-            <img className='pokemon-avatar-sprite' src={`./imgs/pokemonSprites/${species.pokemon_id || 0}.png`}/>
+            <img
+              className='pokemon-avatar-sprite' src={`./imgs/pokemonSprites/${species.pokemon_id || 0}.png`}
+            />
           </td>
           <td>{species.name}</td>
           <td>{species.count}</td>
           <td>{species.candy}</td>
           <td>{species.evolves}</td>
-        </tr>, this.getPokemonTable(species, i, collapsed, pokemonChecked)
+        </tr>, this.getPokemonTable(species, i, collapsed, pokemonState)
       ])
     })
   },
 
-  getPokemonTable (species, index, collapsed, checked) {
+  getPokemonTable (species, index, collapsed, pokemonState) {
     if (collapsed) return null
 
     return (<PokemonTable
       species={species}
       speciesIndex={index}
+      pokemonState={pokemonState}
       key={'child' + species.pokemon_id}
-      pokemonChecked={checked}
     />)
   },
 
@@ -117,8 +119,8 @@ const Species = React.createClass({
     let newState = {}
     newState[ String(id) ] = {
       collapsed: !this.state.species[ String(id) ].collapsed,
-      pokemonChecked: !this.state.species[ String(id) ].pokemonChecked,
-      checkAll: !this.state.species[ String(id) ].checkAll,
+      pokemonState: this.state.species[ String(id) ].pokemonState,
+      checkAll: this.state.species[ String(id) ].checkAll,
     }
 
     let species = Object.assign({}, this.state.species, newState)
@@ -127,12 +129,12 @@ const Species = React.createClass({
     })
   },
 
-  handleInitRowState (specie) {
-    let pokemonCheckedState = {}
+  handleInitPokemonState (specie) {
+    let pokemonState = {}
     specie.pokemon.forEach((p, i) => {
-      pokemonCheckedState[p.id] = { checked: false }
+      pokemonState[p.id] = { check: false }
     })
-    return pokemonCheckedState
+    return pokemonState
   },
 
 })
