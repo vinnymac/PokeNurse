@@ -1,3372 +1,4788 @@
 {
-  "1": {
-    "types": [
-      "grass",
-      "poison"
-    ],
-    "cpPerUpgrade": 13.5,
-    "evolveCost": "25",
-    "familyId": "1",
-    "BaseStamina": 90,
-    "BaseAttack": 126,
-    "BaseDefense": 126,
-    "evolvesTo": "Ivysaur",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Vine Whip",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Sludge Bomb",
-      "Seed Bomb",
-      "Power Whip"
-    ]
-  },
-  "2": {
-    "types": [
-      "grass",
-      "poison"
-    ],
-    "cpPerUpgrade": 22,
-    "evolveCost": "100",
-    "familyId": "1",
-    "BaseStamina": 120,
-    "BaseAttack": 156,
-    "BaseDefense": 158,
-    "evolvesTo": "Venusaur",
-    "evolvesFrom": "Bulbasaur",
-    "quickMoves": [
-      "Razor Leaf",
-      "Vine Whip"
-    ],
-    "cinematicMoves": [
-      "Sludge Bomb",
-      "Solar Beam",
-      "Power Whip"
-    ]
-  },
-  "3": {
-    "types": [
-      "grass",
-      "poison"
-    ],
-    "cpPerUpgrade": 33.5,
-    "evolveCost": "0",
-    "familyId": "1",
-    "BaseStamina": 160,
-    "BaseAttack": 198,
-    "BaseDefense": 200,
-    "evolvesTo": 0,
-    "evolvesFrom": "Ivysaur",
-    "quickMoves": [
-      "Razor Leaf",
-      "Vine Whip"
-    ],
-    "cinematicMoves": [
-      "Sludge Bomb",
-      "Petal Blizzard",
-      "Solar Beam"
-    ]
-  },
-  "4": {
-    "types": [
-      "fire"
-    ],
-    "cpPerUpgrade": 13.6,
-    "evolveCost": "25",
-    "familyId": "4",
-    "BaseStamina": 78,
-    "BaseAttack": 128,
-    "BaseDefense": 108,
-    "evolvesTo": "Charmeleon",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Ember",
-      "Scratch"
-    ],
-    "cinematicMoves": [
-      "Flame Charge",
-      "Flame Burst",
-      "Flamethrower"
-    ]
-  },
-  "5": {
-    "types": [
-      "fire"
-    ],
-    "cpPerUpgrade": 23,
-    "evolveCost": "100",
-    "familyId": "4",
-    "BaseStamina": 116,
-    "BaseAttack": 160,
-    "BaseDefense": 140,
-    "evolvesTo": "Charizard",
-    "evolvesFrom": "Charmander",
-    "quickMoves": [
-      "Ember",
-      "Scratch"
-    ],
-    "cinematicMoves": [
-      "Fire Punch",
-      "Flame Burst",
-      "Flamethrower"
-    ]
-  },
-  "6": {
-    "types": [
-      "fire",
-      "flying"
-    ],
-    "cpPerUpgrade": 33,
-    "evolveCost": "0",
-    "familyId": "4",
-    "BaseStamina": 156,
-    "BaseAttack": 212,
-    "BaseDefense": 182,
-    "evolvesTo": 0,
-    "evolvesFrom": "Charmeleon",
-    "quickMoves": [
-      "Ember",
-      "Wing Attack"
-    ],
-    "cinematicMoves": [
-      "Fire Blast",
-      "Dragon Claw",
-      "Flamethrower"
-    ]
-  },
-  "7": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 13,
-    "evolveCost": "25",
-    "familyId": "7",
-    "BaseStamina": 88,
-    "BaseAttack": 112,
-    "BaseDefense": 142,
-    "evolvesTo": "Wartortle",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Bubble",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Aqua Jet",
-      "Aqua Tail",
-      "Water Pulse"
-    ]
-  },
-  "8": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 21,
-    "evolveCost": "100",
-    "familyId": "7",
-    "BaseStamina": 118,
-    "BaseAttack": 144,
-    "BaseDefense": 176,
-    "evolvesTo": "Blastoise",
-    "evolvesFrom": "Squirtle",
-    "quickMoves": [
-      "Water Gun",
-      "Bite"
-    ],
-    "cinematicMoves": [
-      "Aqua Jet",
-      "Ice Beam",
-      "Hydro Pump"
-    ]
-  },
-  "9": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 31.5,
-    "evolveCost": "0",
-    "familyId": "7",
-    "BaseStamina": 158,
-    "BaseAttack": 186,
-    "BaseDefense": 222,
-    "evolvesTo": 0,
-    "evolvesFrom": "Wartortle",
-    "quickMoves": [
-      "Water Gun",
-      "Bite"
-    ],
-    "cinematicMoves": [
-      "Flash Cannon",
-      "Ice Beam",
-      "Hydro Pump"
-    ]
-  },
-  "10": {
-    "types": [
-      "bug"
-    ],
-    "cpPerUpgrade": 5,
-    "evolveCost": "12",
-    "familyId": "10",
-    "BaseStamina": 90,
-    "BaseAttack": 62,
-    "BaseDefense": 66,
-    "evolvesTo": "Metapod",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Bug Bite",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Struggle"
-    ]
-  },
-  "11": {
-    "types": [
-      "bug"
-    ],
-    "cpPerUpgrade": 5.5,
-    "evolveCost": "50",
-    "familyId": "10",
-    "BaseStamina": 100,
-    "BaseAttack": 56,
-    "BaseDefense": 86,
-    "evolvesTo": "Butterfree",
-    "evolvesFrom": "Caterpie",
-    "quickMoves": [
-      "Bug Bite",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Struggle"
-    ]
-  },
-  "12": {
-    "types": [
-      "bug",
-      "flying"
-    ],
-    "cpPerUpgrade": 18.5,
-    "evolveCost": "0",
-    "familyId": "10",
-    "BaseStamina": 120,
-    "BaseAttack": 144,
-    "BaseDefense": 144,
-    "evolvesTo": 0,
-    "evolvesFrom": "Metapod",
-    "quickMoves": [
-      "Bug Bite",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Bug Buzz",
-      "Psychic",
-      "Signal Beam"
-    ]
-  },
-  "13": {
-    "types": [
-      "bug",
-      "poison"
-    ],
-    "cpPerUpgrade": 5.3,
-    "evolveCost": "12",
-    "familyId": "13",
-    "BaseStamina": 80,
-    "BaseAttack": 68,
-    "BaseDefense": 64,
-    "evolvesTo": "Kakuna",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Bug Bite",
-      "Poison Sting"
-    ],
-    "cinematicMoves": [
-      "Struggle"
-    ]
-  },
-  "14": {
-    "types": [
-      "bug",
-      "poison"
-    ],
-    "cpPerUpgrade": 6.5,
-    "evolveCost": "50",
-    "familyId": "13",
-    "BaseStamina": 90,
-    "BaseAttack": 62,
-    "BaseDefense": 82,
-    "evolvesTo": "Beedrill",
-    "evolvesFrom": "Weedle",
-    "quickMoves": [
-      "Bug Bite",
-      "Poison Sting"
-    ],
-    "cinematicMoves": [
-      "Struggle"
-    ]
-  },
-  "15": {
-    "types": [
-      "bug",
-      "poison"
-    ],
-    "cpPerUpgrade": 19.2,
-    "evolveCost": "0",
-    "familyId": "13",
-    "BaseStamina": 130,
-    "BaseAttack": 144,
-    "BaseDefense": 130,
-    "evolvesTo": 0,
-    "evolvesFrom": "Kakuna",
-    "quickMoves": [
-      "Bug Bite",
-      "Poison Jab"
-    ],
-    "cinematicMoves": [
-      "Sludge Bomb",
-      "Aerial Ace",
-      "X Scissor"
-    ]
-  },
-  "16": {
-    "types": [
-      "normal",
-      "flying"
-    ],
-    "cpPerUpgrade": 10.2,
-    "evolveCost": "12",
-    "familyId": "16",
-    "BaseStamina": 80,
-    "BaseAttack": 94,
-    "BaseDefense": 90,
-    "evolvesTo": "Pidgeotto",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Quick Attack",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Twister",
-      "Aerial Ace",
-      "Air Cutter"
-    ]
-  },
-  "17": {
-    "types": [
-      "normal",
-      "flying"
-    ],
-    "cpPerUpgrade": 18.2,
-    "evolveCost": "50",
-    "familyId": "16",
-    "BaseStamina": 126,
-    "BaseAttack": 126,
-    "BaseDefense": 122,
-    "evolvesTo": "Pidgeot",
-    "evolvesFrom": "Pidgey",
-    "quickMoves": [
-      "Wing Attack",
-      "Steel Wing"
-    ],
-    "cinematicMoves": [
-      "Twister",
-      "Aerial Ace",
-      "Air Cutter"
-    ]
-  },
-  "18": {
-    "types": [
-      "normal",
-      "flying"
-    ],
-    "cpPerUpgrade": 27.7,
-    "evolveCost": "0",
-    "familyId": "16",
-    "BaseStamina": 166,
-    "BaseAttack": 170,
-    "BaseDefense": 166,
-    "evolvesTo": 0,
-    "evolvesFrom": "Pidgeotto",
-    "quickMoves": [
-      "Wing Attack",
-      "Steel Wing"
-    ],
-    "cinematicMoves": [
-      "Hurricane",
-      "Aerial Ace",
-      "Air Cutter"
-    ]
-  },
-  "19": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 7.5,
-    "evolveCost": "25",
-    "familyId": "19",
-    "BaseStamina": 60,
-    "BaseAttack": 92,
-    "BaseDefense": 86,
-    "evolvesTo": "Raticate",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Tackle",
-      "Quick Attack"
-    ],
-    "cinematicMoves": [
-      "Dig",
-      "Hyper Fang",
-      "Body Slam"
-    ]
-  },
-  "20": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 19.7,
-    "evolveCost": "0",
-    "familyId": "19",
-    "BaseStamina": 110,
-    "BaseAttack": 146,
-    "BaseDefense": 150,
-    "evolvesTo": 0,
-    "evolvesFrom": "Rattata",
-    "quickMoves": [
-      "Bite",
-      "Quick Attack"
-    ],
-    "cinematicMoves": [
-      "Dig",
-      "Hyper Fang",
-      "Hyper Beam"
-    ]
-  },
-  "21": {
-    "types": [
-      "normal",
-      "flying"
-    ],
-    "cpPerUpgrade": 8.7,
-    "evolveCost": "50",
-    "familyId": "21",
-    "BaseStamina": 80,
-    "BaseAttack": 102,
-    "BaseDefense": 78,
-    "evolvesTo": "Fearow",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Peck",
-      "Quick Attack"
-    ],
-    "cinematicMoves": [
-      "Aerial Ace",
-      "Drill Peck",
-      "Twister"
-    ]
-  },
-  "22": {
-    "types": [
-      "normal",
-      "flying"
-    ],
-    "cpPerUpgrade": 24.5,
-    "evolveCost": "0",
-    "familyId": "21",
-    "BaseStamina": 130,
-    "BaseAttack": 168,
-    "BaseDefense": 146,
-    "evolvesTo": 0,
-    "evolvesFrom": "Spearow",
-    "quickMoves": [
-      "Peck",
-      "Steel Wing"
-    ],
-    "cinematicMoves": [
-      "Aerial Ace",
-      "Drill Run",
-      "Twister"
-    ]
-  },
-  "23": {
-    "types": [
-      "poison"
-    ],
-    "cpPerUpgrade": 11,
-    "evolveCost": "50",
-    "familyId": "23",
-    "BaseStamina": 70,
-    "BaseAttack": 112,
-    "BaseDefense": 112,
-    "evolvesTo": "Arbok",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Poison Sting",
-      "Acid"
-    ],
-    "cinematicMoves": [
-      "Wrap",
-      "Sludge Bomb",
-      "Gunk Shot"
-    ]
-  },
-  "24": {
-    "types": [
-      "poison"
-    ],
-    "cpPerUpgrade": 22.8,
-    "evolveCost": "0",
-    "familyId": "23",
-    "BaseStamina": 120,
-    "BaseAttack": 166,
-    "BaseDefense": 166,
-    "evolvesTo": 0,
-    "evolvesFrom": "Ekans",
-    "quickMoves": [
-      "Bite",
-      "Acid"
-    ],
-    "cinematicMoves": [
-      "Dark Pulse",
-      "Sludge Wave",
-      "Gunk Shot"
-    ]
-  },
-  "25": {
-    "types": [
-      "electric"
-    ],
-    "cpPerUpgrade": 11.5,
-    "evolveCost": "50",
-    "familyId": "25",
-    "BaseStamina": 70,
-    "BaseAttack": 124,
-    "BaseDefense": 108,
-    "evolvesTo": "Raichu",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Thunder Shock",
-      "Quick Attack"
-    ],
-    "cinematicMoves": [
-      "Discharge",
-      "Thunderbolt",
-      "Thunder"
-    ]
-  },
-  "26": {
-    "types": [
-      "electric"
-    ],
-    "cpPerUpgrade": 27,
-    "evolveCost": "0",
-    "familyId": "25",
-    "BaseStamina": 120,
-    "BaseAttack": 200,
-    "BaseDefense": 154,
-    "evolvesTo": 0,
-    "evolvesFrom": "Pikachu",
-    "quickMoves": [
-      "Thunder Shock",
-      "Spark"
-    ],
-    "cinematicMoves": [
-      "Brick Break",
-      "Thunder Punch",
-      "Thunder"
-    ]
-  },
-  "27": {
-    "types": [
-      "ground"
-    ],
-    "cpPerUpgrade": 11,
-    "evolveCost": "50",
-    "familyId": "27",
-    "BaseStamina": 100,
-    "BaseAttack": 90,
-    "BaseDefense": 114,
-    "evolvesTo": "Sandslash",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Scratch",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Dig",
-      "Rock Slide",
-      "Rock Tomb"
-    ]
-  },
-  "28": {
-    "types": [
-      "ground"
-    ],
-    "cpPerUpgrade": 22.3,
-    "evolveCost": "0",
-    "familyId": "27",
-    "BaseStamina": 150,
-    "BaseAttack": 150,
-    "BaseDefense": 172,
-    "evolvesTo": 0,
-    "evolvesFrom": "Sandshrew",
-    "quickMoves": [
-      "Metal Claw",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Earthquake",
-      "Rock Tomb",
-      "Bulldoze"
-    ]
-  },
-  "29": {
-    "types": [
-      "poison"
-    ],
-    "cpPerUpgrade": 11,
-    "evolveCost": "25",
-    "familyId": "29",
-    "BaseStamina": 110,
-    "BaseAttack": 100,
-    "BaseDefense": 104,
-    "evolvesTo": "Nidorina",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Bite",
-      "Poison Sting"
-    ],
-    "cinematicMoves": [
-      "Poison Fang",
-      "Body Slam",
-      "Sludge Bomb"
-    ]
-  },
-  "30": {
-    "types": [
-      "poison"
-    ],
-    "cpPerUpgrade": 19,
-    "evolveCost": "100",
-    "familyId": "29",
-    "BaseStamina": 140,
-    "BaseAttack": 132,
-    "BaseDefense": 136,
-    "evolvesTo": "Nidoqueen",
-    "evolvesFrom": "Nidoran",
-    "quickMoves": [
-      "Bite",
-      "Poison Sting"
-    ],
-    "cinematicMoves": [
-      "Poison Fang",
-      "Dig",
-      "Sludge Bomb"
-    ]
-  },
-  "31": {
-    "types": [
-      "poison",
-      "ground"
-    ],
-    "cpPerUpgrade": 34,
-    "evolveCost": "0",
-    "familyId": "29",
-    "BaseStamina": 180,
-    "BaseAttack": 184,
-    "BaseDefense": 190,
-    "evolvesTo": 0,
-    "evolvesFrom": "Nidorina",
-    "quickMoves": [
-      "Poison Jab",
-      "Bite"
-    ],
-    "cinematicMoves": [
-      "Earthquake",
-      "Sludge Wave",
-      "Stone Edge"
-    ]
-  },
-  "32": {
-    "types": [
-      "poison"
-    ],
-    "cpPerUpgrade": 12,
-    "evolveCost": "25",
-    "familyId": "32",
-    "BaseStamina": 92,
-    "BaseAttack": 110,
-    "BaseDefense": 94,
-    "evolvesTo": "Nidorino",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Peck",
-      "Poison Sting"
-    ],
-    "cinematicMoves": [
-      "Horn Attack",
-      "Body Slam",
-      "Sludge Bomb"
-    ]
-  },
-  "33": {
-    "types": [
-      "poison"
-    ],
-    "cpPerUpgrade": 19.8,
-    "evolveCost": "100",
-    "familyId": "32",
-    "BaseStamina": 122,
-    "BaseAttack": 142,
-    "BaseDefense": 128,
-    "evolvesTo": "Nidoking",
-    "evolvesFrom": "Nidoran",
-    "quickMoves": [
-      "Poison Jab",
-      "Poison Sting"
-    ],
-    "cinematicMoves": [
-      "Horn Attack",
-      "Dig",
-      "Sludge Bomb"
-    ]
-  },
-  "34": {
-    "types": [
-      "poison",
-      "ground"
-    ],
-    "cpPerUpgrade": 34,
-    "evolveCost": "0",
-    "familyId": "32",
-    "BaseStamina": 162,
-    "BaseAttack": 204,
-    "BaseDefense": 170,
-    "evolvesTo": 0,
-    "evolvesFrom": "Nidorino",
-    "quickMoves": [
-      "Poison Jab",
-      "Fury Cutter"
-    ],
-    "cinematicMoves": [
-      "Earthquake",
-      "Sludge Wave",
-      "Megahorn"
-    ]
-  },
-  "35": {
-    "types": [
-      "fairy"
-    ],
-    "cpPerUpgrade": 16,
-    "evolveCost": "50",
-    "familyId": "35",
-    "BaseStamina": 140,
-    "BaseAttack": 116,
-    "BaseDefense": 124,
-    "evolvesTo": "Clefable",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Pound",
-      "Zen Headbutt"
-    ],
-    "cinematicMoves": [
-      "Disarming Voice",
-      "Body Slam",
-      "Moonblast"
-    ]
-  },
-  "36": {
-    "types": [
-      "fairy"
-    ],
-    "cpPerUpgrade": 31.6,
-    "evolveCost": "0",
-    "familyId": "35",
-    "BaseStamina": 190,
-    "BaseAttack": 178,
-    "BaseDefense": 178,
-    "evolvesTo": 0,
-    "evolvesFrom": "Clefairy",
-    "quickMoves": [
-      "Pound",
-      "Zen Headbutt"
-    ],
-    "cinematicMoves": [
-      "Dazzling Gleam",
-      "Psychic",
-      "Moonblast"
-    ]
-  },
-  "37": {
-    "types": [
-      "fire"
-    ],
-    "cpPerUpgrade": 12,
-    "evolveCost": "50",
-    "familyId": "37",
-    "BaseStamina": 76,
-    "BaseAttack": 106,
-    "BaseDefense": 118,
-    "evolvesTo": "Ninetales",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Quick Attack",
-      "Ember"
-    ],
-    "cinematicMoves": [
-      "Body Slam",
-      "Flamethrower",
-      "Flame Charge"
-    ]
-  },
-  "38": {
-    "types": [
-      "fire"
-    ],
-    "cpPerUpgrade": 31,
-    "evolveCost": "0",
-    "familyId": "37",
-    "BaseStamina": 146,
-    "BaseAttack": 176,
-    "BaseDefense": 194,
-    "evolvesTo": 0,
-    "evolvesFrom": "Vulpix",
-    "quickMoves": [
-      "Feint Attack",
-      "Ember"
-    ],
-    "cinematicMoves": [
-      "Heat Wave",
-      "Flamethrower",
-      "Fire Blast"
-    ]
-  },
-  "39": {
-    "types": [
-      "normal",
-      "fairy"
-    ],
-    "cpPerUpgrade": 11,
-    "evolveCost": "50",
-    "familyId": "39",
-    "BaseStamina": 230,
-    "BaseAttack": 98,
-    "BaseDefense": 54,
-    "evolvesTo": "Wigglytuff",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Pound",
-      "Feint Attack"
-    ],
-    "cinematicMoves": [
-      "Disarming Voice",
-      "Body Slam",
-      "Play Rough"
-    ]
-  },
-  "40": {
-    "types": [
-      "normal",
-      "fairy"
-    ],
-    "cpPerUpgrade": 31,
-    "evolveCost": "0",
-    "familyId": "39",
-    "BaseStamina": 280,
-    "BaseAttack": 168,
-    "BaseDefense": 108,
-    "evolvesTo": 0,
-    "evolvesFrom": "Jigglypuff",
-    "quickMoves": [
-      "Pound",
-      "Feint Attack"
-    ],
-    "cinematicMoves": [
-      "Dazzling Gleam",
-      "Hyper Beam",
-      "Play Rough"
-    ]
-  },
-  "41": {
-    "types": [
-      "poison",
-      "flying"
-    ],
-    "cpPerUpgrade": 8.5,
-    "evolveCost": "50",
-    "familyId": "41",
-    "BaseStamina": 80,
-    "BaseAttack": 88,
-    "BaseDefense": 90,
-    "evolvesTo": "Golbat",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Quick Attack",
-      "Bite"
-    ],
-    "cinematicMoves": [
-      "Poison Fang",
-      "Air Cutter",
-      "Sludge Bomb"
-    ]
-  },
-  "42": {
-    "types": [
-      "poison",
-      "flying"
-    ],
-    "cpPerUpgrade": 26.7,
-    "evolveCost": "0",
-    "familyId": "41",
-    "BaseStamina": 150,
-    "BaseAttack": 164,
-    "BaseDefense": 164,
-    "evolvesTo": 0,
-    "evolvesFrom": "Zubat",
-    "quickMoves": [
-      "Wing Attack",
-      "Bite"
-    ],
-    "cinematicMoves": [
-      "Poison Fang",
-      "Air Cutter",
-      "Ominous Wind"
-    ]
-  },
-  "43": {
-    "types": [
-      "grass",
-      "poison"
-    ],
-    "cpPerUpgrade": 15,
-    "evolveCost": "25",
-    "familyId": "43",
-    "BaseStamina": 90,
-    "BaseAttack": 134,
-    "BaseDefense": 130,
-    "evolvesTo": "Gloom",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Razor Leaf",
-      "Acid"
-    ],
-    "cinematicMoves": [
-      "Seed Bomb",
-      "Sludge Bomb",
-      "Moonblast"
-    ]
-  },
-  "44": {
-    "types": [
-      "grass",
-      "poison"
-    ],
-    "cpPerUpgrade": 21,
-    "evolveCost": "100",
-    "familyId": "43",
-    "BaseStamina": 120,
-    "BaseAttack": 162,
-    "BaseDefense": 158,
-    "evolvesTo": "Vileplume",
-    "evolvesFrom": "Oddish",
-    "quickMoves": [
-      "Razor Leaf",
-      "Acid"
-    ],
-    "cinematicMoves": [
-      "Petal Blizzard",
-      "Sludge Bomb",
-      "Moonblast"
-    ]
-  },
-  "45": {
-    "types": [
-      "grass",
-      "poison"
-    ],
-    "cpPerUpgrade": 34,
-    "evolveCost": "0",
-    "familyId": "43",
-    "BaseStamina": 150,
-    "BaseAttack": 202,
-    "BaseDefense": 190,
-    "evolvesTo": 0,
-    "evolvesFrom": "Gloom",
-    "quickMoves": [
-      "Razor Leaf",
-      "Acid"
-    ],
-    "cinematicMoves": [
-      "Petal Blizzard",
-      "Solar Beam",
-      "Moonblast"
-    ]
-  },
-  "46": {
-    "types": [
-      "bug",
-      "grass"
-    ],
-    "cpPerUpgrade": 12,
-    "evolveCost": "50",
-    "familyId": "46",
-    "BaseStamina": 70,
-    "BaseAttack": 122,
-    "BaseDefense": 120,
-    "evolvesTo": "Parasect",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Scratch",
-      "Bug Bite"
-    ],
-    "cinematicMoves": [
-      "Cross Poison",
-      "X Scissor",
-      "Seed Bomb"
-    ]
-  },
-  "47": {
-    "types": [
-      "bug",
-      "grass"
-    ],
-    "cpPerUpgrade": 23.3,
-    "evolveCost": "0",
-    "familyId": "46",
-    "BaseStamina": 120,
-    "BaseAttack": 162,
-    "BaseDefense": 170,
-    "evolvesTo": 0,
-    "evolvesFrom": "Paras",
-    "quickMoves": [
-      "Bug Bite",
-      "Fury Cutter"
-    ],
-    "cinematicMoves": [
-      "Cross Poison",
-      "X Scissor",
-      "Solar Beam"
-    ]
-  },
-  "48": {
-    "types": [
-      "bug",
-      "poison"
-    ],
-    "cpPerUpgrade": 14,
-    "evolveCost": "50",
-    "familyId": "48",
-    "BaseStamina": 120,
-    "BaseAttack": 108,
-    "BaseDefense": 118,
-    "evolvesTo": "Venomoth",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Bug Bite",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Psybeam",
-      "Dazzling Gleam",
-      "Shadow Ball"
-    ]
-  },
-  "49": {
-    "types": [
-      "bug",
-      "poison"
-    ],
-    "cpPerUpgrade": 26.5,
-    "evolveCost": "0",
-    "familyId": "48",
-    "BaseStamina": 140,
-    "BaseAttack": 172,
-    "BaseDefense": 154,
-    "evolvesTo": 0,
-    "evolvesFrom": "Venonat",
-    "quickMoves": [
-      "Bug Bite",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Poison Fang",
-      "Psychic",
-      "Bug Buzz"
-    ]
-  },
-  "50": {
-    "types": [
-      "ground"
-    ],
-    "cpPerUpgrade": 7,
-    "evolveCost": "50",
-    "familyId": "50",
-    "BaseStamina": 20,
-    "BaseAttack": 108,
-    "BaseDefense": 86,
-    "evolvesTo": "Dugtrio",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Mud Shot",
-      "Scratch"
-    ],
-    "cinematicMoves": [
-      "Dig",
-      "Mud Bomb",
-      "Rock Tomb"
-    ]
-  },
-  "51": {
-    "types": [
-      "ground"
-    ],
-    "cpPerUpgrade": 15.5,
-    "evolveCost": "0",
-    "familyId": "50",
-    "BaseStamina": 70,
-    "BaseAttack": 148,
-    "BaseDefense": 140,
-    "evolvesTo": 0,
-    "evolvesFrom": "Diglett",
-    "quickMoves": [
-      "Sucker Punch",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Earthquake",
-      "Mud Bomb",
-      "Stone Edge"
-    ]
-  },
-  "52": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 10.5,
-    "evolveCost": "50",
-    "familyId": "52",
-    "BaseStamina": 80,
-    "BaseAttack": 104,
-    "BaseDefense": 94,
-    "evolvesTo": "Persian",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Scratch",
-      "Bite"
-    ],
-    "cinematicMoves": [
-      "Night Slash",
-      "Dark Pulse",
-      "Body Slam"
-    ]
-  },
-  "53": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 23,
-    "evolveCost": "0",
-    "familyId": "52",
-    "BaseStamina": 130,
-    "BaseAttack": 156,
-    "BaseDefense": 146,
-    "evolvesTo": 0,
-    "evolvesFrom": "Meowth",
-    "quickMoves": [
-      "Scratch",
-      "Feint Attack"
-    ],
-    "cinematicMoves": [
-      "Night Slash",
-      "Power Gem",
-      "Play Rough"
-    ]
-  },
-  "54": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 14,
-    "evolveCost": "50",
-    "familyId": "54",
-    "BaseStamina": 100,
-    "BaseAttack": 132,
-    "BaseDefense": 112,
-    "evolvesTo": "Golduck",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Water Gun",
-      "Zen Headbutt"
-    ],
-    "cinematicMoves": [
-      "Psybeam",
-      "Aqua Tail",
-      "Cross Chop"
-    ]
-  },
-  "55": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 32.3,
-    "evolveCost": "0",
-    "familyId": "54",
-    "BaseStamina": 160,
-    "BaseAttack": 194,
-    "BaseDefense": 176,
-    "evolvesTo": 0,
-    "evolvesFrom": "Psyduck",
-    "quickMoves": [
-      "Water Gun",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Psychic",
-      "Hydro Pump",
-      "Ice Beam"
-    ]
-  },
-  "56": {
-    "types": [
-      "fighting"
-    ],
-    "cpPerUpgrade": 12,
-    "evolveCost": "50",
-    "familyId": "56",
-    "BaseStamina": 80,
-    "BaseAttack": 122,
-    "BaseDefense": 96,
-    "evolvesTo": "Primeape",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Karate Chop",
-      "Scratch"
-    ],
-    "cinematicMoves": [
-      "Cross Chop",
-      "Low Sweep",
-      "Brick Break"
-    ]
-  },
-  "57": {
-    "types": [
-      "fighting"
-    ],
-    "cpPerUpgrade": 25,
-    "evolveCost": "0",
-    "familyId": "56",
-    "BaseStamina": 130,
-    "BaseAttack": 178,
-    "BaseDefense": 150,
-    "evolvesTo": 0,
-    "evolvesFrom": "Mankey",
-    "quickMoves": [
-      "Low Kick",
-      "Karate Chop"
-    ],
-    "cinematicMoves": [
-      "Cross Chop",
-      "Low Sweep",
-      "Night Slash"
-    ]
-  },
-  "58": {
-    "types": [
-      "fire"
-    ],
-    "cpPerUpgrade": 19,
-    "evolveCost": "50",
-    "familyId": "58",
-    "BaseStamina": 110,
-    "BaseAttack": 156,
-    "BaseDefense": 110,
-    "evolvesTo": "Arcanine",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Ember",
-      "Bite"
-    ],
-    "cinematicMoves": [
-      "Flame Wheel",
-      "Body Slam",
-      "Flamethrower"
-    ]
-  },
-  "59": {
-    "types": [
-      "fire"
-    ],
-    "cpPerUpgrade": 38.4,
-    "evolveCost": "0",
-    "familyId": "58",
-    "BaseStamina": 180,
-    "BaseAttack": 230,
-    "BaseDefense": 180,
-    "evolvesTo": 0,
-    "evolvesFrom": "Growlithe",
-    "quickMoves": [
-      "Fire Fang",
-      "Bite"
-    ],
-    "cinematicMoves": [
-      "Fire Blast",
-      "Flamethrower",
-      "Bulldoze"
-    ]
-  },
-  "60": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 10,
-    "evolveCost": "25",
-    "familyId": "60",
-    "BaseStamina": 80,
-    "BaseAttack": 108,
-    "BaseDefense": 98,
-    "evolvesTo": "Poliwhirl",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Bubble",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Bubble Beam",
-      "Mud Bomb",
-      "Body Slam"
-    ]
-  },
-  "61": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 16,
-    "evolveCost": "100",
-    "familyId": "60",
-    "BaseStamina": 130,
-    "BaseAttack": 132,
-    "BaseDefense": 132,
-    "evolvesTo": "Poliwrath",
-    "evolvesFrom": "Poliwag",
-    "quickMoves": [
-      "Bubble",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Scald",
-      "Mud Bomb",
-      "Bubble Beam"
-    ]
-  },
-  "62": {
-    "types": [
-      "water",
-      "fighting"
-    ],
-    "cpPerUpgrade": 34,
-    "evolveCost": "0",
-    "familyId": "60",
-    "BaseStamina": 180,
-    "BaseAttack": 180,
-    "BaseDefense": 202,
-    "evolvesTo": 0,
-    "evolvesFrom": "Poliwhirl",
-    "quickMoves": [
-      "Bubble",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Hydro Pump",
-      "Submission",
-      "Ice Punch"
-    ]
-  },
-  "63": {
-    "types": [
-      "psychic"
-    ],
-    "cpPerUpgrade": 6.8,
-    "evolveCost": "25",
-    "familyId": "63",
-    "BaseStamina": 50,
-    "BaseAttack": 110,
-    "BaseDefense": 76,
-    "evolvesTo": "Kadabra",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Zen Headbutt"
-    ],
-    "cinematicMoves": [
-      "Psyshock",
-      "Signal Beam",
-      "Shadow Ball"
-    ]
-  },
-  "64": {
-    "types": [
-      "psychic"
-    ],
-    "cpPerUpgrade": 14,
-    "evolveCost": "100",
-    "familyId": "63",
-    "BaseStamina": 80,
-    "BaseAttack": 150,
-    "BaseDefense": 112,
-    "evolvesTo": "Alakazam",
-    "evolvesFrom": "Abra",
-    "quickMoves": [
-      "Psycho Cut",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Psybeam",
-      "Dazzling Gleam",
-      "Shadow Ball"
-    ]
-  },
-  "65": {
-    "types": [
-      "psychic"
-    ],
-    "cpPerUpgrade": 25,
-    "evolveCost": "0",
-    "familyId": "63",
-    "BaseStamina": 110,
-    "BaseAttack": 186,
-    "BaseDefense": 152,
-    "evolvesTo": 0,
-    "evolvesFrom": "Kadabra",
-    "quickMoves": [
-      "Psycho Cut",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Psychic",
-      "Dazzling Gleam",
-      "Shadow Ball"
-    ]
-  },
-  "66": {
-    "types": [
-      "fighting"
-    ],
-    "cpPerUpgrade": 14.5,
-    "evolveCost": "25",
-    "familyId": "66",
-    "BaseStamina": 140,
-    "BaseAttack": 118,
-    "BaseDefense": 96,
-    "evolvesTo": "Machoke",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Low Kick",
-      "Karate Chop"
-    ],
-    "cinematicMoves": [
-      "Low Sweep",
-      "Brick Break",
-      "Cross Chop"
-    ]
-  },
-  "67": {
-    "types": [
-      "fighting"
-    ],
-    "cpPerUpgrade": 24,
-    "evolveCost": "100",
-    "familyId": "66",
-    "BaseStamina": 160,
-    "BaseAttack": 154,
-    "BaseDefense": 144,
-    "evolvesTo": "Machamp",
-    "evolvesFrom": "Machop",
-    "quickMoves": [
-      "Low Kick",
-      "Karate Chop"
-    ],
-    "cinematicMoves": [
-      "Submission",
-      "Brick Break",
-      "Cross Chop"
-    ]
-  },
-  "68": {
-    "types": [
-      "fighting"
-    ],
-    "cpPerUpgrade": 35.7,
-    "evolveCost": "0",
-    "familyId": "66",
-    "BaseStamina": 180,
-    "BaseAttack": 198,
-    "BaseDefense": 180,
-    "evolvesTo": 0,
-    "evolvesFrom": "Machoke",
-    "quickMoves": [
-      "Bullet Punch",
-      "Karate Chop"
-    ],
-    "cinematicMoves": [
-      "Stone Edge",
-      "Submission",
-      "Cross Chop"
-    ]
-  },
-  "69": {
-    "types": [
-      "grass",
-      "poison"
-    ],
-    "cpPerUpgrade": 13,
-    "evolveCost": "25",
-    "familyId": "69",
-    "BaseStamina": 100,
-    "BaseAttack": 158,
-    "BaseDefense": 78,
-    "evolvesTo": "Weepinbell",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Vine Whip",
-      "Acid"
-    ],
-    "cinematicMoves": [
-      "Power Whip",
-      "Sludge Bomb",
-      "Wrap"
-    ]
-  },
-  "70": {
-    "types": [
-      "grass",
-      "poison"
-    ],
-    "cpPerUpgrade": 21,
-    "evolveCost": "100",
-    "familyId": "69",
-    "BaseStamina": 130,
-    "BaseAttack": 190,
-    "BaseDefense": 110,
-    "evolvesTo": "Victreebel",
-    "evolvesFrom": "Bellsprout",
-    "quickMoves": [
-      "Razor Leaf",
-      "Acid"
-    ],
-    "cinematicMoves": [
-      "Power Whip",
-      "Sludge Bomb",
-      "Seed Bomb"
-    ]
-  },
-  "71": {
-    "types": [
-      "grass",
-      "poison"
-    ],
-    "cpPerUpgrade": 35,
-    "evolveCost": "0",
-    "familyId": "69",
-    "BaseStamina": 160,
-    "BaseAttack": 222,
-    "BaseDefense": 152,
-    "evolvesTo": 0,
-    "evolvesFrom": "Weepinbell",
-    "quickMoves": [
-      "Razor Leaf",
-      "Acid"
-    ],
-    "cinematicMoves": [
-      "Leaf Blade",
-      "Sludge Bomb",
-      "Solar Beam"
-    ]
-  },
-  "72": {
-    "types": [
-      "water",
-      "poison"
-    ],
-    "cpPerUpgrade": 12,
-    "evolveCost": "50",
-    "familyId": "72",
-    "BaseStamina": 80,
-    "BaseAttack": 106,
-    "BaseDefense": 136,
-    "evolvesTo": "Tentacruel",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Bubble",
-      "Poison Sting"
-    ],
-    "cinematicMoves": [
-      "Bubble Beam",
-      "Water Pulse",
-      "Wrap"
-    ]
-  },
-  "73": {
-    "types": [
-      "water",
-      "poison"
-    ],
-    "cpPerUpgrade": 30.2,
-    "evolveCost": "0",
-    "familyId": "72",
-    "BaseStamina": 160,
-    "BaseAttack": 170,
-    "BaseDefense": 196,
-    "evolvesTo": 0,
-    "evolvesFrom": "Tentacool",
-    "quickMoves": [
-      "Acid",
-      "Poison Jab"
-    ],
-    "cinematicMoves": [
-      "Hydro Pump",
-      "Sludge Wave",
-      "Blizzard"
-    ]
-  },
-  "74": {
-    "types": [
-      "rock",
-      "ground"
-    ],
-    "cpPerUpgrade": 11,
-    "evolveCost": "25",
-    "familyId": "74",
-    "BaseStamina": 80,
-    "BaseAttack": 106,
-    "BaseDefense": 118,
-    "evolvesTo": "Graveler",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Rock Throw",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Rock Slide",
-      "Rock Tomb",
-      "Dig"
-    ]
-  },
-  "75": {
-    "types": [
-      "rock",
-      "ground"
-    ],
-    "cpPerUpgrade": 19,
-    "evolveCost": "100",
-    "familyId": "74",
-    "BaseStamina": 110,
-    "BaseAttack": 142,
-    "BaseDefense": 156,
-    "evolvesTo": "Golem",
-    "evolvesFrom": "Geodude",
-    "quickMoves": [
-      "Rock Throw",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Dig",
-      "Stone Edge",
-      "Rock Slide"
-    ]
-  },
-  "76": {
-    "types": [
-      "rock",
-      "ground"
-    ],
-    "cpPerUpgrade": 31,
-    "evolveCost": "0",
-    "familyId": "74",
-    "BaseStamina": 160,
-    "BaseAttack": 176,
-    "BaseDefense": 198,
-    "evolvesTo": 0,
-    "evolvesFrom": "Graveler",
-    "quickMoves": [
-      "Rock Throw",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Stone Edge",
-      "Ancient Power",
-      "Earthquake"
-    ]
-  },
-  "77": {
-    "types": [
-      "fire"
-    ],
-    "cpPerUpgrade": 20.8,
-    "evolveCost": "50",
-    "familyId": "77",
-    "BaseStamina": 100,
-    "BaseAttack": 168,
-    "BaseDefense": 138,
-    "evolvesTo": "Rapidash",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Tackle",
-      "Ember"
-    ],
-    "cinematicMoves": [
-      "Flame Charge",
-      "Flame Wheel",
-      "Fire Blast"
-    ]
-  },
-  "78": {
-    "types": [
-      "fire"
-    ],
-    "cpPerUpgrade": 30.5,
-    "evolveCost": "0",
-    "familyId": "77",
-    "BaseStamina": 130,
-    "BaseAttack": 200,
-    "BaseDefense": 170,
-    "evolvesTo": 0,
-    "evolvesFrom": "Ponyta",
-    "quickMoves": [
-      "Low Kick",
-      "Ember"
-    ],
-    "cinematicMoves": [
-      "Fire Blast",
-      "Drill Run",
-      "Heat Wave"
-    ]
-  },
-  "79": {
-    "types": [
-      "water",
-      "psychic"
-    ],
-    "cpPerUpgrade": 16,
-    "evolveCost": "50",
-    "familyId": "79",
-    "BaseStamina": 180,
-    "BaseAttack": 110,
-    "BaseDefense": 110,
-    "evolvesTo": "Slowbro",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Water Gun",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Water Pulse",
-      "Psyshock",
-      "Psychic"
-    ]
-  },
-  "80": {
-    "types": [
-      "water",
-      "psychic"
-    ],
-    "cpPerUpgrade": 35.2,
-    "evolveCost": "0",
-    "familyId": "79",
-    "BaseStamina": 190,
-    "BaseAttack": 184,
-    "BaseDefense": 198,
-    "evolvesTo": 0,
-    "evolvesFrom": "Slowpoke",
-    "quickMoves": [
-      "Water Gun",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Water Pulse",
-      "Psychic",
-      "Ice Beam"
-    ]
-  },
-  "81": {
-    "types": [
-      "electric",
-      "steel"
-    ],
-    "cpPerUpgrade": 12,
-    "evolveCost": "50",
-    "familyId": "81",
-    "BaseStamina": 50,
-    "BaseAttack": 128,
-    "BaseDefense": 138,
-    "evolvesTo": "Magneton",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Spark",
-      "Thunder Shock"
-    ],
-    "cinematicMoves": [
-      "Discharge",
-      "Magnet Bomb",
-      "Thunderbolt"
-    ]
-  },
-  "82": {
-    "types": [
-      "electric",
-      "steel"
-    ],
-    "cpPerUpgrade": 25,
-    "evolveCost": "0",
-    "familyId": "81",
-    "BaseStamina": 100,
-    "BaseAttack": 186,
-    "BaseDefense": 180,
-    "evolvesTo": 0,
-    "evolvesFrom": "Magnemite",
-    "quickMoves": [
-      "Spark",
-      "Thunder Shock"
-    ],
-    "cinematicMoves": [
-      "Discharge",
-      "Magnet Bomb",
-      "Flash Cannon"
-    ]
-  },
-  "83": {
-    "types": [
-      "normal",
-      "flying"
-    ],
-    "cpPerUpgrade": null,
-    "evolveCost": "0",
-    "familyId": "83",
-    "BaseStamina": 104,
-    "BaseAttack": 138,
-    "BaseDefense": 132,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Cut",
-      "Fury Cutter"
-    ],
-    "cinematicMoves": [
-      "Aerial Ace",
-      "Air Cutter",
-      "Leaf Blade"
-    ]
-  },
-  "84": {
-    "types": [
-      "normal",
-      "flying"
-    ],
-    "cpPerUpgrade": 12,
-    "evolveCost": "50",
-    "familyId": "84",
-    "BaseStamina": 70,
-    "BaseAttack": 126,
-    "BaseDefense": 96,
-    "evolvesTo": "Dodrio",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Peck",
-      "Quick Attack"
-    ],
-    "cinematicMoves": [
-      "Drill Peck",
-      "Aerial Ace",
-      "Swift"
-    ]
-  },
-  "85": {
-    "types": [
-      "normal",
-      "flying"
-    ],
-    "cpPerUpgrade": 24,
-    "evolveCost": "0",
-    "familyId": "84",
-    "BaseStamina": 120,
-    "BaseAttack": 182,
-    "BaseDefense": 150,
-    "evolvesTo": 0,
-    "evolvesFrom": "Doduo",
-    "quickMoves": [
-      "Feint Attack",
-      "Steel Wing"
-    ],
-    "cinematicMoves": [
-      "Drill Peck",
-      "Aerial Ace",
-      "Air Cutter"
-    ]
-  },
-  "86": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 16,
-    "evolveCost": "50",
-    "familyId": "86",
-    "BaseStamina": 130,
-    "BaseAttack": 104,
-    "BaseDefense": 138,
-    "evolvesTo": "Dewgong",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Ice Shard",
-      "Water Gun"
-    ],
-    "cinematicMoves": [
-      "Aqua Jet",
-      "Icy Wind",
-      "Aqua Tail"
-    ]
-  },
-  "87": {
-    "types": [
-      "water",
-      "ice"
-    ],
-    "cpPerUpgrade": 31,
-    "evolveCost": "0",
-    "familyId": "86",
-    "BaseStamina": 180,
-    "BaseAttack": 156,
-    "BaseDefense": 192,
-    "evolvesTo": 0,
-    "evolvesFrom": "Seel",
-    "quickMoves": [
-      "Frost Breath",
-      "Ice Shard"
-    ],
-    "cinematicMoves": [
-      "Icy Wind",
-      "Aqua Jet",
-      "Blizzard"
-    ]
-  },
-  "88": {
-    "types": [
-      "poison"
-    ],
-    "cpPerUpgrade": 17,
-    "evolveCost": "50",
-    "familyId": "88",
-    "BaseStamina": 160,
-    "BaseAttack": 124,
-    "BaseDefense": 110,
-    "evolvesTo": "Muk",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Acid",
-      "Mud Slap"
-    ],
-    "cinematicMoves": [
-      "Sludge",
-      "Mud Bomb",
-      "Sludge Bomb"
-    ]
-  },
-  "89": {
-    "types": [
-      "poison"
-    ],
-    "cpPerUpgrade": 38,
-    "evolveCost": "0",
-    "familyId": "88",
-    "BaseStamina": 210,
-    "BaseAttack": 180,
-    "BaseDefense": 188,
-    "evolvesTo": 0,
-    "evolvesFrom": "Grimer",
-    "quickMoves": [
-      "Acid",
-      "Poison Jab"
-    ],
-    "cinematicMoves": [
-      "Dark Pulse",
-      "Gunk Shot",
-      "Sludge Wave"
-    ]
-  },
-  "90": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 10,
-    "evolveCost": "50",
-    "familyId": "90",
-    "BaseStamina": 60,
-    "BaseAttack": 120,
-    "BaseDefense": 112,
-    "evolvesTo": "Cloyster",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Ice Shard",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Bubble Beam",
-      "Water Pulse",
-      "Icy Wind"
-    ]
-  },
-  "91": {
-    "types": [
-      "water",
-      "ice"
-    ],
-    "cpPerUpgrade": 26,
-    "evolveCost": "0",
-    "familyId": "90",
-    "BaseStamina": 100,
-    "BaseAttack": 196,
-    "BaseDefense": 196,
-    "evolvesTo": 0,
-    "evolvesFrom": "Shellder",
-    "quickMoves": [
-      "Frost Breath",
-      "Ice Shard"
-    ],
-    "cinematicMoves": [
-      "Icy Wind",
-      "Hydro Pump",
-      "Blizzard"
-    ]
-  },
-  "92": {
-    "types": [
-      "ghost",
-      "poison"
-    ],
-    "cpPerUpgrade": 11.3,
-    "evolveCost": "25",
-    "familyId": "92",
-    "BaseStamina": 60,
-    "BaseAttack": 136,
-    "BaseDefense": 82,
-    "evolvesTo": "Haunter",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Lick",
-      "Sucker Punch"
-    ],
-    "cinematicMoves": [
-      "Ominous Wind",
-      "Dark Pulse",
-      "Sludge Bomb"
-    ]
-  },
-  "93": {
-    "types": [
-      "ghost",
-      "poison"
-    ],
-    "cpPerUpgrade": 18,
-    "evolveCost": "100",
-    "familyId": "92",
-    "BaseStamina": 90,
-    "BaseAttack": 172,
-    "BaseDefense": 118,
-    "evolvesTo": "Gengar",
-    "evolvesFrom": "Gastly",
-    "quickMoves": [
-      "Shadow Claw",
-      "Lick"
-    ],
-    "cinematicMoves": [
-      "Shadow Ball",
-      "Dark Pulse",
-      "Sludge Bomb"
-    ]
-  },
-  "94": {
-    "types": [
-      "ghost",
-      "poison"
-    ],
-    "cpPerUpgrade": 29.3,
-    "evolveCost": "0",
-    "familyId": "92",
-    "BaseStamina": 120,
-    "BaseAttack": 204,
-    "BaseDefense": 156,
-    "evolvesTo": 0,
-    "evolvesFrom": "Haunter",
-    "quickMoves": [
-      "Sucker Punch",
-      "Shadow Claw"
-    ],
-    "cinematicMoves": [
-      "Shadow Ball",
-      "Dark Pulse",
-      "Sludge Wave"
-    ]
-  },
-  "95": {
-    "types": [
-      "rock",
-      "ground"
-    ],
-    "cpPerUpgrade": 11.5,
-    "evolveCost": "0",
-    "familyId": "95",
-    "BaseStamina": 70,
-    "BaseAttack": 90,
-    "BaseDefense": 186,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Rock Throw",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Rock Slide",
-      "Stone Edge",
-      "Iron Head"
-    ]
-  },
-  "96": {
-    "types": [
-      "psychic"
-    ],
-    "cpPerUpgrade": 14.5,
-    "evolveCost": "50",
-    "familyId": "96",
-    "BaseStamina": 120,
-    "BaseAttack": 104,
-    "BaseDefense": 140,
-    "evolvesTo": "Hypno",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Pound",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Psybeam",
-      "Psyshock",
-      "Psychic"
-    ]
-  },
-  "97": {
-    "types": [
-      "psychic"
-    ],
-    "cpPerUpgrade": 30,
-    "evolveCost": "0",
-    "familyId": "96",
-    "BaseStamina": 170,
-    "BaseAttack": 162,
-    "BaseDefense": 196,
-    "evolvesTo": 0,
-    "evolvesFrom": "Drowzee",
-    "quickMoves": [
-      "Zen Headbutt",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Psyshock",
-      "Psychic",
-      "Shadow Ball"
-    ]
-  },
-  "98": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 10.5,
-    "evolveCost": "50",
-    "familyId": "98",
-    "BaseStamina": 60,
-    "BaseAttack": 116,
-    "BaseDefense": 110,
-    "evolvesTo": "Kingler",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Bubble",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Vice Grip",
-      "Bubble Beam",
-      "Water Pulse"
-    ]
-  },
-  "99": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 25.3,
-    "evolveCost": "0",
-    "familyId": "98",
-    "BaseStamina": 110,
-    "BaseAttack": 178,
-    "BaseDefense": 168,
-    "evolvesTo": 0,
-    "evolvesFrom": "Krabby",
-    "quickMoves": [
-      "Metal Claw",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Vice Grip",
-      "X Scissor",
-      "Water Pulse"
-    ]
-  },
-  "100": {
-    "types": [
-      "electric"
-    ],
-    "cpPerUpgrade": 10,
-    "evolveCost": "50",
-    "familyId": "100",
-    "BaseStamina": 80,
-    "BaseAttack": 102,
-    "BaseDefense": 124,
-    "evolvesTo": "Electrode",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Spark",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Discharge",
-      "Thunderbolt",
-      "Signal Beam"
-    ]
-  },
-  "101": {
-    "types": [
-      "electric"
-    ],
-    "cpPerUpgrade": 22.5,
-    "evolveCost": "0",
-    "familyId": "100",
-    "BaseStamina": 120,
-    "BaseAttack": 150,
-    "BaseDefense": 174,
-    "evolvesTo": 0,
-    "evolvesFrom": "Voltorb",
-    "quickMoves": [
-      "Spark",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Discharge",
-      "Thunderbolt",
-      "Hyper Beam"
-    ]
-  },
-  "102": {
-    "types": [
-      "grass",
-      "psychic"
-    ],
-    "cpPerUpgrade": 18,
-    "evolveCost": "50",
-    "familyId": "102",
-    "BaseStamina": 120,
-    "BaseAttack": 110,
-    "BaseDefense": 132,
-    "evolvesTo": "Exeggutor",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Seed Bomb",
-      "Psychic",
-      "Ancient Power"
-    ]
-  },
-  "103": {
-    "types": [
-      "grass",
-      "psychic"
-    ],
-    "cpPerUpgrade": 40.5,
-    "evolveCost": "0",
-    "familyId": "102",
-    "BaseStamina": 190,
-    "BaseAttack": 232,
-    "BaseDefense": 164,
-    "evolvesTo": 0,
-    "evolvesFrom": "Exeggcute",
-    "quickMoves": [
-      "Confusion",
-      "Zen Headbutt"
-    ],
-    "cinematicMoves": [
-      "Seed Bomb",
-      "Psychic",
-      "Solar Beam"
-    ]
-  },
-  "104": {
-    "types": [
-      "ground"
-    ],
-    "cpPerUpgrade": 13,
-    "evolveCost": "50",
-    "familyId": "104",
-    "BaseStamina": 100,
-    "BaseAttack": 102,
-    "BaseDefense": 150,
-    "evolvesTo": "Marowak",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Mud Slap",
-      "Rock Smash"
-    ],
-    "cinematicMoves": [
-      "Bone Club",
-      "Dig",
-      "Bulldoze"
-    ]
-  },
-  "105": {
-    "types": [
-      "ground"
-    ],
-    "cpPerUpgrade": 22.5,
-    "evolveCost": "0",
-    "familyId": "104",
-    "BaseStamina": 120,
-    "BaseAttack": 140,
-    "BaseDefense": 202,
-    "evolvesTo": 0,
-    "evolvesFrom": "Cubone",
-    "quickMoves": [
-      "Mud Slap",
-      "Rock Smash"
-    ],
-    "cinematicMoves": [
-      "Bone Club",
-      "Dig",
-      "Earthquake"
-    ]
-  },
-  "106": {
-    "types": [
-      "fighting"
-    ],
-    "cpPerUpgrade": 21,
-    "evolveCost": "0",
-    "familyId": "106",
-    "BaseStamina": 100,
-    "BaseAttack": 148,
-    "BaseDefense": 172,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Low Kick",
-      "Rock Smash"
-    ],
-    "cinematicMoves": [
-      "Stomp",
-      "Low Sweep",
-      "Stone Edge"
-    ]
-  },
-  "107": {
-    "types": [
-      "fighting"
-    ],
-    "cpPerUpgrade": 21,
-    "evolveCost": "0",
-    "familyId": "107",
-    "BaseStamina": 100,
-    "BaseAttack": 138,
-    "BaseDefense": 204,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Bullet Punch",
-      "Rock Smash"
-    ],
-    "cinematicMoves": [
-      "Fire Punch",
-      "Ice Punch",
-      "Thunder Punch",
-      "Brick Break"
-    ]
-  },
-  "108": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 22,
-    "evolveCost": "0",
-    "familyId": "108",
-    "BaseStamina": 180,
-    "BaseAttack": 126,
-    "BaseDefense": 160,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Lick",
-      "Zen Headbutt"
-    ],
-    "cinematicMoves": [
-      "Hyper Beam",
-      "Stomp",
-      "Power Whip"
-    ]
-  },
-  "109": {
-    "types": [
-      "poison"
-    ],
-    "cpPerUpgrade": 16,
-    "evolveCost": "50",
-    "familyId": "109",
-    "BaseStamina": 80,
-    "BaseAttack": 136,
-    "BaseDefense": 142,
-    "evolvesTo": "Weezing",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Acid",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Sludge",
-      "Sludge Bomb",
-      "Dark Pulse"
-    ]
-  },
-  "110": {
-    "types": [
-      "poison"
-    ],
-    "cpPerUpgrade": 32.8,
-    "evolveCost": "0",
-    "familyId": "109",
-    "BaseStamina": 130,
-    "BaseAttack": 190,
-    "BaseDefense": 198,
-    "evolvesTo": 0,
-    "evolvesFrom": "Koffing",
-    "quickMoves": [
-      "Acid",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Sludge Bomb",
-      "Shadow Ball",
-      "Dark Pulse"
-    ]
-  },
-  "111": {
-    "types": [
-      "ground",
-      "rock"
-    ],
-    "cpPerUpgrade": 16,
-    "evolveCost": "50",
-    "familyId": "111",
-    "BaseStamina": 160,
-    "BaseAttack": 110,
-    "BaseDefense": 116,
-    "evolvesTo": "Rhydon",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Mud Slap",
-      "Rock Smash"
-    ],
-    "cinematicMoves": [
-      "Bulldoze",
-      "Horn Attack",
-      "Stomp"
-    ]
-  },
-  "112": {
-    "types": [
-      "ground",
-      "rock"
-    ],
-    "cpPerUpgrade": 29,
-    "evolveCost": "0",
-    "familyId": "111",
-    "BaseStamina": 210,
-    "BaseAttack": 166,
-    "BaseDefense": 160,
-    "evolvesTo": 0,
-    "evolvesFrom": "Rhyhorn",
-    "quickMoves": [
-      "Mud Slap",
-      "Rock Smash"
-    ],
-    "cinematicMoves": [
-      "Megahorn",
-      "Earthquake",
-      "Stone Edge"
-    ]
-  },
-  "113": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 9.5,
-    "evolveCost": "0",
-    "familyId": "113",
-    "BaseStamina": 500,
-    "BaseAttack": 40,
-    "BaseDefense": 60,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Pound",
-      "Zen Headbutt"
-    ],
-    "cinematicMoves": [
-      "Psychic",
-      "Psybeam",
-      "Dazzling Gleam"
-    ]
-  },
-  "114": {
-    "types": [
-      "grass"
-    ],
-    "cpPerUpgrade": 24.9,
-    "evolveCost": "0",
-    "familyId": "114",
-    "BaseStamina": 130,
-    "BaseAttack": 164,
-    "BaseDefense": 152,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Vine Whip"
-    ],
-    "cinematicMoves": [
-      "Power Whip",
-      "Sludge Bomb",
-      "Solar Beam"
-    ]
-  },
-  "115": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 29,
-    "evolveCost": "0",
-    "familyId": "115",
-    "BaseStamina": 210,
-    "BaseAttack": 142,
-    "BaseDefense": 178,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Mud Slap",
-      "Low Kick"
-    ],
-    "cinematicMoves": [
-      "Brick Break",
-      "Earthquake",
-      "Stomp"
-    ]
-  },
-  "116": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 11.5,
-    "evolveCost": "50",
-    "familyId": "116",
-    "BaseStamina": 60,
-    "BaseAttack": 122,
-    "BaseDefense": 100,
-    "evolvesTo": "Seadra",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Water Gun",
-      "Bubble"
-    ],
-    "cinematicMoves": [
-      "Bubble Beam",
-      "Dragon Pulse",
-      "Flash Cannon"
-    ]
-  },
-  "117": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 23.5,
-    "evolveCost": "0",
-    "familyId": "116",
-    "BaseStamina": 110,
-    "BaseAttack": 176,
-    "BaseDefense": 150,
-    "evolvesTo": 0,
-    "evolvesFrom": "Horsea",
-    "quickMoves": [
-      "Water Gun",
-      "Dragon Breath"
-    ],
-    "cinematicMoves": [
-      "Blizzard",
-      "Dragon Pulse",
-      "Hydro Pump"
-    ]
-  },
-  "118": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 13.5,
-    "evolveCost": "50",
-    "familyId": "118",
-    "BaseStamina": 90,
-    "BaseAttack": 112,
-    "BaseDefense": 126,
-    "evolvesTo": "Seaking",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Peck",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Water Pulse",
-      "Horn Attack",
-      "Aqua Tail"
-    ]
-  },
-  "119": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 29,
-    "evolveCost": "0",
-    "familyId": "118",
-    "BaseStamina": 160,
-    "BaseAttack": 172,
-    "BaseDefense": 160,
-    "evolvesTo": 0,
-    "evolvesFrom": "Goldeen",
-    "quickMoves": [
-      "Peck",
-      "Poison Jab"
-    ],
-    "cinematicMoves": [
-      "Icy Wind",
-      "Drill Run",
-      "Megahorn"
-    ]
-  },
-  "120": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 12,
-    "evolveCost": "50",
-    "familyId": "120",
-    "BaseStamina": 60,
-    "BaseAttack": 130,
-    "BaseDefense": 128,
-    "evolvesTo": "Starmie",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Quick Attack",
-      "Water Gun"
-    ],
-    "cinematicMoves": [
-      "Swift",
-      "Bubble Beam",
-      "Power Gem"
-    ]
-  },
-  "121": {
-    "types": [
-      "water",
-      "psychic"
-    ],
-    "cpPerUpgrade": 30,
-    "evolveCost": "0",
-    "familyId": "120",
-    "BaseStamina": 120,
-    "BaseAttack": 194,
-    "BaseDefense": 192,
-    "evolvesTo": 0,
-    "evolvesFrom": "Staryu",
-    "quickMoves": [
-      "Quick Attack",
-      "Water Gun"
-    ],
-    "cinematicMoves": [
-      "Hydro Pump",
-      "Power Gem",
-      "Psybeam"
-    ]
-  },
-  "122": {
-    "types": [
-      "psychic",
-      "fairy"
-    ],
-    "cpPerUpgrade": 21,
-    "evolveCost": "0",
-    "familyId": "122",
-    "BaseStamina": 80,
-    "BaseAttack": 154,
-    "BaseDefense": 196,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Confusion",
-      "Zen Headbutt"
-    ],
-    "cinematicMoves": [
-      "Psybeam",
-      "Psychic",
-      "Shadow Ball"
-    ]
-  },
-  "123": {
-    "types": [
-      "bug",
-      "flying"
-    ],
-    "cpPerUpgrade": 30.4,
-    "evolveCost": "0",
-    "familyId": "123",
-    "BaseStamina": 140,
-    "BaseAttack": 176,
-    "BaseDefense": 180,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Fury Cutter",
-      "Steel Wing"
-    ],
-    "cinematicMoves": [
-      "Night Slash",
-      "X Scissor",
-      "Bug Buzz"
-    ]
-  },
-  "124": {
-    "types": [
-      "ice",
-      "psychic"
-    ],
-    "cpPerUpgrade": 23,
-    "evolveCost": "0",
-    "familyId": "124",
-    "BaseStamina": 130,
-    "BaseAttack": 172,
-    "BaseDefense": 134,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Frost Breath",
-      "Pound"
-    ],
-    "cinematicMoves": [
-      "Draining Kiss",
-      "Ice Punch",
-      "Psyshock"
-    ]
-  },
-  "125": {
-    "types": [
-      "electric"
-    ],
-    "cpPerUpgrade": 29.5,
-    "evolveCost": "0",
-    "familyId": "125",
-    "BaseStamina": 130,
-    "BaseAttack": 198,
-    "BaseDefense": 160,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Thunder Shock",
-      "Low Kick"
-    ],
-    "cinematicMoves": [
-      "Thunder Punch",
-      "Thunderbolt",
-      "Thunder"
-    ]
-  },
-  "126": {
-    "types": [
-      "fire"
-    ],
-    "cpPerUpgrade": 31.5,
-    "evolveCost": "0",
-    "familyId": "126",
-    "BaseStamina": 130,
-    "BaseAttack": 214,
-    "BaseDefense": 158,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Ember",
-      "Karate Chop"
-    ],
-    "cinematicMoves": [
-      "Fire Blast",
-      "Fire Punch",
-      "Flamethrower"
-    ]
-  },
-  "127": {
-    "types": [
-      "bug"
-    ],
-    "cpPerUpgrade": 29.7,
-    "evolveCost": "0",
-    "familyId": "127",
-    "BaseStamina": 130,
-    "BaseAttack": 184,
-    "BaseDefense": 186,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Rock Smash",
-      "Fury Cutter"
-    ],
-    "cinematicMoves": [
-      "Vice Grip",
-      "X Scissor",
-      "Submission"
-    ]
-  },
-  "128": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 25.3,
-    "evolveCost": "0",
-    "familyId": "128",
-    "BaseStamina": 150,
-    "BaseAttack": 148,
-    "BaseDefense": 184,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Tackle",
-      "Zen Headbutt"
-    ],
-    "cinematicMoves": [
-      "Horn Attack",
-      "Iron Head",
-      "Earthquake"
-    ]
-  },
-  "129": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 3.3,
-    "evolveCost": "400",
-    "familyId": "129",
-    "BaseStamina": 40,
-    "BaseAttack": 42,
-    "BaseDefense": 84,
-    "evolvesTo": "Gyarados",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Splash"
-    ],
-    "cinematicMoves": [
-      "Struggle"
-    ]
-  },
-  "130": {
-    "types": [
-      "water",
-      "flying"
-    ],
-    "cpPerUpgrade": 38,
-    "evolveCost": "0",
-    "familyId": "129",
-    "BaseStamina": 190,
-    "BaseAttack": 192,
-    "BaseDefense": 196,
-    "evolvesTo": null,
-    "evolvesFrom": "Magikarp",
-    "quickMoves": [
-      "Dragon Breath",
-      "Bite"
-    ],
-    "cinematicMoves": [
-      "Hydro Pump",
-      "Twister",
-      "Dragon Pulse"
-    ]
-  },
-  "131": {
-    "types": [
-      "water",
-      "ice"
-    ],
-    "cpPerUpgrade": 44.9,
-    "evolveCost": "0",
-    "familyId": "131",
-    "BaseStamina": 260,
-    "BaseAttack": 186,
-    "BaseDefense": 190,
-    "evolvesTo": null,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Frost Breath",
-      "Ice Shard"
-    ],
-    "cinematicMoves": [
-      "Dragon Pulse",
-      "Ice Beam",
-      "Blizzard"
-    ]
-  },
-  "132": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": null,
-    "evolveCost": "0",
-    "familyId": "132",
-    "BaseStamina": 96,
-    "BaseAttack": 110,
-    "BaseDefense": 110,
-    "evolvesTo": null,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Pound"
-    ],
-    "cinematicMoves": [
-      "Struggle"
-    ]
-  },
-  "133": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 16,
-    "evolveCost": "25",
-    "familyId": "133",
-    "BaseStamina": 110,
-    "BaseAttack": 114,
-    "BaseDefense": 128,
-    "evolvesTo": "Vaporeon/Jolteon/Flareon",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Quick Attack",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Dig",
-      "Swift",
-      "Body Slam"
-    ]
-  },
-  "134": {
-    "types": [
-      "water"
-    ],
-    "cpPerUpgrade": 39.5,
-    "evolveCost": "0",
-    "familyId": "133",
-    "BaseStamina": 260,
-    "BaseAttack": 186,
-    "BaseDefense": 168,
-    "evolvesTo": 0,
-    "evolvesFrom": "Eevee",
-    "quickMoves": [
-      "Water Gun"
-    ],
-    "cinematicMoves": [
-      "Water Pulse",
-      "Hydro Pump",
-      "Aqua Tail"
-    ]
-  },
-  "135": {
-    "types": [
-      "electric"
-    ],
-    "cpPerUpgrade": 30.1,
-    "evolveCost": "0",
-    "familyId": "133",
-    "BaseStamina": 130,
-    "BaseAttack": 192,
-    "BaseDefense": 174,
-    "evolvesTo": 0,
-    "evolvesFrom": "Eevee",
-    "quickMoves": [
-      "Thunder Shock"
-    ],
-    "cinematicMoves": [
-      "Discharge",
-      "Thunderbolt",
-      "Thunder"
-    ]
-  },
-  "136": {
-    "types": [
-      "fire"
-    ],
-    "cpPerUpgrade": 36.8,
-    "evolveCost": "0",
-    "familyId": "133",
-    "BaseStamina": 130,
-    "BaseAttack": 238,
-    "BaseDefense": 178,
-    "evolvesTo": 0,
-    "evolvesFrom": "Eevee",
-    "quickMoves": [
-      "Ember"
-    ],
-    "cinematicMoves": [
-      "Fire Blast",
-      "Flamethrower",
-      "Heat Wave"
-    ]
-  },
-  "137": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 23.8,
-    "evolveCost": "0",
-    "familyId": "137",
-    "BaseStamina": 130,
-    "BaseAttack": 156,
-    "BaseDefense": 158,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Quick Attack",
-      "Tackle"
-    ],
-    "cinematicMoves": [
-      "Psybeam",
-      "Signal Beam",
-      "Discharge"
-    ]
-  },
-  "138": {
-    "types": [
-      "rock",
-      "water"
-    ],
-    "cpPerUpgrade": 16,
-    "evolveCost": "50",
-    "familyId": "138",
-    "BaseStamina": 70,
-    "BaseAttack": 132,
-    "BaseDefense": 160,
-    "evolvesTo": "Omastar",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Water Gun",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Ancient Power",
-      "Brine",
-      "Rock Tomb"
-    ]
-  },
-  "139": {
-    "types": [
-      "rock",
-      "water"
-    ],
-    "cpPerUpgrade": 32,
-    "evolveCost": "0",
-    "familyId": "138",
-    "BaseStamina": 140,
-    "BaseAttack": 180,
-    "BaseDefense": 202,
-    "evolvesTo": 0,
-    "evolvesFrom": "Omanyte",
-    "quickMoves": [
-      "Rock Throw",
-      "Water Gun"
-    ],
-    "cinematicMoves": [
-      "Ancient Power",
-      "Hydro Pump",
-      "Rock Slide"
-    ]
-  },
-  "140": {
-    "types": [
-      "rock",
-      "water"
-    ],
-    "cpPerUpgrade": 16,
-    "evolveCost": "50",
-    "familyId": "140",
-    "BaseStamina": 60,
-    "BaseAttack": 148,
-    "BaseDefense": 142,
-    "evolvesTo": "Kabutops",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Scratch",
-      "Mud Shot"
-    ],
-    "cinematicMoves": [
-      "Ancient Power",
-      "Aqua Jet",
-      "Rock Tomb"
-    ]
-  },
-  "141": {
-    "types": [
-      "rock",
-      "water"
-    ],
-    "cpPerUpgrade": 30,
-    "evolveCost": "0",
-    "familyId": "140",
-    "BaseStamina": 120,
-    "BaseAttack": 190,
-    "BaseDefense": 190,
-    "evolvesTo": 0,
-    "evolvesFrom": "Kabuto",
-    "quickMoves": [
-      "Mud Shot",
-      "Fury Cutter"
-    ],
-    "cinematicMoves": [
-      "Ancient Power",
-      "Water Pulse",
-      "Stone Edge"
-    ]
-  },
-  "142": {
-    "types": [
-      "rock",
-      "flying"
-    ],
-    "cpPerUpgrade": 29.9,
-    "evolveCost": "0",
-    "familyId": "142",
-    "BaseStamina": 160,
-    "BaseAttack": 182,
-    "BaseDefense": 162,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Steel Wing",
-      "Bite"
-    ],
-    "cinematicMoves": [
-      "Ancient Power",
-      "Iron Head",
-      "Hyper Beam"
-    ]
-  },
-  "143": {
-    "types": [
-      "normal"
-    ],
-    "cpPerUpgrade": 44.6,
-    "evolveCost": "0",
-    "familyId": "143",
-    "BaseStamina": 320,
-    "BaseAttack": 180,
-    "BaseDefense": 180,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Zen Headbutt",
-      "Lick"
-    ],
-    "cinematicMoves": [
-      "Body Slam",
-      "Hyper Beam",
-      "Earthquake"
-    ]
-  },
-  "144": {
-    "types": [
-      "ice",
-      "flying"
-    ],
-    "cpPerUpgrade": null,
-    "evolveCost": "0",
-    "familyId": "144",
-    "BaseStamina": 180,
-    "BaseAttack": 198,
-    "BaseDefense": 242,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Frost Breath"
-    ],
-    "cinematicMoves": [
-      "Ice Beam",
-      "Icy Wind",
-      "Blizzard"
-    ]
-  },
-  "145": {
-    "types": [
-      "electric",
-      "flying"
-    ],
-    "cpPerUpgrade": null,
-    "evolveCost": "0",
-    "familyId": "145",
-    "BaseStamina": 180,
-    "BaseAttack": 232,
-    "BaseDefense": 194,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Thunder Shock"
-    ],
-    "cinematicMoves": [
-      "Discharge",
-      "Thunderbolt",
-      "Thunder"
-    ]
-  },
-  "146": {
-    "types": [
-      "fire",
-      "flying"
-    ],
-    "cpPerUpgrade": null,
-    "evolveCost": "0",
-    "familyId": "146",
-    "BaseStamina": 180,
-    "BaseAttack": 242,
-    "BaseDefense": 194,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Ember"
-    ],
-    "cinematicMoves": [
-      "Fire Blast",
-      "Heat Wave",
-      "Flamethrower"
-    ]
-  },
-  "147": {
-    "types": [
-      "dragon"
-    ],
-    "cpPerUpgrade": 13,
-    "evolveCost": "25",
-    "familyId": "147",
-    "BaseStamina": 82,
-    "BaseAttack": 128,
-    "BaseDefense": 110,
-    "evolvesTo": "Dragonair",
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Dragon Breath"
-    ],
-    "cinematicMoves": [
-      "Wrap",
-      "Twister",
-      "Aqua Tail"
-    ]
-  },
-  "148": {
-    "types": [
-      "dragon"
-    ],
-    "cpPerUpgrade": 25,
-    "evolveCost": "100",
-    "familyId": "147",
-    "BaseStamina": 122,
-    "BaseAttack": 170,
-    "BaseDefense": 152,
-    "evolvesTo": "Dragonite",
-    "evolvesFrom": "Dratini",
-    "quickMoves": [
-      "Dragon Breath"
-    ],
-    "cinematicMoves": [
-      "Wrap",
-      "Aqua Tail",
-      "Dragon Pulse"
-    ]
-  },
-  "149": {
-    "types": [
-      "dragon",
-      "flying"
-    ],
-    "cpPerUpgrade": 44.8,
-    "evolveCost": "0",
-    "familyId": "147",
-    "BaseStamina": 182,
-    "BaseAttack": 250,
-    "BaseDefense": 212,
-    "evolvesTo": 0,
-    "evolvesFrom": "Dragonair",
-    "quickMoves": [
-      "Dragon Breath",
-      "Steel Wing"
-    ],
-    "cinematicMoves": [
-      "Dragon Pulse",
-      "Hyper Beam",
-      "Dragon Claw"
-    ]
-  },
-  "150": {
-    "types": [
-      "psychic"
-    ],
-    "cpPerUpgrade": null,
-    "evolveCost": "0",
-    "familyId": "150",
-    "BaseStamina": 212,
-    "BaseAttack": 284,
-    "BaseDefense": 202,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Psycho Cut",
-      "Confusion"
-    ],
-    "cinematicMoves": [
-      "Psychic",
-      "Shadow Ball",
-      "Hyper Beam"
-    ]
-  },
-  "151": {
-    "types": [
-      "psychic"
-    ],
-    "cpPerUpgrade": null,
-    "evolveCost": "0",
-    "familyId": "151",
-    "BaseStamina": 200,
-    "BaseAttack": 220,
-    "BaseDefense": 220,
-    "evolvesTo": 0,
-    "evolvesFrom": 0,
-    "quickMoves": [
-      "Pound"
-    ],
-    "cinematicMoves": [
-      "Hurricane",
-      "Earthquake",
-      "Psychic",
-      "Dragon Pulse",
-      "Thunder",
-      "Moonblast",
-      "Fire Blast",
-      "Solar Beam",
-      "Hyper Beam"
-    ]
+  "pokemon": {
+    "1": {
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "cpPerUpgrade": 13.5,
+      "evolveCost": "25",
+      "familyId": "1",
+      "BaseStamina": 90,
+      "BaseAttack": 126,
+      "BaseDefense": 126,
+      "evolvesTo": "Ivysaur",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Vine Whip",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Sludge Bomb",
+        "Seed Bomb",
+        "Power Whip"
+      ]
+    },
+    "2": {
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "cpPerUpgrade": 22,
+      "evolveCost": "100",
+      "familyId": "1",
+      "BaseStamina": 120,
+      "BaseAttack": 156,
+      "BaseDefense": 158,
+      "evolvesTo": "Venusaur",
+      "evolvesFrom": "Bulbasaur",
+      "quickMoves": [
+        "Razor Leaf",
+        "Vine Whip"
+      ],
+      "cinematicMoves": [
+        "Sludge Bomb",
+        "Solar Beam",
+        "Power Whip"
+      ]
+    },
+    "3": {
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "cpPerUpgrade": 33.5,
+      "evolveCost": "0",
+      "familyId": "1",
+      "BaseStamina": 160,
+      "BaseAttack": 198,
+      "BaseDefense": 200,
+      "evolvesTo": 0,
+      "evolvesFrom": "Ivysaur",
+      "quickMoves": [
+        "Razor Leaf",
+        "Vine Whip"
+      ],
+      "cinematicMoves": [
+        "Sludge Bomb",
+        "Petal Blizzard",
+        "Solar Beam"
+      ]
+    },
+    "4": {
+      "types": [
+        "fire"
+      ],
+      "cpPerUpgrade": 13.6,
+      "evolveCost": "25",
+      "familyId": "4",
+      "BaseStamina": 78,
+      "BaseAttack": 128,
+      "BaseDefense": 108,
+      "evolvesTo": "Charmeleon",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Ember",
+        "Scratch"
+      ],
+      "cinematicMoves": [
+        "Flame Charge",
+        "Flame Burst",
+        "Flamethrower"
+      ]
+    },
+    "5": {
+      "types": [
+        "fire"
+      ],
+      "cpPerUpgrade": 23,
+      "evolveCost": "100",
+      "familyId": "4",
+      "BaseStamina": 116,
+      "BaseAttack": 160,
+      "BaseDefense": 140,
+      "evolvesTo": "Charizard",
+      "evolvesFrom": "Charmander",
+      "quickMoves": [
+        "Ember",
+        "Scratch"
+      ],
+      "cinematicMoves": [
+        "Fire Punch",
+        "Flame Burst",
+        "Flamethrower"
+      ]
+    },
+    "6": {
+      "types": [
+        "fire",
+        "flying"
+      ],
+      "cpPerUpgrade": 33,
+      "evolveCost": "0",
+      "familyId": "4",
+      "BaseStamina": 156,
+      "BaseAttack": 212,
+      "BaseDefense": 182,
+      "evolvesTo": 0,
+      "evolvesFrom": "Charmeleon",
+      "quickMoves": [
+        "Ember",
+        "Wing Attack"
+      ],
+      "cinematicMoves": [
+        "Fire Blast",
+        "Dragon Claw",
+        "Flamethrower"
+      ]
+    },
+    "7": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 13,
+      "evolveCost": "25",
+      "familyId": "7",
+      "BaseStamina": 88,
+      "BaseAttack": 112,
+      "BaseDefense": 142,
+      "evolvesTo": "Wartortle",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Bubble",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Aqua Jet",
+        "Aqua Tail",
+        "Water Pulse"
+      ]
+    },
+    "8": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 21,
+      "evolveCost": "100",
+      "familyId": "7",
+      "BaseStamina": 118,
+      "BaseAttack": 144,
+      "BaseDefense": 176,
+      "evolvesTo": "Blastoise",
+      "evolvesFrom": "Squirtle",
+      "quickMoves": [
+        "Water Gun",
+        "Bite"
+      ],
+      "cinematicMoves": [
+        "Aqua Jet",
+        "Ice Beam",
+        "Hydro Pump"
+      ]
+    },
+    "9": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 31.5,
+      "evolveCost": "0",
+      "familyId": "7",
+      "BaseStamina": 158,
+      "BaseAttack": 186,
+      "BaseDefense": 222,
+      "evolvesTo": 0,
+      "evolvesFrom": "Wartortle",
+      "quickMoves": [
+        "Water Gun",
+        "Bite"
+      ],
+      "cinematicMoves": [
+        "Flash Cannon",
+        "Ice Beam",
+        "Hydro Pump"
+      ]
+    },
+    "10": {
+      "types": [
+        "bug"
+      ],
+      "cpPerUpgrade": 5,
+      "evolveCost": "12",
+      "familyId": "10",
+      "BaseStamina": 90,
+      "BaseAttack": 62,
+      "BaseDefense": 66,
+      "evolvesTo": "Metapod",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Bug Bite",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Struggle"
+      ]
+    },
+    "11": {
+      "types": [
+        "bug"
+      ],
+      "cpPerUpgrade": 5.5,
+      "evolveCost": "50",
+      "familyId": "10",
+      "BaseStamina": 100,
+      "BaseAttack": 56,
+      "BaseDefense": 86,
+      "evolvesTo": "Butterfree",
+      "evolvesFrom": "Caterpie",
+      "quickMoves": [
+        "Bug Bite",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Struggle"
+      ]
+    },
+    "12": {
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "cpPerUpgrade": 18.5,
+      "evolveCost": "0",
+      "familyId": "10",
+      "BaseStamina": 120,
+      "BaseAttack": 144,
+      "BaseDefense": 144,
+      "evolvesTo": 0,
+      "evolvesFrom": "Metapod",
+      "quickMoves": [
+        "Bug Bite",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Bug Buzz",
+        "Psychic",
+        "Signal Beam"
+      ]
+    },
+    "13": {
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "cpPerUpgrade": 5.3,
+      "evolveCost": "12",
+      "familyId": "13",
+      "BaseStamina": 80,
+      "BaseAttack": 68,
+      "BaseDefense": 64,
+      "evolvesTo": "Kakuna",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Bug Bite",
+        "Poison Sting"
+      ],
+      "cinematicMoves": [
+        "Struggle"
+      ]
+    },
+    "14": {
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "cpPerUpgrade": 6.5,
+      "evolveCost": "50",
+      "familyId": "13",
+      "BaseStamina": 90,
+      "BaseAttack": 62,
+      "BaseDefense": 82,
+      "evolvesTo": "Beedrill",
+      "evolvesFrom": "Weedle",
+      "quickMoves": [
+        "Bug Bite",
+        "Poison Sting"
+      ],
+      "cinematicMoves": [
+        "Struggle"
+      ]
+    },
+    "15": {
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "cpPerUpgrade": 19.2,
+      "evolveCost": "0",
+      "familyId": "13",
+      "BaseStamina": 130,
+      "BaseAttack": 144,
+      "BaseDefense": 130,
+      "evolvesTo": 0,
+      "evolvesFrom": "Kakuna",
+      "quickMoves": [
+        "Bug Bite",
+        "Poison Jab"
+      ],
+      "cinematicMoves": [
+        "Sludge Bomb",
+        "Aerial Ace",
+        "X Scissor"
+      ]
+    },
+    "16": {
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "cpPerUpgrade": 10.2,
+      "evolveCost": "12",
+      "familyId": "16",
+      "BaseStamina": 80,
+      "BaseAttack": 94,
+      "BaseDefense": 90,
+      "evolvesTo": "Pidgeotto",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Quick Attack",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Twister",
+        "Aerial Ace",
+        "Air Cutter"
+      ]
+    },
+    "17": {
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "cpPerUpgrade": 18.2,
+      "evolveCost": "50",
+      "familyId": "16",
+      "BaseStamina": 126,
+      "BaseAttack": 126,
+      "BaseDefense": 122,
+      "evolvesTo": "Pidgeot",
+      "evolvesFrom": "Pidgey",
+      "quickMoves": [
+        "Wing Attack",
+        "Steel Wing"
+      ],
+      "cinematicMoves": [
+        "Twister",
+        "Aerial Ace",
+        "Air Cutter"
+      ]
+    },
+    "18": {
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "cpPerUpgrade": 27.7,
+      "evolveCost": "0",
+      "familyId": "16",
+      "BaseStamina": 166,
+      "BaseAttack": 170,
+      "BaseDefense": 166,
+      "evolvesTo": 0,
+      "evolvesFrom": "Pidgeotto",
+      "quickMoves": [
+        "Wing Attack",
+        "Steel Wing"
+      ],
+      "cinematicMoves": [
+        "Hurricane",
+        "Aerial Ace",
+        "Air Cutter"
+      ]
+    },
+    "19": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 7.5,
+      "evolveCost": "25",
+      "familyId": "19",
+      "BaseStamina": 60,
+      "BaseAttack": 92,
+      "BaseDefense": 86,
+      "evolvesTo": "Raticate",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Tackle",
+        "Quick Attack"
+      ],
+      "cinematicMoves": [
+        "Dig",
+        "Hyper Fang",
+        "Body Slam"
+      ]
+    },
+    "20": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 19.7,
+      "evolveCost": "0",
+      "familyId": "19",
+      "BaseStamina": 110,
+      "BaseAttack": 146,
+      "BaseDefense": 150,
+      "evolvesTo": 0,
+      "evolvesFrom": "Rattata",
+      "quickMoves": [
+        "Bite",
+        "Quick Attack"
+      ],
+      "cinematicMoves": [
+        "Dig",
+        "Hyper Fang",
+        "Hyper Beam"
+      ]
+    },
+    "21": {
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "cpPerUpgrade": 8.7,
+      "evolveCost": "50",
+      "familyId": "21",
+      "BaseStamina": 80,
+      "BaseAttack": 102,
+      "BaseDefense": 78,
+      "evolvesTo": "Fearow",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Peck",
+        "Quick Attack"
+      ],
+      "cinematicMoves": [
+        "Aerial Ace",
+        "Drill Peck",
+        "Twister"
+      ]
+    },
+    "22": {
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "cpPerUpgrade": 24.5,
+      "evolveCost": "0",
+      "familyId": "21",
+      "BaseStamina": 130,
+      "BaseAttack": 168,
+      "BaseDefense": 146,
+      "evolvesTo": 0,
+      "evolvesFrom": "Spearow",
+      "quickMoves": [
+        "Peck",
+        "Steel Wing"
+      ],
+      "cinematicMoves": [
+        "Aerial Ace",
+        "Drill Run",
+        "Twister"
+      ]
+    },
+    "23": {
+      "types": [
+        "poison"
+      ],
+      "cpPerUpgrade": 11,
+      "evolveCost": "50",
+      "familyId": "23",
+      "BaseStamina": 70,
+      "BaseAttack": 112,
+      "BaseDefense": 112,
+      "evolvesTo": "Arbok",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Poison Sting",
+        "Acid"
+      ],
+      "cinematicMoves": [
+        "Wrap",
+        "Sludge Bomb",
+        "Gunk Shot"
+      ]
+    },
+    "24": {
+      "types": [
+        "poison"
+      ],
+      "cpPerUpgrade": 22.8,
+      "evolveCost": "0",
+      "familyId": "23",
+      "BaseStamina": 120,
+      "BaseAttack": 166,
+      "BaseDefense": 166,
+      "evolvesTo": 0,
+      "evolvesFrom": "Ekans",
+      "quickMoves": [
+        "Bite",
+        "Acid"
+      ],
+      "cinematicMoves": [
+        "Dark Pulse",
+        "Sludge Wave",
+        "Gunk Shot"
+      ]
+    },
+    "25": {
+      "types": [
+        "electric"
+      ],
+      "cpPerUpgrade": 11.5,
+      "evolveCost": "50",
+      "familyId": "25",
+      "BaseStamina": 70,
+      "BaseAttack": 124,
+      "BaseDefense": 108,
+      "evolvesTo": "Raichu",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Thunder Shock",
+        "Quick Attack"
+      ],
+      "cinematicMoves": [
+        "Discharge",
+        "Thunderbolt",
+        "Thunder"
+      ]
+    },
+    "26": {
+      "types": [
+        "electric"
+      ],
+      "cpPerUpgrade": 27,
+      "evolveCost": "0",
+      "familyId": "25",
+      "BaseStamina": 120,
+      "BaseAttack": 200,
+      "BaseDefense": 154,
+      "evolvesTo": 0,
+      "evolvesFrom": "Pikachu",
+      "quickMoves": [
+        "Thunder Shock",
+        "Spark"
+      ],
+      "cinematicMoves": [
+        "Brick Break",
+        "Thunder Punch",
+        "Thunder"
+      ]
+    },
+    "27": {
+      "types": [
+        "ground"
+      ],
+      "cpPerUpgrade": 11,
+      "evolveCost": "50",
+      "familyId": "27",
+      "BaseStamina": 100,
+      "BaseAttack": 90,
+      "BaseDefense": 114,
+      "evolvesTo": "Sandslash",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Scratch",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Dig",
+        "Rock Slide",
+        "Rock Tomb"
+      ]
+    },
+    "28": {
+      "types": [
+        "ground"
+      ],
+      "cpPerUpgrade": 22.3,
+      "evolveCost": "0",
+      "familyId": "27",
+      "BaseStamina": 150,
+      "BaseAttack": 150,
+      "BaseDefense": 172,
+      "evolvesTo": 0,
+      "evolvesFrom": "Sandshrew",
+      "quickMoves": [
+        "Metal Claw",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Earthquake",
+        "Rock Tomb",
+        "Bulldoze"
+      ]
+    },
+    "29": {
+      "types": [
+        "poison"
+      ],
+      "cpPerUpgrade": 11,
+      "evolveCost": "25",
+      "familyId": "29",
+      "BaseStamina": 110,
+      "BaseAttack": 100,
+      "BaseDefense": 104,
+      "evolvesTo": "Nidorina",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Bite",
+        "Poison Sting"
+      ],
+      "cinematicMoves": [
+        "Poison Fang",
+        "Body Slam",
+        "Sludge Bomb"
+      ]
+    },
+    "30": {
+      "types": [
+        "poison"
+      ],
+      "cpPerUpgrade": 19,
+      "evolveCost": "100",
+      "familyId": "29",
+      "BaseStamina": 140,
+      "BaseAttack": 132,
+      "BaseDefense": 136,
+      "evolvesTo": "Nidoqueen",
+      "evolvesFrom": "Nidoran",
+      "quickMoves": [
+        "Bite",
+        "Poison Sting"
+      ],
+      "cinematicMoves": [
+        "Poison Fang",
+        "Dig",
+        "Sludge Bomb"
+      ]
+    },
+    "31": {
+      "types": [
+        "poison",
+        "ground"
+      ],
+      "cpPerUpgrade": 34,
+      "evolveCost": "0",
+      "familyId": "29",
+      "BaseStamina": 180,
+      "BaseAttack": 184,
+      "BaseDefense": 190,
+      "evolvesTo": 0,
+      "evolvesFrom": "Nidorina",
+      "quickMoves": [
+        "Poison Jab",
+        "Bite"
+      ],
+      "cinematicMoves": [
+        "Earthquake",
+        "Sludge Wave",
+        "Stone Edge"
+      ]
+    },
+    "32": {
+      "types": [
+        "poison"
+      ],
+      "cpPerUpgrade": 12,
+      "evolveCost": "25",
+      "familyId": "32",
+      "BaseStamina": 92,
+      "BaseAttack": 110,
+      "BaseDefense": 94,
+      "evolvesTo": "Nidorino",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Peck",
+        "Poison Sting"
+      ],
+      "cinematicMoves": [
+        "Horn Attack",
+        "Body Slam",
+        "Sludge Bomb"
+      ]
+    },
+    "33": {
+      "types": [
+        "poison"
+      ],
+      "cpPerUpgrade": 19.8,
+      "evolveCost": "100",
+      "familyId": "32",
+      "BaseStamina": 122,
+      "BaseAttack": 142,
+      "BaseDefense": 128,
+      "evolvesTo": "Nidoking",
+      "evolvesFrom": "Nidoran",
+      "quickMoves": [
+        "Poison Jab",
+        "Poison Sting"
+      ],
+      "cinematicMoves": [
+        "Horn Attack",
+        "Dig",
+        "Sludge Bomb"
+      ]
+    },
+    "34": {
+      "types": [
+        "poison",
+        "ground"
+      ],
+      "cpPerUpgrade": 34,
+      "evolveCost": "0",
+      "familyId": "32",
+      "BaseStamina": 162,
+      "BaseAttack": 204,
+      "BaseDefense": 170,
+      "evolvesTo": 0,
+      "evolvesFrom": "Nidorino",
+      "quickMoves": [
+        "Poison Jab",
+        "Fury Cutter"
+      ],
+      "cinematicMoves": [
+        "Earthquake",
+        "Sludge Wave",
+        "Megahorn"
+      ]
+    },
+    "35": {
+      "types": [
+        "fairy"
+      ],
+      "cpPerUpgrade": 16,
+      "evolveCost": "50",
+      "familyId": "35",
+      "BaseStamina": 140,
+      "BaseAttack": 116,
+      "BaseDefense": 124,
+      "evolvesTo": "Clefable",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Pound",
+        "Zen Headbutt"
+      ],
+      "cinematicMoves": [
+        "Disarming Voice",
+        "Body Slam",
+        "Moonblast"
+      ]
+    },
+    "36": {
+      "types": [
+        "fairy"
+      ],
+      "cpPerUpgrade": 31.6,
+      "evolveCost": "0",
+      "familyId": "35",
+      "BaseStamina": 190,
+      "BaseAttack": 178,
+      "BaseDefense": 178,
+      "evolvesTo": 0,
+      "evolvesFrom": "Clefairy",
+      "quickMoves": [
+        "Pound",
+        "Zen Headbutt"
+      ],
+      "cinematicMoves": [
+        "Dazzling Gleam",
+        "Psychic",
+        "Moonblast"
+      ]
+    },
+    "37": {
+      "types": [
+        "fire"
+      ],
+      "cpPerUpgrade": 12,
+      "evolveCost": "50",
+      "familyId": "37",
+      "BaseStamina": 76,
+      "BaseAttack": 106,
+      "BaseDefense": 118,
+      "evolvesTo": "Ninetales",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Quick Attack",
+        "Ember"
+      ],
+      "cinematicMoves": [
+        "Body Slam",
+        "Flamethrower",
+        "Flame Charge"
+      ]
+    },
+    "38": {
+      "types": [
+        "fire"
+      ],
+      "cpPerUpgrade": 31,
+      "evolveCost": "0",
+      "familyId": "37",
+      "BaseStamina": 146,
+      "BaseAttack": 176,
+      "BaseDefense": 194,
+      "evolvesTo": 0,
+      "evolvesFrom": "Vulpix",
+      "quickMoves": [
+        "Feint Attack",
+        "Ember"
+      ],
+      "cinematicMoves": [
+        "Heat Wave",
+        "Flamethrower",
+        "Fire Blast"
+      ]
+    },
+    "39": {
+      "types": [
+        "normal",
+        "fairy"
+      ],
+      "cpPerUpgrade": 11,
+      "evolveCost": "50",
+      "familyId": "39",
+      "BaseStamina": 230,
+      "BaseAttack": 98,
+      "BaseDefense": 54,
+      "evolvesTo": "Wigglytuff",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Pound",
+        "Feint Attack"
+      ],
+      "cinematicMoves": [
+        "Disarming Voice",
+        "Body Slam",
+        "Play Rough"
+      ]
+    },
+    "40": {
+      "types": [
+        "normal",
+        "fairy"
+      ],
+      "cpPerUpgrade": 31,
+      "evolveCost": "0",
+      "familyId": "39",
+      "BaseStamina": 280,
+      "BaseAttack": 168,
+      "BaseDefense": 108,
+      "evolvesTo": 0,
+      "evolvesFrom": "Jigglypuff",
+      "quickMoves": [
+        "Pound",
+        "Feint Attack"
+      ],
+      "cinematicMoves": [
+        "Dazzling Gleam",
+        "Hyper Beam",
+        "Play Rough"
+      ]
+    },
+    "41": {
+      "types": [
+        "poison",
+        "flying"
+      ],
+      "cpPerUpgrade": 8.5,
+      "evolveCost": "50",
+      "familyId": "41",
+      "BaseStamina": 80,
+      "BaseAttack": 88,
+      "BaseDefense": 90,
+      "evolvesTo": "Golbat",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Quick Attack",
+        "Bite"
+      ],
+      "cinematicMoves": [
+        "Poison Fang",
+        "Air Cutter",
+        "Sludge Bomb"
+      ]
+    },
+    "42": {
+      "types": [
+        "poison",
+        "flying"
+      ],
+      "cpPerUpgrade": 26.7,
+      "evolveCost": "0",
+      "familyId": "41",
+      "BaseStamina": 150,
+      "BaseAttack": 164,
+      "BaseDefense": 164,
+      "evolvesTo": 0,
+      "evolvesFrom": "Zubat",
+      "quickMoves": [
+        "Wing Attack",
+        "Bite"
+      ],
+      "cinematicMoves": [
+        "Poison Fang",
+        "Air Cutter",
+        "Ominous Wind"
+      ]
+    },
+    "43": {
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "cpPerUpgrade": 15,
+      "evolveCost": "25",
+      "familyId": "43",
+      "BaseStamina": 90,
+      "BaseAttack": 134,
+      "BaseDefense": 130,
+      "evolvesTo": "Gloom",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Razor Leaf",
+        "Acid"
+      ],
+      "cinematicMoves": [
+        "Seed Bomb",
+        "Sludge Bomb",
+        "Moonblast"
+      ]
+    },
+    "44": {
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "cpPerUpgrade": 21,
+      "evolveCost": "100",
+      "familyId": "43",
+      "BaseStamina": 120,
+      "BaseAttack": 162,
+      "BaseDefense": 158,
+      "evolvesTo": "Vileplume",
+      "evolvesFrom": "Oddish",
+      "quickMoves": [
+        "Razor Leaf",
+        "Acid"
+      ],
+      "cinematicMoves": [
+        "Petal Blizzard",
+        "Sludge Bomb",
+        "Moonblast"
+      ]
+    },
+    "45": {
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "cpPerUpgrade": 34,
+      "evolveCost": "0",
+      "familyId": "43",
+      "BaseStamina": 150,
+      "BaseAttack": 202,
+      "BaseDefense": 190,
+      "evolvesTo": 0,
+      "evolvesFrom": "Gloom",
+      "quickMoves": [
+        "Razor Leaf",
+        "Acid"
+      ],
+      "cinematicMoves": [
+        "Petal Blizzard",
+        "Solar Beam",
+        "Moonblast"
+      ]
+    },
+    "46": {
+      "types": [
+        "bug",
+        "grass"
+      ],
+      "cpPerUpgrade": 12,
+      "evolveCost": "50",
+      "familyId": "46",
+      "BaseStamina": 70,
+      "BaseAttack": 122,
+      "BaseDefense": 120,
+      "evolvesTo": "Parasect",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Scratch",
+        "Bug Bite"
+      ],
+      "cinematicMoves": [
+        "Cross Poison",
+        "X Scissor",
+        "Seed Bomb"
+      ]
+    },
+    "47": {
+      "types": [
+        "bug",
+        "grass"
+      ],
+      "cpPerUpgrade": 23.3,
+      "evolveCost": "0",
+      "familyId": "46",
+      "BaseStamina": 120,
+      "BaseAttack": 162,
+      "BaseDefense": 170,
+      "evolvesTo": 0,
+      "evolvesFrom": "Paras",
+      "quickMoves": [
+        "Bug Bite",
+        "Fury Cutter"
+      ],
+      "cinematicMoves": [
+        "Cross Poison",
+        "X Scissor",
+        "Solar Beam"
+      ]
+    },
+    "48": {
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "cpPerUpgrade": 14,
+      "evolveCost": "50",
+      "familyId": "48",
+      "BaseStamina": 120,
+      "BaseAttack": 108,
+      "BaseDefense": 118,
+      "evolvesTo": "Venomoth",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Bug Bite",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Psybeam",
+        "Dazzling Gleam",
+        "Shadow Ball"
+      ]
+    },
+    "49": {
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "cpPerUpgrade": 26.5,
+      "evolveCost": "0",
+      "familyId": "48",
+      "BaseStamina": 140,
+      "BaseAttack": 172,
+      "BaseDefense": 154,
+      "evolvesTo": 0,
+      "evolvesFrom": "Venonat",
+      "quickMoves": [
+        "Bug Bite",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Poison Fang",
+        "Psychic",
+        "Bug Buzz"
+      ]
+    },
+    "50": {
+      "types": [
+        "ground"
+      ],
+      "cpPerUpgrade": 7,
+      "evolveCost": "50",
+      "familyId": "50",
+      "BaseStamina": 20,
+      "BaseAttack": 108,
+      "BaseDefense": 86,
+      "evolvesTo": "Dugtrio",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Mud Shot",
+        "Scratch"
+      ],
+      "cinematicMoves": [
+        "Dig",
+        "Mud Bomb",
+        "Rock Tomb"
+      ]
+    },
+    "51": {
+      "types": [
+        "ground"
+      ],
+      "cpPerUpgrade": 15.5,
+      "evolveCost": "0",
+      "familyId": "50",
+      "BaseStamina": 70,
+      "BaseAttack": 148,
+      "BaseDefense": 140,
+      "evolvesTo": 0,
+      "evolvesFrom": "Diglett",
+      "quickMoves": [
+        "Sucker Punch",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Earthquake",
+        "Mud Bomb",
+        "Stone Edge"
+      ]
+    },
+    "52": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 10.5,
+      "evolveCost": "50",
+      "familyId": "52",
+      "BaseStamina": 80,
+      "BaseAttack": 104,
+      "BaseDefense": 94,
+      "evolvesTo": "Persian",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Scratch",
+        "Bite"
+      ],
+      "cinematicMoves": [
+        "Night Slash",
+        "Dark Pulse",
+        "Body Slam"
+      ]
+    },
+    "53": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 23,
+      "evolveCost": "0",
+      "familyId": "52",
+      "BaseStamina": 130,
+      "BaseAttack": 156,
+      "BaseDefense": 146,
+      "evolvesTo": 0,
+      "evolvesFrom": "Meowth",
+      "quickMoves": [
+        "Scratch",
+        "Feint Attack"
+      ],
+      "cinematicMoves": [
+        "Night Slash",
+        "Power Gem",
+        "Play Rough"
+      ]
+    },
+    "54": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 14,
+      "evolveCost": "50",
+      "familyId": "54",
+      "BaseStamina": 100,
+      "BaseAttack": 132,
+      "BaseDefense": 112,
+      "evolvesTo": "Golduck",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Water Gun",
+        "Zen Headbutt"
+      ],
+      "cinematicMoves": [
+        "Psybeam",
+        "Aqua Tail",
+        "Cross Chop"
+      ]
+    },
+    "55": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 32.3,
+      "evolveCost": "0",
+      "familyId": "54",
+      "BaseStamina": 160,
+      "BaseAttack": 194,
+      "BaseDefense": 176,
+      "evolvesTo": 0,
+      "evolvesFrom": "Psyduck",
+      "quickMoves": [
+        "Water Gun",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Psychic",
+        "Hydro Pump",
+        "Ice Beam"
+      ]
+    },
+    "56": {
+      "types": [
+        "fighting"
+      ],
+      "cpPerUpgrade": 12,
+      "evolveCost": "50",
+      "familyId": "56",
+      "BaseStamina": 80,
+      "BaseAttack": 122,
+      "BaseDefense": 96,
+      "evolvesTo": "Primeape",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Karate Chop",
+        "Scratch"
+      ],
+      "cinematicMoves": [
+        "Cross Chop",
+        "Low Sweep",
+        "Brick Break"
+      ]
+    },
+    "57": {
+      "types": [
+        "fighting"
+      ],
+      "cpPerUpgrade": 25,
+      "evolveCost": "0",
+      "familyId": "56",
+      "BaseStamina": 130,
+      "BaseAttack": 178,
+      "BaseDefense": 150,
+      "evolvesTo": 0,
+      "evolvesFrom": "Mankey",
+      "quickMoves": [
+        "Low Kick",
+        "Karate Chop"
+      ],
+      "cinematicMoves": [
+        "Cross Chop",
+        "Low Sweep",
+        "Night Slash"
+      ]
+    },
+    "58": {
+      "types": [
+        "fire"
+      ],
+      "cpPerUpgrade": 19,
+      "evolveCost": "50",
+      "familyId": "58",
+      "BaseStamina": 110,
+      "BaseAttack": 156,
+      "BaseDefense": 110,
+      "evolvesTo": "Arcanine",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Ember",
+        "Bite"
+      ],
+      "cinematicMoves": [
+        "Flame Wheel",
+        "Body Slam",
+        "Flamethrower"
+      ]
+    },
+    "59": {
+      "types": [
+        "fire"
+      ],
+      "cpPerUpgrade": 38.4,
+      "evolveCost": "0",
+      "familyId": "58",
+      "BaseStamina": 180,
+      "BaseAttack": 230,
+      "BaseDefense": 180,
+      "evolvesTo": 0,
+      "evolvesFrom": "Growlithe",
+      "quickMoves": [
+        "Fire Fang",
+        "Bite"
+      ],
+      "cinematicMoves": [
+        "Fire Blast",
+        "Flamethrower",
+        "Bulldoze"
+      ]
+    },
+    "60": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 10,
+      "evolveCost": "25",
+      "familyId": "60",
+      "BaseStamina": 80,
+      "BaseAttack": 108,
+      "BaseDefense": 98,
+      "evolvesTo": "Poliwhirl",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Bubble",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Bubble Beam",
+        "Mud Bomb",
+        "Body Slam"
+      ]
+    },
+    "61": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 16,
+      "evolveCost": "100",
+      "familyId": "60",
+      "BaseStamina": 130,
+      "BaseAttack": 132,
+      "BaseDefense": 132,
+      "evolvesTo": "Poliwrath",
+      "evolvesFrom": "Poliwag",
+      "quickMoves": [
+        "Bubble",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Scald",
+        "Mud Bomb",
+        "Bubble Beam"
+      ]
+    },
+    "62": {
+      "types": [
+        "water",
+        "fighting"
+      ],
+      "cpPerUpgrade": 34,
+      "evolveCost": "0",
+      "familyId": "60",
+      "BaseStamina": 180,
+      "BaseAttack": 180,
+      "BaseDefense": 202,
+      "evolvesTo": 0,
+      "evolvesFrom": "Poliwhirl",
+      "quickMoves": [
+        "Bubble",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Hydro Pump",
+        "Submission",
+        "Ice Punch"
+      ]
+    },
+    "63": {
+      "types": [
+        "psychic"
+      ],
+      "cpPerUpgrade": 6.8,
+      "evolveCost": "25",
+      "familyId": "63",
+      "BaseStamina": 50,
+      "BaseAttack": 110,
+      "BaseDefense": 76,
+      "evolvesTo": "Kadabra",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Zen Headbutt"
+      ],
+      "cinematicMoves": [
+        "Psyshock",
+        "Signal Beam",
+        "Shadow Ball"
+      ]
+    },
+    "64": {
+      "types": [
+        "psychic"
+      ],
+      "cpPerUpgrade": 14,
+      "evolveCost": "100",
+      "familyId": "63",
+      "BaseStamina": 80,
+      "BaseAttack": 150,
+      "BaseDefense": 112,
+      "evolvesTo": "Alakazam",
+      "evolvesFrom": "Abra",
+      "quickMoves": [
+        "Psycho Cut",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Psybeam",
+        "Dazzling Gleam",
+        "Shadow Ball"
+      ]
+    },
+    "65": {
+      "types": [
+        "psychic"
+      ],
+      "cpPerUpgrade": 25,
+      "evolveCost": "0",
+      "familyId": "63",
+      "BaseStamina": 110,
+      "BaseAttack": 186,
+      "BaseDefense": 152,
+      "evolvesTo": 0,
+      "evolvesFrom": "Kadabra",
+      "quickMoves": [
+        "Psycho Cut",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Psychic",
+        "Dazzling Gleam",
+        "Shadow Ball"
+      ]
+    },
+    "66": {
+      "types": [
+        "fighting"
+      ],
+      "cpPerUpgrade": 14.5,
+      "evolveCost": "25",
+      "familyId": "66",
+      "BaseStamina": 140,
+      "BaseAttack": 118,
+      "BaseDefense": 96,
+      "evolvesTo": "Machoke",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Low Kick",
+        "Karate Chop"
+      ],
+      "cinematicMoves": [
+        "Low Sweep",
+        "Brick Break",
+        "Cross Chop"
+      ]
+    },
+    "67": {
+      "types": [
+        "fighting"
+      ],
+      "cpPerUpgrade": 24,
+      "evolveCost": "100",
+      "familyId": "66",
+      "BaseStamina": 160,
+      "BaseAttack": 154,
+      "BaseDefense": 144,
+      "evolvesTo": "Machamp",
+      "evolvesFrom": "Machop",
+      "quickMoves": [
+        "Low Kick",
+        "Karate Chop"
+      ],
+      "cinematicMoves": [
+        "Submission",
+        "Brick Break",
+        "Cross Chop"
+      ]
+    },
+    "68": {
+      "types": [
+        "fighting"
+      ],
+      "cpPerUpgrade": 35.7,
+      "evolveCost": "0",
+      "familyId": "66",
+      "BaseStamina": 180,
+      "BaseAttack": 198,
+      "BaseDefense": 180,
+      "evolvesTo": 0,
+      "evolvesFrom": "Machoke",
+      "quickMoves": [
+        "Bullet Punch",
+        "Karate Chop"
+      ],
+      "cinematicMoves": [
+        "Stone Edge",
+        "Submission",
+        "Cross Chop"
+      ]
+    },
+    "69": {
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "cpPerUpgrade": 13,
+      "evolveCost": "25",
+      "familyId": "69",
+      "BaseStamina": 100,
+      "BaseAttack": 158,
+      "BaseDefense": 78,
+      "evolvesTo": "Weepinbell",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Vine Whip",
+        "Acid"
+      ],
+      "cinematicMoves": [
+        "Power Whip",
+        "Sludge Bomb",
+        "Wrap"
+      ]
+    },
+    "70": {
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "cpPerUpgrade": 21,
+      "evolveCost": "100",
+      "familyId": "69",
+      "BaseStamina": 130,
+      "BaseAttack": 190,
+      "BaseDefense": 110,
+      "evolvesTo": "Victreebel",
+      "evolvesFrom": "Bellsprout",
+      "quickMoves": [
+        "Razor Leaf",
+        "Acid"
+      ],
+      "cinematicMoves": [
+        "Power Whip",
+        "Sludge Bomb",
+        "Seed Bomb"
+      ]
+    },
+    "71": {
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "cpPerUpgrade": 35,
+      "evolveCost": "0",
+      "familyId": "69",
+      "BaseStamina": 160,
+      "BaseAttack": 222,
+      "BaseDefense": 152,
+      "evolvesTo": 0,
+      "evolvesFrom": "Weepinbell",
+      "quickMoves": [
+        "Razor Leaf",
+        "Acid"
+      ],
+      "cinematicMoves": [
+        "Leaf Blade",
+        "Sludge Bomb",
+        "Solar Beam"
+      ]
+    },
+    "72": {
+      "types": [
+        "water",
+        "poison"
+      ],
+      "cpPerUpgrade": 12,
+      "evolveCost": "50",
+      "familyId": "72",
+      "BaseStamina": 80,
+      "BaseAttack": 106,
+      "BaseDefense": 136,
+      "evolvesTo": "Tentacruel",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Bubble",
+        "Poison Sting"
+      ],
+      "cinematicMoves": [
+        "Bubble Beam",
+        "Water Pulse",
+        "Wrap"
+      ]
+    },
+    "73": {
+      "types": [
+        "water",
+        "poison"
+      ],
+      "cpPerUpgrade": 30.2,
+      "evolveCost": "0",
+      "familyId": "72",
+      "BaseStamina": 160,
+      "BaseAttack": 170,
+      "BaseDefense": 196,
+      "evolvesTo": 0,
+      "evolvesFrom": "Tentacool",
+      "quickMoves": [
+        "Acid",
+        "Poison Jab"
+      ],
+      "cinematicMoves": [
+        "Hydro Pump",
+        "Sludge Wave",
+        "Blizzard"
+      ]
+    },
+    "74": {
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "cpPerUpgrade": 11,
+      "evolveCost": "25",
+      "familyId": "74",
+      "BaseStamina": 80,
+      "BaseAttack": 106,
+      "BaseDefense": 118,
+      "evolvesTo": "Graveler",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Rock Throw",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Rock Slide",
+        "Rock Tomb",
+        "Dig"
+      ]
+    },
+    "75": {
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "cpPerUpgrade": 19,
+      "evolveCost": "100",
+      "familyId": "74",
+      "BaseStamina": 110,
+      "BaseAttack": 142,
+      "BaseDefense": 156,
+      "evolvesTo": "Golem",
+      "evolvesFrom": "Geodude",
+      "quickMoves": [
+        "Rock Throw",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Dig",
+        "Stone Edge",
+        "Rock Slide"
+      ]
+    },
+    "76": {
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "cpPerUpgrade": 31,
+      "evolveCost": "0",
+      "familyId": "74",
+      "BaseStamina": 160,
+      "BaseAttack": 176,
+      "BaseDefense": 198,
+      "evolvesTo": 0,
+      "evolvesFrom": "Graveler",
+      "quickMoves": [
+        "Rock Throw",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Stone Edge",
+        "Ancient Power",
+        "Earthquake"
+      ]
+    },
+    "77": {
+      "types": [
+        "fire"
+      ],
+      "cpPerUpgrade": 20.8,
+      "evolveCost": "50",
+      "familyId": "77",
+      "BaseStamina": 100,
+      "BaseAttack": 168,
+      "BaseDefense": 138,
+      "evolvesTo": "Rapidash",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Tackle",
+        "Ember"
+      ],
+      "cinematicMoves": [
+        "Flame Charge",
+        "Flame Wheel",
+        "Fire Blast"
+      ]
+    },
+    "78": {
+      "types": [
+        "fire"
+      ],
+      "cpPerUpgrade": 30.5,
+      "evolveCost": "0",
+      "familyId": "77",
+      "BaseStamina": 130,
+      "BaseAttack": 200,
+      "BaseDefense": 170,
+      "evolvesTo": 0,
+      "evolvesFrom": "Ponyta",
+      "quickMoves": [
+        "Low Kick",
+        "Ember"
+      ],
+      "cinematicMoves": [
+        "Fire Blast",
+        "Drill Run",
+        "Heat Wave"
+      ]
+    },
+    "79": {
+      "types": [
+        "water",
+        "psychic"
+      ],
+      "cpPerUpgrade": 16,
+      "evolveCost": "50",
+      "familyId": "79",
+      "BaseStamina": 180,
+      "BaseAttack": 110,
+      "BaseDefense": 110,
+      "evolvesTo": "Slowbro",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Water Gun",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Water Pulse",
+        "Psyshock",
+        "Psychic"
+      ]
+    },
+    "80": {
+      "types": [
+        "water",
+        "psychic"
+      ],
+      "cpPerUpgrade": 35.2,
+      "evolveCost": "0",
+      "familyId": "79",
+      "BaseStamina": 190,
+      "BaseAttack": 184,
+      "BaseDefense": 198,
+      "evolvesTo": 0,
+      "evolvesFrom": "Slowpoke",
+      "quickMoves": [
+        "Water Gun",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Water Pulse",
+        "Psychic",
+        "Ice Beam"
+      ]
+    },
+    "81": {
+      "types": [
+        "electric",
+        "steel"
+      ],
+      "cpPerUpgrade": 12,
+      "evolveCost": "50",
+      "familyId": "81",
+      "BaseStamina": 50,
+      "BaseAttack": 128,
+      "BaseDefense": 138,
+      "evolvesTo": "Magneton",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Spark",
+        "Thunder Shock"
+      ],
+      "cinematicMoves": [
+        "Discharge",
+        "Magnet Bomb",
+        "Thunderbolt"
+      ]
+    },
+    "82": {
+      "types": [
+        "electric",
+        "steel"
+      ],
+      "cpPerUpgrade": 25,
+      "evolveCost": "0",
+      "familyId": "81",
+      "BaseStamina": 100,
+      "BaseAttack": 186,
+      "BaseDefense": 180,
+      "evolvesTo": 0,
+      "evolvesFrom": "Magnemite",
+      "quickMoves": [
+        "Spark",
+        "Thunder Shock"
+      ],
+      "cinematicMoves": [
+        "Discharge",
+        "Magnet Bomb",
+        "Flash Cannon"
+      ]
+    },
+    "83": {
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "cpPerUpgrade": null,
+      "evolveCost": "0",
+      "familyId": "83",
+      "BaseStamina": 104,
+      "BaseAttack": 138,
+      "BaseDefense": 132,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Cut",
+        "Fury Cutter"
+      ],
+      "cinematicMoves": [
+        "Aerial Ace",
+        "Air Cutter",
+        "Leaf Blade"
+      ]
+    },
+    "84": {
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "cpPerUpgrade": 12,
+      "evolveCost": "50",
+      "familyId": "84",
+      "BaseStamina": 70,
+      "BaseAttack": 126,
+      "BaseDefense": 96,
+      "evolvesTo": "Dodrio",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Peck",
+        "Quick Attack"
+      ],
+      "cinematicMoves": [
+        "Drill Peck",
+        "Aerial Ace",
+        "Swift"
+      ]
+    },
+    "85": {
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "cpPerUpgrade": 24,
+      "evolveCost": "0",
+      "familyId": "84",
+      "BaseStamina": 120,
+      "BaseAttack": 182,
+      "BaseDefense": 150,
+      "evolvesTo": 0,
+      "evolvesFrom": "Doduo",
+      "quickMoves": [
+        "Feint Attack",
+        "Steel Wing"
+      ],
+      "cinematicMoves": [
+        "Drill Peck",
+        "Aerial Ace",
+        "Air Cutter"
+      ]
+    },
+    "86": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 16,
+      "evolveCost": "50",
+      "familyId": "86",
+      "BaseStamina": 130,
+      "BaseAttack": 104,
+      "BaseDefense": 138,
+      "evolvesTo": "Dewgong",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Ice Shard",
+        "Water Gun"
+      ],
+      "cinematicMoves": [
+        "Aqua Jet",
+        "Icy Wind",
+        "Aqua Tail"
+      ]
+    },
+    "87": {
+      "types": [
+        "water",
+        "ice"
+      ],
+      "cpPerUpgrade": 31,
+      "evolveCost": "0",
+      "familyId": "86",
+      "BaseStamina": 180,
+      "BaseAttack": 156,
+      "BaseDefense": 192,
+      "evolvesTo": 0,
+      "evolvesFrom": "Seel",
+      "quickMoves": [
+        "Frost Breath",
+        "Ice Shard"
+      ],
+      "cinematicMoves": [
+        "Icy Wind",
+        "Aqua Jet",
+        "Blizzard"
+      ]
+    },
+    "88": {
+      "types": [
+        "poison"
+      ],
+      "cpPerUpgrade": 17,
+      "evolveCost": "50",
+      "familyId": "88",
+      "BaseStamina": 160,
+      "BaseAttack": 124,
+      "BaseDefense": 110,
+      "evolvesTo": "Muk",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Acid",
+        "Mud Slap"
+      ],
+      "cinematicMoves": [
+        "Sludge",
+        "Mud Bomb",
+        "Sludge Bomb"
+      ]
+    },
+    "89": {
+      "types": [
+        "poison"
+      ],
+      "cpPerUpgrade": 38,
+      "evolveCost": "0",
+      "familyId": "88",
+      "BaseStamina": 210,
+      "BaseAttack": 180,
+      "BaseDefense": 188,
+      "evolvesTo": 0,
+      "evolvesFrom": "Grimer",
+      "quickMoves": [
+        "Acid",
+        "Poison Jab"
+      ],
+      "cinematicMoves": [
+        "Dark Pulse",
+        "Gunk Shot",
+        "Sludge Wave"
+      ]
+    },
+    "90": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 10,
+      "evolveCost": "50",
+      "familyId": "90",
+      "BaseStamina": 60,
+      "BaseAttack": 120,
+      "BaseDefense": 112,
+      "evolvesTo": "Cloyster",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Ice Shard",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Bubble Beam",
+        "Water Pulse",
+        "Icy Wind"
+      ]
+    },
+    "91": {
+      "types": [
+        "water",
+        "ice"
+      ],
+      "cpPerUpgrade": 26,
+      "evolveCost": "0",
+      "familyId": "90",
+      "BaseStamina": 100,
+      "BaseAttack": 196,
+      "BaseDefense": 196,
+      "evolvesTo": 0,
+      "evolvesFrom": "Shellder",
+      "quickMoves": [
+        "Frost Breath",
+        "Ice Shard"
+      ],
+      "cinematicMoves": [
+        "Icy Wind",
+        "Hydro Pump",
+        "Blizzard"
+      ]
+    },
+    "92": {
+      "types": [
+        "ghost",
+        "poison"
+      ],
+      "cpPerUpgrade": 11.3,
+      "evolveCost": "25",
+      "familyId": "92",
+      "BaseStamina": 60,
+      "BaseAttack": 136,
+      "BaseDefense": 82,
+      "evolvesTo": "Haunter",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Lick",
+        "Sucker Punch"
+      ],
+      "cinematicMoves": [
+        "Ominous Wind",
+        "Dark Pulse",
+        "Sludge Bomb"
+      ]
+    },
+    "93": {
+      "types": [
+        "ghost",
+        "poison"
+      ],
+      "cpPerUpgrade": 18,
+      "evolveCost": "100",
+      "familyId": "92",
+      "BaseStamina": 90,
+      "BaseAttack": 172,
+      "BaseDefense": 118,
+      "evolvesTo": "Gengar",
+      "evolvesFrom": "Gastly",
+      "quickMoves": [
+        "Shadow Claw",
+        "Lick"
+      ],
+      "cinematicMoves": [
+        "Shadow Ball",
+        "Dark Pulse",
+        "Sludge Bomb"
+      ]
+    },
+    "94": {
+      "types": [
+        "ghost",
+        "poison"
+      ],
+      "cpPerUpgrade": 29.3,
+      "evolveCost": "0",
+      "familyId": "92",
+      "BaseStamina": 120,
+      "BaseAttack": 204,
+      "BaseDefense": 156,
+      "evolvesTo": 0,
+      "evolvesFrom": "Haunter",
+      "quickMoves": [
+        "Sucker Punch",
+        "Shadow Claw"
+      ],
+      "cinematicMoves": [
+        "Shadow Ball",
+        "Dark Pulse",
+        "Sludge Wave"
+      ]
+    },
+    "95": {
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "cpPerUpgrade": 11.5,
+      "evolveCost": "0",
+      "familyId": "95",
+      "BaseStamina": 70,
+      "BaseAttack": 90,
+      "BaseDefense": 186,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Rock Throw",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Rock Slide",
+        "Stone Edge",
+        "Iron Head"
+      ]
+    },
+    "96": {
+      "types": [
+        "psychic"
+      ],
+      "cpPerUpgrade": 14.5,
+      "evolveCost": "50",
+      "familyId": "96",
+      "BaseStamina": 120,
+      "BaseAttack": 104,
+      "BaseDefense": 140,
+      "evolvesTo": "Hypno",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Pound",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Psybeam",
+        "Psyshock",
+        "Psychic"
+      ]
+    },
+    "97": {
+      "types": [
+        "psychic"
+      ],
+      "cpPerUpgrade": 30,
+      "evolveCost": "0",
+      "familyId": "96",
+      "BaseStamina": 170,
+      "BaseAttack": 162,
+      "BaseDefense": 196,
+      "evolvesTo": 0,
+      "evolvesFrom": "Drowzee",
+      "quickMoves": [
+        "Zen Headbutt",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Psyshock",
+        "Psychic",
+        "Shadow Ball"
+      ]
+    },
+    "98": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 10.5,
+      "evolveCost": "50",
+      "familyId": "98",
+      "BaseStamina": 60,
+      "BaseAttack": 116,
+      "BaseDefense": 110,
+      "evolvesTo": "Kingler",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Bubble",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Vice Grip",
+        "Bubble Beam",
+        "Water Pulse"
+      ]
+    },
+    "99": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 25.3,
+      "evolveCost": "0",
+      "familyId": "98",
+      "BaseStamina": 110,
+      "BaseAttack": 178,
+      "BaseDefense": 168,
+      "evolvesTo": 0,
+      "evolvesFrom": "Krabby",
+      "quickMoves": [
+        "Metal Claw",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Vice Grip",
+        "X Scissor",
+        "Water Pulse"
+      ]
+    },
+    "100": {
+      "types": [
+        "electric"
+      ],
+      "cpPerUpgrade": 10,
+      "evolveCost": "50",
+      "familyId": "100",
+      "BaseStamina": 80,
+      "BaseAttack": 102,
+      "BaseDefense": 124,
+      "evolvesTo": "Electrode",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Spark",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Discharge",
+        "Thunderbolt",
+        "Signal Beam"
+      ]
+    },
+    "101": {
+      "types": [
+        "electric"
+      ],
+      "cpPerUpgrade": 22.5,
+      "evolveCost": "0",
+      "familyId": "100",
+      "BaseStamina": 120,
+      "BaseAttack": 150,
+      "BaseDefense": 174,
+      "evolvesTo": 0,
+      "evolvesFrom": "Voltorb",
+      "quickMoves": [
+        "Spark",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Discharge",
+        "Thunderbolt",
+        "Hyper Beam"
+      ]
+    },
+    "102": {
+      "types": [
+        "grass",
+        "psychic"
+      ],
+      "cpPerUpgrade": 18,
+      "evolveCost": "50",
+      "familyId": "102",
+      "BaseStamina": 120,
+      "BaseAttack": 110,
+      "BaseDefense": 132,
+      "evolvesTo": "Exeggutor",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Seed Bomb",
+        "Psychic",
+        "Ancient Power"
+      ]
+    },
+    "103": {
+      "types": [
+        "grass",
+        "psychic"
+      ],
+      "cpPerUpgrade": 40.5,
+      "evolveCost": "0",
+      "familyId": "102",
+      "BaseStamina": 190,
+      "BaseAttack": 232,
+      "BaseDefense": 164,
+      "evolvesTo": 0,
+      "evolvesFrom": "Exeggcute",
+      "quickMoves": [
+        "Confusion",
+        "Zen Headbutt"
+      ],
+      "cinematicMoves": [
+        "Seed Bomb",
+        "Psychic",
+        "Solar Beam"
+      ]
+    },
+    "104": {
+      "types": [
+        "ground"
+      ],
+      "cpPerUpgrade": 13,
+      "evolveCost": "50",
+      "familyId": "104",
+      "BaseStamina": 100,
+      "BaseAttack": 102,
+      "BaseDefense": 150,
+      "evolvesTo": "Marowak",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Mud Slap",
+        "Rock Smash"
+      ],
+      "cinematicMoves": [
+        "Bone Club",
+        "Dig",
+        "Bulldoze"
+      ]
+    },
+    "105": {
+      "types": [
+        "ground"
+      ],
+      "cpPerUpgrade": 22.5,
+      "evolveCost": "0",
+      "familyId": "104",
+      "BaseStamina": 120,
+      "BaseAttack": 140,
+      "BaseDefense": 202,
+      "evolvesTo": 0,
+      "evolvesFrom": "Cubone",
+      "quickMoves": [
+        "Mud Slap",
+        "Rock Smash"
+      ],
+      "cinematicMoves": [
+        "Bone Club",
+        "Dig",
+        "Earthquake"
+      ]
+    },
+    "106": {
+      "types": [
+        "fighting"
+      ],
+      "cpPerUpgrade": 21,
+      "evolveCost": "0",
+      "familyId": "106",
+      "BaseStamina": 100,
+      "BaseAttack": 148,
+      "BaseDefense": 172,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Low Kick",
+        "Rock Smash"
+      ],
+      "cinematicMoves": [
+        "Stomp",
+        "Low Sweep",
+        "Stone Edge"
+      ]
+    },
+    "107": {
+      "types": [
+        "fighting"
+      ],
+      "cpPerUpgrade": 21,
+      "evolveCost": "0",
+      "familyId": "107",
+      "BaseStamina": 100,
+      "BaseAttack": 138,
+      "BaseDefense": 204,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Bullet Punch",
+        "Rock Smash"
+      ],
+      "cinematicMoves": [
+        "Fire Punch",
+        "Ice Punch",
+        "Thunder Punch",
+        "Brick Break"
+      ]
+    },
+    "108": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 22,
+      "evolveCost": "0",
+      "familyId": "108",
+      "BaseStamina": 180,
+      "BaseAttack": 126,
+      "BaseDefense": 160,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Lick",
+        "Zen Headbutt"
+      ],
+      "cinematicMoves": [
+        "Hyper Beam",
+        "Stomp",
+        "Power Whip"
+      ]
+    },
+    "109": {
+      "types": [
+        "poison"
+      ],
+      "cpPerUpgrade": 16,
+      "evolveCost": "50",
+      "familyId": "109",
+      "BaseStamina": 80,
+      "BaseAttack": 136,
+      "BaseDefense": 142,
+      "evolvesTo": "Weezing",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Acid",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Sludge",
+        "Sludge Bomb",
+        "Dark Pulse"
+      ]
+    },
+    "110": {
+      "types": [
+        "poison"
+      ],
+      "cpPerUpgrade": 32.8,
+      "evolveCost": "0",
+      "familyId": "109",
+      "BaseStamina": 130,
+      "BaseAttack": 190,
+      "BaseDefense": 198,
+      "evolvesTo": 0,
+      "evolvesFrom": "Koffing",
+      "quickMoves": [
+        "Acid",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Sludge Bomb",
+        "Shadow Ball",
+        "Dark Pulse"
+      ]
+    },
+    "111": {
+      "types": [
+        "ground",
+        "rock"
+      ],
+      "cpPerUpgrade": 16,
+      "evolveCost": "50",
+      "familyId": "111",
+      "BaseStamina": 160,
+      "BaseAttack": 110,
+      "BaseDefense": 116,
+      "evolvesTo": "Rhydon",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Mud Slap",
+        "Rock Smash"
+      ],
+      "cinematicMoves": [
+        "Bulldoze",
+        "Horn Attack",
+        "Stomp"
+      ]
+    },
+    "112": {
+      "types": [
+        "ground",
+        "rock"
+      ],
+      "cpPerUpgrade": 29,
+      "evolveCost": "0",
+      "familyId": "111",
+      "BaseStamina": 210,
+      "BaseAttack": 166,
+      "BaseDefense": 160,
+      "evolvesTo": 0,
+      "evolvesFrom": "Rhyhorn",
+      "quickMoves": [
+        "Mud Slap",
+        "Rock Smash"
+      ],
+      "cinematicMoves": [
+        "Megahorn",
+        "Earthquake",
+        "Stone Edge"
+      ]
+    },
+    "113": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 9.5,
+      "evolveCost": "0",
+      "familyId": "113",
+      "BaseStamina": 500,
+      "BaseAttack": 40,
+      "BaseDefense": 60,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Pound",
+        "Zen Headbutt"
+      ],
+      "cinematicMoves": [
+        "Psychic",
+        "Psybeam",
+        "Dazzling Gleam"
+      ]
+    },
+    "114": {
+      "types": [
+        "grass"
+      ],
+      "cpPerUpgrade": 24.9,
+      "evolveCost": "0",
+      "familyId": "114",
+      "BaseStamina": 130,
+      "BaseAttack": 164,
+      "BaseDefense": 152,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Vine Whip"
+      ],
+      "cinematicMoves": [
+        "Power Whip",
+        "Sludge Bomb",
+        "Solar Beam"
+      ]
+    },
+    "115": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 29,
+      "evolveCost": "0",
+      "familyId": "115",
+      "BaseStamina": 210,
+      "BaseAttack": 142,
+      "BaseDefense": 178,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Mud Slap",
+        "Low Kick"
+      ],
+      "cinematicMoves": [
+        "Brick Break",
+        "Earthquake",
+        "Stomp"
+      ]
+    },
+    "116": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 11.5,
+      "evolveCost": "50",
+      "familyId": "116",
+      "BaseStamina": 60,
+      "BaseAttack": 122,
+      "BaseDefense": 100,
+      "evolvesTo": "Seadra",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Water Gun",
+        "Bubble"
+      ],
+      "cinematicMoves": [
+        "Bubble Beam",
+        "Dragon Pulse",
+        "Flash Cannon"
+      ]
+    },
+    "117": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 23.5,
+      "evolveCost": "0",
+      "familyId": "116",
+      "BaseStamina": 110,
+      "BaseAttack": 176,
+      "BaseDefense": 150,
+      "evolvesTo": 0,
+      "evolvesFrom": "Horsea",
+      "quickMoves": [
+        "Water Gun",
+        "Dragon Breath"
+      ],
+      "cinematicMoves": [
+        "Blizzard",
+        "Dragon Pulse",
+        "Hydro Pump"
+      ]
+    },
+    "118": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 13.5,
+      "evolveCost": "50",
+      "familyId": "118",
+      "BaseStamina": 90,
+      "BaseAttack": 112,
+      "BaseDefense": 126,
+      "evolvesTo": "Seaking",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Peck",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Water Pulse",
+        "Horn Attack",
+        "Aqua Tail"
+      ]
+    },
+    "119": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 29,
+      "evolveCost": "0",
+      "familyId": "118",
+      "BaseStamina": 160,
+      "BaseAttack": 172,
+      "BaseDefense": 160,
+      "evolvesTo": 0,
+      "evolvesFrom": "Goldeen",
+      "quickMoves": [
+        "Peck",
+        "Poison Jab"
+      ],
+      "cinematicMoves": [
+        "Icy Wind",
+        "Drill Run",
+        "Megahorn"
+      ]
+    },
+    "120": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 12,
+      "evolveCost": "50",
+      "familyId": "120",
+      "BaseStamina": 60,
+      "BaseAttack": 130,
+      "BaseDefense": 128,
+      "evolvesTo": "Starmie",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Quick Attack",
+        "Water Gun"
+      ],
+      "cinematicMoves": [
+        "Swift",
+        "Bubble Beam",
+        "Power Gem"
+      ]
+    },
+    "121": {
+      "types": [
+        "water",
+        "psychic"
+      ],
+      "cpPerUpgrade": 30,
+      "evolveCost": "0",
+      "familyId": "120",
+      "BaseStamina": 120,
+      "BaseAttack": 194,
+      "BaseDefense": 192,
+      "evolvesTo": 0,
+      "evolvesFrom": "Staryu",
+      "quickMoves": [
+        "Quick Attack",
+        "Water Gun"
+      ],
+      "cinematicMoves": [
+        "Hydro Pump",
+        "Power Gem",
+        "Psybeam"
+      ]
+    },
+    "122": {
+      "types": [
+        "psychic",
+        "fairy"
+      ],
+      "cpPerUpgrade": 21,
+      "evolveCost": "0",
+      "familyId": "122",
+      "BaseStamina": 80,
+      "BaseAttack": 154,
+      "BaseDefense": 196,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Confusion",
+        "Zen Headbutt"
+      ],
+      "cinematicMoves": [
+        "Psybeam",
+        "Psychic",
+        "Shadow Ball"
+      ]
+    },
+    "123": {
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "cpPerUpgrade": 30.4,
+      "evolveCost": "0",
+      "familyId": "123",
+      "BaseStamina": 140,
+      "BaseAttack": 176,
+      "BaseDefense": 180,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Fury Cutter",
+        "Steel Wing"
+      ],
+      "cinematicMoves": [
+        "Night Slash",
+        "X Scissor",
+        "Bug Buzz"
+      ]
+    },
+    "124": {
+      "types": [
+        "ice",
+        "psychic"
+      ],
+      "cpPerUpgrade": 23,
+      "evolveCost": "0",
+      "familyId": "124",
+      "BaseStamina": 130,
+      "BaseAttack": 172,
+      "BaseDefense": 134,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Frost Breath",
+        "Pound"
+      ],
+      "cinematicMoves": [
+        "Draining Kiss",
+        "Ice Punch",
+        "Psyshock"
+      ]
+    },
+    "125": {
+      "types": [
+        "electric"
+      ],
+      "cpPerUpgrade": 29.5,
+      "evolveCost": "0",
+      "familyId": "125",
+      "BaseStamina": 130,
+      "BaseAttack": 198,
+      "BaseDefense": 160,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Thunder Shock",
+        "Low Kick"
+      ],
+      "cinematicMoves": [
+        "Thunder Punch",
+        "Thunderbolt",
+        "Thunder"
+      ]
+    },
+    "126": {
+      "types": [
+        "fire"
+      ],
+      "cpPerUpgrade": 31.5,
+      "evolveCost": "0",
+      "familyId": "126",
+      "BaseStamina": 130,
+      "BaseAttack": 214,
+      "BaseDefense": 158,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Ember",
+        "Karate Chop"
+      ],
+      "cinematicMoves": [
+        "Fire Blast",
+        "Fire Punch",
+        "Flamethrower"
+      ]
+    },
+    "127": {
+      "types": [
+        "bug"
+      ],
+      "cpPerUpgrade": 29.7,
+      "evolveCost": "0",
+      "familyId": "127",
+      "BaseStamina": 130,
+      "BaseAttack": 184,
+      "BaseDefense": 186,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Rock Smash",
+        "Fury Cutter"
+      ],
+      "cinematicMoves": [
+        "Vice Grip",
+        "X Scissor",
+        "Submission"
+      ]
+    },
+    "128": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 25.3,
+      "evolveCost": "0",
+      "familyId": "128",
+      "BaseStamina": 150,
+      "BaseAttack": 148,
+      "BaseDefense": 184,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Tackle",
+        "Zen Headbutt"
+      ],
+      "cinematicMoves": [
+        "Horn Attack",
+        "Iron Head",
+        "Earthquake"
+      ]
+    },
+    "129": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 3.3,
+      "evolveCost": "400",
+      "familyId": "129",
+      "BaseStamina": 40,
+      "BaseAttack": 42,
+      "BaseDefense": 84,
+      "evolvesTo": "Gyarados",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Splash"
+      ],
+      "cinematicMoves": [
+        "Struggle"
+      ]
+    },
+    "130": {
+      "types": [
+        "water",
+        "flying"
+      ],
+      "cpPerUpgrade": 38,
+      "evolveCost": "0",
+      "familyId": "129",
+      "BaseStamina": 190,
+      "BaseAttack": 192,
+      "BaseDefense": 196,
+      "evolvesTo": null,
+      "evolvesFrom": "Magikarp",
+      "quickMoves": [
+        "Dragon Breath",
+        "Bite"
+      ],
+      "cinematicMoves": [
+        "Hydro Pump",
+        "Twister",
+        "Dragon Pulse"
+      ]
+    },
+    "131": {
+      "types": [
+        "water",
+        "ice"
+      ],
+      "cpPerUpgrade": 44.9,
+      "evolveCost": "0",
+      "familyId": "131",
+      "BaseStamina": 260,
+      "BaseAttack": 186,
+      "BaseDefense": 190,
+      "evolvesTo": null,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Frost Breath",
+        "Ice Shard"
+      ],
+      "cinematicMoves": [
+        "Dragon Pulse",
+        "Ice Beam",
+        "Blizzard"
+      ]
+    },
+    "132": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": null,
+      "evolveCost": "0",
+      "familyId": "132",
+      "BaseStamina": 96,
+      "BaseAttack": 110,
+      "BaseDefense": 110,
+      "evolvesTo": null,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Pound"
+      ],
+      "cinematicMoves": [
+        "Struggle"
+      ]
+    },
+    "133": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 16,
+      "evolveCost": "25",
+      "familyId": "133",
+      "BaseStamina": 110,
+      "BaseAttack": 114,
+      "BaseDefense": 128,
+      "evolvesTo": "Vaporeon/Jolteon/Flareon",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Quick Attack",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Dig",
+        "Swift",
+        "Body Slam"
+      ]
+    },
+    "134": {
+      "types": [
+        "water"
+      ],
+      "cpPerUpgrade": 39.5,
+      "evolveCost": "0",
+      "familyId": "133",
+      "BaseStamina": 260,
+      "BaseAttack": 186,
+      "BaseDefense": 168,
+      "evolvesTo": 0,
+      "evolvesFrom": "Eevee",
+      "quickMoves": [
+        "Water Gun"
+      ],
+      "cinematicMoves": [
+        "Water Pulse",
+        "Hydro Pump",
+        "Aqua Tail"
+      ]
+    },
+    "135": {
+      "types": [
+        "electric"
+      ],
+      "cpPerUpgrade": 30.1,
+      "evolveCost": "0",
+      "familyId": "133",
+      "BaseStamina": 130,
+      "BaseAttack": 192,
+      "BaseDefense": 174,
+      "evolvesTo": 0,
+      "evolvesFrom": "Eevee",
+      "quickMoves": [
+        "Thunder Shock"
+      ],
+      "cinematicMoves": [
+        "Discharge",
+        "Thunderbolt",
+        "Thunder"
+      ]
+    },
+    "136": {
+      "types": [
+        "fire"
+      ],
+      "cpPerUpgrade": 36.8,
+      "evolveCost": "0",
+      "familyId": "133",
+      "BaseStamina": 130,
+      "BaseAttack": 238,
+      "BaseDefense": 178,
+      "evolvesTo": 0,
+      "evolvesFrom": "Eevee",
+      "quickMoves": [
+        "Ember"
+      ],
+      "cinematicMoves": [
+        "Fire Blast",
+        "Flamethrower",
+        "Heat Wave"
+      ]
+    },
+    "137": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 23.8,
+      "evolveCost": "0",
+      "familyId": "137",
+      "BaseStamina": 130,
+      "BaseAttack": 156,
+      "BaseDefense": 158,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Quick Attack",
+        "Tackle"
+      ],
+      "cinematicMoves": [
+        "Psybeam",
+        "Signal Beam",
+        "Discharge"
+      ]
+    },
+    "138": {
+      "types": [
+        "rock",
+        "water"
+      ],
+      "cpPerUpgrade": 16,
+      "evolveCost": "50",
+      "familyId": "138",
+      "BaseStamina": 70,
+      "BaseAttack": 132,
+      "BaseDefense": 160,
+      "evolvesTo": "Omastar",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Water Gun",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Ancient Power",
+        "Brine",
+        "Rock Tomb"
+      ]
+    },
+    "139": {
+      "types": [
+        "rock",
+        "water"
+      ],
+      "cpPerUpgrade": 32,
+      "evolveCost": "0",
+      "familyId": "138",
+      "BaseStamina": 140,
+      "BaseAttack": 180,
+      "BaseDefense": 202,
+      "evolvesTo": 0,
+      "evolvesFrom": "Omanyte",
+      "quickMoves": [
+        "Rock Throw",
+        "Water Gun"
+      ],
+      "cinematicMoves": [
+        "Ancient Power",
+        "Hydro Pump",
+        "Rock Slide"
+      ]
+    },
+    "140": {
+      "types": [
+        "rock",
+        "water"
+      ],
+      "cpPerUpgrade": 16,
+      "evolveCost": "50",
+      "familyId": "140",
+      "BaseStamina": 60,
+      "BaseAttack": 148,
+      "BaseDefense": 142,
+      "evolvesTo": "Kabutops",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Scratch",
+        "Mud Shot"
+      ],
+      "cinematicMoves": [
+        "Ancient Power",
+        "Aqua Jet",
+        "Rock Tomb"
+      ]
+    },
+    "141": {
+      "types": [
+        "rock",
+        "water"
+      ],
+      "cpPerUpgrade": 30,
+      "evolveCost": "0",
+      "familyId": "140",
+      "BaseStamina": 120,
+      "BaseAttack": 190,
+      "BaseDefense": 190,
+      "evolvesTo": 0,
+      "evolvesFrom": "Kabuto",
+      "quickMoves": [
+        "Mud Shot",
+        "Fury Cutter"
+      ],
+      "cinematicMoves": [
+        "Ancient Power",
+        "Water Pulse",
+        "Stone Edge"
+      ]
+    },
+    "142": {
+      "types": [
+        "rock",
+        "flying"
+      ],
+      "cpPerUpgrade": 29.9,
+      "evolveCost": "0",
+      "familyId": "142",
+      "BaseStamina": 160,
+      "BaseAttack": 182,
+      "BaseDefense": 162,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Steel Wing",
+        "Bite"
+      ],
+      "cinematicMoves": [
+        "Ancient Power",
+        "Iron Head",
+        "Hyper Beam"
+      ]
+    },
+    "143": {
+      "types": [
+        "normal"
+      ],
+      "cpPerUpgrade": 44.6,
+      "evolveCost": "0",
+      "familyId": "143",
+      "BaseStamina": 320,
+      "BaseAttack": 180,
+      "BaseDefense": 180,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Zen Headbutt",
+        "Lick"
+      ],
+      "cinematicMoves": [
+        "Body Slam",
+        "Hyper Beam",
+        "Earthquake"
+      ]
+    },
+    "144": {
+      "types": [
+        "ice",
+        "flying"
+      ],
+      "cpPerUpgrade": null,
+      "evolveCost": "0",
+      "familyId": "144",
+      "BaseStamina": 180,
+      "BaseAttack": 198,
+      "BaseDefense": 242,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Frost Breath"
+      ],
+      "cinematicMoves": [
+        "Ice Beam",
+        "Icy Wind",
+        "Blizzard"
+      ]
+    },
+    "145": {
+      "types": [
+        "electric",
+        "flying"
+      ],
+      "cpPerUpgrade": null,
+      "evolveCost": "0",
+      "familyId": "145",
+      "BaseStamina": 180,
+      "BaseAttack": 232,
+      "BaseDefense": 194,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Thunder Shock"
+      ],
+      "cinematicMoves": [
+        "Discharge",
+        "Thunderbolt",
+        "Thunder"
+      ]
+    },
+    "146": {
+      "types": [
+        "fire",
+        "flying"
+      ],
+      "cpPerUpgrade": null,
+      "evolveCost": "0",
+      "familyId": "146",
+      "BaseStamina": 180,
+      "BaseAttack": 242,
+      "BaseDefense": 194,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Ember"
+      ],
+      "cinematicMoves": [
+        "Fire Blast",
+        "Heat Wave",
+        "Flamethrower"
+      ]
+    },
+    "147": {
+      "types": [
+        "dragon"
+      ],
+      "cpPerUpgrade": 13,
+      "evolveCost": "25",
+      "familyId": "147",
+      "BaseStamina": 82,
+      "BaseAttack": 128,
+      "BaseDefense": 110,
+      "evolvesTo": "Dragonair",
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Dragon Breath"
+      ],
+      "cinematicMoves": [
+        "Wrap",
+        "Twister",
+        "Aqua Tail"
+      ]
+    },
+    "148": {
+      "types": [
+        "dragon"
+      ],
+      "cpPerUpgrade": 25,
+      "evolveCost": "100",
+      "familyId": "147",
+      "BaseStamina": 122,
+      "BaseAttack": 170,
+      "BaseDefense": 152,
+      "evolvesTo": "Dragonite",
+      "evolvesFrom": "Dratini",
+      "quickMoves": [
+        "Dragon Breath"
+      ],
+      "cinematicMoves": [
+        "Wrap",
+        "Aqua Tail",
+        "Dragon Pulse"
+      ]
+    },
+    "149": {
+      "types": [
+        "dragon",
+        "flying"
+      ],
+      "cpPerUpgrade": 44.8,
+      "evolveCost": "0",
+      "familyId": "147",
+      "BaseStamina": 182,
+      "BaseAttack": 250,
+      "BaseDefense": 212,
+      "evolvesTo": 0,
+      "evolvesFrom": "Dragonair",
+      "quickMoves": [
+        "Dragon Breath",
+        "Steel Wing"
+      ],
+      "cinematicMoves": [
+        "Dragon Pulse",
+        "Hyper Beam",
+        "Dragon Claw"
+      ]
+    },
+    "150": {
+      "types": [
+        "psychic"
+      ],
+      "cpPerUpgrade": null,
+      "evolveCost": "0",
+      "familyId": "150",
+      "BaseStamina": 212,
+      "BaseAttack": 284,
+      "BaseDefense": 202,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Psycho Cut",
+        "Confusion"
+      ],
+      "cinematicMoves": [
+        "Psychic",
+        "Shadow Ball",
+        "Hyper Beam"
+      ]
+    },
+    "151": {
+      "types": [
+        "psychic"
+      ],
+      "cpPerUpgrade": null,
+      "evolveCost": "0",
+      "familyId": "151",
+      "BaseStamina": 200,
+      "BaseAttack": 220,
+      "BaseDefense": 220,
+      "evolvesTo": 0,
+      "evolvesFrom": 0,
+      "quickMoves": [
+        "Pound"
+      ],
+      "cinematicMoves": [
+        "Hurricane",
+        "Earthquake",
+        "Psychic",
+        "Dragon Pulse",
+        "Thunder",
+        "Moonblast",
+        "Fire Blast",
+        "Solar Beam",
+        "Hyper Beam"
+      ]
+    }
+  },
+  "moves": {
+    "13": {
+      "name": "Wrap",
+      "type": "Normal",
+      "power": 25,
+      "staminaLoss": 0.06,
+      "durationMs": 4000,
+      "dodgeWindowMs": 600,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "14": {
+      "name": "Hyper Beam",
+      "type": "Normal",
+      "power": 120,
+      "staminaLoss": 0.15,
+      "durationMs": 5000,
+      "dodgeWindowMs": 800,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "16": {
+      "name": "Dark Pulse",
+      "type": "Dark",
+      "power": 45,
+      "staminaLoss": 0.08,
+      "durationMs": 3500,
+      "dodgeWindowMs": 1100,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "18": {
+      "name": "Sludge",
+      "type": "Poison",
+      "power": 30,
+      "staminaLoss": 0.065,
+      "durationMs": 2600,
+      "dodgeWindowMs": 500,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "20": {
+      "name": "Vice Grip",
+      "type": "Normal",
+      "power": 25,
+      "staminaLoss": 0.055,
+      "durationMs": 2100,
+      "dodgeWindowMs": 250,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "21": {
+      "name": "Flame Wheel",
+      "type": "Fire",
+      "power": 40,
+      "staminaLoss": 0.06,
+      "durationMs": 4600,
+      "dodgeWindowMs": 500,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "22": {
+      "name": "Megahorn",
+      "type": "Bug",
+      "power": 80,
+      "staminaLoss": 0.12,
+      "durationMs": 3200,
+      "dodgeWindowMs": 300,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "24": {
+      "name": "Flamethrower",
+      "type": "Fire",
+      "power": 55,
+      "staminaLoss": 0.09,
+      "durationMs": 2900,
+      "dodgeWindowMs": 900,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "26": {
+      "name": "Dig",
+      "type": "Ground",
+      "power": 70,
+      "staminaLoss": 0.08,
+      "durationMs": 5800,
+      "dodgeWindowMs": 400,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "28": {
+      "name": "Cross Chop",
+      "type": "Fighting",
+      "power": 60,
+      "staminaLoss": 0.1,
+      "durationMs": 2000,
+      "dodgeWindowMs": 300,
+      "crit": 0.25,
+      "energyCost": 100
+    },
+    "30": {
+      "name": "Psybeam",
+      "type": "Psychic",
+      "power": 40,
+      "staminaLoss": 0.065,
+      "durationMs": 3800,
+      "dodgeWindowMs": 1300,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "31": {
+      "name": "Earthquake",
+      "type": "Ground",
+      "power": 100,
+      "staminaLoss": 0.1,
+      "durationMs": 4200,
+      "dodgeWindowMs": 1950,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "32": {
+      "name": "Stone Edge",
+      "type": "Rock",
+      "power": 80,
+      "staminaLoss": 0.1,
+      "durationMs": 3100,
+      "dodgeWindowMs": 400,
+      "crit": 0.5,
+      "energyCost": 100
+    },
+    "33": {
+      "name": "Ice Punch",
+      "type": "Ice",
+      "power": 45,
+      "staminaLoss": 0.075,
+      "durationMs": 3500,
+      "dodgeWindowMs": 1100,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "34": {
+      "name": "Heart Stamp",
+      "type": "Psychic",
+      "power": 25,
+      "staminaLoss": 0.06,
+      "durationMs": 2550,
+      "dodgeWindowMs": 300,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "35": {
+      "name": "Discharge",
+      "type": "Electric",
+      "power": 35,
+      "staminaLoss": 0.08,
+      "durationMs": 2500,
+      "dodgeWindowMs": 700,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "36": {
+      "name": "Flash Cannon",
+      "type": "Steel",
+      "power": 60,
+      "staminaLoss": 0.08,
+      "durationMs": 3900,
+      "dodgeWindowMs": 1100,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "38": {
+      "name": "Drill Peck",
+      "type": "Flying",
+      "power": 40,
+      "staminaLoss": 0.08,
+      "durationMs": 2700,
+      "dodgeWindowMs": 900,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "39": {
+      "name": "Ice Beam",
+      "type": "Ice",
+      "power": 65,
+      "staminaLoss": 0.09,
+      "durationMs": 3650,
+      "dodgeWindowMs": 1350,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "40": {
+      "name": "Blizzard",
+      "type": "Ice",
+      "power": 100,
+      "staminaLoss": 0.11,
+      "durationMs": 3900,
+      "dodgeWindowMs": 0,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "42": {
+      "name": "Heat Wave",
+      "type": "Fire",
+      "power": 80,
+      "staminaLoss": 0.095,
+      "durationMs": 3800,
+      "dodgeWindowMs": 400,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "45": {
+      "name": "Aerial Ace",
+      "type": "Flying",
+      "power": 30,
+      "staminaLoss": 0.06,
+      "durationMs": 2900,
+      "dodgeWindowMs": 600,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "46": {
+      "name": "Drill Run",
+      "type": "Ground",
+      "power": 50,
+      "staminaLoss": 0.08,
+      "durationMs": 3400,
+      "dodgeWindowMs": 700,
+      "crit": 0.25,
+      "energyCost": 33
+    },
+    "47": {
+      "name": "Petal Blizzard",
+      "type": "Grass",
+      "power": 65,
+      "staminaLoss": 0.09,
+      "durationMs": 3200,
+      "dodgeWindowMs": 1000,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "48": {
+      "name": "Mega Drain",
+      "type": "Grass",
+      "power": 25,
+      "staminaLoss": 0.04,
+      "durationMs": 3200,
+      "dodgeWindowMs": 1200,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "49": {
+      "name": "Bug Buzz",
+      "type": "Bug",
+      "power": 75,
+      "staminaLoss": 0.09,
+      "durationMs": 4250,
+      "dodgeWindowMs": 1500,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "50": {
+      "name": "Poison Fang",
+      "type": "Poison",
+      "power": 25,
+      "staminaLoss": 0.05,
+      "durationMs": 2400,
+      "dodgeWindowMs": 200,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "51": {
+      "name": "Night Slash",
+      "type": "Dark",
+      "power": 30,
+      "staminaLoss": 0.07,
+      "durationMs": 2700,
+      "dodgeWindowMs": 200,
+      "crit": 0.25,
+      "energyCost": 25
+    },
+    "53": {
+      "name": "Bubble Beam",
+      "type": "Water",
+      "power": 30,
+      "staminaLoss": 0.065,
+      "durationMs": 2900,
+      "dodgeWindowMs": 200,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "54": {
+      "name": "Submission",
+      "type": "Fighting",
+      "power": 30,
+      "staminaLoss": 0.08,
+      "durationMs": 2100,
+      "dodgeWindowMs": 150,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "56": {
+      "name": "Low Sweep",
+      "type": "Fighting",
+      "power": 30,
+      "staminaLoss": 0.065,
+      "durationMs": 2250,
+      "dodgeWindowMs": 150,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "57": {
+      "name": "Aqua Jet",
+      "type": "Water",
+      "power": 25,
+      "staminaLoss": 0.04,
+      "durationMs": 2350,
+      "dodgeWindowMs": 400,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "58": {
+      "name": "Aqua Tail",
+      "type": "Water",
+      "power": 45,
+      "staminaLoss": 0.09,
+      "durationMs": 2350,
+      "dodgeWindowMs": 200,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "59": {
+      "name": "Seed Bomb",
+      "type": "Grass",
+      "power": 40,
+      "staminaLoss": 0.08,
+      "durationMs": 2400,
+      "dodgeWindowMs": 500,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "60": {
+      "name": "Psyshock",
+      "type": "Psychic",
+      "power": 40,
+      "staminaLoss": 0.08,
+      "durationMs": 2700,
+      "dodgeWindowMs": 500,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "62": {
+      "name": "Ancient Power",
+      "type": "Rock",
+      "power": 35,
+      "staminaLoss": 0.06,
+      "durationMs": 3600,
+      "dodgeWindowMs": 350,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "63": {
+      "name": "Rock Tomb",
+      "type": "Rock",
+      "power": 30,
+      "staminaLoss": 0.06,
+      "durationMs": 3400,
+      "dodgeWindowMs": 900,
+      "crit": 0.25,
+      "energyCost": 25
+    },
+    "64": {
+      "name": "Rock Slide",
+      "type": "Rock",
+      "power": 50,
+      "staminaLoss": 0.075,
+      "durationMs": 3200,
+      "dodgeWindowMs": 1400,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "65": {
+      "name": "Power Gem",
+      "type": "Rock",
+      "power": 40,
+      "staminaLoss": 0.08,
+      "durationMs": 2900,
+      "dodgeWindowMs": 800,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "66": {
+      "name": "Shadow Sneak",
+      "type": "Ghost",
+      "power": 25,
+      "staminaLoss": 0.04,
+      "durationMs": 3100,
+      "dodgeWindowMs": 600,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "67": {
+      "name": "Shadow Punch",
+      "type": "Ghost",
+      "power": 25,
+      "staminaLoss": 0.06,
+      "durationMs": 2100,
+      "dodgeWindowMs": 300,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "69": {
+      "name": "Ominous Wind",
+      "type": "Ghost",
+      "power": 30,
+      "staminaLoss": 0.06,
+      "durationMs": 3100,
+      "dodgeWindowMs": 250,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "70": {
+      "name": "Shadow Ball",
+      "type": "Ghost",
+      "power": 45,
+      "staminaLoss": 0.08,
+      "durationMs": 3080,
+      "dodgeWindowMs": 300,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "72": {
+      "name": "Magnet Bomb",
+      "type": "Steel",
+      "power": 30,
+      "staminaLoss": 0.06,
+      "durationMs": 2800,
+      "dodgeWindowMs": 550,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "74": {
+      "name": "Iron Head",
+      "type": "Steel",
+      "power": 30,
+      "staminaLoss": 0.08,
+      "durationMs": 2000,
+      "dodgeWindowMs": 250,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "75": {
+      "name": "Parabolic Charge",
+      "type": "Electric",
+      "power": 25,
+      "staminaLoss": 0.05,
+      "durationMs": 2100,
+      "dodgeWindowMs": 400,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "77": {
+      "name": "Thunder Punch",
+      "type": "Electric",
+      "power": 40,
+      "staminaLoss": 0.075,
+      "durationMs": 2400,
+      "dodgeWindowMs": 250,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "78": {
+      "name": "Thunder",
+      "type": "Electric",
+      "power": 100,
+      "staminaLoss": 0.11,
+      "durationMs": 4300,
+      "dodgeWindowMs": 1550,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "79": {
+      "name": "Thunderbolt",
+      "type": "Electric",
+      "power": 55,
+      "staminaLoss": 0.09,
+      "durationMs": 2700,
+      "dodgeWindowMs": 800,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "80": {
+      "name": "Twister",
+      "type": "Dragon",
+      "power": 25,
+      "staminaLoss": 0.04,
+      "durationMs": 2700,
+      "dodgeWindowMs": 1750,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "82": {
+      "name": "Dragon Pulse",
+      "type": "Dragon",
+      "power": 65,
+      "staminaLoss": 0.085,
+      "durationMs": 3600,
+      "dodgeWindowMs": 1200,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "83": {
+      "name": "Dragon Claw",
+      "type": "Dragon",
+      "power": 35,
+      "staminaLoss": 0.08,
+      "durationMs": 1500,
+      "dodgeWindowMs": 200,
+      "crit": 0.25,
+      "energyCost": 50
+    },
+    "84": {
+      "name": "Disarming Voice",
+      "type": "Fairy",
+      "power": 25,
+      "staminaLoss": 0.04,
+      "durationMs": 3900,
+      "dodgeWindowMs": 1800,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "85": {
+      "name": "Draining Kiss",
+      "type": "Fairy",
+      "power": 25,
+      "staminaLoss": 0.05,
+      "durationMs": 2800,
+      "dodgeWindowMs": 100,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "86": {
+      "name": "Dazzling Gleam",
+      "type": "Fairy",
+      "power": 55,
+      "staminaLoss": 0.08,
+      "durationMs": 4200,
+      "dodgeWindowMs": 800,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "87": {
+      "name": "Moonblast",
+      "type": "Fairy",
+      "power": 85,
+      "staminaLoss": 0.095,
+      "durationMs": 4100,
+      "dodgeWindowMs": 600,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "88": {
+      "name": "Play Rough",
+      "type": "Fairy",
+      "power": 55,
+      "staminaLoss": 0.05,
+      "durationMs": 2900,
+      "dodgeWindowMs": 1300,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "89": {
+      "name": "Cross Poison",
+      "type": "Poison",
+      "power": 25,
+      "staminaLoss": 0.07,
+      "durationMs": 1500,
+      "dodgeWindowMs": 300,
+      "crit": 0.25,
+      "energyCost": 25
+    },
+    "90": {
+      "name": "Sludge Bomb",
+      "type": "Poison",
+      "power": 55,
+      "staminaLoss": 0.09,
+      "durationMs": 2600,
+      "dodgeWindowMs": 500,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "91": {
+      "name": "Sludge Wave",
+      "type": "Poison",
+      "power": 70,
+      "staminaLoss": 0.095,
+      "durationMs": 3400,
+      "dodgeWindowMs": 900,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "92": {
+      "name": "Gunk Shot",
+      "type": "Poison",
+      "power": 65,
+      "staminaLoss": 0.12,
+      "durationMs": 3000,
+      "dodgeWindowMs": 400,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "94": {
+      "name": "Bone Club",
+      "type": "Ground",
+      "power": 25,
+      "staminaLoss": 0.065,
+      "durationMs": 1600,
+      "dodgeWindowMs": 250,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "95": {
+      "name": "Bulldoze",
+      "type": "Ground",
+      "power": 35,
+      "staminaLoss": 0.06,
+      "durationMs": 3400,
+      "dodgeWindowMs": 1100,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "96": {
+      "name": "Mud Bomb",
+      "type": "Ground",
+      "power": 30,
+      "staminaLoss": 0.065,
+      "durationMs": 2600,
+      "dodgeWindowMs": 450,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "99": {
+      "name": "Signal Beam",
+      "type": "Bug",
+      "power": 45,
+      "staminaLoss": 0.075,
+      "durationMs": 3100,
+      "dodgeWindowMs": 1000,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "100": {
+      "name": "X-Scissor",
+      "type": "Bug",
+      "power": 35,
+      "staminaLoss": 0.08,
+      "durationMs": 2100,
+      "dodgeWindowMs": 250,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "101": {
+      "name": "Flame Charge",
+      "type": "Fire",
+      "power": 25,
+      "staminaLoss": 0.05,
+      "durationMs": 3100,
+      "dodgeWindowMs": 200,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "102": {
+      "name": "Flame Burst",
+      "type": "Fire",
+      "power": 30,
+      "staminaLoss": 0.07,
+      "durationMs": 2100,
+      "dodgeWindowMs": 400,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "103": {
+      "name": "Fire Blast",
+      "type": "Fire",
+      "power": 100,
+      "staminaLoss": 0.11,
+      "durationMs": 4100,
+      "dodgeWindowMs": 400,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "104": {
+      "name": "Brine",
+      "type": "Water",
+      "power": 25,
+      "staminaLoss": 0.065,
+      "durationMs": 2400,
+      "dodgeWindowMs": 350,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "105": {
+      "name": "Water Pulse",
+      "type": "Water",
+      "power": 35,
+      "staminaLoss": 0.06,
+      "durationMs": 3300,
+      "dodgeWindowMs": 1000,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "106": {
+      "name": "Scald",
+      "type": "Water",
+      "power": 55,
+      "staminaLoss": 0.08,
+      "durationMs": 4000,
+      "dodgeWindowMs": 2100,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "107": {
+      "name": "Hydro Pump",
+      "type": "Water",
+      "power": 90,
+      "staminaLoss": 0.11,
+      "durationMs": 3800,
+      "dodgeWindowMs": 2100,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "108": {
+      "name": "Psychic",
+      "type": "Psychic",
+      "power": 55,
+      "staminaLoss": 0.09,
+      "durationMs": 2800,
+      "dodgeWindowMs": 1200,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "109": {
+      "name": "Psystrike",
+      "type": "Psychic",
+      "power": 100,
+      "staminaLoss": 0.1,
+      "durationMs": 5100,
+      "dodgeWindowMs": 900,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "111": {
+      "name": "Icy Wind",
+      "type": "Ice",
+      "power": 25,
+      "staminaLoss": 0.055,
+      "durationMs": 3800,
+      "dodgeWindowMs": 700,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "114": {
+      "name": "Giga Drain",
+      "type": "Grass",
+      "power": 50,
+      "staminaLoss": 0.075,
+      "durationMs": 3600,
+      "dodgeWindowMs": 1150,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "115": {
+      "name": "Fire Punch",
+      "type": "Fire",
+      "power": 40,
+      "staminaLoss": 0.075,
+      "durationMs": 2800,
+      "dodgeWindowMs": 510,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "116": {
+      "name": "Solar Beam",
+      "type": "Grass",
+      "power": 120,
+      "staminaLoss": 0.12,
+      "durationMs": 4900,
+      "dodgeWindowMs": 1700,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "117": {
+      "name": "Leaf Blade",
+      "type": "Grass",
+      "power": 55,
+      "staminaLoss": 0.09,
+      "durationMs": 2800,
+      "dodgeWindowMs": 1000,
+      "crit": 0.25,
+      "energyCost": 50
+    },
+    "118": {
+      "name": "Power Whip",
+      "type": "Grass",
+      "power": 70,
+      "staminaLoss": 0.12,
+      "durationMs": 2800,
+      "dodgeWindowMs": 1300,
+      "crit": 0,
+      "energyCost": 100
+    },
+    "121": {
+      "name": "Air Cutter",
+      "type": "Flying",
+      "power": 30,
+      "staminaLoss": 0.06,
+      "durationMs": 3300,
+      "dodgeWindowMs": 900,
+      "crit": 0.25,
+      "energyCost": 25
+    },
+    "122": {
+      "name": "Hurricane",
+      "type": "Flying",
+      "power": 80,
+      "staminaLoss": 0.11,
+      "durationMs": 3200,
+      "dodgeWindowMs": 1770,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "123": {
+      "name": "Brick Break",
+      "type": "Fighting",
+      "power": 30,
+      "staminaLoss": 0.075,
+      "durationMs": 1600,
+      "dodgeWindowMs": 400,
+      "crit": 0.25,
+      "energyCost": 33
+    },
+    "125": {
+      "name": "Swift",
+      "type": "Normal",
+      "power": 30,
+      "staminaLoss": 0.06,
+      "durationMs": 3000,
+      "dodgeWindowMs": 500,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "126": {
+      "name": "Horn Attack",
+      "type": "Normal",
+      "power": 25,
+      "staminaLoss": 0.065,
+      "durationMs": 2200,
+      "dodgeWindowMs": 300,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "127": {
+      "name": "Stomp",
+      "type": "Normal",
+      "power": 30,
+      "staminaLoss": 0.065,
+      "durationMs": 2100,
+      "dodgeWindowMs": 700,
+      "crit": 0.05,
+      "energyCost": 25
+    },
+    "129": {
+      "name": "Hyper Fang",
+      "type": "Normal",
+      "power": 35,
+      "staminaLoss": 0.08,
+      "durationMs": 2100,
+      "dodgeWindowMs": 300,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "131": {
+      "name": "Body Slam",
+      "type": "Normal",
+      "power": 40,
+      "staminaLoss": 0.085,
+      "durationMs": 1560,
+      "dodgeWindowMs": 200,
+      "crit": 0.05,
+      "energyCost": 50
+    },
+    "132": {
+      "name": "Rest",
+      "type": "Normal",
+      "power": 35,
+      "staminaLoss": 0,
+      "durationMs": 3100,
+      "dodgeWindowMs": 1296,
+      "crit": 0,
+      "energyCost": 33
+    },
+    "133": {
+      "name": "Struggle",
+      "type": "Normal",
+      "power": 15,
+      "staminaLoss": 0.1,
+      "durationMs": 1695,
+      "dodgeWindowMs": 700,
+      "crit": 0,
+      "energyCost": 20
+    },
+    "134": {
+      "name": "Scald (Blastoise)",
+      "type": "Water",
+      "power": 55,
+      "staminaLoss": 0.08,
+      "durationMs": 4000,
+      "dodgeWindowMs": 2100,
+      "crit": 0.05,
+      "energyCost": 33
+    },
+    "135": {
+      "name": "Hydro Pump (Blastoise)",
+      "type": "Water",
+      "power": 90,
+      "staminaLoss": 0.11,
+      "durationMs": 3800,
+      "dodgeWindowMs": 2100,
+      "crit": 0.05,
+      "energyCost": 100
+    },
+    "136": {
+      "name": "Wrap (Green)",
+      "type": "Normal",
+      "power": 25,
+      "staminaLoss": 0.06,
+      "durationMs": 3700,
+      "dodgeWindowMs": 1000,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "137": {
+      "name": "Wrap (Pink)",
+      "type": "Normal",
+      "power": 25,
+      "staminaLoss": 0.06,
+      "durationMs": 3700,
+      "dodgeWindowMs": 1000,
+      "crit": 0.05,
+      "energyCost": 20
+    },
+    "200": {
+      "name": "Fury Cutter",
+      "type": "Bug",
+      "power": 3,
+      "staminaLoss": 0.01,
+      "durationMs": 400,
+      "damageWindowMs": 200,
+      "energyGain": 6,
+      "energyGainPerSecond": 15,
+      "dps": 7.5
+    },
+    "201": {
+      "name": "Bug Bite",
+      "type": "Bug",
+      "power": 5,
+      "staminaLoss": 0.01,
+      "durationMs": 450,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 15.56,
+      "dps": 11.11
+    },
+    "202": {
+      "name": "Bite",
+      "type": "Dark",
+      "power": 6,
+      "staminaLoss": 0.01,
+      "durationMs": 500,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 14,
+      "dps": 12
+    },
+    "203": {
+      "name": "Sucker Punch",
+      "type": "Dark",
+      "power": 7,
+      "staminaLoss": 0.01,
+      "durationMs": 700,
+      "damageWindowMs": 200,
+      "energyGain": 9,
+      "energyGainPerSecond": 12.86,
+      "dps": 10
+    },
+    "204": {
+      "name": "Dragon Breath",
+      "type": "Dragon",
+      "power": 6,
+      "staminaLoss": 0.01,
+      "durationMs": 500,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 14,
+      "dps": 12
+    },
+    "205": {
+      "name": "Thunder Shock",
+      "type": "Electric",
+      "power": 5,
+      "staminaLoss": 0.01,
+      "durationMs": 600,
+      "damageWindowMs": 200,
+      "energyGain": 8,
+      "energyGainPerSecond": 13.33,
+      "dps": 8.33
+    },
+    "206": {
+      "name": "Spark",
+      "type": "Electric",
+      "power": 7,
+      "staminaLoss": 0.01,
+      "durationMs": 700,
+      "damageWindowMs": 200,
+      "energyGain": 8,
+      "energyGainPerSecond": 11.43,
+      "dps": 10
+    },
+    "207": {
+      "name": "Low Kick",
+      "type": "Fighting",
+      "power": 5,
+      "staminaLoss": 0.01,
+      "durationMs": 600,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 11.67,
+      "dps": 8.33
+    },
+    "208": {
+      "name": "Karate Chop",
+      "type": "Fighting",
+      "power": 6,
+      "staminaLoss": 0.01,
+      "durationMs": 800,
+      "damageWindowMs": 200,
+      "energyGain": 8,
+      "energyGainPerSecond": 10,
+      "dps": 7.5
+    },
+    "209": {
+      "name": "Ember",
+      "type": "Fire",
+      "power": 10,
+      "staminaLoss": 0.01,
+      "durationMs": 1050,
+      "damageWindowMs": 200,
+      "energyGain": 10,
+      "energyGainPerSecond": 9.52,
+      "dps": 9.52
+    },
+    "210": {
+      "name": "Wing Attack",
+      "type": "Flying",
+      "power": 9,
+      "staminaLoss": 0.01,
+      "durationMs": 750,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 9.33,
+      "dps": 12
+    },
+    "211": {
+      "name": "Peck",
+      "type": "Flying",
+      "power": 10,
+      "staminaLoss": 0.01,
+      "durationMs": 1150,
+      "damageWindowMs": 200,
+      "energyGain": 10,
+      "energyGainPerSecond": 8.7,
+      "dps": 8.7
+    },
+    "212": {
+      "name": "Lick",
+      "type": "Ghost",
+      "power": 5,
+      "staminaLoss": 0.01,
+      "durationMs": 500,
+      "damageWindowMs": 200,
+      "energyGain": 6,
+      "energyGainPerSecond": 12,
+      "dps": 10
+    },
+    "213": {
+      "name": "Shadow Claw",
+      "type": "Ghost",
+      "power": 11,
+      "staminaLoss": 0.01,
+      "durationMs": 950,
+      "damageWindowMs": 200,
+      "energyGain": 8,
+      "energyGainPerSecond": 8.42,
+      "dps": 11.58
+    },
+    "214": {
+      "name": "Vine Whip",
+      "type": "Grass",
+      "power": 7,
+      "staminaLoss": 0.01,
+      "durationMs": 650,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 10.77,
+      "dps": 10.77
+    },
+    "215": {
+      "name": "Razor Leaf",
+      "type": "Grass",
+      "power": 15,
+      "staminaLoss": 0.01,
+      "durationMs": 1450,
+      "damageWindowMs": 200,
+      "energyGain": 12,
+      "energyGainPerSecond": 8.28,
+      "dps": 10.34
+    },
+    "216": {
+      "name": "Mud Shot",
+      "type": "Ground",
+      "power": 6,
+      "staminaLoss": 0.01,
+      "durationMs": 550,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 12.73,
+      "dps": 10.91
+    },
+    "217": {
+      "name": "Ice Shard",
+      "type": "Ice",
+      "power": 15,
+      "staminaLoss": 0.01,
+      "durationMs": 1400,
+      "damageWindowMs": 200,
+      "energyGain": 12,
+      "energyGainPerSecond": 8.57,
+      "dps": 10.71
+    },
+    "218": {
+      "name": "Frost Breath",
+      "type": "Ice",
+      "power": 9,
+      "staminaLoss": 0.01,
+      "durationMs": 810,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 8.64,
+      "dps": 11.11
+    },
+    "219": {
+      "name": "Quick Attack",
+      "type": "Normal",
+      "power": 10,
+      "staminaLoss": 0.01,
+      "durationMs": 1330,
+      "damageWindowMs": 200,
+      "energyGain": 12,
+      "energyGainPerSecond": 9.02,
+      "dps": 7.52
+    },
+    "220": {
+      "name": "Scratch",
+      "type": "Normal",
+      "power": 6,
+      "staminaLoss": 0.01,
+      "durationMs": 500,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 14,
+      "dps": 12
+    },
+    "221": {
+      "name": "Tackle",
+      "type": "Normal",
+      "power": 12,
+      "staminaLoss": 0.01,
+      "durationMs": 1100,
+      "damageWindowMs": 200,
+      "energyGain": 10,
+      "energyGainPerSecond": 9.09,
+      "dps": 10.91
+    },
+    "222": {
+      "name": "Pound",
+      "type": "Normal",
+      "power": 7,
+      "staminaLoss": 0.01,
+      "durationMs": 540,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 12.96,
+      "dps": 12.96
+    },
+    "223": {
+      "name": "Cut",
+      "type": "Normal",
+      "power": 12,
+      "staminaLoss": 0.01,
+      "durationMs": 1130,
+      "damageWindowMs": 200,
+      "energyGain": 10,
+      "energyGainPerSecond": 8.85,
+      "dps": 10.62
+    },
+    "224": {
+      "name": "Poison Jab",
+      "type": "Poison",
+      "power": 12,
+      "staminaLoss": 0.01,
+      "durationMs": 1050,
+      "damageWindowMs": 200,
+      "energyGain": 10,
+      "energyGainPerSecond": 9.52,
+      "dps": 11.43
+    },
+    "225": {
+      "name": "Acid",
+      "type": "Poison",
+      "power": 10,
+      "staminaLoss": 0.01,
+      "durationMs": 1050,
+      "damageWindowMs": 200,
+      "energyGain": 10,
+      "energyGainPerSecond": 9.52,
+      "dps": 9.52
+    },
+    "226": {
+      "name": "Psycho Cut",
+      "type": "Psychic",
+      "power": 7,
+      "staminaLoss": 0.01,
+      "durationMs": 570,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 12.28,
+      "dps": 12.28
+    },
+    "227": {
+      "name": "Rock Throw",
+      "type": "Rock",
+      "power": 12,
+      "staminaLoss": 0.01,
+      "durationMs": 1360,
+      "damageWindowMs": 200,
+      "energyGain": 15,
+      "energyGainPerSecond": 11.03,
+      "dps": 8.82
+    },
+    "228": {
+      "name": "Metal Claw",
+      "type": "Steel",
+      "power": 8,
+      "staminaLoss": 0.01,
+      "durationMs": 630,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 11.11,
+      "dps": 12.7
+    },
+    "229": {
+      "name": "Bullet Punch",
+      "type": "Steel",
+      "power": 10,
+      "staminaLoss": 0.01,
+      "durationMs": 1200,
+      "damageWindowMs": 200,
+      "energyGain": 10,
+      "energyGainPerSecond": 8.33,
+      "dps": 8.33
+    },
+    "230": {
+      "name": "Water Gun",
+      "type": "Water",
+      "power": 6,
+      "staminaLoss": 0.01,
+      "durationMs": 500,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 14,
+      "dps": 12
+    },
+    "231": {
+      "name": "Splash",
+      "type": "Water",
+      "power": 0,
+      "staminaLoss": 0.01,
+      "durationMs": 1230,
+      "damageWindowMs": 200,
+      "energyGain": 10,
+      "energyGainPerSecond": 8.13,
+      "dps": 0
+    },
+    "232": {
+      "name": "Water Gun (Blastoise)",
+      "type": "Water",
+      "power": 6,
+      "staminaLoss": 0.01,
+      "durationMs": 500,
+      "damageWindowMs": 200,
+      "energyGain": 7,
+      "energyGainPerSecond": 14,
+      "dps": 12
+    },
+    "233": {
+      "name": "Mud Slap",
+      "type": "Ground",
+      "power": 15,
+      "staminaLoss": 0.01,
+      "durationMs": 1350,
+      "damageWindowMs": 200,
+      "energyGain": 12,
+      "energyGainPerSecond": 8.89,
+      "dps": 11.11
+    },
+    "234": {
+      "name": "Zen Headbutt",
+      "type": "Psychic",
+      "power": 12,
+      "staminaLoss": 0.01,
+      "durationMs": 1050,
+      "damageWindowMs": 200,
+      "energyGain": 9,
+      "energyGainPerSecond": 8.57,
+      "dps": 11.43
+    },
+    "235": {
+      "name": "Confusion",
+      "type": "Psychic",
+      "power": 15,
+      "staminaLoss": 0.01,
+      "durationMs": 1510,
+      "damageWindowMs": 200,
+      "energyGain": 14,
+      "energyGainPerSecond": 9.27,
+      "dps": 9.93
+    },
+    "236": {
+      "name": "Poison Sting",
+      "type": "Poison",
+      "power": 6,
+      "staminaLoss": 0.01,
+      "durationMs": 575,
+      "damageWindowMs": 200,
+      "energyGain": 8,
+      "energyGainPerSecond": 13.91,
+      "dps": 10.43
+    },
+    "237": {
+      "name": "Bubble",
+      "type": "Water",
+      "power": 25,
+      "staminaLoss": 0.01,
+      "durationMs": 2300,
+      "damageWindowMs": 200,
+      "energyGain": 25,
+      "energyGainPerSecond": 10.87,
+      "dps": 10.87
+    },
+    "238": {
+      "name": "Feint Attack",
+      "type": "Dark",
+      "power": 12,
+      "staminaLoss": 0.01,
+      "durationMs": 1040,
+      "damageWindowMs": 200,
+      "energyGain": 10,
+      "energyGainPerSecond": 9.62,
+      "dps": 11.54
+    },
+    "239": {
+      "name": "Steel Wing",
+      "type": "Steel",
+      "power": 15,
+      "staminaLoss": 0.01,
+      "durationMs": 1330,
+      "damageWindowMs": 200,
+      "energyGain": 12,
+      "energyGainPerSecond": 9.02,
+      "dps": 11.28
+    },
+    "240": {
+      "name": "Fire Fang",
+      "type": "Fire",
+      "power": 10,
+      "staminaLoss": 0.01,
+      "durationMs": 840,
+      "damageWindowMs": 200,
+      "energyGain": 8,
+      "energyGainPerSecond": 9.52,
+      "dps": 11.9
+    },
+    "241": {
+      "name": "Rock Smash",
+      "type": "Fighting",
+      "power": 15,
+      "staminaLoss": 0.01,
+      "durationMs": 1410,
+      "damageWindowMs": 200,
+      "energyGain": 12,
+      "energyGainPerSecond": 8.51,
+      "dps": 10.64
+    }
   }
 }

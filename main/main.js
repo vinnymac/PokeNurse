@@ -233,7 +233,7 @@ ipcMain.on('get-players-pokemons', (event) => {
       var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
       pokemonName = pokemonName.replace('Female', '♀').replace('Male', '♂')
 
-      let stats = baseStats[pokemon['pokemon_id']]
+      let stats = baseStats.pokemon[pokemon['pokemon_id']]
 
       let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
 
@@ -308,9 +308,9 @@ ipcMain.on('get-players-pokemons', (event) => {
 
     for (let key in combinedPokemonList) {
       let pokemon = combinedPokemonList[key]
-      let candy = formattedCandies[baseStats[pokemon.pokemon_id].familyId]
+      let candy = formattedCandies[baseStats.pokemon[pokemon.pokemon_id].familyId]
       var count = pokemon.count
-      let evolves = Math.floor(candy / baseStats[pokemon.pokemon_id].evolveCost)
+      let evolves = Math.floor(candy / baseStats.pokemon[pokemon.pokemon_id].evolveCost)
 
       if ((evolves === Infinity || isNaN(evolves))) {
         evolves = 0
