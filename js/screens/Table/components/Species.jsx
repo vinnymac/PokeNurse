@@ -29,7 +29,7 @@ const Species = React.createClass({
     return (
       <div className="row">
         <div className="col-md-12">
-          <table className='table table-condensed table-hover'>
+          <table className='table table-condensed table-hover display no-footer dataTable'>
             <thead>
             {this.getSpeciesHeader()}
             </thead>
@@ -43,24 +43,61 @@ const Species = React.createClass({
   },
 
   getSpeciesHeader () {
+
+
     return (<tr>
       <th></th>
-      <th>
+      <th
+        className="sorting"
+        tabIndex="0"
+        rowSpan="1"
+        colSpan="1"
+        aria-controls="pokemon-data"
+        aria-label="Pokedex: activate to sort column ascending"
+      >
         Pokédex #
       </th>
       <th>
         Sprite
       </th>
-      <th>
+      <th
+        className="sorting"
+        tabIndex="0"
+        rowSpan="1"
+        colSpan="1"
+        aria-controls="pokemon-data"
+        aria-label="Name: activate to sort column ascending"
+      >
         Name
       </th>
-      <th>
+      <th
+        className="sorting"
+        tabIndex="0"
+        rowSpan="1"
+        colSpan="1"
+        aria-controls="pokemon-data"
+        aria-label="Count: activate to sort column ascending"
+      >
         Count
       </th>
-      <th>
+      <th
+        className="sorting"
+        tabIndex="0"
+        rowSpan="1"
+        colSpan="1"
+        aria-controls="pokemon-data"
+        aria-label="Candy: activate to sort column ascending"
+      >
         Candy
       </th>
-      <th>
+      <th
+        className="sorting"
+        tabIndex="0"
+        rowSpan="1"
+        colSpan="1"
+        aria-controls="pokemon-data"
+        aria-label="Evolves: activate to sort column ascending"
+      >
         Evolves
       </th>
     </tr>)
