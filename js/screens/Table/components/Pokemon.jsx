@@ -11,43 +11,38 @@ const Pokemon = React.createClass({
     monsterUpdater: React.PropTypes.func.isRequired
   },
 
-  getInitialState () {
-    let rowState = []
-    this.props.species.pokemon.forEach((p, i) => {
-      rowState.push(false)
-    })
+  // getInitialState () {
+  //   return {
+  //     checkAll: false,
+  //     rowState: this.props.checked
+  //   }
+  // },
 
-    return {
-      checkAll: false,
-      rowState: rowState
-    }
-  },
-
-  checkRow (index, event) {
-    let { rowState, checkAll } = this.state
-    let newRowState = Immutable.array.set(this.state.rowState, index, !rowState[ index ])
-
-    let newCheckAllState = checkAll ? !checkAll : false
-
-    this.setState({
-      rowState: newRowState,
-      checkAll: newCheckAllState
-    })
-  },
-
-  checkAll () {
-    let rowState = []
-    let checkState = !this.state.checkAll
-
-    this.state.rowState.forEach((row, i) => {
-      rowState[ i ] = checkState
-    })
-
-    this.setState({
-      rowState: rowState,
-      checkAll: checkState
-    })
-  },
+  // checkRow (index, event) {
+  //   let { rowState, checkAll } = this.state
+  //   let newRowState = Immutable.array.set(this.state.rowState, index, !rowState[ index ])
+  //
+  //   let newCheckAllState = checkAll ? !checkAll : false
+  //
+  //   this.setState({
+  //     rowState: newRowState,
+  //     checkAll: newCheckAllState
+  //   })
+  // },
+  //
+  // checkAll () {
+  //   let rowState = []
+  //   let checkState = !this.state.checkAll
+  //
+  //   this.state.rowState.forEach((row, i) => {
+  //     rowState[ i ] = checkState
+  //   })
+  //
+  //   this.setState({
+  //     rowState: rowState,
+  //     checkAll: checkState
+  //   })
+  // },
 
   componentDidMount () {
     $(this.refs.tBody).find('[data-toggle="tooltip"]').tooltip()
@@ -59,7 +54,7 @@ const Pokemon = React.createClass({
 
   render () {
     let { species } = this.props
-
+    console.log(this.props)
     return (
       <tr className='child' key={'sub' + species.pokemon_id}>
         <td colSpan='7'>
@@ -69,8 +64,8 @@ const Pokemon = React.createClass({
               <th width='5%'>
                 <input
                   type='checkbox'
-                  checked={this.state.checkAll}
-                  onChange={this.checkAll}
+                  //checked={this.state.checkAll}
+                  //onChange={this.checkAll}
                 />
               </th>
               <th width='5%'>
@@ -148,10 +143,10 @@ const Pokemon = React.createClass({
           <td>
             <input
               type='checkbox'
-              key={i}
+              key={pokemon.id}
               disabled={pokemon.deployed || pokemon.favorite}
-              checked={this.state.rowState[ i ]}
-              onChange={this.checkRow.bind(this, i)}
+              //checked={this.state.rowState[ String(pokemon.id) ].checked}
+              //onChange={this.checkRow.bind(this, i)}
             />
           </td>
           <td>

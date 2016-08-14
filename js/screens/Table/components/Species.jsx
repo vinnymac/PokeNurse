@@ -9,8 +9,13 @@ const Species = React.createClass({
     } = this.props
 
     let species = {}
+
     for (let specie of monsters.species) {
-      species[ String(specie.pokemon_id) ] = { collapsed: true }
+      species[ String(specie.pokemon_id) ] = {
+        collapsed: true,
+        pokemonChecked: this.handleInitRowState(specie),
+        checkAll: false
+      }
     }
 
     return { species: species }
@@ -62,6 +67,7 @@ const Species = React.createClass({
   },
 
   getPokemonComponents (monsterSpecies) {
+
     let {
       filterBy
     } = this.props
@@ -72,6 +78,7 @@ const Species = React.createClass({
       }
 
       let collapsed = this.state.species[ species.pokemon_id ].collapsed
+      let pokemonChecked = this.state.species[ species.pokemon_id ].pokemonChecked
 
       return ([
         <tr
@@ -90,30 +97,44 @@ const Species = React.createClass({
           <td>{species.count}</td>
           <td>{species.candy}</td>
           <td>{species.evolves}</td>
-        </tr>, this.getPokemonTable(species, i, collapsed)
+        </tr>, this.getPokemonTable(species, i, collapsed, pokemonChecked)
       ])
     })
   },
 
-  getPokemonTable (species, index, collapsed) {
+  getPokemonTable (species, index, collapsed, checked) {
     if (collapsed) return null
 
     return (<PokemonTable
       species={species}
       speciesIndex={index}
       key={'child' + species.pokemon_id}
+      pokemonChecked={checked}
     />)
   },
 
   handleCollapse (id, e) {
     let newState = {}
-    newState[ String(id) ] = { collapsed: !this.state.species[ String(id) ].collapsed }
+    newState[ String(id) ] = {
+      collapsed: !this.state.species[ String(id) ].collapsed,
+      pokemonChecked: !this.state.species[ String(id) ].pokemonChecked,
+      checkAll: !this.state.species[ String(id) ].checkAll,
+    }
 
     let species = Object.assign({}, this.state.species, newState)
     this.setState({
       species: species
     })
-  }
+  },
+
+  handleInitRowState (specie) {
+    let pokemonCheckedState = {}
+    specie.pokemon.forEach((p, i) => {
+      pokemonCheckedState[p.id] = { checked: false }
+    })
+    return pokemonCheckedState
+  },
+
 })
 
 export default Species
