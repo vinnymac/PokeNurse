@@ -82,31 +82,13 @@ const ModalBody = React.createClass({
 	  charged_move
     } = this.props
 	
-	let move2CastTime = <div/> //just to init.
+	let move2CastTime = []
 	
-	{(() => {
-        switch (charged_move.energyCost) {
-          	case 100:
-				move2CastTime = <div><div className='pokemon-move-cost-item' style={{width:'100px'}}></div></div>
-				return true
-			case 50:
-				move2CastTime = <div><div className='pokemon-move-cost-item' style={{width:'50px'}}></div><div className='pokemon-move-cost-item' style={{width:'50px'}}></div></div>
-				return true
-			case 33:
-				move2CastTime = <div><div className='pokemon-move-cost-item' style={{width:'33px'}}></div><div className='pokemon-move-cost-item' style={{width:'33px'}}></div><div className='pokemon-move-cost-item' style={{width:'33px'}}></div></div>
-				return true
-			case 25:
-				move2CastTime = <div><div className='pokemon-move-cost-item' style={{width:'25px'}}></div><div className='pokemon-move-cost-item' style={{width:'25px'}}></div><div className='pokemon-move-cost-item' style={{width:'25px'}}></div><div className='pokemon-move-cost-item' style={{width:'25px'}}></div></div>
-				return true
-			case 20:
-				move2CastTime = <div><div className='pokemon-move-cost-item' style={{width:'20px'}}></div><div className='pokemon-move-cost-item' style={{width:'20px'}}></div><div className='pokemon-move-cost-item' style={{width:'20px'}}></div><div className='pokemon-move-cost-item' style={{width:'20px'}}></div><div className='pokemon-move-cost-item' style={{width:'20px'}}></div></div>
-				return true
-			default:
-				move2CastTime = <div>unhandled {charged_move.energyCost}</div>
-				return true
-        }
-    })()}
-	  
+	for(var i = 0; i < (100/charged_move.energyCost); i++)
+	{
+		move2CastTime.push(<div key={i} className='pokemon-move-cost-item' style={{width:`${charged_move.energyCost}px`}}/>)
+	}
+		  
     return (<div className='modal-body'>
       <div id='pokemon_sprite_wrapper'>
         <div style={{textAlign: 'center', fontSize: '11px'}}>
