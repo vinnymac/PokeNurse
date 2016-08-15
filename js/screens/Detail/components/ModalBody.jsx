@@ -82,11 +82,11 @@ const ModalBody = React.createClass({
 	  charged_move
     } = this.props
 	
-	let move2CastTime = []
+	let chargedMoveBars = []
 	
 	for(var i = 0; i < (100/charged_move.energyCost); i++)
 	{
-		move2CastTime.push(<div key={i} className='pokemon-move-cost-item' style={{width:`${charged_move.energyCost}px`}}/>)
+		chargedMoveBars.push(<div key={i} className='pokemon-move-cost-item' style={{width:`${charged_move.energyCost}px`}}/>)
 	}
 		  
     return (<div className='modal-body'>
@@ -177,7 +177,7 @@ const ModalBody = React.createClass({
 			<div className='pokemon-move-item'>
 				<div className='pokemon-move-title'>{`${charged_move.name}`}</div>
 				<div className='pokemon-move-cost'>
-					{move2CastTime}
+					{chargedMoveBars}
 				</div>
 				<span className={'pokemon-move-type ' + charged_move.type}>{`${charged_move.type}`}</span>
 				<span className='pokemon-move-damage'>{`${charged_move.power}`}</span>
