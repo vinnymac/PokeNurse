@@ -167,24 +167,24 @@ const Species = React.createClass({
   },
 
   handleCollapse (id, e) {
-    let newSpecieState = {}
-    let existingSpecieState = this.state.species[ String(id) ]
-
-    newSpecieState[ String(id) ] = Object.assign({}, existingSpecieState, {
-      collapsed: !existingSpecieState.collapsed
-    })
-
-    let species = Object.assign({}, this.state.species, newSpecieState)
     this.setState({
-      species: species
+      species: this.updateSpeciesState(id, (speciesState) => {
+        return {
+          collapsed: !speciesState.collapsed
+        }
+      })
     })
   },
 
   handleCheckedChange (id, pid, e) {
     this.setState({
-      species: this.updatePokemonState(id, pid, (pokemonState) => {
+      species: this.updateSpeciesState(id, (speciesState) => {
         return {
-          check: !pokemonState.check
+          pokemonState: this.updatePokemonState(speciesState, pid, (pokemonState) => {
+            return {
+              check: !pokemonState.check
+            }
+          })
         }
       })
     })
@@ -215,19 +215,22 @@ const Species = React.createClass({
     }
   },
 
-  updatePokemonState (id, pid, updater) {
+  updateSpeciesState (id, updater) {
+    let newSpecieState = {}
     let existingSpecieState = this.state.species[ String(id) ]
-    let existingPokemonByIdState = existingSpecieState.pokemonState[ String(pid) ]
+
+    newSpecieState[ String(id) ] = Object.assign({}, existingSpecieState, updater(existingSpecieState))
+
+    return Object.assign({}, this.state.species, newSpecieState)
+  },
+
+  updatePokemonState (speciesState, pid, updater) {
+    let existingPokemonByIdState = speciesState.pokemonState[ String(pid) ]
 
     let newPokemonByIdState = {}
     newPokemonByIdState[ String(pid) ] = Object.assign({}, existingPokemonByIdState, updater(existingPokemonByIdState))
 
-    let newPokemonState = Object.assign({}, existingSpecieState.pokemonState, newPokemonByIdState)
-
-    let newSpeciesState = {}
-    newSpeciesState[ String(id) ] = Object.assign({}, existingSpecieState, {pokemonState: newPokemonState})
-
-    return Object.assign({}, this.state.species, newSpeciesState)
+    return Object.assign({}, speciesState.pokemonState, newPokemonByIdState)
   }
 
 })
