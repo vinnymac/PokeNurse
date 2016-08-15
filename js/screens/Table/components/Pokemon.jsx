@@ -164,7 +164,7 @@ const Pokemon = React.createClass({
   handleClickPowerup (pokemon, e) {
     if (ipcRenderer.sendSync('confirmation-dialog', 'power up').success) {
       ipcRenderer.send('power-up-pokemon', pokemon.id, pokemon.nickname)
-      setTimeout(() => { document.getElementById('refresh-btn').click() }, 1500)
+      // TODO Calculate and update the pokemon immediately with estimates
     }
   },
 
@@ -172,8 +172,6 @@ const Pokemon = React.createClass({
     ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
     let updatedPokemon = Object.assign(pokemon, { favorite: !pokemon.favorite ? -1 : -0 })
     this.context.monsterUpdater(updatedPokemon, index, speciesIndex)
-    // TODO Update the data immediately to reflect favorite
-    // updatePokemonById(button.dataset.pokemonId, 'favorite', setToFavorite)
   },
 
   handleClickNickname (pokemon, species, e) {
