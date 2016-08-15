@@ -42,6 +42,7 @@ const ModalBody = React.createClass({
         cinematicMoves.push(<CinematicMove key={i} move={possibleCinematicMoves[i]} myMove={charged_move} />)
     }
     
+    let evolution
     if (evolvesTo) {
       evolution = <div id='pokemon_evolve_info'>
         <div className='pokemon-evolve-info-title'>Evolution</div>
