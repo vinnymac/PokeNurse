@@ -109,8 +109,13 @@ function prepDisplay (d) {
     var poke = d.pokemon[ i ]
     var checkBox = '<input type="checkbox" value="' + poke.id.toString() + '"'
     var favorite = 'glyphicon glyphicon-star-empty'
+<<<<<<< HEAD
+    var pokeiv = poke[ 'iv' ] + '% (' + poke[ 'attack' ] + '/' + poke[ 'defense' ] + '/' + poke[ 'stamina' ] + ')'
+    var favoriteBool = poke[ 'favorite' ] ? 'true' : 'false'
+=======
     var pokeiv = poke['iv'].toFixed(1) + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
     var favoriteBool = poke['favorite'] ? 'true' : 'false'
+>>>>>>> master
 
     if (poke.deployed || poke.favorite) {
       checkBox += ' disabled'
@@ -135,8 +140,12 @@ function prepDisplay (d) {
       poke.td_powerup = '<a class="power-up" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + getTooltipAttributes(tip) + '>P↑</a>'
     }
 
+<<<<<<< HEAD
+    poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
+=======
 
     poke.td_favorite = '<span class="favorite favorite-button ' + favorite + '" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
+>>>>>>> master
     poke.td_name = poke.name
     poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
     poke.td_cp = poke.cp
@@ -481,7 +490,11 @@ const Table = React.createClass({
       bPaginate: false,
       info: false,
       bFilter: false,
+<<<<<<< HEAD
+      order: [ [ 4, 'desc' ] ]
+=======
       order: [[5, 'desc']]
+>>>>>>> master
     })
 
     // Check all boxes

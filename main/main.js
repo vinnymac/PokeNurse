@@ -267,7 +267,11 @@ function getPlayersPokemons (event, sync = 'sync') {
         stamina: pokemon['individual_stamina'],
         current_stamina: pokemon['stamina'],
         stamina_max: pokemon['stamina_max'],
-        iv: parseInt(pogobuf.Utils.getIVsFromPokemon(pokemon).percent),
+        iv: Math.round((
+          pokemon['individual_attack'] +
+          pokemon['individual_defense'] +
+          pokemon['individual_stamina']
+          ) / 45 * 10000) / 100,
         pokemon_id: pokemon['pokemon_id'],
         name: pokemonName,
         height: pokemon['height_m'],

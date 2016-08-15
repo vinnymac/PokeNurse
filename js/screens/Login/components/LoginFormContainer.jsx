@@ -21,24 +21,34 @@ const Login = React.createClass({
     return (
       <div className='container'>
         <div className='form-group btn-group' data-toggle='buttons'>
-          <label className='btn btn-info active noselect'>
+          <label
+            className='btn btn-info noselect active'
+            htmlFor='authGoogle'
+            onClick={this._radioLabelClick.bind(this, AUTH_METHODS.google)}
+          >
             <input
               type='radio'
               name='auth-radio'
-              id='auth0'
+              id='authGoogle'
+              ref={AUTH_METHODS.google}
               value={AUTH_METHODS.google}
-              checked={this.state.authMethod === AUTH_METHODS.google}
+              defaultChecked={this.state.authMethod === AUTH_METHODS.google}
               onChange={this._handleChangeAuth}
             />
             Google
           </label>
-          <label className='btn btn-info noselect'>
+          <label
+            className='btn btn-info noselect'
+            htmlFor='authPTC'
+            onClick={this._radioLabelClick.bind(this, AUTH_METHODS.ptc)}
+          >
             <input
               type='radio'
               name='auth-radio'
-              id='auth1'
+              id='authPTC'
+              ref={AUTH_METHODS.ptc}
               value={AUTH_METHODS.ptc}
-              checked={this.state.authMethod === AUTH_METHODS.ptc}
+              defaultChecked={this.state.authMethod === AUTH_METHODS.ptc}
               onChange={this._handleChangeAuth}
             />
             Pokémon Trainer Club
@@ -88,6 +98,10 @@ const Login = React.createClass({
         </div>
       </div>
     )
+  },
+
+  _radioLabelClick (authMethod) {
+    this.refs[authMethod].click()
   },
 
   _handleChangeAuth (e) {
