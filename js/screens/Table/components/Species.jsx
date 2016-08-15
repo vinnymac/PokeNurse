@@ -36,7 +36,7 @@ const Species = React.createClass({
             {this.getSpeciesHeader()}
             </thead>
             <tbody>
-            {this.getPokemonComponents(monsters.species)}
+            {this.getSpeciesBody(monsters.species)}
             </tbody>
           </table>
         </div>
@@ -112,7 +112,7 @@ const Species = React.createClass({
     </tr>)
   },
 
-  getPokemonComponents (monsterSpecies) {
+  getSpeciesBody (monsterSpecies) {
 
     let {
       filterBy
