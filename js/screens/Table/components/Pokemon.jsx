@@ -46,22 +46,64 @@ const Pokemon = React.createClass({
                   onChange={this.checkAll.bind(this, species.pokemon_id)}
                 />
               </th>
-              <th width='5%'>
+              <th
+                width='5%'
+                className={this.getSortDirectionClassName('favorite')}
+                tabIndex='0'
+                rowSpan='1'
+                colSpan='1'
+                aria-controls='pokemon-data'
+                aria-label='Favorite: activate to sort column ascending'
+                onClick={this._handleSortPokemon.bind(this, 'favorite')}
+              >
                 <span className='glyphicon glyphicon-star favorite-yellow'></span>
               </th>
               <th>
                 P↑
               </th>
-              <th width='15%'>
+              <th
+                width='15%'
+                className={this.getSortDirectionClassName('name')}
+                tabIndex='0'
+                rowSpan='1'
+                colSpan='1'
+                aria-controls='pokemon-data'
+                aria-label='Name: activate to sort column ascending'
+                onClick={this._handleSortPokemon.bind(this, 'name')}
+              >
                 Name
               </th>
-              <th>
+              <th
+                className={this.getSortDirectionClassName('nickname')}
+                tabIndex='0'
+                rowSpan='1'
+                colSpan='1'
+                aria-controls='pokemon-data'
+                aria-label='Nickname: activate to sort column ascending'
+                onClick={this._handleSortPokemon.bind(this, 'nickname')}
+              >
                 Nickname
               </th>
-              <th>
+              <th
+                className={this.getSortDirectionClassName('cp')}
+                tabIndex='0'
+                rowSpan='1'
+                colSpan='1'
+                aria-controls='pokemon-data'
+                aria-label='CP: activate to sort column ascending'
+                onClick={this._handleSortPokemon.bind(this, 'cp')}
+              >
                 CP
               </th>
-              <th>
+              <th
+                className={this.getSortDirectionClassName('iv')}
+                tabIndex='0'
+                rowSpan='1'
+                colSpan='1'
+                aria-controls='pokemon-data'
+                aria-label='IV: activate to sort column ascending'
+                onClick={this._handleSortPokemon.bind(this, 'iv')}
+              >
                 IV
               </th>
             </tr>
@@ -177,6 +219,28 @@ const Pokemon = React.createClass({
   handleClickNickname (pokemon, species, e) {
     renderModal($(document.getElementById('detailModal')), pokemon, species)
   },
+
+  _handleSortPokemon (sortBy, e) {
+    let {
+      speciesIndex,
+      sortPokemonBy
+    } = this.props
+
+    sortPokemonBy(sortBy, speciesIndex)
+  },
+
+  getSortDirectionClassName (key) {
+    let {
+      sortBy,
+      sortDir
+    } = this.props
+
+    if (sortBy === key) {
+      return sortDir === 'ASC' ? 'sorting_asc' : 'sorting_desc'
+    } else {
+      return 'sorting'
+    }
+  }
 
 
 

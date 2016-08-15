@@ -7,6 +7,10 @@ import SpeciesTable from './components/Species'
 import { Immutable, Organize } from '../../utils'
 
 let COLUMN_SORT_AS_NUM = {
+  nickname: false,
+  iv: true,
+  cp: true,
+  favorite: true,
   pokemon_id: true,
   name: false,
   count: true,
@@ -312,6 +316,8 @@ const Table = React.createClass({
             sortBy={sortBy}
             sortDir={sortDir}
             sortSpeciesBy={this.sortSpeciesBy}
+            updateSpecies={this.updateSpecies}
+            getSortedPokemon={this.getSortedPokemon}
           />
         </div>
 
@@ -328,20 +334,25 @@ const Table = React.createClass({
   },
 
   updateMonster (pokemon, index, speciesIndex) {
-    let speciesAtIndex = this.state.monsters.species[ speciesIndex ]
-
-    let updatedSpecies = Object.assign({}, speciesAtIndex, {
-      pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
+    this.updateSpecies(speciesIndex, (speciesAtIndex) => {
+      return {
+        pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
+      }
     })
+    console.log("UPDATING monsters with", pokemon)
+  },
+
+  updateSpecies (index, updater) {
+    let speciesAtIndex = this.state.monsters.species[index]
+    let updatedSpecies = Object.assign({}, speciesAtIndex, updater(speciesAtIndex))
 
     let updatedMonsters = Object.assign({}, this.state.monsters, {
-      species: Immutable.array.set(this.state.monsters.species, speciesIndex, updatedSpecies)
+      species: Immutable.array.set(this.state.monsters.species, index, updatedSpecies)
     })
 
     this.setState({
       monsters: updatedMonsters
     })
-    console.log("UPDATING monsters with", pokemon)
   },
 
   _onFilterChange (event) {
@@ -502,6 +513,18 @@ const Table = React.createClass({
     return species
   },
 
+  getSortedPokemon (specie, sortBy, sortDir) {
+    let pokemon = specie.pokemon.slice()
+
+    if (COLUMN_SORT_AS_NUM[sortBy]) {
+      Organize.sortAsNumber(pokemon, sortBy, sortDir)
+    } else {
+      Organize.sortAsString(pokemon, sortBy, sortDir)
+    }
+
+    return pokemon
+  },
+
   sortSpeciesBy (newSortBy) {
     let {
       sortBy,
@@ -510,7 +533,6 @@ const Table = React.createClass({
 
     let newSortDir = null
 
-    // TODO not mutate here
     if (newSortBy === sortBy) {
       newSortDir = sortDir === 'ASC' ? 'DESC' : 'ASC'
     } else {

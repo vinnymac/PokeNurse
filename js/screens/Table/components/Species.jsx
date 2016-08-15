@@ -10,8 +10,8 @@ const Species = React.createClass({
 
     let species = {}
 
-    let sortBy = ''
-    let sortDir = 'ASC'
+    let sortBy = 'cp'
+    let sortDir = 'DESC'
 
     for (let specie of monsters.species) {
       species[ String(specie.pokemon_id) ] = {
@@ -133,7 +133,9 @@ const Species = React.createClass({
       let {
         collapsed,
         pokemonState,
-        checkAll
+        checkAll,
+        sortBy,
+        sortDir
       } = speciesState[ specie.pokemon_id ]
 
       return ([
@@ -155,15 +157,18 @@ const Species = React.createClass({
           <td>{specie.count}</td>
           <td>{specie.candy}</td>
           <td>{specie.evolves}</td>
-        </tr>, this.getPokemonTable(specie, i, collapsed, pokemonState, checkAll)
+        </tr>, this.getPokemonTable(specie, i, sortBy, sortDir, collapsed, pokemonState, checkAll)
       ])
     })
   },
 
-  getPokemonTable (species, index, collapsed, pokemonState, checkAll) {
+  getPokemonTable (species, index, sortBy, sortDir, collapsed, pokemonState, checkAll) {
     if (collapsed) return null
 
     return (<PokemonTable
+      sortPokemonBy={this.sortPokemonBy}
+      sortBy={sortBy}
+      sortDir={sortDir}
       species={species}
       speciesIndex={index}
       pokemonState={pokemonState}
@@ -258,6 +263,38 @@ const Species = React.createClass({
     newPokemonByIdState[ String(pid) ] = Object.assign({}, existingPokemonByIdState, updater(existingPokemonByIdState))
 
     return Object.assign({}, speciesState.pokemonState, newPokemonByIdState)
+  },
+
+  sortPokemonBy (newSortBy, speciesIndex) {
+    let pokemonId = this.props.monsters.species[speciesIndex].pokemon_id
+
+    let {
+      sortBy,
+      sortDir
+    } = this.state.species[pokemonId]
+
+    let newSortDir = null
+
+    if (newSortBy === sortBy) {
+      newSortDir = sortDir === 'ASC' ? 'DESC' : 'ASC'
+    } else {
+      newSortDir = 'DESC'
+    }
+
+    this.props.updateSpecies(speciesIndex, (speciesAtIndex) => {
+      return {
+        pokemon: this.props.getSortedPokemon(speciesAtIndex, newSortBy, newSortDir)
+      }
+    })
+
+    this.setState({
+      species: this.updateSpeciesState(pokemonId, () => {
+        return {
+          sortDir: newSortDir,
+          sortBy: newSortBy
+        }
+      })
+    })
   }
 
 })
