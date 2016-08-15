@@ -5,50 +5,6 @@ import React from 'react'
 // https://gist.github.com/shri/9754992
 // https://gist.github.com/ihciah/71b0bf44322431bd34dea4ff193267e5
 
-// <div id='pokemon_basic_move_info'>
-// <div className='pokemon-moves-info-title'>Basic Attacks</div>
-// <div className='pokemon-move-item'>
-// <span className='pokemon-move-title'>vine whip</span>
-// <span className='pokemon-move-type grass'>grass</span>
-// <span className='pokemon-move-damage'>10</span>
-// </div>
-// <div className='pokemon-move-item'>
-// <span className='pokemon-move-title'>tackle</span>
-// <span className='pokemon-move-type normal'>normal</span>
-// <span className='pokemon-move-damage'>12</span>
-// </div>
-// </div>
-
-// TODO Potential special movesets for each pokemon
-// Special Attacks
-// <div id='pokemon_special_move_info'>
-// <div className='pokemon-moves-info-title'>Special Attacks</div>
-// <div className='pokemon-move-item'>
-// <div className='pokemon-move-title'>sludge bomb</div>
-// <div className='pokemon-move-cost'>
-// <div className='pokemon-move-cost-item' style='width:67px;'></div><div className='pokemon-move-cost-item' style='width:67px;'></div>
-// </div>
-// <span className='pokemon-move-type poison'>poison</span>
-// <span className='pokemon-move-damage'>50</span>
-// </div>
-// <div className='pokemon-move-item'>
-// <div className='pokemon-move-title'>seed bomb</div>
-// <div className='pokemon-move-cost'>
-// <div className='pokemon-move-cost-item' style='width:41.5px;'></div><div className='pokemon-move-cost-item' style='width:41.5px;'></div><div className='pokemon-move-cost-item' style='width:41.5px;'></div>
-// </div>
-// <span className='pokemon-move-type grass'>grass</span>
-// <span className='pokemon-move-damage'>30</span>
-// </div>
-// <div className='pokemon-move-item'>
-// <div className='pokemon-move-title'>power whip</div>
-// <div className='pokemon-move-cost'>
-// <div className='pokemon-move-cost-item' style='width:142px;'></div>
-// </div>
-// <span className='pokemon-move-type grass'>grass</span>
-// <span className='pokemon-move-damage'>60</span>
-// </div>
-// </div>
-
 // TODO JSON list of evolutions
 // Evolutions
 // <div id='pokemon_evolve_info'>
@@ -88,8 +44,24 @@ const ModalBody = React.createClass({
 	{
 		chargedMoveBars.push(<div key={i} className='pokemon-move-cost-item' style={{width:`${charged_move.energyCost}px`}}/>)
 	}
-		  
-    return (<div className='modal-body'>
+	
+	let fastMoveTip = `
+			Move Duration: ${fast_move.durationMs}ms <br>
+			Damage Window: ${fast_move.damageWindowMs}ms <br>
+			DPS: ${fast_move.dps} <br>
+			Energy Gain(EG): ${fast_move.energyGain} <br>
+			EGPS: ${fast_move.energyGainPerSecond}
+        `
+		
+	let chargedMoveTip = `
+			Duration: ${charged_move.durationMs}ms <br>
+			Dodge Window: ${charged_move.dodgeWindowMs}ms <br>
+			Crit Chance: ${charged_move.crit * 100}%
+		`
+		
+	let modalBackground = {background: `linear-gradient(to bottom, ${this._getBackgroundColor(type[0])} 0%, ${this._getBackgroundColor(type[1])} 100%)`}
+	
+    return (<div className='modal-body' style={modalBackground}>
       <div id='pokemon_sprite_wrapper'>
         <div style={{textAlign: 'center', fontSize: '11px'}}>
           <span>CP</span>
@@ -123,19 +95,19 @@ const ModalBody = React.createClass({
         <div id='pokemon_name'>{`${nickname}`}</div>
         <div id='pokemon_health_bar'></div>
         <div id='pokemon_health'>{`HP ${hp}`}</div>
-        <div id='pokemon_info'>
-          <div className='pokemon-info-item'>
-            <div className='pokemon-info-item-text'>{`${type}`}</div>
+        <div className='pokemon_info'>
+          <div className='pokemon-info-item split-3-way'>
+            <div className='pokemon-info-item-text'>{`${type.join(' / ')}`}</div>
             <div className='pokemon-info-item-title'>Type</div>
           </div>
-          <div className='pokemon-info-item'>
+          <div className='pokemon-info-item split-3-way'>
             <div className='pokemon-info-item-text'>
               {`${weight} `}
               <span className='pokemon-stat-unit'>kg</span>
             </div>
             <div className='pokemon-info-item-title'>Weight</div>
           </div>
-          <div className='pokemon-info-item'>
+          <div className='pokemon-info-item split-3-way'>
             <div className='pokemon-info-item-text'>
               {`${height} `}
               <span className='pokemon-stat-unit'>m</span>
@@ -143,44 +115,46 @@ const ModalBody = React.createClass({
             <div className='pokemon-info-item-title'>Height</div>
           </div>
         </div>
-        <div id='pokemon_info'>
-          <div className='pokemon-combat-info-item'>
-            <div className='pokemon-combat-info-item-text'>{`${attack}`}</div>
+        <div className='pokemon_info'>
+          <div className='pokemon-info-item split-2-way'>
+            <div className='pokemon-info-item-text combat-stat'>{`${attack}`}</div>
             <div className='pokemon-info-item-title'>Attack</div>
           </div>
-          <div className='pokemon-combat-info-item'>
-            <div className='pokemon-combat-info-item-text'>{`${defense}`}</div>
+          <div className='pokemon-info-item split-2-way'>
+            <div className='pokemon-info-item-text combat-stat'>{`${defense}`}</div>
             <div className='pokemon-info-item-title'>Defense</div>
           </div>
         </div>
-        <div id='pokemon_upgrade_info'>
-          <div className='pokemon-upgrade-info-item'>
-            <div className='pokemon-upgrade-info-item-text cp-upgrade'>{cpPerUpgrade}</div>
-            <div className='pokemon-upgrade-info-item-title'>CP Per Upgrade</div>
+        <div className='pokemon_info'>
+          <div className='pokemon-info-item split-2-way'>
+            <div className='pokemon-info-item-text cp-upgrade'>{cpPerUpgrade}</div>
+            <div className='pokemon-info-item-title'>CP Per Upgrade</div>
           </div>
-          <div className='pokemon-upgrade-info-item'>
-            <div className='pokemon-upgrade-info-item-text'>{candies}</div>
-            <div className='pokemon-upgrade-info-item-title'>{`${name} CANDIES`}</div>
+          <div className='pokemon-info-item split-2-way'>
+            <div className='pokemon-info-item-text candy-count'>{candies}</div>
+            <div className='pokemon-info-item-title'>{`${name} Candies`}</div>
           </div>
         </div>
-		<div id='pokemon_basic_move_info'>
-			<div className='pokemon-moves-info-title'>Basic Attacks</div>
+		<div className='pokemon_move_info'>
 			<div className='pokemon-move-item'>
-				<span className='pokemon-move-title'>{`${fast_move.name}`}</span>
-				<span className={'pokemon-move-type ' + fast_move.type}>{`${fast_move.type}`}</span>
-				<span className='pokemon-move-damage'>{`${fast_move.power}`}</span>
+				<div className='pokemon-move-item-text-area' ref='tooltip1' data-toggle='tooltip' data-placement='right' data-html='true' title={fastMoveTip}>
+					<div className='pokemon-move-title'>{`${fast_move.name}`}</div>
+					<div className={'pokemon-move-type ' + fast_move.type}>{`${fast_move.type}`}</div>
+				</div>
+				<div className='pokemon-move-cost'></div>
+				<div className='pokemon-move-damage'>{`${fast_move.power}`}</div>
 			</div>
-		</div>
-		
-		<div id='pokemon_special_move_info'>
-			<div className='pokemon-moves-info-title'>Special Attacks</div>
 			<div className='pokemon-move-item'>
-				<div className='pokemon-move-title'>{`${charged_move.name}`}</div>
+				<div className='pokemon-move-item-text-area' ref='tooltip2' data-toggle='tooltip' data-placement='right' data-html='true' title={chargedMoveTip}>
+					<div className='pokemon-move-title'>{`${charged_move.name}`}</div>
+					<div className={'pokemon-move-type ' + charged_move.type}>{`${charged_move.type}`}</div>
+				</div>
 				<div className='pokemon-move-cost'>
 					{chargedMoveBars}
 				</div>
-				<span className={'pokemon-move-type ' + charged_move.type}>{`${charged_move.type}`}</span>
-				<span className='pokemon-move-damage'>{`${charged_move.power}`}</span>
+				<div className='pokemon-move-damage'>
+					{`${charged_move.power}`}
+				</div>
 			</div>
 		</div>
       </div>
@@ -188,7 +162,60 @@ const ModalBody = React.createClass({
   },
   _handleCry () {
     this.refs.cry.play()
-  }
+  },
+  
+  componentDidMount () {
+    $(this.refs.tooltip1).tooltip()
+    $(this.refs.tooltip2).tooltip()
+  },
+
+  componentDidUpdate () {
+    $(this.refs.tooltip1).tooltip()
+    $(this.refs.tooltip2).tooltip()
+  },
+  
+  _getBackgroundColor(type){
+	switch(type){
+	  case "normal":
+		return '#A8A878';
+	  case "fire":
+	    return '#F08030';
+	  case "water":
+		return '#6890F0';
+	  case "grass":
+		return '#78C850';
+	  case "electric":
+	    return '#f8d030';
+	  case "ice":
+	    return '#98d8d8';
+	  case "ground":
+	    return '#e0c068';
+	  case "flying":
+	    return '#a890f0';
+	  case "poison":
+		return '#a040a0';
+	  case "fighting":
+	    return '#c03028';
+	  case "psychic":
+	    return '#f85888';
+	  case "dark":
+	    return '#705848';
+	  case "rock":
+	    return '#b8a038';
+      case "bug":
+	    return '#a8b820';
+      case "ghost":
+	    return '#705898';
+      case "steel":
+	    return '#b8b8d0';
+      case "dragon":
+	    return '#7038f8';	
+	  case "fairy":
+	    return '#ffaec9';	
+	  default:
+	    return '#FFFFFF';
+	}
+  },
 })
 
 export default ModalBody

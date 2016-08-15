@@ -45,7 +45,7 @@ export default ($detailModal, {pokemon, species}) => {
   let hp = `${pokemon.current_stamina} / ${pokemon.stamina_max}`
   let attack = `${baseAttack + pokemon.attack}`
   let defense = `${baseDefense + pokemon.defense}`
-  let type = stats.types.join(' / ')
+  let type = stats.types
 
   let cppu = stats.cpPerUpgrade
   let cpPerUpgrade = cppu ? `+${cppu} CP (+/-)` : 'Unknown'
