@@ -4,7 +4,7 @@ import $ from 'jquery'
 // import renderModal from '../Detail'
 import SpeciesTable from './components/Species'
 
-import { Immutable } from '../../utils'
+import { Immutable, Organize } from '../../utils'
 
 window.$ = window.jQuery = $
 require('bootstrap')
@@ -486,32 +486,12 @@ const Table = React.createClass({
 
   getSortedSpecies (monsters, sortBy, sortDir, sortAsNum = true) {
     let species = monsters.species.slice()
-    let comparator
 
-    // TODO Move the comparators to utility funcs
     if (sortAsNum) {
-      comparator = function (a, b) {
-        if (sortDir === 'ASC') {
-          return a[sortBy] - b[sortBy]
-        } else {
-          return b[sortBy] - a[sortBy]
-        }
-      }
-    } else { // Sort Strings
-      comparator = function (a, b) {
-        if (sortDir === 'ASC') {
-          if (a[sortBy] > b[sortBy]) return 1
-          if (a[sortBy] < b[sortBy]) return -1
-        } else {
-          if (a[sortBy] > b[sortBy]) return -1
-          if (a[sortBy] < b[sortBy]) return 1
-        }
-
-        return 0
-      }
+      Organize.sortAsNumber(species, sortBy, sortDir)
+    } else {
+      Organize.sortAsString(species, sortBy, sortDir)
     }
-
-    species.sort(comparator)
 
     return species
   },
