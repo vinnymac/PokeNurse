@@ -1,5 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
+
 // import renderModal from '../Detail'
 import SpeciesTable from './components/Species'
 
@@ -193,9 +194,17 @@ const Table = React.createClass({
   },
 
   getInitialState () {
+    let monsters = ipc.sendSync('get-players-pokemons')
+    let sortBy = 'pokemon_id'
+    let sortDir = 'ASC'
+
     return {
-      monsters: ipc.sendSync('get-players-pokemons'),
-      filterBy: ''
+      monsters: Object.assign({}, monsters, {
+        species: this.getSortedSpecies(monsters, sortBy, sortDir)
+      }),
+      filterBy: '',
+      sortBy: sortBy,
+      sortDir: sortDir
     }
   },
 
@@ -238,7 +247,9 @@ const Table = React.createClass({
     // <h5 id="bagstorage-h"></h5>-->
     let {
       monsters,
-      filterBy
+      filterBy,
+      sortBy,
+      sortDir
     } = this.state
 
     return (
@@ -289,7 +300,13 @@ const Table = React.createClass({
             </div>
           </div>
 
-          <SpeciesTable monsters={monsters} filterBy={filterBy}/>
+          <SpeciesTable
+            monsters={monsters}
+            filterBy={filterBy}
+            sortBy={sortBy}
+            sortDir={sortDir}
+            sortSpeciesBy={this.sortSpeciesBy}
+          />
         </div>
 
         <div
@@ -465,6 +482,62 @@ const Table = React.createClass({
     }
 
     renderModal($(this.refs.detailModal), pokemonMap)
+  },
+
+  getSortedSpecies (monsters, sortBy, sortDir, sortAsNum = true) {
+    let species = monsters.species.slice()
+    let comparator
+
+    // TODO Move the comparators to utility funcs
+    if (sortAsNum) {
+      comparator = function (a, b) {
+        if (sortDir === 'ASC') {
+          return a[sortBy] - b[sortBy]
+        } else {
+          return b[sortBy] - a[sortBy]
+        }
+      }
+    } else { // Sort Strings
+      comparator = function (a, b) {
+        if (sortDir === 'ASC') {
+          if (a[sortBy] > b[sortBy]) return 1
+          if (a[sortBy] < b[sortBy]) return -1
+        } else {
+          if (a[sortBy] > b[sortBy]) return -1
+          if (a[sortBy] < b[sortBy]) return 1
+        }
+
+        return 0
+      }
+    }
+
+    return species
+  },
+
+  sortSpeciesBy (newSortBy, sortAsNum) {
+    let {
+      sortBy,
+      sortDir
+    } = this.state
+
+    let newSortDir = null
+
+    // TODO not mutate here
+    if (newSortBy === sortBy) {
+      newSortDir = sortDir === 'ASC' ? 'DESC' : 'ASC'
+    } else {
+      newSortDir = 'DESC'
+    }
+
+    let monsters = Object.assign({}, this.state.monsters, {
+      species: this.getSortedSpecies(this.state.monsters, newSortBy, newSortDir, sortAsNum)
+    })
+
+    this.setState({
+      sortDir: newSortDir,
+      sortBy: newSortBy,
+      monsters: monsters
+    })
   }
 })
 
