@@ -31,30 +31,23 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
 * Evolve Pokemon
 * Favorite/Unfavorite Pokemon
 
-## Development
+## Contributing
+   All future pull request should be made to the develop branch
+
     git clone https://github.com/duhminick/PokeNurse
     cd PokeNurse
+    git checkout develop
     npm install
     npm start
 
 This project follows the [JS Standard Code Style](http://standardjs.com/index.html) for the most part.
 
 ## Todo
-* Show Pokemon moveset
 * Nickname Pokemon
-* Pictures would be nice
-* Change the table into something more appealing
 
 ## Known Issues
 * Sometimes after login, the page will stay white instead of showing the list of Pokemon
 * Google 2 Factor Authentication cannot be used. However you can use an [AppPassword](https://security.google.com/settings/security/apppasswords) instead.
-
-## Contributors
-* yungfrancis (First pull!)
-* nrdxn
-* jackyjieliu
-* vinnymac
-* mackhankins
 
 ## Credit
 * [cyraxx](https://github.com/cyraxx) for [pogobuf](https://github.com/cyraxx/pogobuf) and [node-pogo-protos](https://github.com/cyraxx/node-pogo-protos)
