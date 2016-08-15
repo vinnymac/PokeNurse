@@ -228,13 +228,12 @@ ipcMain.on('get-players-pokemons', (event) => {
 
     for (let i = 0; i < pokemons.length; i++) {
       var pokemon = pokemons[i]
-
       if (pokemon['cp'] === 0) continue
 
       var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
       pokemonName = pokemonName.replace('Female', '♀').replace('Male', '♂')
 
-      let stats = baseStats[pokemon['pokemon_id']]
+      let stats = baseStats.pokemon[pokemon['pokemon_id']]
 
       let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
 
@@ -248,7 +247,7 @@ ipcMain.on('get-players-pokemons', (event) => {
       let candyMaxCost = utils.getMaxCandyCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
       let stardustMaxCost = utils.getMaxStardustCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
       let nextCP = utils.getCpAfterPowerup(pokemon['cp'], totalCpMultiplier)
-
+	  
       reducedPokemonList.push({
         cp: pokemon['cp'],
         next_cp: nextCP,
@@ -276,7 +275,9 @@ ipcMain.on('get-players-pokemons', (event) => {
         weight: pokemon['weight_kg'],
         nickname: pokemon['nickname'] || pokemonName,
         // Multiply by -1 for sorting
-        favorite: pokemon['favorite'] * -1
+        favorite: pokemon['favorite'] * -1,
+		move_1: pokemon['move_1'],
+		move_2: pokemon['move_2']
       })
 
       if (combinedPokemonList[pokemonName]) {
@@ -307,9 +308,9 @@ ipcMain.on('get-players-pokemons', (event) => {
 
     for (let key in combinedPokemonList) {
       let pokemon = combinedPokemonList[key]
-      let candy = formattedCandies[baseStats[pokemon.pokemon_id].familyId]
+      let candy = formattedCandies[baseStats.pokemon[pokemon.pokemon_id].familyId]
       var count = pokemon.count
-      let evolves = Math.floor(candy / baseStats[pokemon.pokemon_id].evolveCost)
+      let evolves = Math.floor(candy / baseStats.pokemon[pokemon.pokemon_id].evolveCost)
 
       if ((evolves === Infinity || isNaN(evolves))) {
         evolves = 0

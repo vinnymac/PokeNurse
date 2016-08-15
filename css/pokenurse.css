@@ -78,7 +78,7 @@ border-radius: 3px;
 width: 450px;
 box-sizing: border-box;
 padding-top: 50px;
-margin-bottom: 100px;
+margin-bottom: 10px;
 }
 
 .pokedex-item {
@@ -258,11 +258,10 @@ margin-top: 4px;
 color: #383e3c;
 }
 
-#pokemon_info {
+.pokemon_info {
 display: block;
 width: 100%;
-height: 70px;
-margin-top: 20px;
+height: 80px;
 position:relative;
 border-bottom: 1px solid #e2e2e2;
 }
@@ -270,16 +269,29 @@ border-bottom: 1px solid #e2e2e2;
 .pokemon-info-item {
 display: inline-block;
 height: 100%;
-width: 32%;
 position: relative;
+width: 100%;
 }
 
-.pokemon-info-item:nth-child(1) {
+.split-2-way{
+width: 49%;
+}
+
+.split-3-way{
+width: 32%;
+}
+
+.split-2-way:nth-child(1) {
 box-sizing: border-box;
 border-right: 1px solid #e2e2e2;
 }
 
-.pokemon-info-item:nth-child(2) {
+.split-3-way:nth-child(1) {
+box-sizing: border-box;
+border-right: 1px solid #e2e2e2;
+}
+
+.split-3-way:nth-child(2) {
 box-sizing: border-box;
 border-right: 1px solid #e2e2e2;
 }
@@ -292,7 +304,6 @@ margin-top:6px;
 .pokemon-info-item-text {
 font-size: 16px;
 margin-top: 12px;
-color: #3c605c;
 text-transform: capitalize;
 }
 
@@ -304,59 +315,19 @@ top:1px;
 text-transform: lowercase;
 }
 
-.pokemon-combat-info-item {
-display: inline-block;
-height: 100%;
-width: 49%;
-position: relative;
-}
-
-.pokemon-combat-info-item:nth-child(1) {
-box-sizing: border-box;
-border-right: 1px solid #e2e2e2;
-}
-
-.pokemon-combat-info-item-text {
-font-size: 16px;
-margin-top: 12px;
+.combat-stat{
 color: #8e4646;
-text-transform: capitalize;
-}
-
-#pokemon_upgrade_info {
-display: block;
-width: 100%;
-height: 70px;
-margin-top: 20px;
-position:relative;
-border-bottom: 1px solid #e2e2e2;
-}
-
-.pokemon-upgrade-info-item {
-display: inline-block;
-height: 100%;
-width: 49%;
-position: relative;
-}
-
-.pokemon-upgrade-info-item-title {
-color: #717171;
-margin-top:6px;
-text-transform: uppercase;
-}
-
-.pokemon-upgrade-info-item-text {
-font-size: 20px;
-margin-top: 6px;
-color: #3c605c;
-text-transform: capitalize;
 }
 
 .cp-upgrade {
 color: #32b741;
 }
 
-#pokemon_evolve_info {
+.candy-count{
+color: #3c605c;
+}
+
+/*#pokemon_evolve_info {
 display: block;
 width: 100%;
 height: 165px;
@@ -381,68 +352,62 @@ color:#466c6d;
 margin-top:0px;
 color: #717171;
 text-transform: uppercase;
-}
+}*/
 
-#pokemon_basic_move_info {
-display: block;
-width: 100%;
-margin-top: 20px;
+.pokemon_move_info {
+display: inline-block;
+height:125px;
+width:100%;
 position:relative;
-border-bottom: 1px solid #e2e2e2;
-padding-bottom: 15px;
-}
-
-#pokemon_special_move_info {
-display: block;
-width: 100%;
-margin-top: 20px;
-position:relative;
-border-bottom: 1px solid #e2e2e2;
-padding-bottom: 15px;
-}
-
-.pokemon-moves-info-title {
-margin-top:15px;
-margin-bottom:35px;
-color: #717171;
-text-transform: uppercase;
 }
 
 .pokemon-move-item {
+display:inline-flex;
 position: relative;
-height: 60px;
+height: 45%;
+width:100%;
 color:#3C4741;
 }
 
-.pokemon-move-title {
-position: absolute;
-top: 10px;
-left: 40px;
-text-transform: capitalize;
-color:#3c605c;
+.pokemon-move-item-text-area{
+display:inline-block;
+position:relative;
+height:100%;
+width:40%;
 }
 
-.pokemon-move-damage {
-position: absolute;
-top: 10px;
-right: 40px;
+.pokemon-move-title {
+display:block;
+font-size:16px;
+font-weight: bold;
 text-transform: capitalize;
 color:#3c605c;
+padding-top:16px;
 }
 
 .pokemon-move-type {
+display:block;
 font-size: 14px;
-position: absolute;
-left: 40px;
-top: 30px;
 text-transform: capitalize;
 }
 
+.pokemon-move-damage {
+display: inline-block;
+position: relative;
+height:100%;
+width:30%;
+text-transform: capitalize;
+color:#3c605c;
+line-height: 80px;
+text-align: center;
+}
+
 .pokemon-move-cost {
-position: absolute;
-top: 13px;
-margin-left: 10px;
-left: 150px;
+display: inline-block;
+position: relative;
+height:10px;
+width:30%;
+padding-top:26px;
 }
 
 .pokemon-move-cost-item {
@@ -454,6 +419,7 @@ background: -webkit-linear-gradient(top,  rgba(68,180,252,1) 0%,rgba(104,225,251
 background: linear-gradient(to bottom,  rgba(68,180,252,1) 0%,rgba(104,225,251,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#44b4fc', endColorstr='#68e1fb',GradientType=0 );
 margin-left:3px;
+margin-top:10px;
 border:3px solid #afdaff;
 border-radius:5px;
 }

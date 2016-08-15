@@ -36,7 +36,7 @@ export default ($detailModal, {pokemon, species}) => {
 
   let transform = `rotate(${degree}deg) translate(-193px)`
 
-  let stats = baseStats[pokemon['pokemon_id']]
+  let stats = baseStats.pokemon[pokemon['pokemon_id']]
 
   let baseAttack = stats.BaseAttack
   let baseDefense = stats.BaseDefense
@@ -45,7 +45,7 @@ export default ($detailModal, {pokemon, species}) => {
   let hp = `${pokemon.current_stamina} / ${pokemon.stamina_max}`
   let attack = `${baseAttack + pokemon.attack}`
   let defense = `${baseDefense + pokemon.defense}`
-  let type = stats.types.join(' / ')
+  let type = stats.types
 
   let cppu = stats.cpPerUpgrade
   let cpPerUpgrade = cppu ? `+${cppu} CP (+/-)` : 'Unknown'
@@ -56,8 +56,11 @@ export default ($detailModal, {pokemon, species}) => {
   let candies = species.candy
   let name = species.name
   let nickname = pokemon.nickname
-
   let spriteImageName = name.toLowerCase()
+  
+  let move_1 = baseStats.moves[pokemon['move_1']]
+  let move_2 = baseStats.moves[pokemon['move_2']]
+    
   if (spriteImageName.indexOf('nidoran') > -1) {
     let spriteParts = spriteImageName.split(' ')
     spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === '♂') ? 'm' : 'f'}`
@@ -80,6 +83,8 @@ export default ($detailModal, {pokemon, species}) => {
     weight={weight}
     height={height}
     detailModal={$detailModal}
+	fast_move={move_1}
+	charged_move={move_2}
   />
 
   $detailModal.on('hidden.bs.modal', () => {
