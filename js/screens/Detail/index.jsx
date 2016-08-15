@@ -57,10 +57,10 @@ export default ($detailModal, {pokemon, species}) => {
   let name = species.name
   let nickname = pokemon.nickname
   let spriteImageName = name.toLowerCase()
-  
+
   let move_1 = baseStats.moves[pokemon['move_1']]
   let move_2 = baseStats.moves[pokemon['move_2']]
-    
+
   if (spriteImageName.indexOf('nidoran') > -1) {
     let spriteParts = spriteImageName.split(' ')
     spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === '♂') ? 'm' : 'f'}`
@@ -83,8 +83,9 @@ export default ($detailModal, {pokemon, species}) => {
     weight={weight}
     height={height}
     detailModal={$detailModal}
-	fast_move={move_1}
-	charged_move={move_2}
+    evolvesTo={stats.evolvesTo}
+    fast_move={move_1}
+    charged_move={move_2}
   />
 
   $detailModal.on('hidden.bs.modal', () => {

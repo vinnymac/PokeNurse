@@ -5,17 +5,6 @@ import React from 'react'
 // https://gist.github.com/shri/9754992
 // https://gist.github.com/ihciah/71b0bf44322431bd34dea4ff193267e5
 
-// TODO JSON list of evolutions
-// Evolutions
-// <div id='pokemon_evolve_info'>
-// <div className='pokemon-evolve-info-title'>Evolutions</div>
-// <a href='/pokemon/ivysaur' className='pokemon-evolve-info-item'>
-// <div className='pokemon-sprite ivysaur'></div>
-// <div className='pokemon-evolve-info-item-title'>ivysaur</div>
-// </a>
-// </div>
-// </div>
-
 const ModalBody = React.createClass({
   render () {
     let {
@@ -34,32 +23,45 @@ const ModalBody = React.createClass({
       cpPerUpgrade,
       candies,
       spriteImageName,
-    fast_move,
-    charged_move
+      fast_move,
+      charged_move,
+      evolvesTo
     } = this.props
 
-  let chargedMoveBars = []
+    let evolution
 
-  for(var i = 0; i < Math.floor(100/charged_move.energyCost); i++)
-  {
-    chargedMoveBars.push(<div key={i} className='pokemon-move-cost-item' style={{width:`${charged_move.energyCost}px`}}/>)
-  }
+    if (evolvesTo) {
+      evolution = <div id='pokemon_evolve_info'>
+        <div className='pokemon-evolve-info-title'>Evolution</div>
+        <div className='pokemon-evolve-info-item'>
+          <div className={`pokemon-sprite ${evolvesTo.toLowerCase()}`}></div>
+          <div className='pokemon-evolve-info-item-title'>{evolvesTo.toLowerCase()}</div>
+        </div>
+      </div>
+    }
 
-  let fastMoveTip = `
-      Move Duration: ${fast_move.durationMs}ms <br>
-      Damage Window: ${fast_move.damageWindowMs}ms <br>
-      DPS: ${fast_move.dps} <br>
-      Energy Gain(EG): ${fast_move.energyGain} <br>
-      EGPS: ${fast_move.energyGainPerSecond}
-        `
+    let chargedMoveBars = []
 
-  let chargedMoveTip = `
-      Duration: ${charged_move.durationMs}ms <br>
-      Dodge Window: ${charged_move.dodgeWindowMs}ms <br>
-      Crit Chance: ${charged_move.crit * 100}%
-    `
+    for(var i = 0; i < Math.floor(100/charged_move.energyCost); i++)
+    {
+      chargedMoveBars.push(<div key={i} className='pokemon-move-cost-item' style={{width:`${charged_move.energyCost}px`}}/>)
+    }
 
-  let modalBackground = {background: `linear-gradient(to bottom, ${this._getBackgroundColor(type[0])} 0%, ${this._getBackgroundColor(type[1])} 100%)`}
+    let fastMoveTip = `
+        Move Duration: ${fast_move.durationMs}ms <br>
+        Damage Window: ${fast_move.damageWindowMs}ms <br>
+        DPS: ${fast_move.dps} <br>
+        Energy Gain(EG): ${fast_move.energyGain} <br>
+        EGPS: ${fast_move.energyGainPerSecond}
+          `
+
+    let chargedMoveTip = `
+        Duration: ${charged_move.durationMs}ms <br>
+        Dodge Window: ${charged_move.dodgeWindowMs}ms <br>
+        Crit Chance: ${charged_move.crit * 100}%
+      `
+
+    let modalBackground = {background: `linear-gradient(to bottom, ${this._getBackgroundColor(type[0])} 0%, ${this._getBackgroundColor(type[1])} 100%)`}
 
     return (<div className='modal-body' style={modalBackground}>
       <div id='pokemon_sprite_wrapper'>
@@ -157,6 +159,7 @@ const ModalBody = React.createClass({
             </div>
           </div>
         </div>
+        {evolution}
       </div>
     </div>)
   },
