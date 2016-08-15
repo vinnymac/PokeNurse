@@ -171,7 +171,7 @@ const Pokemon = React.createClass({
   handleClickPowerup (pokemon, e) {
     if (ipcRenderer.sendSync('confirmation-dialog', 'power up').success) {
       ipcRenderer.send('power-up-pokemon', pokemon.id, pokemon.nickname)
-      setTimeout(() => { document.getElementById('refresh-btn').click() }, 1500)
+      // TODO Calculate and update the pokemon immediately with estimates
     }
   },
 

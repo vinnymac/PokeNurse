@@ -347,6 +347,9 @@ ipcMain.on('power-up-pokemon', (event, id, nickname) => {
       console.log(`[+] Upgraded Pokemon with id: ${id}`)
       let message = `Upgraded ${nickname} succesfully!`
       let title = `Power Up ${nickname}`
+      // TODO parse the response instead of retrieving all the new pokemon
+      // Requires replacing the main parsing with more functional code
+      getPlayersPokemons(event, 'async')
       showInformationMessage(message, title)
     })
     .catch(console.error)
