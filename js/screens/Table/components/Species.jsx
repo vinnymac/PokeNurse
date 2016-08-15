@@ -10,11 +10,16 @@ const Species = React.createClass({
 
     let species = {}
 
+    let sortBy = ''
+    let sortDir = 'ASC'
+
     for (let specie of monsters.species) {
       species[ String(specie.pokemon_id) ] = {
         pokemonState: this.getInitialPokemonState(specie),
         checkAll: false,
-        collapsed: true
+        collapsed: true,
+        sortBy: sortBy,
+        sortDir: sortDir
       }
     }
 
