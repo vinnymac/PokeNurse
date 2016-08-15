@@ -658,6 +658,67 @@ border-radius:5px;
 React Datatables
 ***/
 
+table {
+  clear: both;
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+  max-width: none !important;
+  border-collapse: separate !important;
+}
+
+table thead > tr > th.sorting_asc, table thead > tr > th.sorting_desc, table thead > tr > th.sorting,
+table thead > tr > td.sorting_asc,
+table thead > tr > td.sorting_desc,
+table thead > tr > td.sorting {
+  padding-right: 30px;
+}
+table thead > tr > th:active,
+table thead > tr > td:active {
+  outline: none;
+}
+
+table thead > tr > th:focus,
+table thead > tr > td:focus {
+  outline: none;
+}
+table thead .sorting,
+table thead .sorting_asc,
+table thead .sorting_desc,
+table thead .sorting_asc_disabled,
+table thead .sorting_desc_disabled {
+  cursor: pointer;
+  position: relative;
+}
+table thead .sorting:after,
+table thead .sorting_asc:after,
+table thead .sorting_desc:after,
+table thead .sorting_asc_disabled:after,
+table thead .sorting_desc_disabled:after {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: block;
+  font-family: 'Glyphicons Halflings';
+  opacity: 0.5;
+}
+table thead .sorting:after {
+  opacity: 0.2;
+  content: "\e150";
+  /* sort */
+}
+table thead .sorting_asc:after {
+  content: "\e155";
+  /* sort-by-attributes */
+}
+table thead .sorting_desc:after {
+  content: "\e156";
+  /* sort-by-attributes-alt */
+}
+table thead .sorting_asc_disabled:after,
+table thead .sorting_desc_disabled:after {
+  color: #eee;
+}
+
 td.details-control:before {
   font-family:"Glyphicons Halflings";
   content:"\e081";

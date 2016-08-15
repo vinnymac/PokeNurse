@@ -31,7 +31,7 @@ const Species = React.createClass({
     return (
       <div className='row'>
         <div className='col-md-12'>
-          <table className='table table-condensed table-hover display no-footer dataTable'>
+          <table className='table table-condensed table-hover display no-footer'>
             <thead>
             {this.getSpeciesHeader()}
             </thead>
