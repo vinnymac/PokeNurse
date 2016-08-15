@@ -58,14 +58,12 @@ const ModalBody = React.createClass({
 			Dodge Window: ${charged_move.dodgeWindowMs}ms <br>
 			Crit Chance: ${charged_move.crit * 100}%
 		`
-		
-	let modalBackground = {background: `linear-gradient(to bottom, ${this._getBackgroundColor(type[0])} 0%, ${this._getBackgroundColor(type[1])} 100%)`}
 	
-    return (<div className='modal-body' style={modalBackground}>
+    return (<div className='modal-body'>
       <div id='pokemon_sprite_wrapper'>
-        <div style={{textAlign: 'center', fontSize: '11px'}}>
+        <div className='modal-outline-white pokemon-cp'>
           <span>CP</span>
-          <span style={{fontSize: '20px'}}>{cp}</span>
+          <span style={{fontSize: '25px'}}>{cp}</span>
           <span>{` (Max ${maxCP})`}</span>
         </div>
         <div id='pokemon_sprite_sphere_wrapper'>
@@ -172,49 +170,6 @@ const ModalBody = React.createClass({
   componentDidUpdate () {
     $(this.refs.tooltip1).tooltip()
     $(this.refs.tooltip2).tooltip()
-  },
-  
-  _getBackgroundColor(type){
-	switch(type){
-	  case "normal":
-		return '#A8A878';
-	  case "fire":
-	    return '#F08030';
-	  case "water":
-		return '#6890F0';
-	  case "grass":
-		return '#78C850';
-	  case "electric":
-	    return '#f8d030';
-	  case "ice":
-	    return '#98d8d8';
-	  case "ground":
-	    return '#e0c068';
-	  case "flying":
-	    return '#a890f0';
-	  case "poison":
-		return '#a040a0';
-	  case "fighting":
-	    return '#c03028';
-	  case "psychic":
-	    return '#f85888';
-	  case "dark":
-	    return '#705848';
-	  case "rock":
-	    return '#b8a038';
-      case "bug":
-	    return '#a8b820';
-      case "ghost":
-	    return '#705898';
-      case "steel":
-	    return '#b8b8d0';
-      case "dragon":
-	    return '#7038f8';	
-	  case "fairy":
-	    return '#ffaec9';	
-	  default:
-	    return '#FFFFFF';
-	}
   },
 })
 
