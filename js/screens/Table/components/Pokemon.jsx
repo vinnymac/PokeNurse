@@ -15,19 +15,9 @@ const Pokemon = React.createClass({
     this.props.onCheckedChange(id, pid)
   },
 
-  // checkAll () {
-  //   let pokemonState = []
-  //   let checkState = !this.state.checkAll
-  //
-  //   this.state.checked.forEach((row, i) => {
-  //     pokemonState[ i ] = checkState
-  //   })
-  //
-  //   this.setState({
-  //     pokemonState: pokemonState,
-  //     checkAll: checkState
-  //   })
-  // },
+  checkAll (id) {
+    this.props.onCheckAll(id)
+  },
 
   componentDidMount () {
     $(this.refs.tBody).find('[data-toggle="tooltip"]').tooltip()
@@ -38,7 +28,10 @@ const Pokemon = React.createClass({
   },
 
   render () {
-    let { species } = this.props
+    let {
+      species,
+      checkAll
+    } = this.props
 
     return (
       <tr className='child' key={'sub' + species.pokemon_id}>
@@ -49,8 +42,8 @@ const Pokemon = React.createClass({
               <th width='5%'>
                 <input
                   type='checkbox'
-                  //checked={this.state.checkAll}
-                  //onChange={this.checkAll}
+                  checked={checkAll}
+                  onChange={this.checkAll.bind(this, species.pokemon_id)}
                 />
               </th>
               <th width='5%'>

@@ -127,7 +127,8 @@ const Species = React.createClass({
 
       let {
         collapsed,
-        pokemonState
+        pokemonState,
+        checkAll
       } = speciesState[ specie.pokemon_id ]
 
       return ([
@@ -149,19 +150,21 @@ const Species = React.createClass({
           <td>{specie.count}</td>
           <td>{specie.candy}</td>
           <td>{specie.evolves}</td>
-        </tr>, this.getPokemonTable(specie, i, collapsed, pokemonState)
+        </tr>, this.getPokemonTable(specie, i, collapsed, pokemonState, checkAll)
       ])
     })
   },
 
-  getPokemonTable (species, index, collapsed, pokemonState) {
+  getPokemonTable (species, index, collapsed, pokemonState, checkAll) {
     if (collapsed) return null
 
     return (<PokemonTable
       species={species}
       speciesIndex={index}
       pokemonState={pokemonState}
+      checkAll={checkAll}
       onCheckedChange={this.handleCheckedChange}
+      onCheckAll={this.handleCheckAll}
       key={'child' + species.pokemon_id}
     />)
   },
@@ -171,6 +174,17 @@ const Species = React.createClass({
       species: this.updateSpeciesState(id, (speciesState) => {
         return {
           collapsed: !speciesState.collapsed
+        }
+      })
+    })
+  },
+
+
+  handleCheckAll (id, e) {
+    this.setState({
+      species: this.updateSpeciesState(id, (speciesState) => {
+        return {
+          checkAll: !speciesState.checkAll
         }
       })
     })
