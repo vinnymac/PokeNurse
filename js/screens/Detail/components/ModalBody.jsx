@@ -48,7 +48,7 @@ const ModalBody = React.createClass({
 	let fastMoveTip = `
 			Move Duration: ${fast_move.durationMs}ms <br>
 			Damage Window: ${fast_move.damageWindowMs}ms <br>
-			DPS: ${fast_move.dps} <br>
+			No STAB DPS: ${fast_move.dps} <br>
 			Energy Gain(EG): ${fast_move.energyGain} <br>
 			EGPS: ${fast_move.energyGainPerSecond}
         `
