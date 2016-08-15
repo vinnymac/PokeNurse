@@ -6,6 +6,14 @@ import SpeciesTable from './components/Species'
 
 import { Immutable, Organize } from '../../utils'
 
+let COLUMN_SORT_AS_NUM = {
+  pokemon_id: true,
+  name: false,
+  count: true,
+  candy: true,
+  evolves: true
+}
+
 window.$ = window.jQuery = $
 require('bootstrap')
 require('datatables.net')(window, $)
@@ -199,9 +207,7 @@ const Table = React.createClass({
     let sortDir = 'ASC'
 
     return {
-      monsters: Object.assign({}, monsters, {
-        species: this.getSortedSpecies(monsters, sortBy, sortDir)
-      }),
+      monsters: this.getNewMonsters(monsters, sortBy, sortDir),
       filterBy: '',
       sortBy: sortBy,
       sortDir: sortDir
@@ -212,7 +218,7 @@ const Table = React.createClass({
     document.title = 'PokéNurse • Home'
 
     ipc.on('receive-players-pokemons', (event, data) => {
-      this.setState({ monsters: data })
+      this.setState({ monsters: this.getNewMonsters(data, this.state.sortBy, this.state.sortDir) })
     })
 
     const header = document.getElementById('profile-header')
@@ -484,10 +490,10 @@ const Table = React.createClass({
     renderModal($(this.refs.detailModal), pokemonMap)
   },
 
-  getSortedSpecies (monsters, sortBy, sortDir, sortAsNum = true) {
+  getSortedSpecies (monsters, sortBy, sortDir) {
     let species = monsters.species.slice()
 
-    if (sortAsNum) {
+    if (COLUMN_SORT_AS_NUM[sortBy]) {
       Organize.sortAsNumber(species, sortBy, sortDir)
     } else {
       Organize.sortAsString(species, sortBy, sortDir)
@@ -496,7 +502,7 @@ const Table = React.createClass({
     return species
   },
 
-  sortSpeciesBy (newSortBy, sortAsNum) {
+  sortSpeciesBy (newSortBy) {
     let {
       sortBy,
       sortDir
@@ -512,13 +518,19 @@ const Table = React.createClass({
     }
 
     let monsters = Object.assign({}, this.state.monsters, {
-      species: this.getSortedSpecies(this.state.monsters, newSortBy, newSortDir, sortAsNum)
+      species: this.getSortedSpecies(this.state.monsters, newSortBy, newSortDir)
     })
 
     this.setState({
       sortDir: newSortDir,
       sortBy: newSortBy,
       monsters: monsters
+    })
+  },
+
+  getNewMonsters (monsters, sortBy, sortDir) {
+    return Object.assign({}, monsters, {
+      species: this.getSortedSpecies(monsters, sortBy, sortDir)
     })
   }
 })

@@ -58,7 +58,7 @@ const Species = React.createClass({
         colSpan='1'
         aria-controls='pokemon-data'
         aria-label='Pokédex #: activate to sort column ascending'
-        onClick={this._handleSortSpecies.bind(this, 'pokemon_id', true)}
+        onClick={this._handleSortSpecies.bind(this, 'pokemon_id')}
       >
         Pokédex #
       </th>
@@ -72,7 +72,7 @@ const Species = React.createClass({
         colSpan='1'
         aria-controls='pokemon-data'
         aria-label='Name: activate to sort column ascending'
-        onClick={this._handleSortSpecies.bind(this, 'name', false)}
+        onClick={this._handleSortSpecies.bind(this, 'name')}
       >
         Name
       </th>
@@ -83,7 +83,7 @@ const Species = React.createClass({
         colSpan='1'
         aria-controls='pokemon-data'
         aria-label='Count: activate to sort column ascending'
-        onClick={this._handleSortSpecies.bind(this, 'count', true)}
+        onClick={this._handleSortSpecies.bind(this, 'count')}
       >
         Count
       </th>
@@ -94,7 +94,7 @@ const Species = React.createClass({
         colSpan='1'
         aria-controls='pokemon-data'
         aria-label='Candy: activate to sort column ascending'
-        onClick={this._handleSortSpecies.bind(this, 'candy', true)}
+        onClick={this._handleSortSpecies.bind(this, 'candy')}
       >
         Candy
       </th>
@@ -105,7 +105,7 @@ const Species = React.createClass({
         colSpan='1'
         aria-controls='pokemon-data'
         aria-label='Evolves: activate to sort column ascending'
-        onClick={this._handleSortSpecies.bind(this, 'evolves', true)}
+        onClick={this._handleSortSpecies.bind(this, 'evolves')}
       >
         Evolves
       </th>
@@ -198,8 +198,8 @@ const Species = React.createClass({
     return pokemonState
   },
 
-  _handleSortSpecies (sortBy, sortAsNum, e) {
-    this.props.sortSpeciesBy(sortBy, sortAsNum)
+  _handleSortSpecies (sortBy, e) {
+    this.props.sortSpeciesBy(sortBy)
   },
 
   getSortDirectionClassName (key) {
