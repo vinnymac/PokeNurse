@@ -40,7 +40,7 @@ const ModalBody = React.createClass({
 	
 	let chargedMoveBars = []
 	
-	for(var i = 0; i < (100/charged_move.energyCost); i++)
+	for(var i = 0; i < Math.floor(100/charged_move.energyCost); i++)
 	{
 		chargedMoveBars.push(<div key={i} className='pokemon-move-cost-item' style={{width:`${charged_move.energyCost}px`}}/>)
 	}
