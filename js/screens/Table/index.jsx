@@ -511,6 +511,8 @@ const Table = React.createClass({
       }
     }
 
+    species.sort(comparator)
+
     return species
   },
 
