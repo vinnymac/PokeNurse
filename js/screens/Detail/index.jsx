@@ -28,7 +28,7 @@ const ModalDialog = React.createClass({
   }
 })
 
-export default ($detailModal, {pokemon, species}) => {
+export default ($detailModal, pokemon, species) => {
   // Calculate CP Progress dot position
   let minDeg = 0
   let maxDeg = 180

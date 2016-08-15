@@ -109,8 +109,13 @@ function prepDisplay (d) {
     var poke = d.pokemon[ i ]
     var checkBox = '<input type="checkbox" value="' + poke.id.toString() + '"'
     var favorite = 'glyphicon glyphicon-star-empty'
+<<<<<<< HEAD
+    var pokeiv = poke[ 'iv' ] + '% (' + poke[ 'attack' ] + '/' + poke[ 'defense' ] + '/' + poke[ 'stamina' ] + ')'
+    var favoriteBool = poke[ 'favorite' ] ? 'true' : 'false'
+=======
     var pokeiv = poke['iv'].toFixed(1) + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
     var favoriteBool = poke['favorite'] ? 'true' : 'false'
+>>>>>>> master
 
     if (poke.deployed || poke.favorite) {
       checkBox += ' disabled'
@@ -135,8 +140,12 @@ function prepDisplay (d) {
       poke.td_powerup = '<a class="power-up" data-pokemon-id="' + poke.id + '" data-nickname="' + poke.nickname + '" ' + getTooltipAttributes(tip) + '>P↑</a>'
     }
 
+<<<<<<< HEAD
+    poke.td_favorite = '<span class="favorite ' + favorite + '" id="favoriteBtn" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
+=======
 
     poke.td_favorite = '<span class="favorite favorite-button ' + favorite + '" data-pokemon-id="' + poke.id + '" data-pokemon-favorited="' + favoriteBool + '" />'
+>>>>>>> master
     poke.td_name = poke.name
     poke.td_nickname = '<a class="nickname" data-pokemon-id="' + poke.id + '">' + poke.nickname + '</a>'
     poke.td_cp = poke.cp
@@ -323,7 +332,6 @@ const Table = React.createClass({
           </div>
 
           <SpeciesTable
-            ref="speciesTable"
             monsters={monsters}
             filterBy={filterBy}
             sortBy={sortBy}
@@ -348,10 +356,8 @@ const Table = React.createClass({
 
   updateMonster (pokemon, index, speciesIndex) {
     this.updateSpecies(speciesIndex, (speciesAtIndex) => {
-      return { // make sure we sort the new pokemon index now that we updated it
-        pokemon: this.getSortedPokemon(Object.assign({}, speciesAtIndex, {
-          pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
-        }))
+      return {
+        pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
       }
     })
     console.log("UPDATING monsters with", pokemon)
@@ -484,7 +490,11 @@ const Table = React.createClass({
       bPaginate: false,
       info: false,
       bFilter: false,
+<<<<<<< HEAD
+      order: [ [ 4, 'desc' ] ]
+=======
       order: [[5, 'desc']]
+>>>>>>> master
     })
 
     // Check all boxes
@@ -535,18 +545,6 @@ const Table = React.createClass({
   getSortedPokemon (specie, sortBy, sortDir) {
     let pokemon = specie.pokemon.slice()
 
-    if (!sortBy && !sortDir) {
-      // Hacky way of retrieving the current sort state of species.jsx
-      if (this.refs.speciesTable) {
-        let sortState = this.refs.speciesTable.getSortState(specie)
-        sortBy = sortState.sortBy
-        sortDir = sortState.sortDir
-      } else {
-        sortBy = 'cp'
-        sortDir = 'DESC'
-      }
-    }
-
     if (COLUMN_SORT_AS_NUM[sortBy]) {
       Organize.sortAsNumber(pokemon, sortBy, sortDir)
     } else {
@@ -582,15 +580,8 @@ const Table = React.createClass({
   },
 
   getNewMonsters (monsters, sortBy, sortDir) {
-    let sortedSpecies = this.getSortedSpecies(monsters, sortBy, sortDir)
-
-    // Mutates, but it is okay because we sliced/sorted above ^
-    sortedSpecies.forEach(specie => {
-      specie.pokemon = this.getSortedPokemon(specie)
-    })
-
     return Object.assign({}, monsters, {
-      species: sortedSpecies
+      species: this.getSortedSpecies(monsters, sortBy, sortDir)
     })
   }
 })
