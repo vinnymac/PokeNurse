@@ -7,17 +7,6 @@ import CinematicMove from './CinematicMove'
 // https://gist.github.com/shri/9754992
 // https://gist.github.com/ihciah/71b0bf44322431bd34dea4ff193267e5
 
-// TODO JSON list of evolutions
-// Evolutions
-// <div id='pokemon_evolve_info'>
-// <div className='pokemon-evolve-info-title'>Evolutions</div>
-// <a href='/pokemon/ivysaur' className='pokemon-evolve-info-item'>
-// <div className='pokemon-sprite ivysaur'></div>
-// <div className='pokemon-evolve-info-item-title'>ivysaur</div>
-// </a>
-// </div>
-// </div>
-
 const ModalBody = React.createClass({
   render () {
     let {
@@ -38,6 +27,7 @@ const ModalBody = React.createClass({
       spriteImageName,
       fast_move,
       charged_move,
+      evolvesTo,
       possibleQuickMoves,
       possibleCinematicMoves
     } = this.props
@@ -50,6 +40,16 @@ const ModalBody = React.createClass({
     let cinematicMoves = []
     for(var i=0; i<possibleCinematicMoves.length; i++){
         cinematicMoves.push(<CinematicMove key={i} move={possibleCinematicMoves[i]} myMove={charged_move} />)
+    }
+    
+    if (evolvesTo) {
+      evolution = <div id='pokemon_evolve_info'>
+        <div className='pokemon-evolve-info-title'>Evolution</div>
+        <div className='pokemon-evolve-info-item'>
+          <div className={`pokemon-sprite ${evolvesTo.toLowerCase()}`}></div>
+          <div className='pokemon-evolve-info-item-title'>{evolvesTo.toLowerCase()}</div>
+        </div>
+      </div>
     }
     
     return (<div className='modal-body'>
@@ -132,6 +132,7 @@ const ModalBody = React.createClass({
           <div className='pokemon-move-item-title'>Charged Moves</div>
           {cinematicMoves}
         </div>
+        {evolution}
       </div>
     </div>)
   },

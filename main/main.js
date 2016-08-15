@@ -202,13 +202,15 @@ ipcMain.on('get-player-info', (event) => {
   })
 })
 
-ipcMain.on('get-players-pokemons', (event) => {
-  console.log("[+] Retrieving player's Pokemons and Calculating Evolves")
+function getPlayersPokemons (event, sync = 'sync') {
   client.getInventory(0).then(inventory => {
     if (!inventory['success']) {
-      event.returnValue = {
-        success: false
+      let payload = {success: false}
+      if (sync !== 'sync') {
+        event.sender.send('receive-players-pokemons', payload)
+        return
       }
+      event.returnValue = payload
       return
     }
 
@@ -326,13 +328,22 @@ ipcMain.on('get-players-pokemons', (event) => {
       })
     }
 
-    // console.log(finalList)
-
-    event.returnValue = {
+    let payload = {
       success: true,
       species: finalList
     }
+
+    if (sync === 'sync') {
+      event.returnValue = payload
+    } else {
+      event.sender.send('receive-players-pokemons', payload)
+    }
   })
+}
+
+ipcMain.on('get-players-pokemons', (event, sync) => {
+  console.log("[+] Retrieving player's Pokemons and Calculating Evolves")
+  getPlayersPokemons(event, sync)
 })
 
 ipcMain.on('power-up-pokemon', (event, id, nickname) => {
@@ -341,6 +352,9 @@ ipcMain.on('power-up-pokemon', (event, id, nickname) => {
       console.log(`[+] Upgraded Pokemon with id: ${id}`)
       let message = `Upgraded ${nickname} succesfully!`
       let title = `Power Up ${nickname}`
+      // TODO parse the response instead of retrieving all the new pokemon
+      // Requires replacing the main parsing with more functional code
+      getPlayersPokemons(event, 'async')
       showInformationMessage(message, title)
     })
     .catch(console.error)
@@ -362,6 +376,9 @@ ipcMain.on('evolve-pokemon', (event, id, delay) => {
 
 ipcMain.on('favorite-pokemon', (event, id, isFavorite) => {
   client.setFavoritePokemon(id, isFavorite)
+    .then(() => {
+      getPlayersPokemons(event, 'async')
+    }).catch(console.error)
   console.log('[+] Pokemon favorite status set to ' + isFavorite)
 })
 // END OF POKEMON
