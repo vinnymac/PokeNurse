@@ -32,7 +32,7 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
 * Favorite/Unfavorite Pokemon
 
 ## Contributing
-   All future pull request should be made to the develop branch
+   All future pull request should be made to the **develop** branch.
 
     git clone https://github.com/duhminick/PokeNurse
     cd PokeNurse
