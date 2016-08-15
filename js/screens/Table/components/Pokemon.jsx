@@ -179,8 +179,6 @@ const Pokemon = React.createClass({
     ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
     let updatedPokemon = Object.assign(pokemon, { favorite: !pokemon.favorite ? -1 : -0 })
     this.context.monsterUpdater(updatedPokemon, index, speciesIndex)
-    // TODO Update the data immediately to reflect favorite
-    // updatePokemonById(button.dataset.pokemonId, 'favorite', setToFavorite)
   },
 
   handleClickNickname (pokemon, species, e) {
