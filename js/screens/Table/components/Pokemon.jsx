@@ -12,9 +12,6 @@ const Pokemon = React.createClass({
   },
 
   checkRow (id, pid, e) {
-    // if (this.state.checkAll) {
-    //   this.state.checkAll = !this.state.checkAll
-    // }
     this.props.onCheckedChange(id, pid)
   },
 
@@ -42,7 +39,7 @@ const Pokemon = React.createClass({
 
   render () {
     let { species } = this.props
-    //console.log(this.props)
+
     return (
       <tr className='child' key={'sub' + species.pokemon_id}>
         <td colSpan='7'>

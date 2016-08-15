@@ -12,7 +12,7 @@ const Species = React.createClass({
 
     for (let specie of monsters.species) {
       species[ String(specie.pokemon_id) ] = {
-        pokemonState: this.handleInitPokemonState(specie),
+        pokemonState: this.getInitialPokemonState(specie),
         checkAll: false,
         collapsed: true
       }
@@ -118,34 +118,38 @@ const Species = React.createClass({
       filterBy
     } = this.props
 
-    return monsterSpecies.map((species, i) => {
-      if (String(species[ 'name' ]).toLowerCase().indexOf(filterBy) === -1) {
+    let speciesState = this.state.species
+
+    return monsterSpecies.map((specie, i) => {
+      if (String(specie[ 'name' ]).toLowerCase().indexOf(filterBy) === -1) {
         return null
       }
 
-      let collapsed = this.state.species[ species.pokemon_id ].collapsed
-      let pokemonState = this.handleInitPokemonState(species)
+      let {
+        collapsed,
+        pokemonState
+      } = speciesState[ specie.pokemon_id ]
 
       return ([
         <tr
           className={collapsed ? '' : 'shown'}
-          key={'header' + species.pokemon_id}
+          key={'header' + specie.pokemon_id}
         >
           <td
             className='details-control'
-            onClick={this.handleCollapse.bind(this, species.pokemon_id)}
+            onClick={this.handleCollapse.bind(this, specie.pokemon_id)}
           />
-          <td>{species.pokemon_id}</td>
+          <td>{specie.pokemon_id}</td>
           <td className='sprites'>
             <img
-              className='pokemon-avatar-sprite' src={`./imgs/pokemonSprites/${species.pokemon_id || 0}.png`}
+              className='pokemon-avatar-sprite' src={`./imgs/pokemonSprites/${specie.pokemon_id || 0}.png`}
             />
           </td>
-          <td>{species.name}</td>
-          <td>{species.count}</td>
-          <td>{species.candy}</td>
-          <td>{species.evolves}</td>
-        </tr>, this.getPokemonTable(species, i, collapsed, pokemonState)
+          <td>{specie.name}</td>
+          <td>{specie.count}</td>
+          <td>{specie.candy}</td>
+          <td>{specie.evolves}</td>
+        </tr>, this.getPokemonTable(specie, i, collapsed, pokemonState)
       ])
     })
   },
@@ -177,20 +181,16 @@ const Species = React.createClass({
   },
 
   handleCheckedChange (id, pid, e) {
-    let existingPokemonState = this.state.species[ String(id) ].pokemonState[ String(pid) ]
-
-    let newPokemonState = this.state.species[ String(id) ].pokemonState[ String (pid) ] = Object.assign({}, existingPokemonState, {
-      check: !existingPokemonState.check
-    })
-
-    let species = Object.assign({}, this.state.species, newPokemonState)
     this.setState({
-      species: species
+      species: this.updatePokemonState(id, pid, (pokemonState) => {
+        return {
+          check: !pokemonState.check
+        }
+      })
     })
-    console.log(this.state.species[ String(id) ])
   },
 
-  handleInitPokemonState (specie) {
+  getInitialPokemonState (specie) {
     let pokemonState = {}
     specie.pokemon.forEach((p, i) => {
       pokemonState[p.id] = { check: false }
@@ -213,6 +213,21 @@ const Species = React.createClass({
     } else {
       return 'sorting'
     }
+  },
+
+  updatePokemonState (id, pid, updater) {
+    let existingSpecieState = this.state.species[ String(id) ]
+    let existingPokemonByIdState = existingSpecieState.pokemonState[ String(pid) ]
+
+    let newPokemonByIdState = {}
+    newPokemonByIdState[ String(pid) ] = Object.assign({}, existingPokemonByIdState, updater(existingPokemonByIdState))
+
+    let newPokemonState = Object.assign({}, existingSpecieState.pokemonState, newPokemonByIdState)
+
+    let newSpeciesState = {}
+    newSpeciesState[ String(id) ] = Object.assign({}, existingSpecieState, {pokemonState: newPokemonState})
+
+    return Object.assign({}, this.state.species, newSpeciesState)
   }
 
 })
