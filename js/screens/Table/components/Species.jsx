@@ -295,6 +295,15 @@ const Species = React.createClass({
         }
       })
     })
+  },
+
+  getSortState (specie) {
+    let {
+      sortBy,
+      sortDir
+    } = this.state.species[specie.pokemon_id]
+
+    return {sortBy, sortDir}
   }
 
 })

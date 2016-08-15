@@ -323,6 +323,7 @@ const Table = React.createClass({
           </div>
 
           <SpeciesTable
+            ref="speciesTable"
             monsters={monsters}
             filterBy={filterBy}
             sortBy={sortBy}
@@ -347,8 +348,10 @@ const Table = React.createClass({
 
   updateMonster (pokemon, index, speciesIndex) {
     this.updateSpecies(speciesIndex, (speciesAtIndex) => {
-      return {
-        pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
+      return { // make sure we sort the new pokemon index now that we updated it
+        pokemon: this.getSortedPokemon(Object.assign({}, speciesAtIndex, {
+          pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
+        }))
       }
     })
     console.log("UPDATING monsters with", pokemon)
@@ -532,6 +535,18 @@ const Table = React.createClass({
   getSortedPokemon (specie, sortBy, sortDir) {
     let pokemon = specie.pokemon.slice()
 
+    if (!sortBy && !sortDir) {
+      // Hacky way of retrieving the current sort state of species.jsx
+      if (this.refs.speciesTable) {
+        let sortState = this.refs.speciesTable.getSortState(specie)
+        sortBy = sortState.sortBy
+        sortDir = sortState.sortDir
+      } else {
+        sortBy = 'cp'
+        sortDir = 'DESC'
+      }
+    }
+
     if (COLUMN_SORT_AS_NUM[sortBy]) {
       Organize.sortAsNumber(pokemon, sortBy, sortDir)
     } else {
@@ -567,8 +582,15 @@ const Table = React.createClass({
   },
 
   getNewMonsters (monsters, sortBy, sortDir) {
+    let sortedSpecies = this.getSortedSpecies(monsters, sortBy, sortDir)
+
+    // Mutates, but it is okay because we sliced/sorted above ^
+    sortedSpecies.forEach(specie => {
+      specie.pokemon = this.getSortedPokemon(specie)
+    })
+
     return Object.assign({}, monsters, {
-      species: this.getSortedSpecies(monsters, sortBy, sortDir)
+      species: sortedSpecies
     })
   }
 })
