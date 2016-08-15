@@ -183,8 +183,16 @@ const Species = React.createClass({
   handleCheckAll (id, e) {
     this.setState({
       species: this.updateSpeciesState(id, (speciesState) => {
+        let newCheckAllState = !speciesState.checkAll
+        let newPokemonState = {}
+
+        for (let id in speciesState.pokemonState) {
+          newPokemonState[id] = Object.assign({}, speciesState.pokemonState[id], {check: newCheckAllState})
+        }
+
         return {
-          checkAll: !speciesState.checkAll
+          checkAll: newCheckAllState,
+          pokemonState: newPokemonState
         }
       })
     })
