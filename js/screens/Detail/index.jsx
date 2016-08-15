@@ -9,14 +9,14 @@ const ModalDialog = React.createClass({
   componentDidMount () {
     this.props.detailModal.modal('show')
   },
-	
-  render () {
-	let modalBackground = {background: `linear-gradient(to bottom, ${this._getBackgroundColor(this.props.type[0])} 0%, ${this._getBackgroundColor(this.props.type[1])} 100%)`}
     
-	return (
+  render () {
+    let modalBackground = {background: `linear-gradient(to bottom, ${this._getBackgroundColor(this.props.type[0])} 0%, ${this._getBackgroundColor(this.props.type[1])} 100%)`}
+    
+    return (
       <div className='modal-dialog' role='document'>
         <div className='modal-content' style={modalBackground}>
-		  <div className='modal-header modal-outline-white'>
+          <div className='modal-header modal-outline-white'>
             <button type='button' className='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
             <h4 className='modal-title' id='detailModalLabel'>{this.props.name}</h4>
           </div>
@@ -27,46 +27,46 @@ const ModalDialog = React.createClass({
   },
   
   _getBackgroundColor(type){
-	switch(type){
-	  case "normal":
-		return '#A8A878';
-	  case "fire":
-	    return '#F08030';
-	  case "water":
-		return '#6890F0';
-	  case "grass":
-		return '#78C850';
-	  case "electric":
-	    return '#f8d030';
-	  case "ice":
-	    return '#98d8d8';
-	  case "ground":
-	    return '#e0c068';
-	  case "flying":
-	    return '#a890f0';
-	  case "poison":
-		return '#a040a0';
-	  case "fighting":
-	    return '#c03028';
-	  case "psychic":
-	    return '#f85888';
-	  case "dark":
-	    return '#705848';
-	  case "rock":
-	    return '#b8a038';
+    switch(type){
+      case "normal":
+        return '#A8A878';
+      case "fire":
+        return '#F08030';
+      case "water":
+        return '#6890F0';
+      case "grass":
+        return '#78C850';
+      case "electric":
+        return '#f8d030';
+      case "ice":
+        return '#98d8d8';
+      case "ground":
+        return '#e0c068';
+      case "flying":
+        return '#a890f0';
+      case "poison":
+        return '#a040a0';
+      case "fighting":
+        return '#c03028';
+      case "psychic":
+        return '#f85888';
+      case "dark":
+        return '#705848';
+      case "rock":
+        return '#b8a038';
       case "bug":
-	    return '#a8b820';
+        return '#a8b820';
       case "ghost":
-	    return '#705898';
+        return '#705898';
       case "steel":
-	    return '#b8b8d0';
+        return '#b8b8d0';
       case "dragon":
-	    return '#7038f8';	
-	  case "fairy":
-	    return '#ffaec9';	
-	  default:
-	    return '#FFFFFF';
-	}
+        return '#7038f8';
+      case "fairy":
+        return '#ffaec9';
+      default:
+        return '#FFFFFF';
+    }
   },
 })
 
@@ -99,13 +99,25 @@ export default ($detailModal, {pokemon, species}) => {
   let name = species.name
   let nickname = pokemon.nickname
   let spriteImageName = name.toLowerCase()
-  
+
   let move_1 = baseStats.moves[pokemon['move_1']]
   let move_2 = baseStats.moves[pokemon['move_2']]
-    
+
   if (spriteImageName.indexOf('nidoran') > -1) {
     let spriteParts = spriteImageName.split(' ')
     spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === '♂') ? 'm' : 'f'}`
+  }
+
+  let possibleQuickMoves = []
+  for(var i=0; i < stats.quickMoves.length; i++)
+  {
+      possibleQuickMoves.push(baseStats.moves[stats.quickMoves[i]])
+  }
+
+  let possibleCinematicMoves = []
+  for(var i=0; i < stats.cinematicMoves.length; i++)
+  {
+      possibleCinematicMoves.push(baseStats.moves[stats.cinematicMoves[i]])
   }
 
   let modalDialog = <ModalDialog
@@ -125,8 +137,10 @@ export default ($detailModal, {pokemon, species}) => {
     weight={weight}
     height={height}
     detailModal={$detailModal}
-	fast_move={move_1}
-	charged_move={move_2}
+    fast_move={move_1}
+    charged_move={move_2}
+    possibleQuickMoves={possibleQuickMoves}
+    possibleCinematicMoves={possibleCinematicMoves}
   />
 
   $detailModal.on('hidden.bs.modal', () => {

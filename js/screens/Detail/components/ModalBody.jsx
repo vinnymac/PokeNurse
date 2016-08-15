@@ -1,4 +1,6 @@
 import React from 'react'
+import QuickMove from './QuickMove'
+import CinematicMove from './CinematicMove'
 
 // TODO find and use some JSON data
 // Examples
@@ -34,31 +36,22 @@ const ModalBody = React.createClass({
       cpPerUpgrade,
       candies,
       spriteImageName,
-	  fast_move,
-	  charged_move
+      fast_move,
+      charged_move,
+      possibleQuickMoves,
+      possibleCinematicMoves
     } = this.props
-	
-	let chargedMoveBars = []
-	
-	for(var i = 0; i < Math.floor(100/charged_move.energyCost); i++)
-	{
-		chargedMoveBars.push(<div key={i} className='pokemon-move-cost-item' style={{width:`${charged_move.energyCost}px`}}/>)
-	}
-	
-	let fastMoveTip = `
-			Move Duration: ${fast_move.durationMs}ms <br>
-			Damage Window: ${fast_move.damageWindowMs}ms <br>
-			No STAB DPS: ${fast_move.dps} <br>
-			Energy Gain(EG): ${fast_move.energyGain} <br>
-			EGPS: ${fast_move.energyGainPerSecond}
-        `
-		
-	let chargedMoveTip = `
-			Duration: ${charged_move.durationMs}ms <br>
-			Dodge Window: ${charged_move.dodgeWindowMs}ms <br>
-			Crit Chance: ${charged_move.crit * 100}%
-		`
-	
+    
+    let quickMoves = []
+    for(var i=0; i<possibleQuickMoves.length; i++){
+        quickMoves.push(<QuickMove key={i} move={possibleQuickMoves[i]} myMove={fast_move} />)
+    }
+    
+    let cinematicMoves = []
+    for(var i=0; i<possibleCinematicMoves.length; i++){
+        cinematicMoves.push(<CinematicMove key={i} move={possibleCinematicMoves[i]} myMove={charged_move} />)
+    }
+    
     return (<div className='modal-body'>
       <div id='pokemon_sprite_wrapper'>
         <div className='modal-outline-white pokemon-cp'>
@@ -133,44 +126,18 @@ const ModalBody = React.createClass({
             <div className='pokemon-info-item-title'>{`${name} Candies`}</div>
           </div>
         </div>
-		<div className='pokemon_move_info'>
-			<div className='pokemon-move-item'>
-				<div className='pokemon-move-item-text-area' ref='tooltip1' data-toggle='tooltip' data-placement='right' data-html='true' title={fastMoveTip}>
-					<div className='pokemon-move-title'>{`${fast_move.name}`}</div>
-					<div className={'pokemon-move-type ' + fast_move.type}>{`${fast_move.type}`}</div>
-				</div>
-				<div className='pokemon-move-cost'></div>
-				<div className='pokemon-move-damage'>{`${fast_move.power}`}</div>
-			</div>
-			<div className='pokemon-move-item'>
-				<div className='pokemon-move-item-text-area' ref='tooltip2' data-toggle='tooltip' data-placement='right' data-html='true' title={chargedMoveTip}>
-					<div className='pokemon-move-title'>{`${charged_move.name}`}</div>
-					<div className={'pokemon-move-type ' + charged_move.type}>{`${charged_move.type}`}</div>
-				</div>
-				<div className='pokemon-move-cost'>
-					{chargedMoveBars}
-				</div>
-				<div className='pokemon-move-damage'>
-					{`${charged_move.power}`}
-				</div>
-			</div>
-		</div>
+        <div className='pokemon_move_info'>
+          <div className='pokemon-move-item-title'>Quick Moves</div>
+          {quickMoves}
+          <div className='pokemon-move-item-title'>Charged Moves</div>
+          {cinematicMoves}
+        </div>
       </div>
     </div>)
   },
   _handleCry () {
     this.refs.cry.play()
-  },
-  
-  componentDidMount () {
-    $(this.refs.tooltip1).tooltip()
-    $(this.refs.tooltip2).tooltip()
-  },
-
-  componentDidUpdate () {
-    $(this.refs.tooltip1).tooltip()
-    $(this.refs.tooltip2).tooltip()
-  },
+  }
 })
 
 export default ModalBody
