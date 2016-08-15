@@ -78,7 +78,7 @@ const Species = React.createClass({
       }
 
       let collapsed = this.state.species[ species.pokemon_id ].collapsed
-      let pokemonState = this.state.species[ species.pokemon_id ].pokemonState
+      let pokemonState = this.handleInitPokemonState(species)
 
       return ([
         <tr
@@ -111,6 +111,7 @@ const Species = React.createClass({
       species={species}
       speciesIndex={index}
       pokemonState={pokemonState}
+      onCheckedChange={this.handleCheckedChange}
       key={'child' + species.pokemon_id}
     />)
   },
@@ -127,6 +128,20 @@ const Species = React.createClass({
     this.setState({
       species: species
     })
+  },
+
+  handleCheckedChange (id, pid, e) {
+    let existingPokemonState = this.state.species[ String(id) ].pokemonState[ String(pid) ]
+
+    let newPokemonState = this.state.species[ String(id) ].pokemonState[ String (pid) ] = Object.assign({}, existingPokemonState, {
+      check: !existingPokemonState.check
+    })
+
+    let species = Object.assign({}, this.state.species, newPokemonState)
+    this.setState({
+      species: species
+    })
+    console.log(this.state.species[ String(id) ])
   },
 
   handleInitPokemonState (specie) {
