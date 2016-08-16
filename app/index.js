@@ -1,29 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {ipcRenderer} from 'electron'
+import { ipcRenderer } from 'electron'
 
 import Login from './screens/Login'
 import Table from './screens/Table'
 
 const App = React.createClass({
-  getInitialState () {
-    return {loggedIn: false}
+  getInitialState() {
+    return { loggedIn: false }
   },
 
-  componentDidMount () {
+  componentDidMount() {
     ipcRenderer.on('pokemon-logged-in', () => {
-      console.log('LOGGED IN SUCCESSFULLY!')
-
-      this.setState({loggedIn: true})
+      this.setState({ loggedIn: true })
     })
   },
 
-  render () {
-    if (this.state.loggedIn) {
-      return (<Table />)
-    } else {
-      return (<Login />)
-    }
+  render() {
+    if (this.state.loggedIn) return (<Table />)
+
+    return (<Login />)
   }
 })
 

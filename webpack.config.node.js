@@ -1,6 +1,6 @@
 // for babel-plugin-webpack-loaders
-require('babel-register');
-const devConfigs = require('./webpack.config.development');
+require('babel-register')
+const devConfigs = require('./webpack.config.development')
 
 module.exports = {
   output: {
@@ -9,4 +9,4 @@ module.exports = {
   module: {
     loaders: devConfigs.module.loaders.slice(1)  // remove babel-loader
   }
-};
+}

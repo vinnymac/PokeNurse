@@ -1,6 +1,6 @@
-let Immutable = {
+const Immutable = {
   array: {
-    set (array, index, item) {
+    set(array, index, item) {
       return [
         ...array.slice(0, index),
         item,
@@ -10,9 +10,9 @@ let Immutable = {
   }
 }
 
-let Organize = {
-  sortAsString (array, sortBy, sortDir) {
-    array.sort(function (a, b) {
+const Organize = {
+  sortAsString(array, sortBy, sortDir) {
+    array.sort((a, b) => {
       if (sortDir === 'ASC') {
         if (a[sortBy] > b[sortBy]) return 1
         if (a[sortBy] < b[sortBy]) return -1
@@ -25,13 +25,11 @@ let Organize = {
     })
   },
 
-  sortAsNumber (array, sortBy, sortDir) {
-    array.sort(function (a, b) {
-      if (sortDir === 'ASC') {
-        return a[sortBy] - b[sortBy]
-      } else {
-        return b[sortBy] - a[sortBy]
-      }
+  sortAsNumber(array, sortBy, sortDir) {
+    array.sort((a, b) => {
+      if (sortDir === 'ASC') return a[sortBy] - b[sortBy]
+
+      return b[sortBy] - a[sortBy]
     })
   }
 }

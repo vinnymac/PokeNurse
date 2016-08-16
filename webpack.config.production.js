@@ -1,7 +1,7 @@
-import webpack from 'webpack';
+import webpack from 'webpack'
 // import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import merge from 'webpack-merge';
-import baseConfig from './webpack.config.base';
+import merge from 'webpack-merge'
+import baseConfig from './webpack.config.base'
 
 const config = merge(baseConfig, {
   devtool: 'cheap-module-source-map',
@@ -28,6 +28,6 @@ const config = merge(baseConfig, {
   ],
 
   target: 'electron-renderer'
-});
+})
 
-export default config;
+export default config
