@@ -298,6 +298,23 @@ const Species = React.createClass({
     })
   },
 
+  getPokemonChecked ()
+  {
+    let species = this.props.monsters.species
+    let speciesState = this.state.species
+    let checkedPokemon = []
+
+    species.forEach ((specie) => {
+      specie.pokemon.forEach ((p) => {
+        if (speciesState[specie.pokemon_id].pokemonState[p.id].check) {
+          checkedPokemon.push(p)
+        }
+      })
+    })
+
+    return checkedPokemon
+  },
+
   getSortState(specie) {
     let {
       sortBy,
