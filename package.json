@@ -1,14 +1,11 @@
 {
-  "name": "pokenurse",
+  "name": "PokéNurse",
   "version": "1.1.2",
   "description": "A tool for Pokémon Go to aid in transferring and evolving Pokémon",
   "main": "main",
   "scripts": {
     "start": "cross-env NODE_ENV=production electron ./",
     "buildstats": "node ./generateBaseStats",
-    "buildmac": "electron-packager . PokeNurse --platform=darwin --arch=x64 --icon=imgs/emojioneicon.icns --overwrite",
-    "buildwindows": "electron-packager . PokeNurse --platform=win32 --arch=all --icon=imgs/emojioneicon.ico --overwrite",
-    "buildlinux": "electron-packager . PokeNurse --platform=linux --arch=all --icon=imgs/emojioneicon.ico --overwrite",
     "lint": "eslint app *.js",
     "hot-server": "node -r babel-register server.js",
     "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors",
