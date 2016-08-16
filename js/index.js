@@ -1,14 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import {ipcRenderer} from 'electron'
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import { ipcRenderer } from 'electron'
 
 import Login from './screens/Login'
 import Table from './screens/Table'
 
-const App = React.createClass({
-  getInitialState () {
-    return {loggedIn: false}
-  },
+class App extends Component {
+  constructor () {
+    super()
+    this.state =  {
+      loggedIn: false
+    }
+  }
 
   componentDidMount () {
     ipcRenderer.on('pokemon-logged-in', () => {
@@ -16,7 +19,7 @@ const App = React.createClass({
 
       this.setState({loggedIn: true})
     })
-  },
+  }
 
   render () {
     if (this.state.loggedIn) {
@@ -25,6 +28,6 @@ const App = React.createClass({
       return (<Login />)
     }
   }
-})
+}
 
-ReactDOM.render(<App />, document.getElementById('content'))
+render(<App />, document.getElementById('content'))
