@@ -1,12 +1,12 @@
 const { app, dialog, BrowserWindow, shell } = require('electron')
 
-const showAboutDialog = function () {
+function showAboutDialog() {
   dialog.showMessageBox({
     type: 'info',
     buttons: [],
     title: 'About PokeNurse',
     message: 'About PokeNurse',
-    detail: 'PokeNurse v' + app.getVersion() + '\nCopyright PokeNurse 2016'
+    detail: `PokeNurse v${app.getVersion()}\nCopyright PokeNurse 2016`
   })
 }
 
