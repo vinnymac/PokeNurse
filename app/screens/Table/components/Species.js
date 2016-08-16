@@ -1,7 +1,21 @@
-import React from 'react'
+import React, {
+  PropTypes
+} from 'react'
+
 import PokemonTable from './Pokemon'
 
 const Species = React.createClass({
+  displayName: 'Species',
+
+  propTypes: {
+    sortBy: PropTypes.string,
+    sortDir: PropTypes.string,
+    filterBy: PropTypes.string,
+    sortSpeciesBy: PropTypes.func,
+    updateSpecies: PropTypes.func,
+    getSortedPokemon: PropTypes.func,
+    monsters: PropTypes.object.isRequired
+  },
 
   getInitialState() {
     const {
@@ -50,12 +64,8 @@ const Species = React.createClass({
   },
 
   getSpeciesHeader() {
-    const {
-      sortSpeciesBy
-    } = this.props
-
     return (<tr>
-      <th></th>
+      <th />
       <th
         className={this.getSortDirectionClassName('pokemon_id')}
         tabIndex="0"
@@ -63,7 +73,7 @@ const Species = React.createClass({
         colSpan="1"
         aria-controls="pokemon-data"
         aria-label="Pokédex #: activate to sort column ascending"
-        onClick={this._handleSortSpecies.bind(this, 'pokemon_id')}
+        onClick={this.handleSortSpecies.bind(this, 'pokemon_id')}
       >
         Pokédex #
       </th>
@@ -77,7 +87,7 @@ const Species = React.createClass({
         colSpan="1"
         aria-controls="pokemon-data"
         aria-label="Name: activate to sort column ascending"
-        onClick={this._handleSortSpecies.bind(this, 'name')}
+        onClick={this.handleSortSpecies.bind(this, 'name')}
       >
         Name
       </th>
@@ -88,7 +98,7 @@ const Species = React.createClass({
         colSpan="1"
         aria-controls="pokemon-data"
         aria-label="Count: activate to sort column ascending"
-        onClick={this._handleSortSpecies.bind(this, 'count')}
+        onClick={this.handleSortSpecies.bind(this, 'count')}
       >
         Count
       </th>
@@ -99,7 +109,7 @@ const Species = React.createClass({
         colSpan="1"
         aria-controls="pokemon-data"
         aria-label="Candy: activate to sort column ascending"
-        onClick={this._handleSortSpecies.bind(this, 'candy')}
+        onClick={this.handleSortSpecies.bind(this, 'candy')}
       >
         Candy
       </th>
@@ -110,7 +120,7 @@ const Species = React.createClass({
         colSpan="1"
         aria-controls="pokemon-data"
         aria-label="Evolves: activate to sort column ascending"
-        onClick={this._handleSortSpecies.bind(this, 'evolves')}
+        onClick={this.handleSortSpecies.bind(this, 'evolves')}
       >
         Evolves
       </th>
@@ -125,11 +135,11 @@ const Species = React.createClass({
     const speciesState = this.state.species
 
     return monsterSpecies.map((specie, i) => {
-      if (String(specie['name']).toLowerCase().indexOf(filterBy) === -1) {
+      if (String(specie.name).toLowerCase().indexOf(filterBy) === -1) {
         return null
       }
 
-      let {
+      const {
         collapsed,
         pokemonState,
         checkAll,
@@ -140,7 +150,7 @@ const Species = React.createClass({
       return ([
         <tr
           className={collapsed ? '' : 'shown'}
-          key={'header' + specie.pokemon_id}
+          key={`header${specie.pokemon_id}`}
         >
           <td
             className="details-control"
@@ -149,7 +159,9 @@ const Species = React.createClass({
           <td>{specie.pokemon_id}</td>
           <td className="sprites">
             <img
-              className="pokemon-avatar-sprite" src={`./imgs/pokemonSprites/${specie.pokemon_id || 0}.png`}
+              alt="sprite"
+              className="pokemon-avatar-sprite"
+              src={`./imgs/pokemonSprites/${specie.pokemon_id || 0}.png`}
             />
           </td>
           <td>{specie.name}</td>
@@ -174,85 +186,40 @@ const Species = React.createClass({
       checkAll={checkAll}
       onCheckedChange={this.handleCheckedChange}
       onCheckAll={this.handleCheckAll}
-      key={'child' + species.pokemon_id}
+      key={`child${species.pokemon_id}`}
     />)
-  },
-
-  handleCollapse(id, e) {
-    this.setState({
-      species: this.updateSpeciesState(id, (speciesState) => {
-        return {
-          collapsed: !speciesState.collapsed
-        }
-      })
-    })
-  },
-
-
-  handleCheckAll(species, e) {
-    const id = species.pokemon_id
-
-    this.setState({
-      species: this.updateSpeciesState(id, (speciesState) => {
-        const newCheckAllState = !speciesState.checkAll
-        const newPokemonState = {}
-
-        for (const id in speciesState.pokemonState) {
-          newPokemonState[id] = Object.assign({}, speciesState.pokemonState[id], { check: newCheckAllState })
-        }
-
-        return {
-          checkAll: newCheckAllState,
-          pokemonState: newPokemonState
-        }
-      })
-    })
-  },
-
-  handleCheckedChange(pokemon, e) {
-    this.setState({
-      species: this.updateSpeciesState(String(pokemon.pokemon_id), (speciesState) => {
-        return {
-          pokemonState: this.updatePokemonState(speciesState, String(pokemon.id), (pokemonState) => {
-            return {
-              check: !pokemonState.check
-            }
-          })
-        }
-      })
-    })
   },
 
   getInitialPokemonState(specie) {
     const pokemonState = {}
-    specie.pokemon.forEach((p, i) => {
+    specie.pokemon.forEach((p) => {
       pokemonState[p.id] = { check: false }
     })
     return pokemonState
   },
 
-  _handleSortSpecies(sortBy, e) {
-    this.props.sortSpeciesBy(sortBy)
-  },
-
   getSortDirectionClassName(key) {
-    let {
+    const {
       sortBy,
       sortDir
     } = this.props
 
     if (sortBy === key) {
       return sortDir === 'ASC' ? 'sorting_asc' : 'sorting_desc'
-    } else {
-      return 'sorting'
     }
+
+    return 'sorting'
   },
 
   updateSpeciesState(id, updater) {
     const newSpecieState = {}
     const existingSpecieState = this.state.species[String(id)]
 
-    newSpecieState[String(id)] = Object.assign({}, existingSpecieState, updater(existingSpecieState))
+    newSpecieState[String(id)] = Object.assign(
+      {},
+      existingSpecieState,
+      updater(existingSpecieState)
+    )
 
     return Object.assign({}, this.state.species, newSpecieState)
   },
@@ -261,7 +228,11 @@ const Species = React.createClass({
     const existingPokemonByIdState = speciesState.pokemonState[String(pid)]
 
     const newPokemonByIdState = {}
-    newPokemonByIdState[String(pid)] = Object.assign({}, existingPokemonByIdState, updater(existingPokemonByIdState))
+    newPokemonByIdState[String(pid)] = Object.assign(
+      {},
+      existingPokemonByIdState,
+      updater(existingPokemonByIdState)
+    )
 
     return Object.assign({}, speciesState.pokemonState, newPokemonByIdState)
   },
@@ -269,7 +240,7 @@ const Species = React.createClass({
   sortPokemonBy(newSortBy, speciesIndex) {
     const pokemonId = this.props.monsters.species[speciesIndex].pokemon_id
 
-    let {
+    const {
       sortBy,
       sortDir
     } = this.state.species[pokemonId]
@@ -283,29 +254,28 @@ const Species = React.createClass({
     }
 
     this.props.updateSpecies(speciesIndex, (speciesAtIndex) => {
+      const sorted = this.props.getSortedPokemon(speciesAtIndex, newSortBy, newSortDir)
       return {
-        pokemon: this.props.getSortedPokemon(speciesAtIndex, newSortBy, newSortDir)
+        pokemon: sorted
       }
     })
 
     this.setState({
       species: this.updateSpeciesState(pokemonId, () => {
-        return {
-          sortDir: newSortDir,
-          sortBy: newSortBy
-        }
+        const sortState = { sortDir: newSortDir, sortBy: newSortBy }
+
+        return sortState
       })
     })
   },
 
-  getPokemonChecked ()
-  {
-    let species = this.props.monsters.species
-    let speciesState = this.state.species
-    let checkedPokemon = []
+  getPokemonChecked() {
+    const species = this.props.monsters.species
+    const speciesState = this.state.species
+    const checkedPokemon = []
 
-    species.forEach ((specie) => {
-      specie.pokemon.forEach ((p) => {
+    species.forEach((specie) => {
+      specie.pokemon.forEach((p) => {
         if (speciesState[specie.pokemon_id].pokemonState[p.id].check) {
           checkedPokemon.push(p)
         }
@@ -316,12 +286,71 @@ const Species = React.createClass({
   },
 
   getSortState(specie) {
-    let {
+    const {
       sortBy,
       sortDir
     } = this.state.species[specie.pokemon_id]
 
     return { sortBy, sortDir }
+  },
+
+  handleCollapse(id) {
+    this.setState({
+      species: this.updateSpeciesState(id, (speciesState) => {
+        const newCollapsed = !speciesState.collapsed
+
+        return { collapsed: newCollapsed }
+      })
+    })
+  },
+
+  handleCheckAll(species) {
+    this.setState({
+      species: this.updateSpeciesState(species.pokemon_id, (speciesState) => {
+        const newCheckAllState = !speciesState.checkAll
+        const newPokemonState = {}
+
+        Object.keys(speciesState.pokemonState).forEach(id => {
+          newPokemonState[id] = Object.assign(
+            {},
+            speciesState.pokemonState[id],
+            { check: newCheckAllState }
+          )
+        })
+
+        return {
+          checkAll: newCheckAllState,
+          pokemonState: newPokemonState
+        }
+      })
+    })
+  },
+
+  handleCheckedChange(pokemon) {
+    this.setState({
+      species: this.updateSpeciesState(
+        String(pokemon.pokemon_id),
+        (speciesState) => {
+          const updatedPokemonState = this.updatePokemonState(
+            speciesState,
+            String(pokemon.id),
+            (pokemonState) => {
+              const newChecked = !pokemonState.check
+
+              return { check: newChecked }
+            }
+          )
+
+          return {
+            pokemonState: updatedPokemonState
+          }
+        }
+      )
+    })
+  },
+
+  handleSortSpecies(sortBy) {
+    this.props.sortSpeciesBy(sortBy)
   }
 
 })

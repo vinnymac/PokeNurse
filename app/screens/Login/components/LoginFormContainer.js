@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {
+  PropTypes
+} from 'react'
 import { ipcRenderer } from 'electron'
 
 const AUTH_METHODS = {
@@ -7,6 +9,10 @@ const AUTH_METHODS = {
 }
 
 const Login = React.createClass({
+  propTypes: {
+    credentials: PropTypes.string
+  },
+
   getInitialState() {
     return {
       authMethod: this.props.credentials.method || AUTH_METHODS.google
@@ -24,57 +30,61 @@ const Login = React.createClass({
           <label
             className="btn btn-info noselect active"
             htmlFor="authGoogle"
-            onClick={this._radioLabelClick.bind(this, AUTH_METHODS.google)}
+            onClick={this.radioLabelClick.bind(this, AUTH_METHODS.google)}
           >
             <input
               type="radio"
               name="auth-radio"
               id="authGoogle"
-              ref={AUTH_METHODS.google}
+              ref={(c) => { this[AUTH_METHODS.google] = c }}
               value={AUTH_METHODS.google}
               defaultChecked={this.state.authMethod === AUTH_METHODS.google}
-              onChange={this._handleChangeAuth}
+              onChange={this.handleChangeAuth}
             />
             Google
           </label>
           <label
             className="btn btn-info noselect"
             htmlFor="authPTC"
-            onClick={this._radioLabelClick.bind(this, AUTH_METHODS.ptc)}
+            onClick={this.radioLabelClick.bind(this, AUTH_METHODS.ptc)}
           >
             <input
               type="radio"
               name="auth-radio"
               id="authPTC"
-              ref={AUTH_METHODS.ptc}
+              ref={(c) => { this[AUTH_METHODS.ptc] = c }}
               value={AUTH_METHODS.ptc}
               defaultChecked={this.state.authMethod === AUTH_METHODS.ptc}
-              onChange={this._handleChangeAuth}
+              onChange={this.handleChangeAuth}
             />
             Pokémon Trainer Club
           </label>
         </div>
 
         <div className="form-group input-group">
-          <span className="input-group-addon"><span className="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+          <span className="input-group-addon">
+            <span className="glyphicon glyphicon-user" aria-hidden="true" />
+          </span>
           <input
             type="text"
             className="form-control"
             placeholder="Username"
-            ref="username"
-            onKeyPress={this._handleEnterKey}
+            ref={(c) => { this.username = c }}
+            onKeyPress={this.handleEnterKey}
             defaultValue={credentials.username || ''}
           />
         </div>
 
         <div className="form-group input-group">
-          <span className="input-group-addon"><span className="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+          <span className="input-group-addon">
+            <span className="glyphicon glyphicon-lock" aria-hidden="true" />
+          </span>
           <input
             type="password"
             className="form-control"
             placeholder="Password"
-            ref="password"
-            onKeyPress={this._handleEnterKey}
+            ref={(c) => { this.password = c }}
+            onKeyPress={this.handleEnterKey}
             defaultValue={credentials.password || ''}
           />
         </div>
@@ -85,7 +95,7 @@ const Login = React.createClass({
               type="checkbox"
               id="remember-cb"
               defaultChecked={credentials.success || false}
-              ref="rememberMe"
+              ref={(c) => { this.rememberMe = c }}
             />
             {" Remember me"}
           </label>
@@ -93,43 +103,42 @@ const Login = React.createClass({
             type="button"
             className="btn btn-success pull-right"
             value="Login"
-            onClick={this._handleLogin}
+            onClick={this.handleLogin}
           />
         </div>
       </div>
     )
   },
 
-  _radioLabelClick(authMethod) {
-    this.refs[authMethod].click()
+  radioLabelClick(authMethod) {
+    this[authMethod].click()
   },
 
-  _handleChangeAuth(e) {
+  handleChangeAuth(e) {
     this.setState({
       authMethod: e.target.value
     })
   },
 
-  _handleEnterKey(e) {
-    if (e.key === 'Enter') this._handleLogin()
+  handleEnterKey(e) {
+    if (e.key === 'Enter') this.handleLogin()
   },
 
-  _handleLogin() {
+  handleLogin() {
     const method = this.state.authMethod
-    let { username, password, rememberMe } = this.refs
 
-    if (username.value === '' || password.value === '') {
+    if (this.username.value === '' || this.password.value === '') {
       ipcRenderer.send('error-message', 'Missing username and/or password')
       return
     }
 
-    if (rememberMe.checked) {
-      ipcRenderer.send('save-account-credentials', method, username.value, password.value)
+    if (this.rememberMe.checked) {
+      ipcRenderer.send('save-account-credentials', method, this.username.value, this.password.value)
     } else {
       ipcRenderer.send('check-and-delete-credentials')
     }
 
-    ipcRenderer.send('pokemon-login', method, username.value, password.value)
+    ipcRenderer.send('pokemon-login', method, this.username.value, this.password.value)
   }
 })
 
