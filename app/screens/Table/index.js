@@ -4,9 +4,15 @@ import {
 } from 'electron'
 import $ from 'jquery'
 
+window.$ = window.jQuery = $
+require('bootstrap')
+
 import SpeciesTable from './components/Species'
 
-import { Immutable, Organize } from '../../utils'
+import {
+  Immutable,
+  Organize
+} from '../../utils'
 
 const COLUMN_SORT_AS_NUM = {
   nickname: false,
@@ -19,9 +25,6 @@ const COLUMN_SORT_AS_NUM = {
   candy: true,
   evolves: true
 }
-
-window.$ = window.jQuery = $
-require('bootstrap')
 
 let running = false
 
@@ -58,12 +61,6 @@ const Table = React.createClass({
     monsterUpdater: React.PropTypes.func.isRequired
   },
 
-  getChildContext() {
-    return {
-      monsterUpdater: this.updateMonster
-    }
-  },
-
   getInitialState() {
     const monsters = ipcRenderer.sendSync('get-players-pokemons')
     const sortBy = 'pokemon_id'
@@ -74,6 +71,12 @@ const Table = React.createClass({
       filterBy: '',
       sortBy,
       sortDir
+    }
+  },
+
+  getChildContext() {
+    return {
+      monsterUpdater: this.updateMonster
     }
   },
 
