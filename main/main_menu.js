@@ -1,6 +1,6 @@
-const {app, dialog, BrowserWindow, shell} = require('electron')
+const { app, dialog, BrowserWindow, shell } = require('electron')
 
-var showAboutDialog = function () {
+const showAboutDialog = function () {
   dialog.showMessageBox({
     type: 'info',
     buttons: [],
@@ -10,7 +10,7 @@ var showAboutDialog = function () {
   })
 }
 
-var template = [
+const template = [
   {
     label: 'Edit',
     submenu: [
@@ -55,7 +55,7 @@ var template = [
       {
         label: 'Reload',
         accelerator: 'CmdOrCtrl+R',
-        click: function (item, focusedWindow) {
+        click(item, focusedWindow) {
           if (focusedWindow) {
             focusedWindow.webContents.send('message', 'reload')
           }
@@ -70,7 +70,7 @@ var template = [
             return 'F11'
           }
         })(),
-        click: function (item, focusedWindow) {
+        click(item, focusedWindow) {
           if (focusedWindow) focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
         }
       }
@@ -98,7 +98,7 @@ var template = [
     submenu: [
       {
         label: 'Visit Homepage',
-        click: function () { shell.openExternal('https://github.com/duhminick/PokeNurse') }
+        click() { shell.openExternal('https://github.com/duhminick/PokeNurse') }
       },
       {
         type: 'separator'
@@ -112,9 +112,9 @@ var template = [
             return 'Ctrl+Shift+I'
           }
         })(),
-        click: function (item, focusedWindow) {
-          var allWindows = BrowserWindow.getAllWindows()
-          var firstWindow = allWindows[0]
+        click(item, focusedWindow) {
+          const allWindows = BrowserWindow.getAllWindows()
+          const firstWindow = allWindows[0]
           if (firstWindow) {
             firstWindow.toggleDevTools()
           }
@@ -124,7 +124,7 @@ var template = [
   }
 ]
 
-var name = app.getName()
+const name = app.getName()
 
 if (process.platform === 'darwin') {
   template.unshift({
@@ -168,7 +168,7 @@ if (process.platform === 'darwin') {
       {
         label: 'Quit',
         accelerator: 'Command+Q',
-        click: function () { app.quit() }
+        click() { app.quit() }
       }
     ]
   })
@@ -201,7 +201,7 @@ if (process.platform === 'win32') {
       {
         label: 'Quit',
         accelerator: 'Control+Q',
-        click: function () { app.quit() }
+        click() { app.quit() }
       }
     ]
   })

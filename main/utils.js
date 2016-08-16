@@ -1,4 +1,4 @@
-let levelCpMultiplier = {
+const levelCpMultiplier = {
   '1': 0.094,
   '1.5': 0.135137432,
   '2': 0.16639787,
@@ -81,7 +81,7 @@ let levelCpMultiplier = {
   '40.5': 0.7931164
 }
 
-function getLevel (cpMultiplier) {
+function getLevel(cpMultiplier) {
   let level
 
   if (cpMultiplier < 0.734) {
@@ -96,33 +96,33 @@ function getLevel (cpMultiplier) {
   return Math.round((level) * 2) / 2.0
 }
 
-function getMaxCostsForPowerup (trainerLevel, powerups, pokemonsCPMultiplier, transform, upgradesPerLevel = 2, allowedLevelsAbovePlayer = 2) {
+function getMaxCostsForPowerup(trainerLevel, powerups, pokemonsCPMultiplier, transform, upgradesPerLevel = 2, allowedLevelsAbovePlayer = 2) {
   // The Maximum Level this pokemon can reach
-  let maxLevelOfPokemon = trainerLevel + allowedLevelsAbovePlayer
+  const maxLevelOfPokemon = trainerLevel + allowedLevelsAbovePlayer
   // The current level of the pokemon based on its `cp_multiplier` property
-  let currentLevelOfPokemon = utils.getLevelFromCpMultiplier(pokemonsCPMultiplier)
+  const currentLevelOfPokemon = utils.getLevelFromCpMultiplier(pokemonsCPMultiplier)
 
   // Number of Upgrades to Maximum
   // So if your current level was 3 and if it could max at 20, that would be 17 Upgrades * 2 Upl - 1 = 33 Upgrades
-  let numberOfUpgrades = ((maxLevelOfPokemon - currentLevelOfPokemon) * upgradesPerLevel) - 1
+  const numberOfUpgrades = ((maxLevelOfPokemon - currentLevelOfPokemon) * upgradesPerLevel) - 1
 
   // initialize our total cost for candies or dust
   let total = transform(levelCpMultiplier[currentLevelOfPokemon], powerups)
   powerups++
 
   // The difference between any two adjacent levels +-
-  let levelSize = .5
+  const levelSize = .5
 
   for (let i = 0; i < numberOfUpgrades; i++) {
     // The number that represents the current upgrade
-    let upgradeNumber = i + 1
+    const upgradeNumber = i + 1
     // The level the pokemon will become if upgraded
     // currentLevelOfPokemon could be 3, if the index is 0, upgradeNumber is 1
     // so we get (1 * .5) + 3
-    let level = (upgradeNumber * levelSize) + currentLevelOfPokemon
+    const level = (upgradeNumber * levelSize) + currentLevelOfPokemon
     // the number of power ups previously applied and the number we are applying
     // so if you used 4, the first index is 0 so 4
-    let currentPowerUps = powerups + i
+    const currentPowerUps = powerups + i
 
     // a candy or dust cost calculated from a levels cp multiplier and the current number of power ups used
     total += transform(levelCpMultiplier[level], currentPowerUps)
@@ -132,7 +132,7 @@ function getMaxCostsForPowerup (trainerLevel, powerups, pokemonsCPMultiplier, tr
 }
 
 let utils = {
-  levelCpMultiplier: levelCpMultiplier,
+  levelCpMultiplier,
   getLevelFromCpMultiplier: (multiplier) => {
     return getLevel(multiplier)
   },
@@ -140,13 +140,13 @@ let utils = {
     return utils.getMaxCpForTrainerLevel(attack, defense, stamina, 40)
   },
   getMaxCpForTrainerLevel: (attack, defense, stamina, trainerLevel) => {
-    let maxPokemonLevel = Math.min(40.5, trainerLevel + 1.5)
-    let maxCpMultiplier = levelCpMultiplier[maxPokemonLevel]
+    const maxPokemonLevel = Math.min(40.5, trainerLevel + 1.5)
+    const maxCpMultiplier = levelCpMultiplier[maxPokemonLevel]
 
     return Math.floor(attack * Math.pow(defense, 0.5) * Math.pow(stamina, 0.5) * Math.pow(maxCpMultiplier, 2.0) / 10)
   },
   getStardustCostsForPowerup: (cpMultiplier, powerups) => {
-    let level = utils.getLevelFromCpMultiplier(cpMultiplier)
+    const level = utils.getLevelFromCpMultiplier(cpMultiplier)
 
     if (level <= 2.5 && powerups <= 5) {
       return 200
@@ -208,7 +208,7 @@ let utils = {
     return 10000
   },
   getCandyCostsForPowerup: (cpMultiplier, powerups) => {
-    let level = utils.getLevelFromCpMultiplier(cpMultiplier)
+    const level = utils.getLevelFromCpMultiplier(cpMultiplier)
 
     if (level <= 10.5 && powerups <= 21) {
       return 1
@@ -237,7 +237,7 @@ let utils = {
     return 15
   },
   getCpAfterPowerup: (cp, cpMultiplier) => {
-    let level = utils.getLevelFromCpMultiplier(cpMultiplier)
+    const level = utils.getLevelFromCpMultiplier(cpMultiplier)
 
     if (level <= 10) {
       return (cp * 0.009426125469) / Math.pow(cpMultiplier, 2)

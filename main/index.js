@@ -1,11 +1,16 @@
-import menuTemplate from './main_menu'
-
-import {app, BrowserWindow, ipcMain, dialog, Menu, shell} from 'electron'
 import fs from 'fs'
 import path from 'path'
 import pogobuf from 'pogobuf'
 import POGOProtos from 'node-pogo-protos'
+import {
+  app,
+  BrowserWindow,
+  ipcMain,
+  dialog,
+  Menu
+} from 'electron'
 
+import menuTemplate from './main_menu'
 import baseStats from '../baseStats'
 import utils from './utils'
 
@@ -18,7 +23,7 @@ if (process.env.NODE_ENV === 'development') {
   require('electron-debug')() // eslint-disable-line global-require
 }
 
-function createWindow () {
+function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 375,
@@ -48,7 +53,7 @@ function createWindow () {
   })
 
   // Create/set the main menu
-  let menu = Menu.buildFromTemplate(menuTemplate)
+  const menu = Menu.buildFromTemplate(menuTemplate)
   Menu.setApplicationMenu(menu)
 
   if (process.env.NODE_ENV === 'development') {
@@ -303,21 +308,21 @@ app.on('ready', async () => {
   // }
 })
 
-function showErrorMessage (message) {
+function showErrorMessage(message) {
   dialog.showMessageBox(mainWindow, {
     type: 'error',
     buttons: ['Ok'],
     title: 'Error',
-    message: message
+    message
   })
 }
 
-function showInformationMessage (message, title) {
+function showInformationMessage(message, title) {
   dialog.showMessageBox(mainWindow, {
     type: 'info',
     buttons: ['OK'],
-    title: title,
-    message: message
+    title,
+    message
   })
 }
 
@@ -356,7 +361,7 @@ ipcMain.on('confirmation-dialog', (event, method) => {
 ipcMain.on('get-account-credentials', (event) => {
   console.log('[+] Attempting to retrieve saved account credentials from ' + accountPath)
 
-  var credentials = {}
+  let credentials = {}
 
   if (!fs.existsSync(accountPath)) {
     console.log("[!] account.json doesn't exist")
@@ -382,10 +387,10 @@ ipcMain.on('get-account-credentials', (event) => {
 ipcMain.on('save-account-credentials', (event, method, username, password) => {
   console.log('[+] Saving account credentials')
 
-  var credentials = JSON.stringify({
-    method: method,
-    username: username,
-    password: password
+  const credentials = JSON.stringify({
+    method,
+    username,
+    password
   })
 
   fs.writeFile(accountPath, credentials, (err) => {
@@ -405,7 +410,7 @@ ipcMain.on('check-and-delete-credentials', (event) => {
 
 ipcMain.on('pokemon-login', (event, method, username, password) => {
   console.log('[+] Attempting to login')
-  var login
+  let login
   if (method === 'google') {
     login = new pogobuf.GoogleLogin()
   } else {
@@ -446,10 +451,10 @@ ipcMain.on('get-player-info', (event) => {
   })
 })
 
-function getPlayersPokemons (event, sync = 'sync') {
+function getPlayersPokemons(event, sync = 'sync') {
   client.getInventory(0).then(inventory => {
     if (!inventory['success']) {
-      let payload = {success: false}
+      const payload = { success: false }
       if (sync !== 'sync') {
         event.sender.send('receive-players-pokemons', payload)
         return
@@ -458,41 +463,41 @@ function getPlayersPokemons (event, sync = 'sync') {
       return
     }
 
-    let player = pogobuf.Utils.splitInventory(inventory)['player']
+    const player = pogobuf.Utils.splitInventory(inventory)['player']
 
-    var candies = pogobuf.Utils.splitInventory(inventory)['candies']
-    var formattedCandies = {}
+    const candies = pogobuf.Utils.splitInventory(inventory)['candies']
+    const formattedCandies = {}
 
     for (let i = 0; i < candies.length; i++) {
-      var candy = candies[i]
-      formattedCandies[ candy.family_id.toString() ] = candy.candy
+      const candy = candies[i]
+      formattedCandies[candy.family_id.toString()] = candy.candy
     }
 
-    var pokemons = pogobuf.Utils.splitInventory(inventory)['pokemon']
-    var reducedPokemonList = []
-    var combinedPokemonList = []
+    const pokemons = pogobuf.Utils.splitInventory(inventory)['pokemon']
+    const reducedPokemonList = []
+    const combinedPokemonList = []
 
     for (let i = 0; i < pokemons.length; i++) {
-      var pokemon = pokemons[i]
+      const pokemon = pokemons[i]
       if (pokemon['cp'] === 0) continue
 
-      var pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
+      let pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
       pokemonName = pokemonName.replace('Female', '♀').replace('Male', '♂')
 
-      let stats = baseStats.pokemon[pokemon['pokemon_id']]
+      const stats = baseStats.pokemon[pokemon['pokemon_id']]
 
-      let totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
+      const totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
 
-      let attack = stats.BaseAttack + pokemon['individual_attack']
-      let defense = stats.BaseDefense + pokemon['individual_defense']
-      let stamina = stats.BaseStamina + pokemon['individual_stamina']
+      const attack = stats.BaseAttack + pokemon['individual_attack']
+      const defense = stats.BaseDefense + pokemon['individual_defense']
+      const stamina = stats.BaseStamina + pokemon['individual_stamina']
 
-      let maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
-      let candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
-      let stardustCost = utils.getStardustCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
-      let candyMaxCost = utils.getMaxCandyCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
-      let stardustMaxCost = utils.getMaxStardustCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
-      let nextCP = utils.getCpAfterPowerup(pokemon['cp'], totalCpMultiplier)
+      const maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
+      const candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
+      const stardustCost = utils.getStardustCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
+      const candyMaxCost = utils.getMaxCandyCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
+      const stardustMaxCost = utils.getMaxStardustCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
+      const nextCP = utils.getCpAfterPowerup(pokemon['cp'], totalCpMultiplier)
 
       reducedPokemonList.push({
         cp: pokemon['cp'],
@@ -522,8 +527,8 @@ function getPlayersPokemons (event, sync = 'sync') {
         nickname: pokemon['nickname'] || pokemonName,
         // Multiply by -1 for sorting
         favorite: pokemon['favorite'] * -1,
-		move_1: pokemon['move_1'],
-		move_2: pokemon['move_2']
+		                                                                                move_1: pokemon['move_1'],
+		                                                                                move_2: pokemon['move_2']
       })
 
       if (combinedPokemonList[pokemonName]) {
@@ -541,7 +546,7 @@ function getPlayersPokemons (event, sync = 'sync') {
     // console.log(reducedPokemonList)
 
     for (let i = 0; i < reducedPokemonList.length; i++) {
-      let pokemon = reducedPokemonList[i]
+      const pokemon = reducedPokemonList[i]
 
       if (combinedPokemonList[pokemon.name].pokemon_id === pokemon.pokemon_id) {
         combinedPokemonList[pokemon.name].pokes.push(pokemon)
@@ -550,12 +555,12 @@ function getPlayersPokemons (event, sync = 'sync') {
 
     // console.log(combinedPokemonList)
 
-    var finalList = []
+    const finalList = []
 
-    for (let key in combinedPokemonList) {
-      let pokemon = combinedPokemonList[key]
-      let candy = formattedCandies[baseStats.pokemon[pokemon.pokemon_id].familyId]
-      var count = pokemon.count
+    for (const key in combinedPokemonList) {
+      const pokemon = combinedPokemonList[key]
+      const candy = formattedCandies[baseStats.pokemon[pokemon.pokemon_id].familyId]
+      const count = pokemon.count
       let evolves = Math.floor(candy / baseStats.pokemon[pokemon.pokemon_id].evolveCost)
 
       if ((evolves === Infinity || isNaN(evolves))) {
@@ -565,14 +570,14 @@ function getPlayersPokemons (event, sync = 'sync') {
       finalList.push({
         pokemon_id: pokemon.pokemon_id.toString(),
         name: pokemon.name,
-        count: count,
-        candy: candy,
+        count,
+        candy,
         evolves: (evolves > count ? count : evolves),
         pokemon: pokemon.pokes
       })
     }
 
-    let payload = {
+    const payload = {
       success: true,
       species: finalList
     }
@@ -594,8 +599,8 @@ ipcMain.on('power-up-pokemon', (event, id, nickname) => {
   client.upgradePokemon(id)
     .then(() => {
       console.log(`[+] Upgraded Pokemon with id: ${id}`)
-      let message = `Upgraded ${nickname} succesfully!`
-      let title = `Power Up ${nickname}`
+      const message = `Upgraded ${nickname} succesfully!`
+      const title = `Power Up ${nickname}`
       // TODO parse the response instead of retrieving all the new pokemon
       // Requires replacing the main parsing with more functional code
       getPlayersPokemons(event, 'async')
