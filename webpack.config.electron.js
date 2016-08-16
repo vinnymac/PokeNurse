@@ -5,7 +5,7 @@ import baseConfig from './webpack.config.base';
 export default merge(baseConfig, {
   devtool: 'source-map',
 
-  entry: ['babel-polyfill', './main.development'],
+  entry: ['babel-polyfill', './main/'],
 
   output: {
     path: __dirname,
@@ -13,11 +13,12 @@ export default merge(baseConfig, {
   },
 
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    }),
+    // TODO PogoBuf breaks uglifier
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compressor: {
+    //     warnings: false
+    //   }
+    // }),
     new webpack.BannerPlugin(
       'require("source-map-support").install();',
       { raw: true, entryOnly: false }
@@ -39,5 +40,13 @@ export default merge(baseConfig, {
   externals: [
     'font-awesome',
     'source-map-support'
-  ]
+  ],
+
+  noParse: /json-schema\/lib\/validate\.js/
+
+  // resolve: {
+  //   alias: {
+  //     'bluebird-retry': 'bluebird-retry/index.js'
+  //   }
+  // }
 });
