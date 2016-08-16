@@ -3,40 +3,40 @@ import PokemonTable from './Pokemon'
 
 const Species = React.createClass({
 
-  getInitialState () {
-    let {
+  getInitialState() {
+    const {
       monsters
     } = this.props
 
-    let species = {}
+    const species = {}
 
-    let sortBy = 'cp'
-    let sortDir = 'DESC'
+    const sortBy = 'cp'
+    const sortDir = 'DESC'
 
-    for (let specie of monsters.species) {
-      species[ String(specie.pokemon_id) ] = {
+    for (const specie of monsters.species) {
+      species[String(specie.pokemon_id)] = {
         pokemonState: this.getInitialPokemonState(specie),
         checkAll: false,
         collapsed: true,
-        sortBy: sortBy,
-        sortDir: sortDir
+        sortBy,
+        sortDir
       }
     }
 
     return {
-      species: species
+      species
     }
   },
 
-  render () {
-    let {
+  render() {
+    const {
       monsters
     } = this.props
 
     return (
-      <div className='row'>
-        <div className='col-md-12'>
-          <table className='table table-condensed table-hover display no-footer'>
+      <div className="row">
+        <div className="col-md-12">
+          <table className="table table-condensed table-hover display no-footer">
             <thead>
             {this.getSpeciesHeader()}
             </thead>
@@ -49,8 +49,8 @@ const Species = React.createClass({
     )
   },
 
-  getSpeciesHeader () {
-    let {
+  getSpeciesHeader() {
+    const {
       sortSpeciesBy
     } = this.props
 
@@ -58,11 +58,11 @@ const Species = React.createClass({
       <th></th>
       <th
         className={this.getSortDirectionClassName('pokemon_id')}
-        tabIndex='0'
-        rowSpan='1'
-        colSpan='1'
-        aria-controls='pokemon-data'
-        aria-label='Pokédex #: activate to sort column ascending'
+        tabIndex="0"
+        rowSpan="1"
+        colSpan="1"
+        aria-controls="pokemon-data"
+        aria-label="Pokédex #: activate to sort column ascending"
         onClick={this._handleSortSpecies.bind(this, 'pokemon_id')}
       >
         Pokédex #
@@ -72,44 +72,44 @@ const Species = React.createClass({
       </th>
       <th
         className={this.getSortDirectionClassName('name')}
-        tabIndex='0'
-        rowSpan='1'
-        colSpan='1'
-        aria-controls='pokemon-data'
-        aria-label='Name: activate to sort column ascending'
+        tabIndex="0"
+        rowSpan="1"
+        colSpan="1"
+        aria-controls="pokemon-data"
+        aria-label="Name: activate to sort column ascending"
         onClick={this._handleSortSpecies.bind(this, 'name')}
       >
         Name
       </th>
       <th
         className={this.getSortDirectionClassName('count')}
-        tabIndex='0'
-        rowSpan='1'
-        colSpan='1'
-        aria-controls='pokemon-data'
-        aria-label='Count: activate to sort column ascending'
+        tabIndex="0"
+        rowSpan="1"
+        colSpan="1"
+        aria-controls="pokemon-data"
+        aria-label="Count: activate to sort column ascending"
         onClick={this._handleSortSpecies.bind(this, 'count')}
       >
         Count
       </th>
       <th
         className={this.getSortDirectionClassName('candy')}
-        tabIndex='0'
-        rowSpan='1'
-        colSpan='1'
-        aria-controls='pokemon-data'
-        aria-label='Candy: activate to sort column ascending'
+        tabIndex="0"
+        rowSpan="1"
+        colSpan="1"
+        aria-controls="pokemon-data"
+        aria-label="Candy: activate to sort column ascending"
         onClick={this._handleSortSpecies.bind(this, 'candy')}
       >
         Candy
       </th>
       <th
         className={this.getSortDirectionClassName('evolves')}
-        tabIndex='0'
-        rowSpan='1'
-        colSpan='1'
-        aria-controls='pokemon-data'
-        aria-label='Evolves: activate to sort column ascending'
+        tabIndex="0"
+        rowSpan="1"
+        colSpan="1"
+        aria-controls="pokemon-data"
+        aria-label="Evolves: activate to sort column ascending"
         onClick={this._handleSortSpecies.bind(this, 'evolves')}
       >
         Evolves
@@ -117,16 +117,15 @@ const Species = React.createClass({
     </tr>)
   },
 
-  getSpeciesBody (monsterSpecies) {
-
-    let {
+  getSpeciesBody(monsterSpecies) {
+    const {
       filterBy
     } = this.props
 
-    let speciesState = this.state.species
+    const speciesState = this.state.species
 
     return monsterSpecies.map((specie, i) => {
-      if (String(specie[ 'name' ]).toLowerCase().indexOf(filterBy) === -1) {
+      if (String(specie['name']).toLowerCase().indexOf(filterBy) === -1) {
         return null
       }
 
@@ -136,7 +135,7 @@ const Species = React.createClass({
         checkAll,
         sortBy,
         sortDir
-      } = speciesState[ specie.pokemon_id ]
+      } = speciesState[specie.pokemon_id]
 
       return ([
         <tr
@@ -144,13 +143,13 @@ const Species = React.createClass({
           key={'header' + specie.pokemon_id}
         >
           <td
-            className='details-control'
+            className="details-control"
             onClick={this.handleCollapse.bind(this, specie.pokemon_id)}
           />
           <td>{specie.pokemon_id}</td>
-          <td className='sprites'>
+          <td className="sprites">
             <img
-              className='pokemon-avatar-sprite' src={`./imgs/pokemonSprites/${specie.pokemon_id || 0}.png`}
+              className="pokemon-avatar-sprite" src={`./imgs/pokemonSprites/${specie.pokemon_id || 0}.png`}
             />
           </td>
           <td>{specie.name}</td>
@@ -162,7 +161,7 @@ const Species = React.createClass({
     })
   },
 
-  getPokemonTable (species, index, sortBy, sortDir, collapsed, pokemonState, checkAll) {
+  getPokemonTable(species, index, sortBy, sortDir, collapsed, pokemonState, checkAll) {
     if (collapsed) return null
 
     return (<PokemonTable
@@ -179,7 +178,7 @@ const Species = React.createClass({
     />)
   },
 
-  handleCollapse (id, e) {
+  handleCollapse(id, e) {
     this.setState({
       species: this.updateSpeciesState(id, (speciesState) => {
         return {
@@ -190,16 +189,16 @@ const Species = React.createClass({
   },
 
 
-  handleCheckAll (species, e) {
-    let id = species.pokemon_id
+  handleCheckAll(species, e) {
+    const id = species.pokemon_id
 
     this.setState({
       species: this.updateSpeciesState(id, (speciesState) => {
-        let newCheckAllState = !speciesState.checkAll
-        let newPokemonState = {}
+        const newCheckAllState = !speciesState.checkAll
+        const newPokemonState = {}
 
-        for (let id in speciesState.pokemonState) {
-          newPokemonState[id] = Object.assign({}, speciesState.pokemonState[id], {check: newCheckAllState})
+        for (const id in speciesState.pokemonState) {
+          newPokemonState[id] = Object.assign({}, speciesState.pokemonState[id], { check: newCheckAllState })
         }
 
         return {
@@ -210,7 +209,7 @@ const Species = React.createClass({
     })
   },
 
-  handleCheckedChange (pokemon, e) {
+  handleCheckedChange(pokemon, e) {
     this.setState({
       species: this.updateSpeciesState(String(pokemon.pokemon_id), (speciesState) => {
         return {
@@ -224,19 +223,19 @@ const Species = React.createClass({
     })
   },
 
-  getInitialPokemonState (specie) {
-    let pokemonState = {}
+  getInitialPokemonState(specie) {
+    const pokemonState = {}
     specie.pokemon.forEach((p, i) => {
       pokemonState[p.id] = { check: false }
     })
     return pokemonState
   },
 
-  _handleSortSpecies (sortBy, e) {
+  _handleSortSpecies(sortBy, e) {
     this.props.sortSpeciesBy(sortBy)
   },
 
-  getSortDirectionClassName (key) {
+  getSortDirectionClassName(key) {
     let {
       sortBy,
       sortDir
@@ -249,26 +248,26 @@ const Species = React.createClass({
     }
   },
 
-  updateSpeciesState (id, updater) {
-    let newSpecieState = {}
-    let existingSpecieState = this.state.species[ String(id) ]
+  updateSpeciesState(id, updater) {
+    const newSpecieState = {}
+    const existingSpecieState = this.state.species[String(id)]
 
-    newSpecieState[ String(id) ] = Object.assign({}, existingSpecieState, updater(existingSpecieState))
+    newSpecieState[String(id)] = Object.assign({}, existingSpecieState, updater(existingSpecieState))
 
     return Object.assign({}, this.state.species, newSpecieState)
   },
 
-  updatePokemonState (speciesState, pid, updater) {
-    let existingPokemonByIdState = speciesState.pokemonState[ String(pid) ]
+  updatePokemonState(speciesState, pid, updater) {
+    const existingPokemonByIdState = speciesState.pokemonState[String(pid)]
 
-    let newPokemonByIdState = {}
-    newPokemonByIdState[ String(pid) ] = Object.assign({}, existingPokemonByIdState, updater(existingPokemonByIdState))
+    const newPokemonByIdState = {}
+    newPokemonByIdState[String(pid)] = Object.assign({}, existingPokemonByIdState, updater(existingPokemonByIdState))
 
     return Object.assign({}, speciesState.pokemonState, newPokemonByIdState)
   },
 
-  sortPokemonBy (newSortBy, speciesIndex) {
-    let pokemonId = this.props.monsters.species[speciesIndex].pokemon_id
+  sortPokemonBy(newSortBy, speciesIndex) {
+    const pokemonId = this.props.monsters.species[speciesIndex].pokemon_id
 
     let {
       sortBy,
@@ -299,13 +298,13 @@ const Species = React.createClass({
     })
   },
 
-  getSortState (specie) {
+  getSortState(specie) {
     let {
       sortBy,
       sortDir
     } = this.state.species[specie.pokemon_id]
 
-    return {sortBy, sortDir}
+    return { sortBy, sortDir }
   }
 
 })

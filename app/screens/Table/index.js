@@ -6,7 +6,7 @@ import SpeciesTable from './components/Species'
 
 import { Immutable, Organize } from '../../utils'
 
-let COLUMN_SORT_AS_NUM = {
+const COLUMN_SORT_AS_NUM = {
   nickname: false,
   iv: true,
   cp: true,
@@ -30,14 +30,14 @@ let running = false
 
 // Helper Methods
 
-function removeAllEventListeners () {
+function removeAllEventListeners() {
   $('td a.nickname').off('click')
   $('.power-up').off('click')
   $('.favorite-button').off('click')
   $('#pokemon-data tbody').find('td.details-control').off('click')
 }
 
-function runningCheck () {
+function runningCheck() {
   if (running) {
     ipc.send('error-message', 'An action is already running')
     return true
@@ -45,8 +45,8 @@ function runningCheck () {
   return false
 }
 
-function countDown (method, index, statusH, callback) {
-  var interval = setInterval(() => {
+function countDown(method, index, statusH, callback) {
+  const interval = setInterval(() => {
     statusH.innerHTML = method + ' / ' + index + ' second(s) left'
     index--
     if (index <= 0) {
@@ -58,15 +58,15 @@ function countDown (method, index, statusH, callback) {
   }, 1000)
 }
 
-function randomDelay (min, max) {
+function randomDelay(min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
-function format (d) {
+function format(d) {
   // `d` is the original data object for the row
   let html = ''
 
-  let notSearchableAndOrderable = 'data-orderable="' + false + '" data-searchable="' + false + '"'
+  const notSearchableAndOrderable = 'data-orderable="' + false + '" data-searchable="' + false + '"'
 
   html += '<table class="table table-condensed table-hover" id="' + d.pokemon_id + '" style="width:100%;">'
   html += '<thead>'
@@ -82,8 +82,8 @@ function format (d) {
   html += '</tr>'
   html += '</thead>'
   html += '<tbody>'
-  for (var i = 0; i < d.pokemon.length; i++) {
-    var poke = d.pokemon[ i ]
+  for (let i = 0; i < d.pokemon.length; i++) {
+    const poke = d.pokemon[i]
     html += '<tr>'
     html += '<td>' + poke.td_checkbox + '</td>'
     html += '<td data-order="' + poke.favorite + '">' + poke.td_favorite + '</td>'
@@ -100,17 +100,17 @@ function format (d) {
   return html
 }
 
-function getTooltipAttributes (tip) {
+function getTooltipAttributes(tip) {
   return `data-toggle="tooltip" data-placement="right" data-html=true title="${tip}"`
 }
 
-function prepDisplay (d) {
-  for (var i = 0; i < d.pokemon.length; i++) {
-    var poke = d.pokemon[ i ]
-    var checkBox = '<input type="checkbox" value="' + poke.id.toString() + '"'
-    var favorite = 'glyphicon glyphicon-star-empty'
-    var pokeiv = poke['iv'].toFixed(1) + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
-    var favoriteBool = poke['favorite'] ? 'true' : 'false'
+function prepDisplay(d) {
+  for (let i = 0; i < d.pokemon.length; i++) {
+    const poke = d.pokemon[i]
+    let checkBox = '<input type="checkbox" value="' + poke.id.toString() + '"'
+    let favorite = 'glyphicon glyphicon-star-empty'
+    const pokeiv = poke['iv'].toFixed(1) + '% (' + poke['attack'] + '/' + poke['defense'] + '/' + poke['stamina'] + ')'
+    const favoriteBool = poke['favorite'] ? 'true' : 'false'
 
     if (poke.deployed || poke.favorite) {
       checkBox += ' disabled'
@@ -122,10 +122,10 @@ function prepDisplay (d) {
     poke.td_checkbox = checkBox + '>'
 
     if (poke.cp === poke.max_cp) {
-      let tip = `Max CP ${poke.max_cp}`
+      const tip = `Max CP ${poke.max_cp}`
       poke.td_powerup = '<span ' + getTooltipAttributes(tip) + '>P↑</span>'
     } else {
-      let tip = `
+      const tip = `
       Stardust Cost = ${poke.stardust_cost} <br>
       Candy Cost = ${poke.candy_cost} <br>
       CP After ≅ ${Math.round(poke.next_cp) + poke.cp} <br>
@@ -146,8 +146,8 @@ function prepDisplay (d) {
   return d.pokemon
 }
 
-function addPowerUpButtonEvent () {
-  let buttons = document.querySelectorAll('.power-up')
+function addPowerUpButtonEvent() {
+  const buttons = document.querySelectorAll('.power-up')
 
   buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
@@ -162,27 +162,27 @@ function addPowerUpButtonEvent () {
   $('[data-toggle="tooltip"]').tooltip()
 }
 
-function addFavoriteButtonEvent () {
-  var buttons = document.querySelectorAll('.favorite-button')
+function addFavoriteButtonEvent() {
+  const buttons = document.querySelectorAll('.favorite-button')
   buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
-      var setToFavorite = button.dataset.pokemonFavorited === 'false'
+      const setToFavorite = button.dataset.pokemonFavorited === 'false'
       ipc.send('favorite-pokemon', button.dataset.pokemonId, setToFavorite)
       updatePokemonById(button.dataset.pokemonId, 'favorite', setToFavorite)
-      var newClass = setToFavorite ? 'favorite glyphicon glyphicon-star favorite-yellow' : 'favorite glyphicon glyphicon-star-empty'
+      const newClass = setToFavorite ? 'favorite glyphicon glyphicon-star favorite-yellow' : 'favorite glyphicon glyphicon-star-empty'
       button.className = newClass
       button.dataset.pokemonFavorited = setToFavorite.toString()
     })
   })
 }
 
-function updatePokemonById (id, key, value) {
+function updatePokemonById(id, key, value) {
   let updated = false
 
   monsters.species.forEach(species => {
     species.pokemon.forEach(pokemonById => {
-      if (pokemonById[ 'id' ] === id) {
-        pokemonById[ key ] = value
+      if (pokemonById['id'] === id) {
+        pokemonById[key] = value
         updated = true
       }
     })
@@ -191,12 +191,12 @@ function updatePokemonById (id, key, value) {
   return updated
 }
 
-function findPokemonMapById (id) {
+function findPokemonMapById(id) {
   let pokemonMap = null
 
   monsters.species.forEach(species => {
-    let pokemon = species.pokemon.find(pokemonById => {
-      return pokemonById[ 'id' ] === id
+    const pokemon = species.pokemon.find(pokemonById => {
+      return pokemonById['id'] === id
     })
 
     if (pokemon) pokemonMap = { species, pokemon }
@@ -211,26 +211,26 @@ const Table = React.createClass({
     monsterUpdater: React.PropTypes.func.isRequired
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       monsterUpdater: this.updateMonster
     }
   },
 
-  getInitialState () {
-    let monsters = ipc.sendSync('get-players-pokemons')
-    let sortBy = 'pokemon_id'
-    let sortDir = 'ASC'
+  getInitialState() {
+    const monsters = ipc.sendSync('get-players-pokemons')
+    const sortBy = 'pokemon_id'
+    const sortDir = 'ASC'
 
     return {
       monsters: this.getNewMonsters(monsters, sortBy, sortDir),
       filterBy: '',
-      sortBy: sortBy,
-      sortDir: sortDir
+      sortBy,
+      sortDir
     }
   },
 
-  componentDidMount () {
+  componentDidMount() {
     document.title = 'PokéNurse • Home'
 
     ipc.on('receive-players-pokemons', (event, data) => {
@@ -240,9 +240,9 @@ const Table = React.createClass({
     const header = document.getElementById('profile-header')
     const usernameH = document.getElementById('username-h')
 
-    var playerInfo = ipc.sendSync('get-player-info')
+    const playerInfo = ipc.sendSync('get-player-info')
     if (playerInfo.success) {
-      switch (playerInfo.player_data[ 'team' ]) {
+      switch (playerInfo.player_data['team']) {
         case 1:
           header.style.backgroundImage = 'url("./imgs/mystic.jpg")'
           break
@@ -254,7 +254,7 @@ const Table = React.createClass({
           break
       }
 
-      usernameH.innerHTML = playerInfo.player_data[ 'username' ]
+      usernameH.innerHTML = playerInfo.player_data['username']
 
       // this._refreshPokemonList()
     } else {
@@ -264,7 +264,7 @@ const Table = React.createClass({
     ipc.send('table-did-mount')
   },
 
-  render () {
+  render() {
     // <!--<h5 id="pokestorage-h"></h5>
     // <h5 id="bagstorage-h"></h5>-->
     let {
@@ -276,47 +276,47 @@ const Table = React.createClass({
 
     return (
       <div>
-        <header className='header' id='profile-header'>
-          <p id='username-h'></p>
-          <p>Status: <span id='status-h' ref='statusH'>Idle</span></p>
+        <header className="header" id="profile-header">
+          <p id="username-h"></p>
+          <p>Status: <span id="status-h" ref="statusH">Idle</span></p>
         </header>
 
-        <div className='container'>
+        <div className="container">
           <h1>
             <span>Pokémon</span>
             <span
-              className='glyphicon glyphicon-refresh'
-              id='refresh-btn'
+              className="glyphicon glyphicon-refresh"
+              id="refresh-btn"
               onClick={this._handleRefresh}
             />
 
-            <span className='pull-right'>
+            <span className="pull-right">
               <input
-                type='button'
-                className='btn btn-warning'
-                id='transfer-btn'
-                value='Transfer selected'
+                type="button"
+                className="btn btn-warning"
+                id="transfer-btn"
+                value="Transfer selected"
                 onClick={this._handleTransfer}
               />
               {" "}
               <input
-                type='button'
-                className='btn btn-danger'
-                id='evolve-btn'
-                value='Evolve selected'
+                type="button"
+                className="btn btn-danger"
+                id="evolve-btn"
+                value="Evolve selected"
                 onClick={this._handleEvolve}
               />
             </span>
           </h1>
 
           <div className="row col-md-12">
-            <div className='form-group input-group'>
-              <span className='input-group-addon'><span className='glyphicon glyphicon-search' aria-hidden='true'></span></span>
+            <div className="form-group input-group">
+              <span className="input-group-addon"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></span>
               <input
-                type='text'
-                className='form-control'
-                placeholder='Search'
-                ref='search'
+                type="text"
+                className="form-control"
+                placeholder="Search"
+                ref="search"
                 onChange={this._onFilterChange}
               />
             </div>
@@ -335,18 +335,18 @@ const Table = React.createClass({
         </div>
 
         <div
-          className='modal fade'
-          id='detailModal'
-          tabIndex='-1'
-          role='dialog'
-          aria-labelledby='detailModalLabel'
-          ref='detailModal'
+          className="modal fade"
+          id="detailModal"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="detailModalLabel"
+          ref="detailModal"
         ></div>
       </div>
     )
   },
 
-  updateMonster (pokemon, index, speciesIndex) {
+  updateMonster(pokemon, index, speciesIndex) {
     this.updateSpecies(speciesIndex, (speciesAtIndex) => {
       return { // make sure we sort the new pokemon index now that we updated it
         pokemon: this.getSortedPokemon(Object.assign({}, speciesAtIndex, {
@@ -354,14 +354,14 @@ const Table = React.createClass({
         }))
       }
     })
-    console.log("UPDATING monsters with", pokemon)
+    console.log('UPDATING monsters with', pokemon)
   },
 
-  updateSpecies (index, updater) {
-    let speciesAtIndex = this.state.monsters.species[index]
-    let updatedSpecies = Object.assign({}, speciesAtIndex, updater(speciesAtIndex))
+  updateSpecies(index, updater) {
+    const speciesAtIndex = this.state.monsters.species[index]
+    const updatedSpecies = Object.assign({}, speciesAtIndex, updater(speciesAtIndex))
 
-    let updatedMonsters = Object.assign({}, this.state.monsters, {
+    const updatedMonsters = Object.assign({}, this.state.monsters, {
       species: Immutable.array.set(this.state.monsters.species, index, updatedSpecies)
     })
 
@@ -370,20 +370,20 @@ const Table = React.createClass({
     })
   },
 
-  _onFilterChange (event) {
+  _onFilterChange(event) {
     this.setState({
       filterBy: String(event.target.value).toLowerCase()
     })
   },
 
-  _handleRefresh () {
+  _handleRefresh() {
     // this._refreshPokemonList()
   },
 
-  _handleTransfer () {
+  _handleTransfer() {
     if (runningCheck()) return
 
-    var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall):not(:disabled)')
+    const selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall):not(:disabled)')
 
     if (ipc.sendSync('confirmation-dialog', 'transfer').success) {
       running = true
@@ -394,10 +394,10 @@ const Table = React.createClass({
     }
   },
 
-  _handleEvolve () {
+  _handleEvolve() {
     if (runningCheck()) return
 
-    var selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall):not(:disabled)')
+    const selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall):not(:disabled)')
 
     if (ipc.sendSync('confirmation-dialog', 'evolve').success) {
       running = true
@@ -408,8 +408,8 @@ const Table = React.createClass({
     }
   },
 
-  _countDown (method, index) {
-    let { statusH } = this.refs
+  _countDown(method, index) {
+    const { statusH } = this.refs
 
     countDown(method, index, statusH, () => {
       ipc.send('information-dialog', 'Complete!', `Finished ${method}`)
@@ -417,15 +417,15 @@ const Table = React.createClass({
     })
   },
 
-  _refreshPokemonList () {
+  _refreshPokemonList() {
     removeAllEventListeners()
     $('#pokemon-data').DataTable().destroy()
     monsters = ipc.sendSync('get-players-pokemons')
     if (monsters.success) this._dataTables(monsters.species)
   },
 
-  _dataTables (pokemon) {
-    var table = $('#pokemon-data').DataTable({
+  _dataTables(pokemon) {
+    const table = $('#pokemon-data').DataTable({
       data: pokemon,
       className: 'details-control',
       bPaginate: false,
@@ -451,15 +451,15 @@ const Table = React.createClass({
         { data: 'candy' },
         { data: 'evolves' }
       ],
-      order: [ [ 1, 'asc' ] ]
+      order: [[1, 'asc']]
     })
 
-    let _this = this
+    const _this = this
 
     // Add event listener for opening and closing details
     $('#pokemon-data tbody').on('click', 'td.details-control', function () {
-      var tr = $(this).closest('tr')
-      var row = table.row(tr)
+      const tr = $(this).closest('tr')
+      const row = table.row(tr)
 
       if (row.child.isShown()) {
         // This row is already open - close it
@@ -468,7 +468,7 @@ const Table = React.createClass({
         tr.removeClass('shown')
       } else {
         // Open this row
-        let data = row.data()
+        const data = row.data()
 
         $(`#${data.pokemon_id}`).DataTable().destroy()
         prepDisplay(data)
@@ -479,8 +479,8 @@ const Table = React.createClass({
     })
   },
 
-  _subDataTable (d) {
-    var table = $('#' + d.pokemon_id).DataTable({
+  _subDataTable(d) {
+    const table = $('#' + d.pokemon_id).DataTable({
       bPaginate: false,
       info: false,
       bFilter: false,
@@ -509,8 +509,8 @@ const Table = React.createClass({
     addPowerUpButtonEvent()
   },
 
-  _showModal (id, event) {
-    let pokemonMap = findPokemonMapById(id)
+  _showModal(id, event) {
+    const pokemonMap = findPokemonMapById(id)
 
     if (!pokemonMap) {
       console.error('No Pokemon Found to Display Detail')
@@ -520,8 +520,8 @@ const Table = React.createClass({
     renderModal($(this.refs.detailModal), pokemonMap)
   },
 
-  getSortedSpecies (monsters, sortBy, sortDir) {
-    let species = monsters.species.slice()
+  getSortedSpecies(monsters, sortBy, sortDir) {
+    const species = monsters.species.slice()
 
     if (COLUMN_SORT_AS_NUM[sortBy]) {
       Organize.sortAsNumber(species, sortBy, sortDir)
@@ -532,13 +532,13 @@ const Table = React.createClass({
     return species
   },
 
-  getSortedPokemon (specie, sortBy, sortDir) {
-    let pokemon = specie.pokemon.slice()
+  getSortedPokemon(specie, sortBy, sortDir) {
+    const pokemon = specie.pokemon.slice()
 
     if (!sortBy && !sortDir) {
       // Hacky way of retrieving the current sort state of species.jsx
       if (this.refs.speciesTable) {
-        let sortState = this.refs.speciesTable.getSortState(specie)
+        const sortState = this.refs.speciesTable.getSortState(specie)
         sortBy = sortState.sortBy
         sortDir = sortState.sortDir
       } else {
@@ -556,7 +556,7 @@ const Table = React.createClass({
     return pokemon
   },
 
-  sortSpeciesBy (newSortBy) {
+  sortSpeciesBy(newSortBy) {
     let {
       sortBy,
       sortDir
@@ -570,19 +570,19 @@ const Table = React.createClass({
       newSortDir = 'DESC'
     }
 
-    let monsters = Object.assign({}, this.state.monsters, {
+    const monsters = Object.assign({}, this.state.monsters, {
       species: this.getSortedSpecies(this.state.monsters, newSortBy, newSortDir)
     })
 
     this.setState({
       sortDir: newSortDir,
       sortBy: newSortBy,
-      monsters: monsters
+      monsters
     })
   },
 
-  getNewMonsters (monsters, sortBy, sortDir) {
-    let sortedSpecies = this.getSortedSpecies(monsters, sortBy, sortDir)
+  getNewMonsters(monsters, sortBy, sortDir) {
+    const sortedSpecies = this.getSortedSpecies(monsters, sortBy, sortDir)
 
     // Mutates, but it is okay because we sliced/sorted above ^
     sortedSpecies.forEach(specie => {

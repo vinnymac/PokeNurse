@@ -11,104 +11,104 @@ const Pokemon = React.createClass({
     monsterUpdater: React.PropTypes.func.isRequired
   },
 
-  checkRow (pokemon, e) {
+  checkRow(pokemon, e) {
     this.props.onCheckedChange(pokemon)
   },
 
-  checkAll (species) {
+  checkAll(species) {
     this.props.onCheckAll(species)
   },
 
-  componentDidMount () {
+  componentDidMount() {
     $(this.refs.tBody).find('[data-toggle="tooltip"]').tooltip()
   },
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     $(this.refs.tBody).find('[data-toggle="tooltip"]').tooltip()
   },
 
-  render () {
+  render() {
     let {
       species,
       checkAll
     } = this.props
 
     return (
-      <tr className='child' key={'sub' + species.pokemon_id}>
-        <td colSpan='7'>
-          <table className='table table-condensed table-hover table-striped'>
+      <tr className="child" key={'sub' + species.pokemon_id}>
+        <td colSpan="7">
+          <table className="table table-condensed table-hover table-striped">
             <thead>
             <tr>
-              <th width='5%'>
+              <th width="5%">
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   checked={checkAll}
                   onChange={this.checkAll.bind(this, species)}
                 />
               </th>
               <th
-                width='5%'
+                width="5%"
                 className={this.getSortDirectionClassName('favorite')}
-                tabIndex='0'
-                rowSpan='1'
-                colSpan='1'
-                aria-controls='pokemon-data'
-                aria-label='Favorite: activate to sort column ascending'
+                tabIndex="0"
+                rowSpan="1"
+                colSpan="1"
+                aria-controls="pokemon-data"
+                aria-label="Favorite: activate to sort column ascending"
                 onClick={this._handleSortPokemon.bind(this, 'favorite')}
               >
-                <span className='glyphicon glyphicon-star favorite-yellow'></span>
+                <span className="glyphicon glyphicon-star favorite-yellow"></span>
               </th>
               <th>
                 P↑
               </th>
               <th
-                width='15%'
+                width="15%"
                 className={this.getSortDirectionClassName('name')}
-                tabIndex='0'
-                rowSpan='1'
-                colSpan='1'
-                aria-controls='pokemon-data'
-                aria-label='Name: activate to sort column ascending'
+                tabIndex="0"
+                rowSpan="1"
+                colSpan="1"
+                aria-controls="pokemon-data"
+                aria-label="Name: activate to sort column ascending"
                 onClick={this._handleSortPokemon.bind(this, 'name')}
               >
                 Name
               </th>
               <th
                 className={this.getSortDirectionClassName('nickname')}
-                tabIndex='0'
-                rowSpan='1'
-                colSpan='1'
-                aria-controls='pokemon-data'
-                aria-label='Nickname: activate to sort column ascending'
+                tabIndex="0"
+                rowSpan="1"
+                colSpan="1"
+                aria-controls="pokemon-data"
+                aria-label="Nickname: activate to sort column ascending"
                 onClick={this._handleSortPokemon.bind(this, 'nickname')}
               >
                 Nickname
               </th>
               <th
                 className={this.getSortDirectionClassName('cp')}
-                tabIndex='0'
-                rowSpan='1'
-                colSpan='1'
-                aria-controls='pokemon-data'
-                aria-label='CP: activate to sort column ascending'
+                tabIndex="0"
+                rowSpan="1"
+                colSpan="1"
+                aria-controls="pokemon-data"
+                aria-label="CP: activate to sort column ascending"
                 onClick={this._handleSortPokemon.bind(this, 'cp')}
               >
                 CP
               </th>
               <th
                 className={this.getSortDirectionClassName('iv')}
-                tabIndex='0'
-                rowSpan='1'
-                colSpan='1'
-                aria-controls='pokemon-data'
-                aria-label='IV: activate to sort column ascending'
+                tabIndex="0"
+                rowSpan="1"
+                colSpan="1"
+                aria-controls="pokemon-data"
+                aria-label="IV: activate to sort column ascending"
                 onClick={this._handleSortPokemon.bind(this, 'iv')}
               >
                 IV
               </th>
             </tr>
             </thead>
-            <tbody ref='tBody'>
+            <tbody ref="tBody">
             {this.getPokemonComponents(species)}
             </tbody>
           </table>
@@ -117,27 +117,27 @@ const Pokemon = React.createClass({
     )
   },
 
-  getPokemonComponents (species) {
+  getPokemonComponents(species) {
     let {
       speciesIndex,
       pokemonState
     } = this.props
 
     return species.pokemon.map((pokemon, i) => {
-      let favorite = pokemon.favorite ? 'glyphicon glyphicon-star favorite-yellow' : 'glyphicon glyphicon-star-empty'
-      let pokeiv = pokemon[ 'iv' ] + '% (' + pokemon[ 'attack' ] + '/' + pokemon[ 'defense' ] + '/' + pokemon[ 'stamina' ] + ')'
+      const favorite = pokemon.favorite ? 'glyphicon glyphicon-star favorite-yellow' : 'glyphicon glyphicon-star-empty'
+      let pokeiv = pokemon['iv'] + '% (' + pokemon['attack'] + '/' + pokemon['defense'] + '/' + pokemon['stamina'] + ')'
       let powerupComponent
 
       if (pokemon.cp === pokemon.max_cp) {
         let tip = `Max CP ${pokemon.max_cp}`
-        powerupComponent = <span
-          data-toggle='tooltip'
-          data-placement='right'
-          data-html='true'
+        powerupComponent = (<span
+          data-toggle="tooltip"
+          data-placement="right"
+          data-html="true"
           title={tip}
         >
           P↑
-        </span>
+        </span>)
       } else {
         let tip = `
         Stardust Cost = ${pokemon.stardust_cost} <br>
@@ -146,35 +146,35 @@ const Pokemon = React.createClass({
         Max Stardust = ${pokemon.stardust_max_cost} <br>
         Max Candy = ${pokemon.candy_max_cost}
         `
-        powerupComponent = <a
-          id='powerUp'
+        powerupComponent = (<a
+          id="powerUp"
           data-pokemon-id={pokemon.id}
           data-nickname={pokemon.nickname}
-          data-toggle='tooltip'
-          data-placement='right'
-          data-html='true'
+          data-toggle="tooltip"
+          data-placement="right"
+          data-html="true"
           title={tip}
         >
           P↑
-        </a>
+        </a>)
       }
 
       return (
         <tr key={pokemon.id}>
           <td>
             <input
-              type='checkbox'
+              type="checkbox"
               value={String(pokemon.id)}
               key={pokemon.id}
               disabled={pokemon.deployed || pokemon.favorite}
-              checked={pokemonState[ String(pokemon.id) ].check && !pokemon.favorite}
-              onChange={this.checkRow.bind(this, pokemon )}
+              checked={pokemonState[String(pokemon.id)].check && !pokemon.favorite}
+              onChange={this.checkRow.bind(this, pokemon)}
             />
           </td>
           <td>
             <span
               className={`favorite ${favorite}`}
-              id='favoriteBtn'
+              id="favoriteBtn"
               data-pokemon-id={pokemon.id}
               onClick={this.handleClickFavorite.bind(this, pokemon, i, speciesIndex)}
             />
@@ -187,7 +187,7 @@ const Pokemon = React.createClass({
           </td>
           <td onClick={this.handleClickNickname.bind(this, pokemon, species)}>
             <a
-              className='nickname'
+              className="nickname"
               data-pokemon-id={pokemon.id}
             >
               {pokemon.nickname}
@@ -203,24 +203,24 @@ const Pokemon = React.createClass({
     })
   },
 
-  handleClickPowerup (pokemon, e) {
+  handleClickPowerup(pokemon, e) {
     if (ipcRenderer.sendSync('confirmation-dialog', 'power up').success) {
       ipcRenderer.send('power-up-pokemon', pokemon.id, pokemon.nickname)
       // TODO Calculate and update the pokemon immediately with estimates
     }
   },
 
-  handleClickFavorite (pokemon, index, speciesIndex, e) {
+  handleClickFavorite(pokemon, index, speciesIndex, e) {
     ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
-    let updatedPokemon = Object.assign(pokemon, { favorite: !pokemon.favorite ? -1 : -0 })
+    const updatedPokemon = Object.assign(pokemon, { favorite: !pokemon.favorite ? -1 : -0 })
     this.context.monsterUpdater(updatedPokemon, index, speciesIndex)
   },
 
-  handleClickNickname (pokemon, species, e) {
+  handleClickNickname(pokemon, species, e) {
     renderModal($(document.getElementById('detailModal')), pokemon, species)
   },
 
-  _handleSortPokemon (sortBy, e) {
+  _handleSortPokemon(sortBy, e) {
     let {
       speciesIndex,
       sortPokemonBy
@@ -229,7 +229,7 @@ const Pokemon = React.createClass({
     sortPokemonBy(sortBy, speciesIndex)
   },
 
-  getSortDirectionClassName (key) {
+  getSortDirectionClassName(key) {
     let {
       sortBy,
       sortDir
@@ -241,7 +241,6 @@ const Pokemon = React.createClass({
       return 'sorting'
     }
   }
-
 
 
 })

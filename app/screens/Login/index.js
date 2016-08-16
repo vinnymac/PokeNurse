@@ -1,17 +1,17 @@
 import React from 'react'
-import {ipcRenderer} from 'electron'
+import { ipcRenderer } from 'electron'
 
 import LoginFormContainer from './components/LoginFormContainer'
 
 const Login = React.createClass({
-  getInitialState () {
-    return {credentials: ipcRenderer.sendSync('get-account-credentials')}
+  getInitialState() {
+    return { credentials: ipcRenderer.sendSync('get-account-credentials') }
   },
 
-  render () {
+  render() {
     return (
       <div>
-        <header className='header'>
+        <header className="header">
           <h1>PokéNurse</h1>
           <h4>A tool for Pokémon Go to aid in transferring and evolving Pokémon</h4>
         </header>

@@ -6,21 +6,21 @@ import ModalBody from './components/ModalBody'
 import baseStats from '../../../baseStats'
 
 const ModalDialog = React.createClass({
-  componentDidMount () {
+  componentDidMount() {
     this.props.detailModal.modal('show')
   },
 
-  render () {
+  render() {
     return (
-      <div className='modal-dialog' role='document'>
-        <div className='modal-content'>
-          <div className='modal-header'>
-            <button type='button' className='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-            <h4 className='modal-title' id='detailModalLabel'>{this.props.name}</h4>
+      <div className="modal-dialog" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 className="modal-title" id="detailModalLabel">{this.props.name}</h4>
           </div>
           <ModalBody {...this.props} />
-          <div className='modal-footer'>
-            <button type='button' className='btn btn-default' data-dismiss='modal'>Close</button>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -30,16 +30,16 @@ const ModalDialog = React.createClass({
 
 export default ($detailModal, pokemon, species) => {
   // Calculate CP Progress dot position
-  let minDeg = 0
-  let maxDeg = 180
-  let degree = Math.max(Math.min((pokemon.cp / pokemon.max_cp) * maxDeg, maxDeg), minDeg)
+  const minDeg = 0
+  const maxDeg = 180
+  const degree = Math.max(Math.min((pokemon.cp / pokemon.max_cp) * maxDeg, maxDeg), minDeg)
 
   let transform = `rotate(${degree}deg) translate(-193px)`
 
-  let stats = baseStats.pokemon[pokemon['pokemon_id']]
+  const stats = baseStats.pokemon[pokemon['pokemon_id']]
 
-  let baseAttack = stats.BaseAttack
-  let baseDefense = stats.BaseDefense
+  const baseAttack = stats.BaseAttack
+  const baseDefense = stats.BaseDefense
 
   // TODO Need additional information to calculate these
   let hp = `${pokemon.current_stamina} / ${pokemon.stamina_max}`
@@ -47,7 +47,7 @@ export default ($detailModal, pokemon, species) => {
   let defense = `${baseDefense + pokemon.defense}`
   let type = stats.types
 
-  let cppu = stats.cpPerUpgrade
+  const cppu = stats.cpPerUpgrade
   let cpPerUpgrade = cppu ? `+${cppu} CP (+/-)` : 'Unknown'
 
   let height = `${pokemon.height.toFixed(2)}`
@@ -62,11 +62,11 @@ export default ($detailModal, pokemon, species) => {
   let move_2 = baseStats.moves[pokemon['move_2']]
 
   if (spriteImageName.indexOf('nidoran') > -1) {
-    let spriteParts = spriteImageName.split(' ')
+    const spriteParts = spriteImageName.split(' ')
     spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === '♂') ? 'm' : 'f'}`
   }
 
-  let modalDialog = <ModalDialog
+  const modalDialog = (<ModalDialog
     name={name}
     nickname={nickname}
     transform={transform}
@@ -86,7 +86,7 @@ export default ($detailModal, pokemon, species) => {
     evolvesTo={stats.evolvesTo}
     fast_move={move_1}
     charged_move={move_2}
-  />
+  />)
 
   $detailModal.on('hidden.bs.modal', () => {
     ReactDOM.unmountComponentAtNode($detailModal.get(0))
