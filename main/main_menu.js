@@ -1,12 +1,14 @@
 const { app, dialog, BrowserWindow, shell } = require('electron')
 
+const name = app.getName()
+
 function showAboutDialog() {
   dialog.showMessageBox({
     type: 'info',
     buttons: [],
-    title: 'About PokeNurse',
-    message: 'About PokeNurse',
-    detail: `PokeNurse v${app.getVersion()}\nCopyright PokeNurse 2016`
+    title: `About ${name}`,
+    message: `About ${name}`,
+    detail: `${name} v${app.getVersion()}\nCopyright ${name} 2016`
   })
 }
 
@@ -63,13 +65,7 @@ const template = [
       },
       {
         label: 'Toggle Full Screen',
-        accelerator: (function () {
-          if (process.platform === 'darwin') {
-            return 'Ctrl+Command+F'
-          } else {
-            return 'F11'
-          }
-        })(),
+        accelerator: process.platform === 'darwin' ? 'Ctrl+Command+F' : 'F11',
         click(item, focusedWindow) {
           if (focusedWindow) focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
         }
@@ -98,40 +94,57 @@ const template = [
     submenu: [
       {
         label: 'Visit Homepage',
-        click() { shell.openExternal('https://github.com/duhminick/PokeNurse') }
+        click() { shell.openExternal('https://github.com/vinnymac/PokeNurse') }
+      },
+      {
+        label: 'Discord Chat',
+        click() { shell.openExternal('https://discord.gg/sSXCruy') }
       },
       {
         type: 'separator'
       },
       {
         label: 'Toggle Console',
-        accelerator: (function () {
-          if (process.platform === 'darwin') {
-            return 'Alt+Command+I'
-          } else {
-            return 'Ctrl+Shift+I'
-          }
-        })(),
-        click(item, focusedWindow) {
+        accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+        click() {
           const allWindows = BrowserWindow.getAllWindows()
           const firstWindow = allWindows[0]
           if (firstWindow) {
             firstWindow.toggleDevTools()
           }
         }
+      },
+      {
+        label: 'Learn More',
+        click() {
+          shell.openExternal('http://electron.atom.io')
+        }
+      }, {
+        label: 'Documentation',
+        click() {
+          shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme')
+        }
+      }, {
+        label: 'Community Discussions',
+        click() {
+          shell.openExternal('https://discuss.atom.io/c/electron')
+        }
+      }, {
+        label: 'Search Issues',
+        click() {
+          shell.openExternal('https://github.com/atom/electron/issues')
+        }
       }
     ]
   }
 ]
-
-const name = app.getName()
 
 if (process.platform === 'darwin') {
   template.unshift({
     label: name,
     submenu: [
       {
-        label: 'About ' + name,
+        label: `About ${name}`,
         click: showAboutDialog
       },
       {
@@ -146,7 +159,7 @@ if (process.platform === 'darwin') {
         type: 'separator'
       },
       {
-        label: 'Hide ' + name,
+        label: `Hide ${name}`,
         accelerator: 'Command+H',
         role: 'hide'
       },
@@ -189,7 +202,7 @@ if (process.platform === 'win32') {
     label: 'File',
     submenu: [
       {
-        label: 'About ' + name,
+        label: `About ${name}`,
         click: showAboutDialog
       },
       {

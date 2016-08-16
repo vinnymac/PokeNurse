@@ -4,17 +4,17 @@
 [![style](https://img.shields.io/badge/style-standard-brightgreen.svg)]()
 [![discord](https://img.shields.io/badge/discord-PokéNurse-738bd7.svg)](https://discord.gg/sSXCruy)
 
-<img src="https://github.com/duhminick/PokeNurse/blob/master/imgs/emojioneicon.png?raw=true" width="32px" align="left" hspace="10" vspace="10">
+<img src="https://github.com/vinnymac/PokeNurse/blob/master/imgs/emojioneicon.png?raw=true" width="32px" align="left" hspace="10" vspace="10">
 
 **PokéNurse** is a desktop application for Windows and Mac that allows you to manage your pokémon from Pokémon Go without the need for a mobile device. You can now favorite, transfer, and evolve from the comfort of your own home!
 
 ## Downloads for v1.1.2
-You may view all the releases [here](https://github.com/duhminick/PokeNurse/releases)
-* [Mac OS X](https://github.com/duhminick/PokeNurse/releases/download/v1.1.2/PokeNurse-darwin-x64.zip)
-* [Windows 32 bit](https://github.com/duhminick/PokeNurse/releases/download/v1.1.2/PokeNurse-win32-ia32.zip)
-* [Windows 64 bit](https://github.com/duhminick/PokeNurse/releases/download/v1.1.2/PokeNurse-win32-x64.zip)
-* [Linux 32 bit](https://github.com/duhminick/PokeNurse/releases/download/v1.1.2/PokeNurse-linux-ia32.zip)
-* [Linux 64 bit](https://github.com/duhminick/PokeNurse/releases/download/v1.1.2/PokeNurse-linux-x64.zip)
+You may view all the releases [here](https://github.com/vinnymac/PokeNurse/releases)
+* [Mac OS X](https://github.com/vinnymac/PokeNurse/releases/download/v1.1.2/PokeNurse-darwin-x64.zip)
+* [Windows 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.1.2/PokeNurse-win32-ia32.zip)
+* [Windows 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.1.2/PokeNurse-win32-x64.zip)
+* [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.1.2/PokeNurse-linux-ia32.zip)
+* [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.1.2/PokeNurse-linux-x64.zip)
 
 ## Examples
 ![Login Window](http://i.imgur.com/QaeO99H.png)
@@ -35,7 +35,7 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
 ## Contributing
   All future pull request should be made to the **develop** branch.
 
-    git clone https://github.com/duhminick/PokeNurse
+    git clone https://github.com/vinnymac/PokeNurse
     cd PokeNurse
     git checkout develop
     npm install

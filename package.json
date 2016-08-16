@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/duhminick/PokeNurse.git"
+    "url": "git+https://github.com/vinnymac/PokeNurse.git"
   },
   "keywords": [
     "pokemon",
@@ -31,9 +31,9 @@
   "author": "duhminick",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/duhminick/PokeNurse/issues"
+    "url": "https://github.com/vinnymac/PokeNurse/issues"
   },
-  "homepage": "https://github.com/duhminick/PokeNurse#readme",
+  "homepage": "https://github.com/vinnymac/PokeNurse#readme",
   "devDependencies": {
     "asar": "^0.12.1",
     "babel-core": "^6.13.2",
