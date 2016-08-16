@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {
+  PropTypes
+} from 'react'
 
 // TODO find and use some JSON data
 // Examples
@@ -6,8 +8,39 @@ import React from 'react'
 // https://gist.github.com/ihciah/71b0bf44322431bd34dea4ff193267e5
 
 const ModalBody = React.createClass({
+  propTypes: {
+    transform: PropTypes.string.isRequired,
+    nickname: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    hp: PropTypes.string.isRequired,
+    cp: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    maxCP: PropTypes.number.isRequired,
+    type: PropTypes.array.isRequired,
+    weight: PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired,
+    attack: PropTypes.string.isRequired,
+    defense: PropTypes.string.isRequired,
+    cpPerUpgrade: PropTypes.string.isRequired,
+    candies: PropTypes.number.isRequired,
+    spriteImageName: PropTypes.string.isRequired,
+    fast_move: PropTypes.object.isRequired,
+    charged_move: PropTypes.object.isRequired,
+    evolvesTo: PropTypes.string
+  },
+
+  componentDidMount() {
+    $(this.refs.tooltip1).tooltip()
+    $(this.refs.tooltip2).tooltip()
+  },
+
+  componentDidUpdate() {
+    $(this.refs.tooltip1).tooltip()
+    $(this.refs.tooltip2).tooltip()
+  },
+
   render() {
-    let {
+    const {
       transform,
       nickname,
       name,
@@ -163,18 +196,9 @@ const ModalBody = React.createClass({
       </div>
     </div>)
   },
+
   _handleCry() {
     this.refs.cry.play()
-  },
-
-  componentDidMount() {
-    $(this.refs.tooltip1).tooltip()
-    $(this.refs.tooltip2).tooltip()
-  },
-
-  componentDidUpdate() {
-    $(this.refs.tooltip1).tooltip()
-    $(this.refs.tooltip2).tooltip()
   },
 
   _getBackgroundColor(type) {
