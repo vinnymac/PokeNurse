@@ -10,7 +10,7 @@ const AUTH_METHODS = {
 
 const Login = React.createClass({
   propTypes: {
-    credentials: PropTypes.string
+    credentials: PropTypes.object
   },
 
   getInitialState() {
