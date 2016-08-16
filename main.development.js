@@ -10,9 +10,9 @@ import {
   Menu
 } from 'electron'
 
-import menuTemplate from './main_menu'
-import baseStats from '../baseStats'
-import utils from './utils'
+import menuTemplate from './main/main_menu'
+import utils from './main/utils'
+import baseStats from './baseStats'
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
@@ -32,7 +32,7 @@ function createWindow() {
     show: false
   })
 
-  mainWindow.loadURL(`file://${__dirname}/../app/app.html`)
+  mainWindow.loadURL(`file://${__dirname}/app/app.html`)
   // mainWindow.once('ready-to-show', () => {
   //   win.show()
   // })
