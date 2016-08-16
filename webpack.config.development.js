@@ -3,39 +3,23 @@ import webpack from 'webpack';
 import merge from 'webpack-merge';
 import baseConfig from './webpack.config.base';
 
+var PORT = 3009
+
 export default merge(baseConfig, {
   debug: true,
 
   devtool: 'cheap-module-eval-source-map',
 
   entry: [
-    'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
+    `webpack-hot-middleware/client?path=http://localhost:${PORT}/__webpack_hmr`,
     './app/index'
   ],
 
   output: {
-    publicPath: 'http://localhost:3000/dist/'
+    publicPath: `http://localhost:${PORT}/dist/`
   },
 
-  module: {
-    loaders: [
-      {
-        test: /\.global\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?sourceMap'
-        ]
-      },
-
-      {
-        test: /^((?!\.global).)*\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-        ]
-      }
-    ]
-  },
+  // CSS Module loaders would go here if we added sass
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

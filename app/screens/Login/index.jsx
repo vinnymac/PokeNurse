@@ -5,7 +5,7 @@ import LoginFormContainer from './components/LoginFormContainer'
 
 const Login = React.createClass({
   getInitialState () {
-    credentials: ipcRenderer.sendSync('get-account-credentials')
+    return {credentials: ipcRenderer.sendSync('get-account-credentials')}
   },
 
   render () {

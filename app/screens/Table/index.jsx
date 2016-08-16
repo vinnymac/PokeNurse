@@ -20,8 +20,8 @@ let COLUMN_SORT_AS_NUM = {
 
 window.$ = window.jQuery = $
 require('bootstrap')
-require('datatables.net')(window, $)
-require('datatables.net-bs')(window, $)
+// require('datatables.net')(window, $)
+// require('datatables.net-bs')(window, $)
 
 const ipc = require('electron').ipcRenderer
 
@@ -256,7 +256,7 @@ const Table = React.createClass({
 
       usernameH.innerHTML = playerInfo.player_data[ 'username' ]
 
-      this._refreshPokemonList()
+      // this._refreshPokemonList()
     } else {
       ipc.send('error-message', 'Failed in retrieving player info.  Please restart.')
     }
@@ -377,7 +377,7 @@ const Table = React.createClass({
   },
 
   _handleRefresh () {
-    this._refreshPokemonList()
+    // this._refreshPokemonList()
   },
 
   _handleTransfer () {
@@ -413,7 +413,7 @@ const Table = React.createClass({
 
     countDown(method, index, statusH, () => {
       ipc.send('information-dialog', 'Complete!', `Finished ${method}`)
-      this._refreshPokemonList()
+      // this._refreshPokemonList()
     })
   },
 

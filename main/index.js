@@ -1,12 +1,3 @@
-// require('babel-register')
-// require('./main')
-
-// import { app, BrowserWindow, Menu, shell } from 'electron'
-
-// require('module').globalPaths.push("./node_modules/node-pogo-signature/lib");
-// require('module').globalPaths.push("./node_modules/node-pogo-signature/lib/proto");
-// require('module').globalPaths.push("./node_modules/node-pogo-signature/lib/proto/Signature");
-
 import menuTemplate from './main_menu'
 
 import {app, BrowserWindow, ipcMain, dialog, Menu, shell} from 'electron'
@@ -14,24 +5,18 @@ import fs from 'fs'
 import path from 'path'
 import pogobuf from 'pogobuf'
 import POGOProtos from 'node-pogo-protos'
-import installExtension, {REACT_DEVELOPER_TOOLS} from 'electron-devtools-installer'
 
 import baseStats from '../baseStats'
 import utils from './utils'
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
-// let menu;
-// let template;
-let mainWindow = null;
-
+let mainWindow = null
+let client = null
 
 if (process.env.NODE_ENV === 'development') {
   require('electron-debug')(); // eslint-disable-line global-require
 }
-
-let win
-let client
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -41,7 +26,7 @@ function createWindow () {
     icon: '../app/app.png',
     show: false
   })
-  // win.setMenu(null)
+
   mainWindow.loadURL(`file://${__dirname}/app/app.html`)
   // mainWindow.once('ready-to-show', () => {
   //   win.show()
@@ -66,23 +51,6 @@ function createWindow () {
   let menu = Menu.buildFromTemplate(menuTemplate)
   Menu.setApplicationMenu(menu)
 
-  // mainWindow = new BrowserWindow({
-  //   show: false,
-  //   width: 1024,
-  //   height: 728
-  // });
-
-  // mainWindow.loadURL(`file://${__dirname}/app/app.html`);
-
-  // mainWindow.webContents.on('did-finish-load', () => {
-  //   mainWindow.show();
-  //   mainWindow.focus();
-  // });
-
-  // mainWindow.on('closed', () => {
-  //   mainWindow = null;
-  // });
-
   if (process.env.NODE_ENV === 'development') {
     mainWindow.openDevTools();
     mainWindow.webContents.on('context-menu', (e, props) => {
@@ -100,14 +68,6 @@ function createWindow () {
   client = new pogobuf.Client()
 }
 
-// app.on('ready', () => {
-//   createWindow()
-//
-//   installExtension(REACT_DEVELOPER_TOOLS)
-//     .then((name) => console.log(`Added Extension:  ${name}`))
-//     .catch((err) => console.log('An error occurred: ', err))
-// })
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
@@ -119,11 +79,6 @@ app.on('activate', () => {
     createWindow()
   }
 })
-
-// app.on('window-all-closed', () => {
-//   if (process.platform !== 'darwin') app.quit();
-// });
-
 
 const installExtensions = async () => {
   if (process.env.NODE_ENV === 'development') {
@@ -349,7 +304,7 @@ app.on('ready', async () => {
 });
 
 function showErrorMessage (message) {
-  dialog.showMessageBox(win, {
+  dialog.showMessageBox(mainWindow, {
     type: 'error',
     buttons: ['Ok'],
     title: 'Error',
@@ -358,7 +313,7 @@ function showErrorMessage (message) {
 }
 
 function showInformationMessage (message, title) {
-  dialog.showMessageBox(win, {
+  dialog.showMessageBox(mainWindow, {
     type: 'info',
     buttons: ['OK'],
     title: title,
@@ -376,7 +331,7 @@ ipcMain.on('information-dialog', (event, message, title) => {
 })
 
 ipcMain.on('confirmation-dialog', (event, method) => {
-  dialog.showMessageBox(win, {
+  dialog.showMessageBox(mainWindow, {
     type: 'question',
     buttons: ['Yes', 'Cancel'],
     title: 'Confirmation',
@@ -470,7 +425,7 @@ ipcMain.on('pokemon-login', (event, method, username, password) => {
 // END OF LOGIN
 
 ipcMain.on('table-did-mount', () => {
-  win.setSize(900, 600, true)
+  mainWindow.setSize(900, 600, true)
 })
 
 // POKEMON

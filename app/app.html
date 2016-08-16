@@ -9,8 +9,13 @@
   <body>
     <div id="content"></div>
     <script>
+      (function() {
+        const script = document.createElement('script');
+        script.src = (process.env.HOT) ? 'http://localhost:3009/dist/bundle.js' : '../dist/bundle.js';
+        document.write(script.outerHTML);
+      }());
       // require('babel-register')
-      require("../dist/bundle.js") // Renders App into id="content"
+      // require("../dist/bundle.js") // Renders App into id="content"
     </script>
   </body>
 </html>

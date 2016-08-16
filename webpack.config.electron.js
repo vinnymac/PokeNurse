@@ -39,14 +39,12 @@ export default merge(baseConfig, {
 
   externals: [
     'font-awesome',
-    'source-map-support'
+    'source-map-support',
+    'pogobuf',
+    'node-pogo-protos',
+    'electron-devtools-installer',
+    'bootstrap'
   ],
 
   noParse: /json-schema\/lib\/validate\.js/
-
-  // resolve: {
-  //   alias: {
-  //     'bluebird-retry': 'bluebird-retry/index.js'
-  //   }
-  // }
 });

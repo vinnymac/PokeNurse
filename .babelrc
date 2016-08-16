@@ -9,7 +9,7 @@
       ]
     },
     "development": {
-      /*"presets": ["react-hmre"]*/
+      "presets": ["react-hmre"]
     },
     "test": {
       "plugins": [
