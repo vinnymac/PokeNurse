@@ -11,12 +11,12 @@ const Pokemon = React.createClass({
     monsterUpdater: React.PropTypes.func.isRequired
   },
 
-  checkRow (id, pid, e) {
-    this.props.onCheckedChange(id, pid)
+  checkRow (pokemon, e) {
+    this.props.onCheckedChange(pokemon)
   },
 
-  checkAll (id) {
-    this.props.onCheckAll(id)
+  checkAll (species) {
+    this.props.onCheckAll(species)
   },
 
   componentDidMount () {
@@ -43,7 +43,7 @@ const Pokemon = React.createClass({
                 <input
                   type='checkbox'
                   checked={checkAll}
-                  onChange={this.checkAll.bind(this, species.pokemon_id)}
+                  onChange={this.checkAll.bind(this, species)}
                 />
               </th>
               <th
@@ -168,7 +168,7 @@ const Pokemon = React.createClass({
               key={pokemon.id}
               disabled={pokemon.deployed || pokemon.favorite}
               checked={pokemonState[ String(pokemon.id) ].check && !pokemon.favorite}
-              onChange={this.checkRow.bind(this, String(pokemon.pokemon_id), String(pokemon.id) )}
+              onChange={this.checkRow.bind(this, pokemon )}
             />
           </td>
           <td>

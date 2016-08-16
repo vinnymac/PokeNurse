@@ -190,7 +190,9 @@ const Species = React.createClass({
   },
 
 
-  handleCheckAll (id, e) {
+  handleCheckAll (species, e) {
+    let id = species.pokemon_id
+
     this.setState({
       species: this.updateSpeciesState(id, (speciesState) => {
         let newCheckAllState = !speciesState.checkAll
@@ -208,11 +210,11 @@ const Species = React.createClass({
     })
   },
 
-  handleCheckedChange (id, pid, e) {
+  handleCheckedChange (pokemon, e) {
     this.setState({
-      species: this.updateSpeciesState(id, (speciesState) => {
+      species: this.updateSpeciesState(String(pokemon.pokemon_id), (speciesState) => {
         return {
-          pokemonState: this.updatePokemonState(speciesState, pid, (pokemonState) => {
+          pokemonState: this.updatePokemonState(speciesState, String(pokemon.id), (pokemonState) => {
             return {
               check: !pokemonState.check
             }
