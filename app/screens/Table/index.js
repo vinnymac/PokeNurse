@@ -55,6 +55,25 @@ function randomDelay(min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
+function setBackgroundImage(team) {
+  const header = document.getElementById('profile-header')
+  let teamName = null
+  switch (team) {
+    case 1:
+      teamName = 'mystic'
+      break
+    case 2:
+      teamName = 'valor'
+      break
+    case 3:
+      teamName = 'instinct'
+      break
+    default:
+  }
+
+  header.style.backgroundImage = `url("./imgs/${teamName}.jpg")`
+}
+
 const Table = React.createClass({
 
   childContextTypes: {
@@ -87,24 +106,13 @@ const Table = React.createClass({
       this.setState({ monsters: this.getNewMonsters(data, this.state.sortBy, this.state.sortDir) })
     })
 
-    const header = document.getElementById('profile-header')
     const usernameH = document.getElementById('username-h')
 
     const playerInfo = ipcRenderer.sendSync('get-player-info')
     if (playerInfo.success) {
-      switch (playerInfo.player_data['team']) {
-        case 1:
-          header.style.backgroundImage = 'url("./imgs/mystic.jpg")'
-          break
-        case 2:
-          header.style.backgroundImage = 'url("./imgs/valor.jpg")'
-          break
-        case 3:
-          header.style.backgroundImage = 'url("./imgs/instinct.jpg")'
-          break
-      }
+      setBackgroundImage(playerInfo.player_data.team)
 
-      usernameH.innerHTML = playerInfo.player_data['username']
+      usernameH.innerHTML = playerInfo.player_data.username
     } else {
       ipcRenderer.send('error-message', 'Failed in retrieving player info.  Please restart.')
     }
@@ -125,7 +133,7 @@ const Table = React.createClass({
     return (
       <div>
         <header className="header" id="profile-header">
-          <p id="username-h"></p>
+          <p id="username-h"/>
           <p>Status: <span id="status-h" ref="statusH">Idle</span></p>
         </header>
 
