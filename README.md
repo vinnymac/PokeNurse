@@ -32,15 +32,23 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
 * Favorite/Unfavorite Pokemon
 
 ## Contributing
-   All future pull request should be made to the **develop** branch.
+  All future pull request should be made to the **develop** branch.
 
     git clone https://github.com/duhminick/PokeNurse
     cd PokeNurse
     git checkout develop
     npm install
-    npm start
+    npm run dev
 
-This project follows the [JS Standard Code Style](http://standardjs.com/index.html) for the most part.
+## Releases
+
+  Package for your platform
+
+    npm run package
+
+  Package for all platforms
+
+    npm run package-all
 
 ## Todo
 * Nickname Pokemon
