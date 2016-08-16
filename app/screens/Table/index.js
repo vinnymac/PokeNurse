@@ -376,33 +376,42 @@ const Table = React.createClass({
     })
   },
 
-  _handleRefresh() {
+  _handleRefresh () {
     // this._refreshPokemonList()
   },
 
-  _handleTransfer() {
+  _handleTransfer () {
     if (runningCheck()) return
 
-    const selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall):not(:disabled)')
+    const selectedPokemon = this.refs.speciesTable.getPokemonChecked()
+
+    const filteredPokemon = []
+
+    selectedPokemon.map((p) => {
+      if (!p.favorite ? -1 : 0) {
+        return filteredPokemon.push(p)
+      }
+    })
+
 
     if (ipc.sendSync('confirmation-dialog', 'transfer').success) {
       running = true
-      selectedPokemon.forEach((pokemon, index) => {
-        ipc.send('transfer-pokemon', pokemon.value, index * randomDelay(2, 3))
+      filteredPokemon.forEach((pokemon, index) => {
+        ipc.send('transfer-pokemon', String(pokemon.id), index * randomDelay(2, 3))
       })
-      this._countDown('Transfer', selectedPokemon.length * 2.5)
+      this._countDown('Transfer', filteredPokemon.length * 2.5)
     }
   },
 
-  _handleEvolve() {
+  _handleEvolve () {
     if (runningCheck()) return
 
-    const selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall):not(:disabled)')
+    const selectedPokemon = this.refs.speciesTable.getPokemonChecked()
 
     if (ipc.sendSync('confirmation-dialog', 'evolve').success) {
       running = true
       selectedPokemon.forEach((pokemon, index) => {
-        ipc.send('evolve-pokemon', pokemon.value, index * randomDelay(25, 30))
+        ipc.send('evolve-pokemon', String(pokemon.id), index * randomDelay(25, 30))
       })
       this._countDown('Evolve', selectedPokemon.length * 27.5)
     }
@@ -413,7 +422,6 @@ const Table = React.createClass({
 
     countDown(method, index, statusH, () => {
       ipc.send('information-dialog', 'Complete!', `Finished ${method}`)
-      // this._refreshPokemonList()
     })
   },
 

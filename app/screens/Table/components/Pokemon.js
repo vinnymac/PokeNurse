@@ -166,8 +166,8 @@ const Pokemon = React.createClass({
               type="checkbox"
               value={String(pokemon.id)}
               key={pokemon.id}
-              disabled={pokemon.deployed || pokemon.favorite}
-              checked={pokemonState[String(pokemon.id)].check && !pokemon.favorite}
+              disabled={pokemon.deployed}
+              checked={pokemonState[String(pokemon.id)].check}
               onChange={this.checkRow.bind(this, pokemon)}
             />
           </td>
