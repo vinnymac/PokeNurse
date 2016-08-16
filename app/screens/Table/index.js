@@ -1,4 +1,7 @@
 import React from 'react'
+import {
+  ipcRenderer
+} from 'electron'
 import $ from 'jquery'
 
 // import renderModal from '../Detail'
@@ -23,8 +26,6 @@ require('bootstrap')
 // require('datatables.net')(window, $)
 // require('datatables.net-bs')(window, $)
 
-const ipc = require('electron').ipcRenderer
-
 let monsters = []
 let running = false
 
@@ -39,7 +40,7 @@ function removeAllEventListeners() {
 
 function runningCheck() {
   if (running) {
-    ipc.send('error-message', 'An action is already running')
+    ipcRenderer.send('error-message', 'An action is already running')
     return true
   }
   return false
@@ -151,8 +152,8 @@ function addPowerUpButtonEvent() {
 
   buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
-      if (ipc.sendSync('confirmation-dialog', 'power up').success) {
-        ipc.send('power-up-pokemon', button.dataset.pokemonId, button.dataset.nickname)
+      if (ipcRenderer.sendSync('confirmation-dialog', 'power up').success) {
+        ipcRenderer.send('power-up-pokemon', button.dataset.pokemonId, button.dataset.nickname)
         setTimeout(() => { document.getElementById('refresh-btn').click() }, 1500)
       }
     })
@@ -167,7 +168,7 @@ function addFavoriteButtonEvent() {
   buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
       const setToFavorite = button.dataset.pokemonFavorited === 'false'
-      ipc.send('favorite-pokemon', button.dataset.pokemonId, setToFavorite)
+      ipcRenderer.send('favorite-pokemon', button.dataset.pokemonId, setToFavorite)
       updatePokemonById(button.dataset.pokemonId, 'favorite', setToFavorite)
       const newClass = setToFavorite ? 'favorite glyphicon glyphicon-star favorite-yellow' : 'favorite glyphicon glyphicon-star-empty'
       button.className = newClass
@@ -218,7 +219,7 @@ const Table = React.createClass({
   },
 
   getInitialState() {
-    const monsters = ipc.sendSync('get-players-pokemons')
+    const monsters = ipcRenderer.sendSync('get-players-pokemons')
     const sortBy = 'pokemon_id'
     const sortDir = 'ASC'
 
@@ -233,14 +234,14 @@ const Table = React.createClass({
   componentDidMount() {
     document.title = 'PokéNurse • Home'
 
-    ipc.on('receive-players-pokemons', (event, data) => {
+    ipcRenderer.on('receive-players-pokemons', (event, data) => {
       this.setState({ monsters: this.getNewMonsters(data, this.state.sortBy, this.state.sortDir) })
     })
 
     const header = document.getElementById('profile-header')
     const usernameH = document.getElementById('username-h')
 
-    const playerInfo = ipc.sendSync('get-player-info')
+    const playerInfo = ipcRenderer.sendSync('get-player-info')
     if (playerInfo.success) {
       switch (playerInfo.player_data['team']) {
         case 1:
@@ -258,10 +259,10 @@ const Table = React.createClass({
 
       // this._refreshPokemonList()
     } else {
-      ipc.send('error-message', 'Failed in retrieving player info.  Please restart.')
+      ipcRenderer.send('error-message', 'Failed in retrieving player info.  Please restart.')
     }
 
-    ipc.send('table-did-mount')
+    ipcRenderer.send('table-did-mount')
   },
 
   render() {
@@ -385,10 +386,10 @@ const Table = React.createClass({
 
     const selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall):not(:disabled)')
 
-    if (ipc.sendSync('confirmation-dialog', 'transfer').success) {
+    if (ipcRenderer.sendSync('confirmation-dialog', 'transfer').success) {
       running = true
       selectedPokemon.forEach((pokemon, index) => {
-        ipc.send('transfer-pokemon', pokemon.value, index * randomDelay(2, 3))
+        ipcRenderer.send('transfer-pokemon', pokemon.value, index * randomDelay(2, 3))
       })
       this._countDown('Transfer', selectedPokemon.length * 2.5)
     }
@@ -399,10 +400,10 @@ const Table = React.createClass({
 
     const selectedPokemon = document.querySelectorAll('input[type="checkbox"]:checked:not(#checkall):not(:disabled)')
 
-    if (ipc.sendSync('confirmation-dialog', 'evolve').success) {
+    if (iipcRendererpc.sendSync('confirmation-dialog', 'evolve').success) {
       running = true
       selectedPokemon.forEach((pokemon, index) => {
-        ipc.send('evolve-pokemon', pokemon.value, index * randomDelay(25, 30))
+        ipcRenderer.send('evolve-pokemon', pokemon.value, index * randomDelay(25, 30))
       })
       this._countDown('Evolve', selectedPokemon.length * 27.5)
     }
@@ -412,7 +413,7 @@ const Table = React.createClass({
     const { statusH } = this.refs
 
     countDown(method, index, statusH, () => {
-      ipc.send('information-dialog', 'Complete!', `Finished ${method}`)
+      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
       // this._refreshPokemonList()
     })
   },
@@ -420,7 +421,7 @@ const Table = React.createClass({
   _refreshPokemonList() {
     removeAllEventListeners()
     $('#pokemon-data').DataTable().destroy()
-    monsters = ipc.sendSync('get-players-pokemons')
+    monsters = ipcRenderer.sendSync('get-players-pokemons')
     if (monsters.success) this._dataTables(monsters.species)
   },
 
