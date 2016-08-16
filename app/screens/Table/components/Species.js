@@ -1,7 +1,15 @@
-import React from 'react'
+import React, {
+  PropTypes
+} from 'react'
+
 import PokemonTable from './Pokemon'
 
 const Species = React.createClass({
+  displayName: 'Species',
+
+  propTypes: {
+    monsters: PropTypes.object.isRequired
+  },
 
   getInitialState() {
     const {
