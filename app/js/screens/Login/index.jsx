@@ -3,9 +3,11 @@ import {ipcRenderer} from 'electron'
 
 import LoginFormContainer from './components/LoginFormContainer'
 
-let credentials = ipcRenderer.sendSync('get-account-credentials')
-
 const Login = React.createClass({
+  getInitialState () {
+    credentials: ipcRenderer.sendSync('get-account-credentials')
+  },
+
   render () {
     return (
       <div>
@@ -14,7 +16,7 @@ const Login = React.createClass({
           <h4>A tool for Pokémon Go to aid in transferring and evolving Pokémon</h4>
         </header>
 
-        <LoginFormContainer credentials={credentials} />
+        <LoginFormContainer credentials={this.state.credentials} />
       </div>
     )
   }

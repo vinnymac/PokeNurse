@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {ipcRenderer} from 'electron'
 
-import Login from './screens/Login'
-import Table from './screens/Table'
+import Login from './js/screens/Login'
+import Table from './js/screens/Table'
 
 const App = React.createClass({
   getInitialState () {
