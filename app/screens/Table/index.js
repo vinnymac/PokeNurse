@@ -40,7 +40,7 @@ function runningCheck() {
 
 function countDown(method, index, statusH, callback) {
   const interval = setInterval(() => {
-    statusH.innerHTML = method + ' / ' + index + ' second(s) left'
+    statusH.innerHTML = `${method} / ${index} second(s) left`
     index--
     if (index <= 0) {
       clearInterval(interval)
@@ -216,13 +216,14 @@ const Table = React.createClass({
 
   updateMonster(pokemon, index, speciesIndex) {
     this.updateSpecies(speciesIndex, (speciesAtIndex) => {
+      const sorted = this.getSortedPokemon(Object.assign({}, speciesAtIndex, {
+        pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
+      }))
+
       return { // make sure we sort the new pokemon index now that we updated it
-        pokemon: this.getSortedPokemon(Object.assign({}, speciesAtIndex, {
-          pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
-        }))
+        pokemon: sorted
       }
     })
-    console.log('UPDATING monsters with', pokemon)
   },
 
   updateSpecies(index, updater) {
@@ -253,12 +254,10 @@ const Table = React.createClass({
 
     const selectedPokemon = this.speciesTable.getPokemonChecked()
 
-    const filteredPokemon = []
+    const filteredPokemon = selectedPokemon.filter((p) => {
+      const isntFavorite = !p.favorite ? -1 : 0 // TODO stop this -1/0 garbage
 
-    selectedPokemon.map((p) => {
-      if (!p.favorite ? -1 : 0) {
-        return filteredPokemon.push(p)
-      }
+      return isntFavorite
     })
 
 

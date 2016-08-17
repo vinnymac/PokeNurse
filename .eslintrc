@@ -8,6 +8,9 @@
   },
   "rules": {
     semi: [2, "never"],
+    "max-len": ["error", { "code": 160 }],
+    "no-mixed-operators": 0,
+    "no-param-reassign": 0,
     "consistent-return": 0,
     "comma-dangle": 0,
     "no-use-before-define": 0,

@@ -1,3 +1,5 @@
+/* eslint no-console: 0 */
+
 import fs from 'fs'
 import path from 'path'
 import pogobuf from 'pogobuf'
@@ -143,7 +145,7 @@ ipcMain.on('confirmation-dialog', (event, method) => {
     message: `Are you sure you want to ${method} the selected Pokemon?`
   }, response => {
     if (response === 1) {
-      console.log('[!] ' + method + ' cancelled')
+      console.log(`[!] ${method} cancelled`)
       event.returnValue = {
         success: false
       }
@@ -159,7 +161,7 @@ ipcMain.on('confirmation-dialog', (event, method) => {
 
 // LOGIN
 ipcMain.on('get-account-credentials', (event) => {
-  console.log('[+] Attempting to retrieve saved account credentials from ' + accountPath)
+  console.log(`[+] Attempting to retrieve saved account credentials from ${accountPath}`)
 
   let credentials = {}
 
@@ -195,15 +197,15 @@ ipcMain.on('save-account-credentials', (event, method, username, password) => {
 
   fs.writeFile(accountPath, credentials, (err) => {
     if (err) console.log(err)
-    console.log('[+] Saved account credentials to ' + accountPath)
+    console.log(`[+] Saved account credentials to ${accountPath}`)
   })
 })
 
-ipcMain.on('check-and-delete-credentials', (event) => {
+ipcMain.on('check-and-delete-credentials', () => {
   if (fs.existsSync(accountPath)) {
     fs.unlink(accountPath, (err) => {
       if (err) console.log(err)
-      console.log('[+] Deleted account credentials, located at ' + accountPath)
+      console.log(`[+] Deleted account credentials, located at ${accountPath}`)
     })
   }
 })
@@ -263,9 +265,9 @@ function getPlayersPokemons(event, sync = 'sync') {
       return
     }
 
-    const player = pogobuf.Utils.splitInventory(inventory)['player']
+    const player = pogobuf.Utils.splitInventory(inventory).player
 
-    const candies = pogobuf.Utils.splitInventory(inventory)['candies']
+    const candies = pogobuf.Utils.splitInventory(inventory).candies
     const formattedCandies = {}
 
     for (let i = 0; i < candies.length; i++) {
@@ -273,7 +275,7 @@ function getPlayersPokemons(event, sync = 'sync') {
       formattedCandies[candy.family_id.toString()] = candy.candy
     }
 
-    const pokemons = pogobuf.Utils.splitInventory(inventory)['pokemon']
+    const pokemons = pogobuf.Utils.splitInventory(inventory).pokemon
     const reducedPokemonList = []
     const combinedPokemonList = []
 
@@ -281,7 +283,11 @@ function getPlayersPokemons(event, sync = 'sync') {
       const pokemon = pokemons[i]
       if (pokemon.cp === 0) continue
 
-      let pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon.pokemon_id)
+      let pokemonName = pogobuf.Utils.getEnumKeyByValue(
+        POGOProtos.Enums.PokemonId,
+        pokemon.pokemon_id
+      )
+
       pokemonName = pokemonName.replace('Female', '♀').replace('Male', '♂')
 
       const stats = baseStats.pokemon[pokemon.pokemon_id]
@@ -295,9 +301,20 @@ function getPlayersPokemons(event, sync = 'sync') {
       const maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
       const candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
       const stardustCost = utils.getStardustCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
-      const candyMaxCost = utils.getMaxCandyCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
-      const stardustMaxCost = utils.getMaxStardustCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
+      const candyMaxCost = utils.getMaxCandyCostsForPowerup(
+        player.level,
+        pokemon.num_upgrades,
+        totalCpMultiplier
+      )
+
+      const stardustMaxCost = utils.getMaxStardustCostsForPowerup(
+        player.level,
+        pokemon.num_upgrades,
+        totalCpMultiplier
+      )
+
       const nextCP = utils.getCpAfterPowerup(pokemon.cp, totalCpMultiplier)
+
       const ADS = pokemon.individual_attack + pokemon.individual_defense + pokemon.individual_stamina
       const iv = Math.round(ADS / 45 * 10000) / 100
 
@@ -330,7 +347,7 @@ function getPlayersPokemons(event, sync = 'sync') {
       })
 
       if (combinedPokemonList[pokemonName]) {
-        combinedPokemonList[pokemonName].count = combinedPokemonList[pokemonName].count + 1
+        combinedPokemonList[pokemonName].count += 1
       } else {
         combinedPokemonList[pokemonName] = {
           pokemon_id: pokemon.pokemon_id,
@@ -410,14 +427,14 @@ ipcMain.on('power-up-pokemon', (event, id, nickname) => {
 ipcMain.on('transfer-pokemon', (event, id, delay) => {
   setTimeout(() => {
     client.releasePokemon(id)
-    console.log('[+] Released Pokemon with id: ' + id)
+    console.log(`[+] Released Pokemon with id: ${id}`)
   }, delay)
 })
 
 ipcMain.on('evolve-pokemon', (event, id, delay) => {
   setTimeout(() => {
     client.evolvePokemon(id)
-    console.log('[+] Evolved Pokemon with id: ' + id)
+    console.log(`[+] Evolved Pokemon with id: ${id}`)
   }, delay)
 })
 
@@ -426,6 +443,6 @@ ipcMain.on('favorite-pokemon', (event, id, isFavorite) => {
     .then(() => {
       getPlayersPokemons(event, 'async')
     }).catch(console.error)
-  console.log('[+] Pokemon favorite status set to ' + isFavorite)
+  console.log(`[+] Pokemon favorite status set to ${isFavorite}`)
 })
 // END OF POKEMON
