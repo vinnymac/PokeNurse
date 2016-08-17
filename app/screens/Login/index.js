@@ -1,7 +1,7 @@
 import React from 'react'
 import { ipcRenderer } from 'electron'
 
-import LoginFormContainer from './components/LoginFormContainer'
+import LoginForm from './components/LoginFormContainer'
 
 const Login = React.createClass({
   getInitialState() {
@@ -16,7 +16,7 @@ const Login = React.createClass({
           <h4>A tool for Pokémon Go to aid in transferring and evolving Pokémon</h4>
         </header>
 
-        <LoginFormContainer credentials={this.state.credentials} />
+        <LoginForm credentials={this.state.credentials} />
       </div>
     )
   }

@@ -8,7 +8,9 @@ const AUTH_METHODS = {
   google: 'google'
 }
 
-const Login = React.createClass({
+const LoginForm = React.createClass({
+  displayName: 'LoginForm',
+
   propTypes: {
     credentials: PropTypes.object
   },
@@ -142,4 +144,4 @@ const Login = React.createClass({
   }
 })
 
-export default Login
+export default LoginForm
