@@ -305,7 +305,6 @@ const Species = React.createClass({
   },
 
   handleCheckAll(species) {
-
     this.setState({
       species: this.updateSpeciesState(species.pokemon_id, (speciesState) => {
         const newCheckAllState = !speciesState.checkAll
