@@ -3,10 +3,6 @@ import {
   ipcRenderer
 } from 'electron'
 import $ from 'jquery'
-
-window.$ = window.jQuery = $
-require('bootstrap')
-
 import SpeciesTable from './components/Species'
 import CheckCounter from './components/Counter'
 
@@ -14,6 +10,9 @@ import {
   Immutable,
   Organize
 } from '../../utils'
+
+window.$ = window.jQuery = $
+require('bootstrap')
 
 const COLUMN_SORT_AS_NUM = {
   nickname: false,
@@ -31,7 +30,7 @@ let running = false
 
 // Helper Methods
 
-function runningCheck () {
+function runningCheck() {
   if (running) {
     ipcRenderer.send('error-message', 'An action is already running')
     return true
@@ -39,7 +38,7 @@ function runningCheck () {
   return false
 }
 
-function countDown (method, index, statusH, callback) {
+function countDown(method, index, statusH, callback) {
   const interval = setInterval(() => {
     statusH.innerHTML = method + ' / ' + index + ' second(s) left'
     index--
@@ -52,11 +51,11 @@ function countDown (method, index, statusH, callback) {
   }, 1000)
 }
 
-function randomDelay (min, max) {
+function randomDelay(min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
-function setBackgroundImage (team) {
+function setBackgroundImage(team) {
   const header = document.getElementById('profile-header')
   let teamName = null
   switch (team) {
@@ -138,7 +137,7 @@ const Table = React.createClass({
     return (
       <div>
         <header className="header" id="profile-header">
-          <p id="username-h"/>
+          <p id="username-h" />
           <p>Status: <span id="status-h" ref="statusH">Idle</span></p>
         </header>
 
@@ -157,7 +156,7 @@ const Table = React.createClass({
                 className="btn btn-warning"
                 id="transfer-btn"
                 value="Transfer selected"
-                onClick={this._handleTransfer}
+                onClick={this.handleTransfer}
               />
               {" "}
               <input
@@ -165,18 +164,20 @@ const Table = React.createClass({
                 className="btn btn-danger"
                 id="evolve-btn"
                 value="Evolve selected"
-                onClick={this._handleEvolve}
+                onClick={this.handleEvolve}
               />
             </span>
           </h1>
 
-          <div className='row'>
-            <div className='col-md-6'>
+          <div className="row">
+            <div className="col-md-6">
               <CheckCounter ref="checkCounter"/>
             </div>
-            <div className='col-md-6'>
+            <div className="col-md-6">
               <div className="form-group input-group">
-              <span className="input-group-addon"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                <span className="input-group-addon">
+                  <span className="glyphicon glyphicon-search" aria-hidden="true" />
+                </span>
                 <input
                   type="text"
                   className="form-control"
@@ -208,7 +209,7 @@ const Table = React.createClass({
           role="dialog"
           aria-labelledby="detailModalLabel"
           ref="detailModal"
-        ></div>
+        />
       </div>
     )
   },
@@ -247,7 +248,7 @@ const Table = React.createClass({
     ipcRenderer.send('get-players-pokemons', 'async')
   },
 
-  _handleTransfer () {
+  handleTransfer() {
     if (runningCheck()) return
 
     const selectedPokemon = this.refs.speciesTable.getPokemonChecked()
@@ -270,7 +271,7 @@ const Table = React.createClass({
     }
   },
 
-  _handleEvolve () {
+  handleEvolve() {
     if (runningCheck()) return
 
     const selectedPokemon = this.refs.speciesTable.getPokemonChecked()
