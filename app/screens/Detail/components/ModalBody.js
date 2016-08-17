@@ -1,11 +1,7 @@
 import React, {
   PropTypes
 } from 'react'
-
-// TODO find and use some JSON data
-// Examples
-// https://gist.github.com/shri/9754992
-// https://gist.github.com/ihciah/71b0bf44322431bd34dea4ff193267e5
+import $ from 'jquery'
 
 const ModalBody = React.createClass({
   propTypes: {
@@ -30,13 +26,11 @@ const ModalBody = React.createClass({
   },
 
   componentDidMount() {
-    $(this.refs.tooltip1).tooltip()
-    $(this.refs.tooltip2).tooltip()
+    this.setupTooltips()
   },
 
   componentDidUpdate() {
-    $(this.refs.tooltip1).tooltip()
-    $(this.refs.tooltip2).tooltip()
+    this.setupTooltips()
   },
 
   render() {
@@ -67,7 +61,7 @@ const ModalBody = React.createClass({
       evolution = (<div id="pokemon_evolve_info">
         <div className="pokemon-evolve-info-title">Evolution</div>
         <div className="pokemon-evolve-info-item">
-          <div className={`pokemon-sprite ${evolvesTo.toLowerCase()}`}></div>
+          <div className={`pokemon-sprite ${evolvesTo.toLowerCase()}`} />
           <div className="pokemon-evolve-info-item-title">{evolvesTo.toLowerCase()}</div>
         </div>
       </div>)
@@ -75,9 +69,14 @@ const ModalBody = React.createClass({
 
     let chargedMoveBars = []
 
-    for (let i = 0; i < Math.floor(100 / charged_move.energyCost); i++)
-    {
-      chargedMoveBars.push(<div key={i} className="pokemon-move-cost-item" style={{ width: `${charged_move.energyCost}px` }} />)
+    for (let i = 0; i < Math.floor(100 / charged_move.energyCost); i++) {
+      let move = <div
+        key={i}
+        className="pokemon-move-cost-item"
+        style={{ width: `${charged_move.energyCost}px` }}
+      />
+
+      chargedMoveBars.push(move)
     }
 
     let fastMoveTip = `
@@ -93,8 +92,12 @@ const ModalBody = React.createClass({
         Dodge Window: ${charged_move.dodgeWindowMs}ms <br>
         Crit Chance: ${charged_move.crit * 100}%
       `
+    const bgColor1 = this.getBackgroundColor(type[0])
+    const bgColor2 = this.getBackgroundColor(type[1])
 
-    let modalBackground = { background: `linear-gradient(to bottom, ${this._getBackgroundColor(type[0])} 0%, ${this._getBackgroundColor(type[1])} 100%)` }
+    let modalBackground = {
+      background: `linear-gradient(to bottom, ${bgColor1} 0%, ${bgColor2} 100%)`
+    }
 
     return (<div className="modal-body" style={modalBackground}>
       <div id="pokemon_sprite_wrapper">
@@ -104,12 +107,12 @@ const ModalBody = React.createClass({
           <span>{` (Max ${maxCP})`}</span>
         </div>
         <div id="pokemon_sprite_sphere_wrapper">
-          <div id="pokemon_sprite_sphere"></div>
-          <div id="pokemon_sprite_sphere_dot" style={{ WebkitTransform: transform }}></div>
+          <div id="pokemon_sprite_sphere" />
+          <div id="pokemon_sprite_sphere_dot" style={{ WebkitTransform: transform }} />
         </div>
 
         <img
-          onClick={this._handleCry}
+          onClick={this.handleCry}
           title="Listen to Cry"
           alt="Profile Sprite"
           id="pokemon_profile_sprite"
@@ -117,7 +120,7 @@ const ModalBody = React.createClass({
         />
         <audio
           id="pokemonCry"
-          ref="cry"
+          ref={(c) => { this.cry = c }}
         >
           <source
             src={`./cries/${id}.ogg`}
@@ -128,7 +131,7 @@ const ModalBody = React.createClass({
 
       <div id="pokemon_contents">
         <div id="pokemon_name">{`${nickname}`}</div>
-        <div id="pokemon_health_bar"></div>
+        <div id="pokemon_health_bar" />
         <div id="pokemon_health">{`HP ${hp}`}</div>
         <div className="pokemon_info">
           <div className="pokemon-info-item split-3-way">
@@ -172,17 +175,33 @@ const ModalBody = React.createClass({
         </div>
         <div className="pokemon_move_info">
           <div className="pokemon-move-item">
-            <div className="pokemon-move-item-text-area" ref="tooltip1" data-toggle="tooltip" data-placement="right" data-html="true" title={fastMoveTip}>
+            <div
+              className="pokemon-move-item-text-area"
+              ref={(c) => { this.tooltip1 = c }}
+              data-toggle="tooltip"
+              data-placement="right"
+              data-html="true"
+              title={fastMoveTip}
+            >
               <div className="pokemon-move-title">{`${fast_move.name}`}</div>
-              <div className={'pokemon-move-type ' + fast_move.type}>{`${fast_move.type}`}</div>
+              <div className={`pokemon-move-type ${fast_move.type}`}>{`${fast_move.type}`}</div>
             </div>
-            <div className="pokemon-move-cost"></div>
+            <div className="pokemon-move-cost" />
             <div className="pokemon-move-damage">{`${fast_move.power}`}</div>
           </div>
           <div className="pokemon-move-item">
-            <div className="pokemon-move-item-text-area" ref="tooltip2" data-toggle="tooltip" data-placement="right" data-html="true" title={chargedMoveTip}>
+            <div
+              className="pokemon-move-item-text-area"
+              ref={(c) => { this.tooltip2 = c }}
+              data-toggle="tooltip"
+              data-placement="right"
+              data-html="true"
+              title={chargedMoveTip}
+            >
               <div className="pokemon-move-title">{`${charged_move.name}`}</div>
-              <div className={'pokemon-move-type ' + charged_move.type}>{`${charged_move.type}`}</div>
+              <div className={`pokemon-move-type ${charged_move.type}`}>
+                {`${charged_move.type}`}
+              </div>
             </div>
             <div className="pokemon-move-cost">
               {chargedMoveBars}
@@ -197,11 +216,17 @@ const ModalBody = React.createClass({
     </div>)
   },
 
-  _handleCry() {
-    this.refs.cry.play()
+  setupTooltips() {
+    $(this.tooltip1).tooltip()
+    $(this.tooltip2).tooltip()
   },
 
-  _getBackgroundColor(type) {
+  handleCry() {
+    this.cry.play()
+  },
+
+  // this should probably be moved out as a utility method
+  getBackgroundColor(type) {
     switch (type) {
       case 'normal':
         return '#A8A878'
