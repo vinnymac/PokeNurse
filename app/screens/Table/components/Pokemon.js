@@ -1,115 +1,125 @@
-import React from 'react'
-import renderModal from '../../Detail'
+import React, {
+  PropTypes
+} from 'react'
 import { ipcRenderer } from 'electron'
 import $ from 'jquery'
 
-import { Immutable } from '../../../utils'
+import renderModal from '../../Detail'
+
+const favoriteGlyph = 'glyphicon glyphicon-star favorite-yellow'
+const emptyFavoriteGlyph = 'glyphicon glyphicon-star-empty'
 
 const Pokemon = React.createClass({
+
+  displayName: 'PokemonTable',
+
+  propTypes: {
+    speciesIndex: PropTypes.number,
+    sortBy: PropTypes.string,
+    sortDir: PropTypes.string,
+    sortPokemonBy: PropTypes.func.isRequired,
+    onCheckedChange: PropTypes.func.isRequired,
+    species: PropTypes.object.isRequired,
+    checkAll: PropTypes.bool.isRequired,
+    onCheckAll: PropTypes.func.isRequired,
+    pokemonState: PropTypes.object.isRequired
+  },
 
   contextTypes: {
     monsterUpdater: React.PropTypes.func.isRequired
   },
 
-  checkRow(pokemon, e) {
-    this.props.onCheckedChange(pokemon)
-  },
-
-  checkAll(species) {
-    this.props.onCheckAll(species)
-  },
-
   componentDidMount() {
-    $(this.refs.tBody).find('[data-toggle="tooltip"]').tooltip()
+    this.setupTooltips()
   },
 
   componentDidUpdate() {
-    $(this.refs.tBody).find('[data-toggle="tooltip"]').tooltip()
+    this.setupTooltips()
   },
 
   render() {
-    let {
+    const {
       species,
       checkAll
     } = this.props
 
     return (
-      <tr className="child" key={'sub' + species.pokemon_id}>
+      <tr className="child" key={`sub${species.pokemon_id}`}>
         <td colSpan="7">
           <table className="table table-condensed table-hover table-striped">
             <thead>
-            <tr>
-              <th width="5%">
-                <input
-                  type="checkbox"
-                  checked={checkAll}
-                  onChange={this.checkAll.bind(this, species)}
-                />
-              </th>
-              <th
-                width="5%"
-                className={this.getSortDirectionClassName('favorite')}
-                tabIndex="0"
-                rowSpan="1"
-                colSpan="1"
-                aria-controls="pokemon-data"
-                aria-label="Favorite: activate to sort column ascending"
-                onClick={this._handleSortPokemon.bind(this, 'favorite')}
-              >
-                <span className="glyphicon glyphicon-star favorite-yellow"></span>
-              </th>
-              <th>
-                P↑
-              </th>
-              <th
-                width="15%"
-                className={this.getSortDirectionClassName('name')}
-                tabIndex="0"
-                rowSpan="1"
-                colSpan="1"
-                aria-controls="pokemon-data"
-                aria-label="Name: activate to sort column ascending"
-                onClick={this._handleSortPokemon.bind(this, 'name')}
-              >
-                Name
-              </th>
-              <th
-                className={this.getSortDirectionClassName('nickname')}
-                tabIndex="0"
-                rowSpan="1"
-                colSpan="1"
-                aria-controls="pokemon-data"
-                aria-label="Nickname: activate to sort column ascending"
-                onClick={this._handleSortPokemon.bind(this, 'nickname')}
-              >
-                Nickname
-              </th>
-              <th
-                className={this.getSortDirectionClassName('cp')}
-                tabIndex="0"
-                rowSpan="1"
-                colSpan="1"
-                aria-controls="pokemon-data"
-                aria-label="CP: activate to sort column ascending"
-                onClick={this._handleSortPokemon.bind(this, 'cp')}
-              >
-                CP
-              </th>
-              <th
-                className={this.getSortDirectionClassName('iv')}
-                tabIndex="0"
-                rowSpan="1"
-                colSpan="1"
-                aria-controls="pokemon-data"
-                aria-label="IV: activate to sort column ascending"
-                onClick={this._handleSortPokemon.bind(this, 'iv')}
-              >
-                IV
-              </th>
-            </tr>
+              <tr>
+                <th width="5%">
+                  <input
+                    type="checkbox"
+                    checked={checkAll}
+                    onChange={this.checkAll.bind(this, species)}
+                  />
+                </th>
+                <th
+                  width="5%"
+                  className={this.getSortDirectionClassName('favorite')}
+                  tabIndex="0"
+                  rowSpan="1"
+                  colSpan="1"
+                  aria-controls="pokemon-data"
+                  aria-label="Favorite: activate to sort column ascending"
+                  onClick={this.handleSortPokemon.bind(this, 'favorite')}
+                >
+                  <span className="glyphicon glyphicon-star favorite-yellow" />
+                </th>
+                <th>
+                  P↑
+                </th>
+                <th
+                  width="15%"
+                  className={this.getSortDirectionClassName('name')}
+                  tabIndex="0"
+                  rowSpan="1"
+                  colSpan="1"
+                  aria-controls="pokemon-data"
+                  aria-label="Name: activate to sort column ascending"
+                  onClick={this.handleSortPokemon.bind(this, 'name')}
+                >
+                  Name
+                </th>
+                <th
+                  className={this.getSortDirectionClassName('nickname')}
+                  tabIndex="0"
+                  rowSpan="1"
+                  colSpan="1"
+                  aria-controls="pokemon-data"
+                  aria-label="Nickname: activate to sort column ascending"
+                  onClick={this.handleSortPokemon.bind(this, 'nickname')}
+                >
+                  Nickname
+                </th>
+                <th
+                  className={this.getSortDirectionClassName('cp')}
+                  tabIndex="0"
+                  rowSpan="1"
+                  colSpan="1"
+                  aria-controls="pokemon-data"
+                  aria-label="CP: activate to sort column ascending"
+                  onClick={this.handleSortPokemon.bind(this, 'cp')}
+                >
+                  CP
+                </th>
+                <th
+                  className={this.getSortDirectionClassName('iv')}
+                  tabIndex="0"
+                  rowSpan="1"
+                  colSpan="1"
+                  aria-controls="pokemon-data"
+                  aria-label="IV: activate to sort column ascending"
+                  onClick={this.handleSortPokemon.bind(this, 'iv')}
+                >
+                  IV
+                </th>
+              </tr>
             </thead>
-            <tbody ref="tBody">
-            {this.getPokemonComponents(species)}
+            <tbody ref={(c) => { this.tBody = c }}>
+              {this.getPokemonComponents(species)}
             </tbody>
           </table>
         </td>
@@ -117,15 +127,23 @@ const Pokemon = React.createClass({
     )
   },
 
+  checkRow(pokemon) {
+    this.props.onCheckedChange(pokemon)
+  },
+
+  checkAll(species) {
+    this.props.onCheckAll(species)
+  },
+
   getPokemonComponents(species) {
-    let {
+    const {
       speciesIndex,
       pokemonState
     } = this.props
 
     return species.pokemon.map((pokemon, i) => {
-      const favorite = pokemon.favorite ? 'glyphicon glyphicon-star favorite-yellow' : 'glyphicon glyphicon-star-empty'
-      let pokeiv = pokemon['iv'] + '% (' + pokemon['attack'] + '/' + pokemon['defense'] + '/' + pokemon['stamina'] + ')'
+      const favorite = pokemon.favorite ? favoriteGlyph : emptyFavoriteGlyph
+      let pokeiv = `${pokemon.iv}% (${pokemon.attack}/${pokemon.defense}/${pokemon.stamina})`
       let powerupComponent
 
       if (pokemon.cp === pokemon.max_cp) {
@@ -203,25 +221,25 @@ const Pokemon = React.createClass({
     })
   },
 
-  handleClickPowerup(pokemon, e) {
+  handleClickPowerup(pokemon) {
     if (ipcRenderer.sendSync('confirmation-dialog', 'power up').success) {
       ipcRenderer.send('power-up-pokemon', pokemon.id, pokemon.nickname)
       // TODO Calculate and update the pokemon immediately with estimates
     }
   },
 
-  handleClickFavorite(pokemon, index, speciesIndex, e) {
+  handleClickFavorite(pokemon, index, speciesIndex) {
     ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
     const updatedPokemon = Object.assign(pokemon, { favorite: !pokemon.favorite ? -1 : -0 })
     this.context.monsterUpdater(updatedPokemon, index, speciesIndex)
   },
 
-  handleClickNickname(pokemon, species, e) {
+  handleClickNickname(pokemon, species) {
     renderModal($(document.getElementById('detailModal')), pokemon, species)
   },
 
-  _handleSortPokemon(sortBy, e) {
-    let {
+  handleSortPokemon(sortBy) {
+    const {
       speciesIndex,
       sortPokemonBy
     } = this.props
@@ -230,18 +248,21 @@ const Pokemon = React.createClass({
   },
 
   getSortDirectionClassName(key) {
-    let {
+    const {
       sortBy,
       sortDir
     } = this.props
 
     if (sortBy === key) {
       return sortDir === 'ASC' ? 'sorting_asc' : 'sorting_desc'
-    } else {
-      return 'sorting'
     }
-  }
 
+    return 'sorting'
+  },
+
+  setupTooltips() {
+    $(this.tBody).find('[data-toggle="tooltip"]').tooltip()
+  }
 
 })
 
