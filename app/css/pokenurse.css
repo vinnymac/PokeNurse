@@ -702,3 +702,8 @@ table tbody tr.child {
 table tbody tr.child:hover {
     background: none;
 }
+
+/*Stats*/
+.stats {
+  padding-top: 12px;
+}

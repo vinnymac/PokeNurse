@@ -120,10 +120,6 @@ const Table = React.createClass({
     ipcRenderer.send('table-did-mount')
   },
 
-  updateCheckedCount(count) {
-    this.checkCounter.handleRecount(count)
-  },
-
   render() {
     // <!--<h5 id="pokestorage-h"></h5>
     // <h5 id="bagstorage-h"></h5>-->
@@ -170,10 +166,10 @@ const Table = React.createClass({
           </h1>
 
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 col-xs-6 stats">
               <CheckCounter ref={(c) => { this.checkCounter = c }} />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 col-xs-6">
               <div className="form-group input-group">
                 <span className="input-group-addon">
                   <span className="glyphicon glyphicon-search" aria-hidden="true" />
@@ -212,6 +208,10 @@ const Table = React.createClass({
         />
       </div>
     )
+  },
+
+  updateCheckedCount(count) {
+    this.checkCounter.handleRecount(count)
   },
 
   updateMonster(pokemon, index, speciesIndex) {
@@ -266,6 +266,7 @@ const Table = React.createClass({
       running = true
       filteredPokemon.forEach((pokemon, index) => {
         ipcRenderer.send('transfer-pokemon', String(pokemon.id), index * randomDelay(2, 3))
+        this.updateCheckedCount(-1)
       })
       this.handleCountDown('Transfer', filteredPokemon.length * 2.5)
     }
@@ -280,6 +281,7 @@ const Table = React.createClass({
       running = true
       selectedPokemon.forEach((pokemon, index) => {
         ipcRenderer.send('evolve-pokemon', String(pokemon.id), index * randomDelay(25, 30))
+        this.updateCheckedCount(-1)
       })
       this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
     }
