@@ -266,8 +266,8 @@ const Table = React.createClass({
       running = true
       filteredPokemon.forEach((pokemon, index) => {
         ipcRenderer.send('transfer-pokemon', String(pokemon.id), index * randomDelay(2, 3))
-        this.updateCheckedCount(-1)
       })
+      this.updateCheckedCount(-selectedPokemon.length)
       this.handleCountDown('Transfer', filteredPokemon.length * 2.5)
     }
   },
@@ -281,8 +281,8 @@ const Table = React.createClass({
       running = true
       selectedPokemon.forEach((pokemon, index) => {
         ipcRenderer.send('evolve-pokemon', String(pokemon.id), index * randomDelay(25, 30))
-        this.updateCheckedCount(-1)
       })
+      this.updateCheckedCount(-selectedPokemon.length)
       this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
     }
   },
