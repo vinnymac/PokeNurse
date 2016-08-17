@@ -1,28 +1,15 @@
 import React from 'react'
 
-var Counter = React.createClass({
-  getInitialState () {
-    return {
-      count: 0
-    }
+let counter = 0
+
+const Counter = React.createClass({
+  displayName: 'Counter',
+
+  getInitialState() {
+    return { count: counter }
   },
 
-  handleCheck (check) {
-    let {
-      count
-    } = this.state
-
-    let newCount
-    
-    newCount = check ? count + 1 : count - 1
-
-    this.setState({
-      count: newCount
-    })
-
-  },
-
-  render () {
+  render() {
     let {
       count
     } = this.state
@@ -33,6 +20,14 @@ var Counter = React.createClass({
       </p>
     )
   },
+
+  handleRecount(changes) {
+    counter += changes
+
+    this.setState({
+      count: counter
+    })
+  }
 
 })
 

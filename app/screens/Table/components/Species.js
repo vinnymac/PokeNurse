@@ -310,8 +310,13 @@ const Species = React.createClass({
       species: this.updateSpeciesState(species.pokemon_id, (speciesState) => {
         const newCheckAllState = !speciesState.checkAll
         const newPokemonState = {}
+        const ids = Object.keys(speciesState.pokemonState)
 
-        Object.keys(speciesState.pokemonState).forEach(id => {
+        ids.forEach(id => {
+          if (newCheckAllState !== speciesState.pokemonState[id].check) {
+            this.props.updateCheckedCount(newCheckAllState ? 1 : -1)
+          }
+
           newPokemonState[id] = Object.assign(
             {},
             speciesState.pokemonState[id],
@@ -337,7 +342,7 @@ const Species = React.createClass({
             String(pokemon.id),
             (pokemonState) => {
               const newChecked = !pokemonState.check
-              this.props.updateCheckedCount(newChecked)
+              this.props.updateCheckedCount(newChecked ? 1 : -1)
               return { check: newChecked }
             }
           )

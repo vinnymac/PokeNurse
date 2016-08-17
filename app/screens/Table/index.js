@@ -121,8 +121,8 @@ const Table = React.createClass({
     ipcRenderer.send('table-did-mount')
   },
 
-  updateCheckedCount (check) {
-    this.refs.checkCounter.handleCheck(check)
+  updateCheckedCount(count) {
+    this.refs.checkCounter.handleRecount(count)
   },
 
   render() {
