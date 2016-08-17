@@ -279,9 +279,8 @@ function getPlayersPokemons(event, sync = 'sync') {
     const reducedPokemonList = []
     const combinedPokemonList = []
 
-    for (let i = 0; i < pokemons.length; i++) {
-      const pokemon = pokemons[i]
-      if (pokemon.cp === 0) continue
+    pokemons.forEach(pokemon => {
+      if (pokemon.cp === 0) return
 
       let pokemonName = pogobuf.Utils.getEnumKeyByValue(
         POGOProtos.Enums.PokemonId,
@@ -356,7 +355,7 @@ function getPlayersPokemons(event, sync = 'sync') {
           pokes: []
         }
       }
-    }
+    })
 
     // console.log(reducedPokemonList)
 
@@ -372,7 +371,7 @@ function getPlayersPokemons(event, sync = 'sync') {
 
     const finalList = []
 
-    for (const key in combinedPokemonList) {
+    Object.keys(combinedPokemonList).forEach(key => {
       const pokemon = combinedPokemonList[key]
       const candy = formattedCandies[baseStats.pokemon[pokemon.pokemon_id].familyId]
       const count = pokemon.count
@@ -390,7 +389,7 @@ function getPlayersPokemons(event, sync = 'sync') {
         evolves: (evolves > count ? count : evolves),
         pokemon: pokemon.pokes
       })
-    }
+    })
 
     const payload = {
       success: true,
