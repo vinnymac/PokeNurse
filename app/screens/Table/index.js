@@ -121,7 +121,7 @@ const Table = React.createClass({
   },
 
   updateCheckedCount(count) {
-    this.refs.checkCounter.handleRecount(count)
+    this.checkCounter.handleRecount(count)
   },
 
   render() {
@@ -138,7 +138,7 @@ const Table = React.createClass({
       <div>
         <header className="header" id="profile-header">
           <p id="username-h" />
-          <p>Status: <span id="status-h" ref="statusH">Idle</span></p>
+          <p>Status: <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span></p>
         </header>
 
         <div className="container">
@@ -171,7 +171,7 @@ const Table = React.createClass({
 
           <div className="row">
             <div className="col-md-6">
-              <CheckCounter ref="checkCounter"/>
+              <CheckCounter ref={(c) => { this.checkCounter = c }} />
             </div>
             <div className="col-md-6">
               <div className="form-group input-group">
@@ -182,15 +182,15 @@ const Table = React.createClass({
                   type="text"
                   className="form-control"
                   placeholder="Search"
-                  ref="search"
-                  onChange={this._onFilterChange}
+                  ref={(c) => { this.search = c }}
+                  onChange={this.onFilterChange}
                 />
               </div>
             </div>
           </div>
 
           <SpeciesTable
-            ref="speciesTable"
+            ref={(c) => { this.speciesTable = c }}
             monsters={monsters}
             filterBy={filterBy}
             sortBy={sortBy}
@@ -208,7 +208,7 @@ const Table = React.createClass({
           tabIndex="-1"
           role="dialog"
           aria-labelledby="detailModalLabel"
-          ref="detailModal"
+          ref={(c) => { this.detailModal = c }}
         />
       </div>
     )
@@ -238,7 +238,7 @@ const Table = React.createClass({
     })
   },
 
-  _onFilterChange(event) {
+  onFilterChange(event) {
     this.setState({
       filterBy: String(event.target.value).toLowerCase()
     })
@@ -251,7 +251,7 @@ const Table = React.createClass({
   handleTransfer() {
     if (runningCheck()) return
 
-    const selectedPokemon = this.refs.speciesTable.getPokemonChecked()
+    const selectedPokemon = this.speciesTable.getPokemonChecked()
 
     const filteredPokemon = []
 
@@ -267,26 +267,26 @@ const Table = React.createClass({
       filteredPokemon.forEach((pokemon, index) => {
         ipcRenderer.send('transfer-pokemon', String(pokemon.id), index * randomDelay(2, 3))
       })
-      this._countDown('Transfer', filteredPokemon.length * 2.5)
+      this.handleCountDown('Transfer', filteredPokemon.length * 2.5)
     }
   },
 
   handleEvolve() {
     if (runningCheck()) return
 
-    const selectedPokemon = this.refs.speciesTable.getPokemonChecked()
+    const selectedPokemon = this.speciesTable.getPokemonChecked()
 
     if (ipcRenderer.sendSync('confirmation-dialog', 'evolve').success) {
       running = true
       selectedPokemon.forEach((pokemon, index) => {
         ipcRenderer.send('evolve-pokemon', String(pokemon.id), index * randomDelay(25, 30))
       })
-      this._countDown('Evolve', selectedPokemon.length * 27.5)
+      this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
     }
   },
 
-  _countDown(method, index) {
-    const { statusH } = this.refs
+  handleCountDown(method, index) {
+    const { statusH } = this
 
     countDown(method, index, statusH, () => {
       ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
@@ -311,8 +311,8 @@ const Table = React.createClass({
 
     if (!sortBy && !sortDir) {
       // Hacky way of retrieving the current sort state of species.jsx
-      if (this.refs.speciesTable) {
-        const sortState = this.refs.speciesTable.getSortState(specie)
+      if (this.speciesTable) {
+        const sortState = this.speciesTable.getSortState(specie)
         sortBy = sortState.sortBy
         sortDir = sortState.sortDir
       } else {
@@ -331,7 +331,7 @@ const Table = React.createClass({
   },
 
   sortSpeciesBy(newSortBy) {
-    let {
+    const {
       sortBy,
       sortDir
     } = this.state
