@@ -237,7 +237,7 @@ ipcMain.on('table-did-mount', () => {
 ipcMain.on('get-player-info', (event) => {
   console.log('[+] Retrieving player info')
   client.getPlayer().then(response => {
-    if (!response['success']) {
+    if (!response.success) {
       event.returnValue = {
         success: false
       }
@@ -246,14 +246,14 @@ ipcMain.on('get-player-info', (event) => {
 
     event.returnValue = {
       success: 'true',
-      player_data: response['player_data']
+      player_data: response.player_data
     }
   })
 })
 
 function getPlayersPokemons(event, sync = 'sync') {
   client.getInventory(0).then(inventory => {
-    if (!inventory['success']) {
+    if (!inventory.success) {
       const payload = { success: false }
       if (sync !== 'sync') {
         event.sender.send('receive-players-pokemons', payload)
@@ -279,25 +279,25 @@ function getPlayersPokemons(event, sync = 'sync') {
 
     for (let i = 0; i < pokemons.length; i++) {
       const pokemon = pokemons[i]
-      if (pokemon['cp'] === 0) continue
+      if (pokemon.cp === 0) continue
 
-      let pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon['pokemon_id'])
+      let pokemonName = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon.pokemon_id)
       pokemonName = pokemonName.replace('Female', '♀').replace('Male', '♂')
 
-      const stats = baseStats.pokemon[pokemon['pokemon_id']]
+      const stats = baseStats.pokemon[pokemon.pokemon_id]
 
-      const totalCpMultiplier = pokemon['cp_multiplier'] + pokemon['additional_cp_multiplier']
+      const totalCpMultiplier = pokemon.cp_multiplier + pokemon.additional_cp_multiplier
 
-      const attack = stats.BaseAttack + pokemon['individual_attack']
-      const defense = stats.BaseDefense + pokemon['individual_defense']
-      const stamina = stats.BaseStamina + pokemon['individual_stamina']
+      const attack = stats.BaseAttack + pokemon.individual_attack
+      const defense = stats.BaseDefense + pokemon.individual_defense
+      const stamina = stats.BaseStamina + pokemon.individual_stamina
 
       const maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
       const candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
       const stardustCost = utils.getStardustCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
       const candyMaxCost = utils.getMaxCandyCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
       const stardustMaxCost = utils.getMaxStardustCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
-      const nextCP = utils.getCpAfterPowerup(pokemon['cp'], totalCpMultiplier)
+      const nextCP = utils.getCpAfterPowerup(pokemon.cp, totalCpMultiplier)
       const ADS = pokemon.individual_attack + pokemon.individual_defense + pokemon.individual_stamina
       const iv = Math.round(ADS / 45 * 10000) / 100
 
@@ -333,7 +333,7 @@ function getPlayersPokemons(event, sync = 'sync') {
         combinedPokemonList[pokemonName].count = combinedPokemonList[pokemonName].count + 1
       } else {
         combinedPokemonList[pokemonName] = {
-          pokemon_id: pokemon['pokemon_id'],
+          pokemon_id: pokemon.pokemon_id,
           name: pokemonName,
           count: +1,
           pokes: []

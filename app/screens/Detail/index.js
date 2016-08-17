@@ -36,7 +36,7 @@ export default ($detailModal, pokemon, species) => {
 
   let transform = `rotate(${degree}deg) translate(-193px)`
 
-  const stats = baseStats.pokemon[pokemon['pokemon_id']]
+  const stats = baseStats.pokemon[pokemon.pokemon_id]
 
   const baseAttack = stats.BaseAttack
   const baseDefense = stats.BaseDefense
@@ -58,8 +58,8 @@ export default ($detailModal, pokemon, species) => {
   let nickname = pokemon.nickname
   let spriteImageName = name.toLowerCase()
 
-  let move_1 = baseStats.moves[pokemon['move_1']]
-  let move_2 = baseStats.moves[pokemon['move_2']]
+  let move_1 = baseStats.moves[pokemon.move_1]
+  let move_2 = baseStats.moves[pokemon.move_2]
 
   if (spriteImageName.indexOf('nidoran') > -1) {
     const spriteParts = spriteImageName.split(' ')
