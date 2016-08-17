@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {
+  PropTypes
+} from 'react'
 import ReactDOM from 'react-dom'
 
 import ModalBody from './components/ModalBody'
@@ -6,6 +8,13 @@ import ModalBody from './components/ModalBody'
 import baseStats from '../../../baseStats'
 
 const ModalDialog = React.createClass({
+  displayName: 'ModalDialog',
+
+  propTypes: {
+    name: PropTypes.string.isRequired,
+    detailModal: PropTypes.func.isRequired
+  },
+
   componentDidMount() {
     this.props.detailModal.modal('show')
   },
@@ -15,8 +24,17 @@ const ModalDialog = React.createClass({
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 className="modal-title" id="detailModalLabel">{this.props.name}</h4>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 className="modal-title" id="detailModalLabel">
+              {this.props.name}
+            </h4>
           </div>
           <ModalBody {...this.props} />
           <div className="modal-footer">
@@ -58,8 +76,8 @@ export default ($detailModal, pokemon, species) => {
   let nickname = pokemon.nickname
   let spriteImageName = name.toLowerCase()
 
-  let move_1 = baseStats.moves[pokemon.move_1]
-  let move_2 = baseStats.moves[pokemon.move_2]
+  let move1 = baseStats.moves[pokemon.move_1]
+  let move2 = baseStats.moves[pokemon.move_2]
 
   if (spriteImageName.indexOf('nidoran') > -1) {
     const spriteParts = spriteImageName.split(' ')
@@ -84,8 +102,8 @@ export default ($detailModal, pokemon, species) => {
     height={height}
     detailModal={$detailModal}
     evolvesTo={stats.evolvesTo}
-    fast_move={move_1}
-    charged_move={move_2}
+    fast_move={move1}
+    charged_move={move2}
   />)
 
   $detailModal.on('hidden.bs.modal', () => {
