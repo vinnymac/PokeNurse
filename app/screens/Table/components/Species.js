@@ -8,6 +8,7 @@ const Species = React.createClass({
   displayName: 'Species',
 
   propTypes: {
+    updateCheckedCount: PropTypes.func,
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
     filterBy: PropTypes.string,
@@ -233,7 +234,6 @@ const Species = React.createClass({
       existingPokemonByIdState,
       updater(existingPokemonByIdState)
     )
-
     return Object.assign({}, speciesState.pokemonState, newPokemonByIdState)
   },
 
@@ -305,6 +305,7 @@ const Species = React.createClass({
   },
 
   handleCheckAll(species) {
+
     this.setState({
       species: this.updateSpeciesState(species.pokemon_id, (speciesState) => {
         const newCheckAllState = !speciesState.checkAll
@@ -336,7 +337,7 @@ const Species = React.createClass({
             String(pokemon.id),
             (pokemonState) => {
               const newChecked = !pokemonState.check
-
+              this.props.updateCheckedCount(newChecked)
               return { check: newChecked }
             }
           )

@@ -8,6 +8,7 @@ window.$ = window.jQuery = $
 require('bootstrap')
 
 import SpeciesTable from './components/Species'
+import CheckCounter from './components/Counter'
 
 import {
   Immutable,
@@ -30,7 +31,7 @@ let running = false
 
 // Helper Methods
 
-function runningCheck() {
+function runningCheck () {
   if (running) {
     ipcRenderer.send('error-message', 'An action is already running')
     return true
@@ -38,7 +39,7 @@ function runningCheck() {
   return false
 }
 
-function countDown(method, index, statusH, callback) {
+function countDown (method, index, statusH, callback) {
   const interval = setInterval(() => {
     statusH.innerHTML = method + ' / ' + index + ' second(s) left'
     index--
@@ -51,11 +52,11 @@ function countDown(method, index, statusH, callback) {
   }, 1000)
 }
 
-function randomDelay(min, max) {
+function randomDelay (min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
-function setBackgroundImage(team) {
+function setBackgroundImage (team) {
   const header = document.getElementById('profile-header')
   let teamName = null
   switch (team) {
@@ -120,6 +121,10 @@ const Table = React.createClass({
     ipcRenderer.send('table-did-mount')
   },
 
+  updateCheckedCount (check) {
+    this.refs.checkCounter.handleCheck(check)
+  },
+
   render() {
     // <!--<h5 id="pokestorage-h"></h5>
     // <h5 id="bagstorage-h"></h5>-->
@@ -165,16 +170,21 @@ const Table = React.createClass({
             </span>
           </h1>
 
-          <div className="row col-md-12">
-            <div className="form-group input-group">
+          <div className='row'>
+            <div className='col-md-6'>
+              <CheckCounter ref="checkCounter"/>
+            </div>
+            <div className='col-md-6'>
+              <div className="form-group input-group">
               <span className="input-group-addon"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search"
-                ref="search"
-                onChange={this._onFilterChange}
-              />
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                  ref="search"
+                  onChange={this._onFilterChange}
+                />
+              </div>
             </div>
           </div>
 
@@ -187,6 +197,7 @@ const Table = React.createClass({
             sortSpeciesBy={this.sortSpeciesBy}
             updateSpecies={this.updateSpecies}
             getSortedPokemon={this.getSortedPokemon}
+            updateCheckedCount={this.updateCheckedCount}
           />
         </div>
 
