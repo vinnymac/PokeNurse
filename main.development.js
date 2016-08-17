@@ -298,37 +298,35 @@ function getPlayersPokemons(event, sync = 'sync') {
       const candyMaxCost = utils.getMaxCandyCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
       const stardustMaxCost = utils.getMaxStardustCostsForPowerup(player.level, pokemon.num_upgrades, totalCpMultiplier)
       const nextCP = utils.getCpAfterPowerup(pokemon['cp'], totalCpMultiplier)
+      const ADS = pokemon.individual_attack + pokemon.individual_defense + pokemon.individual_stamina
+      const iv = Math.round(ADS / 45 * 10000) / 100
 
       reducedPokemonList.push({
-        cp: pokemon['cp'],
+        cp: pokemon.cp,
         next_cp: nextCP,
         max_cp: maxCP,
         candy_cost: candyCost,
         candy_max_cost: candyMaxCost,
         stardust_cost: stardustCost,
         stardust_max_cost: stardustMaxCost,
-        creation_time_ms: pokemon['creation_time_ms'].toString(),
-        deployed: pokemon['deployed_fort_id'] !== '',
-        id: pokemon['id'].toString(),
-        attack: pokemon['individual_attack'],
-        defense: pokemon['individual_defense'],
-        stamina: pokemon['individual_stamina'],
-        current_stamina: pokemon['stamina'],
-        stamina_max: pokemon['stamina_max'],
-        iv: Math.round((
-          pokemon['individual_attack'] +
-          pokemon['individual_defense'] +
-          pokemon['individual_stamina']
-          ) / 45 * 10000) / 100,
-        pokemon_id: pokemon['pokemon_id'],
+        creation_time_ms: pokemon.creation_time_ms.toString(),
+        deployed: pokemon.deployed_fort_id !== '',
+        id: pokemon.id.toString(),
+        attack: pokemon.individual_attack,
+        defense: pokemon.individual_defense,
+        stamina: pokemon.individual_stamina,
+        current_stamina: pokemon.stamina,
+        stamina_max: pokemon.stamina_max,
+        iv,
+        pokemon_id: pokemon.pokemon_id,
         name: pokemonName,
-        height: pokemon['height_m'],
-        weight: pokemon['weight_kg'],
-        nickname: pokemon['nickname'] || pokemonName,
+        height: pokemon.height_m,
+        weight: pokemon.weight_kg,
+        nickname: pokemon.nickname || pokemonName,
         // Multiply by -1 for sorting
-        favorite: pokemon['favorite'] * -1,
-		                                                                                move_1: pokemon['move_1'],
-		                                                                                move_2: pokemon['move_2']
+        favorite: pokemon.favorite * -1,
+        move_1: pokemon.move_1,
+        move_2: pokemon.move_2
       })
 
       if (combinedPokemonList[pokemonName]) {
