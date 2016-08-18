@@ -3,14 +3,17 @@ import React, {
 } from 'react'
 import ReactDOM from 'react-dom'
 
-// TODO Abstract the dialog into something flexible
 const ConfirmationDialog = React.createClass({
   displayName: 'ConfirmationDialog',
 
   propTypes: {
-    transferAll: PropTypes.func.isRequired,
-    transferWithoutFavorites: PropTypes.func.isRequired,
-    dialog: PropTypes.object.isRequired
+    onClickSecondary: PropTypes.func.isRequired,
+    onClickPrimary: PropTypes.func.isRequired,
+    dialog: PropTypes.object.isRequired,
+    primaryText: PropTypes.string.isRequired,
+    secondaryText: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired
   },
 
   componentDidMount() {
@@ -18,6 +21,27 @@ const ConfirmationDialog = React.createClass({
   },
 
   render() {
+    const {
+      secondaryText,
+      primaryText,
+      title,
+      message
+    } = this.props
+
+    let secondaryButton
+
+    if (secondaryText) {
+      secondaryButton = (
+        <button
+          type="button"
+          className="btn btn-warning"
+          onClick={this.handleSecondary}
+        >
+          {secondaryText}
+        </button>
+      )
+    }
+
     return (
       <div className="modal-dialog" role="document">
         <div className="modal-content">
@@ -30,30 +54,23 @@ const ConfirmationDialog = React.createClass({
             >
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 className="modal-title" id="detailModalLabel">
-              Confirm Transfer
+            <h4 className="modal-title" id="confirmationDialogLabel">
+              {title}
             </h4>
           </div>
           <div className="modal-body">
             <p>
-              Transferring normally doesn't allow favorites.
-              Please choose how you would like to transfer your selected pokemon.
+              {message}
             </p>
           </div>
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-warning"
-              onClick={this.handleTransferAll}
-            >
-              Transfer All
-            </button>
+            {secondaryButton}
             <button
               type="button"
               className="btn btn-primary"
-              onClick={this.handleTransferWithoutFavorites}
+              onClick={this.handlePrimary}
             >
-              Transfer without Favorites
+              {primaryText}
             </button>
             <button
               type="button"
@@ -68,14 +85,14 @@ const ConfirmationDialog = React.createClass({
     )
   },
 
-  handleTransferAll() {
+  handleSecondary() {
     this.props.dialog.modal('hide')
-    this.props.transferAll()
+    this.props.onClickSecondary()
   },
 
-  handleTransferWithoutFavorites() {
+  handlePrimary() {
     this.props.dialog.modal('hide')
-    this.props.transferWithoutFavorites()
+    this.props.onClickPrimary()
   }
 })
 

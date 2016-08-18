@@ -267,7 +267,11 @@ const Table = React.createClass({
     if (selectedPokemon.length < 1) return
 
     confirmDialog($(this.confirmationDialog), {
-      transferAll() {
+      title: 'Confirm Transfer',
+      message: `Transferring normally doesn't allow favorites.
+      Please choose how you would like to transfer your selected pokemon.`,
+      secondaryText: 'Transfer All',
+      onClickSecondary() {
         running = true
 
         selectedPokemon.forEach((pokemon, index) => {
@@ -278,7 +282,8 @@ const Table = React.createClass({
         this.handleCountDown('Transfer', selectedPokemon.length * 2.5)
       },
 
-      transferWithoutFavorites() {
+      primaryText: 'Transfer without favorites',
+      onClickPrimary() {
         running = true
 
         const filteredPokemon = selectedPokemon.filter((p) => {
