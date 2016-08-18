@@ -1,10 +1,9 @@
 import React, {
   PropTypes
 } from 'react'
+import every from 'lodash/every'
 
 import PokemonTable from './Pokemon'
-
-import every from 'lodash/every'
 
 const Species = React.createClass({
   displayName: 'Species',
