@@ -4,6 +4,8 @@ import React, {
 
 import PokemonTable from './Pokemon'
 
+import every from 'lodash/every'
+
 const Species = React.createClass({
   displayName: 'Species',
 
@@ -347,6 +349,7 @@ const Species = React.createClass({
           )
 
           return {
+            checkAll: every(updatedPokemonState, { check: true }),
             pokemonState: updatedPokemonState
           }
         }
