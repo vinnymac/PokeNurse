@@ -6,6 +6,8 @@ import $ from 'jquery'
 import SpeciesTable from './components/Species'
 import CheckCounter from './components/Counter'
 
+import confirmDialog from '../ConfirmationDialog'
+
 import {
   Immutable,
   Organize
@@ -200,6 +202,15 @@ const Table = React.createClass({
 
         <div
           className="modal fade"
+          id="confirmationDialog"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="confirmationDialogLabel"
+          ref={(c) => { this.confirmationDialog = c }}
+        />
+
+        <div
+          className="modal fade"
           id="detailModal"
           tabIndex="-1"
           role="dialog"
@@ -253,22 +264,37 @@ const Table = React.createClass({
     if (runningCheck()) return
 
     const selectedPokemon = this.speciesTable.getPokemonChecked()
+    if (selectedPokemon.length < 1) return
 
-    const filteredPokemon = selectedPokemon.filter((p) => {
-      const isntFavorite = !p.favorite ? -1 : 0 // TODO stop this -1/0 garbage
+    confirmDialog($(this.confirmationDialog), {
+      transferAll() {
+        running = true
 
-      return isntFavorite
+        selectedPokemon.forEach((pokemon, index) => {
+          ipcRenderer.send('transfer-pokemon', String(pokemon.id), index * randomDelay(2, 3))
+        })
+
+        this.updateCheckedCount(-selectedPokemon.length)
+        this.handleCountDown('Transfer', selectedPokemon.length * 2.5)
+      },
+
+      transferWithoutFavorites() {
+        running = true
+
+        const filteredPokemon = selectedPokemon.filter((p) => {
+          const isntFavorite = !p.favorite ? -1 : 0 // TODO stop this -1/0 garbage
+
+          return isntFavorite
+        })
+
+        filteredPokemon.forEach((pokemon, index) => {
+          ipcRenderer.send('transfer-pokemon', String(pokemon.id), index * randomDelay(2, 3))
+        })
+
+        this.updateCheckedCount(-filteredPokemon.length)
+        this.handleCountDown('Transfer', filteredPokemon.length * 2.5)
+      }
     })
-
-
-    if (ipcRenderer.sendSync('confirmation-dialog', 'transfer').success) {
-      running = true
-      filteredPokemon.forEach((pokemon, index) => {
-        ipcRenderer.send('transfer-pokemon', String(pokemon.id), index * randomDelay(2, 3))
-      })
-      this.updateCheckedCount(-selectedPokemon.length)
-      this.handleCountDown('Transfer', filteredPokemon.length * 2.5)
-    }
   },
 
   handleEvolve() {
