@@ -285,7 +285,7 @@ const Table = React.createClass({
       message: `Transferring normally doesn't allow favorites.
       Please choose how you would like to transfer your selected pokemon.`,
       secondaryText: 'Transfer All',
-      onClickSecondary() {
+      onClickSecondary: () => {
         running = true
 
         selectedPokemon.forEach((pokemon, index) => {
@@ -297,7 +297,7 @@ const Table = React.createClass({
       },
 
       primaryText: 'Transfer without favorites',
-      onClickPrimary() {
+      onClickPrimary: () => {
         running = true
 
         const filteredPokemon = selectedPokemon.filter((p) => {
