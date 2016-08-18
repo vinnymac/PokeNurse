@@ -146,6 +146,8 @@ const Pokemon = React.createClass({
       let pokeiv = `${pokemon.iv}% (${pokemon.attack}/${pokemon.defense}/${pokemon.stamina})`
       let powerupComponent
 
+      const isChecked = pokemonState[String(pokemon.id)].check
+
       if (pokemon.cp === pokemon.max_cp) {
         let tip = `Max CP ${pokemon.max_cp}`
         powerupComponent = (<span
@@ -185,7 +187,7 @@ const Pokemon = React.createClass({
               value={String(pokemon.id)}
               key={pokemon.id}
               disabled={pokemon.deployed}
-              checked={pokemonState[String(pokemon.id)].check}
+              checked={isChecked}
               onChange={this.checkRow.bind(this, pokemon)}
             />
           </td>

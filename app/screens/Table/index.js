@@ -3,6 +3,8 @@ import {
   ipcRenderer
 } from 'electron'
 import $ from 'jquery'
+import findIndex from 'lodash/findIndex'
+
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
@@ -121,6 +123,14 @@ const Table = React.createClass({
     }
 
     ipcRenderer.send('table-did-mount')
+
+    ipcRenderer.on('transfer-pokemon-complete', this.handleTransferCompleted)
+    ipcRenderer.on('evolve-pokemon-complete', this.handleEvolveCompleted)
+  },
+
+  componentWillUnmount() {
+    ipcRenderer.off('transfer-pokemon-complete', this.handleTransferCompleted)
+    ipcRenderer.off('evolve-pokemon-complete', this.handleEvolveCompleted)
   },
 
   render() {
@@ -289,10 +299,9 @@ const Table = React.createClass({
         running = true
 
         selectedPokemon.forEach((pokemon, index) => {
-          ipcRenderer.send('transfer-pokemon', String(pokemon.id), index * randomDelay(2, 3))
+          ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
         })
 
-        this.updateCheckedCount(-selectedPokemon.length)
         this.handleCountDown('Transfer', selectedPokemon.length * 2.5)
       },
 
@@ -307,10 +316,9 @@ const Table = React.createClass({
         })
 
         filteredPokemon.forEach((pokemon, index) => {
-          ipcRenderer.send('transfer-pokemon', String(pokemon.id), index * randomDelay(2, 3))
+          ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
         })
 
-        this.updateCheckedCount(-filteredPokemon.length)
         this.handleCountDown('Transfer', filteredPokemon.length * 2.5)
       }
     })
@@ -333,7 +341,7 @@ const Table = React.createClass({
         selectedPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('evolve-pokemon', String(pokemon.id), index * randomDelay(25, 30))
         })
-        this.updateCheckedCount(-selectedPokemon.length)
+
         this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
       }
     })
@@ -420,6 +428,31 @@ const Table = React.createClass({
     return Object.assign({}, monsters, {
       species: sortedSpecies
     })
+  },
+
+  removeMonster(pokemon) {
+    let pokemonIndex = -1
+
+    const specieIndex = findIndex(this.state.monsters.species, (specie) => {
+      pokemonIndex = findIndex(specie.pokemon, (p) => {
+        const isPokemon = p.id === pokemon.id
+        return isPokemon
+      })
+      return pokemonIndex > -1
+    })
+
+    if (pokemonIndex > -1) {
+      this.updateMonster(null, pokemonIndex, specieIndex)
+      this.updateCheckedCount(-1)
+    }
+  },
+
+  handleEvolveCompleted(event, pokemon) {
+    this.removeMonster(pokemon)
+  },
+
+  handleTransferCompleted(event, pokemon) {
+    this.removeMonster(pokemon)
   }
 })
 
