@@ -425,15 +425,21 @@ ipcMain.on('power-up-pokemon', (event, id, nickname) => {
 
 ipcMain.on('transfer-pokemon', (event, id, delay) => {
   setTimeout(() => {
-    client.releasePokemon(id)
-    console.log(`[+] Released Pokemon with id: ${id}`)
+    client.releasePokemon(id).then(() => {
+      console.log(`[+] Released Pokemon with id: ${id}`)
+
+      // TODO async transfer-pokemon-complete
+    }).catch(console.error)
   }, delay)
 })
 
 ipcMain.on('evolve-pokemon', (event, id, delay) => {
   setTimeout(() => {
-    client.evolvePokemon(id)
-    console.log(`[+] Evolved Pokemon with id: ${id}`)
+    client.evolvePokemon(id).then(() => {
+      console.log(`[+] Evolved Pokemon with id: ${id}`)
+
+      // TODO async evolve-pokemon-complete
+    }).catch(console.error)
   }, delay)
 })
 
