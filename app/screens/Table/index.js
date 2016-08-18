@@ -4,7 +4,8 @@ import {
 } from 'electron'
 import $ from 'jquery'
 import SpeciesTable from './components/Species'
-import CheckCounter from './components/Counter'
+import SpeciesCounter from './components/SpeciesPokemonCounter'
+import CheckCounter from './components/CheckCounter'
 
 import confirmDialog from '../ConfirmationDialog'
 
@@ -135,8 +136,24 @@ const Table = React.createClass({
     return (
       <div>
         <header className="header" id="profile-header">
-          <p id="username-h" />
-          <p>Status: <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span></p>
+          <div className="row">
+            <div className="col-xs-6">
+              <p id="username-h" />
+            </div>
+            <div className="col-xs-6 pull-right">
+              <p>
+                <span>Status:
+                  <span id="status-h" ref={(c) => { this.statusH = c }}> Idle</span>
+                </span>
+              </p>
+              <SpeciesCounter monsters={monsters} />
+              <p>
+                <span>
+                  <CheckCounter ref={(c) => { this.checkCounter = c }} />
+                </span>
+              </p>
+            </div>
+          </div>
         </header>
 
         <div className="container">
@@ -168,10 +185,7 @@ const Table = React.createClass({
           </h1>
 
           <div className="row">
-            <div className="col-md-6 col-xs-6 stats">
-              <CheckCounter ref={(c) => { this.checkCounter = c }} />
-            </div>
-            <div className="col-md-6 col-xs-6">
+            <div className="col-md-12">
               <div className="form-group input-group">
                 <span className="input-group-addon">
                   <span className="glyphicon glyphicon-search" aria-hidden="true" />

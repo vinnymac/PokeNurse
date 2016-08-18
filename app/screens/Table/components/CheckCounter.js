@@ -2,8 +2,8 @@ import React from 'react'
 
 let counter = 0
 
-const Counter = React.createClass({
-  displayName: 'Counter',
+const CheckCounter = React.createClass({
+  displayName: 'CheckCounter',
 
   getInitialState() {
     return { count: counter }
@@ -15,9 +15,9 @@ const Counter = React.createClass({
     } = this.state
 
     return (
-      <p>
+      <span>
       Selected: {count}
-      </p>
+      </span>
     )
   },
 
@@ -31,4 +31,4 @@ const Counter = React.createClass({
 
 })
 
-export default Counter
+export default CheckCounter
