@@ -142,8 +142,8 @@ const Table = React.createClass({
             </div>
             <div className="col-xs-6 pull-right">
               <p>
-                <span>Status:
-                  <span id="status-h" ref={(c) => { this.statusH = c }}> Idle</span>
+                <span>Status:{' '}
+                  <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
                 </span>
               </p>
               <SpeciesCounter monsters={monsters} />
@@ -320,15 +320,23 @@ const Table = React.createClass({
     if (runningCheck()) return
 
     const selectedPokemon = this.speciesTable.getPokemonChecked()
+    if (selectedPokemon.length < 1) return
 
-    if (ipcRenderer.sendSync('confirmation-dialog', 'evolve').success) {
-      running = true
-      selectedPokemon.forEach((pokemon, index) => {
-        ipcRenderer.send('evolve-pokemon', String(pokemon.id), index * randomDelay(25, 30))
-      })
-      this.updateCheckedCount(-selectedPokemon.length)
-      this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
-    }
+    confirmDialog($(this.confirmationDialog), {
+      title: 'Confirm Evolve',
+      message: 'You are about the evolve the selected Pokemon',
+      primaryText: 'Evolve Selected',
+      onClickSecondary: () => {},
+      onClickPrimary: () => {
+        running = true
+
+        selectedPokemon.forEach((pokemon, index) => {
+          ipcRenderer.send('evolve-pokemon', String(pokemon.id), index * randomDelay(25, 30))
+        })
+        this.updateCheckedCount(-selectedPokemon.length)
+        this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
+      }
+    })
   },
 
   handleCountDown(method, index) {
