@@ -79,10 +79,10 @@
     "webpack-merge": "^0.14.1"
   },
   "dependencies": {
-    "source-map-support": "^0.4.2",
+    "bootstrap": "^3.3.7",
     "node-pogo-protos": "^1.1.2",
-    "pogobuf": "1.4.0",
-    "bootstrap": "^3.3.7"
+    "pogobuf": "^1.5.2",
+    "source-map-support": "^0.4.2"
   },
   "devEngines": {
     "node": "4.x || 5.x || 6.x",
