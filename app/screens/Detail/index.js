@@ -12,7 +12,7 @@ const ModalDialog = React.createClass({
 
   propTypes: {
     name: PropTypes.string.isRequired,
-    detailModal: PropTypes.func.isRequired
+    detailModal: PropTypes.object.isRequired
   },
 
   componentDidMount() {

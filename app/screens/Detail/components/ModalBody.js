@@ -22,7 +22,7 @@ const ModalBody = React.createClass({
     spriteImageName: PropTypes.string.isRequired,
     fast_move: PropTypes.object.isRequired,
     charged_move: PropTypes.object.isRequired,
-    evolvesTo: PropTypes.string
+    evolvesTo: PropTypes.node
   },
 
   componentDidMount() {
