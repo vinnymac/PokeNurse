@@ -16,16 +16,25 @@ const SelectedPokemon = React.createClass({
 
     return (
       <div>
-        <p>
-          Total: <strong>{pokemon.length}</strong> (scroll to see them all)
-        </p>
         <div className="confirmationTable">
           <table className="table table-striped table-condensed">
+            <thead>
+              <tr>
+                <td>Favorite</td>
+                <td>Name</td>
+                <td>Nickname</td>
+                <td>CP</td>
+                <td>IV</td>
+              </tr>
+            </thead>
             <tbody>
                { this.buildRows(pokemon) }
             </tbody>
           </table>
         </div>
+        <p className="confirmationTotal">
+          <strong>Total: {pokemon.length}</strong> (scroll to see them all)
+        </p>
       </div>
     )
   },
@@ -45,7 +54,7 @@ const SelectedPokemon = React.createClass({
             <td>{p.name}</td>
             <td>{p.nickname}</td>
             <td>{p.cp}</td>
-            <td>{p.iv}</td>
+            <td>{p.iv}%</td>
           </tr>
         )
       })

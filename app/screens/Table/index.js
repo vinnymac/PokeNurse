@@ -333,7 +333,7 @@ const Table = React.createClass({
 
     confirmDialog($(this.confirmationDialog), {
       title: 'Confirm Evolve',
-      message: 'You are about the evolve the following Pokemon',
+      message: 'You are about to evolve the following Pokemon',
       pokemon: selectedPokemon,
       primaryText: 'Evolve Selected',
       onClickSecondary: () => {},

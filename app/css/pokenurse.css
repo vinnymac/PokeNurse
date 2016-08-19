@@ -714,3 +714,15 @@ table tbody tr.child:hover {
   max-height: 200px;
   overflow-y: scroll;
 }
+
+.confirmationTable table {
+  font-size: 13px !important;
+}
+
+.confirmationTable table thead {
+  font-weight: bold;
+}
+
+.confirmationTotal {
+  padding-top: 10px !important;
+}
