@@ -16,19 +16,16 @@ const SelectedPokemon = React.createClass({
 
     return (
       <div>
-        <div className="row">
-          <div className="col-xs-6 pull-left">
-            Total: <strong>{pokemon.length}</strong>
-          </div>
-          <div className="col-xs-6 pull-right">Scroll to see them all</div>
-        </div>
-        <p className="confirmationTable">
+        <p>
+          Total: <strong>{pokemon.length}</strong> (scroll to see them all)
+        </p>
+        <div className="confirmationTable">
           <table className="table table-striped table-condensed">
             <tbody>
                { this.buildRows(pokemon) }
             </tbody>
           </table>
-        </p>
+        </div>
       </div>
     )
   },

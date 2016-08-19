@@ -711,6 +711,6 @@ table tbody tr.child:hover {
 /*Confirmation*/
 .confirmationTable {
   border: 1px solid black;
-  height: 200px;
+  max-height: 200px;
   overflow-y: scroll;
 }
