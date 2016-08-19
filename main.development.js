@@ -278,9 +278,13 @@ function getPlayersPokemons(event, sync = 'sync') {
     const pokemons = pogobuf.Utils.splitInventory(inventory).pokemon
     const reducedPokemonList = []
     const combinedPokemonList = []
+    const eggList = []
 
     pokemons.forEach(pokemon => {
-      if (pokemon.cp === 0) return
+      if (pokemon.is_egg) {
+        eggList.push(pokemon)
+        return
+      }
 
       let pokemonName = pogobuf.Utils.getEnumKeyByValue(
         POGOProtos.Enums.PokemonId,
@@ -393,7 +397,8 @@ function getPlayersPokemons(event, sync = 'sync') {
 
     const payload = {
       success: true,
-      species: finalList
+      species: finalList,
+      eggs: eggList
     }
 
     if (sync === 'sync') {

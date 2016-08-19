@@ -51,7 +51,7 @@ const SpeciesPokemonCounter = React.createClass({
       }
     }
 
-    return counter
+    return counter + monsters.eggs.length
   }
 
 })
