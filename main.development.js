@@ -428,23 +428,31 @@ ipcMain.on('power-up-pokemon', (event, id, nickname) => {
     .catch(console.error)
 })
 
-ipcMain.on('transfer-pokemon', (event, id, delay) => {
+ipcMain.on('transfer-pokemon', (event, pokemon, delay) => {
   setTimeout(() => {
-    client.releasePokemon(id).then(() => {
-      console.log(`[+] Released Pokemon with id: ${id}`)
+    // The line below is useful right now for testing
+    // it'd be even more useful with mock data responses!
+    // (new Promise((resolve, reject) => { resolve() }))
+    client.releasePokemon(pokemon.id)
+      .then(() => {
+        console.log(`[+] Released Pokemon with id: ${pokemon.id}`)
 
-      // TODO async transfer-pokemon-complete
-    }).catch(console.error)
+        event.sender.send('transfer-pokemon-complete', pokemon)
+      }).catch(console.error)
   }, delay)
 })
 
-ipcMain.on('evolve-pokemon', (event, id, delay) => {
+ipcMain.on('evolve-pokemon', (event, pokemon, delay) => {
   setTimeout(() => {
-    client.evolvePokemon(id).then(() => {
-      console.log(`[+] Evolved Pokemon with id: ${id}`)
+    // The line below is useful right now for testing
+    // it'd be even more useful with mock data responses!
+    // (new Promise((resolve, reject) => { resolve() }))
+    client.evolvePokemon(pokemon.id)
+      .then(() => {
+        console.log(`[+] Evolved Pokemon with id: ${pokemon.id}`)
 
-      // TODO async evolve-pokemon-complete
-    }).catch(console.error)
+        event.sender.send('evolve-pokemon-complete', pokemon)
+      }).catch(console.error)
   }, delay)
 })
 

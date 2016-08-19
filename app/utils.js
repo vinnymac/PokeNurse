@@ -1,6 +1,13 @@
 const Immutable = {
   array: {
     set(array, index, item) {
+      if (item === null) {
+        return [
+          ...array.slice(0, index),
+          ...array.slice(index + 1)
+        ]
+      }
+
       return [
         ...array.slice(0, index),
         item,

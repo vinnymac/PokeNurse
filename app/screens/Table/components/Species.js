@@ -2,6 +2,7 @@ import React, {
   PropTypes
 } from 'react'
 import every from 'lodash/every'
+import isEqual from 'lodash/isEqual'
 
 import PokemonTable from './Pokemon'
 
@@ -20,27 +21,18 @@ const Species = React.createClass({
   },
 
   getInitialState() {
-    const {
-      monsters
-    } = this.props
-
-    const species = {}
-
-    const sortBy = 'cp'
-    const sortDir = 'DESC'
-
-    for (const specie of monsters.species) {
-      species[String(specie.pokemon_id)] = {
-        pokemonState: this.getInitialPokemonState(specie),
-        checkAll: false,
-        collapsed: true,
-        sortBy,
-        sortDir
-      }
-    }
+    const species = this.getNewSpeciesStateFromProps(this.props)
 
     return {
       species
+    }
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.props.monsters.species, nextProps.monsters.species)) {
+      this.setState({
+        species: this.getNewSpeciesStateFromProps(nextProps)
+      })
     }
   },
 
@@ -358,6 +350,50 @@ const Species = React.createClass({
 
   handleSortSpecies(sortBy) {
     this.props.sortSpeciesBy(sortBy)
+  },
+
+  getNewSpeciesStateFromProps(props) {
+    const speciesState = {}
+
+    const sortBy = 'cp'
+    const sortDir = 'DESC'
+
+    props.monsters.species.forEach((specie) => {
+      const pid = String(specie.pokemon_id)
+      let existingSpecieState = null
+
+      if (this.state) existingSpecieState = this.state.species[pid]
+
+      // specie state already exists
+      if (existingSpecieState) {
+        const updatedSpecieState = { pokemonState: {} }
+        let checkAll = true
+        specie.pokemon.forEach((p) => {
+          // pokemon already exists
+          if (existingSpecieState.pokemonState[p.id]) {
+            updatedSpecieState.pokemonState[p.id] = existingSpecieState.pokemonState[p.id]
+            checkAll = checkAll && updatedSpecieState.pokemonState[p.id].check
+          // pokemon does not exist
+          } else {
+            updatedSpecieState.pokemonState[p.id] = { check: false }
+            checkAll = false
+          }
+        })
+        updatedSpecieState.checkAll = checkAll
+        speciesState[pid] = Object.assign({}, existingSpecieState, updatedSpecieState)
+      // specie state does not exist
+      } else {
+        speciesState[pid] = {
+          pokemonState: this.getInitialPokemonState(specie),
+          checkAll: false,
+          collapsed: true,
+          sortBy,
+          sortDir
+        }
+      }
+    })
+
+    return speciesState
   }
 
 })
