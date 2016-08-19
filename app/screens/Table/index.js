@@ -284,6 +284,7 @@ const Table = React.createClass({
       title: 'Confirm Transfer',
       message: `Transferring normally doesn't allow favorites.
       Please choose how you would like to transfer your selected pokemon.`,
+      pokemon: selectedPokemon,
       secondaryText: 'Transfer All',
       onClickSecondary: () => {
         running = true

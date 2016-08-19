@@ -707,3 +707,10 @@ table tbody tr.child:hover {
 .stats {
   padding-top: 8px;
 }
+
+/*Confirmation*/
+.confirmationTable {
+  border: 1px solid black;
+  height: 200px;
+  overflow-y: scroll;
+}

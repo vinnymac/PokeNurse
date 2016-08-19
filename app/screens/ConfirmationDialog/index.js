@@ -2,6 +2,7 @@ import React, {
   PropTypes
 } from 'react'
 import ReactDOM from 'react-dom'
+import SelectedPokemon from './components/SelectedPokemon'
 
 const ConfirmationDialog = React.createClass({
   displayName: 'ConfirmationDialog',
@@ -13,7 +14,8 @@ const ConfirmationDialog = React.createClass({
     primaryText: PropTypes.string.isRequired,
     secondaryText: PropTypes.string,
     title: PropTypes.string.isRequired,
-    message: PropTypes.string.isRequired
+    message: PropTypes.string.isRequired,
+    pokemon: PropTypes.array
   },
 
   componentDidMount() {
@@ -25,7 +27,8 @@ const ConfirmationDialog = React.createClass({
       secondaryText,
       primaryText,
       title,
-      message
+      message,
+      pokemon
     } = this.props
 
     let secondaryButton
@@ -62,6 +65,7 @@ const ConfirmationDialog = React.createClass({
             <p>
               {message}
             </p>
+            <SelectedPokemon pokemon={pokemon} />
           </div>
           <div className="modal-footer">
             {secondaryButton}
