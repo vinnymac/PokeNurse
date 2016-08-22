@@ -4,7 +4,7 @@
 [![style](https://img.shields.io/badge/style-standard-brightgreen.svg)]()
 [![discord](https://img.shields.io/badge/discord-PokéNurse-738bd7.svg)](https://discord.gg/sSXCruy)
 
-<img src="https://github.com/vinnymac/PokeNurse/blob/master/imgs/emojioneicon.png?raw=true" width="32px" align="left" hspace="10" vspace="10">
+<img src="app/app.png?raw=true" width="32px" align="left" hspace="10" vspace="10">
 
 **PokéNurse** is a desktop application for Windows and Mac that allows you to manage your pokémon from Pokémon Go without the need for a mobile device. You can now favorite, transfer, and evolve from the comfort of your own home!
 
@@ -46,6 +46,10 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
   Package for your platform
 
     npm run package
+
+  Package for a specific platform ([docs packager](https://github.com/electron-userland/electron-packager/blob/master/docs/api.md))
+
+    npm run package -- --platform=linux --arch=x64
 
   Package for all platforms
 
