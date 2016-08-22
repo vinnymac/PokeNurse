@@ -17,10 +17,10 @@ You may view all the releases [here](https://github.com/vinnymac/PokeNurse/relea
 * [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.2/PokeNurse-linux-x64.zip)
 
 ## Examples
-![Login Window](http://i.imgur.com/QaeO99H.png)
-![Main Window](http://i.imgur.com/ZGU0ee7.png)
+![Login Window](app/loginExample.png)
+![Main Window](app/tableExample.png)
 
-This is my first project using [Electron](http://electron.atom.io/) and [Node.js](https://nodejs.org/en/).  Criticism is welcome and encouraged.
+This project uses [Electron](http://electron.atom.io/) and [Node.js](https://nodejs.org/en/).  Criticism is welcome and encouraged.
 
 ## Features
 * List Pokemon
