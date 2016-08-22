@@ -1,7 +1,8 @@
 import React, {
   PropTypes
 } from 'react'
-import $ from 'jquery'
+import QuickMove from './QuickMove'
+import CinematicMove from './CinematicMove'
 
 const ModalBody = React.createClass({
   propTypes: {
@@ -22,15 +23,9 @@ const ModalBody = React.createClass({
     spriteImageName: PropTypes.string.isRequired,
     fast_move: PropTypes.object.isRequired,
     charged_move: PropTypes.object.isRequired,
-    evolvesTo: PropTypes.node
-  },
-
-  componentDidMount() {
-    this.setupTooltips()
-  },
-
-  componentDidUpdate() {
-    this.setupTooltips()
+    evolvesTo: PropTypes.node,
+    possibleQuickMoves: PropTypes.array,
+    possibleCinematicMoves: PropTypes.array,
   },
 
   render() {
@@ -52,8 +47,20 @@ const ModalBody = React.createClass({
       spriteImageName,
       fast_move,
       charged_move,
-      evolvesTo
+      evolvesTo,
+      possibleQuickMoves,
+      possibleCinematicMoves
     } = this.props
+
+    const quickMoves = []
+    for (let i = 0; i < possibleQuickMoves.length; i++) {
+      quickMoves.push(<QuickMove key={i} move={possibleQuickMoves[i]} myMove={fast_move} />)
+    }
+
+    const cinematicMoves = []
+    for (let i = 0; i < possibleCinematicMoves.length; i++) {
+      cinematicMoves.push(<CinematicMove key={i} move={possibleCinematicMoves[i]} myMove={charged_move} />)
+    }
 
     let evolution
 
@@ -67,39 +74,7 @@ const ModalBody = React.createClass({
       </div>)
     }
 
-    let chargedMoveBars = []
-
-    for (let i = 0; i < Math.floor(100 / charged_move.energyCost); i++) {
-      const move = (<div
-        key={i}
-        className="pokemon-move-cost-item"
-        style={{ width: `${charged_move.energyCost}px` }}
-      />)
-
-      chargedMoveBars.push(move)
-    }
-
-    let fastMoveTip = `
-        Move Duration: ${fast_move.durationMs}ms <br>
-        Damage Window: ${fast_move.damageWindowMs}ms <br>
-        DPS: ${fast_move.dps} <br>
-        Energy Gain(EG): ${fast_move.energyGain} <br>
-        EGPS: ${fast_move.energyGainPerSecond}
-          `
-
-    let chargedMoveTip = `
-        Duration: ${charged_move.durationMs}ms <br>
-        Dodge Window: ${charged_move.dodgeWindowMs}ms <br>
-        Crit Chance: ${charged_move.crit * 100}%
-      `
-    const bgColor1 = this.getBackgroundColor(type[0])
-    const bgColor2 = this.getBackgroundColor(type[1])
-
-    let modalBackground = {
-      background: `linear-gradient(to bottom, ${bgColor1} 0%, ${bgColor2} 100%)`
-    }
-
-    return (<div className="modal-body" style={modalBackground}>
+    return (<div className="modal-body">
       <div id="pokemon_sprite_wrapper">
         <div style={{ textAlign: 'center', fontSize: '11px' }}>
           <span>CP</span>
@@ -174,100 +149,20 @@ const ModalBody = React.createClass({
           </div>
         </div>
         <div className="pokemon_move_info">
-          <div className="pokemon-move-item">
-            <div
-              className="pokemon-move-item-text-area"
-              ref={(c) => { this.tooltip1 = c }}
-              data-toggle="tooltip"
-              data-placement="right"
-              data-html="true"
-              title={fastMoveTip}
-            >
-              <div className="pokemon-move-title">{`${fast_move.name}`}</div>
-              <div className={`pokemon-move-type ${fast_move.type}`}>{`${fast_move.type}`}</div>
-            </div>
-            <div className="pokemon-move-cost" />
-            <div className="pokemon-move-damage">{`${fast_move.power}`}</div>
-          </div>
-          <div className="pokemon-move-item">
-            <div
-              className="pokemon-move-item-text-area"
-              ref={(c) => { this.tooltip2 = c }}
-              data-toggle="tooltip"
-              data-placement="right"
-              data-html="true"
-              title={chargedMoveTip}
-            >
-              <div className="pokemon-move-title">{`${charged_move.name}`}</div>
-              <div className={`pokemon-move-type ${charged_move.type}`}>
-                {`${charged_move.type}`}
-              </div>
-            </div>
-            <div className="pokemon-move-cost">
-              {chargedMoveBars}
-            </div>
-            <div className="pokemon-move-damage">
-              {`${charged_move.power}`}
-            </div>
-          </div>
+          <div className="pokemon-move-item-title">Quick Moves</div>
+          {quickMoves}
+          <div className="pokemon-move-item-title">Charged Moves</div>
+          {cinematicMoves}
         </div>
         {evolution}
       </div>
     </div>)
   },
 
-  setupTooltips() {
-    $(this.tooltip1).tooltip()
-    $(this.tooltip2).tooltip()
-  },
-
   handleCry() {
     this.cry.play()
   },
 
-  // this should probably be moved out as a utility method
-  getBackgroundColor(type) {
-    switch (type) {
-      case 'normal':
-        return '#A8A878'
-      case 'fire':
-        return '#F08030'
-      case 'water':
-        return '#6890F0'
-      case 'grass':
-        return '#78C850'
-      case 'electric':
-        return '#f8d030'
-      case 'ice':
-        return '#98d8d8'
-      case 'ground':
-        return '#e0c068'
-      case 'flying':
-        return '#a890f0'
-      case 'poison':
-        return '#a040a0'
-      case 'fighting':
-        return '#c03028'
-      case 'psychic':
-        return '#f85888'
-      case 'dark':
-        return '#705848'
-      case 'rock':
-        return '#b8a038'
-      case 'bug':
-        return '#a8b820'
-      case 'ghost':
-        return '#705898'
-      case 'steel':
-        return '#b8b8d0'
-      case 'dragon':
-        return '#7038f8'
-      case 'fairy':
-        return '#ffaec9'
-      default:
-        return '#FFFFFF'
-    }
-  },
 })
 
 export default ModalBody
