@@ -21,8 +21,8 @@ const ModalBody = React.createClass({
     cpPerUpgrade: PropTypes.string.isRequired,
     candies: PropTypes.number.isRequired,
     spriteImageName: PropTypes.string.isRequired,
-    fast_move: PropTypes.object.isRequired,
-    charged_move: PropTypes.object.isRequired,
+    fastMove: PropTypes.object.isRequired,
+    chargedMove: PropTypes.object.isRequired,
     evolvesTo: PropTypes.node,
     possibleQuickMoves: PropTypes.array,
     possibleCinematicMoves: PropTypes.array,
@@ -45,8 +45,8 @@ const ModalBody = React.createClass({
       cpPerUpgrade,
       candies,
       spriteImageName,
-      fast_move,
-      charged_move,
+      fastMove,
+      chargedMove,
       evolvesTo,
       possibleQuickMoves,
       possibleCinematicMoves
@@ -54,12 +54,12 @@ const ModalBody = React.createClass({
 
     const quickMoves = []
     for (let i = 0; i < possibleQuickMoves.length; i++) {
-      quickMoves.push(<QuickMove key={i} move={possibleQuickMoves[i]} myMove={fast_move} />)
+      quickMoves.push(<QuickMove key={i} move={possibleQuickMoves[i]} myMove={fastMove} />)
     }
 
     const cinematicMoves = []
     for (let i = 0; i < possibleCinematicMoves.length; i++) {
-      cinematicMoves.push(<CinematicMove key={i} move={possibleCinematicMoves[i]} myMove={charged_move} />)
+      cinematicMoves.push(<CinematicMove key={i} move={possibleCinematicMoves[i]} myMove={chargedMove} />)
     }
 
     let evolution
