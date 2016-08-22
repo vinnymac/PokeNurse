@@ -51,6 +51,11 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
 
     npm run package-all
 
+## FAQ
+1. Will I be banned from pokemon go for using PokeNurse?
+
+This app is meant to make pogo easier to manage. This is not a bot. We do not send location data. No one has ever been banned for using PokeNurse as far as we are aware. This doesn't mean you cannot be banned, if they somehow begin to detect API calls from pogobuf, then this may very well start happening, but that is the risk of using any of these third party tools right now that are not the original app.
+
 ## Todo
 * Nickname Pokemon
 
