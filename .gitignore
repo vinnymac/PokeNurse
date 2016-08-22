@@ -45,3 +45,9 @@ PokeNurse-linux-*
 #Webstorm IDE
 .idea
 .idea/
+
+# App packaged
+dist
+release
+main.js
+main.js.map

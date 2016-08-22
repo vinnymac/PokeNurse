@@ -1,18 +1,29 @@
 {
-  "name": "pokenurse",
+  "name": "PokeNurse",
   "version": "1.1.2",
   "description": "A tool for Pokémon Go to aid in transferring and evolving Pokémon",
   "main": "main",
   "scripts": {
-    "start": "electron .",
+    "start": "cross-env NODE_ENV=production electron ./",
     "buildstats": "node ./generateBaseStats",
-    "buildmac": "electron-packager . PokeNurse --platform=darwin --arch=x64 --icon=imgs/emojioneicon.icns --overwrite",
-    "buildwindows": "electron-packager . PokeNurse --platform=win32 --arch=all --icon=imgs/emojioneicon.ico --overwrite",
-    "buildlinux": "electron-packager . PokeNurse --platform=linux --arch=all --icon=imgs/emojioneicon.ico --overwrite"
+    "lint": "eslint app main *.js",
+    "hot-dashboard": "npm run hot-server -- --dashboard",
+    "hot-server": "node -r babel-register server.js",
+    "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors",
+    "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
+    "build": "npm run build-main && npm run build-renderer",
+    "start-hot": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./main.development.js",
+    "package": "cross-env NODE_ENV=production node -r babel-register package.js",
+    "package-all": "npm run package -- --all",
+    "postinstall": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json",
+    "dev": "concurrently --kill-others \"npm run hot-server\" \"npm run start-hot\""
+  },
+  "bin": {
+    "electron": "./node_modules/.bin/electron"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/duhminick/PokeNurse.git"
+    "url": "git+https://github.com/vinnymac/PokeNurse.git"
   },
   "keywords": [
     "pokemon",
@@ -21,26 +32,61 @@
   "author": "duhminick",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/duhminick/PokeNurse/issues"
+    "url": "https://github.com/vinnymac/PokeNurse/issues"
   },
-  "homepage": "https://github.com/duhminick/PokeNurse#readme",
+  "homepage": "https://github.com/vinnymac/PokeNurse#readme",
   "devDependencies": {
-    "electron-packager": "^7.3.0",
-    "electron-prebuilt": "^1.3.1"
-  },
-  "dependencies": {
+    "asar": "^0.12.1",
     "babel-core": "^6.13.2",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-dev-expression": "^0.2.1",
+    "babel-plugin-webpack-loaders": "^0.7.1",
+    "babel-polyfill": "^6.13.0",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-react-optimize": "^1.0.1",
+    "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.11.6",
-    "bootstrap": "^3.3.7",
-    "datatables.net": "^1.10.12",
-    "datatables.net-bs": "^1.10.12",
-    "electron-devtools-installer": "^2.0.0",
+    "concurrently": "^2.2.0",
+    "cross-env": "^2.0.0",
+    "del": "^2.2.2",
+    "devtron": "^1.3.0",
+    "electron-debug": "^1.0.1",
+    "electron-devtools-installer": "^2.0.1",
+    "electron-packager": "^7.6.0",
+    "electron-prebuilt": "^1.3.1",
+    "electron-rebuild": "^1.2.0",
+    "eslint": "^3.3.1",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-import-resolver-webpack": "^0.5.1",
+    "eslint-plugin-import": "^1.13.0",
+    "eslint-plugin-jsx-a11y": "^2.1.0",
+    "eslint-plugin-react": "^6.1.2",
+    "express": "^4.14.0",
+    "fbjs-scripts": "^0.7.1",
     "jquery": "^2.2.4",
-    "node-pogo-protos": "^1.1.2",
-    "pogobuf": "1.4.0",
+    "json-loader": "^0.5.4",
+    "lodash": "^4.15.0",
+    "minimist": "^1.2.0",
     "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "react-dom": "^15.3.0",
+    "webpack": "^1.13.1",
+    "webpack-dashboard": "0.0.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.12.2",
+    "webpack-merge": "^0.14.1"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "node-pogo-protos": "^1.1.2",
+    "pogobuf": "^1.5.2",
+    "source-map-support": "^0.4.2"
+  },
+  "devEngines": {
+    "node": "4.x || 5.x || 6.x",
+    "npm": "2.x || 3.x"
   }
 }

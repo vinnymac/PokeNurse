@@ -1,19 +1,20 @@
 # PokeNurse
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
+[![build Status](https://travis-ci.org/vinnymac/PokeNurse.svg?branch=develop)](https://travis-ci.org/vinnymac/PokeNurse)
 [![style](https://img.shields.io/badge/style-standard-brightgreen.svg)]()
-[![Discord](https://img.shields.io/badge/discord-PokéNurse-738bd7.svg)](https://discord.gg/sSXCruy)
+[![discord](https://img.shields.io/badge/discord-PokéNurse-738bd7.svg)](https://discord.gg/sSXCruy)
 
-<img src="https://github.com/duhminick/PokeNurse/blob/master/imgs/emojioneicon.png?raw=true" width="32px" align="left" hspace="10" vspace="10">
+<img src="app/app.png?raw=true" width="32px" align="left" hspace="10" vspace="10">
 
 **PokéNurse** is a desktop application for Windows and Mac that allows you to manage your pokémon from Pokémon Go without the need for a mobile device. You can now favorite, transfer, and evolve from the comfort of your own home!
 
 ## Downloads for v1.1.2
-You may view all the releases [here](https://github.com/duhminick/PokeNurse/releases)
-* [Mac OS X](https://github.com/duhminick/PokeNurse/releases/download/v1.1.2/PokeNurse-darwin-x64.zip)
-* [Windows 32 bit](https://github.com/duhminick/PokeNurse/releases/download/v1.1.2/PokeNurse-win32-ia32.zip)
-* [Windows 64 bit](https://github.com/duhminick/PokeNurse/releases/download/v1.1.2/PokeNurse-win32-x64.zip)
-* [Linux 32 bit](https://github.com/duhminick/PokeNurse/releases/download/v1.1.2/PokeNurse-linux-ia32.zip)
-* [Linux 64 bit](https://github.com/duhminick/PokeNurse/releases/download/v1.1.2/PokeNurse-linux-x64.zip)
+You may view all the releases [here](https://github.com/vinnymac/PokeNurse/releases)
+* [Mac OS X](https://github.com/vinnymac/PokeNurse/releases/download/v1.1.2/PokeNurse-darwin-x64.zip)
+* [Windows 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.1.2/PokeNurse-win32-ia32.zip)
+* [Windows 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.1.2/PokeNurse-win32-x64.zip)
+* [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.1.2/PokeNurse-linux-ia32.zip)
+* [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.1.2/PokeNurse-linux-x64.zip)
 
 ## Examples
 ![Login Window](http://i.imgur.com/QaeO99H.png)
@@ -32,15 +33,32 @@ This is my first project using [Electron](http://electron.atom.io/) and [Node.js
 * Favorite/Unfavorite Pokemon
 
 ## Contributing
-   All future pull request should be made to the **develop** branch.
+  All future pull request should be made to the **develop** branch.
 
-    git clone https://github.com/duhminick/PokeNurse
+    git clone https://github.com/vinnymac/PokeNurse
     cd PokeNurse
     git checkout develop
     npm install
-    npm start
+    npm run dev
 
-This project follows the [JS Standard Code Style](http://standardjs.com/index.html) for the most part.
+## Releases
+
+  Package for your platform
+
+    npm run package
+
+  Package for a specific platform ([docs packager](https://github.com/electron-userland/electron-packager/blob/master/docs/api.md))
+
+    npm run package -- --platform=linux --arch=x64
+
+  Package for all platforms
+
+    npm run package-all
+
+## FAQ
+1. Will I be banned from pokemon go for using PokeNurse?
+
+This app is meant to make pogo easier to manage. This is not a bot. We do not send location data. No one has ever been banned for using PokeNurse as far as we are aware. This doesn't mean you cannot be banned, if they somehow begin to detect API calls from pogobuf, then this may very well start happening, but that is the risk of using any of these third party tools right now that are not the original app.
 
 ## Todo
 * Nickname Pokemon
