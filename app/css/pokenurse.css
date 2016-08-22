@@ -356,7 +356,6 @@ text-transform: uppercase;
 
 .pokemon_move_info {
 display: inline-block;
-height:125px;
 width:100%;
 position:relative;
 }
@@ -364,9 +363,25 @@ position:relative;
 .pokemon-move-item {
 display:inline-flex;
 position: relative;
-height: 45%;
+height: 60px;
 width:100%;
 color:#3C4741;
+}
+
+.pokemon-move-item-title {
+margin-top: 15px;
+margin-bottom: 15px;
+color: #717171;
+text-transform: uppercase;
+}
+
+.pokemon-move-item.mine{
+border:1px solid #D3D3D3;
+background-color:#E8E8EE;
+}
+
+.pokemon-move-item.notmine{
+border:0px solid white;
 }
 
 .pokemon-move-item-text-area{
@@ -374,6 +389,7 @@ display:inline-block;
 position:relative;
 height:100%;
 width:40%;
+padding-top: 6px;
 }
 
 .pokemon-move-title {
@@ -382,7 +398,6 @@ font-size:16px;
 font-weight: bold;
 text-transform: capitalize;
 color:#3c605c;
-padding-top:16px;
 }
 
 .pokemon-move-type {
@@ -398,7 +413,7 @@ height:100%;
 width:30%;
 text-transform: capitalize;
 color:#3c605c;
-line-height: 80px;
+line-height: 50px;
 text-align: center;
 }
 
@@ -407,7 +422,7 @@ display: inline-block;
 position: relative;
 height:10px;
 width:30%;
-padding-top:26px;
+padding-top: 10px;
 }
 
 .pokemon-move-cost-item {
@@ -422,6 +437,25 @@ margin-left:3px;
 margin-top:10px;
 border:3px solid #afdaff;
 border-radius:5px;
+}
+
+.pokemon-cp{
+text-align: center;
+fontSize: 18px;
+font-weight: bold;
+}
+
+.modal-outline-white{
+text-shadow:
+    1px 2px 0 #000,
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+   -1px  1px 0 #000,
+    1px  1px 0 #000;
+-webkit-text-fill-color: white;
+}
+.modal-header{
+border-bottom: 0px solid;
 }
 
 .pokemon-move-type.normal {color:    #A8A878;}

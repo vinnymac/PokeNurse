@@ -20,6 +20,32 @@ function writeBaseStats () {
     let types = [item.Type1.toLowerCase()]
     if (item.Type2 !== 'NONE') types.push(item.Type2.toLowerCase())
 
+    let quickMoves = [];
+    let quickMovesSource = item.QuickMoves.split(', ')
+
+    for(var i=0; i < quickMovesSource.length; i++)
+    {
+      basicAttacks.forEach(item=>{
+        if(item.name===quickMovesSource[i])
+        {
+          quickMoves.push(item.id)
+        }
+      })
+    }
+
+    let chargedMoves = [];
+    let chargedMovesSource = item.CinematicMoves.split(', ')
+
+    for(var i=0; i < chargedMovesSource.length; i++)
+    {
+      chargedAttacks.forEach(item=>{
+        if(item.name===chargedMovesSource[i])
+        {
+          chargedMoves.push(item.id)
+        }
+      })
+    }
+
     baseStats.pokemon[pokemonId] = {
       name: item.Identifier,
       types: types,
@@ -32,8 +58,8 @@ function writeBaseStats () {
       BaseDefense: item.BaseDefense,
       evolvesTo: item.EvolvesTo,
       evolvesFrom: item.EvolvesFrom,
-      quickMoves: item.QuickMoves.split(', '),
-      cinematicMoves: item.CinematicMoves.split(', ')
+      quickMoves: quickMoves,
+      cinematicMoves: chargedMoves
     }
   })
 

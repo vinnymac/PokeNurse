@@ -15,13 +15,13 @@
       "evolvesTo": "Ivysaur",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Vine Whip",
-        "Tackle"
+        214,
+        221
       ],
       "cinematicMoves": [
-        "Sludge Bomb",
-        "Seed Bomb",
-        "Power Whip"
+        90,
+        59,
+        118
       ]
     },
     "2": {
@@ -39,13 +39,13 @@
       "evolvesTo": "Venusaur",
       "evolvesFrom": "Bulbasaur",
       "quickMoves": [
-        "Razor Leaf",
-        "Vine Whip"
+        215,
+        214
       ],
       "cinematicMoves": [
-        "Sludge Bomb",
-        "Solar Beam",
-        "Power Whip"
+        90,
+        116,
+        118
       ]
     },
     "3": {
@@ -63,13 +63,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Ivysaur",
       "quickMoves": [
-        "Razor Leaf",
-        "Vine Whip"
+        215,
+        214
       ],
       "cinematicMoves": [
-        "Sludge Bomb",
-        "Petal Blizzard",
-        "Solar Beam"
+        90,
+        47,
+        116
       ]
     },
     "4": {
@@ -86,13 +86,13 @@
       "evolvesTo": "Charmeleon",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Ember",
-        "Scratch"
+        209,
+        220
       ],
       "cinematicMoves": [
-        "Flame Charge",
-        "Flame Burst",
-        "Flamethrower"
+        101,
+        102,
+        24
       ]
     },
     "5": {
@@ -109,13 +109,13 @@
       "evolvesTo": "Charizard",
       "evolvesFrom": "Charmander",
       "quickMoves": [
-        "Ember",
-        "Scratch"
+        209,
+        220
       ],
       "cinematicMoves": [
-        "Fire Punch",
-        "Flame Burst",
-        "Flamethrower"
+        115,
+        102,
+        24
       ]
     },
     "6": {
@@ -133,13 +133,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Charmeleon",
       "quickMoves": [
-        "Ember",
-        "Wing Attack"
+        209,
+        210
       ],
       "cinematicMoves": [
-        "Fire Blast",
-        "Dragon Claw",
-        "Flamethrower"
+        103,
+        83,
+        24
       ]
     },
     "7": {
@@ -156,13 +156,13 @@
       "evolvesTo": "Wartortle",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Bubble",
-        "Tackle"
+        237,
+        221
       ],
       "cinematicMoves": [
-        "Aqua Jet",
-        "Aqua Tail",
-        "Water Pulse"
+        57,
+        58,
+        105
       ]
     },
     "8": {
@@ -179,13 +179,13 @@
       "evolvesTo": "Blastoise",
       "evolvesFrom": "Squirtle",
       "quickMoves": [
-        "Water Gun",
-        "Bite"
+        230,
+        202
       ],
       "cinematicMoves": [
-        "Aqua Jet",
-        "Ice Beam",
-        "Hydro Pump"
+        57,
+        39,
+        107
       ]
     },
     "9": {
@@ -202,13 +202,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Wartortle",
       "quickMoves": [
-        "Water Gun",
-        "Bite"
+        230,
+        202
       ],
       "cinematicMoves": [
-        "Flash Cannon",
-        "Ice Beam",
-        "Hydro Pump"
+        36,
+        39,
+        107
       ]
     },
     "10": {
@@ -225,11 +225,11 @@
       "evolvesTo": "Metapod",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Bug Bite",
-        "Tackle"
+        201,
+        221
       ],
       "cinematicMoves": [
-        "Struggle"
+        133
       ]
     },
     "11": {
@@ -246,11 +246,11 @@
       "evolvesTo": "Butterfree",
       "evolvesFrom": "Caterpie",
       "quickMoves": [
-        "Bug Bite",
-        "Tackle"
+        201,
+        221
       ],
       "cinematicMoves": [
-        "Struggle"
+        133
       ]
     },
     "12": {
@@ -268,13 +268,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Metapod",
       "quickMoves": [
-        "Bug Bite",
-        "Confusion"
+        201,
+        235
       ],
       "cinematicMoves": [
-        "Bug Buzz",
-        "Psychic",
-        "Signal Beam"
+        49,
+        108,
+        99
       ]
     },
     "13": {
@@ -292,11 +292,11 @@
       "evolvesTo": "Kakuna",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Bug Bite",
-        "Poison Sting"
+        201,
+        236
       ],
       "cinematicMoves": [
-        "Struggle"
+        133
       ]
     },
     "14": {
@@ -314,11 +314,11 @@
       "evolvesTo": "Beedrill",
       "evolvesFrom": "Weedle",
       "quickMoves": [
-        "Bug Bite",
-        "Poison Sting"
+        201,
+        236
       ],
       "cinematicMoves": [
-        "Struggle"
+        133
       ]
     },
     "15": {
@@ -336,13 +336,12 @@
       "evolvesTo": 0,
       "evolvesFrom": "Kakuna",
       "quickMoves": [
-        "Bug Bite",
-        "Poison Jab"
+        201,
+        224
       ],
       "cinematicMoves": [
-        "Sludge Bomb",
-        "Aerial Ace",
-        "X Scissor"
+        90,
+        45
       ]
     },
     "16": {
@@ -360,13 +359,13 @@
       "evolvesTo": "Pidgeotto",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Quick Attack",
-        "Tackle"
+        219,
+        221
       ],
       "cinematicMoves": [
-        "Twister",
-        "Aerial Ace",
-        "Air Cutter"
+        80,
+        45,
+        121
       ]
     },
     "17": {
@@ -384,13 +383,13 @@
       "evolvesTo": "Pidgeot",
       "evolvesFrom": "Pidgey",
       "quickMoves": [
-        "Wing Attack",
-        "Steel Wing"
+        210,
+        239
       ],
       "cinematicMoves": [
-        "Twister",
-        "Aerial Ace",
-        "Air Cutter"
+        80,
+        45,
+        121
       ]
     },
     "18": {
@@ -408,13 +407,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Pidgeotto",
       "quickMoves": [
-        "Wing Attack",
-        "Steel Wing"
+        210,
+        239
       ],
       "cinematicMoves": [
-        "Hurricane",
-        "Aerial Ace",
-        "Air Cutter"
+        122,
+        45,
+        121
       ]
     },
     "19": {
@@ -431,13 +430,13 @@
       "evolvesTo": "Raticate",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Tackle",
-        "Quick Attack"
+        221,
+        219
       ],
       "cinematicMoves": [
-        "Dig",
-        "Hyper Fang",
-        "Body Slam"
+        26,
+        129,
+        131
       ]
     },
     "20": {
@@ -454,13 +453,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Rattata",
       "quickMoves": [
-        "Bite",
-        "Quick Attack"
+        202,
+        219
       ],
       "cinematicMoves": [
-        "Dig",
-        "Hyper Fang",
-        "Hyper Beam"
+        26,
+        129,
+        14
       ]
     },
     "21": {
@@ -478,13 +477,13 @@
       "evolvesTo": "Fearow",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Peck",
-        "Quick Attack"
+        211,
+        219
       ],
       "cinematicMoves": [
-        "Aerial Ace",
-        "Drill Peck",
-        "Twister"
+        45,
+        38,
+        80
       ]
     },
     "22": {
@@ -502,13 +501,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Spearow",
       "quickMoves": [
-        "Peck",
-        "Steel Wing"
+        211,
+        239
       ],
       "cinematicMoves": [
-        "Aerial Ace",
-        "Drill Run",
-        "Twister"
+        45,
+        46,
+        80
       ]
     },
     "23": {
@@ -525,13 +524,13 @@
       "evolvesTo": "Arbok",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Poison Sting",
-        "Acid"
+        236,
+        225
       ],
       "cinematicMoves": [
-        "Wrap",
-        "Sludge Bomb",
-        "Gunk Shot"
+        13,
+        90,
+        92
       ]
     },
     "24": {
@@ -548,13 +547,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Ekans",
       "quickMoves": [
-        "Bite",
-        "Acid"
+        202,
+        225
       ],
       "cinematicMoves": [
-        "Dark Pulse",
-        "Sludge Wave",
-        "Gunk Shot"
+        16,
+        91,
+        92
       ]
     },
     "25": {
@@ -571,13 +570,13 @@
       "evolvesTo": "Raichu",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Thunder Shock",
-        "Quick Attack"
+        205,
+        219
       ],
       "cinematicMoves": [
-        "Discharge",
-        "Thunderbolt",
-        "Thunder"
+        35,
+        79,
+        78
       ]
     },
     "26": {
@@ -594,13 +593,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Pikachu",
       "quickMoves": [
-        "Thunder Shock",
-        "Spark"
+        205,
+        206
       ],
       "cinematicMoves": [
-        "Brick Break",
-        "Thunder Punch",
-        "Thunder"
+        123,
+        77,
+        78
       ]
     },
     "27": {
@@ -617,13 +616,13 @@
       "evolvesTo": "Sandslash",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Scratch",
-        "Mud Shot"
+        220,
+        216
       ],
       "cinematicMoves": [
-        "Dig",
-        "Rock Slide",
-        "Rock Tomb"
+        26,
+        64,
+        63
       ]
     },
     "28": {
@@ -640,13 +639,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Sandshrew",
       "quickMoves": [
-        "Metal Claw",
-        "Mud Shot"
+        228,
+        216
       ],
       "cinematicMoves": [
-        "Earthquake",
-        "Rock Tomb",
-        "Bulldoze"
+        31,
+        63,
+        95
       ]
     },
     "29": {
@@ -663,13 +662,13 @@
       "evolvesTo": "Nidorina",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Bite",
-        "Poison Sting"
+        202,
+        236
       ],
       "cinematicMoves": [
-        "Poison Fang",
-        "Body Slam",
-        "Sludge Bomb"
+        50,
+        131,
+        90
       ]
     },
     "30": {
@@ -686,13 +685,13 @@
       "evolvesTo": "Nidoqueen",
       "evolvesFrom": "Nidoran",
       "quickMoves": [
-        "Bite",
-        "Poison Sting"
+        202,
+        236
       ],
       "cinematicMoves": [
-        "Poison Fang",
-        "Dig",
-        "Sludge Bomb"
+        50,
+        26,
+        90
       ]
     },
     "31": {
@@ -710,13 +709,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Nidorina",
       "quickMoves": [
-        "Poison Jab",
-        "Bite"
+        224,
+        202
       ],
       "cinematicMoves": [
-        "Earthquake",
-        "Sludge Wave",
-        "Stone Edge"
+        31,
+        91,
+        32
       ]
     },
     "32": {
@@ -733,13 +732,13 @@
       "evolvesTo": "Nidorino",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Peck",
-        "Poison Sting"
+        211,
+        236
       ],
       "cinematicMoves": [
-        "Horn Attack",
-        "Body Slam",
-        "Sludge Bomb"
+        126,
+        131,
+        90
       ]
     },
     "33": {
@@ -756,13 +755,13 @@
       "evolvesTo": "Nidoking",
       "evolvesFrom": "Nidoran",
       "quickMoves": [
-        "Poison Jab",
-        "Poison Sting"
+        224,
+        236
       ],
       "cinematicMoves": [
-        "Horn Attack",
-        "Dig",
-        "Sludge Bomb"
+        126,
+        26,
+        90
       ]
     },
     "34": {
@@ -780,13 +779,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Nidorino",
       "quickMoves": [
-        "Poison Jab",
-        "Fury Cutter"
+        224,
+        200
       ],
       "cinematicMoves": [
-        "Earthquake",
-        "Sludge Wave",
-        "Megahorn"
+        31,
+        91,
+        22
       ]
     },
     "35": {
@@ -803,13 +802,13 @@
       "evolvesTo": "Clefable",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Pound",
-        "Zen Headbutt"
+        222,
+        234
       ],
       "cinematicMoves": [
-        "Disarming Voice",
-        "Body Slam",
-        "Moonblast"
+        84,
+        131,
+        87
       ]
     },
     "36": {
@@ -826,13 +825,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Clefairy",
       "quickMoves": [
-        "Pound",
-        "Zen Headbutt"
+        222,
+        234
       ],
       "cinematicMoves": [
-        "Dazzling Gleam",
-        "Psychic",
-        "Moonblast"
+        86,
+        108,
+        87
       ]
     },
     "37": {
@@ -849,13 +848,13 @@
       "evolvesTo": "Ninetales",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Quick Attack",
-        "Ember"
+        219,
+        209
       ],
       "cinematicMoves": [
-        "Body Slam",
-        "Flamethrower",
-        "Flame Charge"
+        131,
+        24,
+        101
       ]
     },
     "38": {
@@ -872,13 +871,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Vulpix",
       "quickMoves": [
-        "Feint Attack",
-        "Ember"
+        238,
+        209
       ],
       "cinematicMoves": [
-        "Heat Wave",
-        "Flamethrower",
-        "Fire Blast"
+        42,
+        24,
+        103
       ]
     },
     "39": {
@@ -896,13 +895,13 @@
       "evolvesTo": "Wigglytuff",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Pound",
-        "Feint Attack"
+        222,
+        238
       ],
       "cinematicMoves": [
-        "Disarming Voice",
-        "Body Slam",
-        "Play Rough"
+        84,
+        131,
+        88
       ]
     },
     "40": {
@@ -920,13 +919,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Jigglypuff",
       "quickMoves": [
-        "Pound",
-        "Feint Attack"
+        222,
+        238
       ],
       "cinematicMoves": [
-        "Dazzling Gleam",
-        "Hyper Beam",
-        "Play Rough"
+        86,
+        14,
+        88
       ]
     },
     "41": {
@@ -944,13 +943,13 @@
       "evolvesTo": "Golbat",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Quick Attack",
-        "Bite"
+        219,
+        202
       ],
       "cinematicMoves": [
-        "Poison Fang",
-        "Air Cutter",
-        "Sludge Bomb"
+        50,
+        121,
+        90
       ]
     },
     "42": {
@@ -968,13 +967,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Zubat",
       "quickMoves": [
-        "Wing Attack",
-        "Bite"
+        210,
+        202
       ],
       "cinematicMoves": [
-        "Poison Fang",
-        "Air Cutter",
-        "Ominous Wind"
+        50,
+        121,
+        69
       ]
     },
     "43": {
@@ -992,13 +991,13 @@
       "evolvesTo": "Gloom",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Razor Leaf",
-        "Acid"
+        215,
+        225
       ],
       "cinematicMoves": [
-        "Seed Bomb",
-        "Sludge Bomb",
-        "Moonblast"
+        59,
+        90,
+        87
       ]
     },
     "44": {
@@ -1016,13 +1015,13 @@
       "evolvesTo": "Vileplume",
       "evolvesFrom": "Oddish",
       "quickMoves": [
-        "Razor Leaf",
-        "Acid"
+        215,
+        225
       ],
       "cinematicMoves": [
-        "Petal Blizzard",
-        "Sludge Bomb",
-        "Moonblast"
+        47,
+        90,
+        87
       ]
     },
     "45": {
@@ -1040,13 +1039,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Gloom",
       "quickMoves": [
-        "Razor Leaf",
-        "Acid"
+        215,
+        225
       ],
       "cinematicMoves": [
-        "Petal Blizzard",
-        "Solar Beam",
-        "Moonblast"
+        47,
+        116,
+        87
       ]
     },
     "46": {
@@ -1064,13 +1063,12 @@
       "evolvesTo": "Parasect",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Scratch",
-        "Bug Bite"
+        220,
+        201
       ],
       "cinematicMoves": [
-        "Cross Poison",
-        "X Scissor",
-        "Seed Bomb"
+        89,
+        59
       ]
     },
     "47": {
@@ -1088,13 +1086,12 @@
       "evolvesTo": 0,
       "evolvesFrom": "Paras",
       "quickMoves": [
-        "Bug Bite",
-        "Fury Cutter"
+        201,
+        200
       ],
       "cinematicMoves": [
-        "Cross Poison",
-        "X Scissor",
-        "Solar Beam"
+        89,
+        116
       ]
     },
     "48": {
@@ -1112,13 +1109,13 @@
       "evolvesTo": "Venomoth",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Bug Bite",
-        "Confusion"
+        201,
+        235
       ],
       "cinematicMoves": [
-        "Psybeam",
-        "Dazzling Gleam",
-        "Shadow Ball"
+        30,
+        86,
+        70
       ]
     },
     "49": {
@@ -1136,13 +1133,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Venonat",
       "quickMoves": [
-        "Bug Bite",
-        "Confusion"
+        201,
+        235
       ],
       "cinematicMoves": [
-        "Poison Fang",
-        "Psychic",
-        "Bug Buzz"
+        50,
+        108,
+        49
       ]
     },
     "50": {
@@ -1159,13 +1156,13 @@
       "evolvesTo": "Dugtrio",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Mud Shot",
-        "Scratch"
+        216,
+        220
       ],
       "cinematicMoves": [
-        "Dig",
-        "Mud Bomb",
-        "Rock Tomb"
+        26,
+        96,
+        63
       ]
     },
     "51": {
@@ -1182,13 +1179,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Diglett",
       "quickMoves": [
-        "Sucker Punch",
-        "Mud Shot"
+        203,
+        216
       ],
       "cinematicMoves": [
-        "Earthquake",
-        "Mud Bomb",
-        "Stone Edge"
+        31,
+        96,
+        32
       ]
     },
     "52": {
@@ -1205,13 +1202,13 @@
       "evolvesTo": "Persian",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Scratch",
-        "Bite"
+        220,
+        202
       ],
       "cinematicMoves": [
-        "Night Slash",
-        "Dark Pulse",
-        "Body Slam"
+        51,
+        16,
+        131
       ]
     },
     "53": {
@@ -1228,13 +1225,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Meowth",
       "quickMoves": [
-        "Scratch",
-        "Feint Attack"
+        220,
+        238
       ],
       "cinematicMoves": [
-        "Night Slash",
-        "Power Gem",
-        "Play Rough"
+        51,
+        65,
+        88
       ]
     },
     "54": {
@@ -1251,13 +1248,13 @@
       "evolvesTo": "Golduck",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Water Gun",
-        "Zen Headbutt"
+        230,
+        234
       ],
       "cinematicMoves": [
-        "Psybeam",
-        "Aqua Tail",
-        "Cross Chop"
+        30,
+        58,
+        28
       ]
     },
     "55": {
@@ -1274,13 +1271,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Psyduck",
       "quickMoves": [
-        "Water Gun",
-        "Confusion"
+        230,
+        235
       ],
       "cinematicMoves": [
-        "Psychic",
-        "Hydro Pump",
-        "Ice Beam"
+        108,
+        107,
+        39
       ]
     },
     "56": {
@@ -1297,13 +1294,13 @@
       "evolvesTo": "Primeape",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Karate Chop",
-        "Scratch"
+        208,
+        220
       ],
       "cinematicMoves": [
-        "Cross Chop",
-        "Low Sweep",
-        "Brick Break"
+        28,
+        56,
+        123
       ]
     },
     "57": {
@@ -1320,13 +1317,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Mankey",
       "quickMoves": [
-        "Low Kick",
-        "Karate Chop"
+        207,
+        208
       ],
       "cinematicMoves": [
-        "Cross Chop",
-        "Low Sweep",
-        "Night Slash"
+        28,
+        56,
+        51
       ]
     },
     "58": {
@@ -1343,13 +1340,13 @@
       "evolvesTo": "Arcanine",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Ember",
-        "Bite"
+        209,
+        202
       ],
       "cinematicMoves": [
-        "Flame Wheel",
-        "Body Slam",
-        "Flamethrower"
+        21,
+        131,
+        24
       ]
     },
     "59": {
@@ -1366,13 +1363,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Growlithe",
       "quickMoves": [
-        "Fire Fang",
-        "Bite"
+        240,
+        202
       ],
       "cinematicMoves": [
-        "Fire Blast",
-        "Flamethrower",
-        "Bulldoze"
+        103,
+        24,
+        95
       ]
     },
     "60": {
@@ -1389,13 +1386,13 @@
       "evolvesTo": "Poliwhirl",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Bubble",
-        "Mud Shot"
+        237,
+        216
       ],
       "cinematicMoves": [
-        "Bubble Beam",
-        "Mud Bomb",
-        "Body Slam"
+        53,
+        96,
+        131
       ]
     },
     "61": {
@@ -1412,13 +1409,13 @@
       "evolvesTo": "Poliwrath",
       "evolvesFrom": "Poliwag",
       "quickMoves": [
-        "Bubble",
-        "Mud Shot"
+        237,
+        216
       ],
       "cinematicMoves": [
-        "Scald",
-        "Mud Bomb",
-        "Bubble Beam"
+        106,
+        96,
+        53
       ]
     },
     "62": {
@@ -1436,13 +1433,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Poliwhirl",
       "quickMoves": [
-        "Bubble",
-        "Mud Shot"
+        237,
+        216
       ],
       "cinematicMoves": [
-        "Hydro Pump",
-        "Submission",
-        "Ice Punch"
+        107,
+        54,
+        33
       ]
     },
     "63": {
@@ -1459,12 +1456,12 @@
       "evolvesTo": "Kadabra",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Zen Headbutt"
+        234
       ],
       "cinematicMoves": [
-        "Psyshock",
-        "Signal Beam",
-        "Shadow Ball"
+        60,
+        99,
+        70
       ]
     },
     "64": {
@@ -1481,13 +1478,13 @@
       "evolvesTo": "Alakazam",
       "evolvesFrom": "Abra",
       "quickMoves": [
-        "Psycho Cut",
-        "Confusion"
+        226,
+        235
       ],
       "cinematicMoves": [
-        "Psybeam",
-        "Dazzling Gleam",
-        "Shadow Ball"
+        30,
+        86,
+        70
       ]
     },
     "65": {
@@ -1504,13 +1501,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Kadabra",
       "quickMoves": [
-        "Psycho Cut",
-        "Confusion"
+        226,
+        235
       ],
       "cinematicMoves": [
-        "Psychic",
-        "Dazzling Gleam",
-        "Shadow Ball"
+        108,
+        86,
+        70
       ]
     },
     "66": {
@@ -1527,13 +1524,13 @@
       "evolvesTo": "Machoke",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Low Kick",
-        "Karate Chop"
+        207,
+        208
       ],
       "cinematicMoves": [
-        "Low Sweep",
-        "Brick Break",
-        "Cross Chop"
+        56,
+        123,
+        28
       ]
     },
     "67": {
@@ -1550,13 +1547,13 @@
       "evolvesTo": "Machamp",
       "evolvesFrom": "Machop",
       "quickMoves": [
-        "Low Kick",
-        "Karate Chop"
+        207,
+        208
       ],
       "cinematicMoves": [
-        "Submission",
-        "Brick Break",
-        "Cross Chop"
+        54,
+        123,
+        28
       ]
     },
     "68": {
@@ -1573,13 +1570,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Machoke",
       "quickMoves": [
-        "Bullet Punch",
-        "Karate Chop"
+        229,
+        208
       ],
       "cinematicMoves": [
-        "Stone Edge",
-        "Submission",
-        "Cross Chop"
+        32,
+        54,
+        28
       ]
     },
     "69": {
@@ -1597,13 +1594,13 @@
       "evolvesTo": "Weepinbell",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Vine Whip",
-        "Acid"
+        214,
+        225
       ],
       "cinematicMoves": [
-        "Power Whip",
-        "Sludge Bomb",
-        "Wrap"
+        118,
+        90,
+        13
       ]
     },
     "70": {
@@ -1621,13 +1618,13 @@
       "evolvesTo": "Victreebel",
       "evolvesFrom": "Bellsprout",
       "quickMoves": [
-        "Razor Leaf",
-        "Acid"
+        215,
+        225
       ],
       "cinematicMoves": [
-        "Power Whip",
-        "Sludge Bomb",
-        "Seed Bomb"
+        118,
+        90,
+        59
       ]
     },
     "71": {
@@ -1645,13 +1642,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Weepinbell",
       "quickMoves": [
-        "Razor Leaf",
-        "Acid"
+        215,
+        225
       ],
       "cinematicMoves": [
-        "Leaf Blade",
-        "Sludge Bomb",
-        "Solar Beam"
+        117,
+        90,
+        116
       ]
     },
     "72": {
@@ -1669,13 +1666,13 @@
       "evolvesTo": "Tentacruel",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Bubble",
-        "Poison Sting"
+        237,
+        236
       ],
       "cinematicMoves": [
-        "Bubble Beam",
-        "Water Pulse",
-        "Wrap"
+        53,
+        105,
+        13
       ]
     },
     "73": {
@@ -1693,13 +1690,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Tentacool",
       "quickMoves": [
-        "Acid",
-        "Poison Jab"
+        225,
+        224
       ],
       "cinematicMoves": [
-        "Hydro Pump",
-        "Sludge Wave",
-        "Blizzard"
+        107,
+        91,
+        40
       ]
     },
     "74": {
@@ -1717,13 +1714,13 @@
       "evolvesTo": "Graveler",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Rock Throw",
-        "Tackle"
+        227,
+        221
       ],
       "cinematicMoves": [
-        "Rock Slide",
-        "Rock Tomb",
-        "Dig"
+        64,
+        63,
+        26
       ]
     },
     "75": {
@@ -1741,13 +1738,13 @@
       "evolvesTo": "Golem",
       "evolvesFrom": "Geodude",
       "quickMoves": [
-        "Rock Throw",
-        "Mud Shot"
+        227,
+        216
       ],
       "cinematicMoves": [
-        "Dig",
-        "Stone Edge",
-        "Rock Slide"
+        26,
+        32,
+        64
       ]
     },
     "76": {
@@ -1765,13 +1762,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Graveler",
       "quickMoves": [
-        "Rock Throw",
-        "Mud Shot"
+        227,
+        216
       ],
       "cinematicMoves": [
-        "Stone Edge",
-        "Ancient Power",
-        "Earthquake"
+        32,
+        62,
+        31
       ]
     },
     "77": {
@@ -1788,13 +1785,13 @@
       "evolvesTo": "Rapidash",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Tackle",
-        "Ember"
+        221,
+        209
       ],
       "cinematicMoves": [
-        "Flame Charge",
-        "Flame Wheel",
-        "Fire Blast"
+        101,
+        21,
+        103
       ]
     },
     "78": {
@@ -1811,13 +1808,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Ponyta",
       "quickMoves": [
-        "Low Kick",
-        "Ember"
+        207,
+        209
       ],
       "cinematicMoves": [
-        "Fire Blast",
-        "Drill Run",
-        "Heat Wave"
+        103,
+        46,
+        42
       ]
     },
     "79": {
@@ -1835,13 +1832,13 @@
       "evolvesTo": "Slowbro",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Water Gun",
-        "Confusion"
+        230,
+        235
       ],
       "cinematicMoves": [
-        "Water Pulse",
-        "Psyshock",
-        "Psychic"
+        105,
+        60,
+        108
       ]
     },
     "80": {
@@ -1859,13 +1856,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Slowpoke",
       "quickMoves": [
-        "Water Gun",
-        "Confusion"
+        230,
+        235
       ],
       "cinematicMoves": [
-        "Water Pulse",
-        "Psychic",
-        "Ice Beam"
+        105,
+        108,
+        39
       ]
     },
     "81": {
@@ -1883,13 +1880,13 @@
       "evolvesTo": "Magneton",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Spark",
-        "Thunder Shock"
+        206,
+        205
       ],
       "cinematicMoves": [
-        "Discharge",
-        "Magnet Bomb",
-        "Thunderbolt"
+        35,
+        72,
+        79
       ]
     },
     "82": {
@@ -1907,13 +1904,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Magnemite",
       "quickMoves": [
-        "Spark",
-        "Thunder Shock"
+        206,
+        205
       ],
       "cinematicMoves": [
-        "Discharge",
-        "Magnet Bomb",
-        "Flash Cannon"
+        35,
+        72,
+        36
       ]
     },
     "83": {
@@ -1931,13 +1928,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Cut",
-        "Fury Cutter"
+        223,
+        200
       ],
       "cinematicMoves": [
-        "Aerial Ace",
-        "Air Cutter",
-        "Leaf Blade"
+        45,
+        121,
+        117
       ]
     },
     "84": {
@@ -1955,13 +1952,13 @@
       "evolvesTo": "Dodrio",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Peck",
-        "Quick Attack"
+        211,
+        219
       ],
       "cinematicMoves": [
-        "Drill Peck",
-        "Aerial Ace",
-        "Swift"
+        38,
+        45,
+        125
       ]
     },
     "85": {
@@ -1979,13 +1976,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Doduo",
       "quickMoves": [
-        "Feint Attack",
-        "Steel Wing"
+        238,
+        239
       ],
       "cinematicMoves": [
-        "Drill Peck",
-        "Aerial Ace",
-        "Air Cutter"
+        38,
+        45,
+        121
       ]
     },
     "86": {
@@ -2002,13 +1999,13 @@
       "evolvesTo": "Dewgong",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Ice Shard",
-        "Water Gun"
+        217,
+        230
       ],
       "cinematicMoves": [
-        "Aqua Jet",
-        "Icy Wind",
-        "Aqua Tail"
+        57,
+        111,
+        58
       ]
     },
     "87": {
@@ -2026,13 +2023,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Seel",
       "quickMoves": [
-        "Frost Breath",
-        "Ice Shard"
+        218,
+        217
       ],
       "cinematicMoves": [
-        "Icy Wind",
-        "Aqua Jet",
-        "Blizzard"
+        111,
+        57,
+        40
       ]
     },
     "88": {
@@ -2049,13 +2046,13 @@
       "evolvesTo": "Muk",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Acid",
-        "Mud Slap"
+        225,
+        233
       ],
       "cinematicMoves": [
-        "Sludge",
-        "Mud Bomb",
-        "Sludge Bomb"
+        18,
+        96,
+        90
       ]
     },
     "89": {
@@ -2072,13 +2069,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Grimer",
       "quickMoves": [
-        "Acid",
-        "Poison Jab"
+        225,
+        224
       ],
       "cinematicMoves": [
-        "Dark Pulse",
-        "Gunk Shot",
-        "Sludge Wave"
+        16,
+        92,
+        91
       ]
     },
     "90": {
@@ -2095,13 +2092,13 @@
       "evolvesTo": "Cloyster",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Ice Shard",
-        "Tackle"
+        217,
+        221
       ],
       "cinematicMoves": [
-        "Bubble Beam",
-        "Water Pulse",
-        "Icy Wind"
+        53,
+        105,
+        111
       ]
     },
     "91": {
@@ -2119,13 +2116,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Shellder",
       "quickMoves": [
-        "Frost Breath",
-        "Ice Shard"
+        218,
+        217
       ],
       "cinematicMoves": [
-        "Icy Wind",
-        "Hydro Pump",
-        "Blizzard"
+        111,
+        107,
+        40
       ]
     },
     "92": {
@@ -2143,13 +2140,13 @@
       "evolvesTo": "Haunter",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Lick",
-        "Sucker Punch"
+        212,
+        203
       ],
       "cinematicMoves": [
-        "Ominous Wind",
-        "Dark Pulse",
-        "Sludge Bomb"
+        69,
+        16,
+        90
       ]
     },
     "93": {
@@ -2167,13 +2164,13 @@
       "evolvesTo": "Gengar",
       "evolvesFrom": "Gastly",
       "quickMoves": [
-        "Shadow Claw",
-        "Lick"
+        213,
+        212
       ],
       "cinematicMoves": [
-        "Shadow Ball",
-        "Dark Pulse",
-        "Sludge Bomb"
+        70,
+        16,
+        90
       ]
     },
     "94": {
@@ -2191,13 +2188,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Haunter",
       "quickMoves": [
-        "Sucker Punch",
-        "Shadow Claw"
+        203,
+        213
       ],
       "cinematicMoves": [
-        "Shadow Ball",
-        "Dark Pulse",
-        "Sludge Wave"
+        70,
+        16,
+        91
       ]
     },
     "95": {
@@ -2215,13 +2212,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Rock Throw",
-        "Tackle"
+        227,
+        221
       ],
       "cinematicMoves": [
-        "Rock Slide",
-        "Stone Edge",
-        "Iron Head"
+        64,
+        32,
+        74
       ]
     },
     "96": {
@@ -2238,13 +2235,13 @@
       "evolvesTo": "Hypno",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Pound",
-        "Confusion"
+        222,
+        235
       ],
       "cinematicMoves": [
-        "Psybeam",
-        "Psyshock",
-        "Psychic"
+        30,
+        60,
+        108
       ]
     },
     "97": {
@@ -2261,13 +2258,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Drowzee",
       "quickMoves": [
-        "Zen Headbutt",
-        "Confusion"
+        234,
+        235
       ],
       "cinematicMoves": [
-        "Psyshock",
-        "Psychic",
-        "Shadow Ball"
+        60,
+        108,
+        70
       ]
     },
     "98": {
@@ -2284,13 +2281,13 @@
       "evolvesTo": "Kingler",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Bubble",
-        "Mud Shot"
+        237,
+        216
       ],
       "cinematicMoves": [
-        "Vice Grip",
-        "Bubble Beam",
-        "Water Pulse"
+        20,
+        53,
+        105
       ]
     },
     "99": {
@@ -2307,13 +2304,12 @@
       "evolvesTo": 0,
       "evolvesFrom": "Krabby",
       "quickMoves": [
-        "Metal Claw",
-        "Mud Shot"
+        228,
+        216
       ],
       "cinematicMoves": [
-        "Vice Grip",
-        "X Scissor",
-        "Water Pulse"
+        20,
+        105
       ]
     },
     "100": {
@@ -2330,13 +2326,13 @@
       "evolvesTo": "Electrode",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Spark",
-        "Tackle"
+        206,
+        221
       ],
       "cinematicMoves": [
-        "Discharge",
-        "Thunderbolt",
-        "Signal Beam"
+        35,
+        79,
+        99
       ]
     },
     "101": {
@@ -2353,13 +2349,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Voltorb",
       "quickMoves": [
-        "Spark",
-        "Tackle"
+        206,
+        221
       ],
       "cinematicMoves": [
-        "Discharge",
-        "Thunderbolt",
-        "Hyper Beam"
+        35,
+        79,
+        14
       ]
     },
     "102": {
@@ -2377,12 +2373,12 @@
       "evolvesTo": "Exeggutor",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Confusion"
+        235
       ],
       "cinematicMoves": [
-        "Seed Bomb",
-        "Psychic",
-        "Ancient Power"
+        59,
+        108,
+        62
       ]
     },
     "103": {
@@ -2400,13 +2396,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Exeggcute",
       "quickMoves": [
-        "Confusion",
-        "Zen Headbutt"
+        235,
+        234
       ],
       "cinematicMoves": [
-        "Seed Bomb",
-        "Psychic",
-        "Solar Beam"
+        59,
+        108,
+        116
       ]
     },
     "104": {
@@ -2423,13 +2419,13 @@
       "evolvesTo": "Marowak",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Mud Slap",
-        "Rock Smash"
+        233,
+        241
       ],
       "cinematicMoves": [
-        "Bone Club",
-        "Dig",
-        "Bulldoze"
+        94,
+        26,
+        95
       ]
     },
     "105": {
@@ -2446,13 +2442,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Cubone",
       "quickMoves": [
-        "Mud Slap",
-        "Rock Smash"
+        233,
+        241
       ],
       "cinematicMoves": [
-        "Bone Club",
-        "Dig",
-        "Earthquake"
+        94,
+        26,
+        31
       ]
     },
     "106": {
@@ -2469,13 +2465,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Low Kick",
-        "Rock Smash"
+        207,
+        241
       ],
       "cinematicMoves": [
-        "Stomp",
-        "Low Sweep",
-        "Stone Edge"
+        127,
+        56,
+        32
       ]
     },
     "107": {
@@ -2492,14 +2488,14 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Bullet Punch",
-        "Rock Smash"
+        229,
+        241
       ],
       "cinematicMoves": [
-        "Fire Punch",
-        "Ice Punch",
-        "Thunder Punch",
-        "Brick Break"
+        115,
+        33,
+        77,
+        123
       ]
     },
     "108": {
@@ -2516,13 +2512,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Lick",
-        "Zen Headbutt"
+        212,
+        234
       ],
       "cinematicMoves": [
-        "Hyper Beam",
-        "Stomp",
-        "Power Whip"
+        14,
+        127,
+        118
       ]
     },
     "109": {
@@ -2539,13 +2535,13 @@
       "evolvesTo": "Weezing",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Acid",
-        "Tackle"
+        225,
+        221
       ],
       "cinematicMoves": [
-        "Sludge",
-        "Sludge Bomb",
-        "Dark Pulse"
+        18,
+        90,
+        16
       ]
     },
     "110": {
@@ -2562,13 +2558,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Koffing",
       "quickMoves": [
-        "Acid",
-        "Tackle"
+        225,
+        221
       ],
       "cinematicMoves": [
-        "Sludge Bomb",
-        "Shadow Ball",
-        "Dark Pulse"
+        90,
+        70,
+        16
       ]
     },
     "111": {
@@ -2586,13 +2582,13 @@
       "evolvesTo": "Rhydon",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Mud Slap",
-        "Rock Smash"
+        233,
+        241
       ],
       "cinematicMoves": [
-        "Bulldoze",
-        "Horn Attack",
-        "Stomp"
+        95,
+        126,
+        127
       ]
     },
     "112": {
@@ -2610,13 +2606,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Rhyhorn",
       "quickMoves": [
-        "Mud Slap",
-        "Rock Smash"
+        233,
+        241
       ],
       "cinematicMoves": [
-        "Megahorn",
-        "Earthquake",
-        "Stone Edge"
+        22,
+        31,
+        32
       ]
     },
     "113": {
@@ -2633,13 +2629,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Pound",
-        "Zen Headbutt"
+        222,
+        234
       ],
       "cinematicMoves": [
-        "Psychic",
-        "Psybeam",
-        "Dazzling Gleam"
+        108,
+        30,
+        86
       ]
     },
     "114": {
@@ -2656,12 +2652,12 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Vine Whip"
+        214
       ],
       "cinematicMoves": [
-        "Power Whip",
-        "Sludge Bomb",
-        "Solar Beam"
+        118,
+        90,
+        116
       ]
     },
     "115": {
@@ -2678,13 +2674,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Mud Slap",
-        "Low Kick"
+        233,
+        207
       ],
       "cinematicMoves": [
-        "Brick Break",
-        "Earthquake",
-        "Stomp"
+        123,
+        31,
+        127
       ]
     },
     "116": {
@@ -2701,13 +2697,13 @@
       "evolvesTo": "Seadra",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Water Gun",
-        "Bubble"
+        230,
+        237
       ],
       "cinematicMoves": [
-        "Bubble Beam",
-        "Dragon Pulse",
-        "Flash Cannon"
+        53,
+        82,
+        36
       ]
     },
     "117": {
@@ -2724,13 +2720,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Horsea",
       "quickMoves": [
-        "Water Gun",
-        "Dragon Breath"
+        230,
+        204
       ],
       "cinematicMoves": [
-        "Blizzard",
-        "Dragon Pulse",
-        "Hydro Pump"
+        40,
+        82,
+        107
       ]
     },
     "118": {
@@ -2747,13 +2743,13 @@
       "evolvesTo": "Seaking",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Peck",
-        "Mud Shot"
+        211,
+        216
       ],
       "cinematicMoves": [
-        "Water Pulse",
-        "Horn Attack",
-        "Aqua Tail"
+        105,
+        126,
+        58
       ]
     },
     "119": {
@@ -2770,13 +2766,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Goldeen",
       "quickMoves": [
-        "Peck",
-        "Poison Jab"
+        211,
+        224
       ],
       "cinematicMoves": [
-        "Icy Wind",
-        "Drill Run",
-        "Megahorn"
+        111,
+        46,
+        22
       ]
     },
     "120": {
@@ -2793,13 +2789,13 @@
       "evolvesTo": "Starmie",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Quick Attack",
-        "Water Gun"
+        219,
+        230
       ],
       "cinematicMoves": [
-        "Swift",
-        "Bubble Beam",
-        "Power Gem"
+        125,
+        53,
+        65
       ]
     },
     "121": {
@@ -2817,13 +2813,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Staryu",
       "quickMoves": [
-        "Quick Attack",
-        "Water Gun"
+        219,
+        230
       ],
       "cinematicMoves": [
-        "Hydro Pump",
-        "Power Gem",
-        "Psybeam"
+        107,
+        65,
+        30
       ]
     },
     "122": {
@@ -2841,13 +2837,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Confusion",
-        "Zen Headbutt"
+        235,
+        234
       ],
       "cinematicMoves": [
-        "Psybeam",
-        "Psychic",
-        "Shadow Ball"
+        30,
+        108,
+        70
       ]
     },
     "123": {
@@ -2865,13 +2861,12 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Fury Cutter",
-        "Steel Wing"
+        200,
+        239
       ],
       "cinematicMoves": [
-        "Night Slash",
-        "X Scissor",
-        "Bug Buzz"
+        51,
+        49
       ]
     },
     "124": {
@@ -2889,13 +2884,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Frost Breath",
-        "Pound"
+        218,
+        222
       ],
       "cinematicMoves": [
-        "Draining Kiss",
-        "Ice Punch",
-        "Psyshock"
+        85,
+        33,
+        60
       ]
     },
     "125": {
@@ -2912,13 +2907,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Thunder Shock",
-        "Low Kick"
+        205,
+        207
       ],
       "cinematicMoves": [
-        "Thunder Punch",
-        "Thunderbolt",
-        "Thunder"
+        77,
+        79,
+        78
       ]
     },
     "126": {
@@ -2935,13 +2930,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Ember",
-        "Karate Chop"
+        209,
+        208
       ],
       "cinematicMoves": [
-        "Fire Blast",
-        "Fire Punch",
-        "Flamethrower"
+        103,
+        115,
+        24
       ]
     },
     "127": {
@@ -2958,13 +2953,12 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Rock Smash",
-        "Fury Cutter"
+        241,
+        200
       ],
       "cinematicMoves": [
-        "Vice Grip",
-        "X Scissor",
-        "Submission"
+        20,
+        54
       ]
     },
     "128": {
@@ -2981,13 +2975,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Tackle",
-        "Zen Headbutt"
+        221,
+        234
       ],
       "cinematicMoves": [
-        "Horn Attack",
-        "Iron Head",
-        "Earthquake"
+        126,
+        74,
+        31
       ]
     },
     "129": {
@@ -3004,10 +2998,10 @@
       "evolvesTo": "Gyarados",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Splash"
+        231
       ],
       "cinematicMoves": [
-        "Struggle"
+        133
       ]
     },
     "130": {
@@ -3025,13 +3019,13 @@
       "evolvesTo": null,
       "evolvesFrom": "Magikarp",
       "quickMoves": [
-        "Dragon Breath",
-        "Bite"
+        204,
+        202
       ],
       "cinematicMoves": [
-        "Hydro Pump",
-        "Twister",
-        "Dragon Pulse"
+        107,
+        80,
+        82
       ]
     },
     "131": {
@@ -3049,13 +3043,13 @@
       "evolvesTo": null,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Frost Breath",
-        "Ice Shard"
+        218,
+        217
       ],
       "cinematicMoves": [
-        "Dragon Pulse",
-        "Ice Beam",
-        "Blizzard"
+        82,
+        39,
+        40
       ]
     },
     "132": {
@@ -3072,10 +3066,10 @@
       "evolvesTo": null,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Pound"
+        222
       ],
       "cinematicMoves": [
-        "Struggle"
+        133
       ]
     },
     "133": {
@@ -3092,13 +3086,13 @@
       "evolvesTo": "Vaporeon/Jolteon/Flareon",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Quick Attack",
-        "Tackle"
+        219,
+        221
       ],
       "cinematicMoves": [
-        "Dig",
-        "Swift",
-        "Body Slam"
+        26,
+        125,
+        131
       ]
     },
     "134": {
@@ -3115,12 +3109,12 @@
       "evolvesTo": 0,
       "evolvesFrom": "Eevee",
       "quickMoves": [
-        "Water Gun"
+        230
       ],
       "cinematicMoves": [
-        "Water Pulse",
-        "Hydro Pump",
-        "Aqua Tail"
+        105,
+        107,
+        58
       ]
     },
     "135": {
@@ -3137,12 +3131,12 @@
       "evolvesTo": 0,
       "evolvesFrom": "Eevee",
       "quickMoves": [
-        "Thunder Shock"
+        205
       ],
       "cinematicMoves": [
-        "Discharge",
-        "Thunderbolt",
-        "Thunder"
+        35,
+        79,
+        78
       ]
     },
     "136": {
@@ -3159,12 +3153,12 @@
       "evolvesTo": 0,
       "evolvesFrom": "Eevee",
       "quickMoves": [
-        "Ember"
+        209
       ],
       "cinematicMoves": [
-        "Fire Blast",
-        "Flamethrower",
-        "Heat Wave"
+        103,
+        24,
+        42
       ]
     },
     "137": {
@@ -3181,13 +3175,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Quick Attack",
-        "Tackle"
+        219,
+        221
       ],
       "cinematicMoves": [
-        "Psybeam",
-        "Signal Beam",
-        "Discharge"
+        30,
+        99,
+        35
       ]
     },
     "138": {
@@ -3205,13 +3199,13 @@
       "evolvesTo": "Omastar",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Water Gun",
-        "Mud Shot"
+        230,
+        216
       ],
       "cinematicMoves": [
-        "Ancient Power",
-        "Brine",
-        "Rock Tomb"
+        62,
+        104,
+        63
       ]
     },
     "139": {
@@ -3229,13 +3223,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Omanyte",
       "quickMoves": [
-        "Rock Throw",
-        "Water Gun"
+        227,
+        230
       ],
       "cinematicMoves": [
-        "Ancient Power",
-        "Hydro Pump",
-        "Rock Slide"
+        62,
+        107,
+        64
       ]
     },
     "140": {
@@ -3253,13 +3247,13 @@
       "evolvesTo": "Kabutops",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Scratch",
-        "Mud Shot"
+        220,
+        216
       ],
       "cinematicMoves": [
-        "Ancient Power",
-        "Aqua Jet",
-        "Rock Tomb"
+        62,
+        57,
+        63
       ]
     },
     "141": {
@@ -3277,13 +3271,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Kabuto",
       "quickMoves": [
-        "Mud Shot",
-        "Fury Cutter"
+        216,
+        200
       ],
       "cinematicMoves": [
-        "Ancient Power",
-        "Water Pulse",
-        "Stone Edge"
+        62,
+        105,
+        32
       ]
     },
     "142": {
@@ -3301,13 +3295,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Steel Wing",
-        "Bite"
+        239,
+        202
       ],
       "cinematicMoves": [
-        "Ancient Power",
-        "Iron Head",
-        "Hyper Beam"
+        62,
+        74,
+        14
       ]
     },
     "143": {
@@ -3324,13 +3318,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Zen Headbutt",
-        "Lick"
+        234,
+        212
       ],
       "cinematicMoves": [
-        "Body Slam",
-        "Hyper Beam",
-        "Earthquake"
+        131,
+        14,
+        31
       ]
     },
     "144": {
@@ -3348,12 +3342,12 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Frost Breath"
+        218
       ],
       "cinematicMoves": [
-        "Ice Beam",
-        "Icy Wind",
-        "Blizzard"
+        39,
+        111,
+        40
       ]
     },
     "145": {
@@ -3371,12 +3365,12 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Thunder Shock"
+        205
       ],
       "cinematicMoves": [
-        "Discharge",
-        "Thunderbolt",
-        "Thunder"
+        35,
+        79,
+        78
       ]
     },
     "146": {
@@ -3394,12 +3388,12 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Ember"
+        209
       ],
       "cinematicMoves": [
-        "Fire Blast",
-        "Heat Wave",
-        "Flamethrower"
+        103,
+        42,
+        24
       ]
     },
     "147": {
@@ -3416,12 +3410,12 @@
       "evolvesTo": "Dragonair",
       "evolvesFrom": 0,
       "quickMoves": [
-        "Dragon Breath"
+        204
       ],
       "cinematicMoves": [
-        "Wrap",
-        "Twister",
-        "Aqua Tail"
+        13,
+        80,
+        58
       ]
     },
     "148": {
@@ -3438,12 +3432,12 @@
       "evolvesTo": "Dragonite",
       "evolvesFrom": "Dratini",
       "quickMoves": [
-        "Dragon Breath"
+        204
       ],
       "cinematicMoves": [
-        "Wrap",
-        "Aqua Tail",
-        "Dragon Pulse"
+        13,
+        58,
+        82
       ]
     },
     "149": {
@@ -3461,13 +3455,13 @@
       "evolvesTo": 0,
       "evolvesFrom": "Dragonair",
       "quickMoves": [
-        "Dragon Breath",
-        "Steel Wing"
+        204,
+        239
       ],
       "cinematicMoves": [
-        "Dragon Pulse",
-        "Hyper Beam",
-        "Dragon Claw"
+        82,
+        14,
+        83
       ]
     },
     "150": {
@@ -3484,13 +3478,13 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Psycho Cut",
-        "Confusion"
+        226,
+        235
       ],
       "cinematicMoves": [
-        "Psychic",
-        "Shadow Ball",
-        "Hyper Beam"
+        108,
+        70,
+        14
       ]
     },
     "151": {
@@ -3507,18 +3501,18 @@
       "evolvesTo": 0,
       "evolvesFrom": 0,
       "quickMoves": [
-        "Pound"
+        222
       ],
       "cinematicMoves": [
-        "Hurricane",
-        "Earthquake",
-        "Psychic",
-        "Dragon Pulse",
-        "Thunder",
-        "Moonblast",
-        "Fire Blast",
-        "Solar Beam",
-        "Hyper Beam"
+        122,
+        31,
+        108,
+        82,
+        78,
+        87,
+        103,
+        116,
+        14
       ]
     }
   },
