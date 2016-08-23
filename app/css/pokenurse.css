@@ -9,9 +9,25 @@
   color: #fff;
 }
 
-#profile-header {
-  padding-left: 30%;
-  font-weight: bold;
+.username {
+  padding-top: 15px;
+  padding-left: 15px;
+  color: white;
+}
+
+.stats {
+  padding-top: 15px;
+  padding-right: 25px;
+  color: white;
+}
+
+.status {
+  margin-top: 53px;
+  padding-left: 15px;
+}
+
+.table-container {
+  margin-top: 55px;
 }
 
 #refresh-btn {
@@ -448,7 +464,7 @@ font-weight: bold;
 .modal-outline-white{
 text-shadow:
     1px 2px 0 #000,
-   -1px -1px 0 #000,  
+   -1px -1px 0 #000,
     1px -1px 0 #000,
    -1px  1px 0 #000,
     1px  1px 0 #000;
@@ -735,11 +751,6 @@ table tbody tr.child {
 }
 table tbody tr.child:hover {
     background: none;
-}
-
-/*Stats*/
-.stats {
-  padding-top: 8px;
 }
 
 /*Confirmation*/
