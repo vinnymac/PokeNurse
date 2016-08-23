@@ -25,8 +25,11 @@ const Nickname = React.createClass({
 
   componentDidUpdate() {
     if (this.state.editing) {
+      this.lastActiveElement = document.activeElement
       this.input.focus()
       this.input.select()
+    } else if (this.lastActiveElement) {
+      this.lastActiveElement.focus()
     }
   },
 
