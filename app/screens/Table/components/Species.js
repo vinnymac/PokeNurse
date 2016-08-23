@@ -155,7 +155,7 @@ const Species = React.createClass({
           key={`header${specie.pokemon_id}`}
         >
           <td
-            className={specie.count > 0 ? "details-control" : ""}
+            className={specie.count > 0 ? 'details-control' : ''}
             onClick={this.handleCollapse.bind(this, specie)}
           />
           <td>{specie.pokemon_id}</td>
