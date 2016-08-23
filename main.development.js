@@ -92,8 +92,7 @@ const installExtensions = async () => {
     const installer = require('electron-devtools-installer') // eslint-disable-line global-require
 
     const extensions = [
-      'REACT_DEVELOPER_TOOLS',
-      // 'REDUX_DEVTOOLS'
+      'REACT_DEVELOPER_TOOLS'
     ]
     const forceDownload = !!process.env.UPGRADE_EXTENSIONS
     for (const name of extensions) {
@@ -253,6 +252,126 @@ ipcMain.on('get-player-info', (event) => {
   })
 })
 
+function parseInventory(inventory) {
+  const { player, candies, pokemon } = pogobuf.Utils.splitInventory(inventory)
+
+  const formattedCandies = {}
+
+  candies.forEach(candy => {
+    formattedCandies[candy.family_id.toString()] = candy.candy
+  })
+
+  const combinedPokemonList = []
+
+  const speciesList = []
+  const eggList = []
+
+  pokemon.forEach(p => {
+    if (p.is_egg) {
+      eggList.push(p)
+      return
+    }
+
+    let pokemonName = pogobuf.Utils.getEnumKeyByValue(
+      POGOProtos.Enums.PokemonId,
+      p.pokemon_id
+    )
+
+    pokemonName = pokemonName.replace('Female', '♀').replace('Male', '♂')
+
+    const stats = baseStats.pokemon[p.pokemon_id]
+
+    const totalCpMultiplier = p.cp_multiplier + p.additional_cp_multiplier
+
+    const attack = stats.BaseAttack + p.individual_attack
+    const defense = stats.BaseDefense + p.individual_defense
+    const stamina = stats.BaseStamina + p.individual_stamina
+
+    const maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
+    const candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, p.num_upgrades)
+    const stardustCost = utils.getStardustCostsForPowerup(totalCpMultiplier, p.num_upgrades)
+    const candyMaxCost = utils.getMaxCandyCostsForPowerup(
+      player.level,
+      p.num_upgrades,
+      totalCpMultiplier
+    )
+
+    const stardustMaxCost = utils.getMaxStardustCostsForPowerup(
+      player.level,
+      p.num_upgrades,
+      totalCpMultiplier
+    )
+
+    const nextCP = utils.getCpAfterPowerup(p.cp, totalCpMultiplier)
+
+    const iv = utils.getIVs(p)
+
+    // TODO Use CamelCase instead of under_score for all keys except responses
+    const pokemonWithStats = {
+      iv,
+      cp: p.cp,
+      next_cp: nextCP,
+      max_cp: maxCP,
+      candy_cost: candyCost,
+      candy_max_cost: candyMaxCost,
+      stardust_cost: stardustCost,
+      stardust_max_cost: stardustMaxCost,
+      creation_time_ms: p.creation_time_ms.toString(),
+      deployed: p.deployed_fort_id !== '',
+      id: p.id.toString(),
+      attack: p.individual_attack,
+      defense: p.individual_defense,
+      stamina: p.individual_stamina,
+      current_stamina: p.stamina,
+      stamina_max: p.stamina_max,
+      pokemon_id: p.pokemon_id,
+      name: pokemonName,
+      height: p.height_m,
+      weight: p.weight_kg,
+      nickname: p.nickname || pokemonName,
+      // Multiply by -1 for sorting
+      favorite: p.favorite * -1,
+      move_1: p.move_1,
+      move_2: p.move_2
+    }
+
+    if (combinedPokemonList[pokemonName]) {
+      combinedPokemonList[pokemonName].count += 1
+      combinedPokemonList[pokemonName].pokemon.push(pokemonWithStats)
+    } else {
+      combinedPokemonList[pokemonName] = {
+        pokemon_id: p.pokemon_id,
+        name: pokemonName,
+        count: +1,
+        pokemon: [pokemonWithStats]
+      }
+    }
+  })
+
+  // console.log(combinedPokemonList)
+
+  Object.keys(combinedPokemonList).forEach(key => {
+    const combinedPokemon = combinedPokemonList[key]
+    const candy = formattedCandies[baseStats.pokemon[combinedPokemon.pokemon_id].familyId]
+    const count = combinedPokemon.count
+
+    speciesList.push({
+      pokemon_id: combinedPokemon.pokemon_id.toString(),
+      name: combinedPokemon.name,
+      count,
+      candy,
+      evolves: utils.getEvolvesCount(candy, combinedPokemon),
+      pokemon: combinedPokemon.pokemon
+    })
+  })
+
+  return {
+    success: true,
+    species: speciesList,
+    eggs: eggList
+  }
+}
+
 function getPlayersPokemons(event, sync = 'sync') {
   client.getInventory(0).then(inventory => {
     if (!inventory.success) {
@@ -265,141 +384,7 @@ function getPlayersPokemons(event, sync = 'sync') {
       return
     }
 
-    const player = pogobuf.Utils.splitInventory(inventory).player
-
-    const candies = pogobuf.Utils.splitInventory(inventory).candies
-    const formattedCandies = {}
-
-    for (let i = 0; i < candies.length; i++) {
-      const candy = candies[i]
-      formattedCandies[candy.family_id.toString()] = candy.candy
-    }
-
-    const pokemons = pogobuf.Utils.splitInventory(inventory).pokemon
-    const reducedPokemonList = []
-    const combinedPokemonList = []
-    const eggList = []
-
-    pokemons.forEach(pokemon => {
-      if (pokemon.is_egg) {
-        eggList.push(pokemon)
-        return
-      }
-
-      let pokemonName = pogobuf.Utils.getEnumKeyByValue(
-        POGOProtos.Enums.PokemonId,
-        pokemon.pokemon_id
-      )
-
-      pokemonName = pokemonName.replace('Female', '♀').replace('Male', '♂')
-
-      const stats = baseStats.pokemon[pokemon.pokemon_id]
-
-      const totalCpMultiplier = pokemon.cp_multiplier + pokemon.additional_cp_multiplier
-
-      const attack = stats.BaseAttack + pokemon.individual_attack
-      const defense = stats.BaseDefense + pokemon.individual_defense
-      const stamina = stats.BaseStamina + pokemon.individual_stamina
-
-      const maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
-      const candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
-      const stardustCost = utils.getStardustCostsForPowerup(totalCpMultiplier, pokemon.num_upgrades)
-      const candyMaxCost = utils.getMaxCandyCostsForPowerup(
-        player.level,
-        pokemon.num_upgrades,
-        totalCpMultiplier
-      )
-
-      const stardustMaxCost = utils.getMaxStardustCostsForPowerup(
-        player.level,
-        pokemon.num_upgrades,
-        totalCpMultiplier
-      )
-
-      const nextCP = utils.getCpAfterPowerup(pokemon.cp, totalCpMultiplier)
-
-      const ADS = pokemon.individual_attack + pokemon.individual_defense + pokemon.individual_stamina
-      const iv = Math.round(ADS / 45 * 10000) / 100
-
-      reducedPokemonList.push({
-        cp: pokemon.cp,
-        next_cp: nextCP,
-        max_cp: maxCP,
-        candy_cost: candyCost,
-        candy_max_cost: candyMaxCost,
-        stardust_cost: stardustCost,
-        stardust_max_cost: stardustMaxCost,
-        creation_time_ms: pokemon.creation_time_ms.toString(),
-        deployed: pokemon.deployed_fort_id !== '',
-        id: pokemon.id.toString(),
-        attack: pokemon.individual_attack,
-        defense: pokemon.individual_defense,
-        stamina: pokemon.individual_stamina,
-        current_stamina: pokemon.stamina,
-        stamina_max: pokemon.stamina_max,
-        iv,
-        pokemon_id: pokemon.pokemon_id,
-        name: pokemonName,
-        height: pokemon.height_m,
-        weight: pokemon.weight_kg,
-        nickname: pokemon.nickname || pokemonName,
-        // Multiply by -1 for sorting
-        favorite: pokemon.favorite * -1,
-        move_1: pokemon.move_1,
-        move_2: pokemon.move_2
-      })
-
-      if (combinedPokemonList[pokemonName]) {
-        combinedPokemonList[pokemonName].count += 1
-      } else {
-        combinedPokemonList[pokemonName] = {
-          pokemon_id: pokemon.pokemon_id,
-          name: pokemonName,
-          count: +1,
-          pokes: []
-        }
-      }
-    })
-
-    // console.log(reducedPokemonList)
-
-    for (let i = 0; i < reducedPokemonList.length; i++) {
-      const pokemon = reducedPokemonList[i]
-
-      if (combinedPokemonList[pokemon.name].pokemon_id === pokemon.pokemon_id) {
-        combinedPokemonList[pokemon.name].pokes.push(pokemon)
-      }
-    }
-
-    // console.log(combinedPokemonList)
-
-    const finalList = []
-
-    Object.keys(combinedPokemonList).forEach(key => {
-      const pokemon = combinedPokemonList[key]
-      const candy = formattedCandies[baseStats.pokemon[pokemon.pokemon_id].familyId]
-      const count = pokemon.count
-      let evolves = Math.floor(candy / baseStats.pokemon[pokemon.pokemon_id].evolveCost)
-
-      if ((evolves === Infinity || isNaN(evolves))) {
-        evolves = 0
-      }
-
-      finalList.push({
-        pokemon_id: pokemon.pokemon_id.toString(),
-        name: pokemon.name,
-        count,
-        candy,
-        evolves: (evolves > count ? count : evolves),
-        pokemon: pokemon.pokes
-      })
-    })
-
-    const payload = {
-      success: true,
-      species: finalList,
-      eggs: eggList
-    }
+    const payload = parseInventory(inventory)
 
     if (sync === 'sync') {
       event.returnValue = payload
