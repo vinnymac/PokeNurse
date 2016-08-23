@@ -60,7 +60,7 @@ function randomDelay(min, max) {
 }
 
 function setBackgroundImage(team) {
-  const header = document.getElementById('profile-header')
+  const navbar = document.getElementById('navbar')
   let teamName = null
   switch (team) {
     case 1:
@@ -75,7 +75,7 @@ function setBackgroundImage(team) {
     default:
   }
 
-  header.style.backgroundImage = `url("./imgs/${teamName}.jpg")`
+  navbar.style.backgroundImage = `url("./imgs/${teamName}.jpg")`
 }
 
 const Table = React.createClass({
@@ -144,28 +144,29 @@ const Table = React.createClass({
 
     return (
       <div>
-        <header className="header" id="profile-header">
-          <div className="row">
-            <div className="col-xs-6">
-              <p id="username-h" />
-            </div>
-            <div className="col-xs-6 pull-right">
-              <p>
-                <span>Status:{' '}
-                  <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
-                </span>
-              </p>
-              <SpeciesCounter monsters={monsters} />
-              <p>
-                <span>
-                  <CheckCounter ref={(c) => { this.checkCounter = c }} />
-                </span>
-              </p>
-            </div>
-          </div>
-        </header>
-
         <div className="container">
+          <nav className="navbar navbar-inverse navbar-fixed-top" id="navbar">
+            <div className="navbar-header username">
+              <span className="glyphicon glyphicon-menu-hamburger" />
+              {' '}
+              <span id="username-h" />
+            </div>
+            <div className="navbar-right stats">
+              <SpeciesCounter monsters={monsters} />
+              {' | '}
+              <span>
+                <CheckCounter ref={(c) => { this.checkCounter = c }} />
+              </span>
+            </div>
+          </nav>
+          <nav className="navbar navbar-fixed-top status">
+            <span>Status:{' '}
+              <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
+            </span>
+          </nav>
+        </div>
+
+        <div className="container table-container">
           <h1>
             <span>Pokémon</span>
             <span
