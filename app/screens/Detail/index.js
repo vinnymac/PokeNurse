@@ -84,7 +84,7 @@ const ModalDialog = React.createClass({
   },
 })
 
-export default ($detailModal, pokemon, species) => {
+export default ($detailModal, pokemon, species, monsterUpdater) => {
   // Calculate CP Progress dot position
   const minDeg = 0
   const maxDeg = 180
@@ -138,7 +138,7 @@ export default ($detailModal, pokemon, species) => {
     transform={transform}
     attack={attack}
     defense={defense}
-    pokemonId={species.pokemon_id}
+    pokemon={pokemon}
     hp={hp}
     candies={candies}
     id={pokemon.id}
@@ -155,6 +155,7 @@ export default ($detailModal, pokemon, species) => {
     evolvesTo={stats.evolvesTo}
     possibleQuickMoves={possibleQuickMoves}
     possibleCinematicMoves={possibleCinematicMoves}
+    monsterUpdater={monsterUpdater}
   />)
 
   $detailModal.on('hidden.bs.modal', () => {

@@ -129,8 +129,8 @@ const Table = React.createClass({
   },
 
   componentWillUnmount() {
-    ipcRenderer.off('transfer-pokemon-complete', this.handleTransferCompleted)
-    ipcRenderer.off('evolve-pokemon-complete', this.handleEvolveCompleted)
+    ipcRenderer.removeListener('transfer-pokemon-complete', this.handleTransferCompleted)
+    ipcRenderer.removeListener('evolve-pokemon-complete', this.handleEvolveCompleted)
   },
 
   render() {
@@ -256,8 +256,12 @@ const Table = React.createClass({
     this.checkCounter.handleRecount(count)
   },
 
-  updateMonster(pokemon, index, speciesIndex) {
+  updateMonster(pokemon) {
+    const speciesIndex = pokemon.pokemon_id - 1
+
     this.updateSpecies(speciesIndex, (speciesAtIndex) => {
+      const index = speciesAtIndex.pokemon.findIndex((p) => p.id === pokemon.id)
+
       const sorted = this.getSortedPokemon(Object.assign({}, speciesAtIndex, {
         pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
       }))

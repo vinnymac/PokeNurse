@@ -8,12 +8,10 @@ import Nickname from './Nickname'
 const ModalBody = React.createClass({
   propTypes: {
     transform: PropTypes.string.isRequired,
-    nickname: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     hp: PropTypes.string.isRequired,
     cp: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
-    pokemonId: PropTypes.string.isRequired,
+    pokemon: PropTypes.object.isRequired,
     maxCP: PropTypes.number.isRequired,
     type: PropTypes.array.isRequired,
     weight: PropTypes.string.isRequired,
@@ -28,17 +26,16 @@ const ModalBody = React.createClass({
     evolvesTo: PropTypes.node,
     possibleQuickMoves: PropTypes.array,
     possibleCinematicMoves: PropTypes.array,
+    monsterUpdater: PropTypes.func,
   },
 
   render() {
     const {
       transform,
-      nickname,
       name,
       hp,
       cp,
-      id,
-      pokemonId,
+      pokemon,
       maxCP,
       type,
       weight,
@@ -52,7 +49,8 @@ const ModalBody = React.createClass({
       chargedMove,
       evolvesTo,
       possibleQuickMoves,
-      possibleCinematicMoves
+      possibleCinematicMoves,
+      monsterUpdater,
     } = this.props
 
     const quickMoves = []
@@ -101,14 +99,14 @@ const ModalBody = React.createClass({
           ref={(c) => { this.cry = c }}
         >
           <source
-            src={`./cries/${pokemonId}.ogg`}
+            src={`./cries/${pokemon.pokemon_id}.ogg`}
             type="audio/ogg"
           />
         </audio>
       </div>
 
       <div id="pokemon_contents">
-        <Nickname nickname={nickname} id={id} />
+        <Nickname pokemon={pokemon} monsterUpdater={monsterUpdater} />
         <div id="pokemon_health_bar" />
         <div id="pokemon_health">{`HP ${hp}`}</div>
         <div className="pokemon_info">

@@ -8,13 +8,13 @@ import {
 
 const Nickname = React.createClass({
   propTypes: {
-    nickname: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired
+    pokemon: PropTypes.object.isRequired,
+    monsterUpdater: PropTypes.func.isRequired
   },
 
   getInitialState() {
     return {
-      newNickname: this.props.nickname,
+      newNickname: this.props.pokemon.nickname,
       editing: false
     }
   },
@@ -31,7 +31,7 @@ const Nickname = React.createClass({
   },
 
   componentWillUnmount() {
-    ipcRenderer.off('rename-pokemon-complete', this.handleRenameComplete)
+    ipcRenderer.removeListener('rename-pokemon-complete', this.handleRenameComplete)
   },
 
   render() {
@@ -74,12 +74,20 @@ const Nickname = React.createClass({
 
   handleKeyPress(e) {
     if (e.key === 'Enter') {
-      ipcRenderer.send('rename-pokemon', this.props.id, e.target.value)
+      ipcRenderer.send('rename-pokemon', this.props.pokemon.id, e.target.value)
     }
   },
 
   handleRenameComplete(event, id, nickname) {
-    if (id !== this.props.id) return
+    const {
+      pokemon
+    } = this.props
+
+    if (id !== pokemon.id) return
+
+    const updatedPokemon = Object.assign({}, pokemon, { nickname })
+
+    this.props.monsterUpdater(updatedPokemon)
 
     this.setState({
       newNickname: nickname,
