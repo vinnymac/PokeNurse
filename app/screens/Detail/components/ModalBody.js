@@ -3,6 +3,7 @@ import React, {
 } from 'react'
 import QuickMove from './QuickMove'
 import CinematicMove from './CinematicMove'
+import Nickname from './Nickname'
 
 const ModalBody = React.createClass({
   propTypes: {
@@ -105,7 +106,7 @@ const ModalBody = React.createClass({
       </div>
 
       <div id="pokemon_contents">
-        <div id="pokemon_name">{`${nickname}`}</div>
+        <Nickname nickname={nickname} id={id} />
         <div id="pokemon_health_bar" />
         <div id="pokemon_health">{`HP ${hp}`}</div>
         <div className="pokemon_info">

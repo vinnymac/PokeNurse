@@ -447,4 +447,13 @@ ipcMain.on('favorite-pokemon', (event, id, isFavorite) => {
     }).catch(console.error)
   console.log(`[+] Pokemon favorite status set to ${isFavorite}`)
 })
+
+ipcMain.on('rename-pokemon', (event, id, nickname) => {
+  client.nicknamePokemon(id, nickname)
+    .then(() => {
+      console.log(`[+] Pokemon nicknamed ${nickname}`)
+
+      event.sender.send('rename-pokemon-complete', id, nickname)
+    }).catch(console.error)
+})
 // END OF POKEMON
