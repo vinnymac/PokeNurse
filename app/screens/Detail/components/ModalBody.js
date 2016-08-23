@@ -13,6 +13,7 @@ const ModalBody = React.createClass({
     hp: PropTypes.string.isRequired,
     cp: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
+    pokemonId: PropTypes.string.isRequired,
     maxCP: PropTypes.number.isRequired,
     type: PropTypes.array.isRequired,
     weight: PropTypes.string.isRequired,
@@ -37,6 +38,7 @@ const ModalBody = React.createClass({
       hp,
       cp,
       id,
+      pokemonId,
       maxCP,
       type,
       weight,
@@ -99,7 +101,7 @@ const ModalBody = React.createClass({
           ref={(c) => { this.cry = c }}
         >
           <source
-            src={`./cries/${id}.ogg`}
+            src={`./cries/${pokemonId}.ogg`}
             type="audio/ogg"
           />
         </audio>

@@ -74,7 +74,7 @@ const Nickname = React.createClass({
 
   handleKeyPress(e) {
     if (e.key === 'Enter') {
-      ipcRenderer.send('transfer-pokemon', this.props.id, e.target.value)
+      ipcRenderer.send('rename-pokemon', this.props.id, e.target.value)
     }
   },
 

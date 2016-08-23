@@ -451,7 +451,7 @@ ipcMain.on('favorite-pokemon', (event, id, isFavorite) => {
 ipcMain.on('rename-pokemon', (event, id, nickname) => {
   client.nicknamePokemon(id, nickname)
     .then(() => {
-      console.log(`[+] Pokemon nicknamed ${nickname}`)
+      console.log(`[+] Pokemon ${id} nicknamed ${nickname}`)
 
       event.sender.send('rename-pokemon-complete', id, nickname)
     }).catch(console.error)
