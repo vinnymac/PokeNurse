@@ -311,7 +311,7 @@ const utils = {
     return Math.round(utils.getADS(pokemon) / 45 * 10000) / 100
   },
 
-  getEvolvesCount(candy, { count, pokemon_id }) {
+  getEvolvesCount({ candy, count, pokemon_id }) {
     let evolves = Math.floor(candy / baseStats.pokemon[pokemon_id].evolveCost)
 
     if ((evolves === Infinity || isNaN(evolves))) {

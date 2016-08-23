@@ -11,12 +11,15 @@ import {
   dialog,
   Menu
 } from 'electron'
+import times from 'lodash/times'
 
 import menuTemplate from './main/main_menu'
 import utils from './main/utils'
 import baseStats from './baseStats'
 
 const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
+
+const kantoDexCount = 151
 
 let mainWindow = null
 let client = null
@@ -252,6 +255,21 @@ ipcMain.on('get-player-info', (event) => {
   })
 })
 
+function generateEmptySpecies(formattedCandies) {
+  return times(kantoDexCount, (i) => {
+    const pokemonDexNumber = String(i + 1)
+
+    return {
+      pokemon_id: pokemonDexNumber,
+      name: baseStats.pokemon[pokemonDexNumber].name,
+      count: 0,
+      candy: formattedCandies[baseStats.pokemon[pokemonDexNumber].familyId],
+      evolves: 0,
+      pokemon: []
+    }
+  })
+}
+
 function parseInventory(inventory) {
   const { player, candies, pokemon } = pogobuf.Utils.splitInventory(inventory)
 
@@ -261,11 +279,11 @@ function parseInventory(inventory) {
     formattedCandies[candy.family_id.toString()] = candy.candy
   })
 
-  const combinedPokemonList = []
-
-  const speciesList = []
+  const speciesList = generateEmptySpecies(formattedCandies)
   const eggList = []
 
+  // populates the speciesList with pokemon and counts
+  // populates the eggList with pokemon
   pokemon.forEach(p => {
     if (p.is_egg) {
       eggList.push(p)
@@ -335,34 +353,15 @@ function parseInventory(inventory) {
       move_2: p.move_2
     }
 
-    if (combinedPokemonList[pokemonName]) {
-      combinedPokemonList[pokemonName].count += 1
-      combinedPokemonList[pokemonName].pokemon.push(pokemonWithStats)
-    } else {
-      combinedPokemonList[pokemonName] = {
-        pokemon_id: p.pokemon_id,
-        name: pokemonName,
-        count: +1,
-        pokemon: [pokemonWithStats]
-      }
-    }
+    const speciesIndex = p.pokemon_id - 1
+
+    speciesList[speciesIndex].count += 1
+    speciesList[speciesIndex].pokemon.push(pokemonWithStats)
   })
 
-  // console.log(combinedPokemonList)
-
-  Object.keys(combinedPokemonList).forEach(key => {
-    const combinedPokemon = combinedPokemonList[key]
-    const candy = formattedCandies[baseStats.pokemon[combinedPokemon.pokemon_id].familyId]
-    const count = combinedPokemon.count
-
-    speciesList.push({
-      pokemon_id: combinedPokemon.pokemon_id.toString(),
-      name: combinedPokemon.name,
-      count,
-      candy,
-      evolves: utils.getEvolvesCount(candy, combinedPokemon),
-      pokemon: combinedPokemon.pokemon
-    })
+  // TODO use map
+  speciesList.forEach((s) => {
+    s.evolves = utils.getEvolvesCount(s)
   })
 
   return {

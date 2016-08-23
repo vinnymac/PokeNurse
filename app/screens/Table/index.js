@@ -178,6 +178,13 @@ const Table = React.createClass({
             <span className="pull-right">
               <input
                 type="button"
+                className="btn btn-primary"
+                value="Toggle Species Displayed"
+                onClick={this.handleToggleShowAllSpecies}
+              />
+              {" "}
+              <input
+                type="button"
                 className="btn btn-warning"
                 id="transfer-btn"
                 value="Transfer selected"
@@ -455,6 +462,10 @@ const Table = React.createClass({
 
   handleTransferCompleted(event, pokemon) {
     this.removeMonster(pokemon)
+  },
+
+  handleToggleShowAllSpecies() {
+    this.speciesTable.toggleShowAllSpecies()
   }
 })
 

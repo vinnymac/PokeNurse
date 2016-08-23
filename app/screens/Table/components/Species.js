@@ -24,7 +24,8 @@ const Species = React.createClass({
     const species = this.getNewSpeciesStateFromProps(this.props)
 
     return {
-      species
+      species,
+      showSpeciesWithZeroPokemon: true
     }
   },
 
@@ -128,7 +129,14 @@ const Species = React.createClass({
 
     const speciesState = this.state.species
 
+    const {
+      showSpeciesWithZeroPokemon
+    } = this.state
+
     return monsterSpecies.map((specie, i) => {
+      if (!showSpeciesWithZeroPokemon && specie.count < 1) {
+        return null
+      }
       if (String(specie.name).toLowerCase().indexOf(filterBy) === -1) {
         return null
       }
@@ -147,8 +155,8 @@ const Species = React.createClass({
           key={`header${specie.pokemon_id}`}
         >
           <td
-            className="details-control"
-            onClick={this.handleCollapse.bind(this, specie.pokemon_id)}
+            className={specie.count > 0 ? "details-control" : ""}
+            onClick={this.handleCollapse.bind(this, specie)}
           />
           <td>{specie.pokemon_id}</td>
           <td className="sprites">
@@ -287,9 +295,11 @@ const Species = React.createClass({
     return { sortBy, sortDir }
   },
 
-  handleCollapse(id) {
+  handleCollapse(specie) {
+    if (specie.count < 1) return
+
     this.setState({
-      species: this.updateSpeciesState(id, (speciesState) => {
+      species: this.updateSpeciesState(specie.pokemon_id, (speciesState) => {
         const newCollapsed = !speciesState.collapsed
 
         return { collapsed: newCollapsed }
@@ -394,6 +404,12 @@ const Species = React.createClass({
     })
 
     return speciesState
+  },
+
+  toggleShowAllSpecies() {
+    this.setState({
+      showSpeciesWithZeroPokemon: !this.state.showSpeciesWithZeroPokemon
+    })
   }
 
 })
