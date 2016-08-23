@@ -47,6 +47,7 @@ const Nickname = React.createClass({
       return (
         <input
           type="text"
+          className="input-lg"
           onKeyPress={this.handleKeyPress}
           defaultValue={newNickname}
           placeholder="Enter a new nickname"
