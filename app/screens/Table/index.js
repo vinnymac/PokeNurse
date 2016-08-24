@@ -147,17 +147,37 @@ const Table = React.createClass({
       <div>
         <div className="container">
           <nav className="navbar navbar-inverse navbar-fixed-top" id="navbar">
-            <div className="navbar-header username">
+            <div className="navbar-header drawer-icon">
               <span className="glyphicon glyphicon-menu-hamburger" />
-              {' '}
-              <span id="username-h" />
             </div>
-            <div className="navbar-right stats">
-              <SpeciesCounter monsters={monsters} />
-              {' | '}
-              <span>
-                <CheckCounter ref={(c) => { this.checkCounter = c }} />
-              </span>
+            <div className="navbar-header username">
+              {' '}
+              <strong>
+                <span id="username-h" />
+              </strong>
+            </div>
+            <div className="navbar-right">
+              <div className="stats">
+                <SpeciesCounter monsters={monsters} />
+                {' | '}
+                <span>
+                  <CheckCounter ref={(c) => { this.checkCounter = c }} />
+                </span>
+              </div>
+            </div>
+            <div className="navbar-form navbar-right">
+              <div className="form-group input-group search">
+                <span className="input-group-addon">
+                  <span className="glyphicon glyphicon-search" aria-hidden="true" />
+                </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                  ref={(c) => { this.search = c }}
+                  onChange={this.onFilterChange}
+                />
+              </div>
             </div>
           </nav>
           <nav className="navbar navbar-fixed-top status">
@@ -201,23 +221,6 @@ const Table = React.createClass({
               />
             </span>
           </h1>
-
-          <div className="row">
-            <div className="col-md-12">
-              <div className="form-group input-group">
-                <span className="input-group-addon">
-                  <span className="glyphicon glyphicon-search" aria-hidden="true" />
-                </span>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search"
-                  ref={(c) => { this.search = c }}
-                  onChange={this.onFilterChange}
-                />
-              </div>
-            </div>
-          </div>
 
           <SpeciesTable
             ref={(c) => { this.speciesTable = c }}

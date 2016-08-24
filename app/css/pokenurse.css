@@ -9,25 +9,55 @@
   color: #fff;
 }
 
+.drawer-icon {
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color:rgba(0, 0, 0, 0.7);
+  border: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-left: 15px;
+  margin-top: 7px;
+}
+
 .username {
   padding-top: 15px;
-  padding-left: 15px;
+  padding-left: 10px;
   color: white;
+}
+
+.search input {
+  background-color:rgba(0, 0, 0, 0.5);
+  border: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.search span {
+  background-color:rgba(0, 0, 0, 0.8);
+  border: rgba(0, 0, 0, 0.2);
 }
 
 .stats {
   padding-top: 15px;
-  padding-right: 25px;
+  padding-right: 35px;
   color: white;
+  float: right;
 }
 
 .status {
-  margin-top: 53px;
-  padding-left: 15px;
+  margin-top: 50px;
+  font-size: 10px;
+  padding: 7px 0px 7px 15px;
+  min-height: 14px !important;
+  background-color:rgba(0, 0, 0, 0.7);
+  color: white;
 }
 
 .table-container {
-  margin-top: 55px;
+  margin-top: 65px;
 }
 
 #refresh-btn {
@@ -775,4 +805,27 @@ table tbody tr.child:hover {
 .glyphicon-pencil {
   font-size: 24px;
   cursor: pointer;
+}
+
+/*Input Styles*/
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.btn:focus,
+.btn:active:focus {
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+  outline: 0 none;
 }
