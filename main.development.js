@@ -435,7 +435,7 @@ ipcMain.on('evolve-pokemon', (event, pokemon, delay) => {
       .then(() => {
         console.log(`[+] Evolved Pokemon with id: ${pokemon.id}`)
 
-        event.sender.send('evolve-pokemon-complete', pokemon)
+        event.sender.send('evolve-pokemon-complete', pokemon.id)
       }).catch(console.error)
   }, delay)
 })

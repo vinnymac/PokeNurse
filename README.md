@@ -1,20 +1,20 @@
 # PokeNurse
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
 [![build Status](https://travis-ci.org/vinnymac/PokeNurse.svg?branch=develop)](https://travis-ci.org/vinnymac/PokeNurse)
-[![style](https://img.shields.io/badge/style-standard-brightgreen.svg)]()
+[![style](https://img.shields.io/badge/style-eslint-brightgreen.svg)]()
 [![discord](https://img.shields.io/badge/discord-PokéNurse-738bd7.svg)](https://discord.gg/sSXCruy)
 
 <img src="app/app.png?raw=true" width="32px" align="left" hspace="10" vspace="10">
 
 **PokéNurse** is a desktop application for Windows and Mac that allows you to manage your pokémon from Pokémon Go without the need for a mobile device. You can now favorite, transfer, and evolve from the comfort of your own home!
 
-## Downloads for v1.3
+## Downloads for v1.3.1
 You may view all the releases [here](https://github.com/vinnymac/PokeNurse/releases)
-* [Mac OS X](https://github.com/vinnymac/PokeNurse/releases/download/v1.3/PokeNurse-darwin-x64.zip)
-* [Windows 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3/PokeNurse-win32-ia32.zip)
-* [Windows 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3/PokeNurse-win32-x64.zip)
-* [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3/PokeNurse-linux-ia32.zip)
-* [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3/PokeNurse-linux-x64.zip)
+* [Mac OS X](https://github.com/vinnymac/PokeNurse/releases/download/v1.3.1/PokeNurse-darwin-x64.zip)
+* [Windows 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3.1/PokeNurse-win32-ia32.zip)
+* [Windows 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3.1/PokeNurse-win32-x64.zip)
+* [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3.1/PokeNurse-linux-ia32.zip)
+* [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3.1/PokeNurse-linux-x64.zip)
 
 ## Examples
 ![Login Window](app/loginExample.png)
