@@ -79,7 +79,8 @@
     "webpack-dashboard": "0.1.8",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2",
-    "webpack-merge": "^0.14.1"
+    "webpack-merge": "^0.14.1",
+    "react-burger-menu": "^1.10.4",
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
