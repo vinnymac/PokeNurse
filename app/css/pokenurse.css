@@ -26,7 +26,7 @@ thead > tr > td {
   cursor: pointer;
 }
 
-tbody > tr > td > a {
+tbody > tr > td a {
   cursor: pointer;
 }
 
