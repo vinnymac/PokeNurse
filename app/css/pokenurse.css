@@ -771,3 +771,8 @@ table tbody tr.child:hover {
 .confirmationTotal {
   padding-top: 10px !important;
 }
+
+.glyphicon-pencil {
+  font-size: 24px;
+  cursor: pointer;
+}

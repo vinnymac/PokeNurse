@@ -137,11 +137,10 @@ const Pokemon = React.createClass({
 
   getPokemonComponents(species) {
     const {
-      speciesIndex,
       pokemonState
     } = this.props
 
-    return species.pokemon.map((pokemon, i) => {
+    return species.pokemon.map((pokemon) => {
       const favorite = pokemon.favorite ? favoriteGlyph : emptyFavoriteGlyph
       let pokeiv = `${pokemon.iv}% (${pokemon.attack}/${pokemon.defense}/${pokemon.stamina})`
       let powerupComponent
@@ -196,7 +195,7 @@ const Pokemon = React.createClass({
               className={`favorite ${favorite}`}
               id="favoriteBtn"
               data-pokemon-id={pokemon.id}
-              onClick={this.handleClickFavorite.bind(this, pokemon, i, speciesIndex)}
+              onClick={this.handleClickFavorite.bind(this, pokemon)}
             />
           </td>
           <td onClick={this.handleClickPowerup.bind(this, pokemon)}>
@@ -230,14 +229,14 @@ const Pokemon = React.createClass({
     }
   },
 
-  handleClickFavorite(pokemon, index, speciesIndex) {
+  handleClickFavorite(pokemon) {
     ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
     const updatedPokemon = Object.assign(pokemon, { favorite: !pokemon.favorite ? -1 : -0 })
-    this.context.monsterUpdater(updatedPokemon, index, speciesIndex)
+    this.context.monsterUpdater(updatedPokemon)
   },
 
   handleClickNickname(pokemon, species) {
-    renderModal($(document.getElementById('detailModal')), pokemon, species)
+    renderModal($(document.getElementById('detailModal')), pokemon, species, this.context.monsterUpdater)
   },
 
   handleSortPokemon(sortBy) {
