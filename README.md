@@ -1,24 +1,25 @@
 # PokeNurse
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
 [![build Status](https://travis-ci.org/vinnymac/PokeNurse.svg?branch=develop)](https://travis-ci.org/vinnymac/PokeNurse)
-[![style](https://img.shields.io/badge/style-standard-brightgreen.svg)]()
+[![style](https://img.shields.io/badge/style-eslint-brightgreen.svg)]()
 [![discord](https://img.shields.io/badge/discord-PokéNurse-738bd7.svg)](https://discord.gg/sSXCruy)
 
 <img src="app/app.png?raw=true" width="32px" align="left" hspace="10" vspace="10">
 
 **PokéNurse** is a desktop application for Windows and Mac that allows you to manage your pokémon from Pokémon Go without the need for a mobile device. You can now favorite, transfer, and evolve from the comfort of your own home!
 
-## Downloads for v1.2
+## Downloads for v1.3
 You may view all the releases [here](https://github.com/vinnymac/PokeNurse/releases)
-* [Mac OS X](https://github.com/vinnymac/PokeNurse/releases/download/v1.2/PokeNurse-darwin-x64.zip)
-* [Windows 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.2/PokeNurse-win32-ia32.zip)
-* [Windows 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.2/PokeNurse-win32-x64.zip)
-* [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.2/PokeNurse-linux-ia32.zip)
-* [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.2/PokeNurse-linux-x64.zip)
+* [Mac OS X](https://github.com/vinnymac/PokeNurse/releases/download/v1.3/PokeNurse-darwin-x64.zip)
+* [Windows 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3/PokeNurse-win32-ia32.zip)
+* [Windows 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3/PokeNurse-win32-x64.zip)
+* [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3/PokeNurse-linux-ia32.zip)
+* [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.3/PokeNurse-linux-x64.zip)
 
 ## Examples
 ![Login Window](app/loginExample.png)
 ![Main Window](app/tableExample.png)
+![Detail Window](app/detailExample.png)
 
 This project uses [Electron](http://electron.atom.io/) and [Node.js](https://nodejs.org/en/).  Criticism is welcome and encouraged.
 
@@ -59,9 +60,6 @@ This project uses [Electron](http://electron.atom.io/) and [Node.js](https://nod
 1. Will I be banned from pokemon go for using PokeNurse?
 
 This app is meant to make pogo easier to manage. This is not a bot. We do not send location data. No one has ever been banned for using PokeNurse as far as we are aware. This doesn't mean you cannot be banned, if they somehow begin to detect API calls from pogobuf, then this may very well start happening, but that is the risk of using any of these third party tools right now that are not the original app.
-
-## Todo
-* Nickname Pokemon
 
 ## Known Issues
 * Google 2 Factor Authentication cannot be used. However you can use an [AppPassword](https://security.google.com/settings/security/apppasswords) instead.
