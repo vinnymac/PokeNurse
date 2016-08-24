@@ -7,6 +7,7 @@ import $ from 'jquery'
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
+import MainMenu from './components/Menu'
 
 import confirmDialog from '../ConfirmationDialog'
 
@@ -146,8 +147,8 @@ const Table = React.createClass({
       <div>
         <div className="container">
           <nav className="navbar navbar-inverse navbar-fixed-top" id="navbar">
-            <div className="navbar-header drawer-icon">
-              <span className="glyphicon glyphicon-menu-hamburger" />
+            <div className="navbar-header">
+              <MainMenu />
             </div>
             <div className="navbar-header username">
               {' '}
