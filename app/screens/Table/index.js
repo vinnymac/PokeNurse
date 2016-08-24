@@ -3,7 +3,6 @@ import {
   ipcRenderer
 } from 'electron'
 import $ from 'jquery'
-import findIndex from 'lodash/findIndex'
 
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
@@ -260,14 +259,16 @@ const Table = React.createClass({
     this.checkCounter.handleRecount(count)
   },
 
-  updateMonster(pokemon) {
+  updateMonster(pokemon, options = {}) {
     const speciesIndex = pokemon.pokemon_id - 1
+
+    const updatedPokemon = options.remove ? null : pokemon
 
     this.updateSpecies(speciesIndex, (speciesAtIndex) => {
       const index = speciesAtIndex.pokemon.findIndex((p) => p.id === pokemon.id)
 
       const sorted = this.getSortedPokemon(Object.assign({}, speciesAtIndex, {
-        pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, pokemon)
+        pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, updatedPokemon)
       }))
 
       return { // make sure we sort the new pokemon index now that we updated it
@@ -448,20 +449,10 @@ const Table = React.createClass({
   },
 
   removeMonster(pokemon) {
-    let pokemonIndex = -1
-
-    const specieIndex = findIndex(this.state.monsters.species, (specie) => {
-      pokemonIndex = findIndex(specie.pokemon, (p) => {
-        const isPokemon = p.id === pokemon.id
-        return isPokemon
-      })
-      return pokemonIndex > -1
-    })
-
-    if (pokemonIndex > -1) {
-      this.updateMonster(null, pokemonIndex, specieIndex)
-      this.updateCheckedCount(-1)
-    }
+    this.updateMonster(pokemon, { remove: true })
+    // TODO this happens whether or not we find something to remove
+    // we should only update the count if we successfully remove
+    this.updateCheckedCount(-1)
   },
 
   handleEvolveCompleted(event, pokemon) {
