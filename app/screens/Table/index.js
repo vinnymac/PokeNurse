@@ -3,7 +3,6 @@ import {
   ipcRenderer
 } from 'electron'
 import $ from 'jquery'
-import findIndex from 'lodash/findIndex'
 
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
