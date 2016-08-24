@@ -1,4 +1,53 @@
-/* Global style */
+/**** Menu Styles ****/
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  left: 15px;
+  top: 17px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: white;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/**** Global style ****/
 
 .header {
   background-image: url('../imgs/bg.jpg');
@@ -19,13 +68,11 @@
   background-color:rgba(0, 0, 0, 0.7);
   border: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  margin-left: 15px;
-  margin-top: 7px;
 }
 
 .username {
   padding-top: 15px;
-  padding-left: 10px;
+  margin-left: 40px;
   color: white;
 }
 
@@ -54,6 +101,7 @@
   min-height: 14px !important;
   background-color:rgba(0, 0, 0, 0.7);
   color: white;
+  z-index: 1029 !important;
 }
 
 .table-container {
