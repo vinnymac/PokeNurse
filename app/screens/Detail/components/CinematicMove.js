@@ -2,7 +2,7 @@ import React, {
   PropTypes
 } from 'react'
 import $ from 'jquery'
-
+import times from 'lodash/times'
 
 
 const CinematicMove = React.createClass({
@@ -24,11 +24,11 @@ const CinematicMove = React.createClass({
       myMove
     } = this.props
 
-    let chargedMoveBars = []
+    const chargeMoveStyle = { width: `${move.energyCost}px` }
 
-    for (let i = 0; i < Math.floor(100 / move.energyCost); i++) {
-      chargedMoveBars.push(<div key={i} className="pokemon-move-cost-item" style={{ width: `${move.energyCost}px` }} />)
-    }
+    const chargedMoveBars = times(Math.floor(100 / move.energyCost), (i) =>
+      <div key={i} className="pokemon-move-cost-item" style={chargeMoveStyle} />
+    )
 
     let chargedMoveTip = `
       Duration: ${move.durationMs}ms <br>

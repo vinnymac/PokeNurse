@@ -1,3 +1,5 @@
+import times from 'lodash/times'
+
 import baseStats from '../baseStats'
 
 const levelCpMultiplier = {
@@ -123,7 +125,7 @@ function getMaxCostsForPowerup(
   // The difference between any two adjacent levels +-
   const levelSize = 0.5
 
-  for (let i = 0; i < numberOfUpgrades; i++) {
+  times(numberOfUpgrades, (i) => {
     // The number that represents the current upgrade
     const upgradeNumber = i + 1
     // The level the pokemon will become if upgraded
@@ -137,7 +139,7 @@ function getMaxCostsForPowerup(
     // a candy or dust cost calculated from
     // a levels cp multiplier and the current number of power ups used
     total += transform(levelCpMultiplier[level], currentPowerUps)
-  }
+  })
 
   return total
 }

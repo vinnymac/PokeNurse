@@ -99,7 +99,9 @@ const installExtensions = async () => {
       'REACT_DEVELOPER_TOOLS'
     ]
     const forceDownload = !!process.env.UPGRADE_EXTENSIONS
-    for (const name of extensions) {
+
+    // http://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
+    for (const name of extensions) { // eslint-disable-line
       try {
         await installer.default(installer[name], forceDownload)
       } catch (e) {} // eslint-disable-line

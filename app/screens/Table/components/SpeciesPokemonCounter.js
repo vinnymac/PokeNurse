@@ -31,27 +31,27 @@ const SpeciesPokemonCounter = React.createClass({
   },
 
   handleSpeciesRecount(monsters) {
-    let counter = 0
-    for (let i = 0; i < monsters.species.length; i++) {
-      const species = monsters.species[i]
-      if (species.count > 0) {
-        counter += 1
-      }
-    }
+    const initialCount = 0
 
-    return counter
+    return monsters.species.reduce((sum, specie) => {
+      if (specie.count > 0) {
+        return sum + 1
+      }
+
+      return sum
+    }, initialCount)
   },
 
   handlePokemonCounter(monsters) {
-    let counter = 0
-    for (let i = 0; i < monsters.species.length; i++) {
-      const species = monsters.species[i]
-      if (species.count > 0) {
-        counter += species.pokemon.length
-      }
-    }
+    const initialCount = monsters.eggs.length
 
-    return counter + monsters.eggs.length
+    return monsters.species.reduce((sum, specie) => {
+      if (specie.count > 0) {
+        return sum + specie.pokemon.length
+      }
+
+      return sum
+    }, initialCount)
   }
 
 })

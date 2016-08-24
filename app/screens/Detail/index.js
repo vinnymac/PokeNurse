@@ -122,15 +122,13 @@ export default ($detailModal, pokemon, species, monsterUpdater) => {
     spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === '♂') ? 'm' : 'f'}`
   }
 
-  let possibleQuickMoves = []
-  for (let i = 0; i < stats.quickMoves.length; i++) {
-    possibleQuickMoves.push(baseStats.moves[stats.quickMoves[i]])
-  }
+  let possibleQuickMoves = stats.quickMoves.map((quickMove) =>
+    baseStats.moves[quickMove]
+  )
 
-  let possibleCinematicMoves = []
-  for (let i = 0; i < stats.cinematicMoves.length; i++) {
-    possibleCinematicMoves.push(baseStats.moves[stats.cinematicMoves[i]])
-  }
+  let possibleCinematicMoves = stats.cinematicMoves.map((cinematicMove) =>
+    baseStats.moves[cinematicMove]
+  )
 
   const modalDialog = (<ModalDialog
     name={name}
