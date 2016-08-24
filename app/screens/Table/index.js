@@ -179,7 +179,7 @@ const Table = React.createClass({
               <input
                 type="button"
                 className="btn btn-primary"
-                value="Toggle Species Displayed"
+                value="Toggle Caught Species"
                 onClick={this.handleToggleShowAllSpecies}
               />
               {" "}
