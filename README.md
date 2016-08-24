@@ -1,7 +1,7 @@
 # PokeNurse
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
 [![build Status](https://travis-ci.org/vinnymac/PokeNurse.svg?branch=develop)](https://travis-ci.org/vinnymac/PokeNurse)
-[![style](https://img.shields.io/badge/style-standard-brightgreen.svg)]()
+[![style](https://img.shields.io/badge/style-eslint-brightgreen.svg)]()
 [![discord](https://img.shields.io/badge/discord-PokéNurse-738bd7.svg)](https://discord.gg/sSXCruy)
 
 <img src="app/app.png?raw=true" width="32px" align="left" hspace="10" vspace="10">
