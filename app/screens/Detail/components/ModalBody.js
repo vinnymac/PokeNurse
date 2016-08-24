@@ -53,15 +53,13 @@ const ModalBody = React.createClass({
       monsterUpdater,
     } = this.props
 
-    const quickMoves = []
-    for (let i = 0; i < possibleQuickMoves.length; i++) {
-      quickMoves.push(<QuickMove key={i} move={possibleQuickMoves[i]} myMove={fastMove} />)
-    }
+    const quickMoves = possibleQuickMoves.map((possibleQuickMove, i) =>
+      <QuickMove key={i} move={possibleQuickMove} myMove={fastMove} />
+    )
 
-    const cinematicMoves = []
-    for (let i = 0; i < possibleCinematicMoves.length; i++) {
-      cinematicMoves.push(<CinematicMove key={i} move={possibleCinematicMoves[i]} myMove={chargedMove} />)
-    }
+    const cinematicMoves = possibleCinematicMoves.map((possibleCinematicMove, i) =>
+      <CinematicMove key={i} move={possibleCinematicMove} myMove={chargedMove} />
+    )
 
     let evolution
 

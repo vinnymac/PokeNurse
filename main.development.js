@@ -12,6 +12,7 @@ import {
   Menu
 } from 'electron'
 import times from 'lodash/times'
+import keyBy from 'lodash/keyBy'
 
 import menuTemplate from './main/main_menu'
 import utils from './main/utils'
@@ -98,7 +99,9 @@ const installExtensions = async () => {
       'REACT_DEVELOPER_TOOLS'
     ]
     const forceDownload = !!process.env.UPGRADE_EXTENSIONS
-    for (const name of extensions) {
+
+    // http://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
+    for (const name of extensions) { // eslint-disable-line
       try {
         await installer.default(installer[name], forceDownload)
       } catch (e) {} // eslint-disable-line
@@ -255,15 +258,21 @@ ipcMain.on('get-player-info', (event) => {
   })
 })
 
-function generateEmptySpecies(formattedCandies) {
+function generateEmptySpecies(candies) {
+  const candiesByFamilyId = keyBy(candies, (candy) => String(candy.family_id))
+
   return times(kantoDexCount, (i) => {
     const pokemonDexNumber = String(i + 1)
+    const basePokemon = baseStats.pokemon[pokemonDexNumber]
+
+    const candyByFamilyId = candiesByFamilyId[basePokemon.familyId]
+    const candy = candyByFamilyId ? candyByFamilyId.candy : 0
 
     return {
+      candy,
       pokemon_id: pokemonDexNumber,
-      name: baseStats.pokemon[pokemonDexNumber].name,
+      name: basePokemon.name,
       count: 0,
-      candy: formattedCandies[baseStats.pokemon[pokemonDexNumber].familyId],
       evolves: 0,
       pokemon: []
     }
@@ -273,13 +282,7 @@ function generateEmptySpecies(formattedCandies) {
 function parseInventory(inventory) {
   const { player, candies, pokemon } = pogobuf.Utils.splitInventory(inventory)
 
-  const formattedCandies = {}
-
-  candies.forEach(candy => {
-    formattedCandies[candy.family_id.toString()] = candy.candy
-  })
-
-  const speciesList = generateEmptySpecies(formattedCandies)
+  const speciesList = generateEmptySpecies(candies)
   const eggList = []
 
   // populates the speciesList with pokemon and counts
