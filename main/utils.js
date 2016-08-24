@@ -1,3 +1,5 @@
+import baseStats from '../baseStats'
+
 const levelCpMultiplier = {
   1: 0.094,
   1.5: 0.135137432,
@@ -299,6 +301,24 @@ const utils = {
       upgradesPerLevel,
       allowedLevelsAbovePlayer
   )
+  },
+
+  getADS(pokemon) {
+    return pokemon.individual_attack + pokemon.individual_defense + pokemon.individual_stamina
+  },
+
+  getIVs(pokemon) {
+    return Math.round(utils.getADS(pokemon) / 45 * 10000) / 100
+  },
+
+  getEvolvesCount({ candy, count, pokemon_id }) {
+    let evolves = Math.floor(candy / baseStats.pokemon[pokemon_id].evolveCost)
+
+    if ((evolves === Infinity || isNaN(evolves))) {
+      evolves = 0
+    }
+
+    return (evolves > count ? count : evolves)
   }
 }
 
