@@ -12,6 +12,7 @@ import {
   Menu
 } from 'electron'
 import times from 'lodash/times'
+import keyBy from 'lodash/keyBy'
 
 import menuTemplate from './main/main_menu'
 import utils from './main/utils'
@@ -255,15 +256,18 @@ ipcMain.on('get-player-info', (event) => {
   })
 })
 
-function generateEmptySpecies(formattedCandies) {
+function generateEmptySpecies(candies) {
+  const formattedCandies = keyBy(candies, (candy) => String(candy.family_id))
+
   return times(kantoDexCount, (i) => {
     const pokemonDexNumber = String(i + 1)
+    const basePokemon = baseStats.pokemon[pokemonDexNumber]
 
     return {
       pokemon_id: pokemonDexNumber,
-      name: baseStats.pokemon[pokemonDexNumber].name,
+      name: basePokemon.name,
       count: 0,
-      candy: formattedCandies[baseStats.pokemon[pokemonDexNumber].familyId],
+      candy: formattedCandies[basePokemon.familyId].candy,
       evolves: 0,
       pokemon: []
     }
@@ -273,13 +277,7 @@ function generateEmptySpecies(formattedCandies) {
 function parseInventory(inventory) {
   const { player, candies, pokemon } = pogobuf.Utils.splitInventory(inventory)
 
-  const formattedCandies = {}
-
-  candies.forEach(candy => {
-    formattedCandies[candy.family_id.toString()] = candy.candy
-  })
-
-  const speciesList = generateEmptySpecies(formattedCandies)
+  const speciesList = generateEmptySpecies(candies)
   const eggList = []
 
   // populates the speciesList with pokemon and counts
