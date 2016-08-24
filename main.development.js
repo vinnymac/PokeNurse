@@ -259,17 +259,20 @@ ipcMain.on('get-player-info', (event) => {
 })
 
 function generateEmptySpecies(candies) {
-  const formattedCandies = keyBy(candies, (candy) => String(candy.family_id))
+  const candiesByFamilyId = keyBy(candies, (candy) => String(candy.family_id))
 
   return times(kantoDexCount, (i) => {
     const pokemonDexNumber = String(i + 1)
     const basePokemon = baseStats.pokemon[pokemonDexNumber]
 
+    const candyByFamilyId = candiesByFamilyId[basePokemon.familyId]
+    const candy = candyByFamilyId ? candyByFamilyId.candy : 0
+
     return {
+      candy,
       pokemon_id: pokemonDexNumber,
       name: basePokemon.name,
       count: 0,
-      candy: formattedCandies[basePokemon.familyId].candy,
       evolves: 0,
       pokemon: []
     }
