@@ -197,6 +197,14 @@ const Table = React.createClass({
                 value="Evolve selected"
                 onClick={this.handleEvolve}
               />
+              {" "}
+              <input
+                type="button"
+                className="btn btn-success"
+                id="upgrade-btn"
+                value="Upgrade selected"
+                onClick={this.handleUpgrade}
+              />
             </span>
           </h1>
 
@@ -357,6 +365,30 @@ const Table = React.createClass({
         })
 
         this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
+      }
+    })
+  },
+
+  handleUpgrade() {
+    if (runningCheck()) return
+
+    const selectedPokemon = this.speciesTable.getPokemonChecked()
+    if (selectedPokemon.length < 1) return
+
+    confirmDialog($(this.confirmationDialog), {
+      title: 'Confirm Upgrade',
+      message: 'You are about to upgrade the following Pokemon',
+      pokemon: selectedPokemon,
+      primaryText: 'Upgrade Selected',
+      onClickSecondary: () => {},
+      onClickPrimary: () => {
+        running = true
+
+        selectedPokemon.forEach((pokemon) => {
+          ipcRenderer.send('power-up-pokemon', String(pokemon.id), String(pokemon.name))
+        })
+
+        this.handleCountDown('Upgrade', selectedPokemon.length * 27.5)
       }
     })
   },
