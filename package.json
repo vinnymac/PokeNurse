@@ -83,6 +83,7 @@
     "bootstrap": "^3.3.7",
     "node-pogo-protos": "^1.1.2",
     "pogobuf": "^1.5.2",
+    "react-burger-menu": "^1.10.4",
     "source-map-support": "^0.4.2"
   },
   "devEngines": {

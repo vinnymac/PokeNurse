@@ -38,12 +38,12 @@ export default merge(baseConfig, {
   },
 
   externals: [
-    'font-awesome',
     'source-map-support',
     'pogobuf',
     'node-pogo-protos',
     'electron-devtools-installer',
-    'bootstrap'
+    'bootstrap',
+    'react-burger-menu',
   ],
 
   noParse: /json-schema\/lib\/validate\.js/
