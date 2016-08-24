@@ -352,7 +352,7 @@ const Table = React.createClass({
         running = true
 
         selectedPokemon.forEach((pokemon, index) => {
-          ipcRenderer.send('evolve-pokemon', String(pokemon.id), index * randomDelay(25, 30))
+          ipcRenderer.send('evolve-pokemon', pokemon, index * randomDelay(25, 30))
         })
 
         this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
