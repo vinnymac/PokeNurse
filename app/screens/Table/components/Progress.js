@@ -16,18 +16,18 @@ const Progress = React.createClass({
   displayName: 'Progress',
 
   propTypes: {
-    now: PropTypes.number
+    progress: PropTypes.object
   },
 
   render() {
     const {
-      now
+      progress
     } = this.props
 
     return (
       <ProgressBar
-        now={now}
-        label={`${now}%`}
+        now={progress.now}
+        label={`${progress.now}%`}
       />
     )
   }
