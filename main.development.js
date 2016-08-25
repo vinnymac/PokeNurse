@@ -436,7 +436,7 @@ ipcMain.on('power-up-pokemon', async (event, id, nickname) => {
 ipcMain.on('transfer-pokemon', async (event, pokemon, delay) => {
   try {
     await sleep(delay)
-    await client.releasePokemon(pokemon.id)
+    // await client.releasePokemon(pokemon.id)
     console.log(`[+] Released Pokemon with id: ${pokemon.id}`)
 
     event.sender.send('transfer-pokemon-complete', pokemon)

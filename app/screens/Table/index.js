@@ -324,6 +324,8 @@ const Table = React.createClass({
       onClickSecondary: () => {
         running = true
 
+        this.props.updateProgress({selectedPokemon: selectedPokemon})
+
         selectedPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
         })
@@ -340,6 +342,8 @@ const Table = React.createClass({
 
           return isntFavorite
         })
+
+        this.props.updateProgress({selectedPokemon: filteredPokemon})
 
         filteredPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
@@ -378,6 +382,7 @@ const Table = React.createClass({
     const { statusH } = this
 
     countDown(method, index, statusH, () => {
+      this.props.updateProgress({current: null, selectedPokemon: null})
       ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
       this.handleRefresh()
     })
@@ -465,10 +470,12 @@ const Table = React.createClass({
   },
 
   handleEvolveCompleted(event, pokemon) {
+    // fire action telling progress
     this.removeMonster(pokemon)
   },
 
   handleTransferCompleted(event, pokemon) {
+    this.props.updateProgress({current: pokemon})
     this.removeMonster(pokemon)
   },
 
@@ -477,4 +484,8 @@ const Table = React.createClass({
   }
 })
 
-export default Table
+import { updateProgress } from '../../actions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+export default connect(null, (dispatch => bindActionCreators({ updateProgress }, dispatch)))(Table)
