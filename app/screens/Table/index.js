@@ -63,21 +63,26 @@ function randomDelay(min, max) {
 function setBackgroundImage(team) {
   const navbar = document.getElementById('navbar')
   let teamName = null
+  let teamColor = null
   switch (team) {
     case 1:
       teamName = 'mystic'
+      teamColor = '#1162bc'
       break
     case 2:
       teamName = 'valor'
+      teamColor = '#cb1617'
       break
     case 3:
       teamName = 'instinct'
+      teamColor = '#fad131'
       break
     default:
   }
 
+  navbar.style.backgroundColor = teamColor
   navbar.style.backgroundImage = `url("./imgs/${teamName}.jpg")`
-  navbar.style.backgroundSize = '100% 100%'
+  navbar.style.backgroundRepeat = 'no-repeat'
 }
 
 const Table = React.createClass({
