@@ -81,19 +81,14 @@ async function startPack() {
       const archs = ['ia32', 'x64']
       const platforms = ['linux', 'win32', 'darwin']
 
-      for (const plat of platforms) { // eslint-disable-line
-        for (const arch of archs) { // eslint-disable-line
-          await pack(plat, arch, log(plat, arch))
-        }
-      }
-    } else if (argv.platform || argv.arch) {
-      const arch = argv.arch || os.arch()
-      const platform = argv.platform || os.platform()
-
-      await pack(platform, arch, log(platform, arch))
+      platforms.forEach((plat) => {
+        archs.forEach((arch) => {
+          pack(plat, arch, log(plat, arch))
+        })
+      })
     } else {
       // build for current platform only
-      await pack(os.platform(), os.arch(), log(os.platform(), os.arch()))
+      pack(os.platform(), os.arch(), log(os.platform(), os.arch()))
     }
   } catch (error) {
     console.error(error)
