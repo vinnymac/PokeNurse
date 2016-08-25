@@ -29,6 +29,10 @@ if (process.env.NODE_ENV === 'development') {
   require('electron-debug')() // eslint-disable-line global-require
 }
 
+function sleep(time) {
+  return new Promise(r => setTimeout(r, time))
+}
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
@@ -215,7 +219,7 @@ ipcMain.on('check-and-delete-credentials', () => {
   }
 })
 
-ipcMain.on('pokemon-login', (event, method, username, password) => {
+ipcMain.on('pokemon-login', async (event, method, username, password) => {
   console.log('[+] Attempting to login')
   let login
   if (method === 'google') {
@@ -224,15 +228,17 @@ ipcMain.on('pokemon-login', (event, method, username, password) => {
     login = new pogobuf.PTCLogin()
   }
 
-  login.login(username, password).then(token => {
+  try {
+    const token = await login.login(username, password)
+
     client.setAuthInfo(method, token)
     client.init()
 
     event.sender.send('pokemon-logged-in')
-  }).catch(error => {
+  } catch (error) {
     console.error(error)
     showErrorMessage(error.message)
-  })
+  }
 })
 // END OF LOGIN
 
@@ -241,9 +247,12 @@ ipcMain.on('table-did-mount', () => {
 })
 
 // POKEMON
-ipcMain.on('get-player-info', (event) => {
+ipcMain.on('get-player-info', async (event) => {
   console.log('[+] Retrieving player info')
-  client.getPlayer().then(response => {
+
+  try {
+    const response = await client.getPlayer()
+
     if (!response.success) {
       event.returnValue = {
         success: false
@@ -255,7 +264,9 @@ ipcMain.on('get-player-info', (event) => {
       success: 'true',
       player_data: response.player_data
     }
-  })
+  } catch (error) {
+    console.error(error)
+  }
 })
 
 function generateEmptySpecies(candies) {
@@ -374,8 +385,10 @@ function parseInventory(inventory) {
   }
 }
 
-function getPlayersPokemons(event, sync = 'sync') {
-  client.getInventory(0).then(inventory => {
+async function getPlayersPokemons(event, sync = 'sync') {
+  try {
+    const inventory = await client.getInventory(0)
+
     if (!inventory.success) {
       const payload = { success: false }
       if (sync !== 'sync') {
@@ -393,7 +406,9 @@ function getPlayersPokemons(event, sync = 'sync') {
     } else {
       event.sender.send('receive-players-pokemons', payload)
     }
-  })
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 ipcMain.on('get-players-pokemons', (event, sync) => {
@@ -401,62 +416,66 @@ ipcMain.on('get-players-pokemons', (event, sync) => {
   getPlayersPokemons(event, sync)
 })
 
-ipcMain.on('power-up-pokemon', (event, id, nickname) => {
-  client.upgradePokemon(id)
-    .then(() => {
-      console.log(`[+] Upgraded Pokemon with id: ${id}`)
-      const message = `Upgraded ${nickname} succesfully!`
-      const title = `Power Up ${nickname}`
-      // TODO parse the response instead of retrieving all the new pokemon
-      // Requires replacing the main parsing with more functional code
-      getPlayersPokemons(event, 'async')
-      showInformationMessage(message, title)
-    })
-    .catch(console.error)
+ipcMain.on('power-up-pokemon', async (event, id, nickname) => {
+  try {
+    await client.upgradePokemon(id)
+
+    console.log(`[+] Upgraded Pokemon with id: ${id}`)
+    const message = `Upgraded ${nickname} succesfully!`
+    const title = `Power Up ${nickname}`
+    // TODO parse the response instead of retrieving all the new pokemon
+    // Requires replacing the main parsing with more functional code
+    getPlayersPokemons(event, 'async')
+    showInformationMessage(message, title)
+  } catch (error) {
+    console.error(error)
+  }
 })
 
-ipcMain.on('transfer-pokemon', (event, pokemon, delay) => {
-  setTimeout(() => {
-    // The line below is useful right now for testing
-    // it'd be even more useful with mock data responses!
-    // (new Promise((resolve, reject) => { resolve() }))
-    client.releasePokemon(pokemon.id)
-      .then(() => {
-        console.log(`[+] Released Pokemon with id: ${pokemon.id}`)
+ipcMain.on('transfer-pokemon', async (event, pokemon, delay) => {
+  try {
+    await sleep(delay)
+    await client.releasePokemon(pokemon.id)
+    console.log(`[+] Released Pokemon with id: ${pokemon.id}`)
 
-        event.sender.send('transfer-pokemon-complete', pokemon)
-      }).catch(console.error)
-  }, delay)
+    event.sender.send('transfer-pokemon-complete', pokemon)
+  } catch (error) {
+    console.error(error)
+  }
 })
 
-ipcMain.on('evolve-pokemon', (event, pokemon, delay) => {
-  setTimeout(() => {
-    // The line below is useful right now for testing
-    // it'd be even more useful with mock data responses!
-    // (new Promise((resolve, reject) => { resolve() }))
-    client.evolvePokemon(pokemon.id)
-      .then(() => {
-        console.log(`[+] Evolved Pokemon with id: ${pokemon.id}`)
+ipcMain.on('evolve-pokemon', async (event, pokemon, delay) => {
+  try {
+    await sleep(delay)
+    await client.evolvePokemon(pokemon.id)
+    console.log(`[+] Evolved Pokemon with id: ${pokemon.id}`)
 
-        event.sender.send('evolve-pokemon-complete', pokemon)
-      }).catch(console.error)
-  }, delay)
+    event.sender.send('evolve-pokemon-complete', pokemon)
+  } catch (error) {
+    console.error(error)
+  }
 })
 
-ipcMain.on('favorite-pokemon', (event, id, isFavorite) => {
-  client.setFavoritePokemon(id, isFavorite)
-    .then(() => {
-      getPlayersPokemons(event, 'async')
-    }).catch(console.error)
-  console.log(`[+] Pokemon favorite status set to ${isFavorite}`)
+ipcMain.on('favorite-pokemon', async (event, id, isFavorite) => {
+  try {
+    await client.setFavoritePokemon(id, isFavorite)
+
+    console.log(`[+] Pokemon favorite status set to ${isFavorite}`)
+    getPlayersPokemons(event, 'async')
+  } catch (error) {
+    console.error(error)
+  }
 })
 
-ipcMain.on('rename-pokemon', (event, id, nickname) => {
-  client.nicknamePokemon(id, nickname)
-    .then(() => {
-      console.log(`[+] Pokemon ${id} nicknamed ${nickname}`)
+ipcMain.on('rename-pokemon', async (event, id, nickname) => {
+  try {
+    await client.nicknamePokemon(id, nickname)
 
-      event.sender.send('rename-pokemon-complete', id, nickname)
-    }).catch(console.error)
+    console.log(`[+] Pokemon ${id} nicknamed ${nickname}`)
+
+    event.sender.send('rename-pokemon-complete', id, nickname)
+  } catch (error) {
+    console.error(error)
+  }
 })
 // END OF POKEMON

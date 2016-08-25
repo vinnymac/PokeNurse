@@ -13,7 +13,7 @@
     "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
     "build": "npm run build-main && npm run build-renderer",
     "start-hot": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./main.development.js",
-    "package": "cross-env NODE_ENV=production node -r babel-register package.js",
+    "package": "cross-env NODE_ENV=production node -r babel-register -r babel-polyfill package.js",
     "package-all": "npm run package -- --all",
     "postinstall": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json",
     "dev": "concurrently --kill-others \"npm run hot-server\" \"npm run start-hot\""
@@ -73,6 +73,8 @@
     "lodash": "^4.15.0",
     "minimist": "^1.2.0",
     "react": "15.3.1",
+    "react-bootstrap": "^0.30.3",
+    "react-burger-menu": "^1.10.4",
     "react-dom": "15.3.1",
     "webpack": "1.13.2",
     "webpack-dashboard": "0.1.8",

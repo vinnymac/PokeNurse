@@ -68,35 +68,36 @@ function build(cfg) {
   })
 }
 
-function startPack() {
+async function startPack() {
   console.log('start pack...')
-  build(electronCfg)
-    .then(() => build(cfg))
-    .then(() => del('release'))
-    .then(paths => {
-      if (shouldBuildAll) {
-        // build for all platforms
-        const archs = ['ia32', 'x64']
-        const platforms = ['linux', 'win32', 'darwin']
 
-        platforms.forEach(plat => {
-          archs.forEach(arch => {
-            pack(plat, arch, log(plat, arch))
-          })
-        })
-      } else if (argv.platform || argv.arch) {
-        const arch = argv.arch || os.arch()
-        const platform = argv.platform || os.platform()
+  try {
+    await build(electronCfg)
+    await build(cfg)
+    const paths = await del('release')
 
-        pack(platform, arch, log(platform, arch))
-      } else {
-        // build for current platform only
-        pack(os.platform(), os.arch(), log(os.platform(), os.arch()))
+    if (shouldBuildAll) {
+      // build for all platforms
+      const archs = ['ia32', 'x64']
+      const platforms = ['linux', 'win32', 'darwin']
+
+      for (const plat of platforms) { // eslint-disable-line
+        for (const arch of archs) { // eslint-disable-line
+          await pack(plat, arch, log(plat, arch))
+        }
       }
-    })
-    .catch(err => {
-      console.error(err)
-    })
+    } else if (argv.platform || argv.arch) {
+      const arch = argv.arch || os.arch()
+      const platform = argv.platform || os.platform()
+
+      await pack(platform, arch, log(platform, arch))
+    } else {
+      // build for current platform only
+      await pack(os.platform(), os.arch(), log(os.platform(), os.arch()))
+    }
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 function pack(plat, arch, cb) {

@@ -77,6 +77,7 @@ function setBackgroundImage(team) {
   }
 
   navbar.style.backgroundImage = `url("./imgs/${teamName}.jpg")`
+  navbar.style.backgroundSize = '100% 100%'
 }
 
 const Table = React.createClass({
