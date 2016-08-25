@@ -254,18 +254,18 @@ const Species = React.createClass({
       newSortDir = 'DESC'
     }
 
-    this.props.updateSpecies(speciesIndex, (speciesAtIndex) => {
-      const sorted = this.props.getSortedPokemon(speciesAtIndex, newSortBy, newSortDir)
-      return {
-        pokemon: sorted
-      }
-    })
-
     this.setState({
       species: this.updateSpeciesState(pokemonId, () => {
         const sortState = { sortDir: newSortDir, sortBy: newSortBy }
 
         return sortState
+      })
+    }, () => {
+      this.props.updateSpecies(speciesIndex, (speciesAtIndex) => {
+        const sorted = this.props.getSortedPokemon(speciesAtIndex, newSortBy, newSortDir)
+        return {
+          pokemon: sorted
+        }
       })
     })
   },
