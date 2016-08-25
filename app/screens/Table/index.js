@@ -4,6 +4,7 @@ import {
 } from 'electron'
 import $ from 'jquery'
 
+import Progress from './components/Progress'
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
@@ -190,6 +191,9 @@ const Table = React.createClass({
             <span>Status:{' '}
               <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
             </span>
+            <Progress
+              now={60}
+            />
           </nav>
         </div>
 
