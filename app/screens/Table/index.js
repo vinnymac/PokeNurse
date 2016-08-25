@@ -214,7 +214,7 @@ const Table = React.createClass({
                 type="button"
                 className="btn btn-warning"
                 id="transfer-btn"
-                value="Transfer selected"
+                value="Transfer"
                 onClick={this.handleTransfer}
               />
               {" "}
@@ -222,7 +222,7 @@ const Table = React.createClass({
                 type="button"
                 className="btn btn-danger"
                 id="evolve-btn"
-                value="Evolve selected"
+                value="Evolve"
                 onClick={this.handleEvolve}
               />
             </span>
