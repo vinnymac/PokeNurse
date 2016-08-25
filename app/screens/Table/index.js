@@ -7,7 +7,7 @@ import $ from 'jquery'
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
-import MainMenu from './components/Menu'
+import MainMenu from '../Menu'
 
 import confirmDialog from '../ConfirmationDialog'
 
