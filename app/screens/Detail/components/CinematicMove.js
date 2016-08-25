@@ -1,7 +1,6 @@
 import React, {
   PropTypes
 } from 'react'
-import $ from 'jquery'
 import times from 'lodash/times'
 
 import Tooltip from '../../Tooltip'
