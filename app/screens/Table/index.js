@@ -191,9 +191,7 @@ const Table = React.createClass({
             <span>Status:{' '}
               <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
             </span>
-            <Progress
-              now={60}
-            />
+            <Progress />
           </nav>
         </div>
 
