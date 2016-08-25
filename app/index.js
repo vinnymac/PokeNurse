@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ipcRenderer } from 'electron'
-
 import Login from './screens/Login'
 import Table from './screens/Table'
+
+require('./css/pokenurse.css')
 
 const App = React.createClass({
   getInitialState() {

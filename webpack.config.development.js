@@ -19,7 +19,18 @@ export default merge(baseConfig, {
     publicPath: `http://localhost:${PORT}/dist/`
   },
 
-  // CSS Module loaders would go here if we added sass
+  module: {
+    loaders: [
+      {
+        test: /pokenurse.css$/,
+        loader: ('style!css')
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg|ico)$/i,
+        loader: 'file'
+      }
+    ]
+  },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
