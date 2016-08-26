@@ -32,7 +32,7 @@ const Progress = React.createClass({
       <ProgressBar
         active
         now={now}
-        label={`${now}%`}
+        label={`${now.toFixed(0)}%`}
       />
     )
   }
