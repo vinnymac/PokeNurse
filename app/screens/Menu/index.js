@@ -6,12 +6,13 @@ const MainMenu = React.createClass({
   render() {
     return (
       <Menu noOverlay >
-        <div className="navbar-collapse collapse sidebar-navbar-collapse">
+        <div>
           <ul className="nav navbar-nav">
-            <li><h3>Settings</h3></li>
-            <li><a>Menu Item 2</a></li>
-            <li><a>Menu Item 3</a></li>
-            <li><a>Menu Item 4</a></li>
+            <li><a>Settings <i className="glyphicon glyphicon-cog" /></a></li>
+            <li><a>Trainer Info <i className="glyphicon glyphicon-user" /></a></li>
+            <li><a>Applied Items <i className="glyphicon glyphicon-chevron-down" /></a></li>
+            <li><a>Inventory <i className="glyphicon glyphicon-chevron-down" /></a></li>
+            <li><a>Eggs <i className="glyphicon glyphicon-chevron-down" /></a></li>
           </ul>
         </div>
       </Menu>

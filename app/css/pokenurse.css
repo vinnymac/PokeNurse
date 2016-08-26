@@ -31,30 +31,27 @@
   font-size: 1.15em;
 }
 
-.bt-menu .navbar .navbar-collapse {
+.bm-menu .bm-item-list {
   padding: 0;
   max-height: none;
 }
-.bt-menu .navbar ul {
+.bm-item-list ul {
   float: none;
   display: block;
 }
-.bt-menu .navbar li {
+.bm-menu .bm-item-list li {
   float: none;
   display: block;
-}
-.bt-menu .navbar h3 {
-  padding: 12px 0px;
-  font-size: 12px !important;
-  display: inline-block;
-}
-.bt-menu .navbar li a {
-  padding: 12px 0px;
+  padding: 5px 0px;
+  border-bottom: 1px solid #b8b7ad;
 }
 
+.bm-menu .bm-item-list li a {
+  padding: 5px 0px;
+}
 
-.bt-menu .glyphicon-cog {
-  vertical-align: text-top;
+.bm-menu .bm-item-list i {
+  padding-top: 5px;
   float: right;
 }
 
