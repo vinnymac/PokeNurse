@@ -377,6 +377,8 @@ const Table = React.createClass({
       onClickPrimary: () => {
         running = true
 
+        this.props.updateProgress({ selectedPokemon })
+
         selectedPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('evolve-pokemon', pokemon, index * randomDelay(25, 30))
         })
@@ -481,7 +483,7 @@ const Table = React.createClass({
   },
 
   handleEvolveCompleted(event, pokemon) {
-    // fire action telling progress
+    this.props.updateProgress({ current: pokemon })
     this.removeMonster(pokemon)
   },
 
