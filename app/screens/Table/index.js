@@ -36,11 +36,11 @@ const COLUMN_SORT_AS_NUM = {
   evolves: true
 }
 
-// let running = false
+let running = false
 
 // Helper Methods
 
-function runningCheck(running) {
+function runningCheck() {
   if (running) {
     ipcRenderer.send('error-message', 'An action is already running')
     return true
@@ -80,8 +80,7 @@ function setBackgroundImage(team) {
 const Table = React.createClass({
 
   propTypes: {
-    updateStatus: PropTypes.func.isRequired,
-    running: PropTypes.bool.isRequired
+    updateStatus: PropTypes.func.isRequired
   },
 
   childContextTypes: {
@@ -301,7 +300,7 @@ const Table = React.createClass({
   },
 
   handleTransfer() {
-    if (runningCheck(this.props.running)) return
+    if (runningCheck()) return
 
     const selectedPokemon = this.speciesTable.getPokemonChecked()
     if (selectedPokemon.length < 1) return
@@ -338,7 +337,7 @@ const Table = React.createClass({
   },
 
   handleEvolve() {
-    if (runningCheck(this.props.running)) return
+    if (runningCheck()) return
 
     const selectedPokemon = this.speciesTable.getPokemonChecked()
     if (selectedPokemon.length < 1) return
@@ -360,11 +359,12 @@ const Table = React.createClass({
   },
 
   handleCountDown(selectedPokemon, method, time) {
+    running = true
+
     this.props.updateStatus({
       selectedPokemon,
       method,
       time,
-      running: true,
       finished: () => {
         ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
         this.handleRefresh()
@@ -468,4 +468,4 @@ const Table = React.createClass({
   }
 })
 
-export default connect((state => ({ running: state.status.running })), (dispatch => bindActionCreators({ updateStatus }, dispatch)))(Table)
+export default connect(null, (dispatch => bindActionCreators({ updateStatus }, dispatch)))(Table)

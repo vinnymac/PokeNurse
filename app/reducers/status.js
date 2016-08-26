@@ -5,7 +5,6 @@ import {
 const initialState = {
   selectedPokemon: null,
   current: null,
-  running: false,
   time: 0,
   method: '',
   finished: null
