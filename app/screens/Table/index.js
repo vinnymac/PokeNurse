@@ -13,7 +13,6 @@ import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
 
-import MainMenu from '../Menu'
 import confirmDialog from '../ConfirmationDialog'
 import { updateStatus } from '../../actions'
 import {
@@ -149,9 +148,6 @@ const Table = React.createClass({
       <div>
         <div className="container">
           <nav className="navbar navbar-inverse navbar-fixed-top" id="navbar">
-            <div className="navbar-header">
-              <MainMenu />
-            </div>
             <div className="navbar-header username">
               {' '}
               <strong>
