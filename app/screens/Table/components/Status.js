@@ -39,7 +39,7 @@ const Status = React.createClass({
     let label = 'Idle'
 
     if (method && current) {
-      label = `Running ${method} on cp${current.cp} ${current.name} / ${time} second(s) left`
+      label = `Running ${method} on cp${current.cp} ${current.name} / ${time.toFixed(0)} second(s) left`
     }
 
     return (
