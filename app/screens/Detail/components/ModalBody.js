@@ -4,6 +4,7 @@ import React, {
 import QuickMove from './QuickMove'
 import CinematicMove from './CinematicMove'
 import Nickname from './Nickname'
+import Evolutions from './Evolutions'
 
 const ModalBody = React.createClass({
   propTypes: {
@@ -60,18 +61,6 @@ const ModalBody = React.createClass({
     const cinematicMoves = possibleCinematicMoves.map((possibleCinematicMove, i) =>
       <CinematicMove key={i} move={possibleCinematicMove} myMove={chargedMove} />
     )
-
-    let evolution
-
-    if (evolvesTo) {
-      evolution = (<div id="pokemon_evolve_info">
-        <div className="pokemon-evolve-info-title">Evolution</div>
-        <div className="pokemon-evolve-info-item">
-          <div className={`pokemon-sprite ${evolvesTo.toLowerCase()}`} />
-          <div className="pokemon-evolve-info-item-title">{evolvesTo.toLowerCase()}</div>
-        </div>
-      </div>)
-    }
 
     return (<div className="modal-body">
       <div id="pokemon_sprite_wrapper">
@@ -153,7 +142,7 @@ const ModalBody = React.createClass({
           <div className="pokemon-move-item-title">Charged Moves</div>
           {cinematicMoves}
         </div>
-        {evolution}
+        <Evolutions evolvesTo={evolvesTo} />
       </div>
     </div>)
   },
