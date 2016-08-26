@@ -183,8 +183,8 @@ const Table = React.createClass({
               </div>
             </div>
           </nav>
-          <Status />
         </div>
+        <Status />
 
         <div className="container table-container">
           <h1>
