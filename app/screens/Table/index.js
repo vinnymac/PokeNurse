@@ -196,11 +196,15 @@ const Table = React.createClass({
             </div>
           </nav>
         </div>
-        <div className="status">
-          <span>Status:{' '}
-            <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
-            <Progress />
-          </span>
+        <div className="status-container">
+          <div className="row col-sm-12">
+            <div className="col-sm-6 status">Status:{' '}
+              <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
+            </div>
+            <div className="col-sm-6 progressbar">
+              <Progress />
+            </div>
+          </div>
         </div>
 
         <div className="container table-container">

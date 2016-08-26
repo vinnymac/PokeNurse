@@ -152,17 +152,25 @@
   float: right;
 }
 
-.status {
+.status-container {
   margin-top: 50px;
-  font-size: 10px;
-  padding: 7px 15px 7px 15px;
-  min-height: 28px !important;
-  max-height: 44px !important;
+  padding: 0px 15px;
+  min-height: 34px !important;
+  max-height: 34px !important;
   background-color:rgba(0, 0, 0, 0.7);
-  color: white;
   z-index: 1029 !important;
   position: fixed;
   width: 100%;
+}
+
+.status {
+  font-size: 10px;
+  color: white;
+  padding: 10px 0px 7px 0px;
+}
+
+.progressbar {
+  padding: 7px 0px;
 }
 
 .table-container {

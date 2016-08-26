@@ -37,6 +37,7 @@ const Progress = React.createClass({
 
     return (
       <ProgressBar
+        active
         now={now}
         label={`${now}%`}
       />
