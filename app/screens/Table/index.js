@@ -182,29 +182,31 @@ const Table = React.createClass({
                 onClick={this.handleToggleShowAllSpecies}
               />
               {" "}
-              <input
-                type="button"
-                className="btn btn-warning"
-                id="transfer-btn"
-                value="Transfer selected"
-                onClick={this.handleTransfer}
-              />
-              {" "}
-              <input
-                type="button"
-                className="btn btn-danger"
-                id="evolve-btn"
-                value="Evolve selected"
-                onClick={this.handleEvolve}
-              />
-              {" "}
-              <input
-                type="button"
-                className="btn btn-success"
-                id="upgrade-btn"
-                value="Upgrade selected"
-                onClick={this.handleUpgrade}
-              />
+              <div className="btn-group">
+                <input
+                  type="button"
+                  className="btn btn-danger"
+                  id="transfer-btn"
+                  value="Transfer"
+                  onClick={this.handleTransfer}
+                />
+                {" "}
+                <input
+                  type="button"
+                  className="btn btn-warning"
+                  id="evolve-btn"
+                  value="Evolve"
+                  onClick={this.handleEvolve}
+                />
+                {" "}
+                <input
+                  type="button"
+                  className="btn btn-success"
+                  id="upgrade-btn"
+                  value="Upgrade"
+                  onClick={this.handleUpgrade}
+                />
+              </div>
             </span>
           </h1>
 
