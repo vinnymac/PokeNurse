@@ -362,6 +362,7 @@ const Table = React.createClass({
       method,
       time,
       finished: () => {
+        running = false
         ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
         this.handleRefresh()
       }
