@@ -6,13 +6,15 @@ const QuickMove = React.createClass({
   displayName: 'Evolutions',
 
   propTypes: {
-    evolvesTo: PropTypes.object.isRequired
+    evolvesTo: PropTypes.node.isRequired
   },
 
   render() {
     const {
       evolvesTo
     } = this.props
+
+    if (!evolvesTo) return null
 
     const evolutions = evolvesTo.split('/')
 
