@@ -155,11 +155,14 @@
 .status {
   margin-top: 50px;
   font-size: 10px;
-  padding: 7px 0px 7px 15px;
-  min-height: 14px !important;
+  padding: 7px 15px 7px 15px;
+  min-height: 28px !important;
+  max-height: 44px !important;
   background-color:rgba(0, 0, 0, 0.7);
   color: white;
   z-index: 1029 !important;
+  position: fixed;
+  width: 100%;
 }
 
 .table-container {

@@ -195,12 +195,12 @@ const Table = React.createClass({
               </div>
             </div>
           </nav>
-          <nav className="navbar navbar-fixed-top status">
-            <span>Status:{' '}
-              <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
-            </span>
+        </div>
+        <div className="status">
+          <span>Status:{' '}
+            <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
             <Progress />
-          </nav>
+          </span>
         </div>
 
         <div className="container table-container">
