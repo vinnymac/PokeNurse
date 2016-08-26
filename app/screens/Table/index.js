@@ -1,15 +1,20 @@
-import React from 'react'
+import React, {
+  PropTypes
+} from 'react'
 import {
   ipcRenderer
 } from 'electron'
 import $ from 'jquery'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
+import Status from './components/Status'
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
 
 import confirmDialog from '../ConfirmationDialog'
-
+import { updateStatus } from '../../actions'
 import {
   Immutable,
   Organize
@@ -42,46 +47,43 @@ function runningCheck() {
   return false
 }
 
-function countDown(method, index, statusH, callback) {
-  const interval = setInterval(() => {
-    statusH.innerHTML = `${method} / ${index} second(s) left`
-    index--
-    if (index <= 0) {
-      clearInterval(interval)
-      running = false
-      statusH.innerHTML = 'Idle'
-      callback()
-    }
-  }, 1000)
-}
-
 function randomDelay(min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
 function setBackgroundImage(team) {
-  const header = document.getElementById('profile-header')
+  const navbar = document.getElementById('navbar')
   let teamName = null
+  let teamColor = null
   switch (team) {
     case 1:
       teamName = 'mystic'
+      teamColor = '#1162bc'
       break
     case 2:
       teamName = 'valor'
+      teamColor = '#cb1617'
       break
     case 3:
       teamName = 'instinct'
+      teamColor = '#fad131'
       break
     default:
   }
 
-  header.style.backgroundImage = `url("./imgs/${teamName}.jpg")`
+  navbar.style.backgroundColor = teamColor
+  navbar.style.backgroundImage = `url("./imgs/${teamName}.jpg")`
+  navbar.style.backgroundRepeat = 'no-repeat'
 }
 
 const Table = React.createClass({
 
+  propTypes: {
+    updateStatus: PropTypes.func.isRequired
+  },
+
   childContextTypes: {
-    monsterUpdater: React.PropTypes.func.isRequired
+    monsterUpdater: PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -144,28 +146,42 @@ const Table = React.createClass({
 
     return (
       <div>
-        <header className="header" id="profile-header">
-          <div className="row">
-            <div className="col-xs-6">
-              <p id="username-h" />
+        <div className="container">
+          <nav className="navbar navbar-inverse navbar-fixed-top" id="navbar">
+            <div className="navbar-header username">
+              {' '}
+              <strong>
+                <span id="username-h" />
+              </strong>
             </div>
-            <div className="col-xs-6 pull-right">
-              <p>
-                <span>Status:{' '}
-                  <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
-                </span>
-              </p>
-              <SpeciesCounter monsters={monsters} />
-              <p>
+            <div className="navbar-right">
+              <div className="stats">
+                <SpeciesCounter monsters={monsters} />
+                {' | '}
                 <span>
                   <CheckCounter ref={(c) => { this.checkCounter = c }} />
                 </span>
-              </p>
+              </div>
             </div>
-          </div>
-        </header>
+            <div className="navbar-form navbar-right">
+              <div className="form-group input-group search">
+                <span className="input-group-addon">
+                  <span className="glyphicon glyphicon-search" aria-hidden="true" />
+                </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                  ref={(c) => { this.search = c }}
+                  onChange={this.onFilterChange}
+                />
+              </div>
+            </div>
+          </nav>
+        </div>
+        <Status />
 
-        <div className="container">
+        <div className="container table-container">
           <h1>
             <span>Pokémon</span>
             <span
@@ -186,7 +202,7 @@ const Table = React.createClass({
                 type="button"
                 className="btn btn-warning"
                 id="transfer-btn"
-                value="Transfer selected"
+                value="Transfer"
                 onClick={this.handleTransfer}
               />
               {" "}
@@ -194,28 +210,11 @@ const Table = React.createClass({
                 type="button"
                 className="btn btn-danger"
                 id="evolve-btn"
-                value="Evolve selected"
+                value="Evolve"
                 onClick={this.handleEvolve}
               />
             </span>
           </h1>
-
-          <div className="row">
-            <div className="col-md-12">
-              <div className="form-group input-group">
-                <span className="input-group-addon">
-                  <span className="glyphicon glyphicon-search" aria-hidden="true" />
-                </span>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search"
-                  ref={(c) => { this.search = c }}
-                  onChange={this.onFilterChange}
-                />
-              </div>
-            </div>
-          </div>
 
           <SpeciesTable
             ref={(c) => { this.speciesTable = c }}
@@ -309,30 +308,26 @@ const Table = React.createClass({
       pokemon: selectedPokemon,
       secondaryText: 'Transfer All',
       onClickSecondary: () => {
-        running = true
+        this.handleCountDown(selectedPokemon, 'Transfer', selectedPokemon.length * 2.5)
 
         selectedPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
         })
-
-        this.handleCountDown('Transfer', selectedPokemon.length * 2.5)
       },
 
       primaryText: 'Transfer without favorites',
       onClickPrimary: () => {
-        running = true
-
         const filteredPokemon = selectedPokemon.filter((p) => {
           const isntFavorite = !p.favorite ? -1 : 0 // TODO stop this -1/0 garbage
 
           return isntFavorite
         })
 
+        this.handleCountDown(filteredPokemon, 'Transfer', filteredPokemon.length * 2.5)
+
         filteredPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
         })
-
-        this.handleCountDown('Transfer', filteredPokemon.length * 2.5)
       }
     })
   },
@@ -350,23 +345,26 @@ const Table = React.createClass({
       primaryText: 'Evolve Selected',
       onClickSecondary: () => {},
       onClickPrimary: () => {
-        running = true
+        this.handleCountDown(selectedPokemon, 'Evolve', selectedPokemon.length * 27.5)
 
         selectedPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('evolve-pokemon', pokemon, index * randomDelay(25, 30))
         })
-
-        this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
       }
     })
   },
 
-  handleCountDown(method, index) {
-    const { statusH } = this
+  handleCountDown(selectedPokemon, method, time) {
+    running = true
 
-    countDown(method, index, statusH, () => {
-      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-      this.handleRefresh()
+    this.props.updateStatus({
+      selectedPokemon,
+      method,
+      time,
+      finished: () => {
+        ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
+        this.handleRefresh()
+      }
     })
   },
 
@@ -452,10 +450,12 @@ const Table = React.createClass({
   },
 
   handleEvolveCompleted(event, pokemon) {
+    this.props.updateStatus({ current: pokemon })
     this.removeMonster(pokemon)
   },
 
   handleTransferCompleted(event, pokemon) {
+    this.props.updateStatus({ current: pokemon })
     this.removeMonster(pokemon)
   },
 
@@ -464,4 +464,4 @@ const Table = React.createClass({
   }
 })
 
-export default Table
+export default connect(null, (dispatch => bindActionCreators({ updateStatus }, dispatch)))(Table)
