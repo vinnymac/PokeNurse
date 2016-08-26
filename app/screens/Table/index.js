@@ -182,21 +182,31 @@ const Table = React.createClass({
                 onClick={this.handleToggleShowAllSpecies}
               />
               {" "}
-              <input
-                type="button"
-                className="btn btn-warning"
-                id="transfer-btn"
-                value="Transfer selected"
-                onClick={this.handleTransfer}
-              />
-              {" "}
-              <input
-                type="button"
-                className="btn btn-danger"
-                id="evolve-btn"
-                value="Evolve selected"
-                onClick={this.handleEvolve}
-              />
+              <div className="btn-group">
+                <input
+                  type="button"
+                  className="btn btn-danger"
+                  id="transfer-btn"
+                  value="Transfer"
+                  onClick={this.handleTransfer}
+                />
+                {" "}
+                <input
+                  type="button"
+                  className="btn btn-warning"
+                  id="evolve-btn"
+                  value="Evolve"
+                  onClick={this.handleEvolve}
+                />
+                {" "}
+                <input
+                  type="button"
+                  className="btn btn-success"
+                  id="upgrade-btn"
+                  value="Upgrade"
+                  onClick={this.handleUpgrade}
+                />
+              </div>
             </span>
           </h1>
 
@@ -357,6 +367,30 @@ const Table = React.createClass({
         })
 
         this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
+      }
+    })
+  },
+
+  handleUpgrade() {
+    if (runningCheck()) return
+
+    const selectedPokemon = this.speciesTable.getPokemonChecked()
+    if (selectedPokemon.length < 1) return
+
+    confirmDialog($(this.confirmationDialog), {
+      title: 'Confirm Upgrade',
+      message: 'You are about to upgrade the following Pokemon',
+      pokemon: selectedPokemon,
+      primaryText: 'Upgrade Selected',
+      onClickSecondary: () => {},
+      onClickPrimary: () => {
+        running = true
+
+        selectedPokemon.forEach((pokemon) => {
+          ipcRenderer.send('power-up-pokemon', String(pokemon.id), String(pokemon.name))
+        })
+
+        this.handleCountDown('Upgrade', selectedPokemon.length * 27.5)
       }
     })
   },
