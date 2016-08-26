@@ -1,16 +1,9 @@
 import React, {
   PropTypes
 } from 'react'
-// import {
-//   ipcRenderer
-// } from 'electron'
 import {
   ProgressBar
 } from 'react-bootstrap'
-
-import {
-  connect
-} from 'react-redux'
 
 const Progress = React.createClass({
   displayName: 'Progress',
@@ -45,4 +38,4 @@ const Progress = React.createClass({
   }
 })
 
-export default connect(state => ({ progress: state.progress }))(Progress)
+export default Progress

@@ -1,5 +1,5 @@
-import * as progressActions from './progress'
+import * as statusActions from './status'
 
 export default {
-  ...progressActions
+  ...statusActions
 }

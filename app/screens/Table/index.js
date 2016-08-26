@@ -8,14 +8,14 @@ import $ from 'jquery'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import Progress from './components/Progress'
+import Status from './components/Status'
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
 
 import MainMenu from '../Menu'
 import confirmDialog from '../ConfirmationDialog'
-import { updateProgress } from '../../actions'
+import { updateStatus } from '../../actions'
 import {
   Immutable,
   Organize
@@ -36,29 +36,16 @@ const COLUMN_SORT_AS_NUM = {
   evolves: true
 }
 
-let running = false
+// let running = false
 
 // Helper Methods
 
-function runningCheck() {
+function runningCheck(running) {
   if (running) {
     ipcRenderer.send('error-message', 'An action is already running')
     return true
   }
   return false
-}
-
-function countDown(method, index, statusH, callback) {
-  const interval = setInterval(() => {
-    statusH.innerHTML = `${method} / ${index} second(s) left`
-    index--
-    if (index <= 0) {
-      clearInterval(interval)
-      running = false
-      statusH.innerHTML = 'Idle'
-      callback()
-    }
-  }, 1000)
 }
 
 function randomDelay(min, max) {
@@ -93,7 +80,8 @@ function setBackgroundImage(team) {
 const Table = React.createClass({
 
   propTypes: {
-    updateProgress: PropTypes.func
+    updateStatus: PropTypes.func.isRequired,
+    running: PropTypes.bool.isRequired
   },
 
   childContextTypes: {
@@ -195,16 +183,7 @@ const Table = React.createClass({
               </div>
             </div>
           </nav>
-        </div>
-        <div className="status-container">
-          <div className="row col-sm-12">
-            <div className="col-sm-6 status">Status:{' '}
-              <span id="status-h" ref={(c) => { this.statusH = c }}>Idle</span>
-            </div>
-            <div className="col-sm-6 progressbar">
-              <Progress />
-            </div>
-          </div>
+          <Status />
         </div>
 
         <div className="container table-container">
@@ -322,7 +301,7 @@ const Table = React.createClass({
   },
 
   handleTransfer() {
-    if (runningCheck()) return
+    if (runningCheck(this.props.running)) return
 
     const selectedPokemon = this.speciesTable.getPokemonChecked()
     if (selectedPokemon.length < 1) return
@@ -334,40 +313,32 @@ const Table = React.createClass({
       pokemon: selectedPokemon,
       secondaryText: 'Transfer All',
       onClickSecondary: () => {
-        running = true
-
-        this.props.updateProgress({ selectedPokemon })
+        this.handleCountDown(selectedPokemon, 'Transfer', selectedPokemon.length * 2.5)
 
         selectedPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
         })
-
-        this.handleCountDown('Transfer', selectedPokemon.length * 2.5)
       },
 
       primaryText: 'Transfer without favorites',
       onClickPrimary: () => {
-        running = true
-
         const filteredPokemon = selectedPokemon.filter((p) => {
           const isntFavorite = !p.favorite ? -1 : 0 // TODO stop this -1/0 garbage
 
           return isntFavorite
         })
 
-        this.props.updateProgress({ selectedPokemon: filteredPokemon })
+        this.handleCountDown(filteredPokemon, 'Transfer', filteredPokemon.length * 2.5)
 
         filteredPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
         })
-
-        this.handleCountDown('Transfer', filteredPokemon.length * 2.5)
       }
     })
   },
 
   handleEvolve() {
-    if (runningCheck()) return
+    if (runningCheck(this.props.running)) return
 
     const selectedPokemon = this.speciesTable.getPokemonChecked()
     if (selectedPokemon.length < 1) return
@@ -379,29 +350,25 @@ const Table = React.createClass({
       primaryText: 'Evolve Selected',
       onClickSecondary: () => {},
       onClickPrimary: () => {
-        running = true
-
-        this.props.updateProgress({ selectedPokemon })
+        this.handleCountDown(selectedPokemon, 'Evolve', selectedPokemon.length * 27.5)
 
         selectedPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('evolve-pokemon', pokemon, index * randomDelay(25, 30))
         })
-
-        this.handleCountDown('Evolve', selectedPokemon.length * 27.5)
       }
     })
   },
 
-  handleCountDown(method, index) {
-    const { statusH } = this
-
-    countDown(method, index, statusH, () => {
-      this.props.updateProgress({
-        current: null,
-        selectedPokemon: null
-      })
-      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-      this.handleRefresh()
+  handleCountDown(selectedPokemon, method, time) {
+    this.props.updateStatus({
+      selectedPokemon,
+      method,
+      time,
+      running: true,
+      finished: () => {
+        ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
+        this.handleRefresh()
+      }
     })
   },
 
@@ -487,12 +454,12 @@ const Table = React.createClass({
   },
 
   handleEvolveCompleted(event, pokemon) {
-    this.props.updateProgress({ current: pokemon })
+    this.props.updateStatus({ current: pokemon })
     this.removeMonster(pokemon)
   },
 
   handleTransferCompleted(event, pokemon) {
-    this.props.updateProgress({ current: pokemon })
+    this.props.updateStatus({ current: pokemon })
     this.removeMonster(pokemon)
   },
 
@@ -501,4 +468,4 @@ const Table = React.createClass({
   }
 })
 
-export default connect(null, (dispatch => bindActionCreators({ updateProgress }, dispatch)))(Table)
+export default connect((state => ({ running: state.status.running })), (dispatch => bindActionCreators({ updateStatus }, dispatch)))(Table)
