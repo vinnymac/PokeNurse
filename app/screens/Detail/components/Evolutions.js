@@ -18,7 +18,7 @@ const QuickMove = React.createClass({
 
     const evolutions = evolvesTo.split('/')
 
-    const title = evolutions.length < 1 ? 'Evolutions' : 'Evolution'
+    const title = evolutions.length > 1 ? 'Evolutions' : 'Evolution'
 
     const evolveInfoItems = evolutions.map((evolve) => {
       const evolution = evolve.toLowerCase()
