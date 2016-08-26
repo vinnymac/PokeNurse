@@ -1,17 +1,21 @@
-import React from 'react'
+import React, {
+  PropTypes
+} from 'react'
 import {
   ipcRenderer
 } from 'electron'
 import $ from 'jquery'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import Progress from './components/Progress'
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
+
 import MainMenu from '../Menu'
-
 import confirmDialog from '../ConfirmationDialog'
-
+import { updateProgress } from '../../actions'
 import {
   Immutable,
   Organize
@@ -88,8 +92,12 @@ function setBackgroundImage(team) {
 
 const Table = React.createClass({
 
+  propTypes: {
+    updateProgress: PropTypes.func
+  },
+
   childContextTypes: {
-    monsterUpdater: React.PropTypes.func.isRequired
+    monsterUpdater: PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -324,7 +332,7 @@ const Table = React.createClass({
       onClickSecondary: () => {
         running = true
 
-        this.props.updateProgress({selectedPokemon: selectedPokemon})
+        this.props.updateProgress({ selectedPokemon })
 
         selectedPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
@@ -343,7 +351,7 @@ const Table = React.createClass({
           return isntFavorite
         })
 
-        this.props.updateProgress({selectedPokemon: filteredPokemon})
+        this.props.updateProgress({ selectedPokemon: filteredPokemon })
 
         filteredPokemon.forEach((pokemon, index) => {
           ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
@@ -382,7 +390,10 @@ const Table = React.createClass({
     const { statusH } = this
 
     countDown(method, index, statusH, () => {
-      this.props.updateProgress({current: null, selectedPokemon: null})
+      this.props.updateProgress({
+        current: null,
+        selectedPokemon: null
+      })
       ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
       this.handleRefresh()
     })
@@ -475,7 +486,7 @@ const Table = React.createClass({
   },
 
   handleTransferCompleted(event, pokemon) {
-    this.props.updateProgress({current: pokemon})
+    this.props.updateProgress({ current: pokemon })
     this.removeMonster(pokemon)
   },
 
@@ -483,9 +494,5 @@ const Table = React.createClass({
     this.speciesTable.toggleShowAllSpecies()
   }
 })
-
-import { updateProgress } from '../../actions'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 export default connect(null, (dispatch => bindActionCreators({ updateProgress }, dispatch)))(Table)

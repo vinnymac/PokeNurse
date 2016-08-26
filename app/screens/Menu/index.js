@@ -9,9 +9,9 @@ const MainMenu = React.createClass({
         <div className="navbar-collapse collapse sidebar-navbar-collapse">
           <ul className="nav navbar-nav">
             <li><h3>Settings</h3></li>
-            <li><a href="#">Menu Item 2</a></li>
-            <li><a href="#">Menu Item 3</a></li>
-            <li><a href="#">Menu Item 4</a></li>
+            <li><a>Menu Item 2</a></li>
+            <li><a>Menu Item 3</a></li>
+            <li><a>Menu Item 4</a></li>
           </ul>
         </div>
       </Menu>
