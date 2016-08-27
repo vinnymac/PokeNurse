@@ -8,6 +8,7 @@ import $ from 'jquery'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import MainMenu from '../Menu'
 import Status from './components/Status'
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
@@ -121,10 +122,13 @@ const Table = React.createClass({
     return (
       <div>
         <div className="container">
-          <nav
+          <nav 
             className="navbar navbar-inverse navbar-fixed-top"
             style={backgroundHeaderStyles}
           >
+            <div className="navbar-header">
+              <MainMenu />
+            </div>
             <div className="navbar-header username">
               {' '}
               <strong>
