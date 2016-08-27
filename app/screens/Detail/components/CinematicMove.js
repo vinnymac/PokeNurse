@@ -1,21 +1,16 @@
 import React, {
   PropTypes
 } from 'react'
-import $ from 'jquery'
+import times from 'lodash/times'
 
-
+import Tooltip from '../../Tooltip'
 
 const CinematicMove = React.createClass({
+  displayName: 'CinematicMove',
+
   propTypes: {
     move: PropTypes.object.isRequired,
     myMove: PropTypes.object.isRequired,
-  },
-
-  componentDidMount() {
-    $(this.tooltip).tooltip()
-  },
-  componentDidUpdate() {
-    $(this.tooltip).tooltip()
   },
 
   render() {
@@ -24,32 +19,35 @@ const CinematicMove = React.createClass({
       myMove
     } = this.props
 
-    let chargedMoveBars = []
+    const chargeMoveStyle = { width: `${move.energyCost}px` }
 
-    for (let i = 0; i < Math.floor(100 / move.energyCost); i++) {
-      chargedMoveBars.push(<div key={i} className="pokemon-move-cost-item" style={{ width: `${move.energyCost}px` }} />)
-    }
+    const chargedMoveBars = times(Math.floor(100 / move.energyCost), (i) =>
+      <div key={i} className="pokemon-move-cost-item" style={chargeMoveStyle} />
+    )
 
-    let chargedMoveTip = `
-      Duration: ${move.durationMs}ms <br>
-      Dodge Window: ${move.dodgeWindowMs}ms <br>
-      Crit Chance: ${move.crit * 100}%
-    `
+    const chargedMoveTip = (<span>
+      {`Duration: ${move.durationMs}ms`}
+      <br />
+      {`Dodge Window: ${move.dodgeWindowMs}ms`}
+      <br />
+      {`Crit Chance: ${move.crit * 100}%`}
+    </span>)
+
     const thisMove = move === myMove ? 'pokemon-move-item mine' : 'pokemon-move-item notmine'
 
     return (
       <div className={thisMove}>
-        <div
-          className="pokemon-move-item-text-area"
-          ref={(c) => { this.tooltip = c }}
-          data-toggle="tooltip"
-          data-placement="right"
-          data-html="true"
-          title={chargedMoveTip}
+        <Tooltip
+          wrapperClass="pokemon-move-item-text-area"
+          message={chargedMoveTip}
+          placement="right"
+          id="charged_move_tooltip"
+          delayShow={100}
+          show
         >
           <div className="pokemon-move-title">{`${move.name}`}</div>
           <div className="pokemon-move-type ${move.type}">{`${move.type}`}</div>
-        </div>
+        </Tooltip>
         <div className="pokemon-move-cost">
           {chargedMoveBars}
         </div>

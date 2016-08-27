@@ -1,19 +1,15 @@
 import React, {
   PropTypes
 } from 'react'
-import $ from 'jquery'
+
+import Tooltip from '../../Tooltip'
 
 const QuickMove = React.createClass({
+  displayName: 'QuickMove',
+
   propTypes: {
     move: PropTypes.object.isRequired,
     myMove: PropTypes.object.isRequired,
-  },
-
-  componentDidMount() {
-    $(this.tooltip).tooltip()
-  },
-  componentDidUpdate() {
-    $(this.tooltip).tooltip()
   },
 
   render() {
@@ -22,28 +18,33 @@ const QuickMove = React.createClass({
       myMove
     } = this.props
 
-    let fastMoveTip = `
-      Move Duration: ${move.durationMs}ms <br>
-      Damage Window: ${move.damageWindowMs}ms <br>
-      No STAB DPS: ${move.dps} <br>
-      Energy Gain(EG): ${move.energyGain} <br>
-      EGPS: ${move.energyGainPerSecond}
-    `
+    const fastMoveTip = (<span>
+      {`Move Duration: ${move.durationMs}ms`}
+      <br />
+      {`Damage Window: ${move.damageWindowMs}ms`}
+      <br />
+      No STAB DPS: ${move.dps}
+      <br />
+      {`Energy Gain(EG): ${move.energyGain}`}
+      <br />
+      {`EGPS: ${move.energyGainPerSecond}`}
+    </span>)
+
     const thisMove = move === myMove ? 'pokemon-move-item mine' : 'pokemon-move-item notmine'
 
     return (
       <div className={thisMove}>
-        <div
-          className="pokemon-move-item-text-area"
-          ref={(c) => { this.tooltip = c }}
-          data-toggle="tooltip"
-          data-placement="right"
-          data-html="true"
-          title={fastMoveTip}
+        <Tooltip
+          wrapperClass="pokemon-move-item-text-area"
+          message={fastMoveTip}
+          placement="right"
+          id="quick_move_tooltip"
+          delayShow={100}
+          show
         >
           <div className="pokemon-move-title">{`${move.name}`}</div>
           <div className="pokemon-move-type ${move.type}">{`${move.type}`}</div>
-        </div>
+        </Tooltip>
         <div className="pokemon-move-cost" />
         <div className="pokemon-move-damage">
           {`${move.power}`}

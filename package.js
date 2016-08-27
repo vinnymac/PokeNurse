@@ -68,35 +68,31 @@ function build(cfg) {
   })
 }
 
-function startPack() {
+async function startPack() {
   console.log('start pack...')
-  build(electronCfg)
-    .then(() => build(cfg))
-    .then(() => del('release'))
-    .then(paths => {
-      if (shouldBuildAll) {
-        // build for all platforms
-        const archs = ['ia32', 'x64']
-        const platforms = ['linux', 'win32', 'darwin']
 
-        platforms.forEach(plat => {
-          archs.forEach(arch => {
-            pack(plat, arch, log(plat, arch))
-          })
+  try {
+    await build(electronCfg)
+    await build(cfg)
+    const paths = await del('release')
+
+    if (shouldBuildAll) {
+      // build for all platforms
+      const archs = ['ia32', 'x64']
+      const platforms = ['linux', 'win32', 'darwin']
+
+      platforms.forEach((plat) => {
+        archs.forEach((arch) => {
+          pack(plat, arch, log(plat, arch))
         })
-      } else if (argv.platform || argv.arch) {
-        const arch = argv.arch || os.arch()
-        const platform = argv.platform || os.platform()
-
-        pack(platform, arch, log(platform, arch))
-      } else {
-        // build for current platform only
-        pack(os.platform(), os.arch(), log(os.platform(), os.arch()))
-      }
-    })
-    .catch(err => {
-      console.error(err)
-    })
+      })
+    } else {
+      // build for current platform only
+      pack(os.platform(), os.arch(), log(os.platform(), os.arch()))
+    }
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 function pack(plat, arch, cb) {

@@ -1,4 +1,111 @@
-/* Global style */
+/**** Menu Styles ****/
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  left: 15px;
+  top: 17px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: white;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+.bm-menu .bm-item-list {
+  padding: 0;
+  max-height: none;
+}
+.bm-item-list ul {
+  float: none;
+  display: block;
+}
+.bm-menu .bm-item-list li {
+  float: none;
+  display: block;
+  padding: 5px 0px;
+  border-bottom: 1px solid #b8b7ad;
+}
+
+.bm-menu .bm-item-list li a {
+  padding: 5px 0px;
+}
+
+.bm-menu .bm-item-list i {
+  padding-top: 5px;
+  float: right;
+}
+
+.switch {
+    border: 1px solid #ccc;
+    width: 50px;
+    height: 26px;
+    border-radius: 13px;
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+}
+
+.switch-toggle {
+    border: 1px solid #999;
+    box-shadow: 1px 1px 1px #ccc;
+    width: 25px;
+    height: 24px;
+    left: 0;
+    border-radius: 12px;
+    background: white;
+    position: relative;
+    transition: left .2s ease-in-out;
+}
+
+.switch.on {
+    background: green;
+}
+
+.switch.on .switch-toggle {
+    left: 23px;
+}
+
+.switch.disabled {
+    cursor: not-allowed;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/**** Global style ****/
 
 .header {
   background-image: url('../imgs/bg.jpg');
@@ -9,9 +116,65 @@
   color: #fff;
 }
 
-#profile-header {
-  padding-left: 30%;
-  font-weight: bold;
+.drawer-icon {
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color:rgba(0, 0, 0, 0.7);
+  border: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.username {
+  padding-top: 15px;
+  margin-left: 15px;
+  color: white;
+}
+
+.search input {
+  background-color:rgba(0, 0, 0, 0.5);
+  border: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.search span {
+  background-color:rgba(0, 0, 0, 0.8);
+  border: rgba(0, 0, 0, 0.2);
+}
+
+.stats {
+  padding-top: 15px;
+  padding-right: 35px;
+  color: white;
+  float: right;
+}
+
+.status-container {
+  margin-top: 50px;
+  padding: 0px 15px;
+  min-height: 34px !important;
+  max-height: 34px !important;
+  background-color:rgba(0, 0, 0, 0.7);
+  z-index: 1029 !important;
+  position: fixed;
+  width: 100%;
+}
+
+.status {
+  font-size: 10px;
+  color: white;
+  padding: 10px 0px 7px 0px;
+}
+
+.progressbar {
+  padding: 7px 0px;
+}
+
+.table-container {
+  margin-top: 65px;
 }
 
 #refresh-btn {
@@ -26,7 +189,7 @@ thead > tr > td {
   cursor: pointer;
 }
 
-tbody > tr > td > a {
+tbody > tr > td a {
   cursor: pointer;
 }
 
@@ -737,11 +900,6 @@ table tbody tr.child:hover {
     background: none;
 }
 
-/*Stats*/
-.stats {
-  padding-top: 8px;
-}
-
 /*Confirmation*/
 .confirmationTable {
   border: 1px solid black;
@@ -764,4 +922,27 @@ table tbody tr.child:hover {
 .glyphicon-pencil {
   font-size: 24px;
   cursor: pointer;
+}
+
+/*Input Styles*/
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.btn:focus,
+.btn:active:focus {
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+  outline: 0 none;
 }

@@ -5,6 +5,7 @@ import { ipcRenderer } from 'electron'
 import $ from 'jquery'
 
 import renderModal from '../../Detail'
+import Tooltip from '../../Tooltip'
 
 const favoriteGlyph = 'glyphicon glyphicon-star favorite-yellow'
 const emptyFavoriteGlyph = 'glyphicon glyphicon-star-empty'
@@ -27,14 +28,6 @@ const Pokemon = React.createClass({
 
   contextTypes: {
     monsterUpdater: React.PropTypes.func.isRequired
-  },
-
-  componentDidMount() {
-    this.setupTooltips()
-  },
-
-  componentDidUpdate() {
-    this.setupTooltips()
   },
 
   render() {
@@ -142,41 +135,17 @@ const Pokemon = React.createClass({
 
     return species.pokemon.map((pokemon) => {
       const favorite = pokemon.favorite ? favoriteGlyph : emptyFavoriteGlyph
-      let pokeiv = `${pokemon.iv}% (${pokemon.attack}/${pokemon.defense}/${pokemon.stamina})`
-      let powerupComponent
-
+      const pokeiv = `${pokemon.iv}% (${pokemon.attack}/${pokemon.defense}/${pokemon.stamina})`
+      const powerUpTip = this.getPowerUpTip(pokemon)
+      const cpTip = `Max CP: ${pokemon.max_cp}`
+      const ivTip = (<span>
+        {`Attack: ${pokemon.attack}`}
+        <br />
+        {`Defense: ${pokemon.defense}`}
+        <br />
+        {`Stamina: ${pokemon.stamina}`}
+      </span>)
       const isChecked = pokemonState[String(pokemon.id)].check
-
-      if (pokemon.cp === pokemon.max_cp) {
-        let tip = `Max CP ${pokemon.max_cp}`
-        powerupComponent = (<span
-          data-toggle="tooltip"
-          data-placement="right"
-          data-html="true"
-          title={tip}
-        >
-          P↑
-        </span>)
-      } else {
-        let tip = `
-        Stardust Cost = ${pokemon.stardust_cost} <br>
-        Candy Cost = ${pokemon.candy_cost} <br>
-        CP After ≅ ${Math.round(pokemon.next_cp) + pokemon.cp} <br>
-        Max Stardust = ${pokemon.stardust_max_cost} <br>
-        Max Candy = ${pokemon.candy_max_cost}
-        `
-        powerupComponent = (<a
-          id="powerUp"
-          data-pokemon-id={pokemon.id}
-          data-nickname={pokemon.nickname}
-          data-toggle="tooltip"
-          data-placement="right"
-          data-html="true"
-          title={tip}
-        >
-          P↑
-        </a>)
-      }
 
       return (
         <tr key={pokemon.id}>
@@ -199,7 +168,16 @@ const Pokemon = React.createClass({
             />
           </td>
           <td onClick={this.handleClickPowerup.bind(this, pokemon)}>
-            {powerupComponent}
+            <Tooltip
+              placement="right"
+              id="power_up_tooltip"
+              message={powerUpTip}
+              delayShow={100}
+              wrapperTag="a"
+              show
+            >
+              P↑
+            </Tooltip>
           </td>
           <td>
             {pokemon.name}
@@ -213,13 +191,49 @@ const Pokemon = React.createClass({
             </a>
           </td>
           <td>
-            {pokemon.cp}
+            <Tooltip
+              placement="right"
+              id="cp_tooltip"
+              message={cpTip}
+              delayShow={100}
+              wrapperTag="span"
+              show
+            >
+              {pokemon.cp}
+            </Tooltip>
           </td>
           <td>
-            {pokeiv}
+            <Tooltip
+              placement="right"
+              id="iv_tooltip"
+              message={ivTip}
+              delayShow={100}
+              wrapperTag="span"
+              show
+            >
+              {pokeiv}
+            </Tooltip>
           </td>
         </tr>)
     })
+  },
+
+  getPowerUpTip(pokemon) {
+    if (pokemon.cp === pokemon.max_cp) {
+      return `Max CP ${pokemon.max_cp}`
+    }
+
+    return (<span>
+      {`Stardust Cost = ${pokemon.stardust_cost}`}
+      <br />
+      {`Candy Cost = ${pokemon.candy_cost}`}
+      <br />
+      {`CP After ≅ ${Math.round(pokemon.next_cp) + pokemon.cp}`}
+      <br />
+      {`Max Stardust = ${pokemon.stardust_max_cost}`}
+      <br />
+      {`Max Candy = ${pokemon.candy_max_cost}`}
+    </span>)
   },
 
   handleClickPowerup(pokemon) {
@@ -259,10 +273,6 @@ const Pokemon = React.createClass({
     }
 
     return 'sorting'
-  },
-
-  setupTooltips() {
-    $(this.tBody).find('[data-toggle="tooltip"]').tooltip()
   }
 
 })

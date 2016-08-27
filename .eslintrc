@@ -27,11 +27,15 @@
         'render',
         'everything-else'
       ]
-    }]
+    }],
+    "no-loops/no-loops": 2,
+    # https://github.com/eslint/eslint/issues/6274
+    "generator-star-spacing": 0
   },
   "plugins": [
     "import",
-    "react"
+    "react",
+    "no-loops"
   ],
   "settings": {
     "import/resolver": {

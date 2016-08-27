@@ -12,7 +12,18 @@ const config = merge(baseConfig, {
     publicPath: '../dist/'
   },
 
-  // CSS Module loaders would go here if we added sass
+  module: {
+    loaders: [
+      {
+        test: /pokenurse.css$/,
+        loader: ('style!css')
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg|ico)$/i,
+        loader: 'file'
+      }
+    ]
+  },
 
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),

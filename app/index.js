@@ -1,9 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ipcRenderer } from 'electron'
+import {
+  Provider
+} from 'react-redux'
 
+import store from './store'
 import Login from './screens/Login'
 import Table from './screens/Table'
+
+require('./css/pokenurse.css')
 
 const App = React.createClass({
   getInitialState() {
@@ -23,4 +29,4 @@ const App = React.createClass({
   }
 })
 
-ReactDOM.render(<App />, document.getElementById('content'))
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('content'))
