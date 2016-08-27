@@ -24,7 +24,10 @@ const QuickMove = React.createClass({
       const evolution = evolve.toLowerCase()
 
       return (
-        <div className="pokemon-evolve-info-item">
+        <div
+          key={evolve}
+          className="pokemon-evolve-info-item"
+        >
           <div className={`pokemon-sprite ${evolution}`} />
           <div className="pokemon-evolve-info-item-title">{evolution}</div>
         </div>
