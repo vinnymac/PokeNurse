@@ -50,6 +50,7 @@ const Nickname = React.createClass({
           className="input-lg"
           onKeyPress={this.handleKeyPress}
           defaultValue={newNickname}
+          maxLength="12"
           placeholder="Enter a new nickname"
           ref={(c) => { this.input = c }}
         />
