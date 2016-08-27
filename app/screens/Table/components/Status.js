@@ -1,9 +1,6 @@
 import React, {
   PropTypes
 } from 'react'
-// import {
-//   ipcRenderer
-// } from 'electron'
 import {
   connect
 } from 'react-redux'
@@ -46,8 +43,7 @@ const Status = React.createClass({
       <div className="status-container">
         <div className="row col-sm-12">
           <div className="col-sm-6 status">
-            {'Status: '}
-            <span>{label}</span>
+            <span>{`Status: ${label}`}</span>
           </div>
           <div className="col-sm-6 progressbar">
             <Progress progress={this.props.status} />

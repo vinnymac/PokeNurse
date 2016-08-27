@@ -308,6 +308,8 @@ const Table = React.createClass({
       pokemon: selectedPokemon,
       secondaryText: 'Transfer All',
       onClickSecondary: () => {
+        if (runningCheck()) return
+
         this.handleCountDown(selectedPokemon, 'Transfer', selectedPokemon.length * 2.5)
 
         selectedPokemon.forEach((pokemon, index) => {
@@ -317,6 +319,8 @@ const Table = React.createClass({
 
       primaryText: 'Transfer without favorites',
       onClickPrimary: () => {
+        if (runningCheck()) return
+
         const filteredPokemon = selectedPokemon.filter((p) => {
           const isntFavorite = !p.favorite ? -1 : 0 // TODO stop this -1/0 garbage
 
@@ -345,6 +349,8 @@ const Table = React.createClass({
       primaryText: 'Evolve Selected',
       onClickSecondary: () => {},
       onClickPrimary: () => {
+        if (runningCheck()) return
+
         this.handleCountDown(selectedPokemon, 'Evolve', selectedPokemon.length * 27.5)
 
         selectedPokemon.forEach((pokemon, index) => {
