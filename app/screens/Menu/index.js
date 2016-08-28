@@ -13,6 +13,7 @@ const MainMenu = React.createClass({
             <li><a>Applied Items <i className="glyphicon glyphicon-chevron-down" /></a></li>
             <li><a>Inventory <i className="glyphicon glyphicon-chevron-down" /></a></li>
             <li><a>Eggs <i className="glyphicon glyphicon-chevron-down" /></a></li>
+            <li><a>Sign Out <i className="glyphicon glyphicon-off" /></a></li>
           </ul>
         </div>
       </Menu>
