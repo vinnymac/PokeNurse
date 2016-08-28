@@ -21,7 +21,7 @@ const ModalDialog = React.createClass({
   },
 
   render() {
-    let modalBackground = {
+    const modalBackground = {
       background: `linear-gradient(to bottom,
       ${this.getBackgroundColor(this.props.type[0])} 0%,
       ${this.getBackgroundColor(this.props.type[1])} 100%)`
@@ -90,7 +90,7 @@ export default ($detailModal, pokemon, species, monsterUpdater) => {
   const maxDeg = 180
   const degree = Math.max(Math.min((pokemon.cp / pokemon.max_cp) * maxDeg, maxDeg), minDeg)
 
-  let transform = `rotate(${degree}deg) translate(-193px)`
+  const transform = `rotate(${degree}deg) translate(-193px)`
 
   const stats = baseStats.pokemon[pokemon.pokemon_id]
 
@@ -98,35 +98,35 @@ export default ($detailModal, pokemon, species, monsterUpdater) => {
   const baseDefense = stats.BaseDefense
 
   // TODO Need additional information to calculate these
-  let hp = `${pokemon.current_stamina} / ${pokemon.stamina_max}`
-  let attack = `${baseAttack + pokemon.attack}`
-  let defense = `${baseDefense + pokemon.defense}`
-  let type = stats.types
+  const hp = `${pokemon.current_stamina} / ${pokemon.stamina_max}`
+  const attack = `${baseAttack + pokemon.attack}`
+  const defense = `${baseDefense + pokemon.defense}`
+  const type = stats.types
 
   const cppu = stats.cpPerUpgrade
-  let cpPerUpgrade = cppu ? `+${cppu} CP (+/-)` : 'Unknown'
+  const cpPerUpgrade = cppu ? `+${cppu} CP (+/-)` : 'Unknown'
 
-  let height = `${pokemon.height.toFixed(2)}`
-  let weight = `${pokemon.weight.toFixed(2)}`
+  const height = `${pokemon.height.toFixed(2)}`
+  const weight = `${pokemon.weight.toFixed(2)}`
 
-  let candies = species.candy
-  let name = species.name
-  let nickname = pokemon.nickname
+  const candies = species.candy
+  const name = species.name
+  const nickname = pokemon.nickname
   let spriteImageName = name.toLowerCase()
 
-  let moveOne = baseStats.moves[pokemon.move_1]
-  let moveTwo = baseStats.moves[pokemon.move_2]
+  const moveOne = baseStats.moves[pokemon.move_1]
+  const moveTwo = baseStats.moves[pokemon.move_2]
 
   if (spriteImageName.indexOf('nidoran') > -1) {
     const spriteParts = spriteImageName.split(' ')
     spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === '♂') ? 'm' : 'f'}`
   }
 
-  let possibleQuickMoves = stats.quickMoves.map((quickMove) =>
+  const possibleQuickMoves = stats.quickMoves.map((quickMove) =>
     baseStats.moves[quickMove]
   )
 
-  let possibleCinematicMoves = stats.cinematicMoves.map((cinematicMove) =>
+  const possibleCinematicMoves = stats.cinematicMoves.map((cinematicMove) =>
     baseStats.moves[cinematicMove]
   )
 
