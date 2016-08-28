@@ -1,9 +1,21 @@
-import React from 'react'
+import React, {
+  PropTypes
+} from 'react'
 import ReactDOM from 'react-dom'
-import { ipcRenderer } from 'electron'
 import {
-  Provider
+  ipcRenderer
+} from 'electron'
+import {
+  Provider,
+  connect
 } from 'react-redux'
+import {
+  bindActionCreators
+} from 'redux'
+
+import {
+  login
+} from './actions'
 
 import store from './store'
 import Login from './screens/Login'
@@ -12,21 +24,28 @@ import Table from './screens/Table'
 require('./css/pokenurse.css')
 
 const App = React.createClass({
-  getInitialState() {
-    return { loggedIn: false }
+  propTypes: {
+    login: PropTypes.func.isRequired,
+    authenticate: PropTypes.object.isRequired
   },
 
   componentDidMount() {
     ipcRenderer.on('pokemon-logged-in', () => {
-      this.setState({ loggedIn: true })
+      this.props.login()
     })
   },
 
   render() {
-    if (this.state.loggedIn) return (<Table />)
+    if (this.props.authenticate.loggedIn) return (<Table />)
 
     return (<Login />)
   }
 })
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('content'))
+const ConnectedApp = connect((state => ({
+  authenticate: state.authenticate
+})), (dispatch =>
+  bindActionCreators({ login }, dispatch)
+))(App)
+
+ReactDOM.render(<Provider store={store}><ConnectedApp /></Provider>, document.getElementById('content'))

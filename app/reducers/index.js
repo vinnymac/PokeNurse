@@ -3,7 +3,17 @@ import {
 } from 'redux'
 
 import status from './status'
+import authenticate from './authenticate'
 
-export default combineReducers({
-  status
+const appReducer = combineReducers({
+  status,
+  authenticate
 })
+
+export default (state, action) => {
+  if (action.type === 'USER_LOGOUT') {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}

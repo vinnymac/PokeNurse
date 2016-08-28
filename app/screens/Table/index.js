@@ -14,7 +14,10 @@ import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
 
 import confirmDialog from '../ConfirmationDialog'
-import { updateStatus } from '../../actions'
+import {
+  updateStatus,
+  logout
+} from '../../actions'
 import {
   Immutable,
   Organize
@@ -79,7 +82,8 @@ function setBackgroundImage(team) {
 const Table = React.createClass({
 
   propTypes: {
-    updateStatus: PropTypes.func.isRequired
+    updateStatus: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired
   },
 
   childContextTypes: {
@@ -212,6 +216,13 @@ const Table = React.createClass({
                 id="evolve-btn"
                 value="Evolve"
                 onClick={this.handleEvolve}
+              />
+              {" "}
+              <input
+                type="button"
+                className="btn btn-default"
+                value="Sign Out"
+                onClick={this.handleSignOut}
               />
             </span>
           </h1>
@@ -468,7 +479,11 @@ const Table = React.createClass({
 
   handleToggleShowAllSpecies() {
     this.speciesTable.toggleShowAllSpecies()
+  },
+
+  handleSignOut() {
+    this.props.logout()
   }
 })
 
-export default connect(null, (dispatch => bindActionCreators({ updateStatus }, dispatch)))(Table)
+export default connect(null, (dispatch => bindActionCreators({ updateStatus, logout }, dispatch)))(Table)
