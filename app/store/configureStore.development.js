@@ -3,7 +3,7 @@ import {
   applyMiddleware,
   compose
 } from 'redux'
-// import thunk from 'redux-thunk'
+import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import rootReducer from '../reducers'
 import actionCreators from '../actions'
@@ -15,7 +15,7 @@ const logger = createLogger({
 
 
 const enhancer = compose(
-  applyMiddleware(logger),
+  applyMiddleware(thunk, logger),
   window.devToolsExtension ?
     window.devToolsExtension({ actionCreators }) :
     noop => noop

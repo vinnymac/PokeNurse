@@ -82,6 +82,7 @@
     "redux": "^3.5.2",
     "redux-actions": "^0.11.0",
     "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.1",
     "webpack": "1.13.2",
     "webpack-dashboard": "0.1.8",
