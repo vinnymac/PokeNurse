@@ -5,8 +5,8 @@ import {
   ipcRenderer
 } from 'electron'
 import $ from 'jquery'
-import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import MainMenu from '../Menu'
 import Status from './components/Status'
@@ -122,7 +122,7 @@ const Table = React.createClass({
     return (
       <div>
         <div className="container">
-          <nav 
+          <nav
             className="navbar navbar-inverse navbar-fixed-top"
             style={backgroundHeaderStyles}
           >
@@ -195,13 +195,6 @@ const Table = React.createClass({
                 id="evolve-btn"
                 value="Evolve"
                 onClick={this.handleEvolve}
-              />
-              {" "}
-              <input
-                type="button"
-                className="btn btn-default"
-                value="Sign Out"
-                onClick={this.handleSignOut}
               />
             </span>
           </h1>
@@ -377,9 +370,6 @@ const Table = React.createClass({
     this.props.toggleShowSpeciesWithZeroPokemon()
   },
 
-  handleSignOut() {
-    this.props.logout()
-  }
 })
 
 export default connect((state => ({
