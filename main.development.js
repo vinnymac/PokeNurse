@@ -1,7 +1,5 @@
 /* eslint no-console: 0 */
 
-import fs from 'fs'
-import path from 'path'
 import pogobuf from 'pogobuf'
 import POGOProtos from 'node-pogo-protos'
 import {
@@ -17,8 +15,6 @@ import keyBy from 'lodash/keyBy'
 import menuTemplate from './main/main_menu'
 import utils from './main/utils'
 import baseStats from './baseStats'
-
-const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
 const kantoDexCount = 151
 
@@ -207,30 +203,6 @@ ipcMain.on('confirmation-dialog', (event, method) => {
 // END OF GENERAL
 
 // LOGIN
-ipcMain.on('save-account-credentials', (event, method, username, password) => {
-  console.log('[+] Saving account credentials')
-
-  const credentials = JSON.stringify({
-    method,
-    username,
-    password
-  })
-
-  fs.writeFile(accountPath, credentials, (err) => {
-    if (err) console.log(err)
-    console.log(`[+] Saved account credentials to ${accountPath}`)
-  })
-})
-
-ipcMain.on('check-and-delete-credentials', () => {
-  if (fs.existsSync(accountPath)) {
-    fs.unlink(accountPath, (err) => {
-      if (err) console.log(err)
-      console.log(`[+] Deleted account credentials, located at ${accountPath}`)
-    })
-  }
-})
-
 ipcMain.on('pokemon-login', async (event, method, username, password) => {
   console.log('[+] Attempting to login')
   let login

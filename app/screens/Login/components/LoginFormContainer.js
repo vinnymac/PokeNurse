@@ -2,6 +2,9 @@ import React, {
   PropTypes
 } from 'react'
 import { ipcRenderer } from 'electron'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { checkAndDeleteCredentials, saveAccountCredentials } from '../../../actions'
 
 const AUTH_METHODS = {
   ptc: 'ptc',
@@ -12,7 +15,9 @@ const LoginForm = React.createClass({
   displayName: 'LoginForm',
 
   propTypes: {
-    credentials: PropTypes.object
+    credentials: PropTypes.object,
+    checkAndDeleteCredentials: PropTypes.func.isRequired,
+    saveAccountCredentials: PropTypes.func.isRequired,
   },
 
   getInitialState() {
@@ -96,7 +101,7 @@ const LoginForm = React.createClass({
             <input
               type="checkbox"
               id="remember-cb"
-              defaultChecked={credentials.success || false}
+              defaultChecked={(credentials.password && credentials.username) || false}
               ref={(c) => { this.rememberMe = c }}
             />
             {" Remember me"}
@@ -135,13 +140,21 @@ const LoginForm = React.createClass({
     }
 
     if (this.rememberMe.checked) {
-      ipcRenderer.send('save-account-credentials', method, this.username.value, this.password.value)
+      this.props.saveAccountCredentials({
+        method,
+        username: this.username.value,
+        password: this.password.value
+      })
     } else {
-      ipcRenderer.send('check-and-delete-credentials')
+      this.props.checkAndDeleteCredentials()
     }
 
     ipcRenderer.send('pokemon-login', method, this.username.value, this.password.value)
   }
 })
 
-export default LoginForm
+
+export default connect(null, (dispatch => bindActionCreators({
+  checkAndDeleteCredentials,
+  saveAccountCredentials
+}, dispatch)))(LoginForm)

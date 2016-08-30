@@ -36,7 +36,8 @@
   },
   "homepage": "https://github.com/vinnymac/PokeNurse#readme",
   "devDependencies": {
-    "asar": "^0.12.3",
+    "asar": "0.12.3",
+    "async-file": "^2.0.0",
     "babel-core": "6.14.0",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
