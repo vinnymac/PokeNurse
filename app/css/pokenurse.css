@@ -48,6 +48,7 @@
 
 .bm-menu .bm-item-list li a {
   padding: 5px 0px;
+  cursor: pointer;
 }
 
 .bm-menu .bm-item-list i {
