@@ -5,8 +5,8 @@ import {
   ipcRenderer
 } from 'electron'
 import $ from 'jquery'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import MainMenu from '../Menu'
 import Status from './components/Status'
@@ -76,6 +76,7 @@ function getHeaderBackgroundStyles(team) {
 const Table = React.createClass({
 
   propTypes: {
+<<<<<<< c76219203218caab676a10501d6ae613ad2a78a1
     updateStatus: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     trainerData: PropTypes.object,
@@ -91,6 +92,32 @@ const Table = React.createClass({
     transferPokemon: PropTypes.func.isRequired,
     evolvePokemon: PropTypes.func.isRequired,
     toggleShowSpeciesWithZeroPokemon: PropTypes.func.isRequired
+=======
+    updateStatus: PropTypes.func.isRequired
+  },
+
+  childContextTypes: {
+    monsterUpdater: PropTypes.func.isRequired
+  },
+
+  getInitialState() {
+    const monsters = ipcRenderer.sendSync('get-players-pokemons')
+    const sortBy = 'pokemon_id'
+    const sortDir = 'ASC'
+
+    return {
+      monsters: this.getNewMonsters(monsters, sortBy, sortDir),
+      filterBy: '',
+      sortBy,
+      sortDir
+    }
+  },
+
+  getChildContext() {
+    return {
+      monsterUpdater: this.updateMonster
+    }
+>>>>>>> Settings Modal
   },
 
   componentDidMount() {
@@ -372,6 +399,7 @@ const Table = React.createClass({
 
 })
 
+<<<<<<< c76219203218caab676a10501d6ae613ad2a78a1
 export default connect((state => ({
   trainerData: state.trainer.trainerData,
   monsters: state.trainer.monsters,
@@ -390,3 +418,6 @@ export default connect((state => ({
   transferPokemon,
   toggleShowSpeciesWithZeroPokemon
 }, dispatch)))(Table)
+=======
+export default connect(null, (dispatch => bindActionCreators({ updateStatus }, dispatch)))(Table)
+>>>>>>> Settings Modal
