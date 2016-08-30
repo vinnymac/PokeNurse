@@ -207,32 +207,6 @@ ipcMain.on('confirmation-dialog', (event, method) => {
 // END OF GENERAL
 
 // LOGIN
-ipcMain.on('get-account-credentials', (event) => {
-  console.log(`[+] Attempting to retrieve saved account credentials from ${accountPath}`)
-
-  let credentials = {}
-
-  if (!fs.existsSync(accountPath)) {
-    console.log("[!] account.json doesn't exist")
-    event.returnValue = {
-      success: false
-    }
-    return
-  }
-
-  // Maybe use readFile instead
-  credentials = JSON.parse(fs.readFileSync(accountPath))
-
-  console.log('[+] Retrieved saved account')
-
-  event.returnValue = {
-    success: true,
-    method: credentials.method,
-    username: credentials.username,
-    password: credentials.password
-  }
-})
-
 ipcMain.on('save-account-credentials', (event, method, username, password) => {
   console.log('[+] Saving account credentials')
 
