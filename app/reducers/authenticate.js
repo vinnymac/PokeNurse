@@ -4,7 +4,8 @@ import {
   handleActions
 } from 'redux-actions'
 import {
-  remote
+  remote,
+  ipcRenderer
 } from 'electron'
 
 const accountPath = path.join(remote.app.getPath('appData'), '/pokenurse/account.json')
@@ -31,8 +32,13 @@ const initialState = {
 }
 
 export default handleActions({
-  USER_LOGIN(state) {
+  USER_LOGIN_SUCCESS(state) {
     return Object.assign({}, state, { loggedIn: true })
+  },
+
+  USER_LOGIN_FAILED(state, action) {
+    ipcRenderer.send('error-message', action.payload.error)
+    return Object.assign({}, state, { loggedIn: false })
   },
 
   USER_LOGOUT(state) {

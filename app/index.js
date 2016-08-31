@@ -3,19 +3,9 @@ import React, {
 } from 'react'
 import ReactDOM from 'react-dom'
 import {
-  ipcRenderer
-} from 'electron'
-import {
   Provider,
   connect
 } from 'react-redux'
-import {
-  bindActionCreators
-} from 'redux'
-
-import {
-  login
-} from './actions'
 
 import store from './store'
 import Login from './screens/Login'
@@ -29,12 +19,6 @@ const App = React.createClass({
     authenticate: PropTypes.object.isRequired
   },
 
-  componentDidMount() {
-    ipcRenderer.on('pokemon-logged-in', () => {
-      this.props.login()
-    })
-  },
-
   render() {
     if (this.props.authenticate.loggedIn) return (<Table />)
 
@@ -44,8 +28,6 @@ const App = React.createClass({
 
 const ConnectedApp = connect((state => ({
   authenticate: state.authenticate
-})), (dispatch =>
-  bindActionCreators({ login }, dispatch)
-))(App)
+})))(App)
 
 ReactDOM.render(<Provider store={store}><ConnectedApp /></Provider>, document.getElementById('content'))

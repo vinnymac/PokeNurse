@@ -4,7 +4,11 @@ import React, {
 import { ipcRenderer } from 'electron'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { checkAndDeleteCredentials, saveAccountCredentials } from '../../../actions'
+import {
+  checkAndDeleteCredentials,
+  saveAccountCredentials,
+  login
+} from '../../../actions'
 
 const AUTH_METHODS = {
   ptc: 'ptc',
@@ -18,6 +22,7 @@ const LoginForm = React.createClass({
     credentials: PropTypes.object,
     checkAndDeleteCredentials: PropTypes.func.isRequired,
     saveAccountCredentials: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
   },
 
   getInitialState() {
@@ -139,22 +144,25 @@ const LoginForm = React.createClass({
       return
     }
 
+    const credentials = {
+      method,
+      username: this.username.value,
+      password: this.password.value
+    }
+
     if (this.rememberMe.checked) {
-      this.props.saveAccountCredentials({
-        method,
-        username: this.username.value,
-        password: this.password.value
-      })
+      this.props.saveAccountCredentials(credentials)
     } else {
       this.props.checkAndDeleteCredentials()
     }
 
-    ipcRenderer.send('pokemon-login', method, this.username.value, this.password.value)
+    this.props.login(credentials)
   }
 })
 
 
 export default connect(null, (dispatch => bindActionCreators({
   checkAndDeleteCredentials,
-  saveAccountCredentials
+  saveAccountCredentials,
+  login
 }, dispatch)))(LoginForm)

@@ -4,10 +4,12 @@ import {
 
 import status from './status'
 import authenticate from './authenticate'
+import trainer from './trainer'
 
 const appReducer = combineReducers({
   status,
-  authenticate
+  authenticate,
+  trainer
 })
 
 export default (state, action) => {

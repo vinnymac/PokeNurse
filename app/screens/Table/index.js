@@ -16,7 +16,9 @@ import CheckCounter from './components/CheckCounter'
 import confirmDialog from '../ConfirmationDialog'
 import {
   updateStatus,
-  logout
+  logout,
+  getTrainerInfo,
+  getTrainerPokemon
 } from '../../actions'
 import {
   Immutable,
@@ -54,10 +56,10 @@ function randomDelay(min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
-function setBackgroundImage(team) {
-  const navbar = document.getElementById('navbar')
+function getHeaderBackgroundStyles(team) {
   let teamName = null
   let teamColor = null
+
   switch (team) {
     case 1:
       teamName = 'mystic'
@@ -74,16 +76,22 @@ function setBackgroundImage(team) {
     default:
   }
 
-  navbar.style.backgroundColor = teamColor
-  navbar.style.backgroundImage = `url("./imgs/${teamName}.jpg")`
-  navbar.style.backgroundRepeat = 'no-repeat'
+  return {
+    backgroundColor: teamColor,
+    backgroundImage: `url("./imgs/${teamName}.jpg")`,
+    backgroundRepeat: 'no-repeat'
+  }
 }
 
 const Table = React.createClass({
 
   propTypes: {
     updateStatus: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    getTrainerInfo: PropTypes.func.isRequired,
+    trainerData: PropTypes.node,
+    getTrainerPokemon: PropTypes.func.isRequired,
+    monsters: PropTypes.node
   },
 
   childContextTypes: {
@@ -91,12 +99,10 @@ const Table = React.createClass({
   },
 
   getInitialState() {
-    const monsters = ipcRenderer.sendSync('get-players-pokemons')
     const sortBy = 'pokemon_id'
     const sortDir = 'ASC'
 
     return {
-      monsters: this.getNewMonsters(monsters, sortBy, sortDir),
       filterBy: '',
       sortBy,
       sortDir
@@ -116,16 +122,10 @@ const Table = React.createClass({
       this.setState({ monsters: this.getNewMonsters(data, this.state.sortBy, this.state.sortDir) })
     })
 
-    const usernameH = document.getElementById('username-h')
+    // Fetch the latest trainer info
+    this.props.getTrainerInfo()
 
-    const playerInfo = ipcRenderer.sendSync('get-player-info')
-    if (playerInfo.success) {
-      setBackgroundImage(playerInfo.player_data.team)
-
-      usernameH.innerHTML = playerInfo.player_data.username
-    } else {
-      ipcRenderer.send('error-message', 'Failed in retrieving player info.  Please restart.')
-    }
+    this.props.getTrainerPokemon()
 
     ipcRenderer.send('table-did-mount')
 
@@ -142,20 +142,35 @@ const Table = React.createClass({
     // <!--<h5 id="pokestorage-h"></h5>
     // <h5 id="bagstorage-h"></h5>-->
     const {
-      monsters,
       filterBy,
       sortBy,
       sortDir
     } = this.state
 
+    const {
+      trainerData,
+      monsters
+    } = this.props
+
+    const username = trainerData ? trainerData.username : ''
+    const backgroundHeaderStyles = trainerData ? getHeaderBackgroundStyles(trainerData) : {}
+
+    // TODO let parts of the screen render without monsters
+    if (!monsters) return null
+
     return (
       <div>
         <div className="container">
-          <nav className="navbar navbar-inverse navbar-fixed-top" id="navbar">
+          <nav
+            className="navbar navbar-inverse navbar-fixed-top"
+            style={backgroundHeaderStyles}
+          >
             <div className="navbar-header username">
               {' '}
               <strong>
-                <span id="username-h" />
+                <span id="username-h">
+                  {username}
+                </span>
               </strong>
             </div>
             <div className="navbar-right">
@@ -486,4 +501,12 @@ const Table = React.createClass({
   }
 })
 
-export default connect(null, (dispatch => bindActionCreators({ updateStatus, logout }, dispatch)))(Table)
+export default connect((state => ({
+  trainerData: state.trainer.trainerData,
+  monsters: state.trainer.monsters
+})), (dispatch => bindActionCreators({
+  updateStatus,
+  logout,
+  getTrainerInfo,
+  getTrainerPokemon
+}, dispatch)))(Table)

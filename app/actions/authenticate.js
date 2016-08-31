@@ -1,4 +1,5 @@
 import path from 'path'
+import pogobuf from 'pogobuf'
 import {
   remote
 } from 'electron'
@@ -14,13 +15,39 @@ const saveAccountCredentialsSuccess = createAction('SAVE_ACCOUNT_CREDENTIALS_SUC
 const checkAndDeleteCredentialsFailed = createAction('CHECK_AND_DELETE_CREDENTIALS_FAILED')
 const checkAndDeleteCredentialsSuccess = createAction('CHECK_AND_DELETE_CREDENTIALS_SUCCESS')
 
+const userLoginSuccess = createAction('USER_LOGIN_SUCCESS')
+const userLoginFailed = createAction('USER_LOGIN_FAILED')
+
 const accountPath = path.join(remote.app.getPath('appData'), '/pokenurse/account.json')
 
+export const client = new pogobuf.Client()
+
 export default {
-  saveAccountCredentialsFailed,
-  saveAccountCredentialsSuccess,
-  login: createAction('USER_LOGIN'),
+  login({ method, username, password }) {
+    return async (dispatch) => {
+      let login
+      if (method === 'google') {
+        login = new pogobuf.GoogleLogin()
+      } else {
+        login = new pogobuf.PTCLogin()
+      }
+
+      try {
+        const token = await login.login(username, password)
+
+        client.setAuthInfo(method, token)
+        client.init()
+
+        dispatch(userLoginSuccess())
+      } catch (error) {
+        console.error(error) // eslint-disable-line
+        dispatch(userLoginFailed({ error }))
+      }
+    }
+  },
+
   logout: createAction('USER_LOGOUT'),
+
   checkAndDeleteCredentials() {
     return async (dispatch) => {
       try {
@@ -33,6 +60,7 @@ export default {
       }
     }
   },
+
   saveAccountCredentials(creds) {
     const credentials = JSON.stringify(creds)
 
