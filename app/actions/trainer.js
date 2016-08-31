@@ -137,6 +137,8 @@ const getTrainerPokemonSuccess = createAction('GET_TRAINER_POKEMON_SUCCESS')
 const getTrainerPokemonFailed = createAction('GET_TRAINER_POKEMON_FAILED')
 
 export default {
+  updateMonster: createAction('UPDATE_MONSTER'),
+  updateSpecies: createAction('UPDATE_SPECIES'),
   getTrainerInfo() {
     return async (dispatch) => {
       try {
@@ -161,23 +163,12 @@ export default {
         const inventory = await client.getInventory(0)
 
         if (!inventory.success) {
-          // const payload = { success: false }
-          // if (sync !== 'sync') {
-          //   event.sender.send('receive-players-pokemons', payload)
-          //   return
-          // }
-          // event.returnValue = payload
           dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
           return
         }
 
         const payload = parseInventory(inventory)
 
-        // if (sync === 'sync') {
-        //   event.returnValue = payload
-        // } else {
-        //   event.sender.send('receive-players-pokemons', payload)
-        // }
         dispatch(getTrainerPokemonSuccess(payload))
       } catch (error) {
         dispatch(getTrainerPokemonFailed(error))

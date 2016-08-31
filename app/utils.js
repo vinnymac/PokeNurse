@@ -343,6 +343,18 @@ const Immutable = {
   }
 }
 
+const COLUMN_SORT_AS_NUM = {
+  nickname: false,
+  iv: true,
+  cp: true,
+  favorite: true,
+  pokemon_id: true,
+  name: false,
+  count: true,
+  candy: true,
+  evolves: true
+}
+
 const Organize = {
   sortAsString(array, sortBy, sortDir) {
     array.sort((a, b) => {
@@ -364,7 +376,31 @@ const Organize = {
 
       return b[sortBy] - a[sortBy]
     })
+  },
+
+  getSortedPokemon(specie, sortBy, sortDir) {
+    const pokemon = specie.pokemon.slice()
+
+    if (!sortBy && !sortDir) {
+      // Hacky way of retrieving the current sort state of species.jsx
+      if (this.speciesTable) {
+        const sortState = this.speciesTable.getSortState(specie)
+        sortBy = sortState.sortBy
+        sortDir = sortState.sortDir
+      } else {
+        sortBy = 'cp'
+        sortDir = 'DESC'
+      }
+    }
+
+    if (COLUMN_SORT_AS_NUM[sortBy]) {
+      Organize.sortAsNumber(pokemon, sortBy, sortDir)
+    } else {
+      Organize.sortAsString(pokemon, sortBy, sortDir)
+    }
+
+    return pokemon
   }
 }
 
-export { utils as default, Immutable, Organize }
+export { utils as default, Immutable, Organize, COLUMN_SORT_AS_NUM }

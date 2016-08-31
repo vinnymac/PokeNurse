@@ -18,27 +18,17 @@ import {
   updateStatus,
   logout,
   getTrainerInfo,
-  getTrainerPokemon
+  getTrainerPokemon,
+  updateSpecies,
+  updateMonster
 } from '../../actions'
 import {
-  Immutable,
-  Organize
+  Organize,
+  COLUMN_SORT_AS_NUM
 } from '../../utils'
 
 window.$ = window.jQuery = $
 require('bootstrap')
-
-const COLUMN_SORT_AS_NUM = {
-  nickname: false,
-  iv: true,
-  cp: true,
-  favorite: true,
-  pokemon_id: true,
-  name: false,
-  count: true,
-  candy: true,
-  evolves: true
-}
 
 let running = false
 
@@ -91,7 +81,9 @@ const Table = React.createClass({
     getTrainerInfo: PropTypes.func.isRequired,
     trainerData: PropTypes.object,
     getTrainerPokemon: PropTypes.func.isRequired,
-    monsters: PropTypes.object
+    monsters: PropTypes.object,
+    updateSpecies: PropTypes.func.isRequired,
+    updateMonster: PropTypes.func.isRequired
   },
 
   childContextTypes: {
@@ -118,9 +110,9 @@ const Table = React.createClass({
   componentDidMount() {
     document.title = 'PokéNurse • Home'
 
-    ipcRenderer.on('receive-players-pokemons', (event, data) => {
-      this.setState({ monsters: this.getNewMonsters(data, this.state.sortBy, this.state.sortDir) })
-    })
+    // ipcRenderer.on('receive-players-pokemons', (event, data) => {
+    //   this.setState({ monsters: this.getNewMonsters(data, this.state.sortBy, this.state.sortDir) })
+    // })
 
     // Fetch the latest trainer info
     this.props.getTrainerInfo()
@@ -281,34 +273,11 @@ const Table = React.createClass({
   },
 
   updateMonster(pokemon, options = {}) {
-    const speciesIndex = pokemon.pokemon_id - 1
-
-    const updatedPokemon = options.remove ? null : pokemon
-
-    this.updateSpecies(speciesIndex, (speciesAtIndex) => {
-      const index = speciesAtIndex.pokemon.findIndex((p) => p.id === pokemon.id)
-
-      const sorted = this.getSortedPokemon(Object.assign({}, speciesAtIndex, {
-        pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, updatedPokemon)
-      }))
-
-      return { // make sure we sort the new pokemon index now that we updated it
-        pokemon: sorted
-      }
-    })
+    this.props.updateMonster({ pokemon, options })
   },
 
   updateSpecies(index, updater) {
-    const speciesAtIndex = this.state.monsters.species[index]
-    const updatedSpecies = Object.assign({}, speciesAtIndex, updater(speciesAtIndex))
-
-    const updatedMonsters = Object.assign({}, this.state.monsters, {
-      species: Immutable.array.set(this.state.monsters.species, index, updatedSpecies)
-    })
-
-    this.setState({
-      monsters: updatedMonsters
-    })
+    this.props.updateSpecies({ index, updater })
   },
 
   onFilterChange(event) {
@@ -451,8 +420,8 @@ const Table = React.createClass({
       newSortDir = 'DESC'
     }
 
-    const monsters = Object.assign({}, this.state.monsters, {
-      species: this.getSortedSpecies(this.state.monsters, newSortBy, newSortDir)
+    const monsters = Object.assign({}, this.props.monsters, {
+      species: this.getSortedSpecies(this.props.monsters, newSortBy, newSortDir)
     })
 
     this.setState({
@@ -508,5 +477,7 @@ export default connect((state => ({
   updateStatus,
   logout,
   getTrainerInfo,
-  getTrainerPokemon
+  getTrainerPokemon,
+  updateSpecies,
+  updateMonster
 }, dispatch)))(Table)
