@@ -89,9 +89,9 @@ const Table = React.createClass({
     updateStatus: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     getTrainerInfo: PropTypes.func.isRequired,
-    trainerData: PropTypes.node,
+    trainerData: PropTypes.object,
     getTrainerPokemon: PropTypes.func.isRequired,
-    monsters: PropTypes.node
+    monsters: PropTypes.object
   },
 
   childContextTypes: {
@@ -153,7 +153,7 @@ const Table = React.createClass({
     } = this.props
 
     const username = trainerData ? trainerData.username : ''
-    const backgroundHeaderStyles = trainerData ? getHeaderBackgroundStyles(trainerData) : {}
+    const backgroundHeaderStyles = trainerData ? getHeaderBackgroundStyles(trainerData.team) : {}
 
     // TODO let parts of the screen render without monsters
     if (!monsters) return null

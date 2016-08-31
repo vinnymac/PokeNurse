@@ -21,7 +21,7 @@ export default handleActions({
   },
 
   GET_TRAINER_POKEMON_SUCCESS(state, action) {
-    return Object.assign({}, state, action.payload)
+    return Object.assign({}, state, { monsters: action.payload })
   },
 
   GET_TRAINER_POKEMON_FAILED(state, action) {

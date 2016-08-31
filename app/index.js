@@ -15,7 +15,6 @@ require('./css/pokenurse.css')
 
 const App = React.createClass({
   propTypes: {
-    login: PropTypes.func.isRequired,
     authenticate: PropTypes.object.isRequired
   },
 

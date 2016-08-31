@@ -20,9 +20,11 @@ const userLoginFailed = createAction('USER_LOGIN_FAILED')
 
 const accountPath = path.join(remote.app.getPath('appData'), '/pokenurse/account.json')
 
-export const client = new pogobuf.Client()
+const client = new pogobuf.Client()
 
 export default {
+  client,
+
   login({ method, username, password }) {
     return async (dispatch) => {
       let login
