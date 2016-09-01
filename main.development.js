@@ -223,16 +223,4 @@ ipcMain.on('evolve-pokemon', async (event, pokemon, delay) => {
     console.error(error)
   }
 })
-
-ipcMain.on('rename-pokemon', async (event, id, nickname) => {
-  try {
-    await client.nicknamePokemon(id, nickname)
-
-    console.log(`[+] Pokemon ${id} nicknamed ${nickname}`)
-
-    event.sender.send('rename-pokemon-complete', id, nickname)
-  } catch (error) {
-    console.error(error)
-  }
-})
 // END OF POKEMON
