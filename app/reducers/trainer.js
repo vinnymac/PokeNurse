@@ -5,6 +5,8 @@ import {
   ipcRenderer
 } from 'electron'
 
+import every from 'lodash/every'
+
 import { Immutable, Organize } from '../utils'
 
 const {
@@ -19,7 +21,8 @@ const initialState = {
   sortBy: 'pokemon_id',
   sortDir: 'ASC',
   showSpeciesWithZeroPokemon: true,
-  speciesState: null
+  speciesState: null,
+  selectedCount: 0,
 }
 
 function getInitialPokemonState(specie) {
@@ -36,6 +39,8 @@ function getNewSpeciesState(state) {
   const sortBy = 'cp'
   const sortDir = 'DESC'
 
+  let selectedCount = 0
+
   state.monsters.species.forEach((specie) => {
     const pid = String(specie.pokemon_id)
     let existingSpecieState = null
@@ -50,7 +55,9 @@ function getNewSpeciesState(state) {
         // pokemon already exists
         if (existingSpecieState.pokemonState[p.id]) {
           updatedSpecieState.pokemonState[p.id] = existingSpecieState.pokemonState[p.id]
-          checkAll = checkAll && updatedSpecieState.pokemonState[p.id].check
+          const isChecked = updatedSpecieState.pokemonState[p.id].check
+          checkAll = checkAll && isChecked
+          if (isChecked) selectedCount++
         // pokemon does not exist
         } else {
           updatedSpecieState.pokemonState[p.id] = { check: false }
@@ -71,7 +78,10 @@ function getNewSpeciesState(state) {
     }
   })
 
-  return speciesState
+  return {
+    speciesState,
+    selectedCount
+  }
 }
 
 // TODO Utils
@@ -91,6 +101,7 @@ function getNewMonsters(state, monsters, sortBy, sortDir) {
   })
 }
 
+// Anytime the speciesState changes we should recount selected
 function updateSpecies(state, index, updater) {
   const speciesAtIndex = state.monsters.species[index]
   const updatedSpecies = Object.assign({}, speciesAtIndex, updater(speciesAtIndex))
@@ -103,8 +114,14 @@ function updateSpecies(state, index, updater) {
     monsters: updatedMonsters
   })
 
+  const {
+    speciesState,
+    selectedCount
+  } = getNewSpeciesState(updatedStateWithMonsters)
+
   return Object.assign({}, updatedStateWithMonsters, {
-    speciesState: getNewSpeciesState(updatedStateWithMonsters)
+    speciesState,
+    selectedCount
   })
 }
 
@@ -122,6 +139,18 @@ function updateSpeciesState(state, id, updater) {
   )
 
   return Object.assign({}, speciesState, newSpecieState)
+}
+
+function updatePokemonState(speciesState, pid, updater) {
+  const existingPokemonByIdState = speciesState.pokemonState[String(pid)]
+
+  const newPokemonByIdState = {}
+  newPokemonByIdState[String(pid)] = Object.assign(
+    {},
+    existingPokemonByIdState,
+    updater(existingPokemonByIdState)
+  )
+  return Object.assign({}, speciesState.pokemonState, newPokemonByIdState)
 }
 
 function updateMonster(state, pokemon, options = {}) {
@@ -157,9 +186,15 @@ export default handleActions({
 
     const updatedStateWithMonsters = Object.assign({}, state, { monsters })
 
+    const {
+      speciesState,
+      selectedCount
+    } = getNewSpeciesState(updatedStateWithMonsters)
+
     // TODO always sort the data before we return it
     return Object.assign({}, updatedStateWithMonsters, {
-      speciesState: getNewSpeciesState(updatedStateWithMonsters)
+      speciesState,
+      selectedCount
     })
   },
 
@@ -272,5 +307,94 @@ export default handleActions({
     return Object.assign({}, state, {
       showSpeciesWithZeroPokemon: !state.showSpeciesWithZeroPokemon
     })
-  }
+  },
+
+  COLLAPSE_BY_SPECIES(state, action) {
+    const specie = action.payload
+
+    if (specie.count < 1) return state
+
+    return Object.assign({}, state, {
+      speciesState: updateSpeciesState(state, specie.pokemon_id, (speciesState) => {
+        const newCollapsed = !speciesState.collapsed
+
+        return { collapsed: newCollapsed }
+      })
+    })
+  },
+
+  CHECK_ALL_BY_SPECIES(state, action) {
+    const species = action.payload
+
+    let selectedCount = state.selectedCount
+
+    const speciesState = updateSpeciesState(state, species.pokemon_id, (specieState) => {
+      const newCheckAllState = !specieState.checkAll
+      const newPokemonState = {}
+      const ids = Object.keys(specieState.pokemonState)
+
+      ids.forEach(id => {
+        if (newCheckAllState !== specieState.pokemonState[id].check) {
+          if (newCheckAllState) {
+            selectedCount++
+          } else {
+            selectedCount--
+          }
+        }
+
+        newPokemonState[id] = Object.assign(
+          {},
+          specieState.pokemonState[id],
+          { check: newCheckAllState }
+        )
+      })
+
+      return {
+        checkAll: newCheckAllState,
+        pokemonState: newPokemonState
+      }
+    })
+
+    return Object.assign({}, state, {
+      speciesState,
+      selectedCount
+    })
+  },
+
+  CHECK_POKEMON(state, action) {
+    const pokemon = action.payload
+
+    let selectedCount = state.selectedCount
+
+    const speciesState = updateSpeciesState(state,
+      String(pokemon.pokemon_id),
+      (specieState) => {
+        const updatedPokemonState = updatePokemonState(
+          specieState,
+          String(pokemon.id),
+          (pokemonState) => {
+            const newChecked = !pokemonState.check
+
+            if (newChecked) {
+              selectedCount++
+            } else {
+              selectedCount--
+            }
+
+            return { check: newChecked }
+          }
+        )
+
+        return {
+          checkAll: every(updatedPokemonState, { check: true }),
+          pokemonState: updatedPokemonState
+        }
+      }
+    )
+
+    return Object.assign({}, state, {
+      speciesState,
+      selectedCount
+    })
+  },
 }, initialState)

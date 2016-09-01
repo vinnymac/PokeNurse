@@ -143,7 +143,7 @@ const Table = React.createClass({
                 <SpeciesCounter monsters={monsters} />
                 {' | '}
                 <span>
-                  <CheckCounter ref={(c) => { this.checkCounter = c }} />
+                  <CheckCounter />
                 </span>
               </div>
             </div>
@@ -213,7 +213,6 @@ const Table = React.createClass({
             sortBy={sortBy}
             sortDir={sortDir}
             sortSpeciesBy={this.sortSpeciesBy}
-            updateCheckedCount={this.updateCheckedCount}
           />
         </div>
 
@@ -236,10 +235,6 @@ const Table = React.createClass({
         />
       </div>
     )
-  },
-
-  updateCheckedCount(count) {
-    this.checkCounter.handleRecount(count)
   },
 
   updateMonster(pokemon, options = {}) {
@@ -392,9 +387,6 @@ const Table = React.createClass({
 
   removeMonster(pokemon) {
     this.updateMonster(pokemon, { remove: true })
-    // TODO this happens whether or not we find something to remove
-    // we should only update the count if we successfully remove
-    this.updateCheckedCount(-1)
   },
 
   handleEvolveCompleted(pokemon) {

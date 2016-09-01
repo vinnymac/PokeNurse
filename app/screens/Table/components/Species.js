@@ -4,12 +4,13 @@ import React, {
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import every from 'lodash/every'
-
 import {
   updateMonsterSort,
   updateSpecies,
-  sortSpecies
+  sortSpecies,
+  checkPokemon,
+  checkAllBySpecies,
+  collapseBySpecies,
 } from '../../../actions'
 
 import PokemonTable from './Pokemon'
@@ -18,7 +19,6 @@ const Species = React.createClass({
   displayName: 'Species',
 
   propTypes: {
-    updateCheckedCount: PropTypes.func,
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
     filterBy: PropTypes.string,
@@ -28,7 +28,10 @@ const Species = React.createClass({
     updateMonsterSort: PropTypes.func.isRequired,
     showSpeciesWithZeroPokemon: PropTypes.bool.isRequired,
     updateSpecies: PropTypes.func.isRequired,
-    speciesState: PropTypes.object
+    speciesState: PropTypes.object,
+    checkPokemon: PropTypes.func.isRequired,
+    checkAllBySpecies: PropTypes.func.isRequired,
+    collapseBySpecies: PropTypes.func.isRequired,
   },
 
   render() {
@@ -195,34 +198,6 @@ const Species = React.createClass({
     return 'sorting'
   },
 
-  updateSpeciesState(id, updater) {
-    const {
-      speciesState
-    } = this.props
-    const newSpecieState = {}
-    const existingSpecieState = speciesState[String(id)]
-
-    newSpecieState[String(id)] = Object.assign(
-      {},
-      existingSpecieState,
-      updater(existingSpecieState)
-    )
-
-    return Object.assign({}, speciesState, newSpecieState)
-  },
-
-  updatePokemonState(speciesState, pid, updater) {
-    const existingPokemonByIdState = speciesState.pokemonState[String(pid)]
-
-    const newPokemonByIdState = {}
-    newPokemonByIdState[String(pid)] = Object.assign(
-      {},
-      existingPokemonByIdState,
-      updater(existingPokemonByIdState)
-    )
-    return Object.assign({}, speciesState.pokemonState, newPokemonByIdState)
-  },
-
   // TODO: This should be an action
   sortPokemonBy(newSortBy, speciesIndex) {
     const {
@@ -266,68 +241,15 @@ const Species = React.createClass({
 
   // TODO: This should be an action, this.props.collapseBySpecies
   handleCollapse(specie) {
-    if (specie.count < 1) return
-
-    this.props.updateMonsterSort({
-      speciesState: this.updateSpeciesState(specie.pokemon_id, (speciesState) => {
-        const newCollapsed = !speciesState.collapsed
-
-        return { collapsed: newCollapsed }
-      })
-    })
+    this.props.collapseBySpecies(specie)
   },
 
-  // TODO: This should be an action, this.props.checkAllBySpecies
   handleCheckAll(species) {
-    this.props.updateMonsterSort({
-      speciesState: this.updateSpeciesState(species.pokemon_id, (speciesState) => {
-        const newCheckAllState = !speciesState.checkAll
-        const newPokemonState = {}
-        const ids = Object.keys(speciesState.pokemonState)
-
-        ids.forEach(id => {
-          if (newCheckAllState !== speciesState.pokemonState[id].check) {
-            this.props.updateCheckedCount(newCheckAllState ? 1 : -1)
-          }
-
-          newPokemonState[id] = Object.assign(
-            {},
-            speciesState.pokemonState[id],
-            { check: newCheckAllState }
-          )
-        })
-
-        return {
-          checkAll: newCheckAllState,
-          pokemonState: newPokemonState
-        }
-      })
-    })
+    this.props.checkAllBySpecies(species)
   },
 
-  // TODO: This should be an action, this.props.checkPokemon
   handleCheckedChange(pokemon) {
-    this.props.updateMonsterSort({
-      speciesState: this.updateSpeciesState(
-        String(pokemon.pokemon_id),
-        (speciesState) => {
-          const updatedPokemonState = this.updatePokemonState(
-            speciesState,
-            String(pokemon.id),
-            (pokemonState) => {
-              const newChecked = !pokemonState.check
-              this.props.updateCheckedCount(newChecked ? 1 : -1)
-              return { check: newChecked }
-            }
-          )
-
-          return {
-            checkAll: every(updatedPokemonState, { check: true }),
-            pokemonState: updatedPokemonState
-          }
-        }
-      )
-    })
+    this.props.checkPokemon(pokemon)
   },
 
   handleSortSpecies(sortBy) {
@@ -342,5 +264,8 @@ export default connect((state => ({
 })), (dispatch => bindActionCreators({
   updateMonsterSort,
   updateSpecies,
-  sortSpecies
+  sortSpecies,
+  checkPokemon,
+  checkAllBySpecies,
+  collapseBySpecies,
 }, dispatch)))(Species)
