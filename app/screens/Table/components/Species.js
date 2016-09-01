@@ -264,12 +264,12 @@ const Species = React.createClass({
     return { sortBy, sortDir }
   },
 
-  // TODO: This should be an action
+  // TODO: This should be an action, this.props.collapseBySpecies
   handleCollapse(specie) {
     if (specie.count < 1) return
 
     this.props.updateMonsterSort({
-      species: this.updateSpeciesState(specie.pokemon_id, (speciesState) => {
+      speciesState: this.updateSpeciesState(specie.pokemon_id, (speciesState) => {
         const newCollapsed = !speciesState.collapsed
 
         return { collapsed: newCollapsed }
@@ -277,10 +277,10 @@ const Species = React.createClass({
     })
   },
 
-  // TODO: This should be an action
+  // TODO: This should be an action, this.props.checkAllBySpecies
   handleCheckAll(species) {
     this.props.updateMonsterSort({
-      species: this.updateSpeciesState(species.pokemon_id, (speciesState) => {
+      speciesState: this.updateSpeciesState(species.pokemon_id, (speciesState) => {
         const newCheckAllState = !speciesState.checkAll
         const newPokemonState = {}
         const ids = Object.keys(speciesState.pokemonState)
@@ -305,7 +305,7 @@ const Species = React.createClass({
     })
   },
 
-  // TODO: This should be an action
+  // TODO: This should be an action, this.props.checkPokemon
   handleCheckedChange(pokemon) {
     this.props.updateMonsterSort({
       speciesState: this.updateSpeciesState(
@@ -334,7 +334,7 @@ const Species = React.createClass({
     this.props.sortSpeciesBy(sortBy)
   },
 
-  // TODO: This should be an action
+  // TODO: This should be an action, this.props.toggleShowSpeciesWithZeroPokemon
   toggleShowAllSpecies() {
     this.props.updateMonsterSort({
       showSpeciesWithZeroPokemon: !this.props.showSpeciesWithZeroPokemon
