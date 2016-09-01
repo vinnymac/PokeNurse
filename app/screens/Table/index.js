@@ -23,10 +23,11 @@ import {
   updateMonster,
   updateMonsterSort
 } from '../../actions'
-import {
-  Organize,
-  COLUMN_SORT_AS_NUM
-} from '../../utils'
+import { Organize } from '../../utils'
+
+const {
+  getSortedSpecies
+} = Organize
 
 window.$ = window.jQuery = $
 require('bootstrap')
@@ -86,23 +87,15 @@ const Table = React.createClass({
     updateSpecies: PropTypes.func.isRequired,
     updateMonster: PropTypes.func.isRequired,
     updateMonsterSort: PropTypes.func.isRequired,
-    speciesState: PropTypes.object
+    speciesState: PropTypes.object,
+    filterBy: PropTypes.string,
+    sortBy: PropTypes.string,
+    sortDir: PropTypes.string,
   },
 
   childContextTypes: {
     monsterUpdater: PropTypes.func.isRequired
   },
-
-  // getInitialState() {
-  //   const sortBy = 'pokemon_id'
-  //   const sortDir = 'ASC'
-  //
-  //   return {
-  //     filterBy: '',
-  //     sortBy,
-  //     sortDir
-  //   }
-  // },
 
   getChildContext() {
     return {
@@ -136,7 +129,7 @@ const Table = React.createClass({
       filterBy,
       sortBy,
       sortDir
-    } = this.state
+    } = this.props
 
     const {
       trainerData,
@@ -385,18 +378,6 @@ const Table = React.createClass({
     })
   },
 
-  getSortedSpecies(monsters, sortBy, sortDir) {
-    const species = monsters.species.slice()
-
-    if (COLUMN_SORT_AS_NUM[sortBy]) {
-      Organize.sortAsNumber(species, sortBy, sortDir)
-    } else {
-      Organize.sortAsString(species, sortBy, sortDir)
-    }
-
-    return species
-  },
-
   // TODO This should be an action, this.props.sortAllSpecies
   sortSpeciesBy(newSortBy) {
     const {
@@ -413,7 +394,7 @@ const Table = React.createClass({
     }
 
     const monsters = Object.assign({}, this.props.monsters, {
-      species: this.getSortedSpecies(this.props.monsters, newSortBy, newSortDir)
+      species: getSortedSpecies(this.props.monsters, newSortBy, newSortDir)
     })
 
     this.props.updateMonsterSort({
@@ -452,7 +433,10 @@ const Table = React.createClass({
 export default connect((state => ({
   trainerData: state.trainer.trainerData,
   monsters: state.trainer.monsters,
-  speciesState: state.trainer.speciesState
+  speciesState: state.trainer.speciesState,
+  sortBy: state.trainer.sortBy,
+  sortDir: state.trainer.sortDir,
+  filterBy: state.trainer.filterBy,
 })), (dispatch => bindActionCreators({
   updateStatus,
   logout,

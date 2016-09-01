@@ -5,7 +5,12 @@ import {
   ipcRenderer
 } from 'electron'
 
-import { Immutable, getSortedPokemon, getSortedSpecies } from '../utils'
+import { Immutable, Organize } from '../utils'
+
+const {
+  getSortedPokemon,
+  getSortedSpecies
+} = Organize
 
 const initialState = {
   trainerData: null,
@@ -75,7 +80,10 @@ function getNewMonsters(state, monsters, sortBy, sortDir) {
 
   // Mutates, but it is okay because we sliced/sorted above ^
   sortedSpecies.forEach((specie) => {
-    specie.pokemon = getSortedPokemon(specie, state.speciesState[specie.pokemon_id])
+    // we don't have a specieState on start, sort will fallback to defaults
+    const specieState = state.speciesState ? state.speciesState[specie.pokemon_id] : null
+
+    specie.pokemon = getSortedPokemon(specie, specieState)
   })
 
   return Object.assign({}, monsters, {
