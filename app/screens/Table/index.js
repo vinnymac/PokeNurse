@@ -17,7 +17,6 @@ import confirmDialog from '../ConfirmationDialog'
 import {
   updateStatus,
   logout,
-  getTrainerInfo,
   getTrainerPokemon,
   updateSpecies,
   updateMonster,
@@ -80,7 +79,6 @@ const Table = React.createClass({
   propTypes: {
     updateStatus: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
-    getTrainerInfo: PropTypes.func.isRequired,
     trainerData: PropTypes.object,
     getTrainerPokemon: PropTypes.func.isRequired,
     monsters: PropTypes.object,
@@ -105,11 +103,6 @@ const Table = React.createClass({
 
   componentDidMount() {
     document.title = 'PokéNurse • Home'
-
-    // Fetch the latest trainer info
-    this.props.getTrainerInfo()
-
-    this.props.getTrainerPokemon()
 
     ipcRenderer.send('table-did-mount')
 
@@ -440,7 +433,6 @@ export default connect((state => ({
 })), (dispatch => bindActionCreators({
   updateStatus,
   logout,
-  getTrainerInfo,
   getTrainerPokemon,
   updateSpecies,
   updateMonster,

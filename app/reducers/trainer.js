@@ -148,7 +148,7 @@ export default handleActions({
   },
 
   GET_TRAINER_INFO_FAILED(state, action) {
-    ipcRenderer.send('error-message', action.payload)
+    ipcRenderer.send('error-message', String(action.payload))
     return state
   },
 

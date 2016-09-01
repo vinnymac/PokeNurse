@@ -6,7 +6,7 @@ import keyBy from 'lodash/keyBy'
 import pogobuf from 'pogobuf'
 import POGOProtos from 'node-pogo-protos'
 
-import { client } from './authenticate'
+import client from '../client'
 
 // TODO Must move these helpers to app folder
 import utils from '../utils'

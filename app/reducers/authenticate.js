@@ -37,7 +37,7 @@ export default handleActions({
   },
 
   USER_LOGIN_FAILED(state, action) {
-    ipcRenderer.send('error-message', action.payload.error)
+    ipcRenderer.send('error-message', String(action.payload.error))
     return Object.assign({}, state, { loggedIn: false })
   },
 

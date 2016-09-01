@@ -9,6 +9,13 @@ import {
 
 import * as fs from 'async-file'
 
+import client from '../client'
+
+import {
+  getTrainerInfo,
+  getTrainerPokemon
+} from './trainer'
+
 const saveAccountCredentialsFailed = createAction('SAVE_ACCOUNT_CREDENTIALS_FAILED')
 const saveAccountCredentialsSuccess = createAction('SAVE_ACCOUNT_CREDENTIALS_SUCCESS')
 
@@ -19,8 +26,6 @@ const userLoginSuccess = createAction('USER_LOGIN_SUCCESS')
 const userLoginFailed = createAction('USER_LOGIN_FAILED')
 
 const accountPath = path.join(remote.app.getPath('appData'), '/pokenurse/account.json')
-
-const client = new pogobuf.Client()
 
 export default {
   client,
@@ -39,6 +44,13 @@ export default {
 
         client.setAuthInfo(method, token)
         client.init()
+
+        // TODO display a loading spinner
+        // then fetch all necessary things
+        await Promise.all([
+          dispatch(getTrainerInfo()),
+          dispatch(getTrainerPokemon())
+        ])
 
         dispatch(userLoginSuccess())
       } catch (error) {
