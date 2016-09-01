@@ -244,5 +244,27 @@ export default handleActions({
   RENAME_POKEMON_FAILED(state, action) {
     console.error(action.payload) // eslint-disable-line
     return state
-  }
+  },
+
+  TRANSFER_POKEMON_SUCCESS(state, action) {
+    const pokemon = action.payload
+    console.info(`Transferred ${pokemon.id}`) // eslint-disable-line
+    return state
+  },
+
+  TRANSFER_POKEMON_FAILED(state, action) {
+    console.error(action.payload) // eslint-disable-line
+    return state
+  },
+
+  EVOLVE_POKEMON_SUCCESS(state, action) {
+    const pokemon = action.payload
+    console.info(`Evolved ${pokemon.id}`) // eslint-disable-line
+    return state
+  },
+
+  EVOLVE_POKEMON_FAILED(state, action) {
+    console.error(action.payload) // eslint-disable-line
+    return state
+  },
 }, initialState)

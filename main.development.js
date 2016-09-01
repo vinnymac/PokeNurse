@@ -1,6 +1,3 @@
-/* eslint no-console: 0 */
-
-import pogobuf from 'pogobuf'
 import {
   app,
   BrowserWindow,
@@ -15,13 +12,8 @@ const isOSX = process.platform === 'darwin'
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 let mainWindow = null
-let client = null
 
 if (isDevelopment) require('electron-debug')() // eslint-disable-line global-require
-
-function sleep(time) {
-  return new Promise(r => setTimeout(r, time))
-}
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -96,8 +88,6 @@ function createWindow() {
       }]).popup(mainWindow)
     })
   }
-
-  client = new pogobuf.Client()
 }
 
 //
@@ -181,7 +171,7 @@ ipcMain.on('confirmation-dialog', (event, method) => {
     message: `Are you sure you want to ${method} the selected Pokemon?`
   }, response => {
     if (response === 1) {
-      console.log(`[!] ${method} cancelled`)
+      console.log(`[!] ${method} cancelled`) // eslint-disable-line
       event.returnValue = {
         success: false
       }
@@ -198,29 +188,3 @@ ipcMain.on('confirmation-dialog', (event, method) => {
 ipcMain.on('table-did-mount', () => {
   mainWindow.setSize(900, 600, true)
 })
-
-// POKEMON
-ipcMain.on('transfer-pokemon', async (event, pokemon, delay) => {
-  try {
-    await sleep(delay)
-    await client.releasePokemon(pokemon.id)
-    console.log(`[+] Released Pokemon with id: ${pokemon.id}`)
-
-    event.sender.send('transfer-pokemon-complete', pokemon)
-  } catch (error) {
-    console.error(error)
-  }
-})
-
-ipcMain.on('evolve-pokemon', async (event, pokemon, delay) => {
-  try {
-    await sleep(delay)
-    await client.evolvePokemon(pokemon.id)
-    console.log(`[+] Evolved Pokemon with id: ${pokemon.id}`)
-
-    event.sender.send('evolve-pokemon-complete', pokemon)
-  } catch (error) {
-    console.error(error)
-  }
-})
-// END OF POKEMON

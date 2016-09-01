@@ -20,7 +20,9 @@ import {
   getTrainerPokemon,
   updateSpecies,
   updateMonster,
-  updateMonsterSort
+  updateMonsterSort,
+  evolvePokemon,
+  transferPokemon
 } from '../../actions'
 import { Organize } from '../../utils'
 
@@ -89,20 +91,14 @@ const Table = React.createClass({
     filterBy: PropTypes.string,
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
+    transferPokemon: PropTypes.func.isRequired,
+    evolvePokemon: PropTypes.func.isRequired
   },
 
   componentDidMount() {
     document.title = 'PokéNurse • Home'
 
     ipcRenderer.send('table-did-mount')
-
-    ipcRenderer.on('transfer-pokemon-complete', this.handleTransferCompleted)
-    ipcRenderer.on('evolve-pokemon-complete', this.handleEvolveCompleted)
-  },
-
-  componentWillUnmount() {
-    ipcRenderer.removeListener('transfer-pokemon-complete', this.handleTransferCompleted)
-    ipcRenderer.removeListener('evolve-pokemon-complete', this.handleEvolveCompleted)
   },
 
   render() {
@@ -299,7 +295,7 @@ const Table = React.createClass({
         this.handleCountDown(selectedPokemon, 'Transfer', selectedPokemon.length * 2.5)
 
         selectedPokemon.forEach((pokemon, index) => {
-          ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
+          this.props.transferPokemon(pokemon, index * randomDelay(2, 3))
         })
       },
 
@@ -316,7 +312,7 @@ const Table = React.createClass({
         this.handleCountDown(filteredPokemon, 'Transfer', filteredPokemon.length * 2.5)
 
         filteredPokemon.forEach((pokemon, index) => {
-          ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
+          this.props.transferPokemon(pokemon, index * randomDelay(2, 3))
         })
       }
     })
@@ -340,7 +336,7 @@ const Table = React.createClass({
         this.handleCountDown(selectedPokemon, 'Evolve', selectedPokemon.length * 27.5)
 
         selectedPokemon.forEach((pokemon, index) => {
-          ipcRenderer.send('evolve-pokemon', pokemon, index * randomDelay(25, 30))
+          this.props.evolvePokemon(pokemon, index * randomDelay(25, 30))
         })
       }
     })
@@ -426,5 +422,7 @@ export default connect((state => ({
   getTrainerPokemon,
   updateSpecies,
   updateMonster,
-  updateMonsterSort
+  updateMonsterSort,
+  evolvePokemon,
+  transferPokemon
 }, dispatch)))(Table)

@@ -131,6 +131,10 @@ function parseInventory(inventory) {
   }
 }
 
+function sleep(time) {
+  return new Promise(r => setTimeout(r, time))
+}
+
 const getTrainerInfoSuccess = createAction('GET_TRAINER_INFO_SUCCESS')
 const getTrainerInfoFailed = createAction('GET_TRAINER_INFO_FAILED')
 
@@ -145,6 +149,12 @@ const powerUpPokemonFailed = createAction('POWER_UP_POKEMON_FAILED')
 
 const renamePokemonSuccess = createAction('RENAME_POKEMON_SUCCESS')
 const renamePokemonFailed = createAction('RENAME_POKEMON_FAILED')
+
+const transferPokemonSuccess = createAction('TRANSFER_POKEMON_SUCCESS')
+const transferPokemonFailed = createAction('TRANSFER_POKEMON_FAILED')
+
+const evolvePokemonSuccess = createAction('EVOLVE_POKEMON_SUCCESS')
+const evolvePokemonFailed = createAction('EVOLVE_POKEMON_FAILED')
 
 function getTrainerInfo() {
   return async (dispatch) => {
@@ -233,6 +243,32 @@ function renamePokemon(pokemon, nickname, callback) {
   }
 }
 
+function transferPokemon(pokemon, delay) {
+  return async (dispatch) => {
+    try {
+      await sleep(delay)
+      await client.releasePokemon(pokemon.id)
+
+      dispatch(transferPokemonSuccess(pokemon))
+    } catch (error) {
+      dispatch(transferPokemonFailed(error))
+    }
+  }
+}
+
+function evolvePokemon(pokemon, delay) {
+  return async (dispatch) => {
+    try {
+      await sleep(delay)
+      await client.evolvePokemon(pokemon.id)
+
+      dispatch(evolvePokemonSuccess(pokemon))
+    } catch (error) {
+      dispatch(evolvePokemonFailed(error))
+    }
+  }
+}
+
 export default {
   updateMonster: createAction('UPDATE_MONSTER'),
   updateSpecies: createAction('UPDATE_SPECIES'),
@@ -243,4 +279,6 @@ export default {
   powerUpPokemon,
   toggleFavoritePokemon,
   renamePokemon,
+  transferPokemon,
+  evolvePokemon,
 }
