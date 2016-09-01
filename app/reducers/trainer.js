@@ -99,9 +99,12 @@ function updateSpecies(state, index, updater) {
     species: Immutable.array.set(state.monsters.species, index, updatedSpecies)
   })
 
-  return Object.assign({}, state, {
-    monsters: updatedMonsters,
-    speciesState: getNewSpeciesState({ monsters: updatedMonsters })
+  const updatedStateWithMonsters = Object.assign({}, state, {
+    monsters: updatedMonsters
+  })
+
+  return Object.assign({}, updatedStateWithMonsters, {
+    speciesState: getNewSpeciesState(updatedStateWithMonsters)
   })
 }
 
@@ -152,10 +155,11 @@ export default handleActions({
   GET_TRAINER_POKEMON_SUCCESS(state, action) {
     const monsters = getNewMonsters(state, action.payload, state.sortBy, state.sortDir)
 
+    const updatedStateWithMonsters = Object.assign({}, state, { monsters })
+
     // TODO always sort the data before we return it
-    return Object.assign({}, state, {
-      monsters,
-      speciesState: getNewSpeciesState({ monsters })
+    return Object.assign({}, updatedStateWithMonsters, {
+      speciesState: getNewSpeciesState(updatedStateWithMonsters)
     })
   },
 

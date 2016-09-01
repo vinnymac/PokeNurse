@@ -149,7 +149,7 @@ export default {
     return async (dispatch) => {
       try {
         // TODO Stop this -1 0 shit
-        const updatedPokemon = Object.assign(pokemon, {
+        const updatedPokemon = Object.assign({}, pokemon, {
           favorite: !pokemon.favorite ? -1 : -0
         })
 
