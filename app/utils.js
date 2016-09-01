@@ -378,15 +378,14 @@ const Organize = {
     })
   },
 
-  getSortedPokemon(specie, sortBy, sortDir) {
+  getSortedPokemon(specie, currentSortState, sortBy, sortDir) {
     const pokemon = specie.pokemon.slice()
 
     if (!sortBy && !sortDir) {
       // Hacky way of retrieving the current sort state of species.jsx
-      if (this.speciesTable) {
-        const sortState = this.speciesTable.getSortState(specie)
-        sortBy = sortState.sortBy
-        sortDir = sortState.sortDir
+      if (currentSortState) {
+        sortBy = currentSortState.sortBy
+        sortDir = currentSortState.sortDir
       } else {
         sortBy = 'cp'
         sortDir = 'DESC'
@@ -400,7 +399,19 @@ const Organize = {
     }
 
     return pokemon
-  }
+  },
+
+  getSortedSpecies(monsters, sortBy, sortDir) {
+    const species = monsters.species.slice()
+
+    if (COLUMN_SORT_AS_NUM[sortBy]) {
+      Organize.sortAsNumber(species, sortBy, sortDir)
+    } else {
+      Organize.sortAsString(species, sortBy, sortDir)
+    }
+
+    return species
+  },
 }
 
 export { utils as default, Immutable, Organize, COLUMN_SORT_AS_NUM }

@@ -139,6 +139,8 @@ const getTrainerPokemonFailed = createAction('GET_TRAINER_POKEMON_FAILED')
 export default {
   updateMonster: createAction('UPDATE_MONSTER'),
   updateSpecies: createAction('UPDATE_SPECIES'),
+  updateMonsterSort: createAction('UPDATE_MONSTER_SORT'),
+  sortSpecies: createAction('SORT_SPECIES'),
   getTrainerInfo() {
     return async (dispatch) => {
       try {

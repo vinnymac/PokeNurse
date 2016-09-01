@@ -20,7 +20,8 @@ import {
   getTrainerInfo,
   getTrainerPokemon,
   updateSpecies,
-  updateMonster
+  updateMonster,
+  updateMonsterSort
 } from '../../actions'
 import {
   Organize,
@@ -83,23 +84,25 @@ const Table = React.createClass({
     getTrainerPokemon: PropTypes.func.isRequired,
     monsters: PropTypes.object,
     updateSpecies: PropTypes.func.isRequired,
-    updateMonster: PropTypes.func.isRequired
+    updateMonster: PropTypes.func.isRequired,
+    updateMonsterSort: PropTypes.func.isRequired,
+    speciesState: PropTypes.object
   },
 
   childContextTypes: {
     monsterUpdater: PropTypes.func.isRequired
   },
 
-  getInitialState() {
-    const sortBy = 'pokemon_id'
-    const sortDir = 'ASC'
-
-    return {
-      filterBy: '',
-      sortBy,
-      sortDir
-    }
-  },
+  // getInitialState() {
+  //   const sortBy = 'pokemon_id'
+  //   const sortDir = 'ASC'
+  //
+  //   return {
+  //     filterBy: '',
+  //     sortBy,
+  //     sortDir
+  //   }
+  // },
 
   getChildContext() {
     return {
@@ -109,10 +112,6 @@ const Table = React.createClass({
 
   componentDidMount() {
     document.title = 'PokéNurse • Home'
-
-    // ipcRenderer.on('receive-players-pokemons', (event, data) => {
-    //   this.setState({ monsters: this.getNewMonsters(data, this.state.sortBy, this.state.sortDir) })
-    // })
 
     // Fetch the latest trainer info
     this.props.getTrainerInfo()
@@ -241,8 +240,6 @@ const Table = React.createClass({
             sortBy={sortBy}
             sortDir={sortDir}
             sortSpeciesBy={this.sortSpeciesBy}
-            updateSpecies={this.updateSpecies}
-            getSortedPokemon={this.getSortedPokemon}
             updateCheckedCount={this.updateCheckedCount}
           />
         </div>
@@ -281,7 +278,7 @@ const Table = React.createClass({
   },
 
   onFilterChange(event) {
-    this.setState({
+    this.props.updateMonsterSort({
       filterBy: String(event.target.value).toLowerCase()
     })
   },
@@ -290,10 +287,28 @@ const Table = React.createClass({
     this.props.getTrainerPokemon()
   },
 
+  getPokemonChecked() {
+    const {
+      monsters,
+      speciesState
+    } = this.props
+    const checkedPokemon = []
+
+    monsters.species.forEach((specie) => {
+      specie.pokemon.forEach((p) => {
+        if (speciesState[specie.pokemon_id].pokemonState[p.id].check) {
+          checkedPokemon.push(p)
+        }
+      })
+    })
+
+    return checkedPokemon
+  },
+
   handleTransfer() {
     if (runningCheck()) return
 
-    const selectedPokemon = this.speciesTable.getPokemonChecked()
+    const selectedPokemon = this.getPokemonChecked()
     if (selectedPokemon.length < 1) return
 
     confirmDialog($(this.confirmationDialog), {
@@ -334,7 +349,7 @@ const Table = React.createClass({
   handleEvolve() {
     if (runningCheck()) return
 
-    const selectedPokemon = this.speciesTable.getPokemonChecked()
+    const selectedPokemon = this.getPokemonChecked()
     if (selectedPokemon.length < 1) return
 
     confirmDialog($(this.confirmationDialog), {
@@ -382,30 +397,7 @@ const Table = React.createClass({
     return species
   },
 
-  getSortedPokemon(specie, sortBy, sortDir) {
-    const pokemon = specie.pokemon.slice()
-
-    if (!sortBy && !sortDir) {
-      // Hacky way of retrieving the current sort state of species.jsx
-      if (this.speciesTable) {
-        const sortState = this.speciesTable.getSortState(specie)
-        sortBy = sortState.sortBy
-        sortDir = sortState.sortDir
-      } else {
-        sortBy = 'cp'
-        sortDir = 'DESC'
-      }
-    }
-
-    if (COLUMN_SORT_AS_NUM[sortBy]) {
-      Organize.sortAsNumber(pokemon, sortBy, sortDir)
-    } else {
-      Organize.sortAsString(pokemon, sortBy, sortDir)
-    }
-
-    return pokemon
-  },
-
+  // TODO This should be an action, this.props.sortAllSpecies
   sortSpeciesBy(newSortBy) {
     const {
       sortBy,
@@ -424,23 +416,10 @@ const Table = React.createClass({
       species: this.getSortedSpecies(this.props.monsters, newSortBy, newSortDir)
     })
 
-    this.setState({
+    this.props.updateMonsterSort({
       sortDir: newSortDir,
       sortBy: newSortBy,
       monsters
-    })
-  },
-
-  getNewMonsters(monsters, sortBy, sortDir) {
-    const sortedSpecies = this.getSortedSpecies(monsters, sortBy, sortDir)
-
-    // Mutates, but it is okay because we sliced/sorted above ^
-    sortedSpecies.forEach(specie => {
-      specie.pokemon = this.getSortedPokemon(specie)
-    })
-
-    return Object.assign({}, monsters, {
-      species: sortedSpecies
     })
   },
 
@@ -472,12 +451,14 @@ const Table = React.createClass({
 
 export default connect((state => ({
   trainerData: state.trainer.trainerData,
-  monsters: state.trainer.monsters
+  monsters: state.trainer.monsters,
+  speciesState: state.trainer.speciesState
 })), (dispatch => bindActionCreators({
   updateStatus,
   logout,
   getTrainerInfo,
   getTrainerPokemon,
   updateSpecies,
-  updateMonster
+  updateMonster,
+  updateMonsterSort
 }, dispatch)))(Table)

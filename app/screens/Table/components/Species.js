@@ -1,8 +1,16 @@
 import React, {
   PropTypes
 } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 import every from 'lodash/every'
-import isEqual from 'lodash/isEqual'
+
+import {
+  updateMonsterSort,
+  updateSpecies,
+  sortSpecies
+} from '../../../actions'
 
 import PokemonTable from './Pokemon'
 
@@ -15,26 +23,12 @@ const Species = React.createClass({
     sortDir: PropTypes.string,
     filterBy: PropTypes.string,
     sortSpeciesBy: PropTypes.func,
-    updateSpecies: PropTypes.func,
-    getSortedPokemon: PropTypes.func,
-    monsters: PropTypes.object.isRequired
-  },
-
-  getInitialState() {
-    const species = this.getNewSpeciesStateFromProps(this.props)
-
-    return {
-      species,
-      showSpeciesWithZeroPokemon: true
-    }
-  },
-
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(this.props.monsters.species, nextProps.monsters.species)) {
-      this.setState({
-        species: this.getNewSpeciesStateFromProps(nextProps)
-      })
-    }
+    sortSpecies: PropTypes.func.isRequired,
+    monsters: PropTypes.object.isRequired,
+    updateMonsterSort: PropTypes.func.isRequired,
+    showSpeciesWithZeroPokemon: PropTypes.bool.isRequired,
+    updateSpecies: PropTypes.func.isRequired,
+    speciesState: PropTypes.object
   },
 
   render() {
@@ -124,14 +118,10 @@ const Species = React.createClass({
 
   getSpeciesBody(monsterSpecies) {
     const {
-      filterBy
+      filterBy,
+      showSpeciesWithZeroPokemon,
+      speciesState
     } = this.props
-
-    const speciesState = this.state.species
-
-    const {
-      showSpeciesWithZeroPokemon
-    } = this.state
 
     return monsterSpecies.map((specie, i) => {
       if (!showSpeciesWithZeroPokemon && specie.count < 1) {
@@ -192,14 +182,6 @@ const Species = React.createClass({
     />)
   },
 
-  getInitialPokemonState(specie) {
-    const pokemonState = {}
-    specie.pokemon.forEach((p) => {
-      pokemonState[p.id] = { check: false }
-    })
-    return pokemonState
-  },
-
   getSortDirectionClassName(key) {
     const {
       sortBy,
@@ -214,8 +196,11 @@ const Species = React.createClass({
   },
 
   updateSpeciesState(id, updater) {
+    const {
+      speciesState
+    } = this.props
     const newSpecieState = {}
-    const existingSpecieState = this.state.species[String(id)]
+    const existingSpecieState = speciesState[String(id)]
 
     newSpecieState[String(id)] = Object.assign(
       {},
@@ -223,7 +208,7 @@ const Species = React.createClass({
       updater(existingSpecieState)
     )
 
-    return Object.assign({}, this.state.species, newSpecieState)
+    return Object.assign({}, speciesState, newSpecieState)
   },
 
   updatePokemonState(speciesState, pid, updater) {
@@ -238,13 +223,18 @@ const Species = React.createClass({
     return Object.assign({}, speciesState.pokemonState, newPokemonByIdState)
   },
 
+  // TODO: This should be an action
   sortPokemonBy(newSortBy, speciesIndex) {
+    const {
+      speciesState
+    } = this.props
+
     const pokemonId = this.props.monsters.species[speciesIndex].pokemon_id
 
     const {
       sortBy,
       sortDir
-    } = this.state.species[pokemonId]
+    } = speciesState[pokemonId]
 
     let newSortDir = null
 
@@ -254,51 +244,31 @@ const Species = React.createClass({
       newSortDir = 'DESC'
     }
 
-    this.setState({
-      species: this.updateSpeciesState(pokemonId, () => {
-        const sortState = { sortDir: newSortDir, sortBy: newSortBy }
-
-        return sortState
-      })
-    }, () => {
-      this.props.updateSpecies(speciesIndex, (speciesAtIndex) => {
-        const sorted = this.props.getSortedPokemon(speciesAtIndex, newSortBy, newSortDir)
-        return {
-          pokemon: sorted
-        }
-      })
+    this.props.sortSpecies({
+      pokemonId,
+      sortDir: newSortDir,
+      sortBy: newSortBy,
     })
-  },
-
-  getPokemonChecked() {
-    const species = this.props.monsters.species
-    const speciesState = this.state.species
-    const checkedPokemon = []
-
-    species.forEach((specie) => {
-      specie.pokemon.forEach((p) => {
-        if (speciesState[specie.pokemon_id].pokemonState[p.id].check) {
-          checkedPokemon.push(p)
-        }
-      })
-    })
-
-    return checkedPokemon
   },
 
   getSortState(specie) {
     const {
+      speciesState
+    } = this.props
+
+    const {
       sortBy,
       sortDir
-    } = this.state.species[specie.pokemon_id]
+    } = speciesState[specie.pokemon_id]
 
     return { sortBy, sortDir }
   },
 
+  // TODO: This should be an action
   handleCollapse(specie) {
     if (specie.count < 1) return
 
-    this.setState({
+    this.props.updateMonsterSort({
       species: this.updateSpeciesState(specie.pokemon_id, (speciesState) => {
         const newCollapsed = !speciesState.collapsed
 
@@ -307,8 +277,9 @@ const Species = React.createClass({
     })
   },
 
+  // TODO: This should be an action
   handleCheckAll(species) {
-    this.setState({
+    this.props.updateMonsterSort({
       species: this.updateSpeciesState(species.pokemon_id, (speciesState) => {
         const newCheckAllState = !speciesState.checkAll
         const newPokemonState = {}
@@ -334,9 +305,10 @@ const Species = React.createClass({
     })
   },
 
+  // TODO: This should be an action
   handleCheckedChange(pokemon) {
-    this.setState({
-      species: this.updateSpeciesState(
+    this.props.updateMonsterSort({
+      speciesState: this.updateSpeciesState(
         String(pokemon.pokemon_id),
         (speciesState) => {
           const updatedPokemonState = this.updatePokemonState(
@@ -362,56 +334,20 @@ const Species = React.createClass({
     this.props.sortSpeciesBy(sortBy)
   },
 
-  getNewSpeciesStateFromProps(props) {
-    const speciesState = {}
-
-    const sortBy = 'cp'
-    const sortDir = 'DESC'
-
-    props.monsters.species.forEach((specie) => {
-      const pid = String(specie.pokemon_id)
-      let existingSpecieState = null
-
-      if (this.state) existingSpecieState = this.state.species[pid]
-
-      // specie state already exists
-      if (existingSpecieState) {
-        const updatedSpecieState = { pokemonState: {} }
-        let checkAll = true
-        specie.pokemon.forEach((p) => {
-          // pokemon already exists
-          if (existingSpecieState.pokemonState[p.id]) {
-            updatedSpecieState.pokemonState[p.id] = existingSpecieState.pokemonState[p.id]
-            checkAll = checkAll && updatedSpecieState.pokemonState[p.id].check
-          // pokemon does not exist
-          } else {
-            updatedSpecieState.pokemonState[p.id] = { check: false }
-            checkAll = false
-          }
-        })
-        updatedSpecieState.checkAll = checkAll
-        speciesState[pid] = Object.assign({}, existingSpecieState, updatedSpecieState)
-      // specie state does not exist
-      } else {
-        speciesState[pid] = {
-          pokemonState: this.getInitialPokemonState(specie),
-          checkAll: false,
-          collapsed: true,
-          sortBy,
-          sortDir
-        }
-      }
-    })
-
-    return speciesState
-  },
-
+  // TODO: This should be an action
   toggleShowAllSpecies() {
-    this.setState({
-      showSpeciesWithZeroPokemon: !this.state.showSpeciesWithZeroPokemon
+    this.props.updateMonsterSort({
+      showSpeciesWithZeroPokemon: !this.props.showSpeciesWithZeroPokemon
     })
   }
 
 })
 
-export default Species
+export default connect((state => ({
+  showSpeciesWithZeroPokemon: state.trainer.showSpeciesWithZeroPokemon,
+  speciesState: state.trainer.speciesState,
+})), (dispatch => bindActionCreators({
+  updateMonsterSort,
+  updateSpecies,
+  sortSpecies
+}, dispatch)))(Species)
