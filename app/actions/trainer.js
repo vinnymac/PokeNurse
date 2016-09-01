@@ -274,6 +274,7 @@ export default {
   updateSpecies: createAction('UPDATE_SPECIES'),
   updateMonsterSort: createAction('UPDATE_MONSTER_SORT'),
   sortSpecies: createAction('SORT_SPECIES'),
+  toggleShowSpeciesWithZeroPokemon: createAction('TOGGLE_SHOW_SPECIES_WITH_ZERO_POKEMON'),
   getTrainerInfo,
   getTrainerPokemon,
   powerUpPokemon,

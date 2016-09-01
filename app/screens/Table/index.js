@@ -22,7 +22,8 @@ import {
   updateMonster,
   updateMonsterSort,
   evolvePokemon,
-  transferPokemon
+  transferPokemon,
+  toggleShowSpeciesWithZeroPokemon
 } from '../../actions'
 import { Organize } from '../../utils'
 
@@ -92,7 +93,8 @@ const Table = React.createClass({
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
     transferPokemon: PropTypes.func.isRequired,
-    evolvePokemon: PropTypes.func.isRequired
+    evolvePokemon: PropTypes.func.isRequired,
+    toggleShowSpeciesWithZeroPokemon: PropTypes.func.isRequired
   },
 
   componentDidMount() {
@@ -206,7 +208,6 @@ const Table = React.createClass({
           </h1>
 
           <SpeciesTable
-            ref={(c) => { this.speciesTable = c }}
             monsters={monsters}
             filterBy={filterBy}
             sortBy={sortBy}
@@ -401,7 +402,7 @@ const Table = React.createClass({
   },
 
   handleToggleShowAllSpecies() {
-    this.speciesTable.toggleShowAllSpecies()
+    this.props.toggleShowSpeciesWithZeroPokemon()
   },
 
   handleSignOut() {
@@ -424,5 +425,6 @@ export default connect((state => ({
   updateMonster,
   updateMonsterSort,
   evolvePokemon,
-  transferPokemon
+  transferPokemon,
+  toggleShowSpeciesWithZeroPokemon
 }, dispatch)))(Table)

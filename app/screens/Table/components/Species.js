@@ -334,13 +334,6 @@ const Species = React.createClass({
     this.props.sortSpeciesBy(sortBy)
   },
 
-  // TODO: This should be an action, this.props.toggleShowSpeciesWithZeroPokemon
-  toggleShowAllSpecies() {
-    this.props.updateMonsterSort({
-      showSpeciesWithZeroPokemon: !this.props.showSpeciesWithZeroPokemon
-    })
-  }
-
 })
 
 export default connect((state => ({

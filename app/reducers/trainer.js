@@ -267,4 +267,10 @@ export default handleActions({
     console.error(action.payload) // eslint-disable-line
     return state
   },
+
+  TOGGLE_SHOW_SPECIES_WITH_ZERO_POKEMON(state) {
+    return Object.assign({}, state, {
+      showSpeciesWithZeroPokemon: !state.showSpeciesWithZeroPokemon
+    })
+  }
 }, initialState)
