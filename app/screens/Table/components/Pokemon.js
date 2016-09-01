@@ -5,7 +5,10 @@ import { ipcRenderer } from 'electron'
 import $ from 'jquery'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { toggleFavoritePokemon } from '../../../actions'
+import {
+  toggleFavoritePokemon,
+  powerUpPokemon
+} from '../../../actions'
 
 import renderModal from '../../Detail'
 import Tooltip from '../../Tooltip'
@@ -27,7 +30,8 @@ const Pokemon = React.createClass({
     checkAll: PropTypes.bool.isRequired,
     onCheckAll: PropTypes.func.isRequired,
     pokemonState: PropTypes.object.isRequired,
-    toggleFavoritePokemon: PropTypes.func.isRequired
+    toggleFavoritePokemon: PropTypes.func.isRequired,
+    powerUpPokemon: PropTypes.func.isRequired,
   },
 
   contextTypes: {
@@ -242,8 +246,8 @@ const Pokemon = React.createClass({
 
   handleClickPowerup(pokemon) {
     if (ipcRenderer.sendSync('confirmation-dialog', 'power up').success) {
-      ipcRenderer.send('power-up-pokemon', pokemon.id, pokemon.nickname)
       // TODO Calculate and update the pokemon immediately with estimates
+      this.props.powerUpPokemon(pokemon)
     }
   },
 
@@ -280,5 +284,6 @@ const Pokemon = React.createClass({
 })
 
 export default connect(null, dispatch => bindActionCreators({
-  toggleFavoritePokemon
+  toggleFavoritePokemon,
+  powerUpPokemon
 }, dispatch))(Pokemon)

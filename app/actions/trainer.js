@@ -12,6 +12,7 @@ import { client } from './authenticate'
 import utils from '../utils'
 import baseStats from '../../baseStats'
 
+// Maybe put this info and the helper methods in utils?
 const kantoDexCount = 151
 
 function generateEmptySpecies(candies) {
@@ -136,65 +137,87 @@ const getTrainerInfoFailed = createAction('GET_TRAINER_INFO_FAILED')
 const getTrainerPokemonSuccess = createAction('GET_TRAINER_POKEMON_SUCCESS')
 const getTrainerPokemonFailed = createAction('GET_TRAINER_POKEMON_FAILED')
 
-
 const toggleFavoritePokemonSuccess = createAction('TOGGLE_FAVORITE_POKEMON_SUCCESS')
 const toggleFavoritePokemonFailed = createAction('TOGGLE_FAVORITE_POKEMON_FAILED')
+
+const powerUpPokemonSuccess = createAction('POWER_UP_POKEMON_SUCCESS')
+const powerUpPokemonFailed = createAction('POWER_UP_POKEMON_FAILED')
+
+function getTrainerInfo() {
+  return async (dispatch) => {
+    try {
+      const response = await client.getPlayer()
+
+      if (!response.success) {
+        dispatch(getTrainerInfoFailed('Failed in retrieving player info.  Please restart.'))
+        return
+      }
+      dispatch(getTrainerInfoSuccess({
+        trainerData: response.player_data
+      }))
+    } catch (error) {
+      dispatch(getTrainerInfoFailed(error))
+    }
+  }
+}
+
+function getTrainerPokemon() {
+  return async (dispatch) => {
+    try {
+      const inventory = await client.getInventory(0)
+
+      if (!inventory.success) {
+        dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
+        return
+      }
+
+      const payload = parseInventory(inventory)
+
+      dispatch(getTrainerPokemonSuccess(payload))
+    } catch (error) {
+      dispatch(getTrainerPokemonFailed(error))
+    }
+  }
+}
+
+function powerUpPokemon(pokemon) {
+  return async (dispatch) => {
+    try {
+      await client.upgradePokemon(pokemon.id)
+
+      // TODO parse the response instead of retrieving all the new pokemon
+      // Requires replacing the main parsing with more functional code
+      await dispatch(getTrainerPokemon())
+      dispatch(powerUpPokemonSuccess(pokemon))
+    } catch (error) {
+      dispatch(powerUpPokemonFailed(error))
+    }
+  }
+}
+
+function toggleFavoritePokemon(pokemon) {
+  return async (dispatch) => {
+    try {
+      // TODO Stop this -1 0 shit
+      const updatedPokemon = Object.assign({}, pokemon, {
+        favorite: !pokemon.favorite ? -1 : -0
+      })
+
+      await client.setFavoritePokemon(pokemon.id, !!updatedPokemon.favorite)
+      dispatch(toggleFavoritePokemonSuccess(updatedPokemon))
+    } catch (error) {
+      dispatch(toggleFavoritePokemonFailed(error))
+    }
+  }
+}
 
 export default {
   updateMonster: createAction('UPDATE_MONSTER'),
   updateSpecies: createAction('UPDATE_SPECIES'),
   updateMonsterSort: createAction('UPDATE_MONSTER_SORT'),
   sortSpecies: createAction('SORT_SPECIES'),
-  toggleFavoritePokemon(pokemon) {
-    return async (dispatch) => {
-      try {
-        // TODO Stop this -1 0 shit
-        const updatedPokemon = Object.assign({}, pokemon, {
-          favorite: !pokemon.favorite ? -1 : -0
-        })
-
-        await client.setFavoritePokemon(pokemon.id, !!updatedPokemon.favorite)
-        dispatch(toggleFavoritePokemonSuccess(updatedPokemon))
-      } catch (error) {
-        dispatch(toggleFavoritePokemonFailed(error))
-      }
-    }
-  },
-
-  getTrainerInfo() {
-    return async (dispatch) => {
-      try {
-        const response = await client.getPlayer()
-
-        if (!response.success) {
-          dispatch(getTrainerInfoFailed('Failed in retrieving player info.  Please restart.'))
-          return
-        }
-        dispatch(getTrainerInfoSuccess({
-          trainerData: response.player_data
-        }))
-      } catch (error) {
-        dispatch(getTrainerInfoFailed(error))
-      }
-    }
-  },
-
-  getTrainerPokemon() {
-    return async (dispatch) => {
-      try {
-        const inventory = await client.getInventory(0)
-
-        if (!inventory.success) {
-          dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
-          return
-        }
-
-        const payload = parseInventory(inventory)
-
-        dispatch(getTrainerPokemonSuccess(payload))
-      } catch (error) {
-        dispatch(getTrainerPokemonFailed(error))
-      }
-    }
-  }
+  getTrainerInfo,
+  getTrainerPokemon,
+  powerUpPokemon,
+  toggleFavoritePokemon,
 }

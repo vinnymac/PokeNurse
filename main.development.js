@@ -200,23 +200,6 @@ ipcMain.on('table-did-mount', () => {
 })
 
 // POKEMON
-ipcMain.on('power-up-pokemon', async (event, id, nickname) => {
-  try {
-    await client.upgradePokemon(id)
-
-    console.log(`[+] Upgraded Pokemon with id: ${id}`)
-    const message = `Upgraded ${nickname} succesfully!`
-    const title = `Power Up ${nickname}`
-    // TODO parse the response instead of retrieving all the new pokemon
-    // Requires replacing the main parsing with more functional code
-    // TODO ACTIONS
-    // getPlayersPokemons(event, 'async')
-    showInformationMessage(message, title)
-  } catch (error) {
-    console.error(error)
-  }
-})
-
 ipcMain.on('transfer-pokemon', async (event, pokemon, delay) => {
   try {
     await sleep(delay)

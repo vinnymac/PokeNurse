@@ -221,5 +221,19 @@ export default handleActions({
   TOGGLE_FAVORITE_POKEMON_FAILED(state, action) {
     console.error(action.payload) // eslint-disable-line
     return state
+  },
+
+  POWER_UP_POKEMON_SUCCESS(state, action) {
+    const pokemon = action.payload
+    const message = `Upgraded ${pokemon.nickname} succesfully!`
+    const title = `Power Up ${pokemon.nickname}`
+    ipcRenderer.send('information-dialog', message, title)
+
+    return state
+  },
+
+  POWER_UP_POKEMON_FAILED(state, action) {
+    console.error(action.payload) // eslint-disable-line
+    return state
   }
 }, initialState)
