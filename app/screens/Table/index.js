@@ -287,7 +287,7 @@ const Table = React.createClass({
   },
 
   handleRefresh() {
-    ipcRenderer.send('get-players-pokemons', 'async')
+    this.props.getTrainerPokemon()
   },
 
   handleTransfer() {
