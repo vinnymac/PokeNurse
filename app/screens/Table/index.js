@@ -369,7 +369,7 @@ const Table = React.createClass({
     const {
       sortBy,
       sortDir
-    } = this.state
+    } = this.props
 
     let newSortDir = null
 
