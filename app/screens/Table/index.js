@@ -91,16 +91,6 @@ const Table = React.createClass({
     sortDir: PropTypes.string,
   },
 
-  childContextTypes: {
-    monsterUpdater: PropTypes.func.isRequired
-  },
-
-  getChildContext() {
-    return {
-      monsterUpdater: this.updateMonster
-    }
-  },
-
   componentDidMount() {
     document.title = 'PokéNurse • Home'
 

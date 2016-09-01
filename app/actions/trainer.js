@@ -143,6 +143,9 @@ const toggleFavoritePokemonFailed = createAction('TOGGLE_FAVORITE_POKEMON_FAILED
 const powerUpPokemonSuccess = createAction('POWER_UP_POKEMON_SUCCESS')
 const powerUpPokemonFailed = createAction('POWER_UP_POKEMON_FAILED')
 
+const renamePokemonSuccess = createAction('RENAME_POKEMON_SUCCESS')
+const renamePokemonFailed = createAction('RENAME_POKEMON_FAILED')
+
 function getTrainerInfo() {
   return async (dispatch) => {
     try {
@@ -211,6 +214,25 @@ function toggleFavoritePokemon(pokemon) {
   }
 }
 
+function renamePokemon(pokemon, nickname, callback) {
+  const updatedPokemon = Object.assign({}, pokemon, { nickname })
+
+  return async (dispatch) => {
+    try {
+      await client.nicknamePokemon(updatedPokemon.id, updatedPokemon.nickname)
+
+      dispatch(renamePokemonSuccess(updatedPokemon))
+
+      // modals are outside of the lifecycle of the table
+      // so we must inform it manually
+      // this would be fixed if we were using react modals
+      callback(updatedPokemon)
+    } catch (error) {
+      dispatch(renamePokemonFailed(error))
+    }
+  }
+}
+
 export default {
   updateMonster: createAction('UPDATE_MONSTER'),
   updateSpecies: createAction('UPDATE_SPECIES'),
@@ -220,4 +242,5 @@ export default {
   getTrainerPokemon,
   powerUpPokemon,
   toggleFavoritePokemon,
+  renamePokemon,
 }

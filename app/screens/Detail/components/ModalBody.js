@@ -27,7 +27,6 @@ const ModalBody = React.createClass({
     evolvesTo: PropTypes.node,
     possibleQuickMoves: PropTypes.array,
     possibleCinematicMoves: PropTypes.array,
-    monsterUpdater: PropTypes.func,
   },
 
   render() {
@@ -51,7 +50,6 @@ const ModalBody = React.createClass({
       evolvesTo,
       possibleQuickMoves,
       possibleCinematicMoves,
-      monsterUpdater,
     } = this.props
 
     const quickMoves = possibleQuickMoves.map((possibleQuickMove, i) =>
@@ -93,7 +91,7 @@ const ModalBody = React.createClass({
       </div>
 
       <div id="pokemon_contents">
-        <Nickname pokemon={pokemon} monsterUpdater={monsterUpdater} />
+        <Nickname pokemon={pokemon} />
         <div id="pokemon_health_bar" />
         <div id="pokemon_health">{`HP ${hp}`}</div>
         <div className="pokemon_info">

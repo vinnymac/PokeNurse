@@ -2,14 +2,14 @@ import React, {
   PropTypes
 } from 'react'
 
-import {
-  ipcRenderer
-} from 'electron'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { renamePokemon } from '../../../actions'
 
 const Nickname = React.createClass({
   propTypes: {
     pokemon: PropTypes.object.isRequired,
-    monsterUpdater: PropTypes.func.isRequired
+    renamePokemon: PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -17,10 +17,6 @@ const Nickname = React.createClass({
       newNickname: this.props.pokemon.nickname,
       editing: false
     }
-  },
-
-  componentDidMount() {
-    ipcRenderer.on('rename-pokemon-complete', this.handleRenameComplete)
   },
 
   componentDidUpdate() {
@@ -31,10 +27,6 @@ const Nickname = React.createClass({
     } else if (this.lastActiveElement) {
       this.lastActiveElement.focus()
     }
-  },
-
-  componentWillUnmount() {
-    ipcRenderer.removeListener('rename-pokemon-complete', this.handleRenameComplete)
   },
 
   render() {
@@ -79,27 +71,27 @@ const Nickname = React.createClass({
 
   handleKeyPress(e) {
     if (e.key === 'Enter') {
-      ipcRenderer.send('rename-pokemon', this.props.pokemon.id, e.target.value)
+      this.props.renamePokemon(this.props.pokemon, e.target.value, (updatedPokemon) => {
+        this.handleRenameComplete(updatedPokemon)
+      })
     }
   },
 
-  handleRenameComplete(event, id, nickname) {
+  handleRenameComplete(updatedPokemon) {
     const {
       pokemon
     } = this.props
 
-    if (id !== pokemon.id) return
-
-    const updatedPokemon = Object.assign({}, pokemon, { nickname })
-
-    this.props.monsterUpdater(updatedPokemon)
+    if (updatedPokemon.id !== pokemon.id) return
 
     this.setState({
-      newNickname: nickname,
+      newNickname: updatedPokemon.nickname,
       editing: false
     })
   }
 
 })
 
-export default Nickname
+export default connect(null, dispatch => bindActionCreators({
+  renamePokemon
+}, dispatch))(Nickname)

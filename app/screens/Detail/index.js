@@ -2,6 +2,9 @@ import React, {
   PropTypes
 } from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+
+import store from '../../store'
 
 import ModalBody from './components/ModalBody'
 
@@ -84,7 +87,7 @@ const ModalDialog = React.createClass({
   },
 })
 
-export default ($detailModal, pokemon, species, monsterUpdater) => {
+export default ($detailModal, pokemon, species) => {
   // Calculate CP Progress dot position
   const minDeg = 0
   const maxDeg = 180
@@ -153,12 +156,11 @@ export default ($detailModal, pokemon, species, monsterUpdater) => {
     evolvesTo={stats.evolvesTo}
     possibleQuickMoves={possibleQuickMoves}
     possibleCinematicMoves={possibleCinematicMoves}
-    monsterUpdater={monsterUpdater}
   />)
 
   $detailModal.on('hidden.bs.modal', () => {
     ReactDOM.unmountComponentAtNode($detailModal.get(0))
   })
 
-  ReactDOM.render(modalDialog, $detailModal.get(0))
+  ReactDOM.render(<Provider store={store}>{modalDialog}</Provider>, $detailModal.get(0))
 }

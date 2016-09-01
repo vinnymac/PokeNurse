@@ -235,5 +235,14 @@ export default handleActions({
   POWER_UP_POKEMON_FAILED(state, action) {
     console.error(action.payload) // eslint-disable-line
     return state
+  },
+
+  RENAME_POKEMON_SUCCESS(state, action) {
+    return updateMonster(state, action.payload)
+  },
+
+  RENAME_POKEMON_FAILED(state, action) {
+    console.error(action.payload) // eslint-disable-line
+    return state
   }
 }, initialState)

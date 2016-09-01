@@ -34,10 +34,6 @@ const Pokemon = React.createClass({
     powerUpPokemon: PropTypes.func.isRequired,
   },
 
-  contextTypes: {
-    monsterUpdater: React.PropTypes.func.isRequired
-  },
-
   render() {
     const {
       species,
@@ -256,7 +252,7 @@ const Pokemon = React.createClass({
   },
 
   handleClickNickname(pokemon, species) {
-    renderModal($(document.getElementById('detailModal')), pokemon, species, this.context.monsterUpdater)
+    renderModal($(document.getElementById('detailModal')), pokemon, species)
   },
 
   handleSortPokemon(sortBy) {
