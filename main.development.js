@@ -241,17 +241,6 @@ ipcMain.on('evolve-pokemon', async (event, pokemon, delay) => {
   }
 })
 
-ipcMain.on('favorite-pokemon', async (event, id, isFavorite) => {
-  try {
-    await client.setFavoritePokemon(id, isFavorite)
-
-    console.log(`[+] Pokemon favorite status set to ${isFavorite}`)
-    // getPlayersPokemons(event, 'async')
-  } catch (error) {
-    console.error(error)
-  }
-})
-
 ipcMain.on('rename-pokemon', async (event, id, nickname) => {
   try {
     await client.nicknamePokemon(id, nickname)

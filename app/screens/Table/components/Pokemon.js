@@ -3,6 +3,9 @@ import React, {
 } from 'react'
 import { ipcRenderer } from 'electron'
 import $ from 'jquery'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { toggleFavoritePokemon } from '../../../actions'
 
 import renderModal from '../../Detail'
 import Tooltip from '../../Tooltip'
@@ -23,7 +26,8 @@ const Pokemon = React.createClass({
     species: PropTypes.object.isRequired,
     checkAll: PropTypes.bool.isRequired,
     onCheckAll: PropTypes.func.isRequired,
-    pokemonState: PropTypes.object.isRequired
+    pokemonState: PropTypes.object.isRequired,
+    toggleFavoritePokemon: PropTypes.func.isRequired
   },
 
   contextTypes: {
@@ -244,9 +248,7 @@ const Pokemon = React.createClass({
   },
 
   handleClickFavorite(pokemon) {
-    ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
-    const updatedPokemon = Object.assign(pokemon, { favorite: !pokemon.favorite ? -1 : -0 })
-    this.context.monsterUpdater(updatedPokemon)
+    this.props.toggleFavoritePokemon(pokemon)
   },
 
   handleClickNickname(pokemon, species) {
@@ -277,4 +279,6 @@ const Pokemon = React.createClass({
 
 })
 
-export default Pokemon
+export default connect(null, dispatch => bindActionCreators({
+  toggleFavoritePokemon
+}, dispatch))(Pokemon)

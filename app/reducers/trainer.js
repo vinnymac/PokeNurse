@@ -121,6 +121,24 @@ function updateSpeciesState(state, id, updater) {
   return Object.assign({}, speciesState, newSpecieState)
 }
 
+function updateMonster(state, pokemon, options = {}) {
+  const speciesIndex = pokemon.pokemon_id - 1
+
+  const updatedPokemon = options.remove ? null : pokemon
+
+  return updateSpecies(state, speciesIndex, (speciesAtIndex) => {
+    const index = speciesAtIndex.pokemon.findIndex((p) => p.id === pokemon.id)
+
+    const sorted = getSortedPokemon(Object.assign({}, speciesAtIndex, {
+      pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, updatedPokemon)
+    }), state.speciesState[pokemon.pokemon_id])
+
+    return { // make sure we sort the new pokemon index now that we updated it
+      pokemon: sorted
+    }
+  })
+}
+
 export default handleActions({
   GET_TRAINER_INFO_SUCCESS(state, action) {
     return Object.assign({}, state, action.payload)
@@ -152,21 +170,7 @@ export default handleActions({
       options
     } = action.payload
 
-    const speciesIndex = pokemon.pokemon_id - 1
-
-    const updatedPokemon = options.remove ? null : pokemon
-
-    return updateSpecies(state, speciesIndex, (speciesAtIndex) => {
-      const index = speciesAtIndex.pokemon.findIndex((p) => p.id === pokemon.id)
-
-      const sorted = getSortedPokemon(Object.assign({}, speciesAtIndex, {
-        pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, updatedPokemon)
-      }), state.speciesState[pokemon.pokemon_id])
-
-      return { // make sure we sort the new pokemon index now that we updated it
-        pokemon: sorted
-      }
-    })
+    return updateMonster(state, pokemon, options)
   },
 
   UPDATE_SPECIES(state, action) {
@@ -204,5 +208,14 @@ export default handleActions({
         pokemon: sorted
       }
     })
+  },
+
+  TOGGLE_FAVORITE_POKEMON_SUCCESS(state, action) {
+    return updateMonster(state, action.payload)
+  },
+
+  TOGGLE_FAVORITE_POKEMON_FAILED(state, action) {
+    console.error(action.payload) // eslint-disable-line
+    return state
   }
 }, initialState)

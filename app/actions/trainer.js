@@ -136,11 +136,31 @@ const getTrainerInfoFailed = createAction('GET_TRAINER_INFO_FAILED')
 const getTrainerPokemonSuccess = createAction('GET_TRAINER_POKEMON_SUCCESS')
 const getTrainerPokemonFailed = createAction('GET_TRAINER_POKEMON_FAILED')
 
+
+const toggleFavoritePokemonSuccess = createAction('TOGGLE_FAVORITE_POKEMON_SUCCESS')
+const toggleFavoritePokemonFailed = createAction('TOGGLE_FAVORITE_POKEMON_FAILED')
+
 export default {
   updateMonster: createAction('UPDATE_MONSTER'),
   updateSpecies: createAction('UPDATE_SPECIES'),
   updateMonsterSort: createAction('UPDATE_MONSTER_SORT'),
   sortSpecies: createAction('SORT_SPECIES'),
+  toggleFavoritePokemon(pokemon) {
+    return async (dispatch) => {
+      try {
+        // TODO Stop this -1 0 shit
+        const updatedPokemon = Object.assign(pokemon, {
+          favorite: !pokemon.favorite ? -1 : -0
+        })
+
+        await client.setFavoritePokemon(pokemon.id, !!updatedPokemon.favorite)
+        dispatch(toggleFavoritePokemonSuccess(updatedPokemon))
+      } catch (error) {
+        dispatch(toggleFavoritePokemonFailed(error))
+      }
+    }
+  },
+
   getTrainerInfo() {
     return async (dispatch) => {
       try {
