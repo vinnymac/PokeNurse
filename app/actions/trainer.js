@@ -243,12 +243,13 @@ function renamePokemon(pokemon, nickname, callback) {
   }
 }
 
-function transferPokemon(pokemon, delay) {
+function transferPokemon(pokemon, delay, callback) {
   return async (dispatch) => {
     try {
       await sleep(delay)
       await client.releasePokemon(pokemon.id)
-
+      // TODO Remove the need for this callback by handling removal and counting in success
+      callback(pokemon)
       dispatch(transferPokemonSuccess(pokemon))
     } catch (error) {
       dispatch(transferPokemonFailed(error))
@@ -256,12 +257,13 @@ function transferPokemon(pokemon, delay) {
   }
 }
 
-function evolvePokemon(pokemon, delay) {
+function evolvePokemon(pokemon, delay, callback) {
   return async (dispatch) => {
     try {
       await sleep(delay)
       await client.evolvePokemon(pokemon.id)
-
+      // TODO Remove the need for this callback by handling removal and counting in success
+      callback(pokemon)
       dispatch(evolvePokemonSuccess(pokemon))
     } catch (error) {
       dispatch(evolvePokemonFailed(error))
