@@ -247,7 +247,7 @@ function transferPokemon(pokemon, delay) {
   return async (dispatch) => {
     try {
       await sleep(delay)
-      // await client.releasePokemon(pokemon.id)
+      await client.releasePokemon(pokemon.id)
       dispatch(transferPokemonSuccess(pokemon))
     } catch (error) {
       dispatch(transferPokemonFailed(error))
