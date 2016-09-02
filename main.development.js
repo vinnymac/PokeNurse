@@ -22,12 +22,13 @@ const accountPath = path.join(app.getPath('appData'), '/pokenurse/account.json')
 
 const kantoDexCount = 151
 
+const isOSX = process.platform === 'darwin'
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 let mainWindow = null
 let client = null
 
-if (process.env.NODE_ENV === 'development') {
-  require('electron-debug')() // eslint-disable-line global-require
-}
+if (isDevelopment) require('electron-debug')() // eslint-disable-line global-require
 
 function sleep(time) {
   return new Promise(r => setTimeout(r, time))
@@ -57,16 +58,43 @@ function createWindow() {
     e.preventDefault()
   })
 
+  // If for some reason the app crashes we can get some information about it
+  mainWindow.webContents.on('crashed', (event) => {
+    console.error('crashed', event)
+  })
+
   // allow garbage collection to occur on win when closed
   mainWindow.on('closed', () => {
     mainWindow = null
   })
 
+  mainWindow.on('unresponsive', (event) => {
+    console.error('unresponsive', event)
+  })
+
+  mainWindow.on('uncaughtException', (error) => {
+    console.error('uncaughtException', error)
+  })
+
+
+  //
+  // OS X Specific Configuration
+  //
+  if (isOSX) {
+    // Hide the window on close rather than quitting the app,
+    // and make sure to really close the window when quitting.
+    mainWindow.on('close', (event) => {
+      if (mainWindow.forceClose) return
+      event.preventDefault()
+      mainWindow.hide()
+    })
+  }
+
   // Create/set the main menu
   const menu = Menu.buildFromTemplate(menuTemplate)
   Menu.setApplicationMenu(menu)
 
-  if (process.env.NODE_ENV === 'development') {
+  if (isDevelopment) {
     mainWindow.openDevTools()
     mainWindow.webContents.on('context-menu', (e, props) => {
       const { x, y } = props
@@ -83,20 +111,29 @@ function createWindow() {
   client = new pogobuf.Client()
 }
 
+//
+// OS X Specific Configuration
+//
+if (isOSX) {
+  // Hide the window on close rather than quitting the app,
+  // and make sure to really close the window when quitting.
+  app.on('before-quit', () => {
+    mainWindow.forceClose = true
+  })
+
+  app.on('activate', () => {
+    mainWindow.show()
+  })
+}
+
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+  if (!isOSX) {
     app.quit()
   }
 })
 
-// app.on('activate', () => {
-//   if (mainWindow === null) {
-//     createWindow()
-//   }
-// })
-
 const installExtensions = async () => {
-  if (process.env.NODE_ENV === 'development') {
+  if (isDevelopment) {
     const installer = require('electron-devtools-installer') // eslint-disable-line global-require
 
     const extensions = [
