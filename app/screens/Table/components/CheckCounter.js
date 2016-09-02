@@ -10,7 +10,7 @@ const CheckCounter = React.createClass({
   },
 
   render() {
-    let {
+    const {
       count
     } = this.state
 
