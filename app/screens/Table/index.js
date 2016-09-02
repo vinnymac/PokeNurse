@@ -208,7 +208,6 @@ const Table = React.createClass({
           </h1>
 
           <SpeciesTable
-            monsters={monsters}
             filterBy={filterBy}
             sortBy={sortBy}
             sortDir={sortDir}
@@ -291,9 +290,10 @@ const Table = React.createClass({
         this.handleCountDown(selectedPokemon, 'Transfer', selectedPokemon.length * 2.5)
 
         selectedPokemon.forEach((pokemon, index) => {
-          this.props.transferPokemon(pokemon, index * randomDelay(2, 3), (p) => {
-            this.handleTransferCompleted(p)
-          })
+          this.props.transferPokemon(pokemon, index * randomDelay(2, 3))
+            .then(() => {
+              this.handleTransferCompleted(pokemon)
+            })
         })
       },
 
@@ -310,9 +310,10 @@ const Table = React.createClass({
         this.handleCountDown(filteredPokemon, 'Transfer', filteredPokemon.length * 2.5)
 
         filteredPokemon.forEach((pokemon, index) => {
-          this.props.transferPokemon(pokemon, index * randomDelay(2, 3), (p) => {
-            this.handleTransferCompleted(p)
-          })
+          this.props.transferPokemon(pokemon, index * randomDelay(2, 3))
+            .then(() => {
+              this.handleTransferCompleted(pokemon)
+            })
         })
       }
     })
@@ -336,9 +337,10 @@ const Table = React.createClass({
         this.handleCountDown(selectedPokemon, 'Evolve', selectedPokemon.length * 27.5)
 
         selectedPokemon.forEach((pokemon, index) => {
-          this.props.evolvePokemon(pokemon, index * randomDelay(25, 30), (p) => {
-            this.handleEvolveCompleted(p)
-          })
+          this.props.evolvePokemon(pokemon, index * randomDelay(25, 30))
+            .then(() => {
+              this.handleEvolveCompleted(pokemon)
+            })
         })
       }
     })
