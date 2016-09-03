@@ -14,12 +14,15 @@ const {
   getSortedSpecies
 } = Organize
 
+const ASCENDING = 'ASC'
+const DESCENDING = 'DESC'
+
 const initialState = {
   trainerData: null,
   monsters: null,
   filterBy: '',
   sortBy: 'pokemon_id',
-  sortDir: 'ASC',
+  sortDir: ASCENDING,
   showSpeciesWithZeroPokemon: true,
   speciesState: null,
   selectedCount: 0,
@@ -37,7 +40,7 @@ function getNewSpeciesState(state) {
   const speciesState = {}
 
   const sortBy = 'cp'
-  const sortDir = 'DESC'
+  const sortDir = DESCENDING
 
   let selectedCount = 0
 
@@ -171,6 +174,20 @@ function updateMonster(state, pokemon, options = {}) {
   })
 }
 
+function getNewSortDirectionFromSortBy(sortBy, specieState) {
+  let sortDir = null
+
+  // If we are already sorting this way, flip direction
+  if (sortBy === specieState.sortBy) {
+    sortDir = specieState.sortDir === ASCENDING ? DESCENDING : ASCENDING
+  // Otherwise use descending
+  } else {
+    sortDir = DESCENDING
+  }
+
+  return sortDir
+}
+
 export default handleActions({
   GET_TRAINER_INFO_SUCCESS(state, action) {
     return Object.assign({}, state, action.payload)
@@ -236,15 +253,7 @@ export default handleActions({
     const pokemonId = state.monsters.species[speciesIndex].pokemon_id
     const specieState = state.speciesState[pokemonId]
 
-    let sortDir = null
-
-    // If we are already sorting this way, flip direction
-    if (sortBy === specieState.sortBy) {
-      sortDir = specieState.sortDir === 'ASC' ? 'DESC' : 'ASC'
-    // Otherwise use descending
-    } else {
-      sortDir = 'DESC'
-    }
+    const sortDir = getNewSortDirectionFromSortBy(sortBy, specieState)
 
     const updatedSpeciesState = Object.assign({}, state, {
       speciesState: updateSpeciesState(state, pokemonId, () => ({ sortDir, sortBy }))
