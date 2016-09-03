@@ -77,7 +77,7 @@ const ModalBody = React.createClass({
           title="Listen to Cry"
           alt="Profile Sprite"
           id="pokemon_profile_sprite"
-          src={`./imgs/3d/${spriteImageName}.jpg`}
+          src={`./imgs/3d/${pokemon.pokemon_id}.png`}
         />
         <audio
           id="pokemonCry"
