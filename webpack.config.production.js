@@ -6,23 +6,13 @@ import baseConfig from './webpack.config.base'
 const config = merge(baseConfig, {
   devtool: 'cheap-module-source-map',
 
-  entry: './app/index',
+  entry: [
+    'babel-polyfill',
+    './app/index',
+  ],
 
   output: {
     publicPath: '../dist/'
-  },
-
-  module: {
-    loaders: [
-      {
-        test: /pokenurse.css$/,
-        loader: ('style!css')
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg|ico)$/i,
-        loader: 'file'
-      }
-    ]
   },
 
   plugins: [

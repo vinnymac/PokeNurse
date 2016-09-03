@@ -11,6 +11,14 @@ export default {
       {
         test: /\.json$/,
         loader: 'json-loader'
+      },
+      {
+        test: /pokenurse.css$/,
+        loader: ('style!css')
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg|ico)$/i,
+        loader: 'file'
       }
     ]
   },

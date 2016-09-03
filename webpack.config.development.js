@@ -12,25 +12,11 @@ export default merge(baseConfig, {
 
   entry: [
     `webpack-hot-middleware/client?path=http://localhost:${PORT}/__webpack_hmr`,
-    'babel-polyfill',
     './app/index'
   ],
 
   output: {
     publicPath: `http://localhost:${PORT}/dist/`
-  },
-
-  module: {
-    loaders: [
-      {
-        test: /pokenurse.css$/,
-        loader: ('style!css')
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg|ico)$/i,
-        loader: 'file'
-      }
-    ]
   },
 
   plugins: [
