@@ -416,4 +416,20 @@ export default handleActions({
       selectedCount
     })
   },
+
+  SORT_ALL_SPECIES(state, action) {
+    const sortBy = action.payload
+
+    const sortDir = getNewSortDirectionFromSortBy(sortBy, state)
+
+    const monsters = Object.assign({}, state.monsters, {
+      species: getSortedSpecies(state.monsters, sortBy, sortDir)
+    })
+
+    return Object.assign({}, state, {
+      sortDir,
+      sortBy,
+      monsters
+    })
+  },
 }, initialState)

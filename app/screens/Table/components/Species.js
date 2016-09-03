@@ -11,6 +11,7 @@ import {
   checkPokemon,
   checkAllBySpecies,
   collapseBySpecies,
+  sortAllSpecies,
 } from '../../../actions'
 
 import PokemonTable from './Pokemon'
@@ -22,7 +23,6 @@ const Species = React.createClass({
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
     filterBy: PropTypes.string,
-    sortSpeciesBy: PropTypes.func,
     sortSpecies: PropTypes.func.isRequired,
     monsters: PropTypes.object.isRequired,
     updateMonsterSort: PropTypes.func.isRequired,
@@ -32,6 +32,7 @@ const Species = React.createClass({
     checkPokemon: PropTypes.func.isRequired,
     checkAllBySpecies: PropTypes.func.isRequired,
     collapseBySpecies: PropTypes.func.isRequired,
+    sortAllSpecies: PropTypes.func.isRequired,
   },
 
   render() {
@@ -230,8 +231,8 @@ const Species = React.createClass({
     this.props.checkPokemon(pokemon)
   },
 
-  handleSortSpecies(sortBy) {
-    this.props.sortSpeciesBy(sortBy)
+  handleSortSpecies(newSortBy) {
+    this.props.sortAllSpecies(newSortBy)
   },
 
 })
@@ -247,4 +248,5 @@ export default connect((state => ({
   checkPokemon,
   checkAllBySpecies,
   collapseBySpecies,
+  sortAllSpecies,
 }, dispatch)))(Species)

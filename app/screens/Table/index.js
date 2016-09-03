@@ -23,13 +23,8 @@ import {
   updateMonsterSort,
   evolvePokemon,
   transferPokemon,
-  toggleShowSpeciesWithZeroPokemon
+  toggleShowSpeciesWithZeroPokemon,
 } from '../../actions'
-import { Organize } from '../../utils'
-
-const {
-  getSortedSpecies
-} = Organize
 
 window.$ = window.jQuery = $
 require('bootstrap')
@@ -211,7 +206,6 @@ const Table = React.createClass({
             filterBy={filterBy}
             sortBy={sortBy}
             sortDir={sortDir}
-            sortSpeciesBy={this.sortSpeciesBy}
           />
         </div>
 
@@ -358,32 +352,6 @@ const Table = React.createClass({
         ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
         this.handleRefresh()
       }
-    })
-  },
-
-  // TODO This should be an action, this.props.sortAllSpecies
-  sortSpeciesBy(newSortBy) {
-    const {
-      sortBy,
-      sortDir
-    } = this.props
-
-    let newSortDir = null
-
-    if (newSortBy === sortBy) {
-      newSortDir = sortDir === 'ASC' ? 'DESC' : 'ASC'
-    } else {
-      newSortDir = 'DESC'
-    }
-
-    const monsters = Object.assign({}, this.props.monsters, {
-      species: getSortedSpecies(this.props.monsters, newSortBy, newSortDir)
-    })
-
-    this.props.updateMonsterSort({
-      sortDir: newSortDir,
-      sortBy: newSortBy,
-      monsters
     })
   },
 
