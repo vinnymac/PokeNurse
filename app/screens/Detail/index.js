@@ -115,15 +115,9 @@ export default ($detailModal, pokemon, species) => {
   const candies = species.candy
   const name = species.name
   const nickname = pokemon.nickname
-  let spriteImageName = name.toLowerCase()
 
   const moveOne = baseStats.moves[pokemon.move_1]
   const moveTwo = baseStats.moves[pokemon.move_2]
-
-  if (spriteImageName.indexOf('nidoran') > -1) {
-    const spriteParts = spriteImageName.split(' ')
-    spriteImageName = `${spriteParts[0]}-${(spriteParts[1][0] === '♂') ? 'm' : 'f'}`
-  }
 
   const possibleQuickMoves = stats.quickMoves.map((quickMove) =>
     baseStats.moves[quickMove]
@@ -146,7 +140,6 @@ export default ($detailModal, pokemon, species) => {
     cp={pokemon.cp}
     maxCP={pokemon.max_cp}
     cpPerUpgrade={cpPerUpgrade}
-    spriteImageName={spriteImageName}
     type={type}
     weight={weight}
     height={height}
