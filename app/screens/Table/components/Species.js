@@ -198,31 +198,10 @@ const Species = React.createClass({
     return 'sorting'
   },
 
-  // TODO: This should be an action
-  sortPokemonBy(newSortBy, speciesIndex) {
-    const {
-      speciesState
-    } = this.props
-
-    const pokemonId = this.props.monsters.species[speciesIndex].pokemon_id
-
-    const {
-      sortBy,
-      sortDir
-    } = speciesState[pokemonId]
-
-    let newSortDir = null
-
-    if (newSortBy === sortBy) {
-      newSortDir = sortDir === 'ASC' ? 'DESC' : 'ASC'
-    } else {
-      newSortDir = 'DESC'
-    }
-
+  sortPokemonBy(sortBy, speciesIndex) {
     this.props.sortSpecies({
-      pokemonId,
-      sortDir: newSortDir,
-      sortBy: newSortBy,
+      speciesIndex,
+      sortBy,
     })
   },
 
@@ -239,7 +218,6 @@ const Species = React.createClass({
     return { sortBy, sortDir }
   },
 
-  // TODO: This should be an action, this.props.collapseBySpecies
   handleCollapse(specie) {
     this.props.collapseBySpecies(specie)
   },

@@ -230,15 +230,25 @@ export default handleActions({
   SORT_SPECIES(state, action) {
     const {
       sortBy,
-      sortDir,
-      pokemonId
+      speciesIndex
     } = action.payload
+
+    const pokemonId = state.monsters.species[speciesIndex].pokemon_id
+    const specieState = state.speciesState[pokemonId]
+
+    let sortDir = null
+
+    // If we are already sorting this way, flip direction
+    if (sortBy === specieState.sortBy) {
+      sortDir = specieState.sortDir === 'ASC' ? 'DESC' : 'ASC'
+    // Otherwise use descending
+    } else {
+      sortDir = 'DESC'
+    }
 
     const updatedSpeciesState = Object.assign({}, state, {
       speciesState: updateSpeciesState(state, pokemonId, () => ({ sortDir, sortBy }))
     })
-
-    const speciesIndex = pokemonId - 1
 
     return updateSpecies(updatedSpeciesState, speciesIndex, (speciesAtIndex) => {
       const sorted = getSortedPokemon(speciesAtIndex, null, sortBy, sortDir)
