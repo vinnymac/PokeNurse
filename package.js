@@ -86,6 +86,11 @@ async function startPack() {
           pack(plat, arch, log(plat, arch))
         })
       })
+    } else if (argv.platform || argv.arch) {
+      const arch = argv.arch || os.arch()
+      const platform = argv.platform || os.platform()
+
+      pack(platform, arch, log(platform, arch))
     } else {
       // build for current platform only
       pack(os.platform(), os.arch(), log(os.platform(), os.arch()))
