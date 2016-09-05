@@ -20,7 +20,7 @@ const MainMenu = React.createClass({
 
   render() {
     return (
-      <Menu noOverlay >
+      <Menu>
         <div>
           <ul className="nav navbar-nav">
             <li><a onClick={this.handleClickSettings}>Settings <i className="glyphicon glyphicon-cog" /></a></li>
