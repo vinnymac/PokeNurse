@@ -5,11 +5,13 @@ import {
 import status from './status'
 import authenticate from './authenticate'
 import trainer from './trainer'
+import settings from './settings'
 
 const appReducer = combineReducers({
   status,
   authenticate,
-  trainer
+  trainer,
+  settings,
 })
 
 export default (state, action) => {

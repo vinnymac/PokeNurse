@@ -67,8 +67,8 @@ export default {
       try {
         if (await fs.exists(accountPath)) {
           await fs.unlink(accountPath)
-          dispatch(checkAndDeleteCredentialsSuccess())
         }
+        dispatch(checkAndDeleteCredentialsSuccess())
       } catch (error) {
         dispatch(checkAndDeleteCredentialsFailed())
       }

@@ -1,39 +1,12 @@
-import path from 'path'
-import fs from 'fs'
 import every from 'lodash/every'
 import {
   handleActions
 } from 'redux-actions'
 import {
   ipcRenderer,
-  remote
 } from 'electron'
 
 import { Immutable, Organize } from '../utils'
-
-const settingsPath = path.join(remote.app.getPath('appData'), '/pokenurse/settings.json')
-
-const initialSettingsState = {
-  showSpeciesWithZeroPokemon: true
-}
-
-function getInitialSettingsState() {
-  if (!fs.existsSync(settingsPath)) {
-    return initialSettingsState
-  }
-
-  return JSON.parse(fs.readFileSync(settingsPath))
-}
-
-function updateSettingState(state, setting) {
-  const updatedSettings = Object.assign({}, state.settings, setting)
-
-  fs.writeFileSync(settingsPath, JSON.stringify(updatedSettings))
-
-  return Object.assign({}, state, {
-    settings: updatedSettings
-  })
-}
 
 const {
   getSortedPokemon,
@@ -51,7 +24,6 @@ const initialState = {
   sortDir: ASCENDING,
   speciesState: null,
   selectedCount: 0,
-  settings: getInitialSettingsState(),
 }
 
 function getInitialPokemonState(specie) {
@@ -346,16 +318,6 @@ export default handleActions({
   EVOLVE_POKEMON_FAILED(state, action) {
     console.error(action.payload) // eslint-disable-line
     return state
-  },
-
-  TOGGLE_SHOW_SPECIES_WITH_ZERO_POKEMON(state) {
-    return updateSettingState(state, {
-      showSpeciesWithZeroPokemon: !state.settings.showSpeciesWithZeroPokemon
-    })
-  },
-
-  RESET_ALL_SETTINGS(state) {
-    return updateSettingState(state, initialSettingsState)
   },
 
   COLLAPSE_BY_SPECIES(state, action) {

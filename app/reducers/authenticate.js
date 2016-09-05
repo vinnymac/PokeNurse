@@ -10,10 +10,12 @@ import {
 
 const accountPath = path.join(remote.app.getPath('appData'), '/pokenurse/account.json')
 
+const credentialsInitialState = {}
+
 // Helper to initialize the credentials state with existing account.json
 function getAccountCredentials() {
   if (!fs.existsSync(accountPath)) {
-    return {}
+    return credentialsInitialState
   }
 
   // Maybe use readFile instead
@@ -22,7 +24,7 @@ function getAccountCredentials() {
   return {
     method: credentials.method,
     username: credentials.username,
-    password: credentials.password
+    password: credentials.password,
   }
 }
 
@@ -43,5 +45,14 @@ export default handleActions({
 
   USER_LOGOUT(state) {
     return Object.assign({}, state, { loggedIn: false })
+  },
+
+  CHECK_AND_DELETE_CREDENTIALS_SUCCESS(state) {
+    return Object.assign({}, state, { credentials: credentialsInitialState })
+  },
+
+  CHECK_AND_DELETE_CREDENTIALS_FAILED(state) {
+    console.error('Failed to check and delete credentials.') // eslint-disable-line
+    return state
   },
 }, initialState)

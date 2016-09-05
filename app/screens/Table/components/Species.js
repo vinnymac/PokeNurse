@@ -238,7 +238,7 @@ const Species = React.createClass({
 })
 
 export default connect((state => ({
-  showSpeciesWithZeroPokemon: state.trainer.settings.showSpeciesWithZeroPokemon,
+  showSpeciesWithZeroPokemon: state.settings.showSpeciesWithZeroPokemon,
   speciesState: state.trainer.speciesState,
   monsters: state.trainer.monsters,
 })), (dispatch => bindActionCreators({
