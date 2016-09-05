@@ -30,7 +30,7 @@ function getAccountCredentials() {
 
 const initialState = {
   loggedIn: false,
-  credentials: getAccountCredentials()
+  credentials: getAccountCredentials(),
 }
 
 export default handleActions({
@@ -53,6 +53,15 @@ export default handleActions({
 
   CHECK_AND_DELETE_CREDENTIALS_FAILED(state) {
     console.error('Failed to check and delete credentials.') // eslint-disable-line
+    return state
+  },
+
+  SAVE_ACCOUNT_CREDENTIALS_SUCCESS(state, action) {
+    return Object.assign({}, state, { credentials: action.payload.credentials })
+  },
+
+  SAVE_ACCOUNT_CREDENTIALS_FAILED(state) {
+    console.error('Failed to save account credentials.') // eslint-disable-line
     return state
   },
 }, initialState)

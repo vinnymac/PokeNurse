@@ -75,13 +75,11 @@ export default {
     }
   },
 
-  saveAccountCredentials(creds) {
-    const credentials = JSON.stringify(creds)
-
+  saveAccountCredentials(credentials) {
     return async (dispatch) => {
       try {
-        const response = await fs.writeFile(accountPath, credentials)
-        dispatch(saveAccountCredentialsSuccess(response))
+        const response = await fs.writeFile(accountPath, JSON.stringify(credentials))
+        dispatch(saveAccountCredentialsSuccess({ response, credentials }))
       } catch (error) {
         dispatch(saveAccountCredentialsFailed(error))
       }

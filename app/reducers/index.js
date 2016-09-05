@@ -16,7 +16,7 @@ const appReducer = combineReducers({
 
 export default (state, action) => {
   if (action.type === 'USER_LOGOUT') {
-    state = undefined
+    state = { authenticate: state.authenticate }
   }
 
   return appReducer(state, action)
