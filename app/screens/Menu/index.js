@@ -8,7 +8,7 @@ import {
   updateStatus,
   logout
 } from '../../actions'
-import renderModal from './components/Settings'
+import renderSettings from '../Settings'
 
 const Menu = require('react-burger-menu').slide
 
@@ -36,7 +36,7 @@ const MainMenu = React.createClass({
   },
 
   handleClickSettings() {
-    renderModal($(document.getElementById('detailModal')))
+    renderSettings($(document.getElementById('settingsModal')))
   },
 
   handleSignOut() {

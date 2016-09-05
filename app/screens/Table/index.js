@@ -24,7 +24,6 @@ import {
   updateMonsterSort,
   evolvePokemon,
   transferPokemon,
-  toggleShowSpeciesWithZeroPokemon,
 } from '../../actions'
 
 window.$ = window.jQuery = $
@@ -90,7 +89,6 @@ const Table = React.createClass({
     sortDir: PropTypes.string,
     transferPokemon: PropTypes.func.isRequired,
     evolvePokemon: PropTypes.func.isRequired,
-    toggleShowSpeciesWithZeroPokemon: PropTypes.func.isRequired
   },
 
   componentDidMount() {
@@ -176,13 +174,6 @@ const Table = React.createClass({
             <span className="pull-right">
               <input
                 type="button"
-                className="btn btn-primary"
-                value="Toggle Caught Species"
-                onClick={this.handleToggleShowAllSpecies}
-              />
-              {" "}
-              <input
-                type="button"
                 className="btn btn-warning"
                 id="transfer-btn"
                 value="Transfer"
@@ -221,7 +212,14 @@ const Table = React.createClass({
           tabIndex="-1"
           role="dialog"
           aria-labelledby="detailModalLabel"
-          ref={(c) => { this.detailModal = c }}
+        />
+
+        <div
+          className="modal fade"
+          id="settingsModal"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="settingsModalLabel"
         />
       </div>
     )
@@ -366,10 +364,6 @@ const Table = React.createClass({
     this.removeMonster(pokemon)
   },
 
-  handleToggleShowAllSpecies() {
-    this.props.toggleShowSpeciesWithZeroPokemon()
-  },
-
 })
 
 export default connect((state => ({
@@ -388,5 +382,4 @@ export default connect((state => ({
   updateMonsterSort,
   evolvePokemon,
   transferPokemon,
-  toggleShowSpeciesWithZeroPokemon
 }, dispatch)))(Table)
