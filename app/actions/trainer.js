@@ -277,6 +277,7 @@ export default {
   checkAllBySpecies: createAction('CHECK_ALL_BY_SPECIES'),
   collapseBySpecies: createAction('COLLAPSE_BY_SPECIES'),
   sortAllSpecies: createAction('SORT_ALL_SPECIES'),
+  resetAllSettings: createAction('RESET_ALL_SETTINGS'),
   getTrainerInfo,
   getTrainerPokemon,
   powerUpPokemon,
