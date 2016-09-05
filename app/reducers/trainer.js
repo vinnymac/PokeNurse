@@ -1,13 +1,16 @@
+import path from 'path'
+import every from 'lodash/every'
 import {
   handleActions
 } from 'redux-actions'
 import {
-  ipcRenderer
+  ipcRenderer,
+  remote
 } from 'electron'
 
-import every from 'lodash/every'
-
 import { Immutable, Organize } from '../utils'
+
+const settingsPath = path.join(remote.app.getPath('appData'), '/pokenurse/settings.json')
 
 const {
   getSortedPokemon,
