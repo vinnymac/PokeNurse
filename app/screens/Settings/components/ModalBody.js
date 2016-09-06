@@ -3,12 +3,28 @@ import React, {
 } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import {
+  FormGroup,
+  Checkbox,
+  HelpBlock,
+} from 'react-bootstrap'
 
 import {
   toggleShowSpeciesWithZeroPokemon,
   resetAllSettings,
   checkAndDeleteCredentials,
 } from '../../../actions'
+
+function SettingFieldGroupCheckbox({ id, label, help, ...props }) {
+  return (
+    <FormGroup controlId={id}>
+      <Checkbox {...props} >
+        {label}
+      </Checkbox>
+      {help && <HelpBlock>{help}</HelpBlock>}
+    </FormGroup>
+  )
+}
 
 const ModalBody = React.createClass({
   displayName: 'ModalBody',
@@ -23,16 +39,13 @@ const ModalBody = React.createClass({
   render() {
     return (
       <div className="modal-body" >
-        <div className="btn-group">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={this.handleToggleShowAllSpecies}
-          >
-            Toggle Caught Species
-          </button>
-        </div>
-        <div className="btn-group">
+        <SettingFieldGroupCheckbox
+          label="Display Uncaught Species"
+          checked={this.props.showSpeciesWithZeroPokemon}
+          help="If you have no Mew, this will display them when enabled."
+          onClick={this.handleToggleShowAllSpecies}
+        />
+        <div className="form-group">
           <button
             type="button"
             className="btn btn-danger"
@@ -41,7 +54,7 @@ const ModalBody = React.createClass({
             Delete Stored Login Credentials
           </button>
         </div>
-        <div className="btn-group">
+        <div className="form-group">
           <button
             type="button"
             className="btn btn-danger"
