@@ -8,7 +8,6 @@ import LoginForm from './components/LoginFormContainer'
 const Login = React.createClass({
   propTypes: {
     credentials: PropTypes.object,
-    authenticating: PropTypes.bool.isRequired,
   },
 
   render() {
