@@ -9,9 +9,16 @@ import {
 
 const settingsPath = path.join(remote.app.getPath('appData'), '/pokenurse/settings.json')
 
+const ASCENDING = 'ASC'
+const DESCENDING = 'DESC'
+
 const initialSettingsState = {
   showSpeciesWithZeroPokemon: true,
   autoLogin: false,
+  defaultPokedexSortBy: 'pokemon_id',
+  defaultPokedexSortDirection: ASCENDING,
+  defaultSpecieSortBy: 'cp',
+  defaultSpecieSortDirection: DESCENDING,
 }
 
 function getInitialSettingsState() {
@@ -32,7 +39,11 @@ function updateSettingState(state, setting) {
   return updated
 }
 
-const initialState = getInitialSettingsState()
+const defaultSettings = getInitialSettingsState()
+
+export {
+  defaultSettings,
+}
 
 export default handleActions({
   TOGGLE_SHOW_SPECIES_WITH_ZERO_POKEMON(state) {
@@ -50,4 +61,28 @@ export default handleActions({
   RESET_ALL_SETTINGS(state) {
     return updateSettingState(state, initialSettingsState)
   },
-}, initialState)
+
+  CHANGE_DEFAULT_POKEDEX_SORT_BY(state, action) {
+    return updateSettingState(state, {
+      defaultPokedexSortBy: action.payload
+    })
+  },
+
+  CHANGE_DEFAULT_POKEDEX_SORT_DIRECTION(state, action) {
+    return updateSettingState(state, {
+      defaultPokedexSortDirection: action.payload
+    })
+  },
+
+  CHANGE_DEFAULT_SPECIE_SORT_DIRECTION(state, action) {
+    return updateSettingState(state, {
+      defaultSpecieSortDirection: action.payload
+    })
+  },
+
+  CHANGE_DEFAULT_SPECIE_SORT_BY(state, action) {
+    return updateSettingState(state, {
+      defaultSpecieSortBy: action.payload
+    })
+  },
+}, defaultSettings)

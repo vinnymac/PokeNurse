@@ -16,7 +16,10 @@ const appReducer = combineReducers({
 
 export default (state, action) => {
   if (action.type === 'USER_LOGOUT') {
-    state = { authenticate: state.authenticate }
+    state = {
+      authenticate: state.authenticate,
+      settings: state.settings,
+    }
   }
 
   return appReducer(state, action)

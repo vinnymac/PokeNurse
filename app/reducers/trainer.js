@@ -8,6 +8,10 @@ import {
 
 import { Immutable, Organize } from '../utils'
 
+import {
+  defaultSettings
+} from './settings'
+
 const {
   getSortedPokemon,
   getSortedSpecies
@@ -20,8 +24,8 @@ const initialState = {
   trainerData: null,
   monsters: null,
   filterBy: '',
-  sortBy: 'pokemon_id',
-  sortDir: ASCENDING,
+  sortBy: defaultSettings.defaultPokedexSortBy,
+  sortDir: defaultSettings.defaultPokedexSortDirection,
   speciesState: null,
   selectedCount: 0,
 }
@@ -37,8 +41,8 @@ function getInitialPokemonState(specie) {
 function getNewSpeciesState(state) {
   const speciesState = {}
 
-  const sortBy = 'cp'
-  const sortDir = DESCENDING
+  const sortBy = defaultSettings.defaultSpecieSortBy
+  const sortDir = defaultSettings.defaultSpecieSortDirection
 
   let selectedCount = 0
 
