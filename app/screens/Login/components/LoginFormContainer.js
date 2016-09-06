@@ -5,6 +5,10 @@ import { ipcRenderer } from 'electron'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {
+  ProgressBar
+} from 'react-bootstrap'
+
+import {
   checkAndDeleteCredentials,
   saveAccountCredentials,
   login
@@ -23,6 +27,7 @@ const LoginForm = React.createClass({
     checkAndDeleteCredentials: PropTypes.func.isRequired,
     saveAccountCredentials: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
+    authenticating: PropTypes.bool.isRequired,
   },
 
   getInitialState() {
@@ -33,8 +38,21 @@ const LoginForm = React.createClass({
 
   render() {
     const {
-      credentials
+      credentials,
+      authenticating,
     } = this.props
+
+    if (authenticating) {
+      return (
+        <div className="container">
+          <ProgressBar
+            now={100}
+            active
+            bsStyle="info"
+          />
+        </div>
+      )
+    }
 
     return (
       <div className="container">
@@ -161,7 +179,9 @@ const LoginForm = React.createClass({
 })
 
 
-export default connect(null, (dispatch => bindActionCreators({
+export default connect((state => ({
+  authenticating: state.authenticate.authenticating,
+})), (dispatch => bindActionCreators({
   checkAndDeleteCredentials,
   saveAccountCredentials,
   login

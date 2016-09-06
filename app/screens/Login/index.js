@@ -7,7 +7,8 @@ import LoginForm from './components/LoginFormContainer'
 
 const Login = React.createClass({
   propTypes: {
-    credentials: PropTypes.object
+    credentials: PropTypes.object,
+    authenticating: PropTypes.bool.isRequired,
   },
 
   render() {
@@ -25,5 +26,5 @@ const Login = React.createClass({
 })
 
 export default connect(state => ({
-  credentials: state.authenticate.credentials
+  credentials: state.authenticate.credentials,
 }))(Login)

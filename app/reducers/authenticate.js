@@ -30,17 +30,28 @@ function getAccountCredentials() {
 
 const initialState = {
   loggedIn: false,
+  authenticating: false,
   credentials: getAccountCredentials(),
 }
 
 export default handleActions({
+  USER_LOGIN_STARTED(state) {
+    return Object.assign({}, state, { authenticating: true })
+  },
+
   USER_LOGIN_SUCCESS(state) {
-    return Object.assign({}, state, { loggedIn: true })
+    return Object.assign({}, state, {
+      loggedIn: true,
+      authenticating: false,
+    })
   },
 
   USER_LOGIN_FAILED(state, action) {
     ipcRenderer.send('error-message', String(action.payload.error))
-    return Object.assign({}, state, { loggedIn: false })
+    return Object.assign({}, state, {
+      loggedIn: false,
+      authenticating: false,
+    })
   },
 
   USER_LOGOUT(state) {

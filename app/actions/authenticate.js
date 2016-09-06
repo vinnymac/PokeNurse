@@ -22,6 +22,7 @@ const saveAccountCredentialsSuccess = createAction('SAVE_ACCOUNT_CREDENTIALS_SUC
 const checkAndDeleteCredentialsFailed = createAction('CHECK_AND_DELETE_CREDENTIALS_FAILED')
 const checkAndDeleteCredentialsSuccess = createAction('CHECK_AND_DELETE_CREDENTIALS_SUCCESS')
 
+const userLoginStarted = createAction('USER_LOGIN_STARTED')
 const userLoginSuccess = createAction('USER_LOGIN_SUCCESS')
 const userLoginFailed = createAction('USER_LOGIN_FAILED')
 
@@ -32,6 +33,8 @@ export default {
 
   login({ method, username, password }) {
     return async (dispatch) => {
+      dispatch(userLoginStarted())
+
       let login
       if (method === 'google') {
         login = new pogobuf.GoogleLogin()
