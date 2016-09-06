@@ -10,7 +10,7 @@ import {
 const settingsPath = path.join(remote.app.getPath('appData'), '/pokenurse/settings.json')
 
 const initialSettingsState = {
-  showSpeciesWithZeroPokemon: true
+  showSpeciesWithZeroPokemon: true,
 }
 
 function getInitialSettingsState() {
@@ -18,7 +18,9 @@ function getInitialSettingsState() {
     return initialSettingsState
   }
 
-  return JSON.parse(fs.readFileSync(settingsPath))
+  const settingsJSON = JSON.parse(fs.readFileSync(settingsPath))
+
+  return Object.assign({}, initialSettingsState, settingsJSON)
 }
 
 function updateSettingState(state, setting) {
