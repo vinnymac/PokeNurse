@@ -26,6 +26,12 @@ function SettingFieldGroupCheckbox({ id, label, help, ...props }) {
   )
 }
 
+SettingFieldGroupCheckbox.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  help: PropTypes.string,
+}
+
 const ModalBody = React.createClass({
   displayName: 'ModalBody',
 
@@ -44,6 +50,7 @@ const ModalBody = React.createClass({
           checked={this.props.showSpeciesWithZeroPokemon}
           help="If you have no Mew, this will display them when enabled."
           onClick={this.handleToggleShowAllSpecies}
+          id="displayUncaught"
         />
         <div className="form-group">
           <button
