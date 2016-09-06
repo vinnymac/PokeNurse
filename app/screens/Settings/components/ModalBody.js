@@ -9,6 +9,7 @@ import {
   HelpBlock,
   ControlLabel,
   FormControl,
+  Panel,
 } from 'react-bootstrap'
 
 import {
@@ -111,68 +112,70 @@ const ModalBody = React.createClass({
 
     return (
       <div className="modal-body" >
-        <h4>Table</h4>
-        <SettingFieldGroupCheckbox
-          label="Display Uncaught Species"
-          checked={this.props.showSpeciesWithZeroPokemon}
-          help="If you have no Mew, this will display them when enabled."
-          onChange={this.handleToggleShowAllSpecies}
-          id="displayUncaught"
-        />
-        <SettingFieldGroupSelect
-          label="Default Pokedex Sort By"
-          id="defaultPokedexSortBy"
-          onChange={this.handleDefaultPokedexSortByChange}
-          defaultValue={defaultPokedexSortBy}
-          options={pokedexSortByOptions}
-        />
-        <SettingFieldGroupSelect
-          label="Default Pokedex Sort Direction"
-          onChange={this.handleDefaultPokedexSortDirectionChange}
-          defaultValue={defaultPokedexSortDirection === 'ASC' ? sortDirectionOptions[0] : sortDirectionOptions[1]}
-          options={sortDirectionOptions}
-          id="defaultPokedexSortDirection"
-        />
-        <SettingFieldGroupSelect
-          label="Default Specie Sort By"
-          id="defaultSpecieSortBy"
-          onChange={this.handleDefaultSpecieSortByChange}
-          defaultValue={defaultSpecieSortBy}
-          options={specieSortByOptions}
-        />
-        <SettingFieldGroupSelect
-          label="Default Specie Sort Direction"
-          onChange={this.handleDefaultSpecieSortDirectionChange}
-          defaultValue={defaultSpecieSortDirection === 'ASC' ? sortDirectionOptions[0] : sortDirectionOptions[1]}
-          options={sortDirectionOptions}
-          id="defaultSpecieSortDirection"
-        />
-        <h4>Other</h4>
-        <SettingFieldGroupCheckbox
-          label="Automatically Login"
-          checked={this.props.autoLogin}
-          help="Authenticate with saved credentials on launch."
-          onChange={this.handleToggleAutoLogin}
-          id="autoLogin"
-        />
-        <div className="form-group">
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={this.handleDeleteCredentials}
-          >
-            Delete Stored Login Credentials
-          </button>
-        </div>
-        <div className="form-group">
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={this.handleReset}
-          >
-            Reset All Settings
-          </button>
-        </div>
+        <Panel header="Table Configuration" bsStyle="primary" >
+          <SettingFieldGroupCheckbox
+            label="Display Uncaught Species"
+            checked={this.props.showSpeciesWithZeroPokemon}
+            help="If you have no Mew, this will display them when enabled."
+            onChange={this.handleToggleShowAllSpecies}
+            id="displayUncaught"
+          />
+          <SettingFieldGroupSelect
+            label="Default Pokedex Sort By"
+            id="defaultPokedexSortBy"
+            onChange={this.handleDefaultPokedexSortByChange}
+            defaultValue={defaultPokedexSortBy}
+            options={pokedexSortByOptions}
+          />
+          <SettingFieldGroupSelect
+            label="Default Pokedex Sort Direction"
+            onChange={this.handleDefaultPokedexSortDirectionChange}
+            defaultValue={defaultPokedexSortDirection === 'ASC' ? sortDirectionOptions[0] : sortDirectionOptions[1]}
+            options={sortDirectionOptions}
+            id="defaultPokedexSortDirection"
+          />
+          <SettingFieldGroupSelect
+            label="Default Specie Sort By"
+            id="defaultSpecieSortBy"
+            onChange={this.handleDefaultSpecieSortByChange}
+            defaultValue={defaultSpecieSortBy}
+            options={specieSortByOptions}
+          />
+          <SettingFieldGroupSelect
+            label="Default Specie Sort Direction"
+            onChange={this.handleDefaultSpecieSortDirectionChange}
+            defaultValue={defaultSpecieSortDirection === 'ASC' ? sortDirectionOptions[0] : sortDirectionOptions[1]}
+            options={sortDirectionOptions}
+            id="defaultSpecieSortDirection"
+          />
+        </Panel>
+        <Panel header="Other">
+          <SettingFieldGroupCheckbox
+            label="Automatically Login"
+            checked={this.props.autoLogin}
+            help="Authenticate with stored credentials on launch."
+            onChange={this.handleToggleAutoLogin}
+            id="autoLogin"
+          />
+          <div className="form-group">
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={this.handleDeleteCredentials}
+            >
+              Delete Stored Credentials
+            </button>
+          </div>
+          <div className="form-group">
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={this.handleReset}
+            >
+              Reset All Settings
+            </button>
+          </div>
+        </Panel>
       </div>
     )
   },
