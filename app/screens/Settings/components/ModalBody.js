@@ -15,9 +15,9 @@ import {
   checkAndDeleteCredentials,
 } from '../../../actions'
 
-function SettingFieldGroupCheckbox({ id, label, help, ...props }) {
+function SettingFieldGroupCheckbox({ label, help, ...props }) {
   return (
-    <FormGroup controlId={id}>
+    <FormGroup>
       <Checkbox {...props} >
         {label}
       </Checkbox>
@@ -49,7 +49,7 @@ const ModalBody = React.createClass({
           label="Display Uncaught Species"
           checked={this.props.showSpeciesWithZeroPokemon}
           help="If you have no Mew, this will display them when enabled."
-          onClick={this.handleToggleShowAllSpecies}
+          onChange={this.handleToggleShowAllSpecies}
           id="displayUncaught"
         />
         <div className="form-group">
