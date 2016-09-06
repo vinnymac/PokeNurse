@@ -2,6 +2,10 @@ import times from 'lodash/times'
 
 import baseStats from '../baseStats'
 
+import {
+  defaultSettings
+} from './reducers/settings'
+
 const levelCpMultiplier = {
   1: 0.094,
   1.5: 0.135137432,
@@ -387,8 +391,8 @@ const Organize = {
         sortBy = currentSortState.sortBy
         sortDir = currentSortState.sortDir
       } else {
-        sortBy = 'cp'
-        sortDir = 'DESC'
+        sortBy = defaultSettings.defaultSpecieSortBy
+        sortDir = defaultSettings.defaultSpecieSortDirection
       }
     }
 
