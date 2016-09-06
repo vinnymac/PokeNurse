@@ -11,6 +11,7 @@ const settingsPath = path.join(remote.app.getPath('appData'), '/pokenurse/settin
 
 const initialSettingsState = {
   showSpeciesWithZeroPokemon: true,
+  autoLogin: false,
 }
 
 function getInitialSettingsState() {
@@ -37,6 +38,12 @@ export default handleActions({
   TOGGLE_SHOW_SPECIES_WITH_ZERO_POKEMON(state) {
     return updateSettingState(state, {
       showSpeciesWithZeroPokemon: !state.showSpeciesWithZeroPokemon
+    })
+  },
+
+  TOGGLE_AUTO_LOGIN(state) {
+    return updateSettingState(state, {
+      autoLogin: !state.autoLogin
     })
   },
 

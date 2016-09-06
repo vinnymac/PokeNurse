@@ -155,6 +155,8 @@ const LoginForm = React.createClass({
   },
 
   handleLogin() {
+    if (this.props.authenticating) return
+
     const method = this.state.authMethod
 
     if (this.username.value === '' || this.password.value === '') {

@@ -13,6 +13,7 @@ import {
   toggleShowSpeciesWithZeroPokemon,
   resetAllSettings,
   checkAndDeleteCredentials,
+  toggleAutoLogin,
 } from '../../../actions'
 
 function SettingFieldGroupCheckbox({ label, help, ...props }) {
@@ -40,6 +41,8 @@ const ModalBody = React.createClass({
     resetAllSettings: PropTypes.func.isRequired,
     checkAndDeleteCredentials: PropTypes.func.isRequired,
     showSpeciesWithZeroPokemon: PropTypes.bool.isRequired,
+    toggleAutoLogin: PropTypes.func.isRequired,
+    autoLogin: PropTypes.bool.isRequired,
   },
 
   render() {
@@ -51,6 +54,13 @@ const ModalBody = React.createClass({
           help="If you have no Mew, this will display them when enabled."
           onChange={this.handleToggleShowAllSpecies}
           id="displayUncaught"
+        />
+        <SettingFieldGroupCheckbox
+          label="Automatically Login"
+          checked={this.props.autoLogin}
+          help="Authenticate with saved credentials on launch."
+          onChange={this.handleToggleAutoLogin}
+          id="autoLogin"
         />
         <div className="form-group">
           <button
@@ -74,6 +84,10 @@ const ModalBody = React.createClass({
     )
   },
 
+  handleToggleAutoLogin() {
+    this.props.toggleAutoLogin()
+  },
+
   handleToggleShowAllSpecies() {
     this.props.toggleShowSpeciesWithZeroPokemon()
   },
@@ -89,9 +103,11 @@ const ModalBody = React.createClass({
 
 
 export default connect((state => ({
-  showSpeciesWithZeroPokemon: state.settings.showSpeciesWithZeroPokemon
+  showSpeciesWithZeroPokemon: state.settings.showSpeciesWithZeroPokemon,
+  autoLogin: state.settings.autoLogin,
 })), (dispatch => bindActionCreators({
   toggleShowSpeciesWithZeroPokemon,
   resetAllSettings,
   checkAndDeleteCredentials,
+  toggleAutoLogin,
 }, dispatch)))(ModalBody)
