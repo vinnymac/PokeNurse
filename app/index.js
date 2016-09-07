@@ -1,32 +1,55 @@
-import React from 'react'
+import React, {
+  PropTypes
+} from 'react'
 import ReactDOM from 'react-dom'
-import { ipcRenderer } from 'electron'
 import {
-  Provider
+  Provider,
+  connect
 } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import store from './store'
 import Login from './screens/Login'
 import Table from './screens/Table'
 
+import {
+  login
+} from './actions'
+
 require('./css/pokenurse.css')
 
 const App = React.createClass({
-  getInitialState() {
-    return { loggedIn: false }
+  propTypes: {
+    authenticate: PropTypes.object.isRequired,
+    autoLogin: PropTypes.bool.isRequired,
+    login: PropTypes.func.isRequired,
   },
 
   componentDidMount() {
-    ipcRenderer.on('pokemon-logged-in', () => {
-      this.setState({ loggedIn: true })
-    })
+    const {
+      autoLogin,
+      authenticate,
+    } = this.props
+
+    const { credentials } = authenticate
+
+    if (autoLogin && credentials.method && credentials.password && credentials.username) {
+      this.props.login(credentials)
+    }
   },
 
   render() {
-    if (this.state.loggedIn) return (<Table />)
+    if (this.props.authenticate.loggedIn) return (<Table />)
 
     return (<Login />)
   }
 })
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('content'))
+const ConnectedApp = connect((state => ({
+  authenticate: state.authenticate,
+  autoLogin: state.settings.autoLogin,
+})), (dispatch => bindActionCreators({
+  login
+}, dispatch)))(App)
+
+ReactDOM.render(<Provider store={store}><ConnectedApp /></Provider>, document.getElementById('content'))

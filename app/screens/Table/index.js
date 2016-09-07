@@ -8,32 +8,26 @@ import $ from 'jquery'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import MainMenu from '../Menu'
 import Status from './components/Status'
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
 
 import confirmDialog from '../ConfirmationDialog'
-import { updateStatus } from '../../actions'
 import {
-  Immutable,
-  Organize
-} from '../../utils'
+  updateStatus,
+  logout,
+  getTrainerPokemon,
+  updateSpecies,
+  updateMonster,
+  updateMonsterSort,
+  evolvePokemon,
+  transferPokemon,
+} from '../../actions'
 
 window.$ = window.jQuery = $
 require('bootstrap')
-
-const COLUMN_SORT_AS_NUM = {
-  nickname: false,
-  iv: true,
-  cp: true,
-  favorite: true,
-  pokemon_id: true,
-  name: false,
-  count: true,
-  candy: true,
-  evolves: true
-}
 
 let running = false
 
@@ -51,10 +45,10 @@ function randomDelay(min, max) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
-function setBackgroundImage(team) {
-  const navbar = document.getElementById('navbar')
+function getHeaderBackgroundStyles(team) {
   let teamName = null
   let teamColor = null
+
   switch (team) {
     case 1:
       teamName = 'mystic'
@@ -71,87 +65,74 @@ function setBackgroundImage(team) {
     default:
   }
 
-  navbar.style.backgroundColor = teamColor
-  navbar.style.backgroundImage = `url("./imgs/${teamName}.jpg")`
-  navbar.style.backgroundRepeat = 'no-repeat'
+  return {
+    backgroundColor: teamColor,
+    backgroundImage: `url("./imgs/${teamName}.jpg")`,
+    backgroundRepeat: 'no-repeat'
+  }
 }
 
 const Table = React.createClass({
 
   propTypes: {
-    updateStatus: PropTypes.func.isRequired
-  },
-
-  childContextTypes: {
-    monsterUpdater: PropTypes.func.isRequired
-  },
-
-  getInitialState() {
-    const monsters = ipcRenderer.sendSync('get-players-pokemons')
-    const sortBy = 'pokemon_id'
-    const sortDir = 'ASC'
-
-    return {
-      monsters: this.getNewMonsters(monsters, sortBy, sortDir),
-      filterBy: '',
-      sortBy,
-      sortDir
-    }
-  },
-
-  getChildContext() {
-    return {
-      monsterUpdater: this.updateMonster
-    }
+    updateStatus: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+    trainerData: PropTypes.object,
+    getTrainerPokemon: PropTypes.func.isRequired,
+    monsters: PropTypes.object,
+    updateSpecies: PropTypes.func.isRequired,
+    updateMonster: PropTypes.func.isRequired,
+    updateMonsterSort: PropTypes.func.isRequired,
+    speciesState: PropTypes.object,
+    filterBy: PropTypes.string,
+    sortBy: PropTypes.string,
+    sortDir: PropTypes.string,
+    transferPokemon: PropTypes.func.isRequired,
+    evolvePokemon: PropTypes.func.isRequired,
   },
 
   componentDidMount() {
     document.title = 'PokéNurse • Home'
 
-    ipcRenderer.on('receive-players-pokemons', (event, data) => {
-      this.setState({ monsters: this.getNewMonsters(data, this.state.sortBy, this.state.sortDir) })
-    })
-
-    const usernameH = document.getElementById('username-h')
-
-    const playerInfo = ipcRenderer.sendSync('get-player-info')
-    if (playerInfo.success) {
-      setBackgroundImage(playerInfo.player_data.team)
-
-      usernameH.innerHTML = playerInfo.player_data.username
-    } else {
-      ipcRenderer.send('error-message', 'Failed in retrieving player info.  Please restart.')
-    }
-
     ipcRenderer.send('table-did-mount')
-
-    ipcRenderer.on('transfer-pokemon-complete', this.handleTransferCompleted)
-    ipcRenderer.on('evolve-pokemon-complete', this.handleEvolveCompleted)
-  },
-
-  componentWillUnmount() {
-    ipcRenderer.removeListener('transfer-pokemon-complete', this.handleTransferCompleted)
-    ipcRenderer.removeListener('evolve-pokemon-complete', this.handleEvolveCompleted)
   },
 
   render() {
     // <!--<h5 id="pokestorage-h"></h5>
     // <h5 id="bagstorage-h"></h5>-->
     const {
-      monsters,
       filterBy,
       sortBy,
       sortDir
-    } = this.state
+    } = this.props
+
+    const {
+      trainerData,
+      monsters
+    } = this.props
+
+    const username = trainerData ? trainerData.username : ''
+    const backgroundHeaderStyles = trainerData ? getHeaderBackgroundStyles(trainerData.team) : {}
+
+    // TODO let parts of the screen render without monsters
+    if (!monsters) return null
 
     return (
       <div>
         <div className="container">
-          <nav className="navbar navbar-inverse navbar-fixed-top" id="navbar">
+          <nav
+            className="navbar navbar-inverse navbar-fixed-top"
+            style={backgroundHeaderStyles}
+          >
+            <div className="navbar-header">
+              <MainMenu />
+            </div>
             <div className="navbar-header username">
               {' '}
               <strong>
-                <span id="username-h" />
+                <span id="username-h">
+                  {username}
+                </span>
               </strong>
             </div>
             <div className="navbar-right">
@@ -159,7 +140,7 @@ const Table = React.createClass({
                 <SpeciesCounter monsters={monsters} />
                 {' | '}
                 <span>
-                  <CheckCounter ref={(c) => { this.checkCounter = c }} />
+                  <CheckCounter />
                 </span>
               </div>
             </div>
@@ -193,13 +174,6 @@ const Table = React.createClass({
             <span className="pull-right">
               <input
                 type="button"
-                className="btn btn-primary"
-                value="Toggle Caught Species"
-                onClick={this.handleToggleShowAllSpecies}
-              />
-              {" "}
-              <input
-                type="button"
                 className="btn btn-warning"
                 id="transfer-btn"
                 value="Transfer"
@@ -217,15 +191,9 @@ const Table = React.createClass({
           </h1>
 
           <SpeciesTable
-            ref={(c) => { this.speciesTable = c }}
-            monsters={monsters}
             filterBy={filterBy}
             sortBy={sortBy}
             sortDir={sortDir}
-            sortSpeciesBy={this.sortSpeciesBy}
-            updateSpecies={this.updateSpecies}
-            getSortedPokemon={this.getSortedPokemon}
-            updateCheckedCount={this.updateCheckedCount}
           />
         </div>
 
@@ -244,61 +212,59 @@ const Table = React.createClass({
           tabIndex="-1"
           role="dialog"
           aria-labelledby="detailModalLabel"
-          ref={(c) => { this.detailModal = c }}
+        />
+
+        <div
+          className="modal fade"
+          id="settingsModal"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="settingsModalLabel"
         />
       </div>
     )
   },
 
-  updateCheckedCount(count) {
-    this.checkCounter.handleRecount(count)
-  },
-
   updateMonster(pokemon, options = {}) {
-    const speciesIndex = pokemon.pokemon_id - 1
-
-    const updatedPokemon = options.remove ? null : pokemon
-
-    this.updateSpecies(speciesIndex, (speciesAtIndex) => {
-      const index = speciesAtIndex.pokemon.findIndex((p) => p.id === pokemon.id)
-
-      const sorted = this.getSortedPokemon(Object.assign({}, speciesAtIndex, {
-        pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, updatedPokemon)
-      }))
-
-      return { // make sure we sort the new pokemon index now that we updated it
-        pokemon: sorted
-      }
-    })
+    this.props.updateMonster({ pokemon, options })
   },
 
   updateSpecies(index, updater) {
-    const speciesAtIndex = this.state.monsters.species[index]
-    const updatedSpecies = Object.assign({}, speciesAtIndex, updater(speciesAtIndex))
-
-    const updatedMonsters = Object.assign({}, this.state.monsters, {
-      species: Immutable.array.set(this.state.monsters.species, index, updatedSpecies)
-    })
-
-    this.setState({
-      monsters: updatedMonsters
-    })
+    this.props.updateSpecies({ index, updater })
   },
 
   onFilterChange(event) {
-    this.setState({
+    this.props.updateMonsterSort({
       filterBy: String(event.target.value).toLowerCase()
     })
   },
 
   handleRefresh() {
-    ipcRenderer.send('get-players-pokemons', 'async')
+    this.props.getTrainerPokemon()
+  },
+
+  getPokemonChecked() {
+    const {
+      monsters,
+      speciesState
+    } = this.props
+    const checkedPokemon = []
+
+    monsters.species.forEach((specie) => {
+      specie.pokemon.forEach((p) => {
+        if (speciesState[specie.pokemon_id].pokemonState[p.id].check) {
+          checkedPokemon.push(p)
+        }
+      })
+    })
+
+    return checkedPokemon
   },
 
   handleTransfer() {
     if (runningCheck()) return
 
-    const selectedPokemon = this.speciesTable.getPokemonChecked()
+    const selectedPokemon = this.getPokemonChecked()
     if (selectedPokemon.length < 1) return
 
     confirmDialog($(this.confirmationDialog), {
@@ -308,15 +274,22 @@ const Table = React.createClass({
       pokemon: selectedPokemon,
       secondaryText: 'Transfer All',
       onClickSecondary: () => {
+        if (runningCheck()) return
+
         this.handleCountDown(selectedPokemon, 'Transfer', selectedPokemon.length * 2.5)
 
         selectedPokemon.forEach((pokemon, index) => {
-          ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
+          this.props.transferPokemon(pokemon, index * randomDelay(2, 3))
+            .then(() => {
+              this.handleTransferCompleted(pokemon)
+            })
         })
       },
 
       primaryText: 'Transfer without favorites',
       onClickPrimary: () => {
+        if (runningCheck()) return
+
         const filteredPokemon = selectedPokemon.filter((p) => {
           const isntFavorite = !p.favorite ? -1 : 0 // TODO stop this -1/0 garbage
 
@@ -326,7 +299,10 @@ const Table = React.createClass({
         this.handleCountDown(filteredPokemon, 'Transfer', filteredPokemon.length * 2.5)
 
         filteredPokemon.forEach((pokemon, index) => {
-          ipcRenderer.send('transfer-pokemon', pokemon, index * randomDelay(2, 3))
+          this.props.transferPokemon(pokemon, index * randomDelay(2, 3))
+            .then(() => {
+              this.handleTransferCompleted(pokemon)
+            })
         })
       }
     })
@@ -335,7 +311,7 @@ const Table = React.createClass({
   handleEvolve() {
     if (runningCheck()) return
 
-    const selectedPokemon = this.speciesTable.getPokemonChecked()
+    const selectedPokemon = this.getPokemonChecked()
     if (selectedPokemon.length < 1) return
 
     confirmDialog($(this.confirmationDialog), {
@@ -345,10 +321,15 @@ const Table = React.createClass({
       primaryText: 'Evolve Selected',
       onClickSecondary: () => {},
       onClickPrimary: () => {
+        if (runningCheck()) return
+
         this.handleCountDown(selectedPokemon, 'Evolve', selectedPokemon.length * 27.5)
 
         selectedPokemon.forEach((pokemon, index) => {
-          ipcRenderer.send('evolve-pokemon', pokemon, index * randomDelay(25, 30))
+          this.props.evolvePokemon(pokemon, index * randomDelay(25, 30))
+            .then(() => {
+              this.handleEvolveCompleted(pokemon)
+            })
         })
       }
     })
@@ -369,100 +350,36 @@ const Table = React.createClass({
     })
   },
 
-  getSortedSpecies(monsters, sortBy, sortDir) {
-    const species = monsters.species.slice()
-
-    if (COLUMN_SORT_AS_NUM[sortBy]) {
-      Organize.sortAsNumber(species, sortBy, sortDir)
-    } else {
-      Organize.sortAsString(species, sortBy, sortDir)
-    }
-
-    return species
-  },
-
-  getSortedPokemon(specie, sortBy, sortDir) {
-    const pokemon = specie.pokemon.slice()
-
-    if (!sortBy && !sortDir) {
-      // Hacky way of retrieving the current sort state of species.jsx
-      if (this.speciesTable) {
-        const sortState = this.speciesTable.getSortState(specie)
-        sortBy = sortState.sortBy
-        sortDir = sortState.sortDir
-      } else {
-        sortBy = 'cp'
-        sortDir = 'DESC'
-      }
-    }
-
-    if (COLUMN_SORT_AS_NUM[sortBy]) {
-      Organize.sortAsNumber(pokemon, sortBy, sortDir)
-    } else {
-      Organize.sortAsString(pokemon, sortBy, sortDir)
-    }
-
-    return pokemon
-  },
-
-  sortSpeciesBy(newSortBy) {
-    const {
-      sortBy,
-      sortDir
-    } = this.state
-
-    let newSortDir = null
-
-    if (newSortBy === sortBy) {
-      newSortDir = sortDir === 'ASC' ? 'DESC' : 'ASC'
-    } else {
-      newSortDir = 'DESC'
-    }
-
-    const monsters = Object.assign({}, this.state.monsters, {
-      species: this.getSortedSpecies(this.state.monsters, newSortBy, newSortDir)
-    })
-
-    this.setState({
-      sortDir: newSortDir,
-      sortBy: newSortBy,
-      monsters
-    })
-  },
-
-  getNewMonsters(monsters, sortBy, sortDir) {
-    const sortedSpecies = this.getSortedSpecies(monsters, sortBy, sortDir)
-
-    // Mutates, but it is okay because we sliced/sorted above ^
-    sortedSpecies.forEach(specie => {
-      specie.pokemon = this.getSortedPokemon(specie)
-    })
-
-    return Object.assign({}, monsters, {
-      species: sortedSpecies
-    })
-  },
-
   removeMonster(pokemon) {
     this.updateMonster(pokemon, { remove: true })
-    // TODO this happens whether or not we find something to remove
-    // we should only update the count if we successfully remove
-    this.updateCheckedCount(-1)
   },
 
-  handleEvolveCompleted(event, pokemon) {
+  handleEvolveCompleted(pokemon) {
     this.props.updateStatus({ current: pokemon })
     this.removeMonster(pokemon)
   },
 
-  handleTransferCompleted(event, pokemon) {
+  handleTransferCompleted(pokemon) {
     this.props.updateStatus({ current: pokemon })
     this.removeMonster(pokemon)
   },
 
-  handleToggleShowAllSpecies() {
-    this.speciesTable.toggleShowAllSpecies()
-  }
 })
 
-export default connect(null, (dispatch => bindActionCreators({ updateStatus }, dispatch)))(Table)
+export default connect((state => ({
+  trainerData: state.trainer.trainerData,
+  monsters: state.trainer.monsters,
+  speciesState: state.trainer.speciesState,
+  sortBy: state.trainer.sortBy,
+  sortDir: state.trainer.sortDir,
+  filterBy: state.trainer.filterBy,
+})), (dispatch => bindActionCreators({
+  updateStatus,
+  logout,
+  getTrainerPokemon,
+  updateSpecies,
+  updateMonster,
+  updateMonsterSort,
+  evolvePokemon,
+  transferPokemon,
+}, dispatch)))(Table)

@@ -13,12 +13,11 @@ export default merge(baseConfig, {
   },
 
   plugins: [
-    // TODO PogoBuf breaks uglifier
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compressor: {
-    //     warnings: false
-    //   }
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    }),
     new webpack.BannerPlugin(
       'require("source-map-support").install();',
       { raw: true, entryOnly: false }
@@ -39,11 +38,7 @@ export default merge(baseConfig, {
 
   externals: [
     'source-map-support',
-    'pogobuf',
-    'node-pogo-protos',
     'electron-devtools-installer',
-    'bootstrap',
-    'react-burger-menu',
   ],
 
   noParse: /json-schema\/lib\/validate\.js/

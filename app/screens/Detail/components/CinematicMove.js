@@ -1,7 +1,9 @@
 import React, {
   PropTypes
 } from 'react'
-import times from 'lodash/times'
+import {
+  times
+} from 'lodash'
 
 import Tooltip from '../../Tooltip'
 

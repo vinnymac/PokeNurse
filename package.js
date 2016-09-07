@@ -47,11 +47,11 @@ if (version) {
   startPack()
 } else {
   // use the same version as the currently-installed electron-prebuilt
-  exec('npm list electron-prebuilt --dev', (err, stdout) => {
+  exec('npm view electron-prebuilt version', (err, stdout) => {
     if (err) {
       DEFAULT_OPTS.version = '1.2.0'
     } else {
-      DEFAULT_OPTS.version = stdout.split('electron-prebuilt@')[1].replace(/\s/g, '')
+      DEFAULT_OPTS.version = pkg.devDependencies['electron-prebuilt']
     }
 
     startPack()
@@ -86,6 +86,11 @@ async function startPack() {
           pack(plat, arch, log(plat, arch))
         })
       })
+    } else if (argv.platform || argv.arch) {
+      const arch = argv.arch || os.arch()
+      const platform = argv.platform || os.platform()
+
+      pack(platform, arch, log(platform, arch))
     } else {
       // build for current platform only
       pack(os.platform(), os.arch(), log(os.platform(), os.arch()))

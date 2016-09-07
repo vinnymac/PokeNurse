@@ -1,34 +1,28 @@
-import React from 'react'
-
-let counter = 0
+import React, {
+  PropTypes
+} from 'react'
+import { connect } from 'react-redux'
 
 const CheckCounter = React.createClass({
   displayName: 'CheckCounter',
 
-  getInitialState() {
-    return { count: counter }
+  propTypes: {
+    selectedCount: PropTypes.number.isRequired
   },
 
   render() {
-    let {
-      count
-    } = this.state
+    const {
+      selectedCount
+    } = this.props
 
     return (
       <span>
-      Selected: {count}
+        Selected: {selectedCount}
       </span>
     )
-  },
-
-  handleRecount(changes) {
-    counter += changes
-
-    this.setState({
-      count: counter
-    })
   }
-
 })
 
-export default CheckCounter
+export default connect(state => ({
+  selectedCount: state.trainer.selectedCount
+}))(CheckCounter)

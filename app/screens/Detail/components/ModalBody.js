@@ -21,13 +21,11 @@ const ModalBody = React.createClass({
     defense: PropTypes.string.isRequired,
     cpPerUpgrade: PropTypes.string.isRequired,
     candies: PropTypes.number.isRequired,
-    spriteImageName: PropTypes.string.isRequired,
     fastMove: PropTypes.object.isRequired,
     chargedMove: PropTypes.object.isRequired,
     evolvesTo: PropTypes.node,
     possibleQuickMoves: PropTypes.array,
     possibleCinematicMoves: PropTypes.array,
-    monsterUpdater: PropTypes.func,
   },
 
   render() {
@@ -45,13 +43,11 @@ const ModalBody = React.createClass({
       defense,
       cpPerUpgrade,
       candies,
-      spriteImageName,
       fastMove,
       chargedMove,
       evolvesTo,
       possibleQuickMoves,
       possibleCinematicMoves,
-      monsterUpdater,
     } = this.props
 
     const quickMoves = possibleQuickMoves.map((possibleQuickMove, i) =>
@@ -79,7 +75,7 @@ const ModalBody = React.createClass({
           title="Listen to Cry"
           alt="Profile Sprite"
           id="pokemon_profile_sprite"
-          src={`./imgs/3d/${spriteImageName}.jpg`}
+          src={`./imgs/3d/${pokemon.pokemon_id}.png`}
         />
         <audio
           id="pokemonCry"
@@ -93,7 +89,7 @@ const ModalBody = React.createClass({
       </div>
 
       <div id="pokemon_contents">
-        <Nickname pokemon={pokemon} monsterUpdater={monsterUpdater} />
+        <Nickname pokemon={pokemon} />
         <div id="pokemon_health_bar" />
         <div id="pokemon_health">{`HP ${hp}`}</div>
         <div className="pokemon_info">

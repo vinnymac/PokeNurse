@@ -3,6 +3,12 @@ import React, {
 } from 'react'
 import { ipcRenderer } from 'electron'
 import $ from 'jquery'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import {
+  toggleFavoritePokemon,
+  powerUpPokemon
+} from '../../../actions'
 
 import renderModal from '../../Detail'
 import Tooltip from '../../Tooltip'
@@ -23,11 +29,9 @@ const Pokemon = React.createClass({
     species: PropTypes.object.isRequired,
     checkAll: PropTypes.bool.isRequired,
     onCheckAll: PropTypes.func.isRequired,
-    pokemonState: PropTypes.object.isRequired
-  },
-
-  contextTypes: {
-    monsterUpdater: React.PropTypes.func.isRequired
+    pokemonState: PropTypes.object.isRequired,
+    toggleFavoritePokemon: PropTypes.func.isRequired,
+    powerUpPokemon: PropTypes.func.isRequired,
   },
 
   render() {
@@ -238,19 +242,17 @@ const Pokemon = React.createClass({
 
   handleClickPowerup(pokemon) {
     if (ipcRenderer.sendSync('confirmation-dialog', 'power up').success) {
-      ipcRenderer.send('power-up-pokemon', pokemon.id, pokemon.nickname)
       // TODO Calculate and update the pokemon immediately with estimates
+      this.props.powerUpPokemon(pokemon)
     }
   },
 
   handleClickFavorite(pokemon) {
-    ipcRenderer.send('favorite-pokemon', pokemon.id, !pokemon.favorite)
-    const updatedPokemon = Object.assign(pokemon, { favorite: !pokemon.favorite ? -1 : -0 })
-    this.context.monsterUpdater(updatedPokemon)
+    this.props.toggleFavoritePokemon(pokemon)
   },
 
   handleClickNickname(pokemon, species) {
-    renderModal($(document.getElementById('detailModal')), pokemon, species, this.context.monsterUpdater)
+    renderModal($(document.getElementById('detailModal')), pokemon, species)
   },
 
   handleSortPokemon(sortBy) {
@@ -277,4 +279,7 @@ const Pokemon = React.createClass({
 
 })
 
-export default Pokemon
+export default connect(null, dispatch => bindActionCreators({
+  toggleFavoritePokemon,
+  powerUpPokemon
+}, dispatch))(Pokemon)

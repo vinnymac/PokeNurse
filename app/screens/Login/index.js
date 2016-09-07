@@ -1,11 +1,13 @@
-import React from 'react'
-import { ipcRenderer } from 'electron'
+import React, {
+  PropTypes
+} from 'react'
+import { connect } from 'react-redux'
 
 import LoginForm from './components/LoginFormContainer'
 
 const Login = React.createClass({
-  getInitialState() {
-    return { credentials: ipcRenderer.sendSync('get-account-credentials') }
+  propTypes: {
+    credentials: PropTypes.object,
   },
 
   render() {
@@ -16,10 +18,12 @@ const Login = React.createClass({
           <h4>A tool for Pokémon Go to aid in transferring and evolving Pokémon</h4>
         </header>
 
-        <LoginForm credentials={this.state.credentials} />
+        <LoginForm credentials={this.props.credentials} />
       </div>
     )
   }
 })
 
-export default Login
+export default connect(state => ({
+  credentials: state.authenticate.credentials,
+}))(Login)
