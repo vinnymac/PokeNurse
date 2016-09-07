@@ -6,7 +6,8 @@ import {
   Menu
 } from 'electron'
 
-import menuTemplate from './main/main_menu'
+import menuTemplate from './main/mainMenu'
+import checkForUpdates from './main/checkForUpdates'
 
 const isOSX = process.platform === 'darwin'
 const isDevelopment = process.env.NODE_ENV === 'development'
@@ -16,7 +17,7 @@ let mainWindow = null
 if (isDevelopment) require('electron-debug')() // eslint-disable-line global-require
 
 process.on('uncaughtException', (error) => {
-  console.error('uncaughtException', error)
+  console.error('uncaughtException', error) // eslint-disable-line
 })
 
 function createWindow() {
@@ -45,7 +46,7 @@ function createWindow() {
 
   // If for some reason the app crashes we can get some information about it
   mainWindow.webContents.on('crashed', (event) => {
-    console.error('crashed', event)
+    console.error('crashed', event) // eslint-disable-line
   })
 
   // allow garbage collection to occur on win when closed
@@ -54,7 +55,7 @@ function createWindow() {
   })
 
   mainWindow.on('unresponsive', (event) => {
-    console.error('unresponsive', event)
+    console.error('unresponsive', event) // eslint-disable-line
   })
 
 
@@ -88,6 +89,8 @@ function createWindow() {
       }]).popup(mainWindow)
     })
   }
+
+  checkForUpdates({ displayNoUpdateAvailable: false })
 }
 
 //

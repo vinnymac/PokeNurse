@@ -1,4 +1,6 @@
-const { app, dialog, BrowserWindow, shell } = require('electron')
+import { app, dialog, BrowserWindow, shell } from 'electron'
+
+import checkForUpdates from './checkForUpdates'
 
 const name = app.getName()
 
@@ -92,6 +94,14 @@ const template = [
     label: 'Help',
     role: 'help',
     submenu: [
+      {
+        label: 'Check for Updates',
+        accelerator: 'CmdOrCtrl+U',
+        click: checkForUpdates.bind(null, { displayNoUpdateAvailable: true }),
+      },
+      {
+        type: 'separator'
+      },
       {
         label: 'Visit Homepage',
         click() { shell.openExternal('https://github.com/vinnymac/PokeNurse') }
