@@ -52,7 +52,7 @@ function checkForUpdates(displayNoUpdateAvailable, latestPackageUrl, latestRelea
           buttons: [],
           title: 'Check for Updates',
           message: 'No Update Available',
-          detail: `You have the latest version of ${name}:\nv${currentVersion}`,
+          detail: `You have the latest version of ${name}, \nv${currentVersion}`,
         })
       }
     })
