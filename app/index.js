@@ -25,7 +25,7 @@ const App = React.createClass({
     login: PropTypes.func.isRequired,
   },
 
-  componentWillMount() {
+  componentDidMount() {
     const {
       autoLogin,
       authenticate,
