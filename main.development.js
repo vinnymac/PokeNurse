@@ -15,6 +15,10 @@ let mainWindow = null
 
 if (isDevelopment) require('electron-debug')() // eslint-disable-line global-require
 
+process.on('uncaughtException', (error) => {
+  console.error('uncaughtException', error)
+})
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
@@ -51,10 +55,6 @@ function createWindow() {
 
   mainWindow.on('unresponsive', (event) => {
     console.error('unresponsive', event)
-  })
-
-  mainWindow.on('uncaughtException', (error) => {
-    console.error('uncaughtException', error)
   })
 
 
