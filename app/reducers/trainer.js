@@ -1,4 +1,7 @@
-import every from 'lodash/every'
+import {
+  every,
+  mapValues,
+} from 'lodash'
 import {
   handleActions
 } from 'redux-actions'
@@ -426,6 +429,41 @@ export default handleActions({
       sortDir,
       sortBy,
       monsters
+    })
+  },
+
+  SORT_WITH_DEFAULTS(state, action) {
+    const {
+      defaultPokedexSortBy,
+      defaultPokedexSortDirection,
+      defaultSpecieSortBy,
+      defaultSpecieSortDirection,
+    } = action.payload
+
+    const updatedSpeciesAndMonstersState = Object.assign({}, state.monsters, {
+      species: getSortedSpecies(state.monsters, defaultPokedexSortBy, defaultPokedexSortDirection).map((s) => {
+        const sorted = getSortedPokemon(s, null, defaultSpecieSortBy, defaultSpecieSortDirection)
+
+        return Object.assign({}, s, {
+          pokemon: sorted
+        })
+      })
+    })
+
+    const updatedSpeciesState = mapValues(state.speciesState, (specieState) => {
+      const newSpecieState = Object.assign({}, specieState, {
+        sortBy: defaultSpecieSortBy,
+        sortDir: defaultSpecieSortDirection,
+      })
+
+      return newSpecieState
+    })
+
+    return Object.assign({}, state, {
+      monsters: updatedSpeciesAndMonstersState,
+      sortBy: defaultPokedexSortBy,
+      sortDir: defaultPokedexSortDirection,
+      speciesState: updatedSpeciesState,
     })
   },
 }, initialState)

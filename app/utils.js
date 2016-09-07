@@ -1,4 +1,6 @@
-import times from 'lodash/times'
+import {
+  times
+} from 'lodash'
 
 import baseStats from '../baseStats'
 

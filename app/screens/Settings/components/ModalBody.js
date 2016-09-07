@@ -21,6 +21,7 @@ import {
   changeDefaultPokedexSortDirection,
   changeDefaultSpecieSortBy,
   changeDefaultSpecieSortDirection,
+  sortWithDefaults,
 } from '../../../actions'
 
 function SettingFieldGroupCheckbox({ label, help, ...props }) {
@@ -100,6 +101,7 @@ const ModalBody = React.createClass({
     defaultPokedexSortDirection: PropTypes.string.isRequired,
     defaultSpecieSortBy: PropTypes.string.isRequired,
     defaultSpecieSortDirection: PropTypes.string.isRequired,
+    sortWithDefaults: PropTypes.func.isRequired,
   },
 
   render() {
@@ -111,8 +113,8 @@ const ModalBody = React.createClass({
     } = this.props
 
     return (
-      <div className="modal-body" >
-        <Panel header="Table Configuration" bsStyle="primary" >
+      <div className="modal-body">
+        <Panel header="Table Configuration" bsStyle="primary">
           <SettingFieldGroupCheckbox
             label="Display Uncaught Species"
             checked={this.props.showSpeciesWithZeroPokemon}
@@ -148,6 +150,13 @@ const ModalBody = React.createClass({
             options={sortDirectionOptions}
             id="defaultSpecieSortDirection"
           />
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this.handleSortWithDefaults}
+          >
+            Sort with Defaults
+          </button>
         </Panel>
         <Panel header="Other">
           <SettingFieldGroupCheckbox
@@ -180,8 +189,28 @@ const ModalBody = React.createClass({
     )
   },
 
+  getDirection(value) {
+    return value === sortDirectionOptions[0] ? 'ASC' : 'DESC'
+  },
+
+  handleSortWithDefaults() {
+    const {
+      defaultPokedexSortBy,
+      defaultPokedexSortDirection,
+      defaultSpecieSortBy,
+      defaultSpecieSortDirection,
+    } = this.props
+
+    this.props.sortWithDefaults({
+      defaultPokedexSortBy,
+      defaultPokedexSortDirection,
+      defaultSpecieSortBy,
+      defaultSpecieSortDirection,
+    })
+  },
+
   handleDefaultPokedexSortDirectionChange(e) {
-    this.props.changeDefaultPokedexSortDirection(e.target.value === sortDirectionOptions[0] ? 'ASC' : 'DESC')
+    this.props.changeDefaultPokedexSortDirection(this.getDirection(e.target.value))
   },
 
   handleDefaultPokedexSortByChange(e) {
@@ -189,7 +218,7 @@ const ModalBody = React.createClass({
   },
 
   handleDefaultSpecieSortDirectionChange(e) {
-    this.props.changeDefaultSpecieSortDirection(e.target.value === sortDirectionOptions[0] ? 'ASC' : 'DESC')
+    this.props.changeDefaultSpecieSortDirection(this.getDirection(e.target.value))
   },
 
   handleDefaultSpecieSortByChange(e) {
@@ -230,4 +259,5 @@ export default connect((state => ({
   changeDefaultPokedexSortDirection,
   changeDefaultSpecieSortBy,
   changeDefaultSpecieSortDirection,
+  sortWithDefaults,
 }, dispatch)))(ModalBody)

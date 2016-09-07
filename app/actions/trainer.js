@@ -1,8 +1,10 @@
 import {
   createAction
 } from 'redux-actions'
-import times from 'lodash/times'
-import keyBy from 'lodash/keyBy'
+import {
+  times,
+  keyBy,
+} from 'lodash'
 import pogobuf from 'pogobuf'
 import POGOProtos from 'node-pogo-protos'
 
@@ -276,6 +278,7 @@ export default {
   checkAllBySpecies: createAction('CHECK_ALL_BY_SPECIES'),
   collapseBySpecies: createAction('COLLAPSE_BY_SPECIES'),
   sortAllSpecies: createAction('SORT_ALL_SPECIES'),
+  sortWithDefaults: createAction('SORT_WITH_DEFAULTS'),
   getTrainerInfo,
   getTrainerPokemon,
   powerUpPokemon,
