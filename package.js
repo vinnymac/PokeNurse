@@ -50,12 +50,14 @@ if (version) {
 } else {
   // use the same version as the currently-installed electron-prebuilt
   exec(`${electronPrebuilt} --version`, (err, stdout) => {
-    if (err) {
-      DEFAULT_OPTS.version = '1.2.0'
-    } else {
-      DEFAULT_OPTS.version = semver.clean(stdout)
+    let electronVersion = semver.clean(stdout)
+
+    if (err || !semver.valid(electronVersion)) {
+      console.log('Unable to identify Electron version, falling back to v1.2.0.')
+      electronVersion = '1.2.0'
     }
 
+    DEFAULT_OPTS.version = electronVersion
     startPack()
   })
 }
