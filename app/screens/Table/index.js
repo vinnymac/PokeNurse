@@ -125,7 +125,7 @@ const Table = React.createClass({
             style={backgroundHeaderStyles}
           >
             <div className="navbar-header">
-              <MainMenu />
+              <MainMenu eggs={monsters.eggs} />
             </div>
             <div className="navbar-header username">
               {' '}

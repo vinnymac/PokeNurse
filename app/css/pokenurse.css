@@ -38,22 +38,39 @@
 .bm-item-list ul {
   float: none;
   display: block;
+  list-style: none;
+  width: 100%;
 }
 .bm-menu .bm-item-list li {
   float: none;
   display: block;
   padding: 5px 0px;
-  border-bottom: 1px solid #b8b7ad;
+  border-top: 1px solid #b8b7ad;
+  width: 100%;
+}
+.bm-menu .bm-item-list li:first-of-type, li:last-of-type {
+  border-top: none;
 }
 
 .bm-menu .bm-item-list li a {
   padding: 5px 0px;
   cursor: pointer;
+  color: #9d9d9d;
+  text-decoration: none;
+  line-height: 20px;
+}
+
+.bm-menu .bm-item-list li a:hover, a:active {
+  color: white;
 }
 
 .bm-menu .bm-item-list i {
   padding-top: 5px;
   float: right;
+}
+
+.bm-menu .bm-item-list .submenu li {
+  background-color: rgba(35, 35, 35, 0.4);
 }
 
 /* Morph shape necessary with bubble or elastic */
