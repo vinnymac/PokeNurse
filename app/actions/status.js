@@ -5,26 +5,36 @@ import {
 const updateStatus = createAction('UPDATE_STATUS')
 const resetStatus = createAction('RESET_STATUS')
 
+let currentInterval = null
+
+function resetStatusAndStopCountdown() {
+  clearInterval(currentInterval)
+  return async (dispatch) => {
+    dispatch(resetStatus())
+  }
+}
+
+function startCountdownStatus(statusUpdates) {
+  return async (dispatch) => {
+    let {
+      time,
+    } = statusUpdates
+
+    dispatch(updateStatus(statusUpdates))
+
+    currentInterval = setInterval(() => {
+      dispatch(updateStatus({ time: time-- }))
+
+      if (time <= 0) {
+        dispatch(resetStatusAndStopCountdown())
+      }
+    }, 1000)
+  }
+}
+
 export default {
   updateStatus,
   resetStatus,
-  startCountdownStatus(statusUpdates, finished) {
-    return async (dispatch) => {
-      let {
-        time,
-      } = statusUpdates
-
-      dispatch(updateStatus(statusUpdates))
-
-      const interval = setInterval(() => {
-        dispatch(updateStatus({ time: time-- }))
-
-        if (time <= 0) {
-          clearInterval(interval)
-          finished()
-          dispatch(resetStatus())
-        }
-      }, 1000)
-    }
-  }
+  resetStatusAndStopCountdown,
+  startCountdownStatus,
 }

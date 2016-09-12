@@ -24,7 +24,6 @@ import {
   updateMonsterSort,
   evolvePokemon,
   transferPokemon,
-  startCountdownStatus,
   evolveSelectedPokemon,
   transferSelectedPokemon,
 } from '../../actions'
@@ -88,7 +87,6 @@ const Table = React.createClass({
     sortDir: PropTypes.string,
     transferPokemon: PropTypes.func.isRequired,
     evolvePokemon: PropTypes.func.isRequired,
-    startCountdownStatus: PropTypes.func.isRequired,
     evolveSelectedPokemon: PropTypes.func.isRequired,
     transferSelectedPokemon: PropTypes.func.isRequired,
   },
@@ -322,10 +320,8 @@ const Table = React.createClass({
     })
   },
 
-  handleAllComplete(method) {
+  handleAllComplete() {
     running = false
-    ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-    this.handleRefresh()
   },
 })
 
@@ -345,7 +341,6 @@ export default connect((state => ({
   updateMonsterSort,
   evolvePokemon,
   transferPokemon,
-  startCountdownStatus,
   evolveSelectedPokemon,
   transferSelectedPokemon,
 }, dispatch)))(Table)

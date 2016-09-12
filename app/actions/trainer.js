@@ -7,6 +7,9 @@ import {
 } from 'lodash'
 import pogobuf from 'pogobuf'
 import POGOProtos from 'node-pogo-protos'
+import {
+  ipcRenderer
+} from 'electron'
 
 import client from '../client'
 
@@ -16,6 +19,7 @@ import baseStats from '../../baseStats'
 
 import {
   updateStatus,
+  resetStatusAndStopCountdown,
   startCountdownStatus,
 } from './status'
 
@@ -258,6 +262,7 @@ function transferPokemon(pokemon, delay) {
       dispatch(transferPokemonSuccess(pokemon))
     } catch (error) {
       dispatch(transferPokemonFailed(error))
+      throw error
     }
   }
 }
@@ -270,6 +275,7 @@ function evolvePokemon(pokemon, delay) {
       dispatch(evolvePokemonSuccess(pokemon))
     } catch (error) {
       dispatch(evolvePokemonFailed(error))
+      throw error
     }
   }
 }
@@ -284,56 +290,56 @@ function promiseChainFromArray(array, iterator) {
   return promise
 }
 
-function randomDelay(min, max) {
+function randomDelay([min, max]) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
 const updateMonster = createAction('UPDATE_MONSTER')
 
-function transferSelectedPokemon(selectedPokemon, done) {
-  const method = 'Transfer'
-
+function processSelectedPokemon(selectedPokemon, method, action, time, delayRange, done) {
   return async (dispatch) => {
     dispatch(startCountdownStatus({
       selectedPokemon,
       method,
-      time: selectedPokemon.length * 2.5,
+      time,
     }))
 
     promiseChainFromArray(selectedPokemon, (pokemon, index) => {
-      dispatch(transferPokemon(pokemon, index * randomDelay(2, 3)))
+      dispatch(action(pokemon, index * randomDelay(delayRange)))
         .then(() => {
           dispatch(updateStatus({ current: pokemon }))
           dispatch(updateMonster({ pokemon, options: { remove: true } }))
         })
     }).then(() => {
-      done(method)
+      done()
+      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
+      dispatch(resetStatusAndStopCountdown())
+      dispatch(getTrainerPokemon())
+    }).catch(error => {
+      done()
+      ipcRenderer.send('error-message', 'Failed!', `Error while running ${method.toLowerCase()}:\n\n ${error}`)
+      dispatch(resetStatusAndStopCountdown())
+      dispatch(getTrainerPokemon())
     })
   }
 }
 
+function transferSelectedPokemon(selectedPokemon, done) {
+  const method = 'Transfer'
+  const time = selectedPokemon.length * 2.5
+  const delayRange = [2, 3]
+  const action = transferPokemon
+
+  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange, done)
+}
+
 function evolveSelectedPokemon(selectedPokemon, done) {
   const method = 'Evolve'
+  const time = selectedPokemon.length * 27.5
+  const delayRange = [25, 30]
+  const action = evolvePokemon
 
-  return async (dispatch) => {
-    dispatch(startCountdownStatus({
-      selectedPokemon,
-      method,
-      time: selectedPokemon.length * 27.5,
-    }))
-
-    promiseChainFromArray(selectedPokemon, (pokemon, index) => {
-      dispatch(evolvePokemon(pokemon, index * randomDelay(25, 30)))
-        .then(() => {
-          // Update the status with the currently completed pokemon
-          dispatch(updateStatus({ current: pokemon }))
-          // Remove the monster after
-          dispatch(updateMonster({ pokemon, options: { remove: true } }))
-        })
-    }).then(() => {
-      done(method)
-    })
-  }
+  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange, done)
 }
 
 export default {
