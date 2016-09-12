@@ -14,6 +14,11 @@ import client from '../client'
 import utils from '../utils'
 import baseStats from '../../baseStats'
 
+import {
+  updateStatus,
+  startCountdownStatus,
+} from './status'
+
 // Maybe put this info and the helper methods in utils?
 const kantoDexCount = 151
 
@@ -269,8 +274,70 @@ function evolvePokemon(pokemon, delay) {
   }
 }
 
+function promiseChainFromArray(array, iterator) {
+  let promise = Promise.resolve()
+
+  array.forEach((value, index) => {
+    promise = promise.then(iterator(value, index))
+  })
+
+  return promise
+}
+
+function randomDelay(min, max) {
+  return Math.round((min + Math.random() * (max - min)) * 1000)
+}
+
+const updateMonster = createAction('UPDATE_MONSTER')
+
+function transferSelectedPokemon(selectedPokemon, done) {
+  const method = 'Transfer'
+
+  return async (dispatch) => {
+    dispatch(startCountdownStatus({
+      selectedPokemon,
+      method,
+      time: selectedPokemon.length * 2.5,
+    }))
+
+    promiseChainFromArray(selectedPokemon, (pokemon, index) => {
+      dispatch(transferPokemon(pokemon, index * randomDelay(2, 3)))
+        .then(() => {
+          dispatch(updateStatus({ current: pokemon }))
+          dispatch(updateMonster({ pokemon, options: { remove: true } }))
+        })
+    }).then(() => {
+      done(method)
+    })
+  }
+}
+
+function evolveSelectedPokemon(selectedPokemon, done) {
+  const method = 'Evolve'
+
+  return async (dispatch) => {
+    dispatch(startCountdownStatus({
+      selectedPokemon,
+      method,
+      time: selectedPokemon.length * 27.5,
+    }))
+
+    promiseChainFromArray(selectedPokemon, (pokemon, index) => {
+      dispatch(evolvePokemon(pokemon, index * randomDelay(25, 30)))
+        .then(() => {
+          // Update the status with the currently completed pokemon
+          dispatch(updateStatus({ current: pokemon }))
+          // Remove the monster after
+          dispatch(updateMonster({ pokemon, options: { remove: true } }))
+        })
+    }).then(() => {
+      done(method)
+    })
+  }
+}
+
 export default {
-  updateMonster: createAction('UPDATE_MONSTER'),
+  updateMonster,
   updateSpecies: createAction('UPDATE_SPECIES'),
   updateMonsterSort: createAction('UPDATE_MONSTER_SORT'),
   sortSpecies: createAction('SORT_SPECIES'),
@@ -286,4 +353,6 @@ export default {
   renamePokemon,
   transferPokemon,
   evolvePokemon,
+  evolveSelectedPokemon,
+  transferSelectedPokemon,
 }

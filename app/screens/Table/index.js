@@ -24,6 +24,9 @@ import {
   updateMonsterSort,
   evolvePokemon,
   transferPokemon,
+  startCountdownStatus,
+  evolveSelectedPokemon,
+  transferSelectedPokemon,
 } from '../../actions'
 
 window.$ = window.jQuery = $
@@ -39,10 +42,6 @@ function runningCheck() {
     return true
   }
   return false
-}
-
-function randomDelay(min, max) {
-  return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
 function getHeaderBackgroundStyles(team) {
@@ -89,6 +88,9 @@ const Table = React.createClass({
     sortDir: PropTypes.string,
     transferPokemon: PropTypes.func.isRequired,
     evolvePokemon: PropTypes.func.isRequired,
+    startCountdownStatus: PropTypes.func.isRequired,
+    evolveSelectedPokemon: PropTypes.func.isRequired,
+    transferSelectedPokemon: PropTypes.func.isRequired,
   },
 
   componentDidMount() {
@@ -276,14 +278,9 @@ const Table = React.createClass({
       onClickSecondary: () => {
         if (runningCheck()) return
 
-        this.handleCountDown(selectedPokemon, 'Transfer', selectedPokemon.length * 2.5)
+        running = true
 
-        selectedPokemon.forEach((pokemon, index) => {
-          this.props.transferPokemon(pokemon, index * randomDelay(2, 3))
-            .then(() => {
-              this.handleTransferCompleted(pokemon)
-            })
-        })
+        this.props.transferSelectedPokemon(selectedPokemon, this.handleAllComplete)
       },
 
       primaryText: 'Transfer without favorites',
@@ -296,14 +293,9 @@ const Table = React.createClass({
           return isntFavorite
         })
 
-        this.handleCountDown(filteredPokemon, 'Transfer', filteredPokemon.length * 2.5)
+        running = true
 
-        filteredPokemon.forEach((pokemon, index) => {
-          this.props.transferPokemon(pokemon, index * randomDelay(2, 3))
-            .then(() => {
-              this.handleTransferCompleted(pokemon)
-            })
-        })
+        this.props.transferSelectedPokemon(filteredPokemon, this.handleAllComplete)
       }
     })
   },
@@ -323,47 +315,18 @@ const Table = React.createClass({
       onClickPrimary: () => {
         if (runningCheck()) return
 
-        this.handleCountDown(selectedPokemon, 'Evolve', selectedPokemon.length * 27.5)
+        running = true
 
-        selectedPokemon.forEach((pokemon, index) => {
-          this.props.evolvePokemon(pokemon, index * randomDelay(25, 30))
-            .then(() => {
-              this.handleEvolveCompleted(pokemon)
-            })
-        })
+        this.props.evolveSelectedPokemon(selectedPokemon, this.handleAllComplete)
       }
     })
   },
 
-  handleCountDown(selectedPokemon, method, time) {
-    running = true
-
-    this.props.updateStatus({
-      selectedPokemon,
-      method,
-      time,
-      finished: () => {
-        running = false
-        ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-        this.handleRefresh()
-      }
-    })
+  handleAllComplete(method) {
+    running = false
+    ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
+    this.handleRefresh()
   },
-
-  removeMonster(pokemon) {
-    this.updateMonster(pokemon, { remove: true })
-  },
-
-  handleEvolveCompleted(pokemon) {
-    this.props.updateStatus({ current: pokemon })
-    this.removeMonster(pokemon)
-  },
-
-  handleTransferCompleted(pokemon) {
-    this.props.updateStatus({ current: pokemon })
-    this.removeMonster(pokemon)
-  },
-
 })
 
 export default connect((state => ({
@@ -382,4 +345,7 @@ export default connect((state => ({
   updateMonsterSort,
   evolvePokemon,
   transferPokemon,
+  startCountdownStatus,
+  evolveSelectedPokemon,
+  transferSelectedPokemon,
 }, dispatch)))(Table)

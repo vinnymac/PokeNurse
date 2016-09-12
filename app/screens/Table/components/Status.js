@@ -4,26 +4,14 @@ import React, {
 import {
   connect
 } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 import Progress from './Progress'
-
-import { updateStatus, resetStatus } from '../../../actions'
 
 const Status = React.createClass({
   displayName: 'Status',
 
   propTypes: {
     status: PropTypes.object,
-    resetStatus: PropTypes.func.isRequired,
-    updateStatus: PropTypes.func.isRequired
-  },
-
-  componentDidUpdate(prevProps) {
-    // TODO add thunks and move interval to redux action creators
-    if (!prevProps.status.current && this.props.status.current) {
-      this.countDownInterval()
-    }
   },
 
   render() {
@@ -52,26 +40,8 @@ const Status = React.createClass({
       </div>
     )
   },
-
-  countDownInterval() {
-    let { time } = this.props.status
-
-    const { finished } = this.props.status
-
-    const interval = setInterval(() => {
-      this.props.updateStatus({ time: time-- })
-
-      if (time <= 0) {
-        clearInterval(interval)
-        finished()
-        this.props.resetStatus()
-      }
-    }, 1000)
-  }
 })
 
 export default connect(state => ({
   status: state.status
-}), (dispatch => bindActionCreators({
-  updateStatus, resetStatus
-}, dispatch)))(Status)
+}), null)(Status)
