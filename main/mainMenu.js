@@ -119,8 +119,17 @@ const template = [
         click() {
           const allWindows = BrowserWindow.getAllWindows()
           const firstWindow = allWindows[0]
-          if (firstWindow) {
-            firstWindow.toggleDevTools()
+          if (!firstWindow) return
+
+          const isDevToolsOpened = firstWindow.isDevToolsOpened()
+          const isDevToolsFocused = firstWindow.isDevToolsFocused()
+
+          if (isDevToolsOpened && isDevToolsFocused) {
+            firstWindow.closeDevTools()
+          } else if (isDevToolsOpened && !isDevToolsFocused) {
+            firstWindow.devToolsWebContents.focus()
+          } else {
+            firstWindow.openDevTools()
           }
         }
       },

@@ -5,11 +5,12 @@ import {
   dialog,
   Menu
 } from 'electron'
+import electronLocalshortcut from 'electron-localshortcut'
 
 import menuTemplate from './main/mainMenu'
 import checkForUpdates from './main/checkForUpdates'
 
-const isOSX = process.platform === 'darwin'
+const isMacOS = process.platform === 'darwin'
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 let mainWindow = null
@@ -20,6 +21,11 @@ process.on('uncaughtException', (error) => {
   console.error('uncaughtException', error) // eslint-disable-line
 })
 
+function preventUnusedElectronDebug() {
+  // prevent localshortcuts registered by electron-debug that we configure ourselves
+  electronLocalshortcut.unregister(isMacOS ? 'Cmd+Alt+I' : 'Ctrl+Shift+I')
+}
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
@@ -28,6 +34,8 @@ function createWindow() {
     icon: '../app/app.png',
     show: false
   })
+
+  if (isDevelopment) preventUnusedElectronDebug()
 
   mainWindow.loadURL(`file://${__dirname}/app/app.html`)
   // mainWindow.once('ready-to-show', () => {
@@ -60,9 +68,9 @@ function createWindow() {
 
 
   //
-  // OS X Specific Configuration
+  // macOS Specific Configuration
   //
-  if (isOSX) {
+  if (isMacOS) {
     // Hide the window on close rather than quitting the app,
     // and make sure to really close the window when quitting.
     mainWindow.on('close', (event) => {
@@ -94,9 +102,9 @@ function createWindow() {
 }
 
 //
-// OS X Specific Configuration
+// macOS Specific Configuration
 //
-if (isOSX) {
+if (isMacOS) {
   // Hide the window on close rather than quitting the app,
   // and make sure to really close the window when quitting.
   app.on('before-quit', () => {
@@ -109,7 +117,7 @@ if (isOSX) {
 }
 
 app.on('window-all-closed', () => {
-  if (!isOSX) {
+  if (!isMacOS) {
     app.quit()
   }
 })
