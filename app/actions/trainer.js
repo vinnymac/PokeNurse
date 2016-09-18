@@ -348,7 +348,7 @@ function processSelectedPokemon(selectedPokemon, method, action, time, delayRang
       dispatch(getTrainerPokemon())
     }).catch(error => {
       done()
-      ipcRenderer.send('error-message', 'Failed!', `Error while running ${method.toLowerCase()}:\n\n ${error}`)
+      ipcRenderer.send('error-message', `Error while running ${method.toLowerCase()}:\n\n${error}`)
       dispatch(resetStatus())
       dispatch(getTrainerPokemon())
     })
