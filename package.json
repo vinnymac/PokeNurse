@@ -75,6 +75,7 @@
     "json-loader": "^0.5.4",
     "lodash": "^4.15.0",
     "minimist": "^1.2.0",
+    "moment": "2.15.0",
     "react": "15.3.1",
     "react-bootstrap": "^0.30.3",
     "react-burger-menu": "^1.10.4",
