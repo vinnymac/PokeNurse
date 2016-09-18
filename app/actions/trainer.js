@@ -10,6 +10,7 @@ import POGOProtos from 'node-pogo-protos'
 import {
   ipcRenderer
 } from 'electron'
+import moment from 'moment'
 
 import client from '../client'
 
@@ -19,8 +20,7 @@ import baseStats from '../../baseStats'
 
 import {
   updateStatus,
-  resetStatusAndStopCountdown,
-  startCountdownStatus,
+  resetStatus,
 } from './status'
 
 // Maybe put this info and the helper methods in utils?
@@ -294,31 +294,62 @@ function randomDelay([min, max]) {
   return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
+function average(arr) {
+  const sum = arr.reduce((result, currentValue) =>
+    result + currentValue
+  , 0)
+
+  return sum / arr.length
+}
+
 const updateMonster = createAction('UPDATE_MONSTER')
 
 function processSelectedPokemon(selectedPokemon, method, action, time, delayRange, done) {
   return async (dispatch) => {
-    dispatch(startCountdownStatus({
+    dispatch(updateStatus({
       selectedPokemon,
       method,
       time,
     }))
 
+    let startTime = moment()
+    const responseTimesInSeconds = []
+
     promiseChainFromArray(selectedPokemon, (pokemon, index) =>
       dispatch(action(pokemon, index * randomDelay(delayRange)))
         .then(() => {
-          dispatch(updateStatus({ current: pokemon }))
-          dispatch(updateMonster({ pokemon, options: { remove: true } }))
+          let statusUpdates = { current: pokemon }
+
+          // Calculate the Estimated Time in Seconds Left
+          const requestLatencyInSeconds = moment().diff(startTime, 'seconds')
+          startTime = moment()
+
+          if (requestLatencyInSeconds > 0) {
+            responseTimesInSeconds.push(requestLatencyInSeconds)
+            const averageRequestLatencyInSeconds = average(responseTimesInSeconds)
+
+            const numberOfJobsLeft = selectedPokemon.length - (index + 1)
+            const estimatedSecondsLeft = numberOfJobsLeft * averageRequestLatencyInSeconds
+
+            statusUpdates = Object.assign({}, statusUpdates, { time: estimatedSecondsLeft })
+          }
+
+          dispatch(updateStatus(statusUpdates))
+
+          dispatch(updateMonster({
+            pokemon,
+            options: { remove: true }
+          }))
         })
     ).then(() => {
       done()
       ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-      dispatch(resetStatusAndStopCountdown())
+      dispatch(resetStatus())
       dispatch(getTrainerPokemon())
     }).catch(error => {
       done()
       ipcRenderer.send('error-message', 'Failed!', `Error while running ${method.toLowerCase()}:\n\n ${error}`)
-      dispatch(resetStatusAndStopCountdown())
+      dispatch(resetStatus())
       dispatch(getTrainerPokemon())
     })
   }
