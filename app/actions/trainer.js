@@ -284,7 +284,7 @@ function promiseChainFromArray(array, iterator) {
   let promise = Promise.resolve()
 
   array.forEach((value, index) => {
-    promise = promise.then(iterator(value, index))
+    promise = promise.then(() => iterator(value, index))
   })
 
   return promise
@@ -304,13 +304,13 @@ function processSelectedPokemon(selectedPokemon, method, action, time, delayRang
       time,
     }))
 
-    promiseChainFromArray(selectedPokemon, (pokemon, index) => {
+    promiseChainFromArray(selectedPokemon, (pokemon, index) =>
       dispatch(action(pokemon, index * randomDelay(delayRange)))
         .then(() => {
           dispatch(updateStatus({ current: pokemon }))
           dispatch(updateMonster({ pokemon, options: { remove: true } }))
         })
-    }).then(() => {
+    ).then(() => {
       done()
       ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
       dispatch(resetStatusAndStopCountdown())
