@@ -273,7 +273,9 @@ const Table = React.createClass({
 
         running = true
 
-        this.props.transferSelectedPokemon(selectedPokemon, this.handleAllComplete)
+        this.props.transferSelectedPokemon(selectedPokemon)
+          .then(() => { this.handleAllComplete() })
+          .catch(() => { this.handleAllComplete() })
       },
 
       primaryText: 'Transfer without favorites',
@@ -288,7 +290,9 @@ const Table = React.createClass({
 
         running = true
 
-        this.props.transferSelectedPokemon(filteredPokemon, this.handleAllComplete)
+        this.props.transferSelectedPokemon(filteredPokemon)
+          .then(() => { this.handleAllComplete() })
+          .catch(() => { this.handleAllComplete() })
       }
     })
   },
@@ -310,7 +314,9 @@ const Table = React.createClass({
 
         running = true
 
-        this.props.evolveSelectedPokemon(selectedPokemon, this.handleAllComplete)
+        this.props.evolveSelectedPokemon(selectedPokemon)
+          .then(() => { this.handleAllComplete() })
+          .catch(() => { this.handleAllComplete() })
       }
     })
   },

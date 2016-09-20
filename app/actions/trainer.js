@@ -304,7 +304,7 @@ function average(arr) {
 
 const updateMonster = createAction('UPDATE_MONSTER')
 
-function processSelectedPokemon(selectedPokemon, method, action, time, delayRange, done) {
+function processSelectedPokemon(selectedPokemon, method, action, time, delayRange) {
   return async (dispatch) => {
     dispatch(updateStatus({
       selectedPokemon,
@@ -315,11 +315,11 @@ function processSelectedPokemon(selectedPokemon, method, action, time, delayRang
     let startTime = moment()
     const responseTimesInSeconds = []
 
-    promiseChainFromArray(selectedPokemon, (pokemon, index) =>
-      dispatch(action(pokemon, index * randomDelay(delayRange)))
-        .then(() => {
-          let statusUpdates = { current: pokemon }
+    promiseChainFromArray(selectedPokemon, (pokemon, index) => {
+      dispatch(updateStatus({ current: pokemon }))
 
+      return dispatch(action(pokemon, randomDelay(delayRange)))
+        .then(() => {
           // Calculate the Estimated Time in Seconds Left
           const requestLatencyInSeconds = moment().diff(startTime, 'seconds')
           startTime = moment()
@@ -331,23 +331,19 @@ function processSelectedPokemon(selectedPokemon, method, action, time, delayRang
             const numberOfJobsLeft = selectedPokemon.length - (index + 1)
             const estimatedSecondsLeft = numberOfJobsLeft * averageRequestLatencyInSeconds
 
-            statusUpdates = Object.assign({}, statusUpdates, { time: estimatedSecondsLeft })
+            dispatch(updateStatus({ time: estimatedSecondsLeft }))
           }
-
-          dispatch(updateStatus(statusUpdates))
 
           dispatch(updateMonster({
             pokemon,
             options: { remove: true }
           }))
         })
-    ).then(() => {
-      done()
+    }).then(() => {
       ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
       dispatch(resetStatus())
       dispatch(getTrainerPokemon())
     }).catch(error => {
-      done()
       ipcRenderer.send('error-message', `Error while running ${method.toLowerCase()}:\n\n${error}`)
       dispatch(resetStatus())
       dispatch(getTrainerPokemon())
@@ -355,22 +351,22 @@ function processSelectedPokemon(selectedPokemon, method, action, time, delayRang
   }
 }
 
-function transferSelectedPokemon(selectedPokemon, done) {
+function transferSelectedPokemon(selectedPokemon) {
   const method = 'Transfer'
   const time = selectedPokemon.length * 2.5
   const delayRange = [2, 3]
   const action = transferPokemon
 
-  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange, done)
+  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange)
 }
 
-function evolveSelectedPokemon(selectedPokemon, done) {
+function evolveSelectedPokemon(selectedPokemon) {
   const method = 'Evolve'
   const time = selectedPokemon.length * 27.5
   const delayRange = [25, 30]
   const action = evolvePokemon
 
-  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange, done)
+  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange)
 }
 
 export default {
