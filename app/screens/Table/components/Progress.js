@@ -23,7 +23,7 @@ const Progress = React.createClass({
 
     if (progress.current) {
       const index = progress.selectedPokemon.findIndex((p) => p.id === progress.current.id)
-      currentPosition = index + 1
+      currentPosition = index
     }
 
     const now = (currentPosition / progress.selectedPokemon.length) * 100
