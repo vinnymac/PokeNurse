@@ -36,7 +36,7 @@ const webpackHotMiddlewareConfig = argv.dashboard ? { log: () => {} } : {}
 
 app.use(webpackHotMiddleware(compiler, webpackHotMiddlewareConfig))
 
-const server = app.listen(PORT, 'localhost', err => {
+const server = app.listen(PORT, 'localhost', (err) => {
   if (err) {
     console.error(err)
     return
@@ -45,7 +45,7 @@ const server = app.listen(PORT, 'localhost', err => {
   console.log(`Listening at http://localhost:${PORT}`)
 })
 
-server.on('error', e => {
+server.on('error', (e) => {
   console.error(e)
 })
 
