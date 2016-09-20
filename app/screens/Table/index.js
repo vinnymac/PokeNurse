@@ -159,9 +159,10 @@ const Table = React.createClass({
         <div className="container table-container">
           <h1>
             <span>Pokémon</span>
-            <button
+            <span
               className="glyphicon glyphicon-refresh"
               id="refresh-btn"
+              role="button"
               onClick={this.handleRefresh}
             />
 
