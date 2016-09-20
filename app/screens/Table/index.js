@@ -16,14 +16,10 @@ import CheckCounter from './components/CheckCounter'
 
 import confirmDialog from '../ConfirmationDialog'
 import {
-  updateStatus,
-  logout,
   getTrainerPokemon,
   updateSpecies,
   updateMonster,
   updateMonsterSort,
-  evolvePokemon,
-  transferPokemon,
   evolveSelectedPokemon,
   transferSelectedPokemon,
 } from '../../actions'
@@ -73,9 +69,9 @@ function getHeaderBackgroundStyles(team) {
 const Table = React.createClass({
 
   propTypes: {
-    updateStatus: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired,
-    trainerData: PropTypes.object,
+    trainerData: PropTypes.shape({
+      username: PropTypes.string,
+    }),
     getTrainerPokemon: PropTypes.func.isRequired,
     monsters: PropTypes.object,
     updateSpecies: PropTypes.func.isRequired,
@@ -85,8 +81,6 @@ const Table = React.createClass({
     filterBy: PropTypes.string,
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
-    transferPokemon: PropTypes.func.isRequired,
-    evolvePokemon: PropTypes.func.isRequired,
     evolveSelectedPokemon: PropTypes.func.isRequired,
     transferSelectedPokemon: PropTypes.func.isRequired,
   },
@@ -165,7 +159,7 @@ const Table = React.createClass({
         <div className="container table-container">
           <h1>
             <span>Pokémon</span>
-            <span
+            <button
               className="glyphicon glyphicon-refresh"
               id="refresh-btn"
               onClick={this.handleRefresh}
@@ -333,14 +327,10 @@ export default connect((state => ({
   sortDir: state.trainer.sortDir,
   filterBy: state.trainer.filterBy,
 })), (dispatch => bindActionCreators({
-  updateStatus,
-  logout,
   getTrainerPokemon,
   updateSpecies,
   updateMonster,
   updateMonsterSort,
-  evolvePokemon,
-  transferPokemon,
   evolveSelectedPokemon,
   transferSelectedPokemon,
 }, dispatch)))(Table)

@@ -12,13 +12,15 @@ const Eggs = React.createClass({
       eggList
     } = this.props
 
+    const eggs = eggList.map((e, i) =>
+      <li key={i}>
+        {e.egg_km_walked_start}.0 / {e.egg_km_walked_target}.0 km
+      </li>
+    )
+
     return (
       <ul className="nav navbar-nav submenu">
-      {eggList.map((e, i) =>
-        <li key={i}>
-          {e.egg_km_walked_start}.0 / {e.egg_km_walked_target}.0 km
-        </li>
-      )}
+        {eggs}
       </ul>
     )
   }
