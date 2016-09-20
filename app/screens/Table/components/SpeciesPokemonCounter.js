@@ -17,7 +17,7 @@ const SpeciesPokemonCounter = React.createClass({
     return (
       <span>
         <span>
-        Species: {this.handleSpeciesRecount(monsters)}
+          Species: {this.handleSpeciesRecount(monsters)}
         </span>
         {' | '}
         <span>

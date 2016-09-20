@@ -7,7 +7,6 @@ const initialState = {
   current: null,
   time: 0,
   method: '',
-  finished: null
 }
 
 export default handleActions({

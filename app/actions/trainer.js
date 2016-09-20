@@ -7,12 +7,21 @@ import {
 } from 'lodash'
 import pogobuf from 'pogobuf'
 import POGOProtos from 'node-pogo-protos'
+import {
+  ipcRenderer
+} from 'electron'
+import moment from 'moment'
 
 import client from '../client'
 
 // TODO Must move these helpers to app folder
 import utils from '../utils'
 import baseStats from '../../baseStats'
+
+import {
+  updateStatus,
+  resetStatus,
+} from './status'
 
 // Maybe put this info and the helper methods in utils?
 const kantoDexCount = 151
@@ -253,6 +262,7 @@ function transferPokemon(pokemon, delay) {
       dispatch(transferPokemonSuccess(pokemon))
     } catch (error) {
       dispatch(transferPokemonFailed(error))
+      throw error
     }
   }
 }
@@ -265,12 +275,106 @@ function evolvePokemon(pokemon, delay) {
       dispatch(evolvePokemonSuccess(pokemon))
     } catch (error) {
       dispatch(evolvePokemonFailed(error))
+      throw error
     }
   }
 }
 
+function promiseChainFromArray(array, iterator) {
+  let promise = Promise.resolve()
+
+  array.forEach((value, index) => {
+    promise = promise.then(() => iterator(value, index))
+  })
+
+  return promise
+}
+
+function randomDelay([min, max]) {
+  return Math.round((min + Math.random() * (max - min)) * 1000)
+}
+
+function average(arr) {
+  const sum = arr.reduce((result, currentValue) =>
+    result + currentValue
+  , 0)
+
+  return sum / arr.length
+}
+
+const updateMonster = createAction('UPDATE_MONSTER')
+
+function processSelectedPokemon(selectedPokemon, method, action, time, delayRange, done) {
+  return async (dispatch) => {
+    dispatch(updateStatus({
+      selectedPokemon,
+      method,
+      time,
+    }))
+
+    let startTime = moment()
+    const responseTimesInSeconds = []
+
+    promiseChainFromArray(selectedPokemon, (pokemon, index) =>
+      dispatch(action(pokemon, index * randomDelay(delayRange)))
+        .then(() => {
+          let statusUpdates = { current: pokemon }
+
+          // Calculate the Estimated Time in Seconds Left
+          const requestLatencyInSeconds = moment().diff(startTime, 'seconds')
+          startTime = moment()
+
+          if (requestLatencyInSeconds > 0) {
+            responseTimesInSeconds.push(requestLatencyInSeconds)
+            const averageRequestLatencyInSeconds = average(responseTimesInSeconds)
+
+            const numberOfJobsLeft = selectedPokemon.length - (index + 1)
+            const estimatedSecondsLeft = numberOfJobsLeft * averageRequestLatencyInSeconds
+
+            statusUpdates = Object.assign({}, statusUpdates, { time: estimatedSecondsLeft })
+          }
+
+          dispatch(updateStatus(statusUpdates))
+
+          dispatch(updateMonster({
+            pokemon,
+            options: { remove: true }
+          }))
+        })
+    ).then(() => {
+      done()
+      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
+      dispatch(resetStatus())
+      dispatch(getTrainerPokemon())
+    }).catch(error => {
+      done()
+      ipcRenderer.send('error-message', `Error while running ${method.toLowerCase()}:\n\n${error}`)
+      dispatch(resetStatus())
+      dispatch(getTrainerPokemon())
+    })
+  }
+}
+
+function transferSelectedPokemon(selectedPokemon, done) {
+  const method = 'Transfer'
+  const time = selectedPokemon.length * 2.5
+  const delayRange = [2, 3]
+  const action = transferPokemon
+
+  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange, done)
+}
+
+function evolveSelectedPokemon(selectedPokemon, done) {
+  const method = 'Evolve'
+  const time = selectedPokemon.length * 27.5
+  const delayRange = [25, 30]
+  const action = evolvePokemon
+
+  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange, done)
+}
+
 export default {
-  updateMonster: createAction('UPDATE_MONSTER'),
+  updateMonster,
   updateSpecies: createAction('UPDATE_SPECIES'),
   updateMonsterSort: createAction('UPDATE_MONSTER_SORT'),
   sortSpecies: createAction('SORT_SPECIES'),
@@ -286,4 +390,6 @@ export default {
   renamePokemon,
   transferPokemon,
   evolvePokemon,
+  evolveSelectedPokemon,
+  transferSelectedPokemon,
 }

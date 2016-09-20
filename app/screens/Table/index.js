@@ -16,14 +16,12 @@ import CheckCounter from './components/CheckCounter'
 
 import confirmDialog from '../ConfirmationDialog'
 import {
-  updateStatus,
-  logout,
   getTrainerPokemon,
   updateSpecies,
   updateMonster,
   updateMonsterSort,
-  evolvePokemon,
-  transferPokemon,
+  evolveSelectedPokemon,
+  transferSelectedPokemon,
 } from '../../actions'
 
 window.$ = window.jQuery = $
@@ -39,10 +37,6 @@ function runningCheck() {
     return true
   }
   return false
-}
-
-function randomDelay(min, max) {
-  return Math.round((min + Math.random() * (max - min)) * 1000)
 }
 
 function getHeaderBackgroundStyles(team) {
@@ -75,9 +69,9 @@ function getHeaderBackgroundStyles(team) {
 const Table = React.createClass({
 
   propTypes: {
-    updateStatus: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired,
-    trainerData: PropTypes.object,
+    trainerData: PropTypes.shape({
+      username: PropTypes.string,
+    }),
     getTrainerPokemon: PropTypes.func.isRequired,
     monsters: PropTypes.object,
     updateSpecies: PropTypes.func.isRequired,
@@ -87,8 +81,8 @@ const Table = React.createClass({
     filterBy: PropTypes.string,
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
-    transferPokemon: PropTypes.func.isRequired,
-    evolvePokemon: PropTypes.func.isRequired,
+    evolveSelectedPokemon: PropTypes.func.isRequired,
+    transferSelectedPokemon: PropTypes.func.isRequired,
   },
 
   componentDidMount() {
@@ -125,7 +119,7 @@ const Table = React.createClass({
             style={backgroundHeaderStyles}
           >
             <div className="navbar-header">
-              <MainMenu />
+              <MainMenu eggs={monsters.eggs} />
             </div>
             <div className="navbar-header username">
               {' '}
@@ -168,6 +162,7 @@ const Table = React.createClass({
             <span
               className="glyphicon glyphicon-refresh"
               id="refresh-btn"
+              role="button"
               onClick={this.handleRefresh}
             />
 
@@ -276,14 +271,9 @@ const Table = React.createClass({
       onClickSecondary: () => {
         if (runningCheck()) return
 
-        this.handleCountDown(selectedPokemon, 'Transfer', selectedPokemon.length * 2.5)
+        running = true
 
-        selectedPokemon.forEach((pokemon, index) => {
-          this.props.transferPokemon(pokemon, index * randomDelay(2, 3))
-            .then(() => {
-              this.handleTransferCompleted(pokemon)
-            })
-        })
+        this.props.transferSelectedPokemon(selectedPokemon, this.handleAllComplete)
       },
 
       primaryText: 'Transfer without favorites',
@@ -296,14 +286,9 @@ const Table = React.createClass({
           return isntFavorite
         })
 
-        this.handleCountDown(filteredPokemon, 'Transfer', filteredPokemon.length * 2.5)
+        running = true
 
-        filteredPokemon.forEach((pokemon, index) => {
-          this.props.transferPokemon(pokemon, index * randomDelay(2, 3))
-            .then(() => {
-              this.handleTransferCompleted(pokemon)
-            })
-        })
+        this.props.transferSelectedPokemon(filteredPokemon, this.handleAllComplete)
       }
     })
   },
@@ -323,47 +308,16 @@ const Table = React.createClass({
       onClickPrimary: () => {
         if (runningCheck()) return
 
-        this.handleCountDown(selectedPokemon, 'Evolve', selectedPokemon.length * 27.5)
+        running = true
 
-        selectedPokemon.forEach((pokemon, index) => {
-          this.props.evolvePokemon(pokemon, index * randomDelay(25, 30))
-            .then(() => {
-              this.handleEvolveCompleted(pokemon)
-            })
-        })
+        this.props.evolveSelectedPokemon(selectedPokemon, this.handleAllComplete)
       }
     })
   },
 
-  handleCountDown(selectedPokemon, method, time) {
-    running = true
-
-    this.props.updateStatus({
-      selectedPokemon,
-      method,
-      time,
-      finished: () => {
-        running = false
-        ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-        this.handleRefresh()
-      }
-    })
+  handleAllComplete() {
+    running = false
   },
-
-  removeMonster(pokemon) {
-    this.updateMonster(pokemon, { remove: true })
-  },
-
-  handleEvolveCompleted(pokemon) {
-    this.props.updateStatus({ current: pokemon })
-    this.removeMonster(pokemon)
-  },
-
-  handleTransferCompleted(pokemon) {
-    this.props.updateStatus({ current: pokemon })
-    this.removeMonster(pokemon)
-  },
-
 })
 
 export default connect((state => ({
@@ -374,12 +328,10 @@ export default connect((state => ({
   sortDir: state.trainer.sortDir,
   filterBy: state.trainer.filterBy,
 })), (dispatch => bindActionCreators({
-  updateStatus,
-  logout,
   getTrainerPokemon,
   updateSpecies,
   updateMonster,
   updateMonsterSort,
-  evolvePokemon,
-  transferPokemon,
+  evolveSelectedPokemon,
+  transferSelectedPokemon,
 }, dispatch)))(Table)

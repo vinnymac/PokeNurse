@@ -10,7 +10,7 @@
 
 ## Downloads for v1.5.0
 You may view all the releases [here](https://github.com/vinnymac/PokeNurse/releases)
-* [Mac OS X](https://github.com/vinnymac/PokeNurse/releases/download/v1.5.0/PokeNurse-darwin-x64.zip)
+* [macOS](https://github.com/vinnymac/PokeNurse/releases/download/v1.5.0/PokeNurse-darwin-x64.zip)
 * [Windows 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.5.0/PokeNurse-win32-ia32.zip)
 * [Windows 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.5.0/PokeNurse-win32-x64.zip)
 * [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.5.0/PokeNurse-linux-ia32.zip)

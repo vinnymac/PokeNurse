@@ -11,6 +11,8 @@ const del = require('del')
 const exec = require('child_process').exec
 const argv = require('minimist')(process.argv.slice(2))
 const pkg = require('./package.json')
+const electronPrebuilt = require('electron-prebuilt')
+const semver = require('semver')
 
 const deps = Object.keys(pkg.dependencies)
 const devDeps = Object.keys(pkg.devDependencies)
@@ -47,13 +49,15 @@ if (version) {
   startPack()
 } else {
   // use the same version as the currently-installed electron-prebuilt
-  exec('npm view electron-prebuilt version', (err, stdout) => {
-    if (err) {
-      DEFAULT_OPTS.version = '1.2.0'
-    } else {
-      DEFAULT_OPTS.version = pkg.devDependencies['electron-prebuilt']
+  exec(`${electronPrebuilt} --version`, (err, stdout) => {
+    let electronVersion = semver.clean(stdout)
+
+    if (err || !semver.valid(electronVersion)) {
+      console.log('Unable to identify Electron version, falling back to v1.2.0.')
+      electronVersion = '1.2.0'
     }
 
+    DEFAULT_OPTS.version = electronVersion
     startPack()
   })
 }

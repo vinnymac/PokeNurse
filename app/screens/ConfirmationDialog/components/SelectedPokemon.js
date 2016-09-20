@@ -28,7 +28,7 @@ const SelectedPokemon = React.createClass({
               </tr>
             </thead>
             <tbody>
-               { this.buildRows(pokemon) }
+              { this.buildRows(pokemon) }
             </tbody>
           </table>
         </div>

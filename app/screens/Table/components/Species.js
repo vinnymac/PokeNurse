@@ -45,10 +45,10 @@ const Species = React.createClass({
         <div className="col-md-12">
           <table className="table table-condensed table-hover display no-footer">
             <thead>
-            {this.getSpeciesHeader()}
+              {this.getSpeciesHeader()}
             </thead>
             <tbody>
-            {this.getSpeciesBody(monsters.species)}
+              {this.getSpeciesBody(monsters.species)}
             </tbody>
           </table>
         </div>
