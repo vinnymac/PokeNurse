@@ -9,7 +9,7 @@ import {
   logout
 } from '../../actions'
 import renderSettings from '../Settings'
-import Eggs from './components/Eggs'
+// import Eggs from './components/Eggs'
 
 const Menu = require('react-burger-menu').slide
 
@@ -21,23 +21,23 @@ const MainMenu = React.createClass({
   },
 
   render() {
-    const {
-      eggs
-    } = this.props
+    // const {
+    //   eggs
+    // } = this.props
 
     return (
       <Menu>
         <div>
           <ul className="nav navbar-nav">
             <li><a onClick={this.handleClickSettings}>Settings <i className="glyphicon glyphicon-cog" /></a></li>
-            <li><a>Applied Items <i className="glyphicon glyphicon-chevron-down" /></a></li>
-            <li>
-              <a>
-                Eggs <i className="glyphicon glyphicon-chevron-down" />
-              </a>
-              <Eggs eggList={eggs} />
-            </li>
             {
+              // <li><a>Applied Items <i className="glyphicon glyphicon-chevron-down" /></a></li>
+              // <li>
+              //   <a>
+              //     Eggs <i className="glyphicon glyphicon-chevron-down" />
+              //   </a>
+              //   <Eggs eggList={eggs} />
+              // </li>
               // <li><a>Trainer Info <i className="glyphicon glyphicon-user" /></a></li>
               // <li><a>Inventory <i className="glyphicon glyphicon-chevron-down" /></a></li>
             }
