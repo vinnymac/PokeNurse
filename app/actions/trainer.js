@@ -254,6 +254,16 @@ function renamePokemon(pokemon, nickname, callback) {
   }
 }
 
+function handlePogobufError(error) {
+  // Hacky Patch for #160
+  // Stop Pogobuf/Bluebird-Retry errors from killing transfer/evolve
+  if (error.message && error.message.startsWith('[INTERNAL]')) {
+    console.error(error) // eslint-disable-line
+  } else {
+    throw error
+  }
+}
+
 function transferPokemon(pokemon, delay) {
   return async (dispatch) => {
     try {
@@ -262,7 +272,7 @@ function transferPokemon(pokemon, delay) {
       dispatch(transferPokemonSuccess(pokemon))
     } catch (error) {
       dispatch(transferPokemonFailed(error))
-      throw error
+      handlePogobufError(error)
     }
   }
 }
@@ -275,7 +285,7 @@ function evolvePokemon(pokemon, delay) {
       dispatch(evolvePokemonSuccess(pokemon))
     } catch (error) {
       dispatch(evolvePokemonFailed(error))
-      throw error
+      handlePogobufError(error)
     }
   }
 }
