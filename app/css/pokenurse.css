@@ -162,8 +162,10 @@
 }
 
 #refresh-btn {
-  font-size: 0.5em;
+  font-size: 0.7em;
   padding-left: 5px;
+  vertical-align: middle;
+  color: green;
 }
 #refresh-btn:hover {
   cursor: pointer;
@@ -842,23 +844,23 @@ table thead .sorting_desc:after,
 table thead .sorting_asc_disabled:after,
 table thead .sorting_desc_disabled:after {
   position: absolute;
-  bottom: 8px;
+  bottom: 4px;
   right: 8px;
   display: block;
-  font-family: 'Glyphicons Halflings';
+  font-family: 'FontAwesome';
   opacity: 0.5;
 }
 table thead .sorting:after {
   opacity: 0.2;
-  content: "\e150";
+  content: "\f0dc";
   /* sort */
 }
 table thead .sorting_asc:after {
-  content: "\e155";
+  content: "\f0de";
   /* sort-by-attributes */
 }
 table thead .sorting_desc:after {
-  content: "\e156";
+  content: "\f0dd";
   /* sort-by-attributes-alt */
 }
 table thead .sorting_asc_disabled:after,
@@ -867,14 +869,14 @@ table thead .sorting_desc_disabled:after {
 }
 
 td.details-control:before {
-  font-family:"Glyphicons Halflings";
-  content:"\e081";
+  font-family:"FontAwesome";
+  content:"\f055";
   cursor: pointer;
 }
 
 tr.shown td.details-control:before {
-  font-family:"Glyphicons Halflings";
-  content:"\e082";
+  font-family:"FontAwesome";
+  content:"\f056";
 }
 
 table tbody tr.child {
@@ -903,9 +905,10 @@ table tbody tr.child:hover {
   padding-top: 10px !important;
 }
 
-.glyphicon-pencil {
-  font-size: 24px;
+.fa-pencil {
+  font-size: 20px;
   cursor: pointer;
+  vertical-align: middle;
 }
 
 /*Input Styles*/

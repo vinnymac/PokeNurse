@@ -141,7 +141,7 @@ const Table = React.createClass({
             <div className="navbar-form navbar-right">
               <div className="form-group input-group search">
                 <span className="input-group-addon">
-                  <span className="glyphicon glyphicon-search" aria-hidden="true" />
+                  <span className="fa fa-search" aria-hidden="true" />
                 </span>
                 <input
                   type="text"
@@ -160,7 +160,7 @@ const Table = React.createClass({
           <h1>
             <span>Pokémon</span>
             <span
-              className="glyphicon glyphicon-refresh"
+              className="fa fa-refresh"
               id="refresh-btn"
               role="button"
               onClick={this.handleRefresh}

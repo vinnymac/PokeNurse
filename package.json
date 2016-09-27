@@ -96,6 +96,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3",
     "node-pogo-protos": "1.5.0",
     "pogobuf": "1.7.0",
     "source-map-support": "^0.4.2"

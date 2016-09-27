@@ -29,7 +29,7 @@ const MainMenu = React.createClass({
       <Menu>
         <div>
           <ul className="nav navbar-nav">
-            <li><a onClick={this.handleClickSettings}>Settings <i className="glyphicon glyphicon-cog" /></a></li>
+            <li><a onClick={this.handleClickSettings}>Settings <i className="fa fa-cog" /></a></li>
             {
               // <li><a>Applied Items <i className="glyphicon glyphicon-chevron-down" /></a></li>
               // <li>
@@ -41,7 +41,7 @@ const MainMenu = React.createClass({
               // <li><a>Trainer Info <i className="glyphicon glyphicon-user" /></a></li>
               // <li><a>Inventory <i className="glyphicon glyphicon-chevron-down" /></a></li>
             }
-            <li><a onClick={this.handleSignOut}>Sign Out <i className="glyphicon glyphicon-off" /></a></li>
+            <li><a onClick={this.handleSignOut}>Sign Out <i className="fa fa-power-off" /></a></li>
           </ul>
         </div>
       </Menu>
