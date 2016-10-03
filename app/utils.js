@@ -162,7 +162,7 @@ const utils = {
   },
 
   getMaxCpForTrainerLevel(attack, defense, stamina, trainerLevel) {
-    const maxPokemonLevel = Math.min(40.5, trainerLevel + 1.5)
+    const maxPokemonLevel = Math.min(40, trainerLevel + 1.5)
     const maxCpMultiplier = levelCpMultiplier[maxPokemonLevel]
     const ADS = attack * Math.pow(defense, 0.5) * Math.pow(stamina, 0.5)
     const total = ADS * Math.pow(maxCpMultiplier, 2.0)
