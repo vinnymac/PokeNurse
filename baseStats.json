@@ -2054,6 +2054,7 @@
       "evolvesTo": "Muk",
       "evolvesFrom": 0,
       "quickMoves": [
+        224,
         225,
         233
       ],
