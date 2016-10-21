@@ -3244,6 +3244,7 @@
       "evolvesTo": 0,
       "evolvesFrom": "Omanyte",
       "quickMoves": [
+        216,
         227,
         230
       ],
