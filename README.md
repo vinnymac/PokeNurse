@@ -39,22 +39,22 @@ This project uses [Electron](http://electron.atom.io/) and [Node.js](https://nod
     git clone https://github.com/vinnymac/PokeNurse
     cd PokeNurse
     git checkout develop
-    npm install
-    npm run dev
+    yarn
+    yarn run dev
 
 ## Releases
 
   Package for your platform
 
-    npm run package
+    yarn run package
 
   Package for a specific platform ([docs packager](https://github.com/electron-userland/electron-packager/blob/master/docs/api.md))
 
-    npm run package -- --platform=linux --arch=x64
+    yarn run package -- --platform=linux --arch=x64
 
   Package for all platforms
 
-    npm run package-all
+    yarn run package-all
 
 ## FAQ
 1. Will I be banned from pokemon go for using PokeNurse?
