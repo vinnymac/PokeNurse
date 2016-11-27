@@ -5,11 +5,11 @@ import baseConfig from './webpack.config.base'
 export default merge(baseConfig, {
   devtool: 'source-map',
 
-  entry: ['babel-polyfill', './main.development.js'],
+  entry: ['babel-polyfill', './app/main.development.js'],
 
   output: {
     path: __dirname,
-    filename: './main.js'
+    filename: './app/main.js'
   },
 
   plugins: [
@@ -18,10 +18,12 @@ export default merge(baseConfig, {
         warnings: false
       }
     }),
-    new webpack.BannerPlugin(
-      'require("source-map-support").install();',
-      { raw: true, entryOnly: false }
-    ),
+    // Add source map support for stack traces in node
+    // https://github.com/evanw/node-source-map-support
+    // new webpack.BannerPlugin(
+    //   'require("source-map-support").install();',
+    //   { raw: true, entryOnly: false }
+    // ),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
@@ -37,7 +39,7 @@ export default merge(baseConfig, {
   },
 
   externals: [
-    'source-map-support',
+    // 'source-map-support',
     'electron-devtools-installer',
   ],
 

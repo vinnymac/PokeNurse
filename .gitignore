@@ -27,7 +27,9 @@ coverage
 build/Release
 
 # Dependency directories
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+app/node_modules
 jspm_packages
 
 # Optional npm cache directory
@@ -47,7 +49,13 @@ PokeNurse-linux-*
 .idea/
 
 # App packaged
-dist
 release
+app/main.js
+app/main.js.map
+app/bundle.js
+app/bundle.js.map
+app/style.css
+app/style.css.map
+dist
 main.js
 main.js.map

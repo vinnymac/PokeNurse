@@ -48,10 +48,6 @@ This project uses [Electron](http://electron.atom.io/) and [Node.js](https://nod
 
     yarn run package
 
-  Package for a specific platform ([docs packager](https://github.com/electron-userland/electron-packager/blob/master/docs/api.md))
-
-    yarn run package -- --platform=linux --arch=x64
-
   Package for all platforms
 
     yarn run package-all

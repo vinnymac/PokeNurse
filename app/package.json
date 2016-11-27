@@ -1,0 +1,17 @@
+{
+  "name": "PokeNurse",
+  "productName": "PokeNurse",
+  "version": "1.5.4",
+  "description": "A tool for Pokémon Go to aid in transferring and evolving Pokémon",
+  "main": "./main.js",
+  "author": {
+    "name": "Vincent Taverna",
+    "email": "vinnymac@gmail.com",
+    "url": "https://github.com/vinnymac"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "source-map-support": "^0.4.3",
+    "electron-devtools-installer": "^2.0.1"
+  }
+}

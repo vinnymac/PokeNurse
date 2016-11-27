@@ -6,16 +6,28 @@ import {
   Menu
 } from 'electron'
 import electronLocalshortcut from 'electron-localshortcut'
+import path from 'path'
 
 import menuTemplate from './main/mainMenu'
 import checkForUpdates from './main/checkForUpdates'
 
 const isMacOS = process.platform === 'darwin'
 const isDevelopment = process.env.NODE_ENV === 'development'
+const isProduction = process.env.NODE_ENV === 'production'
 
 let mainWindow = null
 
-if (isDevelopment) require('electron-debug')() // eslint-disable-line global-require
+if (isProduction) {
+  const sourceMapSupport = require('source-map-support') // eslint-disable-line
+  sourceMapSupport.install()
+}
+
+if (isDevelopment) {
+  require('electron-debug')() // eslint-disable-line global-require
+
+  const p = path.join(__dirname, '..', 'app', 'node_modules') // eslint-disable-line
+  require('module').globalPaths.push(p) // eslint-disable-line
+}
 
 process.on('uncaughtException', (error) => {
   console.error('uncaughtException', error) // eslint-disable-line
@@ -37,7 +49,7 @@ function createWindow() {
 
   if (isDevelopment) preventUnusedElectronDebug()
 
-  mainWindow.loadURL(`file://${__dirname}/app/app.html`)
+  mainWindow.loadURL(`file://${__dirname}/app.html`)
   // mainWindow.once('ready-to-show', () => {
   //   win.show()
   // })
