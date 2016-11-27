@@ -1,10 +1,11 @@
 import webpack from 'webpack'
+import validate from 'webpack-validator'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import merge from 'webpack-merge'
 import baseConfig from './webpack.config.base'
 
-const config = merge(baseConfig, {
+const config = validate(merge(baseConfig, {
   devtool: 'cheap-module-source-map',
 
   entry: [
@@ -75,6 +76,6 @@ const config = merge(baseConfig, {
 
   // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
   target: 'electron-renderer'
-})
+}))
 
 export default config

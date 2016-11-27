@@ -1,6 +1,7 @@
+import validate from 'webpack-validator'
 import path from 'path'
 
-export default {
+export default validate({
   module: {
     loaders: [
       {
@@ -35,4 +36,4 @@ export default {
     'node-pogo-protos',
     'bootstrap'
   ]
-}
+})
