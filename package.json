@@ -18,7 +18,7 @@
     "package-linux": "npm run build && build --linux",
     "package-all": "npm run build && build -mwl",
     "postinstall": "concurrently \"install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
-    "dev": "yarn run hot-server"
+    "dev": "yarn run hot-server -- --start-hot"
   },
   "build": {
     "appId": "com.vinnymac.PokeNurse",
