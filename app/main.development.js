@@ -10,13 +10,13 @@ import path from 'path'
 import menuTemplate from './main/mainMenu'
 import checkForUpdates from './main/checkForUpdates'
 
-const electronLocalshortcut = isDevelopment
-  ? require('electron-localshortcut') // eslint-disable-line
-  : null
-
 const isMacOS = process.platform === 'darwin'
 const isDevelopment = process.env.NODE_ENV === 'development'
 const isProduction = process.env.NODE_ENV === 'production'
+
+const electronLocalshortcut = isDevelopment
+  ? require('electron-localshortcut') // eslint-disable-line
+  : null
 
 let mainWindow = null
 
