@@ -16,7 +16,7 @@ import {
   login
 } from './actions'
 
-require('./css/pokenurse.css')
+import './app.global.css'
 
 const App = React.createClass({
   propTypes: {

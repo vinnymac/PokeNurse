@@ -1,7 +1,6 @@
 # Logs
 logs
 *.log
-npm-debug.log*
 
 # Runtime data
 pids
@@ -14,9 +13,6 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
-# nyc test coverage
-.nyc_output
-
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
@@ -26,27 +22,13 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directories
+# Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 app/node_modules
-jspm_packages
 
-# Optional npm cache directory
-.npm
-
-# Optional REPL history
-.node_repl_history
-
+# OSX
 .DS_Store
-.vscode
-PokeNurse-darwin-*
-PokeNurse-win32-*
-PokeNurse-linux-*
-
-#Webstorm IDE
-.idea
-.idea/
 
 # App packaged
 release
