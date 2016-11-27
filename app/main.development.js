@@ -5,11 +5,14 @@ import {
   dialog,
   Menu
 } from 'electron'
-import electronLocalshortcut from 'electron-localshortcut'
 import path from 'path'
 
 import menuTemplate from './main/mainMenu'
 import checkForUpdates from './main/checkForUpdates'
+
+const electronLocalshortcut = isDevelopment
+  ? require('electron-localshortcut') // eslint-disable-line
+  : null
 
 const isMacOS = process.platform === 'darwin'
 const isDevelopment = process.env.NODE_ENV === 'development'
