@@ -1,4 +1,5 @@
 const fs = require('fs')
+const values = require('lodash/values')
 
 // var gameMaster = require('./GAME_MASTER_v0_1.json')
 const gameMaster2 = require('./GAME_MASTER_v0_2.json')
@@ -7,6 +8,14 @@ const evolveCost = require('./evolveCost.json')
 const familiesById = require('./familiesById.json')
 const basicAttacks = require('./basicAttacks.json')
 const chargedAttacks = require('./chargedAttacks.json')
+
+// https://docs.google.com/spreadsheets/d/1_WS9FIGSlKVk6XAJTE3TxXIqlBPIQ5Lsx5qifE72vXY/htmlview?usp=sharing&sle=true#
+// csv export -> json
+const cpUpdates = require('./CP_UPDATES.json')
+
+const newStaminas = values(cpUpdates.NStamina)
+const newAttacks = values(cpUpdates.NAttack)
+const newDefenses = values(cpUpdates.NDefense)
 
 function writeBaseStats() {
   const baseStats = {
@@ -51,9 +60,9 @@ function writeBaseStats() {
       evolveCost: evolveCost.data[pokemonIndex].cost,
       familyId: familiesById.data[pokemonIndex].family,
       // TODO camel case these
-      BaseStamina: item.BaseStamina,
-      BaseAttack: item.BaseAttack,
-      BaseDefense: item.BaseDefense,
+      BaseStamina: newStaminas[pokemonIndex], // item.BaseStamina,
+      BaseAttack: newAttacks[pokemonIndex], // item.BaseAttack,
+      BaseDefense: newDefenses[pokemonIndex], // item.BaseDefense,
       evolvesTo: item.EvolvesTo,
       evolvesFrom: item.EvolvesFrom,
       quickMoves,
