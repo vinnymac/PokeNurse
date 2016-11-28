@@ -372,8 +372,8 @@ function transferSelectedPokemon(selectedPokemon) {
 
 function evolveSelectedPokemon(selectedPokemon) {
   const method = 'Evolve'
-  const time = selectedPokemon.length * 27.5
-  const delayRange = [25, 30]
+  const time = selectedPokemon.length * 22.5
+  const delayRange = [20, 25]
   const action = evolvePokemon
 
   return processSelectedPokemon(selectedPokemon, method, action, time, delayRange)

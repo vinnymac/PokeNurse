@@ -1,6 +1,10 @@
+import validate from 'webpack-validator'
 import path from 'path'
+import {
+  dependencies as externals
+} from './app/package.json'
 
-export default {
+export default validate({
   module: {
     loaders: [
       {
@@ -13,17 +17,13 @@ export default {
         loader: 'json-loader'
       },
       {
-        test: /pokenurse.css$/,
-        loader: ('style!css')
-      },
-      {
         test: /\.(jpe?g|png|gif|svg|ico)$/i,
         loader: 'file'
       }
     ]
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'app'),
     filename: 'bundle.js',
     libraryTarget: 'commonjs2'
   },
@@ -34,9 +34,5 @@ export default {
   plugins: [
 
   ],
-  externals: [
-    'pogobuf',
-    'node-pogo-protos',
-    'bootstrap'
-  ]
-}
+  externals: Object.keys(externals || {})
+})

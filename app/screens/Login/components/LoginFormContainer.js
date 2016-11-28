@@ -93,7 +93,7 @@ const LoginForm = React.createClass({
 
         <div className="form-group input-group">
           <span className="input-group-addon">
-            <span className="glyphicon glyphicon-user" aria-hidden="true" />
+            <span className="fa fa-user" aria-hidden="true" />
           </span>
           <input
             type="text"
@@ -107,7 +107,7 @@ const LoginForm = React.createClass({
 
         <div className="form-group input-group">
           <span className="input-group-addon">
-            <span className="glyphicon glyphicon-lock" aria-hidden="true" />
+            <span className="fa fa-lock" aria-hidden="true" />
           </span>
           <input
             type="password"
@@ -127,7 +127,7 @@ const LoginForm = React.createClass({
               defaultChecked={(credentials.password && credentials.username) || false}
               ref={(c) => { this.rememberMe = c }}
             />
-            {" Remember me"}
+            {' Remember me'}
           </label>
           <input
             type="button"

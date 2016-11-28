@@ -6,6 +6,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
+import { spawn } from 'child_process'
 
 import config from './webpack.config.development'
 
@@ -38,8 +39,13 @@ app.use(webpackHotMiddleware(compiler, webpackHotMiddlewareConfig))
 
 const server = app.listen(PORT, 'localhost', (err) => {
   if (err) {
-    console.error(err)
-    return
+    return console.error(err)
+  }
+
+  if (argv['start-hot']) {
+    spawn('npm', ['run', 'start-hot'], { shell: true, env: process.env, stdio: 'inherit' })
+      .on('close', code => process.exit(code))
+      .on('error', spawnError => console.error(spawnError))
   }
 
   console.log(`Listening at http://localhost:${PORT}`)

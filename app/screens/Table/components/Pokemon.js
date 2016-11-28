@@ -13,8 +13,8 @@ import {
 import renderModal from '../../Detail'
 import Tooltip from '../../Tooltip'
 
-const favoriteGlyph = 'glyphicon glyphicon-star favorite-yellow'
-const emptyFavoriteGlyph = 'glyphicon glyphicon-star-empty'
+const favoriteGlyph = 'fa fa-star favorite-yellow'
+const emptyFavoriteGlyph = 'fa fa-star-o'
 
 const Pokemon = React.createClass({
 
@@ -63,7 +63,7 @@ const Pokemon = React.createClass({
                   aria-label="Favorite: activate to sort column ascending"
                   onClick={this.handleSortPokemon.bind(this, 'favorite')}
                 >
-                  <span className="glyphicon glyphicon-star favorite-yellow" />
+                  <span className="fa fa-star favorite-yellow" />
                 </th>
                 <th>
                   P↑

@@ -52,9 +52,9 @@ const Nickname = React.createClass({
     return (
       <div id="pokemon_name">
         {newNickname}
-        {" "}
+        {' '}
         <div
-          className="glyphicon glyphicon-pencil"
+          className="fa fa-pencil"
           style={{ cursor: 'pointer' }}
           title="Click to Edit"
           onClick={this.handleEdit}
