@@ -2033,7 +2033,7 @@ ctype@0.5.3:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/ctype/-/ctype-0.5.3.tgz#82c18c2461f74114ef16c135224ad0b9144ca12f"
 
-cuint@^0.2.1, cuint@^0.2.2, cuint@latest:
+cuint@^0.2.1, cuint@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cuint/-/cuint-0.2.2.tgz#408086d409550c2631155619e9fa7bcadc3b991b"
 
@@ -4657,19 +4657,19 @@ node-libs-browser@^1.0.0:
     util "^0.10.3"
     vm-browserify "0.0.4"
 
-node-pogo-protos@^1.5.0, node-pogo-protos@1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/node-pogo-protos/-/node-pogo-protos-1.5.0.tgz#e605d303babcf025dc7a3b9d213aea02da3dc2e5"
+node-pogo-protos@^2.0.0, node-pogo-protos@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/node-pogo-protos/-/node-pogo-protos-2.2.0.tgz#715f35f2aa084d04d2eaa2a40b7ea984b6ef30cd"
   dependencies:
     protobufjs "^5.0.1"
 
-node-pogo-signature@^2.0.0:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/node-pogo-signature/-/node-pogo-signature-2.0.4.tgz#6075166f4d940576137bb79b2133653e8aff02ee"
+"node-pogo-signature@git+https://github.com/starkevin/node-pogo-signature.git":
+  version "3.0.0"
+  resolved "git+https://github.com/starkevin/node-pogo-signature.git#b0dc68d3524c80ebadecef5ad8945cec88103271"
   dependencies:
     long "^3.2.0"
+    pcrypt laverdet/pcrypt
     protobufjs "^5.0.1"
-    xxhashjs "^0.2.1"
 
 node-pre-gyp@^0.6.29:
   version "0.6.31"
@@ -5014,6 +5014,10 @@ pbkdf2@^3.0.3:
   dependencies:
     create-hmac "^1.1.2"
 
+pcrypt@laverdet/pcrypt:
+  version "1.0.0"
+  resolved "https://codeload.github.com/laverdet/pcrypt/tar.gz/161f98fbea3e0ae1fe6e3b5a47e6ab029afdd9be"
+
 pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
@@ -5075,16 +5079,16 @@ pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
-pogobuf@1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/pogobuf/-/pogobuf-1.7.0.tgz#00851c643ca65715484feadff89cc5f886fd6d65"
+pogobuf@1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/pogobuf/-/pogobuf-1.8.0.tgz#5f0e17c4f9a41690a50b235cfc96fd7764e34eab"
   dependencies:
     bluebird "^3.4.1"
     bluebird-retry "^0.8.0"
     gpsoauthnode "0.0.5"
     long "^3.2.0"
-    node-pogo-protos "^1.5.0"
-    node-pogo-signature "^2.0.0"
+    node-pogo-protos "^2.0.0"
+    node-pogo-signature "git+https://github.com/starkevin/node-pogo-signature.git"
     request "^2.74.0"
     s2-geometry "^1.2.7"
 
@@ -5753,10 +5757,11 @@ redux:
     loose-envify "^1.1.0"
     symbol-observable "^1.0.2"
 
-redux-actions@0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-0.12.0.tgz#8a4f0114f1bde2e6b61d5b7205d4818004c67461"
+redux-actions@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-1.1.0.tgz#df8ec791d9e267544e58a8ba2b72fc5c30afba3b"
   dependencies:
+    invariant "^2.2.1"
     lodash "^4.13.1"
     reduce-reducers "^0.1.0"
 
@@ -6979,12 +6984,6 @@ xtend@~2.1.1:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-2.1.2.tgz#6efecc2a4dad8e6962c4901b337ce7ba87b5d28b"
   dependencies:
     object-keys "~0.4.0"
-
-xxhashjs@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/xxhashjs/-/xxhashjs-0.2.1.tgz#9bbe9be896142976dfa34c061b2d068c43d30de0"
-  dependencies:
-    cuint latest
 
 y18n@^3.2.0, y18n@^3.2.1:
   version "3.2.1"
