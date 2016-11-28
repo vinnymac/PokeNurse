@@ -127,7 +127,7 @@ const LoginForm = React.createClass({
               defaultChecked={(credentials.password && credentials.username) || false}
               ref={(c) => { this.rememberMe = c }}
             />
-            {" Remember me"}
+            {' Remember me'}
           </label>
           <input
             type="button"

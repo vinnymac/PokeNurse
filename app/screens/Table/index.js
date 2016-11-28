@@ -61,7 +61,7 @@ function getHeaderBackgroundStyles(team) {
 
   return {
     backgroundColor: teamColor,
-    backgroundImage: `url("./imgs/${teamName}.jpg")`,
+    backgroundImage: `url('./imgs/${teamName}.jpg')`,
     backgroundRepeat: 'no-repeat'
   }
 }
@@ -174,7 +174,7 @@ const Table = React.createClass({
                 value="Transfer"
                 onClick={this.handleTransfer}
               />
-              {" "}
+              {' '}
               <input
                 type="button"
                 className="btn btn-danger"
