@@ -1,7 +1,8 @@
 const fs = require('fs')
 
 // var gameMaster = require('./GAME_MASTER_v0_1.json')
-const gameMaster2 = require('./GAME_MASTER_v0_2.json')
+// const gameMaster2 = require('./GAME_MASTER_v0_2.json')
+const gameMaster3 = require('./GAME_MASTER_v0_3.json')
 const cpStats = require('./cpStats.json')
 const evolveCost = require('./evolveCost.json')
 const familiesById = require('./familiesById.json')
@@ -14,7 +15,7 @@ function writeBaseStats() {
     moves: {}
   }
 
-  gameMaster2.forEach(item => {
+  gameMaster3.forEach(item => {
     const pokemonIndex = item.PkMn - 1
     const pokemonId = String(item.PkMn)
     const types = [item.Type1.toLowerCase()]
