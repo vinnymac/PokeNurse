@@ -11,7 +11,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "source-map-support": "^0.4.3",
-    "electron-devtools-installer": "^2.0.1"
+    "async-file": "^2.0.2",
+    "node-pogo-protos": "1.5.0",
+    "pogobuf": "1.7.0",
+    "electron-localshortcut": "^1.0.0"
   }
 }

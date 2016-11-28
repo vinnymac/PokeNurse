@@ -1,5 +1,8 @@
 import validate from 'webpack-validator'
 import path from 'path'
+import {
+  dependencies as externals
+} from './app/package.json'
 
 export default validate({
   module: {
@@ -31,9 +34,5 @@ export default validate({
   plugins: [
 
   ],
-  externals: [
-    'pogobuf',
-    'node-pogo-protos',
-    'bootstrap'
-  ]
+  externals: Object.keys(externals || {})
 })

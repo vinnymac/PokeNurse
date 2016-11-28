@@ -5,29 +5,26 @@ import {
   dialog,
   Menu
 } from 'electron'
-import path from 'path'
 
 import menuTemplate from './main/mainMenu'
 import checkForUpdates from './main/checkForUpdates'
 
 const isMacOS = process.platform === 'darwin'
-const isDevelopment = process.env.NODE_ENV === 'development'
-const isProduction = process.env.NODE_ENV === 'production'
 
-const electronLocalshortcut = isDevelopment
+const electronLocalshortcut = process.env.NODE_ENV === 'development'
   ? require('electron-localshortcut') // eslint-disable-line
   : null
 
 let mainWindow = null
 
-if (isProduction) {
+if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support') // eslint-disable-line
   sourceMapSupport.install()
 }
 
-if (isDevelopment) {
+if (process.env.NODE_ENV === 'development') {
   require('electron-debug')() // eslint-disable-line global-require
-
+  const path = require('path'); // eslint-disable-line
   const p = path.join(__dirname, '..', 'app', 'node_modules') // eslint-disable-line
   require('module').globalPaths.push(p) // eslint-disable-line
 }
@@ -50,7 +47,7 @@ function createWindow() {
     show: false
   })
 
-  if (isDevelopment) preventUnusedElectronDebug()
+  if (process.env.NODE_ENV === 'development') preventUnusedElectronDebug()
 
   mainWindow.loadURL(`file://${__dirname}/app.html`)
   // mainWindow.once('ready-to-show', () => {
@@ -99,7 +96,7 @@ function createWindow() {
   const menu = Menu.buildFromTemplate(menuTemplate)
   Menu.setApplicationMenu(menu)
 
-  if (isDevelopment) {
+  if (process.env.NODE_ENV === 'development') {
     mainWindow.openDevTools()
     mainWindow.webContents.on('context-menu', (e, props) => {
       const { x, y } = props
@@ -138,7 +135,7 @@ app.on('window-all-closed', () => {
 })
 
 const installExtensions = async () => {
-  if (isDevelopment) {
+  if (process.env.NODE_ENV === 'development') {
     const installer = require('electron-devtools-installer') // eslint-disable-line global-require
 
     const extensions = [
