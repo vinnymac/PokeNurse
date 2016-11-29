@@ -30,14 +30,12 @@ const Status = React.createClass({
     }
 
     return (
-      <div className="status-container">
-        <div className="row col-sm-12">
-          <div className="col-sm-6 status">
-            <span>{`Status: ${label}`}</span>
-          </div>
-          <div className="col-sm-6 progressbar">
-            <Progress progress={this.props.status} />
-          </div>
+      <div className="status-container flex p5 flex-row">
+        <div className="status mra">
+          <span>{`Status: ${label}`}</span>
+        </div>
+        <div className="progressbar">
+          <Progress progress={this.props.status} />
         </div>
       </div>
     )
