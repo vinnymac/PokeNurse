@@ -28,7 +28,7 @@ const MainMenu = React.createClass({
     return (
       <Menu>
         <div>
-          <ul className="nav navbar-nav">
+          <ul className="list-unstyled">
             <li><a onClick={this.handleClickSettings}>Settings <i className="fa fa-cog" /></a></li>
             {
               // <li><a>Applied Items <i className="glyphicon glyphicon-chevron-down" /></a></li>

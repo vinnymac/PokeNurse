@@ -113,60 +113,54 @@ const Table = React.createClass({
 
     return (
       <div>
-        <div className="container">
-          <nav
-            className="navbar navbar-inverse navbar-fixed-top"
-            style={backgroundHeaderStyles}
-          >
-            <div className="navbar-header">
+        <nav className="global-nav">
+          <div className="nav-header" style={backgroundHeaderStyles}>
+            <div>
               <MainMenu eggs={monsters.eggs} />
             </div>
-            <div className="navbar-header username">
+            <div className="flex p5 flex-row">
               {' '}
-              <strong>
-                <span id="username-h">
-                  {username}
-                </span>
+              <strong className="mra" id="username-h">
+                {username}
               </strong>
-            </div>
-            <div className="navbar-right">
-              <div className="stats">
-                <SpeciesCounter monsters={monsters} />
-                {' | '}
-                <span>
-                  <CheckCounter />
-                </span>
-              </div>
-            </div>
-            <div className="navbar-form navbar-right">
-              <div className="form-group input-group search">
-                <span className="input-group-addon">
-                  <span className="fa fa-search" aria-hidden="true" />
-                </span>
+
+              <div className="flex search">
+                <label htmlFor="search">
+                  <i className="fa fa-search" aria-hidden="true" />
+                </label>
                 <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search"
+                  type="search"
+                  id="search"
+                  placeholder="Search…"
                   ref={(c) => { this.search = c }}
                   onChange={this.onFilterChange}
                 />
               </div>
+
+              <div>
+                <SpeciesCounter monsters={monsters} />
+                {' | '}
+                <span className="ib">
+                  <CheckCounter />
+                </span>
+              </div>
             </div>
-          </nav>
-        </div>
-        <Status />
+          </div>
 
-        <div className="container table-container">
-          <h1>
-            <span>Pokémon</span>
-            <span
-              className="fa fa-refresh"
-              id="refresh-btn"
-              role="button"
-              onClick={this.handleRefresh}
-            />
+          <Status />
 
-            <span className="pull-right">
+          <header className="flex p5">
+            <h2 className="h2 mra">
+              <span>Pokémon</span>
+              <span
+                className="fa fa-refresh"
+                id="refresh-btn"
+                role="button"
+                onClick={this.handleRefresh}
+              />
+            </h2>
+
+            <span>
               <input
                 type="button"
                 className="btn btn-warning"
@@ -183,8 +177,10 @@ const Table = React.createClass({
                 onClick={this.handleEvolve}
               />
             </span>
-          </h1>
+          </header>
+        </nav>
 
+        <div className="container table-container">
           <SpeciesTable
             filterBy={filterBy}
             sortBy={sortBy}

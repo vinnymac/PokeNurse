@@ -8,7 +8,7 @@
   width: 14px;
   height: 14px;
   left: 15px;
-  top: 19px;
+  top: 12px;
 }
 
 /* Color/shape of burger icon bars */
@@ -94,6 +94,62 @@
 
 /**** Global style ****/
 
+.h2 {
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.mra {
+  margin-right: auto;
+}
+
+.p5 {
+  padding: .5em;
+}
+
+.ib {
+  display: inline-block;
+}
+
+.global-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .5);
+}
+
+.nav-header {
+  background-size: cover;
+}
+
+.flex-row {
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
+
+#username-h {
+  margin-left: 2.5em;
+}
+
+.search {
+  margin-right: .5em;
+  background-color:rgba(0, 0, 0, 0.5);
+}
+
+.search label {
+  margin: 0;
+  padding-left: .3em;
+  padding-right: .3em;
+  color: rgba(255, 255, 255, .5);
+}
+
 .header {
   background-image: url('./imgs/bg.jpg');
   background-position: center top;
@@ -103,65 +159,31 @@
   color: #fff;
 }
 
-.drawer-icon {
-  padding: 10px 12px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1;
-  color: #555;
-  text-align: center;
-  background-color:rgba(0, 0, 0, 0.7);
-  border: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-}
-
-.username {
-  padding-top: 17px;
-  margin-left: 40px;
-  color: white;
-}
-
 .search input {
-  background-color:rgba(0, 0, 0, 0.5);
-  border: rgba(0, 0, 0, 0.2);
   color: white;
-}
-
-.search span {
-  background-color:rgba(0, 0, 0, 0.8);
-  border: rgba(0, 0, 0, 0.2);
-}
-
-.stats {
-  padding-top: 15px;
-  padding-right: 35px;
-  color: white;
-  float: right;
+  border: unset;
+  background: unset;
 }
 
 .status-container {
-  margin-top: 50px;
-  padding: 0px 15px;
-  min-height: 34px !important;
-  max-height: 34px !important;
   background-color:rgba(0, 0, 0, 0.7);
-  z-index: 1029 !important;
-  position: fixed;
-  width: 100%;
 }
 
 .status {
   font-size: 10px;
   color: white;
-  padding: 10px 0px 7px 0px;
 }
 
 .progressbar {
-  padding: 7px 0px;
+  width: 50%;
+}
+
+.progressbar .progress {
+  margin-bottom: 0;
 }
 
 .table-container {
-  margin-top: 65px;
+  margin-top: 120px;
 }
 
 #refresh-btn {
