@@ -16,11 +16,11 @@ const SpeciesPokemonCounter = React.createClass({
 
     return (
       <span>
-        <span>
+        <span className="ib">
           Species: {this.handleSpeciesRecount(monsters)}
         </span>
         {' | '}
-        <span>
+        <span className="ib">
           Pokemon: {this.handlePokemonCounter(monsters)}
         </span>
       </span>
