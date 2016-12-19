@@ -33,13 +33,23 @@ function generateEmptySpecies(candies) {
     const pokemonDexNumber = String(i + 1)
     const basePokemon = baseStats.pokemon[pokemonDexNumber]
 
-    const candyByFamilyId = candiesByFamilyId[basePokemon.familyId]
+    let name
+    let candyByFamilyId
+
+    if (basePokemon) {
+      name = basePokemon.name
+      candyByFamilyId = candiesByFamilyId[basePokemon.familyId]
+    } else {
+      name = 'Unknown'
+      candyByFamilyId = null
+    }
+
     const candy = candyByFamilyId ? candyByFamilyId.candy : 0
 
     return {
       candy,
+      name,
       pokemon_id: pokemonDexNumber,
-      name: basePokemon.name,
       count: 0,
       evolves: 0,
       pokemon: []
@@ -70,11 +80,23 @@ function parseInventory(inventory) {
 
     const stats = baseStats.pokemon[p.pokemon_id]
 
-    const totalCpMultiplier = p.cp_multiplier + p.additional_cp_multiplier
+    let attack
+    let defense
+    let stamina
 
-    const attack = stats.BaseAttack + p.individual_attack
-    const defense = stats.BaseDefense + p.individual_defense
-    const stamina = stats.BaseStamina + p.individual_stamina
+    // Pogo API adds new pokemon sometimes, which means our stats become off/wrong
+    // Rather than have the app fail to load, fall back to something
+    if (stats) {
+      attack = stats.BaseAttack + p.individual_attack
+      defense = stats.BaseDefense + p.individual_defense
+      stamina = stats.BaseStamina + p.individual_stamina
+    } else {
+      attack = p.individual_attack
+      defense = p.individual_defense
+      stamina = p.individual_stamina
+    }
+
+    const totalCpMultiplier = p.cp_multiplier + p.additional_cp_multiplier
 
     const maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
     const candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, p.num_upgrades)
