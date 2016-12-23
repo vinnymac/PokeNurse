@@ -5,6 +5,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import merge from 'webpack-merge'
 import baseConfig from './webpack.config.base'
+import BabiliPlugin from 'babili-webpack-plugin'
 
 const config = validate(merge(baseConfig, {
   devtool: 'cheap-module-source-map',
@@ -57,13 +58,7 @@ const config = validate(merge(baseConfig, {
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
 
-    // Minify without warning messages and IE8 support
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        screw_ie8: true,
-        warnings: false
-      }
-    }),
+    new BabiliPlugin(),
 
     new ExtractTextPlugin('style.css', {
       allChunks: true

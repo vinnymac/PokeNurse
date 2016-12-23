@@ -97,16 +97,41 @@ export default ($detailModal, pokemon, species) => {
 
   const stats = baseStats.pokemon[pokemon.pokemon_id]
 
-  const baseAttack = stats.BaseAttack
-  const baseDefense = stats.BaseDefense
+  let baseAttack
+  let baseDefense
+  let type
+  let cppu
+  let possibleQuickMoves
+  let possibleCinematicMoves
+  let evolvesTo
+
+  if (stats) {
+    baseAttack = stats.BaseAttack
+    baseDefense = stats.BaseDefense
+    type = stats.types
+    cppu = stats.cpPerUpgrade
+    possibleQuickMoves = stats.quickMoves.map((quickMove) =>
+      baseStats.moves[quickMove]
+    )
+    possibleCinematicMoves = stats.cinematicMoves.map((cinematicMove) =>
+      baseStats.moves[cinematicMove]
+    )
+    evolvesTo = stats.evolvesTo
+  } else {
+    baseAttack = 0
+    baseDefense = 0
+    type = []
+    cppu = null
+    possibleQuickMoves = []
+    possibleCinematicMoves = []
+    evolvesTo = null
+  }
 
   // TODO Need additional information to calculate these
   const hp = `${pokemon.current_stamina} / ${pokemon.stamina_max}`
   const attack = `${baseAttack + pokemon.attack}`
   const defense = `${baseDefense + pokemon.defense}`
-  const type = stats.types
 
-  const cppu = stats.cpPerUpgrade
   const cpPerUpgrade = cppu ? `+${cppu} CP (+/-)` : 'Unknown'
 
   const height = `${pokemon.height.toFixed(2)}`
@@ -118,14 +143,6 @@ export default ($detailModal, pokemon, species) => {
 
   const moveOne = baseStats.moves[pokemon.move_1]
   const moveTwo = baseStats.moves[pokemon.move_2]
-
-  const possibleQuickMoves = stats.quickMoves.map((quickMove) =>
-    baseStats.moves[quickMove]
-  )
-
-  const possibleCinematicMoves = stats.cinematicMoves.map((cinematicMove) =>
-    baseStats.moves[cinematicMove]
-  )
 
   const modalDialog = (<ModalDialog
     name={name}
@@ -146,12 +163,12 @@ export default ($detailModal, pokemon, species) => {
     detailModal={$detailModal}
     fastMove={moveOne}
     chargedMove={moveTwo}
-    evolvesTo={stats.evolvesTo}
+    evolvesTo={evolvesTo}
     possibleQuickMoves={possibleQuickMoves}
     possibleCinematicMoves={possibleCinematicMoves}
   />)
 
-  $detailModal.on('hidden.bs.modal', () => {
+  $detailModal.one('hidden.bs.modal', () => {
     ReactDOM.unmountComponentAtNode($detailModal.get(0))
   })
 

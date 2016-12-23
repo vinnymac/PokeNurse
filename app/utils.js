@@ -320,7 +320,11 @@ const utils = {
   },
 
   getEvolvesCount({ candy, count, pokemon_id }) {
-    let evolves = Math.floor(candy / baseStats.pokemon[pokemon_id].evolveCost)
+    const stats = baseStats.pokemon[pokemon_id]
+
+    const evolveCost = stats ? stats.evolveCost : 0
+
+    let evolves = Math.floor(candy / evolveCost)
 
     if ((evolves === Infinity || isNaN(evolves))) {
       evolves = 0

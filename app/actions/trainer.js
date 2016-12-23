@@ -23,32 +23,53 @@ import {
   resetStatus,
 } from './status'
 
+function generateEmptySpecie(pokemonDexNumber, candiesByFamilyId) {
+  const basePokemon = baseStats.pokemon[pokemonDexNumber]
+
+  let name
+  let candyByFamilyId
+
+  if (basePokemon && candiesByFamilyId) {
+    name = basePokemon.name
+    candyByFamilyId = candiesByFamilyId[basePokemon.familyId]
+  } else {
+    name = 'Unknown'
+    candyByFamilyId = null
+  }
+
+  const candy = candyByFamilyId ? candyByFamilyId.candy : 0
+
+  return {
+    candy,
+    name,
+    pokemon_id: pokemonDexNumber,
+    count: 0,
+    evolves: 0,
+    pokemon: []
+  }
+}
+
 // Maybe put this info and the helper methods in utils?
-const kantoDexCount = 151
+// We can't really know how many pokemon there are with POGO
+// They are randomly adding pokemon, like the babies, so the counts will be off
+// I was going to use the johto count but instead I will use the alola count
+// It should future proof us a little better
+// const kantoDexCount = 151
+// const johotoDexCount = 251
+const alolaDexCount = 802
 
 function generateEmptySpecies(candies) {
   const candiesByFamilyId = keyBy(candies, (candy) => String(candy.family_id))
 
-  return times(kantoDexCount, (i) => {
-    const pokemonDexNumber = String(i + 1)
-    const basePokemon = baseStats.pokemon[pokemonDexNumber]
-
-    const candyByFamilyId = candiesByFamilyId[basePokemon.familyId]
-    const candy = candyByFamilyId ? candyByFamilyId.candy : 0
-
-    return {
-      candy,
-      pokemon_id: pokemonDexNumber,
-      name: basePokemon.name,
-      count: 0,
-      evolves: 0,
-      pokemon: []
-    }
+  return times(alolaDexCount, (i) => {
+    const pokemonDexNumber = i + 1
+    return generateEmptySpecie(pokemonDexNumber, candiesByFamilyId)
   })
 }
 
 function parseInventory(inventory) {
-  const { player, candies, pokemon } = pogobuf.Utils.splitInventory(inventory)
+  const splitInventory = pogobuf.Utils.splitInventory(inventory)
+  const { player, candies, pokemon } = splitInventory
 
   const speciesList = generateEmptySpecies(candies)
   const eggList = []
@@ -70,11 +91,23 @@ function parseInventory(inventory) {
 
     const stats = baseStats.pokemon[p.pokemon_id]
 
-    const totalCpMultiplier = p.cp_multiplier + p.additional_cp_multiplier
+    let attack
+    let defense
+    let stamina
 
-    const attack = stats.BaseAttack + p.individual_attack
-    const defense = stats.BaseDefense + p.individual_defense
-    const stamina = stats.BaseStamina + p.individual_stamina
+    // Pogo API adds new pokemon sometimes, which means our stats become off/wrong
+    // Rather than have the app fail to load, fall back to something
+    if (stats) {
+      attack = stats.BaseAttack + p.individual_attack
+      defense = stats.BaseDefense + p.individual_defense
+      stamina = stats.BaseStamina + p.individual_stamina
+    } else {
+      attack = p.individual_attack
+      defense = p.individual_defense
+      stamina = p.individual_stamina
+    }
+
+    const totalCpMultiplier = p.cp_multiplier + p.additional_cp_multiplier
 
     const maxCP = utils.getMaxCpForTrainerLevel(attack, defense, stamina, player.level)
     const candyCost = utils.getCandyCostsForPowerup(totalCpMultiplier, p.num_upgrades)
@@ -125,6 +158,10 @@ function parseInventory(inventory) {
     }
 
     const speciesIndex = p.pokemon_id - 1
+
+    // Even if we can guess about Gen2+ support we can't know what random pokemon will come next
+    // So if we come across an index we are missing, lets just try and patch it in
+    if (!speciesList[speciesIndex]) speciesList[speciesIndex] = generateEmptySpecie(p.pokemon_id)
 
     speciesList[speciesIndex].count += 1
     speciesList[speciesIndex].pokemon.push(pokemonWithStats)
