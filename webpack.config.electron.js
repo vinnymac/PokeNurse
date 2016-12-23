@@ -2,6 +2,7 @@ import webpack from 'webpack'
 import validate from 'webpack-validator'
 import merge from 'webpack-merge'
 import baseConfig from './webpack.config.base'
+import BabiliPlugin from 'babili-webpack-plugin'
 
 export default validate(merge(baseConfig, {
   devtool: 'source-map',
@@ -14,11 +15,8 @@ export default validate(merge(baseConfig, {
   },
 
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    }),
+    new BabiliPlugin(),
+
     // Add source map support for stack traces in node
     // https://github.com/evanw/node-source-map-support
     // new webpack.BannerPlugin(
