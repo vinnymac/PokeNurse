@@ -22,11 +22,18 @@ const Status = React.createClass({
     } = this.props.status
 
     let label = 'Idle'
+    let progress = null
 
-    if (method && current) {
-      const timeLabel = typeof time === 'number' ? time.toFixed(2) : ''
+    if (method) {
+      if (current) {
+        const timeLabel = typeof time === 'number' ? time.toFixed(2) : ''
 
-      label = `Running ${method} on cp${current.cp} ${current.name} / ${timeLabel} second(s) left`
+        label = `Running ${method} on cp$ {current.cp} ${current.name} / ${timeLabel} second(s) left`
+      } else {
+        label = `Running Batch ${method}`
+      }
+
+      progress = <Progress progress={this.props.status} />
     }
 
     return (
@@ -35,7 +42,7 @@ const Status = React.createClass({
           <span>{`Status: ${label}`}</span>
         </div>
         <div className="progressbar">
-          <Progress progress={this.props.status} />
+          {progress}
         </div>
       </div>
     )

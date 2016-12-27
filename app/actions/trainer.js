@@ -14,6 +14,7 @@ import moment from 'moment'
 
 import client from '../client'
 
+
 // TODO Must move these helpers to app folder
 import utils from '../utils'
 import baseStats from '../../baseStats'
@@ -398,13 +399,44 @@ function processSelectedPokemon(selectedPokemon, method, action, time, delayRang
   }
 }
 
+function batchStart(selectedPokemon, method) {
+  let batch = client.batchStart()
+
+  selectedPokemon.forEach((p) => {
+    batch = batch[method](p.id)
+  })
+
+  return () => batch.batchCall()
+}
+
+function batchProcessSelectedPokemon(selectedPokemon, method, batchMethod) {
+  return async (dispatch) => {
+    dispatch(updateStatus({
+      method,
+      selectedPokemon: null,
+      time: null,
+    }))
+
+    const batchCall = batchStart(selectedPokemon, batchMethod)
+
+    try {
+      await batchCall()
+      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
+      dispatch(resetStatus())
+      dispatch(getTrainerPokemon())
+    } catch (e) {
+      ipcRenderer.send('error-message', `Error while running ${method.toLowerCase()}:\n\n${e}`)
+      dispatch(resetStatus())
+      dispatch(getTrainerPokemon())
+    }
+  }
+}
+
 function transferSelectedPokemon(selectedPokemon) {
   const method = 'Transfer'
-  const time = selectedPokemon.length * 2.5
-  const delayRange = [2, 3]
-  const action = transferPokemon
+  const batchMethod = 'releasePokemon'
 
-  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange)
+  return batchProcessSelectedPokemon(selectedPokemon, method, batchMethod)
 }
 
 function evolveSelectedPokemon(selectedPokemon) {

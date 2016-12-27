@@ -17,22 +17,28 @@ const Progress = React.createClass({
       progress
     } = this.props
 
-    if (!progress.selectedPokemon) return null
+    // Indeterminate Progress + Label
+    let now = 100
+    let label = ''
 
-    let currentPosition = 0
+    // Determinate Progress + Label
+    if (progress.selectedPokemon) {
+      let currentPosition = 0
 
-    if (progress.current) {
-      const index = progress.selectedPokemon.findIndex((p) => p.id === progress.current.id)
-      currentPosition = index
+      if (progress.current) {
+        const index = progress.selectedPokemon.findIndex((p) => p.id === progress.current.id)
+        currentPosition = index
+      }
+
+      now = (currentPosition / progress.selectedPokemon.length) * 100
+      label = `${now.toFixed(0)}%`
     }
-
-    const now = (currentPosition / progress.selectedPokemon.length) * 100
 
     return (
       <ProgressBar
         active
         now={now}
-        label={`${now.toFixed(0)}%`}
+        label={label}
       />
     )
   }
