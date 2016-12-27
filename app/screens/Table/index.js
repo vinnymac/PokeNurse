@@ -39,29 +39,31 @@ function runningCheck() {
   return false
 }
 
-function getHeaderBackgroundStyles(team) {
-  let teamName = null
-  let teamColor = null
+const teams = [
+  {
+    name: 'default',
+    color: '#000000',
+  },
+  {
+    name: 'mystic',
+    color: '#1162bc',
+  },
+  {
+    name: 'valor',
+    color: '#cb1617',
+  },
+  {
+    name: 'instinct',
+    color: '#fad131',
+  },
+]
 
-  switch (team) {
-    case 1:
-      teamName = 'mystic'
-      teamColor = '#1162bc'
-      break
-    case 2:
-      teamName = 'valor'
-      teamColor = '#cb1617'
-      break
-    case 3:
-      teamName = 'instinct'
-      teamColor = '#fad131'
-      break
-    default:
-  }
+function getHeaderBackgroundStyles(teamIndex) {
+  const team = teams[teamIndex]
 
   return {
-    backgroundColor: teamColor,
-    backgroundImage: `url('./imgs/${teamName}.jpg')`,
+    backgroundColor: team.color,
+    backgroundImage: `url('./imgs/${team.name}.jpg')`,
     backgroundRepeat: 'no-repeat'
   }
 }
