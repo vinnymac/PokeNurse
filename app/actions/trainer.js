@@ -221,6 +221,47 @@ function getTrainerInfo() {
   }
 }
 
+function parseItemTemplates(templates) {
+  if (!templates || templates.result !== 1 || !templates.item_templates) return {}
+
+  const ret = {
+    pokemon_settings: [],
+    item_settings: [],
+    move_settings: [],
+    move_sequence: [],
+    type_effective: [],
+    badge_settings: [],
+    camera: null,
+    player_level: null,
+    gym_level: null,
+    battle_settings: null,
+    encounter_settings: null,
+    iap_item_display: [],
+    iap_settings: null,
+    pokemon_upgrades: null,
+    equipped_badges: null
+  }
+
+  const keys = Object.keys(ret)
+
+  // window.templates = templates
+
+  templates.item_templates.forEach(template => {
+    keys.forEach(key => {
+      if (template[key]) {
+        if (template.template_id) template[key].template_id = template.template_id
+        if (ret[key] && ret[key].push) { // isArray
+          ret[key].push(template[key])
+        } else {
+          ret[key] = template[key]
+        }
+      }
+    })
+  })
+
+  return ret
+}
+
 function getTrainerPokemon() {
   return async (dispatch) => {
     try {
@@ -230,6 +271,19 @@ function getTrainerPokemon() {
         dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
         return
       }
+
+      // TODO do not do this everytime we fetch the trainer pokemon, separate first fetch + refresh
+      const itemTemplates = await client.downloadItemTemplates()
+      itemTemplates.success = itemTemplates.result === 1
+
+      if (!itemTemplates.success) {
+        dispatch(getTrainerPokemonFailed('Failed to retrieve item templates'))
+        return
+      }
+
+      const splitItemTemplates = parseItemTemplates(itemTemplates)
+
+      // window.split = splitItemTemplates
 
       const payload = parseInventory(inventory)
 
