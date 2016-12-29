@@ -8,12 +8,10 @@ import {
 import pogobuf from 'pogobuf'
 import POGOProtos from 'node-pogo-protos'
 import {
-  ipcRenderer
+  ipcRenderer,
 } from 'electron'
-import moment from 'moment'
 
 import client from '../client'
-
 
 // TODO Must move these helpers to app folder
 import utils from '../utils'
@@ -328,76 +326,7 @@ function evolvePokemon(pokemon, delay) {
   }
 }
 
-function promiseChainFromArray(array, iterator) {
-  let promise = Promise.resolve()
-
-  array.forEach((value, index) => {
-    promise = promise.then(() => iterator(value, index))
-  })
-
-  return promise
-}
-
-function randomDelay([min, max]) {
-  return Math.round((min + Math.random() * (max - min)) * 1000)
-}
-
-function average(arr) {
-  const sum = arr.reduce((result, currentValue) =>
-    result + currentValue
-  , 0)
-
-  return sum / arr.length
-}
-
 const updateMonster = createAction('UPDATE_MONSTER')
-
-function processSelectedPokemon(selectedPokemon, method, action, time, delayRange) {
-  return async (dispatch) => {
-    dispatch(updateStatus({
-      selectedPokemon,
-      method,
-      time,
-    }))
-
-    let startTime = moment()
-    const responseTimesInSeconds = []
-
-    promiseChainFromArray(selectedPokemon, (pokemon, index) => {
-      dispatch(updateStatus({ current: pokemon }))
-
-      return dispatch(action(pokemon, randomDelay(delayRange)))
-        .then(() => {
-          // Calculate the Estimated Time in Seconds Left
-          const requestLatencyInSeconds = moment().diff(startTime, 'seconds')
-          startTime = moment()
-
-          if (requestLatencyInSeconds > 0) {
-            responseTimesInSeconds.push(requestLatencyInSeconds)
-            const averageRequestLatencyInSeconds = average(responseTimesInSeconds)
-
-            const numberOfJobsLeft = selectedPokemon.length - (index + 1)
-            const estimatedSecondsLeft = numberOfJobsLeft * averageRequestLatencyInSeconds
-
-            dispatch(updateStatus({ time: estimatedSecondsLeft }))
-          }
-
-          dispatch(updateMonster({
-            pokemon,
-            options: { remove: true }
-          }))
-        })
-    }).then(() => {
-      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-      dispatch(resetStatus())
-      dispatch(getTrainerPokemon())
-    }).catch(error => {
-      ipcRenderer.send('error-message', `Error while running ${method.toLowerCase()}:\n\n${error}`)
-      dispatch(resetStatus())
-      dispatch(getTrainerPokemon())
-    })
-  }
-}
 
 function batchStart(selectedPokemon, method) {
   let batch = client.batchStart()
@@ -409,7 +338,21 @@ function batchStart(selectedPokemon, method) {
   return () => batch.batchCall()
 }
 
-function batchProcessSelectedPokemon(selectedPokemon, method, batchMethod) {
+function resetStatusAndGetPokemon(errorMessage) {
+  return async (dispatch) => {
+    try {
+      dispatch(resetStatus())
+      await sleep(100) // Pogobuf may need a tick after a large batch
+      await dispatch(getTrainerPokemon())
+      if (errorMessage) ipcRenderer.send('error-message', errorMessage)
+    } catch (e) {
+      errorMessage = errorMessage ? `${errorMessage}\n\n${e}` : `Failed to fetch pokemon:\n\n${e}`
+      ipcRenderer.send('error-message', errorMessage)
+    }
+  }
+}
+
+function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
   return async (dispatch) => {
     dispatch(updateStatus({
       method,
@@ -421,32 +364,17 @@ function batchProcessSelectedPokemon(selectedPokemon, method, batchMethod) {
 
     try {
       await batchCall()
+      await dispatch(resetStatusAndGetPokemon())
       ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-      dispatch(resetStatus())
-      dispatch(getTrainerPokemon())
     } catch (e) {
-      ipcRenderer.send('error-message', `Error while running ${method.toLowerCase()}:\n\n${e}`)
-      dispatch(resetStatus())
-      dispatch(getTrainerPokemon())
+      dispatch(resetStatusAndGetPokemon(`Error while running ${method.toLowerCase()}:\n\n${e}`))
     }
   }
 }
 
-function transferSelectedPokemon(selectedPokemon) {
-  const method = 'Transfer'
-  const batchMethod = 'releasePokemon'
+const transferSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Transfer', 'releasePokemon')
 
-  return batchProcessSelectedPokemon(selectedPokemon, method, batchMethod)
-}
-
-function evolveSelectedPokemon(selectedPokemon) {
-  const method = 'Evolve'
-  const time = selectedPokemon.length * 22.5
-  const delayRange = [20, 25]
-  const action = evolvePokemon
-
-  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange)
-}
+const evolveSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Evolve', 'evolvePokemon')
 
 export default {
   updateMonster,
