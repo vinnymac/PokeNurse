@@ -15,28 +15,53 @@ import client from '../client'
 
 // TODO Must move these helpers to app folder
 import utils from '../utils'
-import baseStats from '../../baseStats'
 
 import {
   updateStatus,
   resetStatus,
 } from './status'
 
-function generateEmptySpecie(pokemonDexNumber, candiesByFamilyId) {
-  const basePokemon = baseStats.pokemon[pokemonDexNumber]
+window.POGOProtos = POGOProtos
 
-  let name
-  let candyByFamilyId
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+}
 
-  if (basePokemon && candiesByFamilyId) {
-    name = basePokemon.name
-    candyByFamilyId = candiesByFamilyId[basePokemon.familyId]
-  } else {
-    name = 'Unknown'
-    candyByFamilyId = null
-  }
+const NAMES = Object
+  .keys(POGOProtos.Enums.PokemonId)
+  .map(name =>
+    // 'HO_OH'
+    name
+      // ['HO', 'OH']
+      .split('_')
+      // ['Ho', 'Oh']
+      .map(word => capitalize(word))
+      // 'Ho' + 'Oh'
+      .join(' ')
+      // Nidoran Male/Female
+      .replace('Female', '♀')
+      .replace('Male', '♂')
+  )
 
-  const candy = candyByFamilyId ? candyByFamilyId.candy : 0
+window.NAMES = NAMES
+
+function getName(id) {
+  return NAMES[id] || 'Unknown'
+}
+
+window.getName = getName
+
+const TYPES = Object
+  .keys(POGOProtos.Enums.PokemonType)
+  .map(t => capitalize(t.split('_')[2]))
+
+function getType(id) {
+  return TYPES[id]
+}
+
+function generateEmptySpecie(pokemonDexNumber, candiesByFamilyId, familyId) {
+  const name = getName(pokemonDexNumber)
+  const candy = candiesByFamilyId && candiesByFamilyId[familyId] ? candiesByFamilyId[familyId].candy : 0
 
   return {
     candy,
@@ -57,20 +82,23 @@ function generateEmptySpecie(pokemonDexNumber, candiesByFamilyId) {
 // const johotoDexCount = 251
 const alolaDexCount = 802
 
-function generateEmptySpecies(candies) {
+function generateEmptySpecies(candies, pokemonSettings) {
   const candiesByFamilyId = keyBy(candies, (candy) => String(candy.family_id))
 
   return times(alolaDexCount, (i) => {
+    const familyId = pokemonSettings[i] ? pokemonSettings[i].family_id : null
     const pokemonDexNumber = i + 1
-    return generateEmptySpecie(pokemonDexNumber, candiesByFamilyId)
+    return generateEmptySpecie(pokemonDexNumber, candiesByFamilyId, familyId)
   })
 }
 
-function parseInventory(inventory) {
+function parseInventory(inventory, splitItemTemplates) {
+  const pokemonSettings = splitItemTemplates.pokemon_settings
   const splitInventory = pogobuf.Utils.splitInventory(inventory)
+  window.splitInventory = splitInventory
   const { player, candies, pokemon } = splitInventory
 
-  const speciesList = generateEmptySpecies(candies)
+  const speciesList = generateEmptySpecies(candies, pokemonSettings)
   const eggList = []
 
   // populates the speciesList with pokemon and counts
@@ -81,30 +109,16 @@ function parseInventory(inventory) {
       return
     }
 
-    let pokemonName = pogobuf.Utils.getEnumKeyByValue(
-      POGOProtos.Enums.PokemonId,
-      p.pokemon_id
-    )
+    const pokemonName = getName(p.pokemon_id)
+    const pokemonSetting = pokemonSettings[p.pokemon_id - 1]
 
-    pokemonName = pokemonName.replace('Female', '♀').replace('Male', '♂')
+    const baseAttack = pokemonSetting ? pokemonSetting.stats.base_attack : 0
+    const baseDefense = pokemonSetting ? pokemonSetting.stats.base_defense : 0
+    const baseStamina = pokemonSetting ? pokemonSetting.stats.base_stamina : 0
 
-    const stats = baseStats.pokemon[p.pokemon_id]
-
-    let attack
-    let defense
-    let stamina
-
-    // Pogo API adds new pokemon sometimes, which means our stats become off/wrong
-    // Rather than have the app fail to load, fall back to something
-    if (stats) {
-      attack = stats.BaseAttack + p.individual_attack
-      defense = stats.BaseDefense + p.individual_defense
-      stamina = stats.BaseStamina + p.individual_stamina
-    } else {
-      attack = p.individual_attack
-      defense = p.individual_defense
-      stamina = p.individual_stamina
-    }
+    const attack = baseAttack + p.individual_attack
+    const defense = baseDefense + p.individual_defense
+    const stamina = baseStamina + p.individual_stamina
 
     const totalCpMultiplier = p.cp_multiplier + p.additional_cp_multiplier
 
@@ -127,9 +141,14 @@ function parseInventory(inventory) {
 
     const iv = utils.getIVs(p)
 
+    const type1 = getType(pokemonSetting.type)
+    const type2 = getType(pokemonSetting.type_2)
+    const type = type1 && type2 ? [type1, type2] : [type1 || type2]
+
     // TODO Use CamelCase instead of under_score for all keys except responses
     const pokemonWithStats = {
       iv,
+      type,
       cp: p.cp,
       next_cp: nextCP,
       max_cp: maxCP,
@@ -145,11 +164,18 @@ function parseInventory(inventory) {
       stamina: p.individual_stamina,
       current_stamina: p.stamina,
       stamina_max: p.stamina_max,
+      base_attack: baseAttack,
+      base_defense: baseDefense,
+      base_stamina: baseStamina,
       pokemon_id: p.pokemon_id,
       name: pokemonName,
       height: p.height_m,
       weight: p.weight_kg,
       nickname: p.nickname || pokemonName,
+      evolution_ids: pokemonSetting.evolution_ids,
+      cinematic_moves: pokemonSetting.cinematic_moves,
+      quick_moves: pokemonSetting.quick_moves,
+      family_id: pokemonSetting.family_id,
       // Multiply by -1 for sorting
       favorite: p.favorite * -1,
       move_1: p.move_1,
@@ -168,7 +194,8 @@ function parseInventory(inventory) {
 
   // TODO use map
   speciesList.forEach((s) => {
-    s.evolves = utils.getEvolvesCount(s)
+    const candyToEvolve = pokemonSettings[s.pokemon_id] ? pokemonSettings[s.pokemon_id].candy_to_evolve : 0
+    s.evolves = utils.getEvolvesCount(candyToEvolve, s)
   })
 
   return {
@@ -244,12 +271,12 @@ function parseItemTemplates(templates) {
 
   const keys = Object.keys(ret)
 
-  // window.templates = templates
+  window.templates = templates
 
   templates.item_templates.forEach(template => {
     keys.forEach(key => {
       if (template[key]) {
-        if (template.template_id) template[key].template_id = template.template_id
+        // if (template.template_id) template[key].template_id = template.template_id
         if (ret[key] && ret[key].push) { // isArray
           ret[key].push(template[key])
         } else {
@@ -283,9 +310,9 @@ function getTrainerPokemon() {
 
       const splitItemTemplates = parseItemTemplates(itemTemplates)
 
-      // window.split = splitItemTemplates
+      window.split = splitItemTemplates
 
-      const payload = parseInventory(inventory)
+      const payload = parseInventory(inventory, splitItemTemplates)
 
       dispatch(getTrainerPokemonSuccess(payload))
     } catch (error) {

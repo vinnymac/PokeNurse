@@ -2,8 +2,6 @@ import {
   times
 } from 'lodash'
 
-import baseStats from '../baseStats'
-
 import {
   defaultSettings
 } from './reducers/settings'
@@ -319,11 +317,7 @@ const utils = {
     return Math.round(utils.getADS(pokemon) / 45 * 10000) / 100
   },
 
-  getEvolvesCount({ candy, count, pokemon_id }) {
-    const stats = baseStats.pokemon[pokemon_id]
-
-    const evolveCost = stats ? stats.evolveCost : 0
-
+  getEvolvesCount(evolveCost, { candy, count }) {
     let evolves = Math.floor(candy / evolveCost)
 
     if ((evolves === Infinity || isNaN(evolves))) {
