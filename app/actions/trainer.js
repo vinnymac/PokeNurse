@@ -145,10 +145,15 @@ function parseInventory(inventory, splitItemTemplates) {
     const type2 = getType(pokemonSetting.type_2)
     const type = type1 && type2 ? [type1, type2] : [type1 || type2]
 
+    const evolvesTo = pokemonSetting.evolution_ids
+      .map(getName)
+      .join('/')
+
     // TODO Use CamelCase instead of under_score for all keys except responses
     const pokemonWithStats = {
       iv,
       type,
+      evolvesTo,
       cp: p.cp,
       next_cp: nextCP,
       max_cp: maxCP,

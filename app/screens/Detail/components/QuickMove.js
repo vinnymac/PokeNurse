@@ -19,7 +19,7 @@ const QuickMove = React.createClass({
     } = this.props
 
     const fastMoveTip = (<span>
-      {`Move Duration: ${move.durationMs}ms`}
+      {`Move Duration: ${move.duration_ms}ms`}
       <br />
       {`Damage Window: ${move.damageWindowMs}ms`}
       <br />
@@ -43,7 +43,7 @@ const QuickMove = React.createClass({
           show
         >
           <div className="pokemon-move-title">{`${move.name}`}</div>
-          <div className="pokemon-move-type ${move.type}">{`${move.type}`}</div>
+          <div className={`pokemon-move-type ${move.type}`}>{`${move.type}`}</div>
         </Tooltip>
         <div className="pokemon-move-cost" />
         <div className="pokemon-move-damage">

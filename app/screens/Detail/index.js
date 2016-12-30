@@ -8,7 +8,7 @@ import store from '../../store'
 
 import ModalBody from './components/ModalBody'
 
-import baseStats from '../../../baseStats'
+import utils from '../../utils'
 
 const ModalDialog = React.createClass({
   displayName: 'ModalDialog',
@@ -95,26 +95,16 @@ export default ($detailModal, pokemon, species) => {
 
   const transform = `rotate(${degree}deg) translate(-193px)`
 
-  const stats = baseStats.pokemon[pokemon.pokemon_id]
-
   const type = pokemon.type
-  const possibleQuickMoves = pokemon.quick_moves.map((quickMove) =>
-    baseStats.moves[quickMove]
-  )
-  const possibleCinematicMoves = pokemon.cinematic_moves.map((cinematicMove) =>
-    baseStats.moves[cinematicMove]
-  )
 
-  let cppu
-  let evolvesTo
+  // TODO POGOProtos.Enums.PokemonMove
+  const possibleQuickMoves = pokemon.quick_moves
+  const possibleCinematicMoves = pokemon.cinematic_moves
 
-  if (stats) {
-    cppu = stats.cpPerUpgrade
-    evolvesTo = stats.evolvesTo
-  } else {
-    cppu = null
-    evolvesTo = null
-  }
+  const evolvesTo = pokemon.evolvesTo
+
+  const totalCpMultiplier = pokemon.cp_multiplier + pokemon.additional_cp_multiplier
+  const cppu = utils.getCpAfterPowerup(pokemon.cp, totalCpMultiplier)
 
   // TODO Need additional information to calculate these
   const hp = `${pokemon.current_stamina} / ${pokemon.stamina_max}`
@@ -130,8 +120,8 @@ export default ($detailModal, pokemon, species) => {
   const name = species.name
   const nickname = pokemon.nickname
 
-  const moveOne = baseStats.moves[pokemon.move_1]
-  const moveTwo = baseStats.moves[pokemon.move_2]
+  const moveOne = pokemon.move_1
+  const moveTwo = pokemon.move_2
 
   const modalDialog = (<ModalDialog
     name={name}
