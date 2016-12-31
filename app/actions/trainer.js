@@ -331,37 +331,30 @@ function parseItemTemplates(templates) {
 
 let splitItemTemplates = null
 
-function refreshPokemon() {
-  return async (dispatch) => {
-    try {
-      const inventory = await client.getInventory(0)
+async function getInventoryAndItemTemplates(dispatch, inventoryOnly) {
+  try {
+    const batch = client.batchStart()
+    batch.getInventory(0)
+    if (!inventoryOnly) batch.downloadItemTemplates()
 
-      if (!inventory.success) {
-        dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
-        return
-      }
+    const response = await batch.batchCall()
 
-      const payload = parseInventory(inventory)
+    let inventory
+    let itemTemplates
 
-      dispatch(getTrainerPokemonSuccess(payload))
-    } catch (error) {
-      dispatch(getTrainerPokemonFailed(error))
+    if (inventoryOnly) {
+      inventory = response
+    } else {
+      [inventory, itemTemplates] = response
     }
-  }
-}
 
-function getTrainerPokemon() {
-  return async (dispatch) => {
-    try {
-      const inventory = await client.getInventory(0)
+    if (!inventory.success) {
+      dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
+      return
+    }
 
-      if (!inventory.success) {
-        dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
-        return
-      }
-
+    if (!inventoryOnly) {
       // TODO do not do this everytime we fetch the trainer pokemon, separate first fetch + refresh
-      const itemTemplates = await client.downloadItemTemplates()
       itemTemplates.success = itemTemplates.result === 1
 
       if (!itemTemplates.success) {
@@ -370,14 +363,22 @@ function getTrainerPokemon() {
       }
 
       splitItemTemplates = parseItemTemplates(itemTemplates)
-
-      const payload = parseInventory(inventory)
-
-      dispatch(getTrainerPokemonSuccess(payload))
-    } catch (error) {
-      dispatch(getTrainerPokemonFailed(error))
     }
+
+    const payload = parseInventory(inventory)
+
+    dispatch(getTrainerPokemonSuccess(payload))
+  } catch (error) {
+    dispatch(getTrainerPokemonFailed(error))
   }
+}
+
+function refreshPokemon() {
+  return (dispatch) => getInventoryAndItemTemplates(dispatch, true)
+}
+
+function getTrainerPokemon() {
+  return (dispatch) => getInventoryAndItemTemplates(dispatch)
 }
 
 function powerUpPokemon(pokemon) {
