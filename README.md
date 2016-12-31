@@ -11,8 +11,7 @@
 ## Downloads for v1.7.1
 You may view all the releases [here](https://github.com/vinnymac/PokeNurse/releases)
 * [macOS](https://github.com/vinnymac/PokeNurse/releases/download/v1.7.1/PokeNurse.dmg)
-* [Windows 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.7.1/PokeNurse-ia32.exe)
-* [Windows 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.7.1/PokeNurse-x64.exe)
+* [Windows](https://github.com/vinnymac/PokeNurse/releases/download/v1.7.1/PokeNurse.exe)
 * [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.7.1/PokeNurse-ia32.deb)
 * [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.7.1/PokeNurse-x64.deb)
 
