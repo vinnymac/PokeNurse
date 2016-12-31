@@ -2,9 +2,15 @@ import {
   times
 } from 'lodash'
 
+import POGOProtos from 'node-pogo-protos'
+
 import {
   defaultSettings
 } from './reducers/settings'
+
+const TYPES = Object
+  .keys(POGOProtos.Enums.PokemonType)
+  .map(t => t.split('_')[2].toLowerCase())
 
 const levelCpMultiplier = {
   1: 0.094,
@@ -325,6 +331,10 @@ const utils = {
     }
 
     return (evolves > count ? count : evolves)
+  },
+
+  getType(type) {
+    return TYPES[type]
   }
 }
 

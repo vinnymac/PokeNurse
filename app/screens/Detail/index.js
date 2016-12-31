@@ -97,7 +97,6 @@ export default ($detailModal, pokemon, species) => {
 
   const type = pokemon.type
 
-  // TODO POGOProtos.Enums.PokemonMove
   const possibleQuickMoves = pokemon.quick_moves
   const possibleCinematicMoves = pokemon.cinematic_moves
 

@@ -21,6 +21,8 @@ import {
   resetStatus,
 } from './status'
 
+window.keyBy = keyBy
+
 window.POGOProtos = POGOProtos
 
 function capitalize(word) {
@@ -50,14 +52,6 @@ function getName(id) {
 }
 
 window.getName = getName
-
-const TYPES = Object
-  .keys(POGOProtos.Enums.PokemonType)
-  .map(t => capitalize(t.split('_')[2]))
-
-function getType(id) {
-  return TYPES[id]
-}
 
 function generateEmptySpecie(pokemonDexNumber, candiesByFamilyId, familyId) {
   const name = getName(pokemonDexNumber)
@@ -92,8 +86,50 @@ function generateEmptySpecies(candies, pokemonSettings) {
   })
 }
 
+// public static final double STAB_MULTIPLIER = 1.25;
+// public static final int MOVE2_CHARGE_DELAY_MS = 500;
+// public static final int MILLISECONDS_FACTOR = 1000;
+
+// private static double dpsForMove(final PokemonId pokemonId, final PokemonMove move, final boolean primary) {
+//     final PokemonMoveMeta moveMeta = PokemonMoveMetaRegistry.getMeta(move);
+//     final int moveDelay = primary ? 0 : MOVE2_CHARGE_DELAY_MS;
+//     double dps = (double) moveMeta.getPower() / (double) (moveMeta.getTime() + moveDelay) * MILLISECONDS_FACTOR;
+//     if (PokemonUtils.hasStab(pokemonId, moveMeta.getMove())) {
+//         dps = dps * STAB_MULTIPLIER;
+//     }
+//     return dps;
+// }
+
+const MILLISECONDS_FACTOR = 1000
+
+// function dpsForMove(move) {
+//   const dps = move.power / (time + moveDelay) * MILLISECONDS_FACTOR
+//
+//   return dps
+// }
+
+// List of all POGOProtos.Enums.PokemonMove
+function getMove(moveSettings, move) {
+  const moveSetting = moveSettings[move]
+
+  moveSetting.dps = 0
+  moveSetting.energy_gain = 0
+  moveSetting.egps = 0
+  moveSetting.dodge_window_ms = 0
+
+  moveSetting.energy_cost = moveSetting.energy_delta * -1
+
+  moveSetting.name = moveSetting.vfx_name.split('_').map(capitalize).join(' ')
+
+  moveSetting.type = utils.getType(moveSetting.pokemon_type)
+
+  return moveSetting
+}
+
 function parseInventory(inventory, splitItemTemplates) {
   const pokemonSettings = splitItemTemplates.pokemon_settings
+  const moveSettings = keyBy(splitItemTemplates.move_settings, (moveSetting) => String(moveSetting.movement_id))
+  window.moveSettings = moveSettings
   const splitInventory = pogobuf.Utils.splitInventory(inventory)
   window.splitInventory = splitInventory
   const { player, candies, pokemon } = splitInventory
@@ -141,13 +177,21 @@ function parseInventory(inventory, splitItemTemplates) {
 
     const iv = utils.getIVs(p)
 
-    const type1 = getType(pokemonSetting.type)
-    const type2 = getType(pokemonSetting.type_2)
+    const type1 = utils.getType(pokemonSetting.type)
+    const type2 = utils.getType(pokemonSetting.type_2)
     const type = type1 && type2 ? [type1, type2] : [type1 || type2]
 
     const evolvesTo = pokemonSetting.evolution_ids
       .map(getName)
       .join('/')
+
+    const quickMoves = pokemonSetting.quick_moves.map(m => getMove(moveSettings, m))
+
+    const cinematicMoves = pokemonSetting.cinematic_moves.map(m => getMove(moveSettings, m))
+
+    const move1 = getMove(moveSettings, p.move_1)
+
+    const move2 = getMove(moveSettings, p.move_2)
 
     // TODO Use CamelCase instead of under_score for all keys except responses
     const pokemonWithStats = {
@@ -178,13 +222,13 @@ function parseInventory(inventory, splitItemTemplates) {
       weight: p.weight_kg,
       nickname: p.nickname || pokemonName,
       evolution_ids: pokemonSetting.evolution_ids,
-      cinematic_moves: pokemonSetting.cinematic_moves,
-      quick_moves: pokemonSetting.quick_moves,
+      cinematic_moves: cinematicMoves,
+      quick_moves: quickMoves,
       family_id: pokemonSetting.family_id,
       // Multiply by -1 for sorting
       favorite: p.favorite * -1,
-      move_1: p.move_1,
-      move_2: p.move_2
+      move_1: move1,
+      move_2: move2
     }
 
     const speciesIndex = p.pokemon_id - 1

@@ -21,13 +21,13 @@ const QuickMove = React.createClass({
     const fastMoveTip = (<span>
       {`Move Duration: ${move.duration_ms}ms`}
       <br />
-      {`Damage Window: ${move.damageWindowMs}ms`}
+      {`Damage Window: ${move.damage_window_end_ms}ms`}
       <br />
       No STAB DPS: ${move.dps}
       <br />
-      {`Energy Gain(EG): ${move.energyGain}`}
+      {`Energy Gain(EG): ${move.energy_gain}`}
       <br />
-      {`EGPS: ${move.energyGainPerSecond}`}
+      {`EGPS: ${move.egps}`}
     </span>)
 
     const thisMove = move === myMove ? 'pokemon-move-item mine' : 'pokemon-move-item notmine'
