@@ -228,9 +228,9 @@ asar-electron-builder@^0.13.5:
     minimatch "^3.0.2"
     mkdirp "^0.5.1"
 
-asar@0.12.3:
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/asar/-/asar-0.12.3.tgz#11aa004349c87ae5d69d76c7ab7d5fb77cc2a95d"
+asar@0.12.4:
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/asar/-/asar-0.12.4.tgz#2dd3f116882eab8c0f23b754792a82a7d9fce171"
   dependencies:
     chromium-pickle-js "^0.2.0"
     commander "^2.9.0"
@@ -3317,9 +3317,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-bin@0.37.1:
-  version "0.37.1"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.37.1.tgz#ddc3314d18c268ef79efabf14c22870dce4595b3"
+flow-bin@0.37.4:
+  version "0.37.4"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.37.4.tgz#3d8da2ef746e80e730d166e09040f4198969b76b"
 
 flow-typed:
   version "2.0.0"
