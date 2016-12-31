@@ -139,8 +139,26 @@
 }
 
 .search {
-  margin-right: .5em;
+  margin-right: 2.5em;
   background-color:rgba(0, 0, 0, 0.5);
+  border-left: 1px solid #000;
+  border-radius: 4px;
+}
+
+.search .input-group {
+  display: flex;
+}
+
+.search .input-group-addon {
+  background-color: transparent;
+  border: 1px solid;
+}
+
+.search .input-group-addon, .input-group-btn {
+  margin: 0;
+  padding-left: .3em;
+  padding-right: .3em;
+  color: rgba(255, 255, 255, .5);
 }
 
 .search label {
@@ -148,6 +166,14 @@
   padding-left: .3em;
   padding-right: .3em;
   color: rgba(255, 255, 255, .5);
+}
+
+.search label button {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
 }
 
 .header {

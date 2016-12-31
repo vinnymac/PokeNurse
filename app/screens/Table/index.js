@@ -4,6 +4,11 @@ import React, {
 import {
   ipcRenderer
 } from 'electron'
+import {
+  InputGroup,
+  FormControl,
+  Button,
+} from 'react-bootstrap'
 import $ from 'jquery'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -130,6 +135,7 @@ const Table = React.createClass({
                 <label htmlFor="search">
                   <i className="fa fa-search" aria-hidden="true" />
                 </label>
+
                 <input
                   type="search"
                   id="search"
@@ -137,6 +143,15 @@ const Table = React.createClass({
                   ref={(c) => { this.search = c }}
                   onChange={this.onFilterChange}
                 />
+
+                <label htmlFor="search">
+                  <button
+                    alt="Clear search field"
+                    onClick={this.handleClearSearch}
+                  >
+                    x
+                  </button>
+                </label>
               </div>
 
               <div>
@@ -322,6 +337,12 @@ const Table = React.createClass({
   handleAllComplete() {
     running = false
   },
+
+  handleClearSearch() {
+    this.search.value = ''
+    this.onFilterChange({ target: this.search })
+    this.search.focus()
+  }
 })
 
 export default connect((state => ({
