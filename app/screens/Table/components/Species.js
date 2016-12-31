@@ -155,7 +155,7 @@ const Species = React.createClass({
           <td>{specie.pokemon_id}</td>
           <td className="sprites">
             <img
-              alt="sprite"
+              alt={`${specie.name} sprite`}
               className="pokemon-avatar-sprite"
               src={`./imgs/pokemonSprites/${specie.pokemon_id || 0}.png`}
             />

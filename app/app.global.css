@@ -353,9 +353,9 @@ display:none;
 }
 
 .pokemon-sprite {
-background: url('./imgs/sprites.png');
-height: 128px;
-width: 128px;
+height: 60px;
+width: 60px;
+padding-top: 10px;
 position:relative;
 z-index: 2;
 }
@@ -504,7 +504,7 @@ color: #3c605c;
 #pokemon_evolve_info {
 display: block;
 width: 100%;
-height: 165px;
+height: 100px;
 margin-top: 20px;
 position: relative;
 border-bottom: 1px solid #e2e2e2;
@@ -512,7 +512,7 @@ border-bottom: 1px solid #e2e2e2;
 
 .pokemon-evolve-info-item {
 display:inline-block;
-height:130px;
+height:70px;
 }
 
 .pokemon-evolve-info-item-title {
@@ -650,183 +650,6 @@ border-bottom: 0px solid;
 .pokemon-move-type.steel {color:     #b8b8d0;}
 .pokemon-move-type.dragon {color:    #7038f8;}
 .pokemon-move-type.fairy {color:     #ffaec9;}
-
-.pokemon-sprite.bulbasaur {background-position: 0px 0px;}
-.pokemon-sprite.ivysaur {background-position: -128px 0px;}
-.pokemon-sprite.venusaur {background-position: -256px 0px;}
-.pokemon-sprite.charmander {background-position: -640px 0px;}
-.pokemon-sprite.charmeleon {background-position: -768px 0px;}
-.pokemon-sprite.charizard {background-position: -896px 0px;}
-
-.pokemon-sprite.squirtle {background-position: 0px -128px;}
-.pokemon-sprite.wartortle {background-position: -128px -128px;}
-.pokemon-sprite.blastoise {background-position: -256px -128px;}
-.pokemon-sprite.caterpie {background-position: -512px -128px;}
-.pokemon-sprite.metapod {background-position: -640px -128px;}
-.pokemon-sprite.butterfree {background-position: -768px -128px;}
-
-.pokemon-sprite.weedle {background-position: -1028px -128px;}
-.pokemon-sprite.kakuna {background-position: -1156px -128px;}
-.pokemon-sprite.beedrill {background-position: 0px -256px;}
-.pokemon-sprite.pidgey {background-position: -256px -256px;}
-.pokemon-sprite.pidgeotto {background-position: -384px -256px;}
-.pokemon-sprite.pidgeot {background-position: -512px -256px;}
-
-.pokemon-sprite.rattata {background-position: -768px -256px;}
-.pokemon-sprite.raticate {background-position: -1028px -256px;}
-.pokemon-sprite.spearow {background-position: 0px -384px;}
-.pokemon-sprite.fearow {background-position: -128px -384px;}
-.pokemon-sprite.ekans {background-position: -256px -384px;}
-.pokemon-sprite.arbok {background-position: -384px -384px;}
-
-.pokemon-sprite.pikachu {background-position: -512px -384px;}
-.pokemon-sprite.raichu {background-position: -896px -384px;}
-.pokemon-sprite.sandshrew {background-position: -1152px -384px;}
-.pokemon-sprite.sandslash {background-position: -0px -512px;}
-.pokemon-sprite.nidoran-f {background-position: -128px -512px;}
-.pokemon-sprite.nidorina {background-position: -256px -512px;}
-
-.pokemon-sprite.nidoqueen {background-position: -384px -512px;}
-.pokemon-sprite.nidoran-m {background-position: -512px -512px;}
-.pokemon-sprite.nidorino {background-position: -640px -512px;}
-.pokemon-sprite.nidoking {background-position: -768px -512px;}
-.pokemon-sprite.clefairy {background-position: -896px -512px;}
-.pokemon-sprite.clefable {background-position: -1024px -512px;}
-
-.pokemon-sprite.vulpix {background-position: -1152px -512px;}
-.pokemon-sprite.ninetales {background-position: -0px -640px;}
-.pokemon-sprite.jigglypuff {background-position: -128px -640px;}
-.pokemon-sprite.wigglytuff {background-position: -256px -640px;}
-.pokemon-sprite.zubat {background-position: -384px -640px;}
-.pokemon-sprite.golbat {background-position: -640px -640px;}
-
-.pokemon-sprite.oddish {background-position: -896px -640px;}
-.pokemon-sprite.gloom {background-position: -1024px -640px;}
-.pokemon-sprite.vileplume {background-position: -0px -768px;}
-.pokemon-sprite.paras {background-position: -256px -768px;}
-.pokemon-sprite.parasect {background-position: -384px -768px;}
-.pokemon-sprite.venonat {background-position: -512px -768px;}
-
-.pokemon-sprite.venomoth {background-position: -640px -768px;}
-.pokemon-sprite.diglett {background-position: -768px -768px;}
-.pokemon-sprite.dugtrio {background-position: -896px -768px;}
-.pokemon-sprite.meowth {background-position: -1024px -768px;}
-.pokemon-sprite.persian {background-position: -1156px -768px;}
-.pokemon-sprite.psyduck {background-position: -0px -896px;}
-
-.pokemon-sprite.golduck {background-position: -128px -896px;}
-.pokemon-sprite.mankey {background-position: -256px -896px;}
-.pokemon-sprite.primeape {background-position: -384px -896px;}
-.pokemon-sprite.growlithe {background-position: -512px -896px;}
-.pokemon-sprite.arcanine {background-position: -648px -896px;}
-.pokemon-sprite.poliwag {background-position: -768px -896px;}
-
-.pokemon-sprite.poliwhirl {background-position: -896px -896px;}
-.pokemon-sprite.poliwrath {background-position: -1024px -896px;}
-.pokemon-sprite.abra {background-position: -1156px -896px;}
-.pokemon-sprite.kadabra {background-position: -0px -1024px;}
-.pokemon-sprite.alakazam {background-position: -256px -1024px;}
-.pokemon-sprite.machop {background-position: -640px -1024px;}
-
-.pokemon-sprite.machoke {background-position: -768px -1024px;}
-.pokemon-sprite.machamp {background-position: -896px -1024px;}
-.pokemon-sprite.bellsprout {background-position: -1024px -1024px;}
-.pokemon-sprite.weepinbell {background-position: -1156px -1024px;}
-.pokemon-sprite.victreebel {background-position: -0px -1156px;}
-.pokemon-sprite.tentacool {background-position: -128px -1156px;}
-
-.pokemon-sprite.tentacruel {background-position: -256px -1156px;}
-.pokemon-sprite.geodude {background-position: -384px -1156px;}
-.pokemon-sprite.graveler {background-position: -512px -1156px;}
-.pokemon-sprite.golem {background-position: -640px -1156px;}
-.pokemon-sprite.ponyta {background-position: -768px -1156px;}
-.pokemon-sprite.rapidash {background-position: -896px -1156px;}
-
-.pokemon-sprite.slowpoke {background-position: -1024px -1156px;}
-.pokemon-sprite.slowbro {background-position: -1156px -1156px;}
-.pokemon-sprite.magnemite {background-position: -128px -1284px;}
-.pokemon-sprite.magneton {background-position: -256px -1284px;}
-.pokemon-sprite.farfetchd {background-position: -384px -1284px;}
-.pokemon-sprite.doduo {background-position: -512px -1284px;}
-
-.pokemon-sprite.dodrio {background-position: -768px -1284px;}
-.pokemon-sprite.seel {background-position: -1024px -1284px;}
-.pokemon-sprite.dewgong {background-position: -1156px -1284px;}
-.pokemon-sprite.grimer {background-position: -0px -1412px;}
-.pokemon-sprite.muk {background-position: -128px -1412px;}
-.pokemon-sprite.shellder {background-position: -256px -1412px;}
-
-.pokemon-sprite.cloyster {background-position: -384px -1412px;}
-.pokemon-sprite.gastly {background-position: -512px -1412px;}
-.pokemon-sprite.haunter {background-position: -640px -1412px;}
-.pokemon-sprite.gengar {background-position: -768px -1412px;}
-.pokemon-sprite.onix {background-position: -1024px -1412px;}
-.pokemon-sprite.drowzee {background-position: -1156px -1412px;}
-
-.pokemon-sprite.hypno {background-position: -0px -1540px;}
-.pokemon-sprite.krabby {background-position: -256px -1540px;}
-.pokemon-sprite.kingler {background-position: -384px -1540px;}
-.pokemon-sprite.voltorb {background-position: -512px -1540px;}
-.pokemon-sprite.electrode {background-position: -640px -1540px;}
-.pokemon-sprite.exeggcute {background-position: -768px -1540px;}
-
-.pokemon-sprite.exeggutor {background-position: -896px -1540px;}
-.pokemon-sprite.cubone {background-position: -1024px -1540px;}
-.pokemon-sprite.marowak {background-position: -1156px -1540px;}
-.pokemon-sprite.hitmonlee {background-position: -0px -1668px;}
-.pokemon-sprite.hitmonchan {background-position: -128px -1668px;}
-.pokemon-sprite.lickitung {background-position: -256px -1668px;}
-
-.pokemon-sprite.koffing {background-position: -384px -1668px;}
-.pokemon-sprite.weezing {background-position: -512px -1668px;}
-.pokemon-sprite.rhyhorn {background-position: -640px -1668px;}
-.pokemon-sprite.rhydon {background-position: -896px -1668px;}
-.pokemon-sprite.chansey {background-position: -1156px -1668px;}
-.pokemon-sprite.tangela {background-position: -0px -1796px;}
-
-.pokemon-sprite.kangaskhan {background-position: -128px -1796px;}
-.pokemon-sprite.horsea {background-position: -256px -1796px;}
-.pokemon-sprite.horsea {background-position: -384px -1796px;}
-.pokemon-sprite.seadra {background-position: -512px -1796px;}
-.pokemon-sprite.goldeen {background-position: -640px -1796px;}
-.pokemon-sprite.seaking {background-position: -896px -1796px;}
-
-.pokemon-sprite.staryu {background-position: -1156px -1796px;}
-.pokemon-sprite.starmie {background-position: -0px -1924px;}
-.pokemon-sprite.mr.mime {background-position: -128px -1924px;}
-.pokemon-sprite.scyther {background-position: -256px -1924px;}
-.pokemon-sprite.jynx {background-position: -512px -1924px;}
-.pokemon-sprite.electabuzz {background-position: -640px -1924px;}
-
-.pokemon-sprite.magmar {background-position: -768px -1924px;}
-.pokemon-sprite.pinsir {background-position: -896px -1924px;}
-.pokemon-sprite.tauros {background-position: -1156px -1924px;}
-.pokemon-sprite.magikarp {background-position: -0px -2052px;}
-.pokemon-sprite.gyarados {background-position: -256px -2052px;}
-.pokemon-sprite.lapras {background-position: -640px -2052px;}
-
-.pokemon-sprite.ditto {background-position: -768px -2050px;}
-.pokemon-sprite.eevee {background-position: -896px -2052px;}
-.pokemon-sprite.vaporeon {background-position: -1024px -2052px;}
-.pokemon-sprite.jolteon {background-position: -1156px -2052px;}
-.pokemon-sprite.flareon {background-position: -0px -2180px;}
-.pokemon-sprite.porygon {background-position: -128px -2180px;}
-
-.pokemon-sprite.omanyte {background-position: -256px -2180px;}
-.pokemon-sprite.omastar {background-position: -384px -2180px;}
-.pokemon-sprite.kabuto {background-position: -512px -2180px;}
-.pokemon-sprite.kabutops {background-position: -640px -2180px;}
-.pokemon-sprite.aerodactyl {background-position: -768px -2180px;}
-.pokemon-sprite.snorlax {background-position: -1024px -2180px;}
-
-.pokemon-sprite.articuno {background-position: -1156px -2180px;}
-.pokemon-sprite.zapdos {background-position: -0px -2308px;}
-.pokemon-sprite.moltres {background-position: -128px -2308px;}
-.pokemon-sprite.dratini {background-position: -256px -2308px;}
-.pokemon-sprite.dragonair {background-position: -384px -2308px;}
-.pokemon-sprite.dragonite {background-position: -512px -2308px;}
-.pokemon-sprite.mewtwo {background-position: -640px -2308px;}
-.pokemon-sprite.mew {background-position: -1024px -2308px;}
 
 /***
 React Datatables

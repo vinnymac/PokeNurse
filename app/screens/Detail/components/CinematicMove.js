@@ -21,18 +21,20 @@ const CinematicMove = React.createClass({
       myMove
     } = this.props
 
-    const chargeMoveStyle = { width: `${move.energyCost}px` }
+    const chargeMoveStyle = { width: `${move.energy_cost}px` }
 
-    const chargedMoveBars = times(Math.floor(100 / move.energyCost), (i) =>
+    const chargedMoveBars = times(Math.floor(100 / move.energy_cost), (i) =>
       <div key={i} className="pokemon-move-cost-item" style={chargeMoveStyle} />
     )
 
+    const critChance = move.critical_chance * 100
+
     const chargedMoveTip = (<span>
-      {`Duration: ${move.durationMs}ms`}
+      {`Duration: ${move.duration_ms}ms`}
       <br />
-      {`Dodge Window: ${move.dodgeWindowMs}ms`}
+      {`Dodge Window: ${move.dodge_window_ms}ms`}
       <br />
-      {`Crit Chance: ${move.crit * 100}%`}
+      {`Crit Chance: ${critChance.toFixed(2)}%`}
     </span>)
 
     const thisMove = move === myMove ? 'pokemon-move-item mine' : 'pokemon-move-item notmine'
@@ -48,7 +50,7 @@ const CinematicMove = React.createClass({
           show
         >
           <div className="pokemon-move-title">{`${move.name}`}</div>
-          <div className="pokemon-move-type ${move.type}">{`${move.type}`}</div>
+          <div className={`pokemon-move-type ${move.type}`}>{`${move.type}`}</div>
         </Tooltip>
         <div className="pokemon-move-cost">
           {chargedMoveBars}

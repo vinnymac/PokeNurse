@@ -2,11 +2,35 @@ import {
   times
 } from 'lodash'
 
-import baseStats from '../baseStats'
+import POGOProtos from 'node-pogo-protos'
 
 import {
   defaultSettings
 } from './reducers/settings'
+
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+}
+
+const TYPES = Object
+  .keys(POGOProtos.Enums.PokemonType)
+  .map(t => t.split('_')[2].toLowerCase())
+
+const NAMES = Object
+  .keys(POGOProtos.Enums.PokemonId)
+  .map(name =>
+    // 'HO_OH'
+    name
+      // ['HO', 'OH']
+      .split('_')
+      // ['Ho', 'Oh']
+      .map(word => capitalize(word))
+      // 'Ho' + 'Oh'
+      .join(' ')
+      // Nidoran Male/Female
+      .replace('Female', '♀')
+      .replace('Male', '♂')
+  )
 
 const levelCpMultiplier = {
   1: 0.094,
@@ -319,11 +343,7 @@ const utils = {
     return Math.round(utils.getADS(pokemon) / 45 * 10000) / 100
   },
 
-  getEvolvesCount({ candy, count, pokemon_id }) {
-    const stats = baseStats.pokemon[pokemon_id]
-
-    const evolveCost = stats ? stats.evolveCost : 0
-
+  getEvolvesCount(evolveCost, { candy, count }) {
     let evolves = Math.floor(candy / evolveCost)
 
     if ((evolves === Infinity || isNaN(evolves))) {
@@ -331,7 +351,17 @@ const utils = {
     }
 
     return (evolves > count ? count : evolves)
-  }
+  },
+
+  getType(type) {
+    return TYPES[type]
+  },
+
+  getName(id) {
+    return NAMES[id] || 'Unknown'
+  },
+
+  capitalize,
 }
 
 const Immutable = {

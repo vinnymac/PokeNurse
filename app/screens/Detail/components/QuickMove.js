@@ -19,15 +19,15 @@ const QuickMove = React.createClass({
     } = this.props
 
     const fastMoveTip = (<span>
-      {`Move Duration: ${move.durationMs}ms`}
+      {`Move Duration: ${move.duration_ms}ms`}
       <br />
-      {`Damage Window: ${move.damageWindowMs}ms`}
+      {`Damage Window: ${move.damage_window_end_ms}ms`}
       <br />
-      No STAB DPS: ${move.dps}
+      No STAB DPS: ${move.dps.toFixed(2)}
       <br />
-      {`Energy Gain(EG): ${move.energyGain}`}
+      {`Energy Gain: ${move.energy_gain}`}
       <br />
-      {`EGPS: ${move.energyGainPerSecond}`}
+      {`EGPS: ${move.egps.toFixed(2)}`}
     </span>)
 
     const thisMove = move === myMove ? 'pokemon-move-item mine' : 'pokemon-move-item notmine'
@@ -43,7 +43,7 @@ const QuickMove = React.createClass({
           show
         >
           <div className="pokemon-move-title">{`${move.name}`}</div>
-          <div className="pokemon-move-type ${move.type}">{`${move.type}`}</div>
+          <div className={`pokemon-move-type ${move.type}`}>{`${move.type}`}</div>
         </Tooltip>
         <div className="pokemon-move-cost" />
         <div className="pokemon-move-damage">

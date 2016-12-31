@@ -1,8 +1,9 @@
 import webpack from 'webpack'
 import validate from 'webpack-validator'
 import merge from 'webpack-merge'
-import baseConfig from './webpack.config.base'
 import BabiliPlugin from 'babili-webpack-plugin'
+
+import baseConfig from './webpack.config.base'
 
 export default validate(merge(baseConfig, {
   devtool: 'source-map',

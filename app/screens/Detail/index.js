@@ -8,7 +8,29 @@ import store from '../../store'
 
 import ModalBody from './components/ModalBody'
 
-import baseStats from '../../../baseStats'
+import utils from '../../utils'
+
+// TODO Move to utils
+const TYPE_COLOR_MAP = {
+  normal: '#A8A878',
+  fire: '#F08030',
+  water: '#6890F0',
+  grass: '#78C850',
+  electric: '#f8d030',
+  ice: '#98d8d8',
+  ground: '#e0c068',
+  flying: '#a890f0',
+  poison: '#a040a0',
+  fighting: '#c03028',
+  psychic: '#f85888',
+  dark: '#705848',
+  rock: '#b8a038',
+  bug: '#a8b820',
+  ghost: '#705898',
+  steel: '#b8b8d0',
+  dragon: '#7038f8',
+  fairy: '#ffaec9',
+}
 
 const ModalDialog = React.createClass({
   displayName: 'ModalDialog',
@@ -44,46 +66,7 @@ const ModalDialog = React.createClass({
   },
 
   getBackgroundColor(type) {
-    switch (type) {
-      case 'normal':
-        return '#A8A878'
-      case 'fire':
-        return '#F08030'
-      case 'water':
-        return '#6890F0'
-      case 'grass':
-        return '#78C850'
-      case 'electric':
-        return '#f8d030'
-      case 'ice':
-        return '#98d8d8'
-      case 'ground':
-        return '#e0c068'
-      case 'flying':
-        return '#a890f0'
-      case 'poison':
-        return '#a040a0'
-      case 'fighting':
-        return '#c03028'
-      case 'psychic':
-        return '#f85888'
-      case 'dark':
-        return '#705848'
-      case 'rock':
-        return '#b8a038'
-      case 'bug':
-        return '#a8b820'
-      case 'ghost':
-        return '#705898'
-      case 'steel':
-        return '#b8b8d0'
-      case 'dragon':
-        return '#7038f8'
-      case 'fairy':
-        return '#ffaec9'
-      default:
-        return '#FFFFFF'
-    }
+    return TYPE_COLOR_MAP[type] || '#FFFFFF'
   },
 })
 
@@ -95,44 +78,22 @@ export default ($detailModal, pokemon, species) => {
 
   const transform = `rotate(${degree}deg) translate(-193px)`
 
-  const stats = baseStats.pokemon[pokemon.pokemon_id]
+  const type = pokemon.type
 
-  let baseAttack
-  let baseDefense
-  let type
-  let cppu
-  let possibleQuickMoves
-  let possibleCinematicMoves
-  let evolvesTo
+  const possibleQuickMoves = pokemon.quick_moves
+  const possibleCinematicMoves = pokemon.cinematic_moves
 
-  if (stats) {
-    baseAttack = stats.BaseAttack
-    baseDefense = stats.BaseDefense
-    type = stats.types
-    cppu = stats.cpPerUpgrade
-    possibleQuickMoves = stats.quickMoves.map((quickMove) =>
-      baseStats.moves[quickMove]
-    )
-    possibleCinematicMoves = stats.cinematicMoves.map((cinematicMove) =>
-      baseStats.moves[cinematicMove]
-    )
-    evolvesTo = stats.evolvesTo
-  } else {
-    baseAttack = 0
-    baseDefense = 0
-    type = []
-    cppu = null
-    possibleQuickMoves = []
-    possibleCinematicMoves = []
-    evolvesTo = null
-  }
+  const evolutionIds = pokemon.evolution_ids
+
+  const totalCpMultiplier = pokemon.cp_multiplier + pokemon.additional_cp_multiplier
+  const cppu = utils.getCpAfterPowerup(pokemon.cp, totalCpMultiplier)
 
   // TODO Need additional information to calculate these
   const hp = `${pokemon.current_stamina} / ${pokemon.stamina_max}`
-  const attack = `${baseAttack + pokemon.attack}`
-  const defense = `${baseDefense + pokemon.defense}`
+  const attack = `${pokemon.base_attack + pokemon.attack}`
+  const defense = `${pokemon.base_defense + pokemon.defense}`
 
-  const cpPerUpgrade = cppu ? `+${cppu} CP (+/-)` : 'Unknown'
+  const cpPerUpgrade = cppu ? `+${cppu.toFixed(2)} CP (+/-)` : 'Unknown'
 
   const height = `${pokemon.height.toFixed(2)}`
   const weight = `${pokemon.weight.toFixed(2)}`
@@ -141,8 +102,8 @@ export default ($detailModal, pokemon, species) => {
   const name = species.name
   const nickname = pokemon.nickname
 
-  const moveOne = baseStats.moves[pokemon.move_1]
-  const moveTwo = baseStats.moves[pokemon.move_2]
+  const moveOne = pokemon.move_1
+  const moveTwo = pokemon.move_2
 
   const modalDialog = (<ModalDialog
     name={name}
@@ -163,7 +124,7 @@ export default ($detailModal, pokemon, species) => {
     detailModal={$detailModal}
     fastMove={moveOne}
     chargedMove={moveTwo}
-    evolvesTo={evolvesTo}
+    evolutionIds={evolutionIds}
     possibleQuickMoves={possibleQuickMoves}
     possibleCinematicMoves={possibleCinematicMoves}
   />)

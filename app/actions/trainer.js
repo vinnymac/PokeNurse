@@ -6,38 +6,23 @@ import {
   keyBy,
 } from 'lodash'
 import pogobuf from 'pogobuf'
-import POGOProtos from 'node-pogo-protos'
 import {
-  ipcRenderer
+  ipcRenderer,
 } from 'electron'
-import moment from 'moment'
 
 import client from '../client'
 
 // TODO Must move these helpers to app folder
 import utils from '../utils'
-import baseStats from '../../baseStats'
 
 import {
   updateStatus,
   resetStatus,
 } from './status'
 
-function generateEmptySpecie(pokemonDexNumber, candiesByFamilyId) {
-  const basePokemon = baseStats.pokemon[pokemonDexNumber]
-
-  let name
-  let candyByFamilyId
-
-  if (basePokemon && candiesByFamilyId) {
-    name = basePokemon.name
-    candyByFamilyId = candiesByFamilyId[basePokemon.familyId]
-  } else {
-    name = 'Unknown'
-    candyByFamilyId = null
-  }
-
-  const candy = candyByFamilyId ? candyByFamilyId.candy : 0
+function generateEmptySpecie(pokemonDexNumber, candiesByFamilyId, familyId) {
+  const name = utils.getName(pokemonDexNumber)
+  const candy = candiesByFamilyId && candiesByFamilyId[familyId] ? candiesByFamilyId[familyId].candy : 0
 
   return {
     candy,
@@ -58,20 +43,64 @@ function generateEmptySpecie(pokemonDexNumber, candiesByFamilyId) {
 // const johotoDexCount = 251
 const alolaDexCount = 802
 
-function generateEmptySpecies(candies) {
+function generateEmptySpecies(candies, pokemonSettings) {
   const candiesByFamilyId = keyBy(candies, (candy) => String(candy.family_id))
 
   return times(alolaDexCount, (i) => {
+    const familyId = pokemonSettings[i] ? pokemonSettings[i].family_id : null
     const pokemonDexNumber = i + 1
-    return generateEmptySpecie(pokemonDexNumber, candiesByFamilyId)
+    return generateEmptySpecie(pokemonDexNumber, candiesByFamilyId, familyId)
   })
 }
 
+const MILLISECONDS_FACTOR = 1000
+const MOVE2_CHARGE_DELAY_MS = 500
+
+function dpsForMove(move, primary) {
+  const moveDelay = primary ? 0 : MOVE2_CHARGE_DELAY_MS
+  const dps = move.power / (move.duration_ms + moveDelay) * MILLISECONDS_FACTOR
+
+  // TODO optional STAB
+  // const STAB_MULTIPLIER = 1.25
+  // if (hasStab) {
+  //   dps = dps * STAB_MULTIPLIER
+  // }
+
+  return dps
+}
+
+function egpsForMove(move, primary) {
+  const moveDelay = primary ? 0 : MOVE2_CHARGE_DELAY_MS
+  const egps = move.energy_delta / (move.duration_ms + moveDelay) * MILLISECONDS_FACTOR
+
+  return egps
+}
+
+// List of all POGOProtos.Enums.PokemonMove
+function getMove(moveSettings, move, primary) {
+  const moveSetting = Object.assign({}, moveSettings[move])
+
+  moveSetting.dps = dpsForMove(moveSetting, primary)
+  moveSetting.energy_gain = moveSetting.energy_delta
+  moveSetting.egps = egpsForMove(moveSetting, primary)
+  moveSetting.dodge_window_ms = moveSetting.damage_window_end_ms - moveSetting.damage_window_start_ms
+
+  moveSetting.energy_cost = moveSetting.energy_delta * -1
+
+  moveSetting.name = moveSetting.vfx_name.split('_').map(utils.capitalize).join(' ')
+
+  moveSetting.type = utils.getType(moveSetting.pokemon_type)
+
+  return moveSetting
+}
+
 function parseInventory(inventory) {
+  const pokemonSettings = splitItemTemplates.pokemon_settings
+  const moveSettings = keyBy(splitItemTemplates.move_settings, (moveSetting) => String(moveSetting.movement_id))
   const splitInventory = pogobuf.Utils.splitInventory(inventory)
   const { player, candies, pokemon } = splitInventory
 
-  const speciesList = generateEmptySpecies(candies)
+  const speciesList = generateEmptySpecies(candies, pokemonSettings)
   const eggList = []
 
   // populates the speciesList with pokemon and counts
@@ -82,30 +111,16 @@ function parseInventory(inventory) {
       return
     }
 
-    let pokemonName = pogobuf.Utils.getEnumKeyByValue(
-      POGOProtos.Enums.PokemonId,
-      p.pokemon_id
-    )
+    const pokemonName = utils.getName(p.pokemon_id)
+    const pokemonSetting = pokemonSettings[p.pokemon_id - 1]
 
-    pokemonName = pokemonName.replace('Female', '♀').replace('Male', '♂')
+    const baseAttack = pokemonSetting ? pokemonSetting.stats.base_attack : 0
+    const baseDefense = pokemonSetting ? pokemonSetting.stats.base_defense : 0
+    const baseStamina = pokemonSetting ? pokemonSetting.stats.base_stamina : 0
 
-    const stats = baseStats.pokemon[p.pokemon_id]
-
-    let attack
-    let defense
-    let stamina
-
-    // Pogo API adds new pokemon sometimes, which means our stats become off/wrong
-    // Rather than have the app fail to load, fall back to something
-    if (stats) {
-      attack = stats.BaseAttack + p.individual_attack
-      defense = stats.BaseDefense + p.individual_defense
-      stamina = stats.BaseStamina + p.individual_stamina
-    } else {
-      attack = p.individual_attack
-      defense = p.individual_defense
-      stamina = p.individual_stamina
-    }
+    const attack = baseAttack + p.individual_attack
+    const defense = baseDefense + p.individual_defense
+    const stamina = baseStamina + p.individual_stamina
 
     const totalCpMultiplier = p.cp_multiplier + p.additional_cp_multiplier
 
@@ -128,9 +143,29 @@ function parseInventory(inventory) {
 
     const iv = utils.getIVs(p)
 
+    const type1 = utils.getType(pokemonSetting.type)
+    const type2 = utils.getType(pokemonSetting.type_2)
+    const type = type1 && type2 ? [type1, type2] : [type1 || type2]
+
+    const evolvesTo = pokemonSetting.evolution_ids
+      .map(utils.getName)
+      .join('/')
+
+    const quickMoves = pokemonSetting.quick_moves.map(m => getMove(moveSettings, m, true))
+
+    const cinematicMoves = pokemonSetting.cinematic_moves.map(m => getMove(moveSettings, m, false))
+
+    const move1 = getMove(moveSettings, p.move_1, true)
+
+    const move2 = getMove(moveSettings, p.move_2, false)
+
     // TODO Use CamelCase instead of under_score for all keys except responses
     const pokemonWithStats = {
       iv,
+      type,
+      evolvesTo,
+      additional_cp_multiplier: p.additional_cp_multiplier,
+      cp_multiplier: p.cp_multiplier,
       cp: p.cp,
       next_cp: nextCP,
       max_cp: maxCP,
@@ -146,15 +181,22 @@ function parseInventory(inventory) {
       stamina: p.individual_stamina,
       current_stamina: p.stamina,
       stamina_max: p.stamina_max,
+      base_attack: baseAttack,
+      base_defense: baseDefense,
+      base_stamina: baseStamina,
       pokemon_id: p.pokemon_id,
       name: pokemonName,
       height: p.height_m,
       weight: p.weight_kg,
       nickname: p.nickname || pokemonName,
+      evolution_ids: pokemonSetting.evolution_ids,
+      cinematic_moves: cinematicMoves,
+      quick_moves: quickMoves,
+      family_id: pokemonSetting.family_id,
       // Multiply by -1 for sorting
       favorite: p.favorite * -1,
-      move_1: p.move_1,
-      move_2: p.move_2
+      move_1: move1,
+      move_2: move2
     }
 
     const speciesIndex = p.pokemon_id - 1
@@ -169,7 +211,8 @@ function parseInventory(inventory) {
 
   // TODO use map
   speciesList.forEach((s) => {
-    s.evolves = utils.getEvolvesCount(s)
+    const candyToEvolve = pokemonSettings[s.pokemon_id] ? pokemonSettings[s.pokemon_id].candy_to_evolve : 0
+    s.evolves = utils.getEvolvesCount(candyToEvolve, s)
   })
 
   return {
@@ -222,23 +265,95 @@ function getTrainerInfo() {
   }
 }
 
-function getTrainerPokemon() {
-  return async (dispatch) => {
-    try {
-      const inventory = await client.getInventory(0)
+function parseItemTemplates(templates) {
+  if (!templates || templates.result !== 1 || !templates.item_templates) return {}
 
-      if (!inventory.success) {
-        dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
+  const ret = {
+    pokemon_settings: [],
+    item_settings: [],
+    move_settings: [],
+    move_sequence: [],
+    type_effective: [],
+    badge_settings: [],
+    camera: null,
+    player_level: null,
+    gym_level: null,
+    battle_settings: null,
+    encounter_settings: null,
+    iap_item_display: [],
+    iap_settings: null,
+    pokemon_upgrades: null,
+    equipped_badges: null
+  }
+
+  const keys = Object.keys(ret)
+
+  templates.item_templates.forEach(template => {
+    keys.forEach(key => {
+      if (template[key]) {
+        // if (template.template_id) template[key].template_id = template.template_id
+        if (ret[key] && ret[key].push) { // isArray
+          ret[key].push(template[key])
+        } else {
+          ret[key] = template[key]
+        }
+      }
+    })
+  })
+
+  return ret
+}
+
+let splitItemTemplates = null
+
+async function getInventoryAndItemTemplates(dispatch, inventoryOnly) {
+  try {
+    const batch = client.batchStart()
+    batch.getInventory(0)
+    if (!inventoryOnly) batch.downloadItemTemplates()
+
+    const response = await batch.batchCall()
+
+    let inventory
+    let itemTemplates
+
+    if (inventoryOnly) {
+      inventory = response
+    } else {
+      [inventory, itemTemplates] = response
+    }
+
+    if (!inventory.success) {
+      dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
+      return
+    }
+
+    if (!inventoryOnly) {
+      // TODO do not do this everytime we fetch the trainer pokemon, separate first fetch + refresh
+      itemTemplates.success = itemTemplates.result === 1
+
+      if (!itemTemplates.success) {
+        dispatch(getTrainerPokemonFailed('Failed to retrieve item templates'))
         return
       }
 
-      const payload = parseInventory(inventory)
-
-      dispatch(getTrainerPokemonSuccess(payload))
-    } catch (error) {
-      dispatch(getTrainerPokemonFailed(error))
+      splitItemTemplates = parseItemTemplates(itemTemplates)
     }
+
+    const payload = parseInventory(inventory)
+
+    dispatch(getTrainerPokemonSuccess(payload))
+  } catch (error) {
+    dispatch(getTrainerPokemonFailed(error))
   }
+}
+
+function refreshPokemon() {
+  return (dispatch) => getInventoryAndItemTemplates(dispatch, true)
+}
+
+function getTrainerPokemon() {
+  return (dispatch) => getInventoryAndItemTemplates(dispatch)
 }
 
 function powerUpPokemon(pokemon) {
@@ -327,94 +442,55 @@ function evolvePokemon(pokemon, delay) {
   }
 }
 
-function promiseChainFromArray(array, iterator) {
-  let promise = Promise.resolve()
-
-  array.forEach((value, index) => {
-    promise = promise.then(() => iterator(value, index))
-  })
-
-  return promise
-}
-
-function randomDelay([min, max]) {
-  return Math.round((min + Math.random() * (max - min)) * 1000)
-}
-
-function average(arr) {
-  const sum = arr.reduce((result, currentValue) =>
-    result + currentValue
-  , 0)
-
-  return sum / arr.length
-}
-
 const updateMonster = createAction('UPDATE_MONSTER')
 
-function processSelectedPokemon(selectedPokemon, method, action, time, delayRange) {
+function batchStart(selectedPokemon, method) {
+  let batch = client.batchStart()
+
+  selectedPokemon.forEach((p) => {
+    batch = batch[method](p.id)
+  })
+
+  return () => batch.batchCall()
+}
+
+function resetStatusAndGetPokemon(errorMessage) {
   return async (dispatch) => {
-    dispatch(updateStatus({
-      selectedPokemon,
-      method,
-      time,
-    }))
-
-    let startTime = moment()
-    const responseTimesInSeconds = []
-
-    promiseChainFromArray(selectedPokemon, (pokemon, index) => {
-      dispatch(updateStatus({ current: pokemon }))
-
-      return dispatch(action(pokemon, randomDelay(delayRange)))
-        .then(() => {
-          // Calculate the Estimated Time in Seconds Left
-          const requestLatencyInSeconds = moment().diff(startTime, 'seconds')
-          startTime = moment()
-
-          if (requestLatencyInSeconds > 0) {
-            responseTimesInSeconds.push(requestLatencyInSeconds)
-            const averageRequestLatencyInSeconds = average(responseTimesInSeconds)
-
-            const numberOfJobsLeft = selectedPokemon.length - (index + 1)
-            const estimatedSecondsLeft = numberOfJobsLeft * averageRequestLatencyInSeconds
-
-            dispatch(updateStatus({ time: estimatedSecondsLeft }))
-          }
-
-          dispatch(updateMonster({
-            pokemon,
-            options: { remove: true }
-          }))
-        })
-    }).then(() => {
-      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
+    try {
       dispatch(resetStatus())
-      dispatch(getTrainerPokemon())
-    }).catch(error => {
-      ipcRenderer.send('error-message', `Error while running ${method.toLowerCase()}:\n\n${error}`)
-      dispatch(resetStatus())
-      dispatch(getTrainerPokemon())
-    })
+      await sleep(100) // Pogobuf may need a tick after a large batch
+      await dispatch(getTrainerPokemon())
+      if (errorMessage) ipcRenderer.send('error-message', errorMessage)
+    } catch (e) {
+      errorMessage = errorMessage ? `${errorMessage}\n\n${e}` : `Failed to fetch pokemon:\n\n${e}`
+      ipcRenderer.send('error-message', errorMessage)
+    }
   }
 }
 
-function transferSelectedPokemon(selectedPokemon) {
-  const method = 'Transfer'
-  const time = selectedPokemon.length * 2.5
-  const delayRange = [2, 3]
-  const action = transferPokemon
+function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
+  return async (dispatch) => {
+    dispatch(updateStatus({
+      method,
+      selectedPokemon: null,
+      time: null,
+    }))
 
-  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange)
+    const batchCall = batchStart(selectedPokemon, batchMethod)
+
+    try {
+      await batchCall()
+      await dispatch(resetStatusAndGetPokemon())
+      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
+    } catch (e) {
+      dispatch(resetStatusAndGetPokemon(`Error while running ${method.toLowerCase()}:\n\n${e}`))
+    }
+  }
 }
 
-function evolveSelectedPokemon(selectedPokemon) {
-  const method = 'Evolve'
-  const time = selectedPokemon.length * 22.5
-  const delayRange = [20, 25]
-  const action = evolvePokemon
+const transferSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Transfer', 'releasePokemon')
 
-  return processSelectedPokemon(selectedPokemon, method, action, time, delayRange)
-}
+const evolveSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Evolve', 'evolvePokemon')
 
 export default {
   updateMonster,
@@ -435,4 +511,5 @@ export default {
   evolvePokemon,
   evolveSelectedPokemon,
   transferSelectedPokemon,
+  refreshPokemon,
 }
