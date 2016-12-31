@@ -119,7 +119,7 @@ function getMove(moveSettings, move, primary) {
   return moveSetting
 }
 
-function parseInventory(inventory, splitItemTemplates) {
+function parseInventory(inventory) {
   const pokemonSettings = splitItemTemplates.pokemon_settings
   const moveSettings = keyBy(splitItemTemplates.move_settings, (moveSetting) => String(moveSetting.movement_id))
   const splitInventory = pogobuf.Utils.splitInventory(inventory)
@@ -329,6 +329,27 @@ function parseItemTemplates(templates) {
   return ret
 }
 
+let splitItemTemplates = null
+
+function refreshPokemon() {
+  return async (dispatch) => {
+    try {
+      const inventory = await client.getInventory(0)
+
+      if (!inventory.success) {
+        dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
+        return
+      }
+
+      const payload = parseInventory(inventory)
+
+      dispatch(getTrainerPokemonSuccess(payload))
+    } catch (error) {
+      dispatch(getTrainerPokemonFailed(error))
+    }
+  }
+}
+
 function getTrainerPokemon() {
   return async (dispatch) => {
     try {
@@ -348,9 +369,9 @@ function getTrainerPokemon() {
         return
       }
 
-      const splitItemTemplates = parseItemTemplates(itemTemplates)
+      splitItemTemplates = parseItemTemplates(itemTemplates)
 
-      const payload = parseInventory(inventory, splitItemTemplates)
+      const payload = parseInventory(inventory)
 
       dispatch(getTrainerPokemonSuccess(payload))
     } catch (error) {
@@ -514,4 +535,5 @@ export default {
   evolvePokemon,
   evolveSelectedPokemon,
   transferSelectedPokemon,
+  refreshPokemon,
 }

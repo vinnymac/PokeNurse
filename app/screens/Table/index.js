@@ -16,7 +16,7 @@ import CheckCounter from './components/CheckCounter'
 
 import confirmDialog from '../ConfirmationDialog'
 import {
-  getTrainerPokemon,
+  refreshPokemon,
   updateSpecies,
   updateMonster,
   updateMonsterSort,
@@ -74,7 +74,7 @@ const Table = React.createClass({
     trainerData: PropTypes.shape({
       username: PropTypes.string,
     }),
-    getTrainerPokemon: PropTypes.func.isRequired,
+    refreshPokemon: PropTypes.func.isRequired,
     monsters: PropTypes.object,
     updateSpecies: PropTypes.func.isRequired,
     updateMonster: PropTypes.func.isRequired,
@@ -233,7 +233,7 @@ const Table = React.createClass({
   },
 
   handleRefresh() {
-    this.props.getTrainerPokemon()
+    this.props.refreshPokemon()
   },
 
   getPokemonChecked() {
@@ -332,7 +332,7 @@ export default connect((state => ({
   sortDir: state.trainer.sortDir,
   filterBy: state.trainer.filterBy,
 })), (dispatch => bindActionCreators({
-  getTrainerPokemon,
+  refreshPokemon,
   updateSpecies,
   updateMonster,
   updateMonsterSort,
