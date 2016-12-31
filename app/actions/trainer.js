@@ -21,10 +21,6 @@ import {
   resetStatus,
 } from './status'
 
-window.keyBy = keyBy
-
-window.POGOProtos = POGOProtos
-
 function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 }
@@ -45,13 +41,9 @@ const NAMES = Object
       .replace('Male', '♂')
   )
 
-window.NAMES = NAMES
-
 function getName(id) {
   return NAMES[id] || 'Unknown'
 }
-
-window.getName = getName
 
 function generateEmptySpecie(pokemonDexNumber, candiesByFamilyId, familyId) {
   const name = getName(pokemonDexNumber)
@@ -102,13 +94,20 @@ function dpsForMove(move, primary) {
   return dps
 }
 
+function egpsForMove(move, primary) {
+  const moveDelay = primary ? 0 : MOVE2_CHARGE_DELAY_MS
+  const egps = move.energy_delta / (move.duration_ms + moveDelay) * MILLISECONDS_FACTOR
+
+  return egps
+}
+
 // List of all POGOProtos.Enums.PokemonMove
 function getMove(moveSettings, move, primary) {
   const moveSetting = Object.assign({}, moveSettings[move])
 
   moveSetting.dps = dpsForMove(moveSetting, primary)
   moveSetting.energy_gain = moveSetting.energy_delta
-  moveSetting.egps = 0
+  moveSetting.egps = egpsForMove(moveSetting, primary)
   moveSetting.dodge_window_ms = moveSetting.damage_window_end_ms - moveSetting.damage_window_start_ms
 
   moveSetting.energy_cost = moveSetting.energy_delta * -1
@@ -123,9 +122,7 @@ function getMove(moveSettings, move, primary) {
 function parseInventory(inventory, splitItemTemplates) {
   const pokemonSettings = splitItemTemplates.pokemon_settings
   const moveSettings = keyBy(splitItemTemplates.move_settings, (moveSetting) => String(moveSetting.movement_id))
-  window.moveSettings = moveSettings
   const splitInventory = pogobuf.Utils.splitInventory(inventory)
-  window.splitInventory = splitInventory
   const { player, candies, pokemon } = splitInventory
 
   const speciesList = generateEmptySpecies(candies, pokemonSettings)
@@ -192,6 +189,8 @@ function parseInventory(inventory, splitItemTemplates) {
       iv,
       type,
       evolvesTo,
+      additional_cp_multiplier: p.additional_cp_multiplier,
+      cp_multiplier: p.cp_multiplier,
       cp: p.cp,
       next_cp: nextCP,
       max_cp: maxCP,
@@ -314,8 +313,6 @@ function parseItemTemplates(templates) {
 
   const keys = Object.keys(ret)
 
-  window.templates = templates
-
   templates.item_templates.forEach(template => {
     keys.forEach(key => {
       if (template[key]) {
@@ -352,8 +349,6 @@ function getTrainerPokemon() {
       }
 
       const splitItemTemplates = parseItemTemplates(itemTemplates)
-
-      window.split = splitItemTemplates
 
       const payload = parseInventory(inventory, splitItemTemplates)
 
