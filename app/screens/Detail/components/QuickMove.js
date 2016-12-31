@@ -25,9 +25,9 @@ const QuickMove = React.createClass({
       <br />
       No STAB DPS: ${move.dps.toFixed(2)}
       <br />
-      {`Energy Gain(EG): ${move.energy_gain}`}
+      {`Energy Gain: ${move.energy_gain}`}
       <br />
-      {`EGPS: ${move.egps}`}
+      {`EGPS: ${move.egps.toFixed(2)}`}
     </span>)
 
     const thisMove = move === myMove ? 'pokemon-move-item mine' : 'pokemon-move-item notmine'
