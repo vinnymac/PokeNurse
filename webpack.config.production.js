@@ -4,8 +4,9 @@ import validate from 'webpack-validator'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import merge from 'webpack-merge'
-import baseConfig from './webpack.config.base'
 import BabiliPlugin from 'babili-webpack-plugin'
+
+import baseConfig from './webpack.config.base'
 
 const config = validate(merge(baseConfig, {
   devtool: 'cheap-module-source-map',

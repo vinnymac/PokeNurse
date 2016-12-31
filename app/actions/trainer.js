@@ -6,7 +6,6 @@ import {
   keyBy,
 } from 'lodash'
 import pogobuf from 'pogobuf'
-import POGOProtos from 'node-pogo-protos'
 import {
   ipcRenderer,
 } from 'electron'

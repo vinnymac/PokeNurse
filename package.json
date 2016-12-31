@@ -1,6 +1,6 @@
 {
   "name": "PokeNurse",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "A tool for Pokémon Go to aid in transferring and evolving Pokémon",
   "main": "main.js",
   "scripts": {
