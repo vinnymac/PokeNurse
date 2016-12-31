@@ -211,7 +211,8 @@ function parseInventory(inventory) {
 
   // TODO use map
   speciesList.forEach((s) => {
-    const candyToEvolve = pokemonSettings[s.pokemon_id] ? pokemonSettings[s.pokemon_id].candy_to_evolve : 0
+    const pokemonSetting = pokemonSettings[s.pokemon_id - 1]
+    const candyToEvolve = pokemonSetting ? pokemonSetting.candy_to_evolve : 0
     s.evolves = utils.getEvolvesCount(candyToEvolve, s)
   })
 
