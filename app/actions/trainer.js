@@ -21,32 +21,8 @@ import {
   resetStatus,
 } from './status'
 
-function capitalize(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-}
-
-const NAMES = Object
-  .keys(POGOProtos.Enums.PokemonId)
-  .map(name =>
-    // 'HO_OH'
-    name
-      // ['HO', 'OH']
-      .split('_')
-      // ['Ho', 'Oh']
-      .map(word => capitalize(word))
-      // 'Ho' + 'Oh'
-      .join(' ')
-      // Nidoran Male/Female
-      .replace('Female', '♀')
-      .replace('Male', '♂')
-  )
-
-function getName(id) {
-  return NAMES[id] || 'Unknown'
-}
-
 function generateEmptySpecie(pokemonDexNumber, candiesByFamilyId, familyId) {
-  const name = getName(pokemonDexNumber)
+  const name = utils.getName(pokemonDexNumber)
   const candy = candiesByFamilyId && candiesByFamilyId[familyId] ? candiesByFamilyId[familyId].candy : 0
 
   return {
@@ -112,7 +88,7 @@ function getMove(moveSettings, move, primary) {
 
   moveSetting.energy_cost = moveSetting.energy_delta * -1
 
-  moveSetting.name = moveSetting.vfx_name.split('_').map(capitalize).join(' ')
+  moveSetting.name = moveSetting.vfx_name.split('_').map(utils.capitalize).join(' ')
 
   moveSetting.type = utils.getType(moveSetting.pokemon_type)
 
@@ -136,7 +112,7 @@ function parseInventory(inventory) {
       return
     }
 
-    const pokemonName = getName(p.pokemon_id)
+    const pokemonName = utils.getName(p.pokemon_id)
     const pokemonSetting = pokemonSettings[p.pokemon_id - 1]
 
     const baseAttack = pokemonSetting ? pokemonSetting.stats.base_attack : 0
@@ -173,7 +149,7 @@ function parseInventory(inventory) {
     const type = type1 && type2 ? [type1, type2] : [type1 || type2]
 
     const evolvesTo = pokemonSetting.evolution_ids
-      .map(getName)
+      .map(utils.getName)
       .join('/')
 
     const quickMoves = pokemonSetting.quick_moves.map(m => getMove(moveSettings, m, true))

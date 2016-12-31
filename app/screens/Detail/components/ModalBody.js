@@ -23,7 +23,7 @@ const ModalBody = React.createClass({
     candies: PropTypes.number.isRequired,
     fastMove: PropTypes.object.isRequired,
     chargedMove: PropTypes.object.isRequired,
-    evolvesTo: PropTypes.node,
+    evolutionIds: PropTypes.node,
     possibleQuickMoves: PropTypes.array,
     possibleCinematicMoves: PropTypes.array,
   },
@@ -45,7 +45,7 @@ const ModalBody = React.createClass({
       candies,
       fastMove,
       chargedMove,
-      evolvesTo,
+      evolutionIds,
       possibleQuickMoves,
       possibleCinematicMoves,
     } = this.props
@@ -138,7 +138,7 @@ const ModalBody = React.createClass({
           <div className="pokemon-move-item-title">Charged Moves</div>
           {cinematicMoves}
         </div>
-        <Evolutions evolvesTo={evolvesTo} />
+        <Evolutions evolutionIds={evolutionIds} />
       </div>
     </div>)
   },

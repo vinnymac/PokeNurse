@@ -8,9 +8,29 @@ import {
   defaultSettings
 } from './reducers/settings'
 
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+}
+
 const TYPES = Object
   .keys(POGOProtos.Enums.PokemonType)
   .map(t => t.split('_')[2].toLowerCase())
+
+const NAMES = Object
+  .keys(POGOProtos.Enums.PokemonId)
+  .map(name =>
+    // 'HO_OH'
+    name
+      // ['HO', 'OH']
+      .split('_')
+      // ['Ho', 'Oh']
+      .map(word => capitalize(word))
+      // 'Ho' + 'Oh'
+      .join(' ')
+      // Nidoran Male/Female
+      .replace('Female', '♀')
+      .replace('Male', '♂')
+  )
 
 const levelCpMultiplier = {
   1: 0.094,
@@ -335,7 +355,13 @@ const utils = {
 
   getType(type) {
     return TYPES[type]
-  }
+  },
+
+  getName(id) {
+    return NAMES[id] || 'Unknown'
+  },
+
+  capitalize,
 }
 
 const Immutable = {

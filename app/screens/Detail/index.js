@@ -83,7 +83,7 @@ export default ($detailModal, pokemon, species) => {
   const possibleQuickMoves = pokemon.quick_moves
   const possibleCinematicMoves = pokemon.cinematic_moves
 
-  const evolvesTo = pokemon.evolvesTo
+  const evolutionIds = pokemon.evolution_ids
 
   const totalCpMultiplier = pokemon.cp_multiplier + pokemon.additional_cp_multiplier
   const cppu = utils.getCpAfterPowerup(pokemon.cp, totalCpMultiplier)
@@ -124,7 +124,7 @@ export default ($detailModal, pokemon, species) => {
     detailModal={$detailModal}
     fastMove={moveOne}
     chargedMove={moveTwo}
-    evolvesTo={evolvesTo}
+    evolutionIds={evolutionIds}
     possibleQuickMoves={possibleQuickMoves}
     possibleCinematicMoves={possibleCinematicMoves}
   />)

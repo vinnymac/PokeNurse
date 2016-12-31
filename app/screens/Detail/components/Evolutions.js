@@ -2,33 +2,40 @@ import React, {
   PropTypes
 } from 'react'
 
+import utils from '../../../utils'
+
 const QuickMove = React.createClass({
   displayName: 'Evolutions',
 
   propTypes: {
-    evolvesTo: PropTypes.node.isRequired
+    evolutionIds: PropTypes.node.isRequired
   },
 
   render() {
     const {
-      evolvesTo
+      evolutionIds,
     } = this.props
 
-    if (!evolvesTo) return null
+    if (!evolutionIds) return null
 
-    const evolutions = evolvesTo.split('/')
+    const title = evolutionIds.length > 1 ? 'Evolutions' : 'Evolution'
 
-    const title = evolutions.length > 1 ? 'Evolutions' : 'Evolution'
-
-    const evolveInfoItems = evolutions.map((evolve) => {
-      const evolution = evolve.toLowerCase()
+    const evolveInfoItems = evolutionIds.map((id) => {
+      const name = utils.getName(id)
+      const evolution = name.toLowerCase()
 
       return (
         <div
-          key={evolve}
+          key={id}
           className="pokemon-evolve-info-item"
         >
-          <div className={`pokemon-sprite ${evolution}`} />
+          <div className="pokemon-sprite">
+            <img
+              alt={`${evolution} sprite`}
+              className="pokemon-avatar-sprite"
+              src={`./imgs/pokemonSprites/${id || 0}.png`}
+            />
+          </div>
           <div className="pokemon-evolve-info-item-title">{evolution}</div>
         </div>
       )
