@@ -86,36 +86,30 @@ function generateEmptySpecies(candies, pokemonSettings) {
   })
 }
 
-// public static final double STAB_MULTIPLIER = 1.25;
-// public static final int MOVE2_CHARGE_DELAY_MS = 500;
-// public static final int MILLISECONDS_FACTOR = 1000;
-
-// private static double dpsForMove(final PokemonId pokemonId, final PokemonMove move, final boolean primary) {
-//     final PokemonMoveMeta moveMeta = PokemonMoveMetaRegistry.getMeta(move);
-//     final int moveDelay = primary ? 0 : MOVE2_CHARGE_DELAY_MS;
-//     double dps = (double) moveMeta.getPower() / (double) (moveMeta.getTime() + moveDelay) * MILLISECONDS_FACTOR;
-//     if (PokemonUtils.hasStab(pokemonId, moveMeta.getMove())) {
-//         dps = dps * STAB_MULTIPLIER;
-//     }
-//     return dps;
-// }
-
 const MILLISECONDS_FACTOR = 1000
+const MOVE2_CHARGE_DELAY_MS = 500
 
-// function dpsForMove(move) {
-//   const dps = move.power / (time + moveDelay) * MILLISECONDS_FACTOR
-//
-//   return dps
-// }
+function dpsForMove(move, primary) {
+  const moveDelay = primary ? 0 : MOVE2_CHARGE_DELAY_MS
+  const dps = move.power / (move.duration_ms + moveDelay) * MILLISECONDS_FACTOR
+
+  // TODO optional STAB
+  // const STAB_MULTIPLIER = 1.25
+  // if (hasStab) {
+  //   dps = dps * STAB_MULTIPLIER
+  // }
+
+  return dps
+}
 
 // List of all POGOProtos.Enums.PokemonMove
-function getMove(moveSettings, move) {
-  const moveSetting = moveSettings[move]
+function getMove(moveSettings, move, primary) {
+  const moveSetting = Object.assign({}, moveSettings[move])
 
-  moveSetting.dps = 0
-  moveSetting.energy_gain = 0
+  moveSetting.dps = dpsForMove(moveSetting, primary)
+  moveSetting.energy_gain = moveSetting.energy_delta
   moveSetting.egps = 0
-  moveSetting.dodge_window_ms = 0
+  moveSetting.dodge_window_ms = moveSetting.damage_window_end_ms - moveSetting.damage_window_start_ms
 
   moveSetting.energy_cost = moveSetting.energy_delta * -1
 
@@ -185,13 +179,13 @@ function parseInventory(inventory, splitItemTemplates) {
       .map(getName)
       .join('/')
 
-    const quickMoves = pokemonSetting.quick_moves.map(m => getMove(moveSettings, m))
+    const quickMoves = pokemonSetting.quick_moves.map(m => getMove(moveSettings, m, true))
 
-    const cinematicMoves = pokemonSetting.cinematic_moves.map(m => getMove(moveSettings, m))
+    const cinematicMoves = pokemonSetting.cinematic_moves.map(m => getMove(moveSettings, m, false))
 
-    const move1 = getMove(moveSettings, p.move_1)
+    const move1 = getMove(moveSettings, p.move_1, true)
 
-    const move2 = getMove(moveSettings, p.move_2)
+    const move2 = getMove(moveSettings, p.move_2, false)
 
     // TODO Use CamelCase instead of under_score for all keys except responses
     const pokemonWithStats = {
