@@ -37,7 +37,7 @@ const CinematicMove = React.createClass({
       {`Crit Chance: ${critChance.toFixed(2)}%`}
     </span>)
 
-    const thisMove = move === myMove ? 'pokemon-move-item mine' : 'pokemon-move-item notmine'
+    const thisMove = move.movement_id === myMove.movement_id ? 'pokemon-move-item mine' : 'pokemon-move-item notmine'
 
     return (
       <div className={thisMove}>
