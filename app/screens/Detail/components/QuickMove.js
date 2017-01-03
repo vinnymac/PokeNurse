@@ -23,7 +23,7 @@ const QuickMove = React.createClass({
       <br />
       {`Damage Window: ${move.damage_window_end_ms}ms`}
       <br />
-      No STAB DPS: ${move.dps.toFixed(2)}
+      {`DPS: ${move.dps.toFixed(2)}`}
       <br />
       {`Energy Gain: ${move.energy_gain}`}
       <br />

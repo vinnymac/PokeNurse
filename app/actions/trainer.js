@@ -53,18 +53,19 @@ function generateEmptySpecies(candies, pokemonSettings) {
   })
 }
 
+// TODO Can we find these constants in POGOBuf or item templates?
 const MILLISECONDS_FACTOR = 1000
 const MOVE2_CHARGE_DELAY_MS = 500
+const STAB_MULTIPLIER = 1.25 // 25% damage boost
 
-function dpsForMove(move, primary) {
+function dpsForMove(hasStab, move, primary) {
   const moveDelay = primary ? 0 : MOVE2_CHARGE_DELAY_MS
-  const dps = move.power / (move.duration_ms + moveDelay) * MILLISECONDS_FACTOR
+  let dps = move.power / (move.duration_ms + moveDelay) * MILLISECONDS_FACTOR
 
   // TODO optional STAB
-  // const STAB_MULTIPLIER = 1.25
-  // if (hasStab) {
-  //   dps = dps * STAB_MULTIPLIER
-  // }
+  if (hasStab) {
+    dps *= STAB_MULTIPLIER
+  }
 
   return dps
 }
@@ -77,12 +78,14 @@ function egpsForMove(move, primary) {
 }
 
 // List of all POGOProtos.Enums.PokemonMove
-function getMove(moveSettings, move, primary) {
+// types - array of up to two pokemon types ['fire', 'water']
+// moveSettings - object holding move meta
+// move - id for move
+// primary - first or second move
+function getMove(types, moveSettings, move, primary) {
   const moveSetting = Object.assign({}, moveSettings[move])
 
-  moveSetting.dps = dpsForMove(moveSetting, primary)
   moveSetting.energy_gain = moveSetting.energy_delta
-  moveSetting.egps = egpsForMove(moveSetting, primary)
   moveSetting.dodge_window_ms = moveSetting.damage_window_end_ms - moveSetting.damage_window_start_ms
 
   moveSetting.energy_cost = moveSetting.energy_delta * -1
@@ -90,6 +93,11 @@ function getMove(moveSettings, move, primary) {
   moveSetting.name = moveSetting.vfx_name.split('_').map(utils.capitalize).join(' ')
 
   moveSetting.type = utils.getType(moveSetting.pokemon_type)
+
+  const hasStab = types.includes(moveSetting.type)
+  moveSetting.dps = dpsForMove(hasStab, moveSetting, primary)
+
+  moveSetting.egps = egpsForMove(moveSetting, primary)
 
   return moveSetting
 }
@@ -151,13 +159,13 @@ function parseInventory(inventory) {
       .map(utils.getName)
       .join('/')
 
-    const quickMoves = pokemonSetting.quick_moves.map(m => getMove(moveSettings, m, true))
+    const quickMoves = pokemonSetting.quick_moves.map(m => getMove(type, moveSettings, m, true))
 
-    const cinematicMoves = pokemonSetting.cinematic_moves.map(m => getMove(moveSettings, m, false))
+    const cinematicMoves = pokemonSetting.cinematic_moves.map(m => getMove(type, moveSettings, m, false))
 
-    const move1 = getMove(moveSettings, p.move_1, true)
+    const move1 = getMove(type, moveSettings, p.move_1, true)
 
-    const move2 = getMove(moveSettings, p.move_2, false)
+    const move2 = getMove(type, moveSettings, p.move_2, false)
 
     // TODO Use CamelCase instead of under_score for all keys except responses
     const pokemonWithStats = {
