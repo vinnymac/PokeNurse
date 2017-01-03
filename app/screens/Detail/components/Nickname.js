@@ -1,3 +1,6 @@
+import {
+  ipcRenderer,
+} from 'electron'
 import React, {
   PropTypes
 } from 'react'
@@ -42,7 +45,6 @@ const Nickname = React.createClass({
           className="input-lg"
           onKeyPress={this.handleKeyPress}
           defaultValue={newNickname}
-          maxLength="12"
           placeholder="Enter a new nickname"
           ref={(c) => { this.input = c }}
         />
@@ -70,8 +72,26 @@ const Nickname = React.createClass({
   },
 
   handleKeyPress(e) {
+    const {
+      pokemon,
+    } = this.props
+
     if (e.key === 'Enter') {
-      this.props.renamePokemon(this.props.pokemon, e.target.value, (updatedPokemon) => {
+      let newName = e.target.value
+
+      newName = newName
+        .replace('[IV]', pokemon.iv.toFixed(0))
+        .replace('[VI]', (100 - pokemon.iv).toFixed(0))
+        .replace('[ATT]', pokemon.attack.toFixed(0))
+        .replace('[DEF]', pokemon.defense.toFixed(0))
+        .replace('[STA]', pokemon.stamina.toFixed(0))
+
+      if (newName.length > 12) {
+        ipcRenderer.send('error-message', 'The name must contain 12 characters or less.')
+        return
+      }
+
+      this.props.renamePokemon(pokemon, newName, (updatedPokemon) => {
         this.handleRenameComplete(updatedPokemon)
       })
     }
