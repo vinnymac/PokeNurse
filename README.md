@@ -37,13 +37,14 @@ This project uses [Electron](http://electron.atom.io/) and [Node.js](https://nod
 
 ## Templated Renaming
 When renaming, it will automatically convert a name like `Bulba-[HP]` into `Bulba-140`.
-`[IV]` represents the IV percent of that pokemon: 40
-`[VI]` represents 100 minus the IV: 60
-`[ATT]`, `[DEF]`, `[STA]` represent attack, defense, and stamina, they will appear like: ⑨
-`[FAST]` is the damage of the quick move: 8
-`[CHARGE]` is the damage of the cinematic move: 40
-`[ENERGY]` is the amount of cinematic moves you can use before your energy runs out: ②
-`[HP]` is the max stamina: 140
+* `[IV]` represents the IV percent of that pokemon: 40
+* `[VI]` represents 100 minus the IV: 60
+* `[ATT]`, `[DEF]`, `[STA]` represent attack, defense, and stamina, they will appear like: ⑨
+* `[FAST]` is the damage of the quick move: 8
+* `[CHARGE]` is the damage of the cinematic move: 40
+* `[ENERGY]` is the amount of cinematic moves you can use before your energy runs out: ②
+* `[HP]` is the max stamina: 140
+
 Note: Only 12 characters can be used to rename a pokemon.
 
 ## Contributing
