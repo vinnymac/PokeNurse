@@ -114,22 +114,26 @@ const ModalBody = React.createClass({
         </div>
         <div className="pokemon_info">
           <div className="pokemon-info-item split-2-way">
-            <div className="pokemon-info-item-text combat-stat">{`${attack}`}</div>
-            <div className="pokemon-info-item-title">Attack</div>
-          </div>
-          <div className="pokemon-info-item split-2-way">
-            <div className="pokemon-info-item-text combat-stat">{`${defense}`}</div>
-            <div className="pokemon-info-item-title">Defense</div>
-          </div>
-        </div>
-        <div className="pokemon_info">
-          <div className="pokemon-info-item split-2-way">
             <div className="pokemon-info-item-text cp-upgrade">{cpPerUpgrade}</div>
             <div className="pokemon-info-item-title">CP Per Upgrade</div>
           </div>
           <div className="pokemon-info-item split-2-way">
             <div className="pokemon-info-item-text candy-count">{candies}</div>
             <div className="pokemon-info-item-title">{`${name} Candies`}</div>
+          </div>
+        </div>
+        <div className="pokemon_info">
+          <div className="pokemon-info-item split-3-way">
+            <div className="pokemon-info-item-text combat-stat">{`${attack}`}</div>
+            <div className="pokemon-info-item-title">Attack</div>
+          </div>
+          <div className="pokemon-info-item split-3-way">
+            <div className="pokemon-info-item-text combat-stat">{`${defense}`}</div>
+            <div className="pokemon-info-item-title">Defense</div>
+          </div>
+          <div className="pokemon-info-item split-3-way">
+            <div className="pokemon-info-item-text combat-stat">{`${pokemon.iv}%`}</div>
+            <div className="pokemon-info-item-title">IV</div>
           </div>
         </div>
         <div className="pokemon_move_info">
