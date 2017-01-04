@@ -9,6 +9,10 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { renamePokemon } from '../../../actions'
 
+function getNumberInCircle(num) {
+  return String.fromCharCode(9311 + num)
+}
+
 const Nickname = React.createClass({
   propTypes: {
     pokemon: PropTypes.object.isRequired,
@@ -79,12 +83,23 @@ const Nickname = React.createClass({
     if (e.key === 'Enter') {
       let newName = e.target.value
 
+      const totalEnergy = parseInt(Math.floor(100 / pokemon.move_2.energy_cost), 10)
+      const energy = getNumberInCircle(totalEnergy)
+      const vi = (100 - pokemon.iv).toFixed(0)
+      const attack = getNumberInCircle(pokemon.attack)
+      const defense = getNumberInCircle(pokemon.defense)
+      const stamina = getNumberInCircle(pokemon.stamina)
+
       newName = newName
         .replace('[IV]', pokemon.iv.toFixed(0))
-        .replace('[VI]', (100 - pokemon.iv).toFixed(0))
-        .replace('[ATT]', pokemon.attack.toFixed(0))
-        .replace('[DEF]', pokemon.defense.toFixed(0))
-        .replace('[STA]', pokemon.stamina.toFixed(0))
+        .replace('[VI]', vi)
+        .replace('[ATT]', attack)
+        .replace('[DEF]', defense)
+        .replace('[STA]', stamina)
+        .replace('[FAST]', pokemon.move_1.power.toFixed(0))
+        .replace('[CHARGE]', pokemon.move_2.power.toFixed(0))
+        .replace('[ENERGY]', energy)
+        .replace('[HP]', pokemon.stamina_max)
 
       if (newName.length > 12) {
         ipcRenderer.send('error-message', 'The name must contain 12 characters or less.')
