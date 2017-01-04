@@ -10,7 +10,7 @@ import {
   ipcRenderer,
 } from 'electron'
 
-import client from '../client'
+import { getClient } from '../client'
 
 // TODO Must move these helpers to app folder
 import utils from '../utils'
@@ -53,7 +53,7 @@ function generateEmptySpecies(candies, pokemonSettings) {
   })
 }
 
-// TODO Can we find these constants in POGOBuf or item templates?
+// TODO Can we find these constants in POGOProtos or item templates?
 const MILLISECONDS_FACTOR = 1000
 const MOVE2_CHARGE_DELAY_MS = 500
 const STAB_MULTIPLIER = 1.25 // 25% damage boost
@@ -259,7 +259,7 @@ const evolvePokemonFailed = createAction('EVOLVE_POKEMON_FAILED')
 function getTrainerInfo() {
   return async (dispatch) => {
     try {
-      const response = await client.getPlayer()
+      const response = await getClient().getPlayer()
 
       if (!response.success) {
         dispatch(getTrainerInfoFailed('Failed in retrieving player info.  Please restart.'))
@@ -317,7 +317,7 @@ let splitItemTemplates = null
 
 async function getInventoryAndItemTemplates(dispatch, inventoryOnly) {
   try {
-    const batch = client.batchStart()
+    const batch = getClient().batchStart()
     batch.getInventory(0)
     if (!inventoryOnly) batch.downloadItemTemplates()
 
@@ -368,7 +368,7 @@ function getTrainerPokemon() {
 function powerUpPokemon(pokemon) {
   return async (dispatch) => {
     try {
-      await client.upgradePokemon(pokemon.id)
+      await getClient().upgradePokemon(pokemon.id)
 
       // TODO parse the response instead of retrieving all the new pokemon
       // Requires replacing the main parsing with more functional code
@@ -388,7 +388,7 @@ function toggleFavoritePokemon(pokemon) {
         favorite: !pokemon.favorite ? -1 : -0
       })
 
-      await client.setFavoritePokemon(pokemon.id, !!updatedPokemon.favorite)
+      await getClient().setFavoritePokemon(pokemon.id, !!updatedPokemon.favorite)
       dispatch(toggleFavoritePokemonSuccess(updatedPokemon))
     } catch (error) {
       dispatch(toggleFavoritePokemonFailed(error))
@@ -401,7 +401,7 @@ function renamePokemon(pokemon, nickname, callback) {
 
   return async (dispatch) => {
     try {
-      await client.nicknamePokemon(updatedPokemon.id, updatedPokemon.nickname)
+      await getClient().nicknamePokemon(updatedPokemon.id, updatedPokemon.nickname)
 
       dispatch(renamePokemonSuccess(updatedPokemon))
 
@@ -429,7 +429,7 @@ function transferPokemon(pokemon, delay) {
   return async (dispatch) => {
     try {
       await sleep(delay)
-      await client.releasePokemon(pokemon.id)
+      await getClient().releasePokemon(pokemon.id)
       dispatch(transferPokemonSuccess(pokemon))
     } catch (error) {
       dispatch(transferPokemonFailed(error))
@@ -442,7 +442,7 @@ function evolvePokemon(pokemon, delay) {
   return async (dispatch) => {
     try {
       await sleep(delay)
-      await client.evolvePokemon(pokemon.id)
+      await getClient().evolvePokemon(pokemon.id)
       dispatch(evolvePokemonSuccess(pokemon))
     } catch (error) {
       dispatch(evolvePokemonFailed(error))
@@ -454,7 +454,7 @@ function evolvePokemon(pokemon, delay) {
 const updateMonster = createAction('UPDATE_MONSTER')
 
 function batchStart(selectedPokemon, method) {
-  let batch = client.batchStart()
+  let batch = getClient().batchStart()
 
   selectedPokemon.forEach((p) => {
     batch = batch[method](p.id)

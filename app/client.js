@@ -1,3 +1,11 @@
-import pogobuf from 'pogobuf'
+let client = null
 
-export default new pogobuf.Client()
+export default {
+  getClient() {
+    return client
+  },
+
+  setClient(c) {
+    client = c
+  }
+}

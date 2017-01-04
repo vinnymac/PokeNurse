@@ -9,7 +9,7 @@ import {
 
 import * as fs from 'async-file'
 
-import client from '../client'
+import { setClient } from '../client'
 
 import {
   getTrainerInfo,
@@ -29,9 +29,7 @@ const userLoginFailed = createAction('USER_LOGIN_FAILED')
 const accountPath = path.join(remote.app.getPath('appData'), '/pokenurse/account.json')
 
 export default {
-  client,
-
-  login({ method, username, password }) {
+  login({ method, username, password, hashingKey }) {
     return async (dispatch) => {
       dispatch(userLoginStarted())
 
@@ -45,8 +43,21 @@ export default {
       try {
         const token = await login.login(username, password)
 
-        client.setAuthInfo(method, token)
+        const options = {
+          hashingKey,
+          authType: method,
+          authToken: token,
+          useHashingServer: !!hashingKey,
+        }
+
+        // Use API version 0.51 (minimum version for hashing server)
+        if (hashingKey) options.version = 5100
+
+        const client = new pogobuf.Client(options)
+
         client.init()
+
+        setClient(client)
 
         // TODO display a loading spinner
         // then fetch all necessary things
