@@ -139,7 +139,7 @@
     "electron-localshortcut": "^1.0.0",
     "font-awesome": "^4.7.0",
     "node-pogo-protos": "2.4.0",
-    "pogobuf": "1.9.0",
+    "pogobuf": "1.8.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "5.0.1",
