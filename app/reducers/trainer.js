@@ -284,7 +284,7 @@ export default handleActions({
 
   POWER_UP_POKEMON_SUCCESS(state, action) {
     const pokemon = action.payload
-    const message = `Upgraded ${pokemon.nickname} succesfully!`
+    const message = `Upgraded ${pokemon.nickname} successfully!`
     const title = `Power Up ${pokemon.nickname}`
     ipcRenderer.send('information-dialog', message, title)
 

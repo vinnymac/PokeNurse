@@ -8,12 +8,12 @@
 
 **PokéNurse** is a desktop application for Windows and Mac that allows you to manage your pokémon from Pokémon Go without the need for a mobile device. You can now favorite, transfer, and evolve from the comfort of your own home!
 
-## Downloads for v1.8.0
+## Downloads for v1.9.0
 You may view all the releases [here](https://github.com/vinnymac/PokeNurse/releases)
-* [macOS](https://github.com/vinnymac/PokeNurse/releases/download/v1.8.0/PokeNurse.dmg)
-* [Windows](https://github.com/vinnymac/PokeNurse/releases/download/v1.8.0/PokeNurse.exe)
-* [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.8.0/PokeNurse-ia32.deb)
-* [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.8.0/PokeNurse-x64.deb)
+* [macOS](https://github.com/vinnymac/PokeNurse/releases/download/v1.9.0/PokeNurse.dmg)
+* [Windows](https://github.com/vinnymac/PokeNurse/releases/download/v1.9.0/PokeNurse.exe)
+* [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.9.0/PokeNurse-ia32.deb)
+* [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v1.9.0/PokeNurse-x64.deb)
 
 ## Examples
 ![Login Window](app/loginExample.png)
@@ -23,7 +23,7 @@ You may view all the releases [here](https://github.com/vinnymac/PokeNurse/relea
 This project uses [Electron](http://electron.atom.io/) and [Node.js](https://nodejs.org/en/).  Criticism is welcome and encouraged.
 
 ## Features
-* List Pokemon
+* List and Sort Pokemon
     * Pokedex Number
     * Name
     * CP
@@ -31,6 +31,20 @@ This project uses [Electron](http://electron.atom.io/) and [Node.js](https://nod
 * Transfer Pokemon
 * Evolve Pokemon
 * Favorite/Unfavorite Pokemon
+* PowerUp Pokemon
+* Details - Evolutions, DPS, Energy, Moves, and more
+* Renaming & Templated Renaming
+
+## Templated Renaming
+When renaming, it will automatically convert a name like `Bulba-[HP]` into `Bulba-140`.
+`[IV]` represents the IV percent of that pokemon: 40
+`[VI]` represents 100 minus the IV: 60
+`[ATT]`, `[DEF]`, `[STA]` represent attack, defense, and stamina, they will appear like: ⑨
+`[FAST]` is the damage of the quick move: 8
+`[CHARGE]` is the damage of the cinematic move: 40
+`[ENERGY]` is the amount of cinematic moves you can use before your energy runs out: ②
+`[HP]` is the max stamina: 140
+Note: Only 12 characters can be used to rename a pokemon.
 
 ## Contributing
   All future pull request should be made to the **develop** branch.

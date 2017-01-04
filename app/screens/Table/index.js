@@ -4,11 +4,6 @@ import React, {
 import {
   ipcRenderer
 } from 'electron'
-import {
-  InputGroup,
-  FormControl,
-  Button,
-} from 'react-bootstrap'
 import $ from 'jquery'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

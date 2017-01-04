@@ -32,6 +32,8 @@ const CinematicMove = React.createClass({
     const chargedMoveTip = (<span>
       {`Duration: ${move.duration_ms}ms`}
       <br />
+      {`DPS: ${move.dps.toFixed(2)}`}
+      <br />
       {`Dodge Window: ${move.dodge_window_ms}ms`}
       <br />
       {`Crit Chance: ${critChance.toFixed(2)}%`}
