@@ -16,6 +16,10 @@ import Tooltip from '../../Tooltip'
 const favoriteGlyph = 'fa fa-star favorite-yellow'
 const emptyFavoriteGlyph = 'fa fa-star-o'
 
+function hasMaxCP(pokemon) {
+  return pokemon.cp.toFixed(0) === pokemon.max_cp.toFixed(0)
+}
+
 const Pokemon = React.createClass({
 
   displayName: 'PokemonTable',
@@ -140,7 +144,7 @@ const Pokemon = React.createClass({
     return species.pokemon.map((pokemon) => {
       const favorite = pokemon.favorite ? favoriteGlyph : emptyFavoriteGlyph
       const pokeiv = `${pokemon.iv}% (${pokemon.attack}/${pokemon.defense}/${pokemon.stamina})`
-      const powerUpTip = this.getPowerUpTip(pokemon)
+      const powerUpTip = this.getPowerUpTip(pokemon, species)
       const cpTip = `Max CP: ${pokemon.max_cp}`
       const ivTip = (<span>
         {`Attack: ${pokemon.attack}`}
@@ -223,7 +227,7 @@ const Pokemon = React.createClass({
   },
 
   getPowerUpTip(pokemon) {
-    if (pokemon.cp === pokemon.max_cp) {
+    if (hasMaxCP(pokemon)) {
       return `Max CP ${pokemon.max_cp}`
     }
 
@@ -240,7 +244,17 @@ const Pokemon = React.createClass({
     </span>)
   },
 
-  handleClickPowerup(pokemon) {
+  handleClickPowerup(pokemon, species) {
+    if (hasMaxCP(pokemon)) {
+      ipcRenderer.send('error-message', 'Sorry, you have reached the Max CP!')
+      return
+    }
+
+    if (species.candy < 1) {
+      ipcRenderer.send('error-message', `Sorry, you have ${species.candy} candy left!`)
+      return
+    }
+
     if (ipcRenderer.sendSync('confirmation-dialog', 'power up').success) {
       // TODO Calculate and update the pokemon immediately with estimates
       this.props.powerUpPokemon(pokemon)
