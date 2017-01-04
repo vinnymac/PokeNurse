@@ -10,7 +10,9 @@ import { connect } from 'react-redux'
 import { renamePokemon } from '../../../actions'
 
 function getNumberInCircle(num) {
-  return String.fromCharCode(9311 + num)
+  if (num === 0) return String.fromCharCode(9450)
+  if (num < 21) return String.fromCharCode(9311 + num)
+  return `${num}`
 }
 
 const Nickname = React.createClass({
