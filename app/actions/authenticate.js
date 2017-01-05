@@ -12,8 +12,7 @@ import * as fs from 'async-file'
 import { setClient } from '../client'
 
 import {
-  getTrainerInfo,
-  getTrainerPokemon
+  getTrainerInfoAndPokemon,
 } from './trainer'
 
 const saveAccountCredentialsFailed = createAction('SAVE_ACCOUNT_CREDENTIALS_FAILED')
@@ -61,10 +60,7 @@ export default {
 
         // TODO display a loading spinner
         // then fetch all necessary things
-        await Promise.all([
-          dispatch(getTrainerInfo()),
-          dispatch(getTrainerPokemon())
-        ])
+        await dispatch(getTrainerInfoAndPokemon())
 
         dispatch(userLoginSuccess())
       } catch (error) {
