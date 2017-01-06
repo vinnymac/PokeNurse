@@ -55,6 +55,9 @@ const LoginForm = React.createClass({
       authenticating,
     } = this.props
 
+    const isGoogleActive = this.state.authMethod === AUTH_METHODS.google
+    const isPTCActive = this.state.authMethod === AUTH_METHODS.ptc
+
     if (authenticating) {
       return (
         <div className="container">
@@ -72,8 +75,9 @@ const LoginForm = React.createClass({
         <FormGroup>
           <ButtonGroup data-toggle="buttons">
             <Button
-              className="btn btn-info noselect active"
+              className="btn btn-info noselect"
               htmlFor="authGoogle"
+              active={isGoogleActive}
               onClick={this.radioLabelClick.bind(this, AUTH_METHODS.google)}
             >
               <input
@@ -82,7 +86,7 @@ const LoginForm = React.createClass({
                 id="authGoogle"
                 ref={(c) => { this[AUTH_METHODS.google] = c }}
                 value={AUTH_METHODS.google}
-                defaultChecked={this.state.authMethod === AUTH_METHODS.google}
+                defaultChecked={isGoogleActive}
                 onChange={this.handleChangeAuth}
               />
               Google
@@ -90,6 +94,7 @@ const LoginForm = React.createClass({
             <Button
               className="btn btn-info noselect"
               htmlFor="authPTC"
+              active={isPTCActive}
               onClick={this.radioLabelClick.bind(this, AUTH_METHODS.ptc)}
             >
               <input
@@ -98,7 +103,7 @@ const LoginForm = React.createClass({
                 id="authPTC"
                 ref={(c) => { this[AUTH_METHODS.ptc] = c }}
                 value={AUTH_METHODS.ptc}
-                defaultChecked={this.state.authMethod === AUTH_METHODS.ptc}
+                defaultChecked={isPTCActive}
                 onChange={this.handleChangeAuth}
               />
               Pokémon Trainer Club
@@ -194,6 +199,8 @@ const LoginForm = React.createClass({
     const password = findDOMNode(this.password).value
     const hashingKey = findDOMNode(this.hashKey).value
     const rememberMe = findDOMNode(this.rememberMe).checked
+
+    console.log(method, username, password, hashingKey, rememberMe)
 
     if (!username) {
       ipcRenderer.send('error-message', 'A username is required to login.')

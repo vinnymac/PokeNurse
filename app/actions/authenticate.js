@@ -54,7 +54,7 @@ export default {
 
         const client = new pogobuf.Client(options)
 
-        client.init()
+        await client.init()
 
         setClient(client)
 
