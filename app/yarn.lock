@@ -55,13 +55,13 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bluebird-retry@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/bluebird-retry/-/bluebird-retry-0.8.0.tgz#2d05d01b4ad1d9e99e9a89a0b158737175863ff7"
+bluebird-retry@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/bluebird-retry/-/bluebird-retry-0.10.1.tgz#cdf76b01d4a6dd4fec4e2c84360a8a09007f67da"
 
-bluebird@^3.4.1:
-  version "3.4.6"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.6.tgz#01da8d821d87813d158967e743d5fe6c62cf8c0f"
+bluebird@^3.4.7:
+  version "3.4.7"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.7.tgz#f72d760be09b7f76d08ed8fae98b289a8d05fab3"
 
 boom@2.x.x:
   version "2.10.1"
@@ -376,18 +376,18 @@ minimatch@^3.0.2, "minimatch@2 || 3":
   dependencies:
     brace-expansion "^1.0.0"
 
-node-pogo-protos@^2.0.0, node-pogo-protos@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/node-pogo-protos/-/node-pogo-protos-2.4.0.tgz#37af78e4eeeeff1b9c8185b1d8afa14a0b0a8407"
+node-pogo-protos@^2.4.0, node-pogo-protos@2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/node-pogo-protos/-/node-pogo-protos-2.4.2.tgz#eac822e0fcbc89bbd052249350109b3b499ebfa2"
   dependencies:
     protobufjs "^5.0.1"
 
-"node-pogo-signature@git+https://github.com/starkevin/node-pogo-signature.git":
-  version "3.0.0"
-  resolved "git+https://github.com/starkevin/node-pogo-signature.git#b0dc68d3524c80ebadecef5ad8945cec88103271"
+node-pogo-signature@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/node-pogo-signature/-/node-pogo-signature-4.0.0.tgz#2b4b2b1d7784d94d8717e54567d42cb834f86dba"
   dependencies:
     long "^3.2.0"
-    pcrypt laverdet/pcrypt
+    pcrypt starkevin/pcrypt
     protobufjs "^5.0.1"
 
 number-is-nan@^1.0.0:
@@ -418,9 +418,9 @@ path-is-absolute@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
 
-pcrypt@laverdet/pcrypt:
+"pcrypt@github:starkevin/pcrypt":
   version "1.0.0"
-  resolved "https://codeload.github.com/laverdet/pcrypt/tar.gz/3339506cb2ee58d23ad96f4391c6e33e62c71243"
+  resolved "https://codeload.github.com/starkevin/pcrypt/tar.gz/867562d3a55f41cf2cc542d1e492d5b094c820de"
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
@@ -432,18 +432,18 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
-pogobuf@1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/pogobuf/-/pogobuf-1.8.0.tgz#5f0e17c4f9a41690a50b235cfc96fd7764e34eab"
+pogobuf@1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/pogobuf/-/pogobuf-1.9.0.tgz#62f9750e1dc0dba6941a858bcc2cf16176628065"
   dependencies:
-    bluebird "^3.4.1"
-    bluebird-retry "^0.8.0"
+    bluebird "^3.4.7"
+    bluebird-retry "^0.10.1"
     gpsoauthnode "0.0.5"
     long "^3.2.0"
-    node-pogo-protos "^2.0.0"
-    node-pogo-signature "git+https://github.com/starkevin/node-pogo-signature.git"
-    request "^2.74.0"
-    s2-geometry "^1.2.7"
+    node-pogo-protos "^2.4.0"
+    node-pogo-signature "^4.0.0"
+    request "^2.79.0"
+    s2-geometry "^1.2.9"
 
 protobufjs@^5.0.1:
   version "5.0.1"
@@ -462,7 +462,7 @@ qs@~6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.0.tgz#f403b264f23bc01228c74131b407f18d5ea5d442"
 
-request@^2.73.0, request@^2.74.0:
+request@^2.73.0, request@^2.79.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
@@ -493,7 +493,7 @@ rimraf@^2.5.2:
   dependencies:
     glob "^7.0.5"
 
-s2-geometry@^1.2.7:
+s2-geometry@^1.2.9:
   version "1.2.9"
   resolved "https://registry.yarnpkg.com/s2-geometry/-/s2-geometry-1.2.9.tgz#20c2eadc621322c0f5ebc5098fa614525031f1e4"
   dependencies:
