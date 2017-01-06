@@ -418,7 +418,7 @@ path-is-absolute@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
 
-"pcrypt@github:starkevin/pcrypt":
+pcrypt@starkevin/pcrypt:
   version "1.0.0"
   resolved "https://codeload.github.com/starkevin/pcrypt/tar.gz/867562d3a55f41cf2cc542d1e492d5b094c820de"
 
@@ -432,9 +432,9 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
-pogobuf@1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/pogobuf/-/pogobuf-1.9.0.tgz#62f9750e1dc0dba6941a858bcc2cf16176628065"
+pogobuf@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/pogobuf/-/pogobuf-1.9.1.tgz#63cf20f21d3ef350ba652a304c0888efabc4d1a8"
   dependencies:
     bluebird "^3.4.7"
     bluebird-retry "^0.10.1"

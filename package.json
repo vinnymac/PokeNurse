@@ -1,6 +1,6 @@
 {
   "name": "PokeNurse",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A tool for Pokémon Go to aid in transferring and evolving Pokémon",
   "main": "main.js",
   "scripts": {
@@ -139,7 +139,7 @@
     "electron-localshortcut": "^1.0.0",
     "font-awesome": "^4.7.0",
     "node-pogo-protos": "2.4.2",
-    "pogobuf": "1.9.0",
+    "pogobuf": "1.9.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "5.0.1",
