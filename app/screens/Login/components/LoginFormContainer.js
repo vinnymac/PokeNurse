@@ -2,10 +2,18 @@ import React, {
   PropTypes
 } from 'react'
 import { ipcRenderer } from 'electron'
+import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {
-  ProgressBar
+  ProgressBar,
+  InputGroup,
+  FormControl,
+  FormGroup,
+  OverlayTrigger,
+  Tooltip,
+  ButtonGroup,
+  Button,
 } from 'react-bootstrap'
 
 import {
@@ -18,6 +26,11 @@ const AUTH_METHODS = {
   ptc: 'ptc',
   google: 'google'
 }
+
+const hashKeyTooltip = (<Tooltip id="hashKeyTooltip">
+  Hash Keys for 0.51+ support, instead of the potentially unsafe 0.45 API.
+  Note that Hash Keys currently have varying costs based on your Requests per Minute.
+</Tooltip>)
 
 const LoginForm = React.createClass({
   displayName: 'LoginForm',
@@ -56,70 +69,86 @@ const LoginForm = React.createClass({
 
     return (
       <div className="container">
-        <div className="form-group btn-group" data-toggle="buttons">
-          <label
-            className="btn btn-info noselect active"
-            htmlFor="authGoogle"
-            onClick={this.radioLabelClick.bind(this, AUTH_METHODS.google)}
-          >
-            <input
-              type="radio"
-              name="auth-radio"
-              id="authGoogle"
-              ref={(c) => { this[AUTH_METHODS.google] = c }}
-              value={AUTH_METHODS.google}
-              defaultChecked={this.state.authMethod === AUTH_METHODS.google}
-              onChange={this.handleChangeAuth}
+        <FormGroup>
+          <ButtonGroup data-toggle="buttons">
+            <Button
+              className="btn btn-info noselect active"
+              htmlFor="authGoogle"
+              onClick={this.radioLabelClick.bind(this, AUTH_METHODS.google)}
+            >
+              <input
+                type="radio"
+                name="auth-radio"
+                id="authGoogle"
+                ref={(c) => { this[AUTH_METHODS.google] = c }}
+                value={AUTH_METHODS.google}
+                defaultChecked={this.state.authMethod === AUTH_METHODS.google}
+                onChange={this.handleChangeAuth}
+              />
+              Google
+            </Button>
+            <Button
+              className="btn btn-info noselect"
+              htmlFor="authPTC"
+              onClick={this.radioLabelClick.bind(this, AUTH_METHODS.ptc)}
+            >
+              <input
+                type="radio"
+                name="auth-radio"
+                id="authPTC"
+                ref={(c) => { this[AUTH_METHODS.ptc] = c }}
+                value={AUTH_METHODS.ptc}
+                defaultChecked={this.state.authMethod === AUTH_METHODS.ptc}
+                onChange={this.handleChangeAuth}
+              />
+              Pokémon Trainer Club
+            </Button>
+          </ButtonGroup>
+        </FormGroup>
+
+        <FormGroup>
+          <InputGroup>
+            <InputGroup.Addon>
+              <span className="fa fa-user" aria-hidden="true" />
+            </InputGroup.Addon>
+            <FormControl
+              type="text"
+              className="form-control"
+              placeholder="Username"
+              ref={(c) => { this.username = c }}
+              onKeyPress={this.handleEnterKey}
+              defaultValue={credentials.username || ''}
             />
-            Google
-          </label>
-          <label
-            className="btn btn-info noselect"
-            htmlFor="authPTC"
-            onClick={this.radioLabelClick.bind(this, AUTH_METHODS.ptc)}
-          >
-            <input
-              type="radio"
-              name="auth-radio"
-              id="authPTC"
-              ref={(c) => { this[AUTH_METHODS.ptc] = c }}
-              value={AUTH_METHODS.ptc}
-              defaultChecked={this.state.authMethod === AUTH_METHODS.ptc}
-              onChange={this.handleChangeAuth}
+            <InputGroup.Addon>
+              <span className="fa fa-lock" aria-hidden="true" />
+            </InputGroup.Addon>
+            <FormControl
+              type="password"
+              className="form-control"
+              placeholder="Password"
+              ref={(c) => { this.password = c }}
+              onKeyPress={this.handleEnterKey}
+              defaultValue={credentials.password || ''}
             />
-            Pokémon Trainer Club
-          </label>
-        </div>
+          </InputGroup>
+        </FormGroup>
 
-        <div className="form-group input-group">
-          <span className="input-group-addon">
-            <span className="fa fa-user" aria-hidden="true" />
-          </span>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Username"
-            ref={(c) => { this.username = c }}
-            onKeyPress={this.handleEnterKey}
-            defaultValue={credentials.username || ''}
-          />
-        </div>
+        <FormGroup>
+          <InputGroup>
+            <InputGroup.Addon>
+              <OverlayTrigger placement="right" overlay={hashKeyTooltip}>
+                <span className="fa fa-key" aria-hidden="true" />
+              </OverlayTrigger>
+            </InputGroup.Addon>
+            <FormControl
+              type="text"
+              placeholder="Hash Key required only for safer 0.51+ support"
+              ref={(c) => { this.hashKey = c }}
+            />
+          </InputGroup>
+        </FormGroup>
 
-        <div className="form-group input-group">
-          <span className="input-group-addon">
-            <span className="fa fa-lock" aria-hidden="true" />
-          </span>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Password"
-            ref={(c) => { this.password = c }}
-            onKeyPress={this.handleEnterKey}
-            defaultValue={credentials.password || ''}
-          />
-        </div>
-
-        <div className="form-group">
+        <FormGroup>
           <label htmlFor="remember-cb" className="pointer">
             <input
               type="checkbox"
@@ -129,19 +158,21 @@ const LoginForm = React.createClass({
             />
             {' Remember me'}
           </label>
-          <input
+          <FormControl
             type="button"
             className="btn btn-success pull-right"
             value="Login"
             onClick={this.handleLogin}
+            style={{ width: 'auto' }}
           />
-        </div>
+        </FormGroup>
       </div>
     )
   },
 
   radioLabelClick(authMethod) {
-    this[authMethod].click()
+    const authButtonNode = findDOMNode(this[authMethod])
+    authButtonNode.click()
   },
 
   handleChangeAuth(e) {
@@ -159,18 +190,29 @@ const LoginForm = React.createClass({
 
     const method = this.state.authMethod
 
-    if (this.username.value === '' || this.password.value === '') {
-      ipcRenderer.send('error-message', 'Missing username and/or password')
+    const username = findDOMNode(this.username).value
+    const password = findDOMNode(this.password).value
+    const hashingKey = findDOMNode(this.hashKey).value
+    const rememberMe = findDOMNode(this.rememberMe).checked
+
+    if (!username) {
+      ipcRenderer.send('error-message', 'A username is required to login.')
+      return
+    }
+
+    if (!password) {
+      ipcRenderer.send('error-message', 'A password is required to login.')
       return
     }
 
     const credentials = {
       method,
-      username: this.username.value,
-      password: this.password.value
+      username,
+      password,
+      hashingKey,
     }
 
-    if (this.rememberMe.checked) {
+    if (rememberMe) {
       this.props.saveAccountCredentials(credentials)
     } else {
       this.props.checkAndDeleteCredentials()

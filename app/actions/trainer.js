@@ -10,7 +10,7 @@ import {
   ipcRenderer,
 } from 'electron'
 
-import client from '../client'
+import { getClient } from '../client'
 
 // TODO Must move these helpers to app folder
 import utils from '../utils'
@@ -53,7 +53,7 @@ function generateEmptySpecies(candies, pokemonSettings) {
   })
 }
 
-// TODO Can we find these constants in POGOBuf or item templates?
+// TODO Can we find these constants in POGOProtos or item templates?
 const MILLISECONDS_FACTOR = 1000
 const MOVE2_CHARGE_DELAY_MS = 500
 const STAB_MULTIPLIER = 1.25 // 25% damage boost
@@ -256,18 +256,22 @@ const transferPokemonFailed = createAction('TRANSFER_POKEMON_FAILED')
 const evolvePokemonSuccess = createAction('EVOLVE_POKEMON_SUCCESS')
 const evolvePokemonFailed = createAction('EVOLVE_POKEMON_FAILED')
 
+function handleGetPlayerResponse(dispatch, response) {
+  if (!response.success) {
+    throw new Error('Failed in retrieving player info.  Please restart.')
+  }
+
+  dispatch(getTrainerInfoSuccess({
+    trainerData: response.player_data
+  }))
+}
+
 function getTrainerInfo() {
   return async (dispatch) => {
     try {
-      const response = await client.getPlayer()
+      const response = await getClient().getPlayer()
 
-      if (!response.success) {
-        dispatch(getTrainerInfoFailed('Failed in retrieving player info.  Please restart.'))
-        return
-      }
-      dispatch(getTrainerInfoSuccess({
-        trainerData: response.player_data
-      }))
+      handleGetPlayerResponse(dispatch, response)
     } catch (error) {
       dispatch(getTrainerInfoFailed(error))
     }
@@ -315,9 +319,32 @@ function parseItemTemplates(templates) {
 
 let splitItemTemplates = null
 
+function handleGetItemTemplatesResponse(dispatch, itemTemplates) {
+  if (!itemTemplates) return
+
+  // TODO do not do this everytime we fetch the trainer pokemon, separate first fetch + refresh
+  itemTemplates.success = itemTemplates.result === 1
+
+  if (!itemTemplates.success) {
+    throw new Error('Failed to retrieve item templates')
+  }
+
+  splitItemTemplates = parseItemTemplates(itemTemplates)
+}
+
+function handleGetInventoryResponse(dispatch, inventory) {
+  if (!inventory.success) {
+    throw new Error('Failed to retrieve Trainers Pokemon')
+  }
+
+  const payload = parseInventory(inventory)
+
+  dispatch(getTrainerPokemonSuccess(payload))
+}
+
 async function getInventoryAndItemTemplates(dispatch, inventoryOnly) {
   try {
-    const batch = client.batchStart()
+    const batch = getClient().batchStart()
     batch.getInventory(0)
     if (!inventoryOnly) batch.downloadItemTemplates()
 
@@ -332,47 +359,47 @@ async function getInventoryAndItemTemplates(dispatch, inventoryOnly) {
       [inventory, itemTemplates] = response
     }
 
-    if (!inventory.success) {
-      dispatch(getTrainerPokemonFailed('Failed to retrieve Trainers Pokemon'))
-      return
-    }
-
-    if (!inventoryOnly) {
-      // TODO do not do this everytime we fetch the trainer pokemon, separate first fetch + refresh
-      itemTemplates.success = itemTemplates.result === 1
-
-      if (!itemTemplates.success) {
-        dispatch(getTrainerPokemonFailed('Failed to retrieve item templates'))
-        return
-      }
-
-      splitItemTemplates = parseItemTemplates(itemTemplates)
-    }
-
-    const payload = parseInventory(inventory)
-
-    dispatch(getTrainerPokemonSuccess(payload))
+    handleGetItemTemplatesResponse(dispatch, itemTemplates)
+    handleGetInventoryResponse(dispatch, inventory)
   } catch (error) {
     dispatch(getTrainerPokemonFailed(error))
   }
 }
 
-function refreshPokemon() {
-  return (dispatch) => getInventoryAndItemTemplates(dispatch, true)
+function getTrainerInfoAndPokemon() {
+  return async (dispatch) => {
+    const response = await getClient()
+      .batchStart()
+      .getInventory(0)
+      .downloadItemTemplates()
+      .getPlayer()
+      .batchCall()
+
+    const [inventory, itemTemplates, player] = response
+
+    handleGetItemTemplatesResponse(dispatch, itemTemplates)
+    handleGetInventoryResponse(dispatch, inventory)
+    handleGetPlayerResponse(dispatch, player)
+  }
 }
 
+function refreshPokemon() {
+  return async (dispatch) => getInventoryAndItemTemplates(dispatch, true)
+}
+
+// TODO might be unnecessary now
 function getTrainerPokemon() {
-  return (dispatch) => getInventoryAndItemTemplates(dispatch)
+  return async (dispatch) => getInventoryAndItemTemplates(dispatch)
 }
 
 function powerUpPokemon(pokemon) {
   return async (dispatch) => {
     try {
-      await client.upgradePokemon(pokemon.id)
+      await getClient().upgradePokemon(pokemon.id)
 
       // TODO parse the response instead of retrieving all the new pokemon
       // Requires replacing the main parsing with more functional code
-      await dispatch(getTrainerPokemon())
+      await dispatch(refreshPokemon())
       dispatch(powerUpPokemonSuccess(pokemon))
     } catch (error) {
       dispatch(powerUpPokemonFailed(error))
@@ -388,7 +415,7 @@ function toggleFavoritePokemon(pokemon) {
         favorite: !pokemon.favorite ? -1 : -0
       })
 
-      await client.setFavoritePokemon(pokemon.id, !!updatedPokemon.favorite)
+      await getClient().setFavoritePokemon(pokemon.id, !!updatedPokemon.favorite)
       dispatch(toggleFavoritePokemonSuccess(updatedPokemon))
     } catch (error) {
       dispatch(toggleFavoritePokemonFailed(error))
@@ -401,7 +428,7 @@ function renamePokemon(pokemon, nickname, callback) {
 
   return async (dispatch) => {
     try {
-      await client.nicknamePokemon(updatedPokemon.id, updatedPokemon.nickname)
+      await getClient().nicknamePokemon(updatedPokemon.id, updatedPokemon.nickname)
 
       dispatch(renamePokemonSuccess(updatedPokemon))
 
@@ -429,7 +456,7 @@ function transferPokemon(pokemon, delay) {
   return async (dispatch) => {
     try {
       await sleep(delay)
-      await client.releasePokemon(pokemon.id)
+      await getClient().releasePokemon(pokemon.id)
       dispatch(transferPokemonSuccess(pokemon))
     } catch (error) {
       dispatch(transferPokemonFailed(error))
@@ -442,7 +469,7 @@ function evolvePokemon(pokemon, delay) {
   return async (dispatch) => {
     try {
       await sleep(delay)
-      await client.evolvePokemon(pokemon.id)
+      await getClient().evolvePokemon(pokemon.id)
       dispatch(evolvePokemonSuccess(pokemon))
     } catch (error) {
       dispatch(evolvePokemonFailed(error))
@@ -454,7 +481,7 @@ function evolvePokemon(pokemon, delay) {
 const updateMonster = createAction('UPDATE_MONSTER')
 
 function batchStart(selectedPokemon, method) {
-  let batch = client.batchStart()
+  let batch = getClient().batchStart()
 
   selectedPokemon.forEach((p) => {
     batch = batch[method](p.id)
@@ -468,7 +495,7 @@ function resetStatusAndGetPokemon(errorMessage) {
     try {
       dispatch(resetStatus())
       await sleep(100) // Pogobuf may need a tick after a large batch
-      await dispatch(getTrainerPokemon())
+      await dispatch(refreshPokemon())
       if (errorMessage) ipcRenderer.send('error-message', errorMessage)
     } catch (e) {
       errorMessage = errorMessage ? `${errorMessage}\n\n${e}` : `Failed to fetch pokemon:\n\n${e}`
@@ -513,6 +540,7 @@ export default {
   sortWithDefaults: createAction('SORT_WITH_DEFAULTS'),
   getTrainerInfo,
   getTrainerPokemon,
+  getTrainerInfoAndPokemon,
   powerUpPokemon,
   toggleFavoritePokemon,
   renamePokemon,
