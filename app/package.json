@@ -14,6 +14,6 @@
     "async-file": "^2.0.2",
     "electron-localshortcut": "^1.0.0",
     "node-pogo-protos": "2.4.2",
-    "pogobuf": "pogosandbox/pogobuf#fix.release"
+    "pogobuf": "1.9.2"
   }
 }
