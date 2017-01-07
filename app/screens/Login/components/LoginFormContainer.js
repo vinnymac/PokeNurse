@@ -200,8 +200,6 @@ const LoginForm = React.createClass({
     const hashingKey = findDOMNode(this.hashKey).value
     const rememberMe = findDOMNode(this.rememberMe).checked
 
-    console.log(method, username, password, hashingKey, rememberMe)
-
     if (!username) {
       ipcRenderer.send('error-message', 'A username is required to login.')
       return
