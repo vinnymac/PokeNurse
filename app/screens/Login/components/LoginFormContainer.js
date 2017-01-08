@@ -75,7 +75,8 @@ const LoginForm = React.createClass({
         <FormGroup>
           <ButtonGroup data-toggle="buttons">
             <Button
-              className="btn btn-info noselect"
+              className="noselect"
+              bsStyle="info"
               htmlFor="authGoogle"
               active={isGoogleActive}
               onClick={this.radioLabelClick.bind(this, AUTH_METHODS.google)}
@@ -92,7 +93,8 @@ const LoginForm = React.createClass({
               Google
             </Button>
             <Button
-              className="btn btn-info noselect"
+              className="noselect"
+              bsStyle="info"
               htmlFor="authPTC"
               active={isPTCActive}
               onClick={this.radioLabelClick.bind(this, AUTH_METHODS.ptc)}
@@ -118,7 +120,6 @@ const LoginForm = React.createClass({
             </InputGroup.Addon>
             <FormControl
               type="text"
-              className="form-control"
               placeholder="Username"
               ref={(c) => { this.username = c }}
               onKeyPress={this.handleEnterKey}
@@ -129,7 +130,6 @@ const LoginForm = React.createClass({
             </InputGroup.Addon>
             <FormControl
               type="password"
-              className="form-control"
               placeholder="Password"
               ref={(c) => { this.password = c }}
               onKeyPress={this.handleEnterKey}
@@ -149,6 +149,7 @@ const LoginForm = React.createClass({
               type="text"
               placeholder="Hash Key required only for safer 0.51+ support"
               ref={(c) => { this.hashKey = c }}
+              defaultValue={credentials.hashingKey || ''}
             />
           </InputGroup>
         </FormGroup>
