@@ -17,7 +17,7 @@ import {
 import Pokemon from './Pokemon'
 
 const Species = React.createClass({
-  displayName: 'Species',
+  displayName: 'PokemonTable',
 
   propTypes: {
     sortBy: PropTypes.string,
@@ -123,14 +123,14 @@ const Species = React.createClass({
   getSpeciesBody(monsterSpecies) {
     const {
       filterBy,
-      showSpeciesWithZeroPokemon,
+      // showSpeciesWithZeroPokemon,
       speciesState
     } = this.props
 
     return monsterSpecies.map((specie, i) => {
-      if (!showSpeciesWithZeroPokemon && specie.count < 1) {
-        return null
-      }
+      // if (!showSpeciesWithZeroPokemon && specie.count < 1) {
+      //   return null
+      // }
       if (String(specie.name).toLowerCase().indexOf(filterBy) === -1) {
         return null
       }
@@ -143,35 +143,11 @@ const Species = React.createClass({
         sortDir
       } = speciesState[specie.pokemon_id]
 
-      return ([
-        <tr
-          className={collapsed ? '' : 'shown'}
-          key={`header${specie.pokemon_id}`}
-        >
-          <td
-            className={specie.count > 0 ? 'details-control' : ''}
-            onClick={this.handleCollapse.bind(this, specie)}
-          />
-          <td>{specie.pokemon_id}</td>
-          <td className="sprites">
-            <img
-              alt={`${specie.name} sprite`}
-              className="pokemon-avatar-sprite"
-              src={`./imgs/pokemonSprites/${specie.pokemon_id || 0}.png`}
-            />
-          </td>
-          <td>{specie.name}</td>
-          <td>{specie.count}</td>
-          <td>{specie.candy}</td>
-          <td>{specie.evolves}</td>
-        </tr>, this.getPokemonTable(specie, i, sortBy, sortDir, collapsed, pokemonState, checkAll)
-      ])
+      return this.getPokemonTable(specie, i, sortBy, sortDir, pokemonState, checkAll)
     })
   },
 
-  getPokemonTable(species, index, sortBy, sortDir, collapsed, pokemonState, checkAll) {
-    if (collapsed) return null
-
+  getPokemonTable(species, index, sortBy, sortDir, pokemonState, checkAll) {
     return (<Pokemon
       sortPokemonBy={this.sortPokemonBy}
       sortBy={sortBy}

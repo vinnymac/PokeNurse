@@ -32,6 +32,7 @@ const Pokemon = React.createClass({
     sortPokemonBy: PropTypes.func.isRequired,
     onCheckedChange: PropTypes.func.isRequired,
     species: PropTypes.object.isRequired,
+    pokemon: PropTypes.array.isRequired,
     checkAll: PropTypes.bool.isRequired,
     onCheckAll: PropTypes.func.isRequired,
     pokemonState: PropTypes.object.isRequired,
@@ -150,10 +151,12 @@ const Pokemon = React.createClass({
 
   getPokemonComponents(species) {
     const {
-      pokemonState
+      pokemonState,
     } = this.props
 
-    return species.pokemon.map((pokemon) => {
+    const pokemonData = this.props.pokemon
+
+    return pokemonData.map((pokemon) => {
       const favorite = pokemon.favorite ? favoriteGlyph : emptyFavoriteGlyph
       const pokeiv = `${pokemon.iv}% (${pokemon.attack}/${pokemon.defense}/${pokemon.stamina})`
       const powerUpTip = this.getPowerUpTip(pokemon, species)

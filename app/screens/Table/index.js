@@ -7,12 +7,17 @@ import {
 import $ from 'jquery'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import {
+  ButtonGroup,
+  Button,
+} from 'react-bootstrap'
 
 import MainMenu from '../Menu'
 import Status from './components/Status'
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
+import PokemonTable from './components/PokemonTable'
 
 import confirmDialog from '../ConfirmationDialog'
 import {
@@ -113,6 +118,22 @@ const Table = React.createClass({
     // TODO let parts of the screen render without monsters
     if (!monsters) return null
 
+    let mainTable
+
+    if (false) {
+      mainTable = (<SpeciesTable
+        filterBy={filterBy}
+        sortBy={sortBy}
+        sortDir={sortDir}
+                   />)
+    } else {
+      mainTable = (<PokemonTable
+        filterBy={filterBy}
+        sortBy={sortBy}
+        sortDir={sortDir}
+                   />)
+    }
+
     return (
       <div>
         <nav className="global-nav">
@@ -163,7 +184,34 @@ const Table = React.createClass({
 
           <header className="flex p5">
             <h2 className="h2 mra">
-              <span>Pokémon</span>
+              <ButtonGroup data-toggle="buttons">
+                <Button
+                  className="noselect"
+                  bsStyle="info"
+                  active={false}
+                >
+                  <input
+                    type="radio"
+                    name="auth-radio"
+                    value={'pokemon'}
+                    defaultChecked={false}
+                  />
+                  Pokémon
+                </Button>
+                <Button
+                  className="noselect"
+                  bsStyle="info"
+                  active={true}
+                >
+                  <input
+                    type="radio"
+                    name="auth-radio"
+                    value={'species'}
+                    defaultChecked={true}
+                  />
+                  Species
+                </Button>
+              </ButtonGroup>
               <span
                 className="fa fa-refresh"
                 id="refresh-btn"
@@ -193,11 +241,7 @@ const Table = React.createClass({
         </nav>
 
         <div className="container table-container">
-          <SpeciesTable
-            filterBy={filterBy}
-            sortBy={sortBy}
-            sortDir={sortDir}
-          />
+          {mainTable}
         </div>
 
         <div
@@ -282,8 +326,8 @@ const Table = React.createClass({
         running = true
 
         this.props.transferSelectedPokemon(selectedPokemon)
-          .then(() => { this.handleAllComplete() })
-          .catch(() => { this.handleAllComplete() })
+          .then(() => this.handleAllComplete())
+          .catch(() => this.handleAllComplete())
       },
 
       primaryText: 'Transfer without favorites',
@@ -299,8 +343,8 @@ const Table = React.createClass({
         running = true
 
         this.props.transferSelectedPokemon(filteredPokemon)
-          .then(() => { this.handleAllComplete() })
-          .catch(() => { this.handleAllComplete() })
+          .then(() => this.handleAllComplete())
+          .catch(() => this.handleAllComplete())
       }
     })
   },
@@ -323,8 +367,8 @@ const Table = React.createClass({
         running = true
 
         this.props.evolveSelectedPokemon(selectedPokemon)
-          .then(() => { this.handleAllComplete() })
-          .catch(() => { this.handleAllComplete() })
+          .then(() => this.handleAllComplete())
+          .catch(() => this.handleAllComplete())
       }
     })
   },
