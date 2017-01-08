@@ -5025,9 +5025,9 @@ pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
-pogobuf@pogosandbox/pogobuf#fix.release:
-  version "1.9.1"
-  resolved "https://codeload.github.com/pogosandbox/pogobuf/tar.gz/06f94e1052c1f738ed39b97ba92085a92a056515"
+pogobuf@1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/pogobuf/-/pogobuf-1.9.2.tgz#c6986f5b070e834ef649c8d9565da9f12a72c90e"
   dependencies:
     bluebird "^3.4.7"
     bluebird-retry "^0.10.1"
