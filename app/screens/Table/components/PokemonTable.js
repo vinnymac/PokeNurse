@@ -56,33 +56,52 @@ const Species = React.createClass({
       speciesState
     } = this.props
 
-    return monsterSpecies.map((specie, i) => {
-      // if (!showSpeciesWithZeroPokemon && specie.count < 1) {
-      //   return null
-      // }
-      if (String(specie.name).toLowerCase().indexOf(filterBy) === -1) {
-        return null
-      }
+    // Flatten all species of pokemon into one giant array
+    const pokemon = monsterSpecies.reduce((a, b) => a.concat(b.pokemon), [])
 
-      const {
-        // collapsed,
-        pokemonState,
-        checkAll,
-        sortBy,
-        sortDir
-      } = speciesState[specie.pokemon_id]
+    const specie = monsterSpecies[0]
 
-      return this.getPokemonTable(specie, i, sortBy, sortDir, pokemonState, checkAll)
-    })
+    const pokemonState = monsterSpecies.reduce((a, b) => Object.assign(a, speciesState[b.pokemon_id].pokemonState), {})
+
+    console.log(pokemonState)
+
+    const {
+      // collapsed,
+      // pokemonState,
+      checkAll,
+      sortBy,
+      sortDir
+    } = speciesState[specie.pokemon_id]
+
+    console.log(specie, pokemon, pokemonState)
+
+    // return monsterSpecies.map((specie, i) => {
+    //   // if (!showSpeciesWithZeroPokemon && specie.count < 1) {
+    //   //   return null
+    //   // }
+    //   if (String(specie.name).toLowerCase().indexOf(filterBy) === -1) {
+    //     return null
+    //   }
+    //
+    //   const {
+    //     // collapsed,
+    //     pokemonState,
+    //     checkAll,
+    //     sortBy,
+    //     sortDir
+    //   } = speciesState[specie.pokemon_id]
+    //
+    // })
+    return this.getPokemonTable(specie, pokemon, 0, sortBy, sortDir, pokemonState, checkAll)
   },
 
-  getPokemonTable(species, index, sortBy, sortDir, pokemonState, checkAll) {
+  getPokemonTable(species, pokemon, index, sortBy, sortDir, pokemonState, checkAll) {
     return (<Pokemon
       sortPokemonBy={this.sortPokemonBy}
       sortBy={sortBy}
       sortDir={sortDir}
       species={species}
-      pokemon={species.pokemon}
+      pokemon={pokemon}
       speciesIndex={index}
       pokemonState={pokemonState}
       checkAll={checkAll}

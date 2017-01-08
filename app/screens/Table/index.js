@@ -188,26 +188,26 @@ const Table = React.createClass({
                 <Button
                   className="noselect"
                   bsStyle="info"
-                  active={false}
+                  active={true}
                 >
                   <input
                     type="radio"
                     name="auth-radio"
                     value={'pokemon'}
-                    defaultChecked={false}
+                    defaultChecked={true}
                   />
                   Pokémon
                 </Button>
                 <Button
                   className="noselect"
                   bsStyle="info"
-                  active={true}
+                  active={false}
                 >
                   <input
                     type="radio"
                     name="auth-radio"
                     value={'species'}
-                    defaultChecked={true}
+                    defaultChecked={false}
                   />
                   Species
                 </Button>
