@@ -43,81 +43,10 @@ const Species = React.createClass({
     return (
       <div className="row">
         <div className="col-md-12">
-          <table className="table table-condensed table-hover display no-footer">
-            <thead>
-              {this.getSpeciesHeader()}
-            </thead>
-            <tbody>
-              {this.getSpeciesBody(monsters.species)}
-            </tbody>
-          </table>
+          {this.getSpeciesBody(monsters.species)}
         </div>
       </div>
     )
-  },
-
-  getSpeciesHeader() {
-    return (<tr>
-      <th />
-      <th
-        className={this.getSortDirectionClassName('pokemon_id')}
-        tabIndex="0"
-        rowSpan="1"
-        colSpan="1"
-        aria-controls="pokemon-data"
-        aria-label="Pokédex #: activate to sort column ascending"
-        onClick={this.handleSortSpecies.bind(this, 'pokemon_id')}
-      >
-        Pokédex #
-      </th>
-      <th>
-        Sprite
-      </th>
-      <th
-        className={this.getSortDirectionClassName('name')}
-        tabIndex="0"
-        rowSpan="1"
-        colSpan="1"
-        aria-controls="pokemon-data"
-        aria-label="Name: activate to sort column ascending"
-        onClick={this.handleSortSpecies.bind(this, 'name')}
-      >
-        Name
-      </th>
-      <th
-        className={this.getSortDirectionClassName('count')}
-        tabIndex="0"
-        rowSpan="1"
-        colSpan="1"
-        aria-controls="pokemon-data"
-        aria-label="Count: activate to sort column ascending"
-        onClick={this.handleSortSpecies.bind(this, 'count')}
-      >
-        Count
-      </th>
-      <th
-        className={this.getSortDirectionClassName('candy')}
-        tabIndex="0"
-        rowSpan="1"
-        colSpan="1"
-        aria-controls="pokemon-data"
-        aria-label="Candy: activate to sort column ascending"
-        onClick={this.handleSortSpecies.bind(this, 'candy')}
-      >
-        Candy
-      </th>
-      <th
-        className={this.getSortDirectionClassName('evolves')}
-        tabIndex="0"
-        rowSpan="1"
-        colSpan="1"
-        aria-controls="pokemon-data"
-        aria-label="Evolves: activate to sort column ascending"
-        onClick={this.handleSortSpecies.bind(this, 'evolves')}
-      >
-        Evolves
-      </th>
-    </tr>)
   },
 
   getSpeciesBody(monsterSpecies) {
@@ -136,7 +65,7 @@ const Species = React.createClass({
       }
 
       const {
-        collapsed,
+        // collapsed,
         pokemonState,
         checkAll,
         sortBy,

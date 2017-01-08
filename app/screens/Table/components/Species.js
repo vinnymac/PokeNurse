@@ -172,19 +172,23 @@ const Species = React.createClass({
   getPokemonTable(species, index, sortBy, sortDir, collapsed, pokemonState, checkAll) {
     if (collapsed) return null
 
-    return (<Pokemon
-      sortPokemonBy={this.sortPokemonBy}
-      sortBy={sortBy}
-      sortDir={sortDir}
-      species={species}
-      pokemon={species.pokemon}
-      speciesIndex={index}
-      pokemonState={pokemonState}
-      checkAll={checkAll}
-      onCheckedChange={this.handleCheckedChange}
-      onCheckAll={this.handleCheckAll}
-      key={`child${species.pokemon_id}`}
-            />)
+    return (<tr className="child" key={`sub${species.pokemon_id}`}>
+      <td colSpan="7">
+        <Pokemon
+          sortPokemonBy={this.sortPokemonBy}
+          sortBy={sortBy}
+          sortDir={sortDir}
+          species={species}
+          pokemon={species.pokemon}
+          speciesIndex={index}
+          pokemonState={pokemonState}
+          checkAll={checkAll}
+          onCheckedChange={this.handleCheckedChange}
+          onCheckAll={this.handleCheckAll}
+          key={`child${species.pokemon_id}`}
+        />
+      </td>
+    </tr>)
   },
 
   getSortDirectionClassName(key) {
