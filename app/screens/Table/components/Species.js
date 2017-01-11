@@ -181,7 +181,7 @@ const Species = React.createClass({
           species={species}
           pokemon={species.pokemon}
           speciesIndex={index}
-          pokemonState={pokemonState}
+          getPokemonState={() => pokemonState}
           checkAll={checkAll}
           onCheckedChange={this.handleCheckedChange}
           onCheckAll={this.handleCheckAll}

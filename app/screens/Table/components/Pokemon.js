@@ -35,7 +35,7 @@ const Pokemon = React.createClass({
     pokemon: PropTypes.array.isRequired,
     checkAll: PropTypes.bool.isRequired,
     onCheckAll: PropTypes.func.isRequired,
-    pokemonState: PropTypes.object.isRequired,
+    getPokemonState: PropTypes.func.isRequired,
     toggleFavoritePokemon: PropTypes.func.isRequired,
     powerUpPokemon: PropTypes.func.isRequired,
   },
@@ -147,7 +147,7 @@ const Pokemon = React.createClass({
 
   getPokemonComponents(species) {
     const {
-      pokemonState,
+      getPokemonState,
     } = this.props
 
     const pokemonData = this.props.pokemon
@@ -164,6 +164,7 @@ const Pokemon = React.createClass({
         <br />
         {`Stamina: ${pokemon.stamina}`}
       </span>)
+      const pokemonState = getPokemonState(pokemon.pokemon_id)
       const isChecked = pokemonState[String(pokemon.id)].check
       const level = utils.getLevelFromCpMultiplier(pokemon.cp_multiplier + pokemon.additional_cp_multiplier)
 

@@ -25,6 +25,7 @@ const Species = React.createClass({
     filterBy: PropTypes.string,
     sortSpecies: PropTypes.func.isRequired,
     monsters: PropTypes.object.isRequired,
+    pokemon: PropTypes.array.isRequired,
     updateMonsterSort: PropTypes.func.isRequired,
     showSpeciesWithZeroPokemon: PropTypes.bool.isRequired,
     updateSpecies: PropTypes.func.isRequired,
@@ -36,34 +37,32 @@ const Species = React.createClass({
   },
 
   render() {
-    const {
-      monsters
-    } = this.props
-
     return (
       <div className="row">
         <div className="col-md-12">
-          {this.getSpeciesBody(monsters.species)}
+          {this.getSpeciesBody()}
         </div>
       </div>
     )
   },
 
-  getSpeciesBody(monsterSpecies) {
+  getSpeciesBody() {
     const {
       filterBy,
       // showSpeciesWithZeroPokemon,
-      speciesState
+      speciesState,
+      pokemon,
+      monsters,
     } = this.props
 
     // Flatten all species of pokemon into one giant array
-    const pokemon = monsterSpecies.reduce((a, b) => a.concat(b.pokemon), [])
+    // const pokemon = monsterSpecies.reduce((a, b) => a.concat(b.pokemon), [])
 
-    const specie = monsterSpecies[0]
+    const specie = monsters.species[0]
 
-    const pokemonState = monsterSpecies.reduce((a, b) => Object.assign(a, speciesState[b.pokemon_id].pokemonState), {})
+    // const pokemonState = monsterSpecies.reduce((a, b) => Object.assign(a, speciesState[b.pokemon_id].pokemonState), {})
 
-    console.log(pokemonState)
+    // console.log(pokemonState)
 
     const {
       // collapsed,
@@ -73,7 +72,7 @@ const Species = React.createClass({
       sortDir
     } = speciesState[specie.pokemon_id]
 
-    console.log(specie, pokemon, pokemonState)
+    // console.log(specie, pokemon) // , pokemonState)
 
     // return monsterSpecies.map((specie, i) => {
     //   // if (!showSpeciesWithZeroPokemon && specie.count < 1) {
@@ -92,10 +91,10 @@ const Species = React.createClass({
     //   } = speciesState[specie.pokemon_id]
     //
     // })
-    return this.getPokemonTable(specie, pokemon, 0, sortBy, sortDir, pokemonState, checkAll)
+    return this.getPokemonTable(specie, pokemon, 0, sortBy, sortDir, speciesState, checkAll)
   },
 
-  getPokemonTable(species, pokemon, index, sortBy, sortDir, pokemonState, checkAll) {
+  getPokemonTable(species, pokemon, index, sortBy, sortDir, speciesState, checkAll) {
     return (<Pokemon
       sortPokemonBy={this.sortPokemonBy}
       sortBy={sortBy}
@@ -103,7 +102,7 @@ const Species = React.createClass({
       species={species}
       pokemon={pokemon}
       speciesIndex={index}
-      pokemonState={pokemonState}
+      getPokemonState={(pid) => speciesState[pid].pokemonState}
       checkAll={checkAll}
       onCheckedChange={this.handleCheckedChange}
       onCheckAll={this.handleCheckAll}
@@ -166,6 +165,8 @@ export default connect((state => ({
   showSpeciesWithZeroPokemon: state.settings.showSpeciesWithZeroPokemon,
   speciesState: state.trainer.speciesState,
   monsters: state.trainer.monsters,
+  // Flatten all species of pokemon into one giant array
+  pokemon: state.trainer.monsters.species.reduce((a, b) => a.concat(b.pokemon), []),
 })), (dispatch => bindActionCreators({
   updateMonsterSort,
   updateSpecies,
