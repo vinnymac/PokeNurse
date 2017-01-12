@@ -5,12 +5,30 @@ import {
   Button
 } from 'react-bootstrap'
 
+const fixDisabledChildren = (children) => {
+  let hasDisabledChildren = false
+
+  const childrenWithDisabledSupport = React.Children.map(children, (child) => {
+    const isChildType = child.type in [Button, React.DOM.button]
+
+    if (child && isChildType && child.props.disabled) {
+      hasDisabledChildren = true
+      const childStyle = Object.assign({}, child.props.style, { pointerEvents: 'none' })
+      return React.cloneElement(child, { style: childStyle })
+    }
+
+    return child
+  })
+
+  return { childrenWithDisabledSupport, hasDisabledChildren }
+}
+
 // This wrapper allows for tooltips to be used around disabled elements
 // For example a disabled input or button may have a tooltip to inform the user
-const TooltipWrapper = React.createClass({
-  displayName: 'TooltipWrapper',
+class TooltipWrapper extends React.PureComponent {
+  static displayName = 'TooltipWrapper'
 
-  propTypes: {
+  static propTypes = {
     id: PropTypes.string.isRequired,
     show: PropTypes.bool,
     message: PropTypes.node,
@@ -19,8 +37,8 @@ const TooltipWrapper = React.createClass({
     wrapperClass: PropTypes.string,
     wrapperStyle: PropTypes.object,
     wrapperTag: PropTypes.string,
-    children: React.PropTypes.node
-  },
+    children: PropTypes.node,
+  }
 
   render() {
     const {
@@ -31,7 +49,8 @@ const TooltipWrapper = React.createClass({
       delayShow,
       wrapperClass,
       wrapperStyle,
-      wrapperTag
+      wrapperTag,
+      children,
     } = this.props
 
     let tooltip = null
@@ -46,7 +65,7 @@ const TooltipWrapper = React.createClass({
 
     const WrapperTag = wrapperTag || 'div'
 
-    const { childrenWithDisabledSupport, hasDisabledChildren } = this.renderChildren()
+    const { childrenWithDisabledSupport, hasDisabledChildren } = fixDisabledChildren(children)
 
     let disabledWrapperStyle = null
 
@@ -57,40 +76,21 @@ const TooltipWrapper = React.createClass({
       }, wrapperStyle)
     }
 
-    return (<OverlayTrigger
-      placement={placement}
-      overlay={tooltip}
-      delayShow={delayShow}
-    >
-      <WrapperTag
-        className={wrapperClass}
-        style={disabledWrapperStyle}
+    return (
+      <OverlayTrigger
+        placement={placement}
+        overlay={tooltip}
+        delayShow={delayShow}
       >
-        {childrenWithDisabledSupport}
-      </WrapperTag>
-    </OverlayTrigger>)
-  },
-
-
-  renderChildren() {
-    const { children } = this.props
-
-    let hasDisabledChildren = false
-
-    const childrenWithDisabledSupport = React.Children.map(children, (child) => {
-      const isChildType = child.type in [Button, React.DOM.button]
-
-      if (child && isChildType && child.props.disabled) {
-        hasDisabledChildren = true
-        const childStyle = Object.assign({}, child.props.style, { pointerEvents: 'none' })
-        return React.cloneElement(child, { style: childStyle })
-      }
-
-      return child
-    })
-
-    return { childrenWithDisabledSupport, hasDisabledChildren }
+        <WrapperTag
+          className={wrapperClass}
+          style={disabledWrapperStyle}
+        >
+          {childrenWithDisabledSupport}
+        </WrapperTag>
+      </OverlayTrigger>
+    )
   }
-})
+}
 
 export default TooltipWrapper

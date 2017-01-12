@@ -7,10 +7,11 @@ import actions from '../../../actions'
 
 import PokemonRow from './PokemonRow'
 
-const getPokemonComponents = (species, pokemon, getPokemonState, onCheckedChange,
-  toggleFavoritePokemon, powerUpPokemon
-) =>
-  pokemon.map(p =>
+const PokemonBody = ({
+  species, pokemon, getPokemonState, onCheckedChange,
+  toggleFavoritePokemon, powerUpPokemon,
+}) => {
+  const pokemonRows = pokemon.map(p =>
     <PokemonRow
       key={p.id}
       getPokemonState={getPokemonState}
@@ -22,43 +23,48 @@ const getPokemonComponents = (species, pokemon, getPokemonState, onCheckedChange
     />
   )
 
-class PokemonTable extends React.PureComponent { // eslint-disable-line
-  static displayName = 'PokemonTable'
+  return (
+    <tbody>
+      {pokemonRows}
+    </tbody>
+  )
+}
+
+PokemonBody.propTypes = {
+  onCheckedChange: PropTypes.func.isRequired,
+  species: PropTypes.object.isRequired,
+  pokemon: PropTypes.array.isRequired,
+  getPokemonState: PropTypes.func.isRequired,
+  toggleFavoritePokemon: PropTypes.func.isRequired,
+  powerUpPokemon: PropTypes.func.isRequired,
+}
+
+class PokemonHead extends React.PureComponent { // eslint-disable-line
+  static displayName = 'PokemonHead'
 
   static propTypes = {
     speciesIndex: PropTypes.number,
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
     sortPokemonBy: PropTypes.func.isRequired,
-    onCheckedChange: PropTypes.func.isRequired,
     species: PropTypes.object.isRequired,
-    pokemon: PropTypes.array.isRequired,
     checkAll: PropTypes.bool.isRequired,
     onCheckAll: PropTypes.func.isRequired,
-    getPokemonState: PropTypes.func.isRequired,
-    toggleFavoritePokemon: PropTypes.func.isRequired,
-    powerUpPokemon: PropTypes.func.isRequired,
   }
 
   render() {
     const {
-      species,
       checkAll,
-      getPokemonState,
-      pokemon,
-      onCheckedChange,
-      toggleFavoritePokemon,
-      powerUpPokemon,
     } = this.props
 
-    return (<table className="table table-condensed table-hover table-striped">
+    return (
       <thead>
         <tr>
           <th width="5%">
             <input
               type="checkbox"
               checked={checkAll}
-              onChange={this.checkAll.bind(this, species)}
+              onChange={this.handleCheckAll}
             />
           </th>
           <th
@@ -134,14 +140,16 @@ class PokemonTable extends React.PureComponent { // eslint-disable-line
           </th>
         </tr>
       </thead>
-      <tbody ref={(c) => { this.tBody = c }}>
-        {getPokemonComponents(species, pokemon, getPokemonState, onCheckedChange, toggleFavoritePokemon, powerUpPokemon)}
-      </tbody>
-    </table>)
+    )
   }
 
-  checkAll = (species) => {
-    this.props.onCheckAll(species)
+  handleCheckAll = () => {
+    const {
+      onCheckAll,
+      species,
+    } = this.props
+
+    onCheckAll(species)
   }
 
   handleSortPokemon = (sortBy) => {
@@ -164,6 +172,62 @@ class PokemonTable extends React.PureComponent { // eslint-disable-line
     }
 
     return 'sorting'
+  }
+}
+
+class PokemonTable extends React.PureComponent { // eslint-disable-line
+  static displayName = 'PokemonTable'
+
+  static propTypes = {
+    speciesIndex: PropTypes.number,
+    sortBy: PropTypes.string,
+    sortDir: PropTypes.string,
+    sortPokemonBy: PropTypes.func.isRequired,
+    onCheckedChange: PropTypes.func.isRequired,
+    species: PropTypes.object.isRequired,
+    pokemon: PropTypes.array.isRequired,
+    checkAll: PropTypes.bool.isRequired,
+    onCheckAll: PropTypes.func.isRequired,
+    getPokemonState: PropTypes.func.isRequired,
+    toggleFavoritePokemon: PropTypes.func.isRequired,
+    powerUpPokemon: PropTypes.func.isRequired,
+  }
+
+  render() {
+    const {
+      species,
+      checkAll,
+      getPokemonState,
+      pokemon,
+      onCheckedChange,
+      toggleFavoritePokemon,
+      powerUpPokemon,
+      speciesIndex,
+      sortPokemonBy,
+      sortDir,
+      sortBy,
+      onCheckAll,
+    } = this.props
+
+    return (<table className="table table-condensed table-hover table-striped">
+      <PokemonHead
+        checkAll={checkAll}
+        sortBy={sortBy}
+        sortDir={sortDir}
+        sortPokemonBy={sortPokemonBy}
+        speciesIndex={speciesIndex}
+        species={species}
+        onCheckAll={onCheckAll}
+      />
+      <PokemonBody
+        species={species}
+        pokemon={pokemon}
+        getPokemonState={getPokemonState}
+        onCheckedChange={onCheckedChange}
+        toggleFavoritePokemon={toggleFavoritePokemon}
+        powerUpPokemon={powerUpPokemon}
+      />
+    </table>)
   }
 }
 

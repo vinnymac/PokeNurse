@@ -118,6 +118,7 @@
     "minimist": "^1.2.0",
     "moment": "2.17.1",
     "postcss": "5.2.9",
+    "react-addons-perf": "^15.4.2",
     "react-bootstrap": "^0.30.3",
     "react-burger-menu": "1.10.10",
     "redux-actions": "1.2.0",
