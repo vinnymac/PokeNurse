@@ -14,7 +14,7 @@ import {
   sortAllSpecies,
 } from '../../../actions'
 
-import Pokemon from './Pokemon'
+import PokemonTable from './PokemonTable'
 
 const Species = React.createClass({
   displayName: 'Species',
@@ -174,7 +174,7 @@ const Species = React.createClass({
 
     return (<tr className="child" key={`sub${species.pokemon_id}`}>
       <td colSpan="7">
-        <Pokemon
+        <PokemonTable
           sortPokemonBy={this.sortPokemonBy}
           sortBy={sortBy}
           sortDir={sortDir}

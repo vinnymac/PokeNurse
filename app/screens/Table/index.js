@@ -17,7 +17,7 @@ import Status from './components/Status'
 import SpeciesTable from './components/Species'
 import SpeciesCounter from './components/SpeciesPokemonCounter'
 import CheckCounter from './components/CheckCounter'
-import PokemonTable from './components/PokemonTable'
+import PokemonTableWrapper from './components/PokemonTableWrapper'
 
 import confirmDialog from '../ConfirmationDialog'
 import {
@@ -121,17 +121,21 @@ const Table = React.createClass({
     let mainTable
 
     if (false) {
-      mainTable = (<SpeciesTable
-        filterBy={filterBy}
-        sortBy={sortBy}
-        sortDir={sortDir}
-                   />)
+      mainTable = (
+        <SpeciesTable
+          filterBy={filterBy}
+          sortBy={sortBy}
+          sortDir={sortDir}
+        />
+      )
     } else {
-      mainTable = (<PokemonTable
-        filterBy={filterBy}
-        sortBy={sortBy}
-        sortDir={sortDir}
-                   />)
+      mainTable = (
+        <PokemonTableWrapper
+          filterBy={filterBy}
+          sortBy={sortBy}
+          sortDir={sortDir}
+        />
+      )
     }
 
     return (

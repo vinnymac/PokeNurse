@@ -3,114 +3,157 @@ import React, {
 } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import actions from '../../../actions'
 
-import {
-  updateMonsterSort,
-  updateSpecies,
-  sortSpecies,
-  checkPokemon,
-  checkAllBySpecies,
-  collapseBySpecies,
-  sortAllSpecies,
-} from '../../../actions'
+import PokemonRow from './PokemonRow'
 
-import Pokemon from './Pokemon'
+const getPokemonComponents = (species, pokemon, getPokemonState, onCheckedChange,
+  toggleFavoritePokemon, powerUpPokemon
+) =>
+  pokemon.map(p =>
+    <PokemonRow
+      key={p.id}
+      getPokemonState={getPokemonState}
+      species={species}
+      pokemon={p}
+      onCheckedChange={onCheckedChange}
+      toggleFavoritePokemon={toggleFavoritePokemon}
+      powerUpPokemon={powerUpPokemon}
+    />
+  )
 
-const Species = React.createClass({
-  displayName: 'PokemonTable',
+class PokemonTable extends React.PureComponent { // eslint-disable-line
+  static displayName = 'PokemonTable'
 
-  propTypes: {
+  static propTypes = {
+    speciesIndex: PropTypes.number,
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
-    filterBy: PropTypes.string,
-    sortSpecies: PropTypes.func.isRequired,
-    monsters: PropTypes.object.isRequired,
+    sortPokemonBy: PropTypes.func.isRequired,
+    onCheckedChange: PropTypes.func.isRequired,
+    species: PropTypes.object.isRequired,
     pokemon: PropTypes.array.isRequired,
-    updateMonsterSort: PropTypes.func.isRequired,
-    showSpeciesWithZeroPokemon: PropTypes.bool.isRequired,
-    updateSpecies: PropTypes.func.isRequired,
-    speciesState: PropTypes.object,
-    checkPokemon: PropTypes.func.isRequired,
-    checkAllBySpecies: PropTypes.func.isRequired,
-    collapseBySpecies: PropTypes.func.isRequired,
-    sortAllSpecies: PropTypes.func.isRequired,
-  },
+    checkAll: PropTypes.bool.isRequired,
+    onCheckAll: PropTypes.func.isRequired,
+    getPokemonState: PropTypes.func.isRequired,
+    toggleFavoritePokemon: PropTypes.func.isRequired,
+    powerUpPokemon: PropTypes.func.isRequired,
+  }
 
   render() {
-    return (
-      <div className="row">
-        <div className="col-md-12">
-          {this.getSpeciesBody()}
-        </div>
-      </div>
-    )
-  },
-
-  getSpeciesBody() {
     const {
-      filterBy,
-      // showSpeciesWithZeroPokemon,
-      speciesState,
+      species,
+      checkAll,
+      getPokemonState,
       pokemon,
-      monsters,
+      onCheckedChange,
+      toggleFavoritePokemon,
+      powerUpPokemon,
     } = this.props
 
-    // Flatten all species of pokemon into one giant array
-    // const pokemon = monsterSpecies.reduce((a, b) => a.concat(b.pokemon), [])
+    return (<table className="table table-condensed table-hover table-striped">
+      <thead>
+        <tr>
+          <th width="5%">
+            <input
+              type="checkbox"
+              checked={checkAll}
+              onChange={this.checkAll.bind(this, species)}
+            />
+          </th>
+          <th
+            width="5%"
+            className={this.getSortDirectionClassName('favorite')}
+            tabIndex="0"
+            rowSpan="1"
+            colSpan="1"
+            aria-controls="pokemon-data"
+            aria-label="Favorite: activate to sort column ascending"
+            onClick={this.handleSortPokemon.bind(this, 'favorite')}
+          >
+            <span className="fa fa-star favorite-yellow" />
+          </th>
+          <th>
+            P↑
+          </th>
+          <th
+            width="15%"
+            className={this.getSortDirectionClassName('name')}
+            tabIndex="0"
+            rowSpan="1"
+            colSpan="1"
+            aria-controls="pokemon-data"
+            aria-label="Name: activate to sort column ascending"
+            onClick={this.handleSortPokemon.bind(this, 'name')}
+          >
+            Name
+          </th>
+          <th
+            className={this.getSortDirectionClassName('nickname')}
+            tabIndex="0"
+            rowSpan="1"
+            colSpan="1"
+            aria-controls="pokemon-data"
+            aria-label="Nickname: activate to sort column ascending"
+            onClick={this.handleSortPokemon.bind(this, 'nickname')}
+          >
+            Nickname
+          </th>
+          <th
+            className={this.getSortDirectionClassName('cp')}
+            tabIndex="0"
+            rowSpan="1"
+            colSpan="1"
+            aria-controls="pokemon-data"
+            aria-label="CP: activate to sort column ascending"
+            onClick={this.handleSortPokemon.bind(this, 'cp')}
+          >
+            CP
+          </th>
+          <th
+            className={this.getSortDirectionClassName('level')}
+            tabIndex="0"
+            rowSpan="1"
+            colSpan="1"
+            aria-controls="pokemon-data"
+            aria-label="Level: activate to sort column ascending"
+            onClick={this.handleSortPokemon.bind(this, 'level')}
+          >
+            Level
+          </th>
+          <th
+            className={this.getSortDirectionClassName('iv')}
+            tabIndex="0"
+            rowSpan="1"
+            colSpan="1"
+            aria-controls="pokemon-data"
+            aria-label="IV: activate to sort column ascending"
+            onClick={this.handleSortPokemon.bind(this, 'iv')}
+          >
+            IV
+          </th>
+        </tr>
+      </thead>
+      <tbody ref={(c) => { this.tBody = c }}>
+        {getPokemonComponents(species, pokemon, getPokemonState, onCheckedChange, toggleFavoritePokemon, powerUpPokemon)}
+      </tbody>
+    </table>)
+  }
 
-    const specie = monsters.species[0]
+  checkAll = (species) => {
+    this.props.onCheckAll(species)
+  }
 
-    // const pokemonState = monsterSpecies.reduce((a, b) => Object.assign(a, speciesState[b.pokemon_id].pokemonState), {})
-
-    // console.log(pokemonState)
-
+  handleSortPokemon = (sortBy) => {
     const {
-      // collapsed,
-      // pokemonState,
-      checkAll,
-      sortBy,
-      sortDir
-    } = speciesState[specie.pokemon_id]
+      speciesIndex,
+      sortPokemonBy
+    } = this.props
 
-    // console.log(specie, pokemon) // , pokemonState)
+    sortPokemonBy(sortBy, speciesIndex)
+  }
 
-    // return monsterSpecies.map((specie, i) => {
-    //   // if (!showSpeciesWithZeroPokemon && specie.count < 1) {
-    //   //   return null
-    //   // }
-    //   if (String(specie.name).toLowerCase().indexOf(filterBy) === -1) {
-    //     return null
-    //   }
-    //
-    //   const {
-    //     // collapsed,
-    //     pokemonState,
-    //     checkAll,
-    //     sortBy,
-    //     sortDir
-    //   } = speciesState[specie.pokemon_id]
-    //
-    // })
-    return this.getPokemonTable(specie, pokemon, 0, sortBy, sortDir, speciesState, checkAll)
-  },
-
-  getPokemonTable(species, pokemon, index, sortBy, sortDir, speciesState, checkAll) {
-    return (<Pokemon
-      sortPokemonBy={this.sortPokemonBy}
-      sortBy={sortBy}
-      sortDir={sortDir}
-      species={species}
-      pokemon={pokemon}
-      speciesIndex={index}
-      getPokemonState={(pid) => speciesState[pid].pokemonState}
-      checkAll={checkAll}
-      onCheckedChange={this.handleCheckedChange}
-      onCheckAll={this.handleCheckAll}
-      key={`child${species.pokemon_id}`}
-            />)
-  },
-
-  getSortDirectionClassName(key) {
+  getSortDirectionClassName = (key) => {
     const {
       sortBy,
       sortDir
@@ -121,58 +164,10 @@ const Species = React.createClass({
     }
 
     return 'sorting'
-  },
+  }
+}
 
-  sortPokemonBy(sortBy, speciesIndex) {
-    this.props.sortSpecies({
-      speciesIndex,
-      sortBy,
-    })
-  },
-
-  getSortState(specie) {
-    const {
-      speciesState
-    } = this.props
-
-    const {
-      sortBy,
-      sortDir
-    } = speciesState[specie.pokemon_id]
-
-    return { sortBy, sortDir }
-  },
-
-  handleCollapse(specie) {
-    this.props.collapseBySpecies(specie)
-  },
-
-  handleCheckAll(species) {
-    this.props.checkAllBySpecies(species)
-  },
-
-  handleCheckedChange(pokemon) {
-    this.props.checkPokemon(pokemon)
-  },
-
-  handleSortSpecies(newSortBy) {
-    this.props.sortAllSpecies(newSortBy)
-  },
-
-})
-
-export default connect((state => ({
-  showSpeciesWithZeroPokemon: state.settings.showSpeciesWithZeroPokemon,
-  speciesState: state.trainer.speciesState,
-  monsters: state.trainer.monsters,
-  // Flatten all species of pokemon into one giant array
-  pokemon: state.trainer.monsters.species.reduce((a, b) => a.concat(b.pokemon), []),
-})), (dispatch => bindActionCreators({
-  updateMonsterSort,
-  updateSpecies,
-  sortSpecies,
-  checkPokemon,
-  checkAllBySpecies,
-  collapseBySpecies,
-  sortAllSpecies,
-}, dispatch)))(Species)
+export default connect(null, dispatch => bindActionCreators({
+  toggleFavoritePokemon: actions.toggleFavoritePokemon,
+  powerUpPokemon: actions.powerUpPokemon
+}, dispatch))(PokemonTable)
