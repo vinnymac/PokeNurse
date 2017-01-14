@@ -12,6 +12,7 @@ import {
 
 import renderModal from '../../Detail'
 import Tooltip from '../../Tooltip'
+import utils from '../../../utils'
 
 const favoriteGlyph = 'fa fa-star favorite-yellow'
 const emptyFavoriteGlyph = 'fa fa-star-o'
@@ -107,6 +108,17 @@ const Pokemon = React.createClass({
                   CP
                 </th>
                 <th
+                  className={this.getSortDirectionClassName('level')}
+                  tabIndex="0"
+                  rowSpan="1"
+                  colSpan="1"
+                  aria-controls="pokemon-data"
+                  aria-label="Level: activate to sort column ascending"
+                  onClick={this.handleSortPokemon.bind(this, 'level')}
+                >
+                  Level
+                </th>
+                <th
                   className={this.getSortDirectionClassName('iv')}
                   tabIndex="0"
                   rowSpan="1"
@@ -154,6 +166,7 @@ const Pokemon = React.createClass({
         {`Stamina: ${pokemon.stamina}`}
       </span>)
       const isChecked = pokemonState[String(pokemon.id)].check
+      const level = utils.getLevelFromCpMultiplier(pokemon.cp_multiplier + pokemon.additional_cp_multiplier)
 
       return (
         <tr key={pokemon.id}>
@@ -209,6 +222,9 @@ const Pokemon = React.createClass({
             >
               {pokemon.cp}
             </Tooltip>
+          </td>
+          <td>
+            {level}
           </td>
           <td>
             <Tooltip

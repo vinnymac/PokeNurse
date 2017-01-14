@@ -80,6 +80,7 @@ const specieSortByOptions = [
   'name',
   'nickname',
   'cp',
+  'level',
   'iv',
 ]
 
