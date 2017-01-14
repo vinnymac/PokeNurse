@@ -4,12 +4,12 @@ import React, {
 
 import utils from '../../../utils'
 
-const QuickMove = React.createClass({
-  displayName: 'Evolutions',
+class QuickMove extends React.Component {
+  static displayName = 'Evolutions'
 
-  propTypes: {
+  static propTypes = {
     evolutionIds: PropTypes.node.isRequired
-  },
+  }
 
   render() {
     const {
@@ -47,8 +47,7 @@ const QuickMove = React.createClass({
         {evolveInfoItems}
       </div>
     )
-  },
-
-})
+  }
+}
 
 export default QuickMove

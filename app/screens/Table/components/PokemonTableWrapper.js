@@ -17,10 +17,10 @@ import {
 
 import PokemonTable from './PokemonTable'
 
-const PokemonTableWrapper = React.createClass({
-  displayName: 'PokemonTableWrapper',
+class PokemonTableWrapper extends React.Component {
+  static displayName = 'PokemonTableWrapper'
 
-  propTypes: {
+  static propTypes = {
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
     filterBy: PropTypes.string,
@@ -35,7 +35,7 @@ const PokemonTableWrapper = React.createClass({
     checkAllBySpecies: PropTypes.func.isRequired,
     collapseBySpecies: PropTypes.func.isRequired,
     sortAllSpecies: PropTypes.func.isRequired,
-  },
+  }
 
   render() {
     return (
@@ -45,11 +45,11 @@ const PokemonTableWrapper = React.createClass({
         </div>
       </div>
     )
-  },
+  }
 
-  getSpeciesBody() {
+  getSpeciesBody = () => {
     const {
-      filterBy,
+      // filterBy,
       // showSpeciesWithZeroPokemon,
       speciesState,
       pokemon,
@@ -93,27 +93,24 @@ const PokemonTableWrapper = React.createClass({
     //
     // })
     return this.getPokemonTable(specie, pokemon, 0, sortBy, sortDir, speciesState, checkAll)
-  },
+  }
 
-  getPokemonTable(species, pokemon, index, sortBy, sortDir, speciesState, checkAll) {
-    return (
-      <PokemonTable
-        sortPokemonBy={this.sortPokemonBy}
-        sortBy={sortBy}
-        sortDir={sortDir}
-        species={species}
-        pokemon={pokemon}
-        speciesIndex={index}
-        getPokemonState={(pid) => speciesState[pid].pokemonState}
-        checkAll={checkAll}
-        onCheckedChange={this.handleCheckedChange}
-        onCheckAll={this.handleCheckAll}
-        key={`child${species.pokemon_id}`}
-      />
-    )
-  },
+  getPokemonTable = (species, pokemon, index, sortBy, sortDir, speciesState, checkAll) =>
+    <PokemonTable
+      sortPokemonBy={this.sortPokemonBy}
+      sortBy={sortBy}
+      sortDir={sortDir}
+      species={species}
+      pokemon={pokemon}
+      speciesIndex={index}
+      getPokemonState={(pid) => speciesState[pid].pokemonState}
+      checkAll={checkAll}
+      onCheckedChange={this.handleCheckedChange}
+      onCheckAll={this.handleCheckAll}
+      key={`child${species.pokemon_id}`}
+    />
 
-  getSortDirectionClassName(key) {
+  getSortDirectionClassName = (key) => {
     const {
       sortBy,
       sortDir
@@ -124,16 +121,16 @@ const PokemonTableWrapper = React.createClass({
     }
 
     return 'sorting'
-  },
+  }
 
-  sortPokemonBy(sortBy, speciesIndex) {
+  sortPokemonBy = (sortBy, speciesIndex) => {
     this.props.sortSpecies({
       speciesIndex,
       sortBy,
     })
-  },
+  }
 
-  getSortState(specie) {
+  getSortState = (specie) => {
     const {
       speciesState
     } = this.props
@@ -144,25 +141,24 @@ const PokemonTableWrapper = React.createClass({
     } = speciesState[specie.pokemon_id]
 
     return { sortBy, sortDir }
-  },
+  }
 
-  handleCollapse(specie) {
+  handleCollapse = (specie) => {
     this.props.collapseBySpecies(specie)
-  },
+  }
 
-  handleCheckAll(species) {
+  handleCheckAll = (species) => {
     this.props.checkAllBySpecies(species)
-  },
+  }
 
-  handleCheckedChange(pokemon) {
+  handleCheckedChange = (pokemon) => {
     this.props.checkPokemon(pokemon)
-  },
+  }
 
-  handleSortSpecies(newSortBy) {
+  handleSortSpecies = (newSortBy) => {
     this.props.sortAllSpecies(newSortBy)
-  },
-
-})
+  }
+}
 
 export default connect((state => ({
   showSpeciesWithZeroPokemon: state.settings.showSpeciesWithZeroPokemon,

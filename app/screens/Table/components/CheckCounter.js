@@ -3,12 +3,12 @@ import React, {
 } from 'react'
 import { connect } from 'react-redux'
 
-const CheckCounter = React.createClass({
-  displayName: 'CheckCounter',
+class CheckCounter extends React.Component {
+  static displayName = 'CheckCounter'
 
-  propTypes: {
+  static propTypes = {
     selectedCount: PropTypes.number.isRequired
-  },
+  }
 
   render() {
     const {
@@ -21,7 +21,7 @@ const CheckCounter = React.createClass({
       </span>
     )
   }
-})
+}
 
 export default connect(state => ({
   selectedCount: state.trainer.selectedCount

@@ -7,12 +7,12 @@ import {
 
 import Progress from './Progress'
 
-const Status = React.createClass({
-  displayName: 'Status',
+class Status extends React.Component {
+  static displayName = 'Status'
 
-  propTypes: {
+  static propTypes = {
     status: PropTypes.object,
-  },
+  }
 
   render() {
     const {
@@ -46,8 +46,8 @@ const Status = React.createClass({
         </div>
       </div>
     )
-  },
-})
+  }
+}
 
 export default connect(state => ({
   status: state.status

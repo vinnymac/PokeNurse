@@ -16,10 +16,10 @@ import {
 
 import PokemonTable from './PokemonTable'
 
-const Species = React.createClass({
-  displayName: 'Species',
+class Species extends React.Component {
+  static displayName = 'Species'
 
-  propTypes: {
+  static propTypes = {
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
     filterBy: PropTypes.string,
@@ -33,7 +33,7 @@ const Species = React.createClass({
     checkAllBySpecies: PropTypes.func.isRequired,
     collapseBySpecies: PropTypes.func.isRequired,
     sortAllSpecies: PropTypes.func.isRequired,
-  },
+  }
 
   render() {
     const {
@@ -54,10 +54,10 @@ const Species = React.createClass({
         </div>
       </div>
     )
-  },
+  }
 
-  getSpeciesHeader() {
-    return (<tr>
+  getSpeciesHeader = () =>
+    <tr>
       <th />
       <th
         className={this.getSortDirectionClassName('pokemon_id')}
@@ -117,10 +117,9 @@ const Species = React.createClass({
       >
         Evolves
       </th>
-    </tr>)
-  },
+    </tr>
 
-  getSpeciesBody(monsterSpecies) {
+  getSpeciesBody = (monsterSpecies) => {
     const {
       filterBy,
       showSpeciesWithZeroPokemon,
@@ -167,9 +166,9 @@ const Species = React.createClass({
         </tr>, this.getPokemonTable(specie, i, sortBy, sortDir, collapsed, pokemonState, checkAll)
       ])
     })
-  },
+  }
 
-  getPokemonTable(species, index, sortBy, sortDir, collapsed, pokemonState, checkAll) {
+  getPokemonTable = (species, index, sortBy, sortDir, collapsed, pokemonState, checkAll) => {
     if (collapsed) return null
 
     return (<tr className="child" key={`sub${species.pokemon_id}`}>
@@ -189,9 +188,9 @@ const Species = React.createClass({
         />
       </td>
     </tr>)
-  },
+  }
 
-  getSortDirectionClassName(key) {
+  getSortDirectionClassName = (key) => {
     const {
       sortBy,
       sortDir
@@ -202,16 +201,16 @@ const Species = React.createClass({
     }
 
     return 'sorting'
-  },
+  }
 
-  sortPokemonBy(sortBy, speciesIndex) {
+  sortPokemonBy = (sortBy, speciesIndex) => {
     this.props.sortSpecies({
       speciesIndex,
       sortBy,
     })
-  },
+  }
 
-  getSortState(specie) {
+  getSortState = (specie) => {
     const {
       speciesState
     } = this.props
@@ -222,25 +221,24 @@ const Species = React.createClass({
     } = speciesState[specie.pokemon_id]
 
     return { sortBy, sortDir }
-  },
+  }
 
-  handleCollapse(specie) {
+  handleCollapse = (specie) => {
     this.props.collapseBySpecies(specie)
-  },
+  }
 
-  handleCheckAll(species) {
+  handleCheckAll = (species) => {
     this.props.checkAllBySpecies(species)
-  },
+  }
 
-  handleCheckedChange(pokemon) {
+  handleCheckedChange = (pokemon) => {
     this.props.checkPokemon(pokemon)
-  },
+  }
 
-  handleSortSpecies(newSortBy) {
+  handleSortSpecies = (newSortBy) => {
     this.props.sortAllSpecies(newSortBy)
-  },
-
-})
+  }
+}
 
 export default connect((state => ({
   showSpeciesWithZeroPokemon: state.settings.showSpeciesWithZeroPokemon,

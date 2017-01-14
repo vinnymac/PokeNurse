@@ -32,18 +32,18 @@ const TYPE_COLOR_MAP = {
   fairy: '#ffaec9',
 }
 
-const ModalDialog = React.createClass({
-  displayName: 'ModalDialog',
+class ModalDialog extends React.Component {
+  static displayName = 'ModalDialog'
 
-  propTypes: {
+  static propTypes = {
     name: PropTypes.string.isRequired,
     detailModal: PropTypes.object.isRequired,
     type: PropTypes.array
-  },
+  }
 
   componentDidMount() {
     this.props.detailModal.modal('show')
-  },
+  }
 
   render() {
     const modalBackground = {
@@ -56,19 +56,17 @@ const ModalDialog = React.createClass({
       <div className="modal-dialog" role="document">
         <div className="modal-content" style={modalBackground}>
           <div className="modal-header modal-outline-white">
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button>
             <h4 className="modal-title" id="detailModalLabel">{this.props.name}</h4>
           </div>
           <ModalBody {...this.props} />
         </div>
       </div>
     )
-  },
+  }
 
-  getBackgroundColor(type) {
-    return TYPE_COLOR_MAP[type] || '#FFFFFF'
-  },
-})
+  getBackgroundColor = type => TYPE_COLOR_MAP[type] || '#FFFFFF'
+}
 
 export default ($detailModal, pokemon, species) => {
   // Calculate CP Progress dot position

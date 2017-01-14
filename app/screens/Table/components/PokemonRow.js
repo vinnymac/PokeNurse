@@ -3,6 +3,8 @@ import React, {
 } from 'react'
 import { ipcRenderer } from 'electron'
 import $ from 'jquery'
+import utils from '../../../utils'
+
 // import { bindActionCreators } from 'redux'
 // import { connect } from 'react-redux'
 // import {
@@ -20,7 +22,7 @@ function hasMaxCP(pokemon) {
   return pokemon.cp.toFixed(0) === pokemon.max_cp.toFixed(0)
 }
 
-class PokemonRow extends React.PureComponent { // eslint-disable-line
+class PokemonRow extends React.PureComponent {
   static displayName = 'PokemonRow'
 
   static propTypes = {
@@ -61,6 +63,7 @@ class PokemonRow extends React.PureComponent { // eslint-disable-line
     )
     const pokemonState = getPokemonState(pokemon.pokemon_id)
     const isChecked = pokemonState[String(pokemon.id)].check
+    const level = utils.getLevelFromCpMultiplier(pokemon.cp_multiplier + pokemon.additional_cp_multiplier)
 
     return (
       <tr key={pokemon.id}>
@@ -116,6 +119,9 @@ class PokemonRow extends React.PureComponent { // eslint-disable-line
           >
             {pokemon.cp}
           </Tooltip>
+        </td>
+        <td>
+          {level}
         </td>
         <td>
           <Tooltip

@@ -18,12 +18,12 @@ import {
 
 import './app.global.css'
 
-const App = React.createClass({
-  propTypes: {
+class App extends React.Component {
+  static propTypes = {
     authenticate: PropTypes.object.isRequired,
     autoLogin: PropTypes.bool.isRequired,
     login: PropTypes.func.isRequired,
-  },
+  }
 
   componentDidMount() {
     const {
@@ -36,14 +36,14 @@ const App = React.createClass({
     if (autoLogin && credentials.method && credentials.password && credentials.username) {
       this.props.login(credentials)
     }
-  },
+  }
 
   render() {
     if (this.props.authenticate.loggedIn) return (<Table />)
 
     return (<Login />)
   }
-})
+}
 
 const ConnectedApp = connect((state => ({
   authenticate: state.authenticate,

@@ -15,18 +15,16 @@ function getNumberInCircle(num) {
   return `${num}`
 }
 
-const Nickname = React.createClass({
-  propTypes: {
+class Nickname extends React.Component {
+  static propTypes = {
     pokemon: PropTypes.object.isRequired,
     renamePokemon: PropTypes.func.isRequired
-  },
+  }
 
-  getInitialState() {
-    return {
-      newNickname: this.props.pokemon.nickname,
-      editing: false
-    }
-  },
+  state = {
+    newNickname: this.props.pokemon.nickname,
+    editing: false
+  }
 
   componentDidUpdate() {
     if (this.state.editing) {
@@ -36,7 +34,7 @@ const Nickname = React.createClass({
     } else if (this.lastActiveElement) {
       this.lastActiveElement.focus()
     }
-  },
+  }
 
   render() {
     const {
@@ -69,15 +67,15 @@ const Nickname = React.createClass({
         />
       </div>
     )
-  },
+  }
 
-  handleEdit() {
+  handleEdit = () => {
     this.setState({
       editing: true
     })
-  },
+  }
 
-  handleKeyPress(e) {
+  handleKeyPress = (e) => {
     const {
       pokemon,
     } = this.props
@@ -112,9 +110,9 @@ const Nickname = React.createClass({
         this.handleRenameComplete(updatedPokemon)
       })
     }
-  },
+  }
 
-  handleRenameComplete(updatedPokemon) {
+  handleRenameComplete = (updatedPokemon) => {
     const {
       pokemon
     } = this.props
@@ -126,8 +124,7 @@ const Nickname = React.createClass({
       editing: false
     })
   }
-
-})
+}
 
 export default connect(null, dispatch => bindActionCreators({
   renamePokemon

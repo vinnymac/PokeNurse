@@ -6,8 +6,8 @@ import CinematicMove from './CinematicMove'
 import Nickname from './Nickname'
 import Evolutions from './Evolutions'
 
-const ModalBody = React.createClass({
-  propTypes: {
+class ModalBody extends React.Component {
+  static propTypes = {
     transform: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     hp: PropTypes.string.isRequired,
@@ -26,7 +26,7 @@ const ModalBody = React.createClass({
     evolutionIds: PropTypes.node,
     possibleQuickMoves: PropTypes.array,
     possibleCinematicMoves: PropTypes.array,
-  },
+  }
 
   render() {
     const {
@@ -145,12 +145,11 @@ const ModalBody = React.createClass({
         <Evolutions evolutionIds={evolutionIds} />
       </div>
     </div>)
-  },
+  }
 
-  handleCry() {
+  handleCry = () => {
     this.cry.play()
-  },
-
-})
+  }
+}
 
 export default ModalBody

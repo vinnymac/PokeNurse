@@ -34,6 +34,8 @@ require('bootstrap')
 
 let running = false
 
+const disablePokemonTable = true
+
 // Helper Methods
 
 function runningCheck() {
@@ -73,9 +75,8 @@ function getHeaderBackgroundStyles(teamIndex) {
   }
 }
 
-const Table = React.createClass({
-
-  propTypes: {
+class Table extends React.Component {
+  static propTypes = {
     trainerData: PropTypes.shape({
       username: PropTypes.string,
     }),
@@ -90,13 +91,13 @@ const Table = React.createClass({
     sortDir: PropTypes.string,
     evolveSelectedPokemon: PropTypes.func.isRequired,
     transferSelectedPokemon: PropTypes.func.isRequired,
-  },
+  }
 
   componentDidMount() {
     document.title = 'PokéNurse • Home'
 
     ipcRenderer.send('table-did-mount')
-  },
+  }
 
   render() {
     // <!--<h5 id="pokestorage-h"></h5>
@@ -120,7 +121,7 @@ const Table = React.createClass({
 
     let mainTable
 
-    if (false) {
+    if (disablePokemonTable) {
       mainTable = (
         <SpeciesTable
           filterBy={filterBy}
@@ -135,6 +136,43 @@ const Table = React.createClass({
           sortBy={sortBy}
           sortDir={sortDir}
         />
+      )
+    }
+
+    let mainHeader
+
+    if (disablePokemonTable) {
+      mainHeader = <span>Pokémon</span>
+    } else {
+      mainHeader = (
+        <ButtonGroup data-toggle="buttons">
+          <Button
+            className="noselect"
+            bsStyle="info"
+            active
+          >
+            <input
+              type="radio"
+              name="auth-radio"
+              value={'pokemon'}
+              defaultChecked
+            />
+            Pokémon
+          </Button>
+          <Button
+            className="noselect"
+            bsStyle="info"
+            active={false}
+          >
+            <input
+              type="radio"
+              name="auth-radio"
+              value={'species'}
+              defaultChecked={false}
+            />
+            Species
+          </Button>
+        </ButtonGroup>
       )
     }
 
@@ -188,34 +226,7 @@ const Table = React.createClass({
 
           <header className="flex p5">
             <h2 className="h2 mra">
-              <ButtonGroup data-toggle="buttons">
-                <Button
-                  className="noselect"
-                  bsStyle="info"
-                  active={true}
-                >
-                  <input
-                    type="radio"
-                    name="auth-radio"
-                    value={'pokemon'}
-                    defaultChecked={true}
-                  />
-                  Pokémon
-                </Button>
-                <Button
-                  className="noselect"
-                  bsStyle="info"
-                  active={false}
-                >
-                  <input
-                    type="radio"
-                    name="auth-radio"
-                    value={'species'}
-                    defaultChecked={false}
-                  />
-                  Species
-                </Button>
-              </ButtonGroup>
+              {mainHeader}
               <span
                 className="fa fa-refresh"
                 id="refresh-btn"
@@ -274,27 +285,27 @@ const Table = React.createClass({
         />
       </div>
     )
-  },
+  }
 
-  updateMonster(pokemon, options = {}) {
+  updateMonster = (pokemon, options = {}) => {
     this.props.updateMonster({ pokemon, options })
-  },
+  }
 
-  updateSpecies(index, updater) {
+  updateSpecies = (index, updater) => {
     this.props.updateSpecies({ index, updater })
-  },
+  }
 
-  onFilterChange(event) {
+  onFilterChange = (event) => {
     this.props.updateMonsterSort({
       filterBy: String(event.target.value).toLowerCase()
     })
-  },
+  }
 
-  handleRefresh() {
+  handleRefresh = () => {
     this.props.refreshPokemon()
-  },
+  }
 
-  getPokemonChecked() {
+  getPokemonChecked = () => {
     const {
       monsters,
       speciesState
@@ -310,9 +321,9 @@ const Table = React.createClass({
     })
 
     return checkedPokemon
-  },
+  }
 
-  handleTransfer() {
+  handleTransfer = () => {
     if (runningCheck()) return
 
     const selectedPokemon = this.getPokemonChecked()
@@ -351,9 +362,9 @@ const Table = React.createClass({
           .catch(() => this.handleAllComplete())
       }
     })
-  },
+  }
 
-  handleEvolve() {
+  handleEvolve = () => {
     if (runningCheck()) return
 
     const selectedPokemon = this.getPokemonChecked()
@@ -375,18 +386,18 @@ const Table = React.createClass({
           .catch(() => this.handleAllComplete())
       }
     })
-  },
+  }
 
-  handleAllComplete() {
+  handleAllComplete = () => {
     running = false
-  },
+  }
 
-  handleClearSearch() {
+  handleClearSearch = () => {
     this.search.value = ''
     this.onFilterChange({ target: this.search })
     this.search.focus()
   }
-})
+}
 
 export default connect((state => ({
   trainerData: state.trainer.trainerData,

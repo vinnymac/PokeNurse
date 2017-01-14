@@ -4,13 +4,13 @@ import React, {
 
 import Tooltip from '../../Tooltip'
 
-const QuickMove = React.createClass({
-  displayName: 'QuickMove',
+class QuickMove extends React.Component {
+  static displayName = 'QuickMove'
 
-  propTypes: {
+  static propTypes = {
     move: PropTypes.object.isRequired,
     myMove: PropTypes.object.isRequired,
-  },
+  }
 
   render() {
     const {
@@ -51,8 +51,7 @@ const QuickMove = React.createClass({
         </div>
       </div>
     )
-  },
-
-})
+  }
+}
 
 export default QuickMove
