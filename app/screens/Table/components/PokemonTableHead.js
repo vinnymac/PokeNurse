@@ -38,7 +38,7 @@ class PokemonTableHead extends React.PureComponent {
             colSpan="1"
             aria-controls="pokemon-data"
             aria-label="Favorite: activate to sort column ascending"
-            onClick={this.handleSortPokemon.bind(this, 'favorite')}
+            onClick={this.createHandleSortPokemon('favorite')}
           >
             <span className="fa fa-star favorite-yellow" />
           </th>
@@ -53,7 +53,7 @@ class PokemonTableHead extends React.PureComponent {
             colSpan="1"
             aria-controls="pokemon-data"
             aria-label="Name: activate to sort column ascending"
-            onClick={this.handleSortPokemon.bind(this, 'name')}
+            onClick={this.createHandleSortPokemon('name')}
           >
             Name
           </th>
@@ -64,7 +64,7 @@ class PokemonTableHead extends React.PureComponent {
             colSpan="1"
             aria-controls="pokemon-data"
             aria-label="Nickname: activate to sort column ascending"
-            onClick={this.handleSortPokemon.bind(this, 'nickname')}
+            onClick={this.createHandleSortPokemon('nickname')}
           >
             Nickname
           </th>
@@ -75,7 +75,7 @@ class PokemonTableHead extends React.PureComponent {
             colSpan="1"
             aria-controls="pokemon-data"
             aria-label="CP: activate to sort column ascending"
-            onClick={this.handleSortPokemon.bind(this, 'cp')}
+            onClick={this.createHandleSortPokemon('cp')}
           >
             CP
           </th>
@@ -86,7 +86,7 @@ class PokemonTableHead extends React.PureComponent {
             colSpan="1"
             aria-controls="pokemon-data"
             aria-label="Level: activate to sort column ascending"
-            onClick={this.handleSortPokemon.bind(this, 'level')}
+            onClick={this.createHandleSortPokemon('level')}
           >
             Level
           </th>
@@ -97,7 +97,7 @@ class PokemonTableHead extends React.PureComponent {
             colSpan="1"
             aria-controls="pokemon-data"
             aria-label="IV: activate to sort column ascending"
-            onClick={this.handleSortPokemon.bind(this, 'iv')}
+            onClick={this.createHandleSortPokemon('iv')}
           >
             IV
           </th>
@@ -115,10 +115,10 @@ class PokemonTableHead extends React.PureComponent {
     onCheckAll(species)
   }
 
-  handleSortPokemon = (sortBy) => {
+  createHandleSortPokemon = (sortBy) => () => {
     const {
       pokemonId,
-      sortPokemonBy
+      sortPokemonBy,
     } = this.props
 
     sortPokemonBy(sortBy, pokemonId - 1)
@@ -127,7 +127,7 @@ class PokemonTableHead extends React.PureComponent {
   getSortDirectionClassName = (key) => {
     const {
       sortBy,
-      sortDir
+      sortDir,
     } = this.props
 
     if (sortBy === key) {

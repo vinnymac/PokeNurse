@@ -64,7 +64,7 @@ class Nickname extends React.Component {
   render() {
     const {
       editing,
-      newNickname
+      newNickname,
     } = this.state
 
     if (editing) {

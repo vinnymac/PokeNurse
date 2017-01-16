@@ -142,6 +142,20 @@ class Species extends React.Component {
         sortDir
       } = speciesState[specie.pokemon_id]
 
+      let extraCandyNeededSpan
+
+      if (specie.evolves > 0) {
+        const totalCandyNeeded = specie.candyToEvolve * specie.count
+        const extraCandyNeeded = totalCandyNeeded - specie.candy
+        if (extraCandyNeeded > 0) {
+          extraCandyNeededSpan = (
+            <span>
+              {` +${extraCandyNeeded}`}
+            </span>
+          )
+        }
+      }
+
       return ([
         <tr
           className={collapsed ? '' : 'shown'}
@@ -161,7 +175,12 @@ class Species extends React.Component {
           </td>
           <td>{specie.name}</td>
           <td>{specie.count}</td>
-          <td>{specie.candy}</td>
+          <td>
+            <span>
+              {specie.candy}
+            </span>
+            {extraCandyNeededSpan}
+          </td>
           <td>{specie.evolves}</td>
         </tr>, this.getPokemonTable(specie, sortBy, sortDir, collapsed, pokemonState, checkAll)
       ])
