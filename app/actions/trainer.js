@@ -167,10 +167,13 @@ function parseInventory(inventory) {
 
     const move2 = getMove(type, moveSettings, p.move_2, false)
 
+    const level = utils.getLevelFromCpMultiplier(totalCpMultiplier)
+
     // TODO Use CamelCase instead of under_score for all keys except responses
     const pokemonWithStats = {
       iv,
       type,
+      level,
       evolvesTo,
       additional_cp_multiplier: p.additional_cp_multiplier,
       cp_multiplier: p.cp_multiplier,

@@ -3,14 +3,6 @@ import React, {
 } from 'react'
 import { ipcRenderer } from 'electron'
 import $ from 'jquery'
-import utils from '../../../utils'
-
-// import { bindActionCreators } from 'redux'
-// import { connect } from 'react-redux'
-// import {
-//   toggleFavoritePokemon,
-//   powerUpPokemon
-// } from '../../../actions'
 
 import renderModal from '../../Detail'
 import Tooltip from '../../Tooltip'
@@ -26,18 +18,10 @@ class PokemonRow extends React.PureComponent {
   static displayName = 'PokemonRow'
 
   static propTypes = {
-    // speciesIndex: PropTypes.number,
-    // sortBy: PropTypes.string,
-    // sortDir: PropTypes.string,
-    // sortPokemonBy: PropTypes.func.isRequired,
-    // onCheckedChange: PropTypes.func.isRequired,
     species: PropTypes.object.isRequired,
     pokemon: PropTypes.object.isRequired,
     getPokemonState: PropTypes.func.isRequired,
     onCheckedChange: PropTypes.func.isRequired,
-    // checkAll: PropTypes.bool.isRequired,
-    // onCheckAll: PropTypes.func.isRequired,
-    // getPokemonState: PropTypes.func.isRequired,
     toggleFavoritePokemon: PropTypes.func.isRequired,
     powerUpPokemon: PropTypes.func.isRequired,
   }
@@ -63,7 +47,6 @@ class PokemonRow extends React.PureComponent {
     )
     const pokemonState = getPokemonState(pokemon.pokemon_id)
     const isChecked = pokemonState[String(pokemon.id)].check
-    const level = utils.getLevelFromCpMultiplier(pokemon.cp_multiplier + pokemon.additional_cp_multiplier)
 
     return (
       <tr key={pokemon.id}>
@@ -121,7 +104,7 @@ class PokemonRow extends React.PureComponent {
           </Tooltip>
         </td>
         <td>
-          {level}
+          {pokemon.level}
         </td>
         <td>
           <Tooltip

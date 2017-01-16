@@ -392,7 +392,8 @@ const COLUMN_SORT_AS_NUM = {
   name: false,
   count: true,
   candy: true,
-  evolves: true
+  evolves: true,
+  level: true,
 }
 
 const Organize = {
