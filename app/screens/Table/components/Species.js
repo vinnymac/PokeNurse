@@ -126,7 +126,7 @@ class Species extends React.Component {
       speciesState
     } = this.props
 
-    return monsterSpecies.map((specie, i) => {
+    return monsterSpecies.map((specie) => {
       if (!showSpeciesWithZeroPokemon && specie.count < 1) {
         return null
       }
@@ -149,7 +149,7 @@ class Species extends React.Component {
         >
           <td
             className={specie.count > 0 ? 'details-control' : ''}
-            onClick={this.handleCollapse.bind(this, specie)}
+            onClick={this.createCollapseHandler(specie)}
           />
           <td>{specie.pokemon_id}</td>
           <td className="sprites">
@@ -163,31 +163,32 @@ class Species extends React.Component {
           <td>{specie.count}</td>
           <td>{specie.candy}</td>
           <td>{specie.evolves}</td>
-        </tr>, this.getPokemonTable(specie, i, sortBy, sortDir, collapsed, pokemonState, checkAll)
+        </tr>, this.getPokemonTable(specie, sortBy, sortDir, collapsed, pokemonState, checkAll)
       ])
     })
   }
 
-  getPokemonTable = (species, index, sortBy, sortDir, collapsed, pokemonState, checkAll) => {
+  getPokemonTable = (species, sortBy, sortDir, collapsed, pokemonState, checkAll) => {
     if (collapsed) return null
 
-    return (<tr className="child" key={`sub${species.pokemon_id}`}>
-      <td colSpan="7">
-        <PokemonTable
-          sortPokemonBy={this.sortPokemonBy}
-          sortBy={sortBy}
-          sortDir={sortDir}
-          species={species}
-          pokemon={species.pokemon}
-          speciesIndex={index}
-          getPokemonState={() => pokemonState}
-          checkAll={checkAll}
-          onCheckedChange={this.handleCheckedChange}
-          onCheckAll={this.handleCheckAll}
-          key={`child${species.pokemon_id}`}
-        />
-      </td>
-    </tr>)
+    return (
+      <tr className="child" key={`sub${species.pokemon_id}`}>
+        <td colSpan="7">
+          <PokemonTable
+            sortPokemonBy={this.sortPokemonBy}
+            sortBy={sortBy}
+            sortDir={sortDir}
+            species={species}
+            pokemon={species.pokemon}
+            getPokemonState={() => pokemonState}
+            checkAll={checkAll}
+            onCheckedChange={this.handleCheckedChange}
+            onCheckAll={this.handleCheckAll}
+            key={`child${species.pokemon_id}`}
+          />
+        </td>
+      </tr>
+    )
   }
 
   getSortDirectionClassName = (key) => {
@@ -223,7 +224,7 @@ class Species extends React.Component {
     return { sortBy, sortDir }
   }
 
-  handleCollapse = (specie) => {
+  createCollapseHandler = (specie) => () => {
     this.props.collapseBySpecies(specie)
   }
 

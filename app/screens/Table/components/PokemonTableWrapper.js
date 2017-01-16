@@ -49,66 +49,34 @@ class PokemonTableWrapper extends React.Component {
 
   getSpeciesBody = () => {
     const {
-      // filterBy,
-      // showSpeciesWithZeroPokemon,
       speciesState,
       pokemon,
       monsters,
     } = this.props
 
-    // Flatten all species of pokemon into one giant array
-    // const pokemon = monsterSpecies.reduce((a, b) => a.concat(b.pokemon), [])
-
     const specie = monsters.species[0]
 
-    // const pokemonState = monsterSpecies.reduce((a, b) => Object.assign(a, speciesState[b.pokemon_id].pokemonState), {})
-
-    // console.log(pokemonState)
-
     const {
-      // collapsed,
-      // pokemonState,
       checkAll,
       sortBy,
       sortDir
     } = speciesState[specie.pokemon_id]
 
-    // console.log(specie, pokemon) // , pokemonState)
-
-    // return monsterSpecies.map((specie, i) => {
-    //   // if (!showSpeciesWithZeroPokemon && specie.count < 1) {
-    //   //   return null
-    //   // }
-    //   if (String(specie.name).toLowerCase().indexOf(filterBy) === -1) {
-    //     return null
-    //   }
-    //
-    //   const {
-    //     // collapsed,
-    //     pokemonState,
-    //     checkAll,
-    //     sortBy,
-    //     sortDir
-    //   } = speciesState[specie.pokemon_id]
-    //
-    // })
-    return this.getPokemonTable(specie, pokemon, 0, sortBy, sortDir, speciesState, checkAll)
+    return (
+      <PokemonTable
+        sortPokemonBy={this.sortPokemonBy}
+        sortBy={sortBy}
+        sortDir={sortDir}
+        species={specie}
+        pokemon={pokemon}
+        getPokemonState={(pid) => speciesState[pid].pokemonState}
+        checkAll={checkAll}
+        onCheckedChange={this.handleCheckedChange}
+        onCheckAll={this.handleCheckAll}
+        key={`child${specie.pokemon_id}`}
+      />
+    )
   }
-
-  getPokemonTable = (species, pokemon, index, sortBy, sortDir, speciesState, checkAll) =>
-    <PokemonTable
-      sortPokemonBy={this.sortPokemonBy}
-      sortBy={sortBy}
-      sortDir={sortDir}
-      species={species}
-      pokemon={pokemon}
-      speciesIndex={index}
-      getPokemonState={(pid) => speciesState[pid].pokemonState}
-      checkAll={checkAll}
-      onCheckedChange={this.handleCheckedChange}
-      onCheckAll={this.handleCheckAll}
-      key={`child${species.pokemon_id}`}
-    />
 
   getSortDirectionClassName = (key) => {
     const {

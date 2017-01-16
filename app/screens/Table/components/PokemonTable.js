@@ -12,7 +12,6 @@ class PokemonTable extends React.PureComponent {
   static displayName = 'PokemonTable'
 
   static propTypes = {
-    speciesIndex: PropTypes.number,
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
     sortPokemonBy: PropTypes.func.isRequired,
@@ -35,7 +34,6 @@ class PokemonTable extends React.PureComponent {
       onCheckedChange,
       toggleFavoritePokemon,
       powerUpPokemon,
-      speciesIndex,
       sortPokemonBy,
       sortDir,
       sortBy,
@@ -48,7 +46,7 @@ class PokemonTable extends React.PureComponent {
         sortBy={sortBy}
         sortDir={sortDir}
         sortPokemonBy={sortPokemonBy}
-        speciesIndex={speciesIndex}
+        pokemonId={species.pokemon_id}
         species={species}
         onCheckAll={onCheckAll}
       />

@@ -6,7 +6,7 @@ class PokemonTableHead extends React.PureComponent {
   static displayName = 'PokemonTableHead'
 
   static propTypes = {
-    speciesIndex: PropTypes.number,
+    pokemonId: PropTypes.number,
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
     sortPokemonBy: PropTypes.func.isRequired,
@@ -117,11 +117,11 @@ class PokemonTableHead extends React.PureComponent {
 
   handleSortPokemon = (sortBy) => {
     const {
-      speciesIndex,
+      pokemonId,
       sortPokemonBy
     } = this.props
 
-    sortPokemonBy(sortBy, speciesIndex)
+    sortPokemonBy(sortBy, pokemonId - 1)
   }
 
   getSortDirectionClassName = (key) => {
