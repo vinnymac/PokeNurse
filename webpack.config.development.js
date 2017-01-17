@@ -14,6 +14,7 @@ export default validate(merge(baseConfig, {
   devtool: 'cheap-module-eval-source-map',
 
   entry: [
+    'react-hot-loader/patch',
     `webpack-hot-middleware/client?path=http://localhost:${PORT}/__webpack_hmr`,
     'babel-polyfill',
     './app/index'
