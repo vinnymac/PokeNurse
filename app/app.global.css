@@ -231,10 +231,10 @@ tbody > tr > td a {
 }
 
 tbody > tr > td .additional-info {
-  font-size: 12px;
-  font-weight: bold;
-  color: green;
-  vertical-align: middle;
+  font-size: 11px;
+  font-weight: 400;
+  color: #33ab77;
+  vertical-align: super;
 }
 
 .favorite-yellow {
