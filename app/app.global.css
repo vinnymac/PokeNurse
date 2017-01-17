@@ -230,6 +230,13 @@ tbody > tr > td a {
   cursor: pointer;
 }
 
+tbody > tr > td .additional-info {
+  font-size: 12px;
+  font-weight: bold;
+  color: green;
+  vertical-align: middle;
+}
+
 .favorite-yellow {
   color: #F3BC0A;
 }
