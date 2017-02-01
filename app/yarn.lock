@@ -376,9 +376,15 @@ minimatch@^3.0.2, "minimatch@2 || 3":
   dependencies:
     brace-expansion "^1.0.0"
 
-node-pogo-protos@^2.4.0, node-pogo-protos@2.4.2:
+node-pogo-protos@^2.4.0:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/node-pogo-protos/-/node-pogo-protos-2.4.2.tgz#eac822e0fcbc89bbd052249350109b3b499ebfa2"
+  dependencies:
+    protobufjs "^5.0.1"
+
+node-pogo-protos@2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/node-pogo-protos/-/node-pogo-protos-2.5.1.tgz#5e99215bad9cb4203e99fc5cc88e4c1505d3192b"
   dependencies:
     protobufjs "^5.0.1"
 
