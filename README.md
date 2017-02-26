@@ -12,8 +12,10 @@
 You may view all the releases [here](https://github.com/vinnymac/PokeNurse/releases)
 * [macOS](https://github.com/vinnymac/PokeNurse/releases/download/v2.1.0/PokeNurse.dmg)
 * [Windows](https://github.com/vinnymac/PokeNurse/releases/download/v2.1.0/PokeNurse.exe)
-* [Linux 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.1.0/PokeNurse-ia32.deb)
-* [Linux 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.1.0/PokeNurse-x64.deb)
+* [Debian 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.1.0/PokeNurse-ia32.deb)
+* [Debian 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.1.0/PokeNurse-x64.deb)
+* [AppImage 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.1.0/PokeNurse-ia32.AppImage)
+* [AppImage 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.1.0/PokeNurse-x64.AppImage)
 
 ## Examples
 ![Login Window](app/loginExample.png)
