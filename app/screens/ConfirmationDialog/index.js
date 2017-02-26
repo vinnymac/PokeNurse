@@ -4,10 +4,10 @@ import React, {
 import ReactDOM from 'react-dom'
 import SelectedPokemon from './components/SelectedPokemon'
 
-const ConfirmationDialog = React.createClass({
-  displayName: 'ConfirmationDialog',
+class ConfirmationDialog extends React.Component {
+  static displayName = 'ConfirmationDialog'
 
-  propTypes: {
+  static propTypes = {
     onClickSecondary: PropTypes.func.isRequired,
     onClickPrimary: PropTypes.func.isRequired,
     dialog: PropTypes.object.isRequired,
@@ -16,11 +16,11 @@ const ConfirmationDialog = React.createClass({
     title: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
     pokemon: PropTypes.array
-  },
+  }
 
   componentDidMount() {
     this.props.dialog.modal('show')
-  },
+  }
 
   render() {
     const {
@@ -55,7 +55,7 @@ const ConfirmationDialog = React.createClass({
               data-dismiss="modal"
               aria-label="Close"
             >
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">&times</span>
             </button>
             <h4 className="modal-title" id="confirmationDialogLabel">
               {title}
@@ -87,18 +87,18 @@ const ConfirmationDialog = React.createClass({
         </div>
       </div>
     )
-  },
+  }
 
-  handleSecondary() {
+  handleSecondary = () => {
     this.props.dialog.modal('hide')
     this.props.onClickSecondary()
-  },
+  }
 
-  handlePrimary() {
+  handlePrimary = () => {
     this.props.dialog.modal('hide')
     this.props.onClickPrimary()
   }
-})
+}
 
 export default ($modal, props) => {
   props.dialog = $modal

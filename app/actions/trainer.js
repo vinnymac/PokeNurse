@@ -167,10 +167,13 @@ function parseInventory(inventory) {
 
     const move2 = getMove(type, moveSettings, p.move_2, false)
 
+    const level = utils.getLevelFromCpMultiplier(totalCpMultiplier)
+
     // TODO Use CamelCase instead of under_score for all keys except responses
     const pokemonWithStats = {
       iv,
       type,
+      level,
       evolvesTo,
       additional_cp_multiplier: p.additional_cp_multiplier,
       cp_multiplier: p.cp_multiplier,
@@ -220,8 +223,8 @@ function parseInventory(inventory) {
   // TODO use map
   speciesList.forEach((s) => {
     const pokemonSetting = pokemonSettings[s.pokemon_id - 1]
-    const candyToEvolve = pokemonSetting ? pokemonSetting.candy_to_evolve : 0
-    s.evolves = utils.getEvolvesCount(candyToEvolve, s)
+    s.candyToEvolve = pokemonSetting ? pokemonSetting.candy_to_evolve : 0
+    s.evolves = utils.getEvolvesCount(s.candyToEvolve, s.candy, s.count)
   })
 
   return {

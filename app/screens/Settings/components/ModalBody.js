@@ -80,13 +80,14 @@ const specieSortByOptions = [
   'name',
   'nickname',
   'cp',
+  'level',
   'iv',
 ]
 
-const ModalBody = React.createClass({
-  displayName: 'ModalBody',
+class ModalBody extends React.Component {
+  static displayName = 'ModalBody'
 
-  propTypes: {
+  static propTypes = {
     toggleShowSpeciesWithZeroPokemon: PropTypes.func.isRequired,
     resetAllSettings: PropTypes.func.isRequired,
     checkAndDeleteCredentials: PropTypes.func.isRequired,
@@ -102,7 +103,7 @@ const ModalBody = React.createClass({
     defaultSpecieSortBy: PropTypes.string.isRequired,
     defaultSpecieSortDirection: PropTypes.string.isRequired,
     sortWithDefaults: PropTypes.func.isRequired,
-  },
+  }
 
   render() {
     const {
@@ -187,13 +188,11 @@ const ModalBody = React.createClass({
         </Panel>
       </div>
     )
-  },
+  }
 
-  getDirection(value) {
-    return value === sortDirectionOptions[0] ? 'ASC' : 'DESC'
-  },
+  getDirection = value => (value === sortDirectionOptions[0] ? 'ASC' : 'DESC')
 
-  handleSortWithDefaults() {
+  handleSortWithDefaults = () => {
     const {
       defaultPokedexSortBy,
       defaultPokedexSortDirection,
@@ -207,40 +206,40 @@ const ModalBody = React.createClass({
       defaultSpecieSortBy,
       defaultSpecieSortDirection,
     })
-  },
+  }
 
-  handleDefaultPokedexSortDirectionChange(e) {
+  handleDefaultPokedexSortDirectionChange = (e) => {
     this.props.changeDefaultPokedexSortDirection(this.getDirection(e.target.value))
-  },
+  }
 
-  handleDefaultPokedexSortByChange(e) {
+  handleDefaultPokedexSortByChange = (e) => {
     this.props.changeDefaultPokedexSortBy(e.target.value)
-  },
+  }
 
-  handleDefaultSpecieSortDirectionChange(e) {
+  handleDefaultSpecieSortDirectionChange = (e) => {
     this.props.changeDefaultSpecieSortDirection(this.getDirection(e.target.value))
-  },
+  }
 
-  handleDefaultSpecieSortByChange(e) {
+  handleDefaultSpecieSortByChange = (e) => {
     this.props.changeDefaultSpecieSortBy(e.target.value)
-  },
+  }
 
-  handleToggleAutoLogin() {
+  handleToggleAutoLogin = () => {
     this.props.toggleAutoLogin()
-  },
+  }
 
-  handleToggleShowAllSpecies() {
+  handleToggleShowAllSpecies = () => {
     this.props.toggleShowSpeciesWithZeroPokemon()
-  },
+  }
 
-  handleReset() {
+  handleReset = () => {
     this.props.resetAllSettings()
-  },
+  }
 
-  handleDeleteCredentials() {
+  handleDeleteCredentials = () => {
     this.props.checkAndDeleteCredentials()
-  },
-})
+  }
+}
 
 
 export default connect((state => ({

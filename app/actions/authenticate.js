@@ -49,8 +49,8 @@ export default {
           useHashingServer: !!hashingKey,
         }
 
-        // Use API version 0.51 (minimum version for hashing server)
-        if (hashingKey) options.version = 5100
+        // Use API version 0.53 (minimum version for hashing server)
+        if (hashingKey) options.version = 5300
 
         const client = new pogobuf.Client(options)
 

@@ -7,13 +7,13 @@ import {
 
 import Tooltip from '../../Tooltip'
 
-const CinematicMove = React.createClass({
-  displayName: 'CinematicMove',
+class CinematicMove extends React.Component {
+  static displayName = 'CinematicMove'
 
-  propTypes: {
+  static propTypes = {
     move: PropTypes.object.isRequired,
     myMove: PropTypes.object.isRequired,
-  },
+  }
 
   render() {
     const {
@@ -62,7 +62,7 @@ const CinematicMove = React.createClass({
         </div>
       </div>
     )
-  },
-})
+  }
+}
 
 export default CinematicMove

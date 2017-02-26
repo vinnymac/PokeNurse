@@ -8,16 +8,16 @@ import store from '../../store'
 
 import ModalBody from './components/ModalBody'
 
-const ModalDialog = React.createClass({
-  displayName: 'ModalDialog',
+class ModalDialog extends React.Component {
+  static displayName = 'ModalDialog'
 
-  propTypes: {
+  static propTypes = {
     $modal: PropTypes.object.isRequired,
-  },
+  }
 
   componentDidMount() {
     this.props.$modal.modal('show')
-  },
+  }
 
   render() {
     return (
@@ -25,7 +25,7 @@ const ModalDialog = React.createClass({
         <div className="modal-content">
           <div className="modal-header modal-outline-white">
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">&times</span>
             </button>
             <h4 className="modal-title" id="settingsModalLabel">
               Settings
@@ -38,8 +38,8 @@ const ModalDialog = React.createClass({
         </div>
       </div>
     )
-  },
-})
+  }
+}
 
 export default ($modal) => {
   const modalDialog = (<ModalDialog

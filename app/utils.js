@@ -343,7 +343,7 @@ const utils = {
     return Math.round(utils.getADS(pokemon) / 45 * 10000) / 100
   },
 
-  getEvolvesCount(evolveCost, { candy, count }) {
+  getEvolvesCount(evolveCost, candy, count) {
     let evolves = Math.floor(candy / evolveCost)
 
     if ((evolves === Infinity || isNaN(evolves))) {
@@ -392,7 +392,8 @@ const COLUMN_SORT_AS_NUM = {
   name: false,
   count: true,
   candy: true,
-  evolves: true
+  evolves: true,
+  level: true,
 }
 
 const Organize = {

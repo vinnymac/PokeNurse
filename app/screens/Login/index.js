@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 
 import LoginForm from './components/LoginFormContainer'
 
-const Login = React.createClass({
-  propTypes: {
+class Login extends React.Component {
+  static propTypes = {
     credentials: PropTypes.object,
-  },
+  }
 
   render() {
     return (
@@ -22,7 +22,7 @@ const Login = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default connect(state => ({
   credentials: state.authenticate.credentials,

@@ -14,12 +14,12 @@ import {
   sortAllSpecies,
 } from '../../../actions'
 
-import PokemonTable from './Pokemon'
+import PokemonTable from './PokemonTable'
 
-const Species = React.createClass({
-  displayName: 'Species',
+class Species extends React.Component {
+  static displayName = 'Species'
 
-  propTypes: {
+  static propTypes = {
     sortBy: PropTypes.string,
     sortDir: PropTypes.string,
     filterBy: PropTypes.string,
@@ -33,7 +33,7 @@ const Species = React.createClass({
     checkAllBySpecies: PropTypes.func.isRequired,
     collapseBySpecies: PropTypes.func.isRequired,
     sortAllSpecies: PropTypes.func.isRequired,
-  },
+  }
 
   render() {
     const {
@@ -54,10 +54,10 @@ const Species = React.createClass({
         </div>
       </div>
     )
-  },
+  }
 
-  getSpeciesHeader() {
-    return (<tr>
+  getSpeciesHeader = () =>
+    <tr>
       <th />
       <th
         className={this.getSortDirectionClassName('pokemon_id')}
@@ -117,17 +117,16 @@ const Species = React.createClass({
       >
         Evolves
       </th>
-    </tr>)
-  },
+    </tr>
 
-  getSpeciesBody(monsterSpecies) {
+  getSpeciesBody = (monsterSpecies) => {
     const {
       filterBy,
       showSpeciesWithZeroPokemon,
       speciesState
     } = this.props
 
-    return monsterSpecies.map((specie, i) => {
+    return monsterSpecies.map((specie) => {
       if (!showSpeciesWithZeroPokemon && specie.count < 1) {
         return null
       }
@@ -143,6 +142,33 @@ const Species = React.createClass({
         sortDir
       } = speciesState[specie.pokemon_id]
 
+      let extraCandyNeededSpan
+      let extraPokemonNeededSpan
+
+      if (specie.evolves > 0) {
+        const totalCandyNeeded = specie.candyToEvolve * specie.count
+        const extraCandyNeeded = totalCandyNeeded - specie.candy
+        if (extraCandyNeeded > 0) {
+          extraCandyNeededSpan = (
+            <span
+              className="additional-info"
+              alt="Extra candy required to evolve all pokemon"
+            >
+              {` +${extraCandyNeeded}`}
+            </span>
+          )
+        } else if (extraCandyNeeded < 0) {
+          extraPokemonNeededSpan = (
+            <span
+              className="additional-info"
+              alt="Extra pokemon required to use all candy"
+            >
+              {` +${Math.floor((extraCandyNeeded * -1) / specie.candyToEvolve)}`}
+            </span>
+          )
+        }
+      }
+
       return ([
         <tr
           className={collapsed ? '' : 'shown'}
@@ -150,7 +176,7 @@ const Species = React.createClass({
         >
           <td
             className={specie.count > 0 ? 'details-control' : ''}
-            onClick={this.handleCollapse.bind(this, specie)}
+            onClick={this.createCollapseHandler(specie)}
           />
           <td>{specie.pokemon_id}</td>
           <td className="sprites">
@@ -161,32 +187,48 @@ const Species = React.createClass({
             />
           </td>
           <td>{specie.name}</td>
-          <td>{specie.count}</td>
-          <td>{specie.candy}</td>
+          <td>
+            <span>
+              {specie.count}
+            </span>
+            {extraPokemonNeededSpan}
+          </td>
+          <td>
+            <span>
+              {specie.candy}
+            </span>
+            {extraCandyNeededSpan}
+          </td>
           <td>{specie.evolves}</td>
-        </tr>, this.getPokemonTable(specie, i, sortBy, sortDir, collapsed, pokemonState, checkAll)
+        </tr>, this.getPokemonTable(specie, sortBy, sortDir, collapsed, pokemonState, checkAll)
       ])
     })
-  },
+  }
 
-  getPokemonTable(species, index, sortBy, sortDir, collapsed, pokemonState, checkAll) {
+  getPokemonTable = (species, sortBy, sortDir, collapsed, pokemonState, checkAll) => {
     if (collapsed) return null
 
-    return (<PokemonTable
-      sortPokemonBy={this.sortPokemonBy}
-      sortBy={sortBy}
-      sortDir={sortDir}
-      species={species}
-      speciesIndex={index}
-      pokemonState={pokemonState}
-      checkAll={checkAll}
-      onCheckedChange={this.handleCheckedChange}
-      onCheckAll={this.handleCheckAll}
-      key={`child${species.pokemon_id}`}
-    />)
-  },
+    return (
+      <tr className="child" key={`sub${species.pokemon_id}`}>
+        <td colSpan="7">
+          <PokemonTable
+            sortPokemonBy={this.sortPokemonBy}
+            sortBy={sortBy}
+            sortDir={sortDir}
+            species={species}
+            pokemon={species.pokemon}
+            getPokemonState={() => pokemonState}
+            checkAll={checkAll}
+            onCheckedChange={this.handleCheckedChange}
+            onCheckAll={this.handleCheckAll}
+            key={`child${species.pokemon_id}`}
+          />
+        </td>
+      </tr>
+    )
+  }
 
-  getSortDirectionClassName(key) {
+  getSortDirectionClassName = (key) => {
     const {
       sortBy,
       sortDir
@@ -197,16 +239,16 @@ const Species = React.createClass({
     }
 
     return 'sorting'
-  },
+  }
 
-  sortPokemonBy(sortBy, speciesIndex) {
+  sortPokemonBy = (sortBy, speciesIndex) => {
     this.props.sortSpecies({
       speciesIndex,
       sortBy,
     })
-  },
+  }
 
-  getSortState(specie) {
+  getSortState = (specie) => {
     const {
       speciesState
     } = this.props
@@ -217,25 +259,24 @@ const Species = React.createClass({
     } = speciesState[specie.pokemon_id]
 
     return { sortBy, sortDir }
-  },
+  }
 
-  handleCollapse(specie) {
+  createCollapseHandler = (specie) => () => {
     this.props.collapseBySpecies(specie)
-  },
+  }
 
-  handleCheckAll(species) {
+  handleCheckAll = (species) => {
     this.props.checkAllBySpecies(species)
-  },
+  }
 
-  handleCheckedChange(pokemon) {
+  handleCheckedChange = (pokemon) => {
     this.props.checkPokemon(pokemon)
-  },
+  }
 
-  handleSortSpecies(newSortBy) {
+  handleSortSpecies = (newSortBy) => {
     this.props.sortAllSpecies(newSortBy)
-  },
-
-})
+  }
+}
 
 export default connect((state => ({
   showSpeciesWithZeroPokemon: state.settings.showSpeciesWithZeroPokemon,

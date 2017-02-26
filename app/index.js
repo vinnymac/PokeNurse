@@ -1,55 +1,18 @@
-import React, {
-  PropTypes
-} from 'react'
-import ReactDOM from 'react-dom'
-import {
-  Provider,
-  connect
-} from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React from 'react'
+import { render } from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 
-import store from './store'
-import Login from './screens/Login'
-import Table from './screens/Table'
-
-import {
-  login
-} from './actions'
-
+import App from './app'
 import './app.global.css'
 
-const App = React.createClass({
-  propTypes: {
-    authenticate: PropTypes.object.isRequired,
-    autoLogin: PropTypes.bool.isRequired,
-    login: PropTypes.func.isRequired,
-  },
+const rootEl = document.getElementById('content')
 
-  componentDidMount() {
-    const {
-      autoLogin,
-      authenticate,
-    } = this.props
+render(<AppContainer><App /></AppContainer>, rootEl)
 
-    const { credentials } = authenticate
+if (module.hot) {
+  module.hot.accept('./app', () => {
+    const NextApp = require('./app') // eslint-disable-line
 
-    if (autoLogin && credentials.method && credentials.password && credentials.username) {
-      this.props.login(credentials)
-    }
-  },
-
-  render() {
-    if (this.props.authenticate.loggedIn) return (<Table />)
-
-    return (<Login />)
-  }
-})
-
-const ConnectedApp = connect((state => ({
-  authenticate: state.authenticate,
-  autoLogin: state.settings.autoLogin,
-})), (dispatch => bindActionCreators({
-  login
-}, dispatch)))(App)
-
-ReactDOM.render(<Provider store={store}><ConnectedApp /></Provider>, document.getElementById('content'))
+    render(<AppContainer><NextApp /></AppContainer>, rootEl)
+  })
+}

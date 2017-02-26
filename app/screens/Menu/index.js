@@ -13,12 +13,12 @@ import renderSettings from '../Settings'
 
 const Menu = require('react-burger-menu').slide
 
-const MainMenu = React.createClass({
-  propTypes: {
+class MainMenu extends React.Component {
+  static propTypes = {
     updateStatus: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     eggs: PropTypes.array,
-  },
+  }
 
   render() {
     // const {
@@ -46,15 +46,15 @@ const MainMenu = React.createClass({
         </div>
       </Menu>
     )
-  },
+  }
 
-  handleClickSettings() {
+  handleClickSettings = () => {
     renderSettings($(document.getElementById('settingsModal')))
-  },
+  }
 
-  handleSignOut() {
+  handleSignOut = () => {
     this.props.logout()
-  },
-})
+  }
+}
 
 export default connect(null, (dispatch => bindActionCreators({ updateStatus, logout }, dispatch)))(MainMenu)

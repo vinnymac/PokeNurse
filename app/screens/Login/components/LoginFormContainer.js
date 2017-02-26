@@ -27,27 +27,27 @@ const AUTH_METHODS = {
   google: 'google'
 }
 
-const hashKeyTooltip = (<Tooltip id="hashKeyTooltip">
-  Hash Keys for 0.51+ support, instead of the potentially unsafe 0.45 API.
-  Note that Hash Keys currently have varying costs based on your Requests per Minute.
-</Tooltip>)
+const hashKeyTooltip = (
+  <Tooltip id="hashKeyTooltip">
+    Hash Keys for 0.53+ support, instead of the potentially unsafe 0.45 API.
+    Note that Hash Keys currently have varying costs based on your Requests per Minute.
+  </Tooltip>
+)
 
-const LoginForm = React.createClass({
-  displayName: 'LoginForm',
+class LoginForm extends React.Component {
+  static displayName = 'LoginForm'
 
-  propTypes: {
+  static propTypes = {
     credentials: PropTypes.object,
     checkAndDeleteCredentials: PropTypes.func.isRequired,
     saveAccountCredentials: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     authenticating: PropTypes.bool.isRequired,
-  },
+  }
 
-  getInitialState() {
-    return {
-      authMethod: this.props.credentials.method || AUTH_METHODS.google
-    }
-  },
+  state = {
+    authMethod: this.props.credentials.method || AUTH_METHODS.google
+  }
 
   render() {
     const {
@@ -147,7 +147,7 @@ const LoginForm = React.createClass({
             </InputGroup.Addon>
             <FormControl
               type="text"
-              placeholder="Hash Key required only for safer 0.51+ support"
+              placeholder="Hash Key required only for safer 0.53+ support"
               ref={(c) => { this.hashKey = c }}
               defaultValue={credentials.hashingKey || ''}
             />
@@ -174,24 +174,24 @@ const LoginForm = React.createClass({
         </FormGroup>
       </div>
     )
-  },
+  }
 
-  radioLabelClick(authMethod) {
+  radioLabelClick = (authMethod) => {
     const authButtonNode = findDOMNode(this[authMethod])
     authButtonNode.click()
-  },
+  }
 
-  handleChangeAuth(e) {
+  handleChangeAuth = (e) => {
     this.setState({
       authMethod: e.target.value
     })
-  },
+  }
 
-  handleEnterKey(e) {
+  handleEnterKey = (e) => {
     if (e.key === 'Enter') this.handleLogin()
-  },
+  }
 
-  handleLogin() {
+  handleLogin = () => {
     if (this.props.authenticating) return
 
     const method = this.state.authMethod
@@ -226,7 +226,7 @@ const LoginForm = React.createClass({
 
     this.props.login(credentials)
   }
-})
+}
 
 
 export default connect((state => ({

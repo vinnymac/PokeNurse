@@ -2,12 +2,12 @@ import React, {
   PropTypes
 } from 'react'
 
-const SpeciesPokemonCounter = React.createClass({
-  displayName: 'SpeciesCounter',
+class SpeciesPokemonCounter extends React.Component {
+  static displayName = 'SpeciesCounter'
 
-  propTypes: {
+  static propTypes = {
     monsters: PropTypes.object.isRequired
-  },
+  }
 
   render() {
     const {
@@ -25,9 +25,9 @@ const SpeciesPokemonCounter = React.createClass({
         </span>
       </span>
     )
-  },
+  }
 
-  handleSpeciesRecount(monsters) {
+  handleSpeciesRecount = (monsters) => {
     const initialCount = 0
 
     return monsters.species.reduce((sum, specie) => {
@@ -37,9 +37,9 @@ const SpeciesPokemonCounter = React.createClass({
 
       return sum
     }, initialCount)
-  },
+  }
 
-  handlePokemonCounter(monsters) {
+  handlePokemonCounter = (monsters) => {
     const initialCount = monsters.eggs.length
 
     return monsters.species.reduce((sum, specie) => {
@@ -50,7 +50,6 @@ const SpeciesPokemonCounter = React.createClass({
       return sum
     }, initialCount)
   }
-
-})
+}
 
 export default SpeciesPokemonCounter

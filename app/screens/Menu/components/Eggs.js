@@ -2,10 +2,10 @@ import React, {
   PropTypes
 } from 'react'
 
-const Eggs = React.createClass({
-  propTypes: {
+class Eggs extends React.Component {
+  static propTypes = {
     eggList: PropTypes.array,
-  },
+  }
 
   render() {
     const {
@@ -24,6 +24,6 @@ const Eggs = React.createClass({
       </ul>
     )
   }
-})
+}
 
 export default Eggs

@@ -5,12 +5,12 @@ import {
   ProgressBar
 } from 'react-bootstrap'
 
-const Progress = React.createClass({
-  displayName: 'Progress',
+class Progress extends React.Component {
+  static displayName = 'Progress'
 
-  propTypes: {
+  static propTypes = {
     progress: PropTypes.object
-  },
+  }
 
   render() {
     const {
@@ -42,6 +42,6 @@ const Progress = React.createClass({
       />
     )
   }
-})
+}
 
 export default Progress

@@ -15,18 +15,41 @@ function getNumberInCircle(num) {
   return `${num}`
 }
 
-const Nickname = React.createClass({
-  propTypes: {
+// 07 instead of 7, but 10 is still 10
+function zeroPad(str, len = 3) {
+  return `${Array(len - str.length).join('0')}${str}`
+}
+
+function templateRename(pokemon, name) {
+  const totalEnergy = parseInt(Math.floor(100 / pokemon.move_2.energy_cost), 10)
+  const energy = getNumberInCircle(totalEnergy)
+  const vi = zeroPad((100 - pokemon.iv).toFixed(0))
+  const attack = getNumberInCircle(pokemon.attack)
+  const defense = getNumberInCircle(pokemon.defense)
+  const stamina = getNumberInCircle(pokemon.stamina)
+
+  return name
+    .replace('[IV]', pokemon.iv.toFixed(0))
+    .replace('[VI]', vi)
+    .replace('[ATT]', attack)
+    .replace('[DEF]', defense)
+    .replace('[STA]', stamina)
+    .replace('[FAST]', pokemon.move_1.power.toFixed(0))
+    .replace('[CHARGE]', pokemon.move_2.power.toFixed(0))
+    .replace('[ENERGY]', energy)
+    .replace('[HP]', pokemon.stamina_max)
+}
+
+class Nickname extends React.Component {
+  static propTypes = {
     pokemon: PropTypes.object.isRequired,
     renamePokemon: PropTypes.func.isRequired
-  },
+  }
 
-  getInitialState() {
-    return {
-      newNickname: this.props.pokemon.nickname,
-      editing: false
-    }
-  },
+  state = {
+    newNickname: this.props.pokemon.nickname,
+    editing: false
+  }
 
   componentDidUpdate() {
     if (this.state.editing) {
@@ -36,12 +59,12 @@ const Nickname = React.createClass({
     } else if (this.lastActiveElement) {
       this.lastActiveElement.focus()
     }
-  },
+  }
 
   render() {
     const {
       editing,
-      newNickname
+      newNickname,
     } = this.state
 
     if (editing) {
@@ -69,39 +92,21 @@ const Nickname = React.createClass({
         />
       </div>
     )
-  },
+  }
 
-  handleEdit() {
+  handleEdit = () => {
     this.setState({
       editing: true
     })
-  },
+  }
 
-  handleKeyPress(e) {
+  handleKeyPress = (e) => {
     const {
       pokemon,
     } = this.props
 
     if (e.key === 'Enter') {
-      let newName = e.target.value
-
-      const totalEnergy = parseInt(Math.floor(100 / pokemon.move_2.energy_cost), 10)
-      const energy = getNumberInCircle(totalEnergy)
-      const vi = (100 - pokemon.iv).toFixed(0)
-      const attack = getNumberInCircle(pokemon.attack)
-      const defense = getNumberInCircle(pokemon.defense)
-      const stamina = getNumberInCircle(pokemon.stamina)
-
-      newName = newName
-        .replace('[IV]', pokemon.iv.toFixed(0))
-        .replace('[VI]', vi)
-        .replace('[ATT]', attack)
-        .replace('[DEF]', defense)
-        .replace('[STA]', stamina)
-        .replace('[FAST]', pokemon.move_1.power.toFixed(0))
-        .replace('[CHARGE]', pokemon.move_2.power.toFixed(0))
-        .replace('[ENERGY]', energy)
-        .replace('[HP]', pokemon.stamina_max)
+      const newName = templateRename(pokemon, e.target.value)
 
       if (newName.length > 12) {
         ipcRenderer.send('error-message', 'The name must contain 12 characters or less.')
@@ -112,9 +117,9 @@ const Nickname = React.createClass({
         this.handleRenameComplete(updatedPokemon)
       })
     }
-  },
+  }
 
-  handleRenameComplete(updatedPokemon) {
+  handleRenameComplete = (updatedPokemon) => {
     const {
       pokemon
     } = this.props
@@ -126,8 +131,7 @@ const Nickname = React.createClass({
       editing: false
     })
   }
-
-})
+}
 
 export default connect(null, dispatch => bindActionCreators({
   renamePokemon
