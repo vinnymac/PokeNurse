@@ -29,7 +29,7 @@ const AUTH_METHODS = {
 
 const hashKeyTooltip = (
   <Tooltip id="hashKeyTooltip">
-    Hash Keys for 0.51+ support, instead of the potentially unsafe 0.45 API.
+    Hash Keys for 0.53+ support, instead of the potentially unsafe 0.45 API.
     Note that Hash Keys currently have varying costs based on your Requests per Minute.
   </Tooltip>
 )
@@ -147,7 +147,7 @@ class LoginForm extends React.Component {
             </InputGroup.Addon>
             <FormControl
               type="text"
-              placeholder="Hash Key required only for safer 0.51+ support"
+              placeholder="Hash Key required only for safer 0.53+ support"
               ref={(c) => { this.hashKey = c }}
               defaultValue={credentials.hashingKey || ''}
             />
