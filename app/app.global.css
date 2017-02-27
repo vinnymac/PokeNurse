@@ -400,6 +400,8 @@ margin: auto;
 left: 0;
 right: 0;
 cursor: pointer;
+height: 100%;
+image-rendering: pixelated;
 }
 
 #pokemon_sprite_wrapper {
