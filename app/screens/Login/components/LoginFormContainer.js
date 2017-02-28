@@ -29,8 +29,14 @@ const AUTH_METHODS = {
 
 const hashKeyTooltip = (
   <Tooltip id="hashKeyTooltip">
-    Hash Keys for 0.53+ support, instead of the potentially unsafe 0.45 API.
-    Note that Hash Keys currently have varying costs based on your Requests per Minute.
+    This is a safer way to interact with the API.
+    Hash Keys currently have varying costs based on your Requests per Minute.
+  </Tooltip>
+)
+
+const apiVersionTooltip = (
+  <Tooltip id="apiVersionTooltip">
+    Use specific API Version, 0.53 is 5300, 0.57.2 is 5702, etc.
   </Tooltip>
 )
 
@@ -147,9 +153,21 @@ class LoginForm extends React.Component {
             </InputGroup.Addon>
             <FormControl
               type="text"
-              placeholder="Hash Key required only for safer 0.53+ support"
+              placeholder="Token only required for safer API interactions"
               ref={(c) => { this.hashKey = c }}
               defaultValue={credentials.hashingKey || ''}
+            />
+
+            <InputGroup.Addon>
+              <OverlayTrigger placement="right" overlay={apiVersionTooltip}>
+                <span className="fa fa-database" aria-hidden="true" />
+              </OverlayTrigger>
+            </InputGroup.Addon>
+            <FormControl
+              type="text"
+              placeholder="5702"
+              ref={(c) => { this.apiVersion = c }}
+              defaultValue={credentials.apiVersion || ''}
             />
           </InputGroup>
         </FormGroup>
@@ -200,6 +218,7 @@ class LoginForm extends React.Component {
     const password = findDOMNode(this.password).value
     const hashingKey = findDOMNode(this.hashKey).value
     const rememberMe = findDOMNode(this.rememberMe).checked
+    const apiVersion = findDOMNode(this.apiVersion).value
 
     if (!username) {
       ipcRenderer.send('error-message', 'A username is required to login.')
@@ -216,6 +235,7 @@ class LoginForm extends React.Component {
       username,
       password,
       hashingKey,
+      apiVersion,
     }
 
     if (rememberMe) {
