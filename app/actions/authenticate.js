@@ -28,7 +28,7 @@ const userLoginFailed = createAction('USER_LOGIN_FAILED')
 const accountPath = path.join(remote.app.getPath('appData'), '/pokenurse/account.json')
 
 export default {
-  login({ method, username, password, hashingKey }) {
+  login({ method, username, password, hashingKey, apiVersion }) {
     return async (dispatch) => {
       dispatch(userLoginStarted())
 
@@ -49,8 +49,8 @@ export default {
           useHashingServer: !!hashingKey,
         }
 
-        // Use API version 0.53 (minimum version for hashing server)
-        if (hashingKey) options.version = 5300
+        // Use default API version
+        if (hashingKey) options.version = apiVersion || 5702
 
         const client = new pogobuf.Client(options)
 
