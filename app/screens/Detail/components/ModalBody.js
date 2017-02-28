@@ -93,21 +93,21 @@ class ModalBody extends React.Component {
         <div id="pokemon_health_bar" />
         <div id="pokemon_health">{`HP ${hp}`}</div>
         <div className="pokemon_info">
-          <div className="pokemon-info-item split-3-way">
-            <div className="pokemon-info-item-text">{`${type.join(' / ')}`}</div>
-            <div className="pokemon-info-item-title">Type</div>
-          </div>
-          <div className="pokemon-info-item split-3-way">
+          <div className="pokemon-info-item split-4-way">
             <div className="pokemon-info-item-text">
-              {`${weight} `}
-              <span className="pokemon-stat-unit">kg</span>
+              {`${weight}`}
+              <span className="pokemon-stat-unit">&thinsp;kg</span>
             </div>
             <div className="pokemon-info-item-title">Weight</div>
           </div>
-          <div className="pokemon-info-item split-3-way">
+          <div className="pokemon-info-item split-2-way">
+            <div className="pokemon-info-item-text">{`${type.join(' / ')}`}</div>
+            <div className="pokemon-info-item-title">Type</div>
+          </div>
+          <div className="pokemon-info-item split-4-way">
             <div className="pokemon-info-item-text">
-              {`${height} `}
-              <span className="pokemon-stat-unit">m</span>
+              {`${height}`}
+              <span className="pokemon-stat-unit">&thinsp;m</span>
             </div>
             <div className="pokemon-info-item-title">Height</div>
           </div>
@@ -119,7 +119,7 @@ class ModalBody extends React.Component {
           </div>
           <div className="pokemon-info-item split-2-way">
             <div className="pokemon-info-item-text candy-count">{candies}</div>
-            <div className="pokemon-info-item-title">{`${name} Candies`}</div>
+            <div className="pokemon-info-item-title">{`${name} Candy`}</div>
           </div>
         </div>
         <div className="pokemon_info">
