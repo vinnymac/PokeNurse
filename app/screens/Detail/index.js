@@ -56,7 +56,9 @@ class ModalDialog extends React.Component {
       <div className="modal-dialog" role="document">
         <div className="modal-content" style={modalBackground}>
           <div className="modal-header modal-outline-white">
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button>
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
             <h4 className="modal-title" id="detailModalLabel">{this.props.name}</h4>
           </div>
           <ModalBody {...this.props} />
