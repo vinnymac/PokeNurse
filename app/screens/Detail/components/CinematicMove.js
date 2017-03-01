@@ -21,7 +21,7 @@ class CinematicMove extends React.Component {
       myMove
     } = this.props
 
-    const chargeMoveStyle = { width: `${move.energy_cost}px` }
+    const chargeMoveStyle = { width: `${move.energy_cost - 3}%` }
 
     const chargedMoveBars = times(Math.floor(100 / move.energy_cost), (i) =>
       <div key={i} className="pokemon-move-cost-item" style={chargeMoveStyle} />
