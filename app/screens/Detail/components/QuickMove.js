@@ -42,7 +42,7 @@ class QuickMove extends React.Component {
           delayShow={100}
           show
         >
-          <div className="pokemon-move-title">{`${move.name}`}</div>
+          <div className="pokemon-move-title">{`${move.name.replace(' Fast', '')}`}</div>
           <div className={`pokemon-move-type ${move.type}`}>{`${move.type}`}</div>
         </Tooltip>
         <div className="pokemon-move-cost" />
