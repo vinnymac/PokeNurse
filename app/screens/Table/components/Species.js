@@ -146,9 +146,9 @@ class Species extends React.Component {
       let extraPokemonNeededSpan
 
       if (specie.evolves > 0) {
-        const totalCandyNeeded = specie.candyToEvolve * specie.count
+        const totalCandyNeeded = (specie.candyToEvolve - 1) * specie.count + 1
         const extraCandyNeeded = totalCandyNeeded - specie.candy
-        const extraPokemonNeeded = Math.floor((extraCandyNeeded * -1) / specie.candyToEvolve)
+        const extraPokemonNeeded = Math.floor((extraCandyNeeded * -1) / (specie.candyToEvolve - 1))
 
         if (extraCandyNeeded > 0) {
           extraCandyNeededSpan = (
