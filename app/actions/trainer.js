@@ -468,6 +468,21 @@ function transferPokemon(pokemon, delay) {
   }
 }
 
+function transferMultiplePokemon(selectedPokemon) {
+  return async (dispatch) => {
+    for (var i = 0; i < selectedPokemon.length; i++) {
+      try {
+        await getClient().releasePokemon(selectedPokemon[i].id)
+        dispatch(transferPokemonSuccess(selectedPokemon[i]))
+      } catch (error) {
+        dispatch(transferPokemonFailed(error))
+        handlePogobufError(error)
+      }
+    }
+    await dispatch(refreshPokemon())
+  }
+}
+
 function evolvePokemon(pokemon, delay) {
   return async (dispatch) => {
     try {
@@ -527,7 +542,7 @@ function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
   }
 }
 
-const transferSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Transfer', 'releasePokemon')
+const transferSelectedPokemon = transferMultiplePokemon.bind('releasePokemon')
 
 const evolveSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Evolve', 'evolvePokemon')
 
