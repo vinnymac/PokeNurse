@@ -73,7 +73,10 @@ function getNewSpeciesState(state) {
         }
       })
       updatedSpecieState.checkAll = checkAll
-      speciesState[pid] = Object.assign({}, existingSpecieState, updatedSpecieState)
+      speciesState[pid] = {
+        ...existingSpecieState,
+        ...updatedSpecieState,
+      }
     // specie state does not exist
     } else {
       speciesState[pid] = {
@@ -103,62 +106,69 @@ function getNewMonsters(state, monsters, sortBy, sortDir) {
 
     specie.pokemon = getSortedPokemon(specie, specieState)
   })
-
-  return Object.assign({}, monsters, {
-    species: sortedSpecies
-  })
+  return {
+    ...monsters,
+    species: sortedSpecies,
+  }
 }
 
 // Anytime the speciesState changes we should recount selected
 function updateSpecies(state, index, updater) {
-  const speciesAtIndex = state.monsters.species[index]
-  const updatedSpecies = Object.assign({}, speciesAtIndex, updater(speciesAtIndex))
+  const specieAtIndexPokemonId = index + 1
+  const indexForSpecie = state.monsters.species.findIndex(specie => specie.pokemon_id === specieAtIndexPokemonId)
+  const specieAtIndex = state.monsters.species[indexForSpecie]
+  const updatedSpecies = { ...specieAtIndex, ...updater(specieAtIndex) }
 
-  const updatedMonsters = Object.assign({}, state.monsters, {
-    species: Immutable.array.set(state.monsters.species, index, updatedSpecies)
-  })
+  const updatedMonsters = {
+    ...state.monsters,
+    species: Immutable.array.set(state.monsters.species, indexForSpecie, updatedSpecies),
+  }
 
-  const updatedStateWithMonsters = Object.assign({}, state, {
-    monsters: updatedMonsters
-  })
+  const updatedStateWithMonsters = {
+    ...state,
+    monsters: updatedMonsters,
+  }
 
   const {
     speciesState,
     selectedCount
   } = getNewSpeciesState(updatedStateWithMonsters)
 
-  return Object.assign({}, updatedStateWithMonsters, {
+  return {
+    ...updatedStateWithMonsters,
     speciesState,
-    selectedCount
-  })
+    selectedCount,
+  }
 }
 
 function updateSpeciesState(state, id, updater) {
   const {
-    speciesState
+    speciesState,
   } = state
-  const newSpecieState = {}
   const existingSpecieState = speciesState[String(id)]
 
-  newSpecieState[String(id)] = Object.assign(
-    {},
-    existingSpecieState,
-    updater(existingSpecieState)
-  )
-
-  return Object.assign({}, speciesState, newSpecieState)
+  return {
+    ...speciesState,
+    [String(id)]: {
+      ...existingSpecieState,
+      ...updater(existingSpecieState),
+    },
+  }
 }
 
 function updatePokemonState(speciesState, pid, updater) {
   const existingPokemonByIdState = speciesState.pokemonState[String(pid)]
 
   const newPokemonByIdState = {}
-  newPokemonByIdState[String(pid)] = Object.assign(
-    {},
-    existingPokemonByIdState,
-    updater(existingPokemonByIdState)
-  )
-  return Object.assign({}, speciesState.pokemonState, newPokemonByIdState)
+  newPokemonByIdState[String(pid)] = {
+    ...existingPokemonByIdState,
+    ...updater(existingPokemonByIdState),
+  }
+
+  return {
+    ...speciesState.pokemonState,
+    ...newPokemonByIdState
+  }
 }
 
 function updateMonster(state, pokemon, options = {}) {
@@ -169,9 +179,10 @@ function updateMonster(state, pokemon, options = {}) {
   return updateSpecies(state, speciesIndex, (speciesAtIndex) => {
     const index = speciesAtIndex.pokemon.findIndex((p) => p.id === pokemon.id)
 
-    const sorted = getSortedPokemon(Object.assign({}, speciesAtIndex, {
-      pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, updatedPokemon)
-    }), state.speciesState[pokemon.pokemon_id])
+    const sorted = getSortedPokemon({
+      ...speciesAtIndex,
+      pokemon: Immutable.array.set(speciesAtIndex.pokemon, index, updatedPokemon),
+    }, state.speciesState[pokemon.pokemon_id])
 
     return { // make sure we sort the new pokemon index now that we updated it
       pokemon: sorted
@@ -195,7 +206,10 @@ function getNewSortDirectionFromSortBy(sortBy, specieState) {
 
 export default handleActions({
   GET_TRAINER_INFO_SUCCESS(state, action) {
-    return Object.assign({}, state, action.payload)
+    return {
+      ...state,
+      ...action.payload,
+    }
   },
 
   GET_TRAINER_INFO_FAILED(state, action) {
@@ -206,7 +220,10 @@ export default handleActions({
   GET_TRAINER_POKEMON_SUCCESS(state, action) {
     const monsters = getNewMonsters(state, action.payload, state.sortBy, state.sortDir)
 
-    const updatedStateWithMonsters = Object.assign({}, state, { monsters })
+    const updatedStateWithMonsters = {
+      ...state,
+      monsters,
+    }
 
     const {
       speciesState,
@@ -214,10 +231,11 @@ export default handleActions({
     } = getNewSpeciesState(updatedStateWithMonsters)
 
     // TODO always sort the data before we return it
-    return Object.assign({}, updatedStateWithMonsters, {
+    return {
+      ...updatedStateWithMonsters,
       speciesState,
-      selectedCount
-    })
+      selectedCount,
+    }
   },
 
   GET_TRAINER_POKEMON_FAILED(state, action) {
@@ -246,23 +264,25 @@ export default handleActions({
   // TODO Maybe just generic UPDATE_TRAINER_STORE
   // using this too much right now, taking the easy way out of refactoring
   UPDATE_MONSTER_SORT(state, action) {
-    return Object.assign({}, state, action.payload)
+    return { ...state, ...action.payload }
   },
 
   SORT_SPECIES(state, action) {
     const {
       sortBy,
-      speciesIndex
+      speciesIndex, // this index could be wrong when sorted, so we use findIndex
     } = action.payload
 
-    const pokemonId = state.monsters.species[speciesIndex].pokemon_id
+    const pokemonId = speciesIndex + 1
+
     const specieState = state.speciesState[pokemonId]
 
     const sortDir = getNewSortDirectionFromSortBy(sortBy, specieState)
 
-    const updatedSpeciesState = Object.assign({}, state, {
-      speciesState: updateSpeciesState(state, pokemonId, () => ({ sortDir, sortBy }))
-    })
+    const updatedSpeciesState = {
+      ...state,
+      speciesState: updateSpeciesState(state, pokemonId, () => ({ sortDir, sortBy })),
+    }
 
     return updateSpecies(updatedSpeciesState, speciesIndex, (speciesAtIndex) => {
       const sorted = getSortedPokemon(speciesAtIndex, null, sortBy, sortDir)
@@ -332,13 +352,14 @@ export default handleActions({
 
     if (specie.count < 1) return state
 
-    return Object.assign({}, state, {
+    return {
+      ...state,
       speciesState: updateSpeciesState(state, specie.pokemon_id, (speciesState) => {
         const newCollapsed = !speciesState.collapsed
 
         return { collapsed: newCollapsed }
-      })
-    })
+      }),
+    }
   },
 
   CHECK_ALL_BY_SPECIES(state, action) {
@@ -360,11 +381,10 @@ export default handleActions({
           }
         }
 
-        newPokemonState[id] = Object.assign(
-          {},
-          specieState.pokemonState[id],
-          { check: newCheckAllState }
-        )
+        newPokemonState[id] = {
+          ...specieState.pokemonState[id],
+          check: newCheckAllState,
+        }
       })
 
       return {
@@ -373,10 +393,11 @@ export default handleActions({
       }
     })
 
-    return Object.assign({}, state, {
+    return {
+      ...state,
       speciesState,
-      selectedCount
-    })
+      selectedCount,
+    }
   },
 
   CHECK_POKEMON(state, action) {
@@ -410,10 +431,11 @@ export default handleActions({
       }
     )
 
-    return Object.assign({}, state, {
+    return {
+      ...state,
       speciesState,
-      selectedCount
-    })
+      selectedCount,
+    }
   },
 
   SORT_ALL_SPECIES(state, action) {
@@ -421,15 +443,17 @@ export default handleActions({
 
     const sortDir = getNewSortDirectionFromSortBy(sortBy, state)
 
-    const monsters = Object.assign({}, state.monsters, {
-      species: getSortedSpecies(state.monsters, sortBy, sortDir)
-    })
+    const monsters = {
+      ...state.monsters,
+      species: getSortedSpecies(state.monsters, sortBy, sortDir),
+    }
 
-    return Object.assign({}, state, {
+    return {
+      ...state,
       sortDir,
       sortBy,
       monsters
-    })
+    }
   },
 
   SORT_WITH_DEFAULTS(state, action) {
@@ -440,30 +464,31 @@ export default handleActions({
       defaultSpecieSortDirection,
     } = action.payload
 
-    const updatedSpeciesAndMonstersState = Object.assign({}, state.monsters, {
+    const updatedSpeciesAndMonstersState = {
+      ...state.monsters,
       species: getSortedSpecies(state.monsters, defaultPokedexSortBy, defaultPokedexSortDirection).map((s) => {
         const sorted = getSortedPokemon(s, null, defaultSpecieSortBy, defaultSpecieSortDirection)
 
-        return Object.assign({}, s, {
-          pokemon: sorted
-        })
-      })
-    })
+        return { ...s, pokemon: sorted }
+      }),
+    }
 
     const updatedSpeciesState = mapValues(state.speciesState, (specieState) => {
-      const newSpecieState = Object.assign({}, specieState, {
+      const newSpecieState = {
+        ...specieState,
         sortBy: defaultSpecieSortBy,
         sortDir: defaultSpecieSortDirection,
-      })
+      }
 
       return newSpecieState
     })
 
-    return Object.assign({}, state, {
+    return {
+      ...state,
       monsters: updatedSpeciesAndMonstersState,
       sortBy: defaultPokedexSortBy,
       sortDir: defaultPokedexSortDirection,
       speciesState: updatedSpeciesState,
-    })
+    }
   },
 }, initialState)
