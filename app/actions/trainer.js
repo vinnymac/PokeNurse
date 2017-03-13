@@ -470,7 +470,7 @@ function transferPokemon(pokemon, delay) {
 
 function transferMultiplePokemon(selectedPokemon) {
   return async (dispatch) => {
-    for (var i = 0; i < selectedPokemon.length; i++) {
+    for (let i = 0; i < selectedPokemon.length; i++) {
       try {
         await getClient().releasePokemon(selectedPokemon[i].id)
         dispatch(transferPokemonSuccess(selectedPokemon[i]))
