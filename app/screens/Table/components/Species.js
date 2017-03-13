@@ -154,7 +154,7 @@ class Species extends React.Component {
           extraCandyNeededSpan = (
             <span
               className="additional-info"
-              alt="Extra candy required to evolve all pokemon"
+              title="Extra candy required to evolve all pokemon"
             >
               {` +${extraCandyNeeded}`}
             </span>
@@ -163,7 +163,7 @@ class Species extends React.Component {
           extraPokemonNeededSpan = (
             <span
               className="additional-info"
-              alt="Extra pokemon required to use all candy"
+              title="Extra pokemon required to use all candy"
             >
               {` +${extraPokemonNeeded}`}
             </span>
