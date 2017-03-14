@@ -24,6 +24,12 @@ addons:
 install:
   - export CXX="g++-4.8"
   - npm install -g yarn
+  # BEGIN PATCH TO FIX MISSING DEP
+  - export BACK_TO_WORKSPACE=$(pwd)
+  - cd $(npm config get prefix)/lib/node_modules/yarn/node_modules/end-of-stream
+  - npm install once
+  - cd $BACK_TO_WORKSPACE
+  # END PATCH
   - yarn
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
 
