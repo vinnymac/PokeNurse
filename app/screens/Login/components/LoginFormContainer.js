@@ -230,6 +230,11 @@ class LoginForm extends React.Component {
       return
     }
 
+    if (!hashingKey) {
+      ipcRenderer.send('error-message', 'A hashingKey is required to login.')
+      return
+    }
+
     const credentials = {
       method,
       username,
