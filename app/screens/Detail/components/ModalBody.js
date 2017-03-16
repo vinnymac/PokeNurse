@@ -75,7 +75,7 @@ class ModalBody extends React.Component {
           title="Listen to Cry"
           alt="Profile Sprite"
           id="pokemon_profile_sprite"
-          src={`./imgs/3d/${pokemon.name}.webp`}
+          src={`./imgs/3d/${pokemon.name.toLowerCase()}.webp`}
         />
         <audio
           id="pokemonCry"
