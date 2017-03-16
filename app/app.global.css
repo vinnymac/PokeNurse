@@ -407,12 +407,8 @@ margin: auto;
 left: 0;
 right: 0;
 cursor: pointer;
-<<<<<<< HEAD
 //max-width: 400px;
 height: 90%;
-=======
-height: 100%;
->>>>>>> 222d00a... Added animated sprites for details view
 image-rendering: pixelated;
 }
 
