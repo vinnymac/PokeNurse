@@ -29,7 +29,7 @@ const AUTH_METHODS = {
 
 const hashKeyTooltip = (
   <Tooltip id="hashKeyTooltip">
-    This is a safer way to interact with the API.
+    This is the only way to interact with the API.
     Hash Keys currently have varying costs based on your Requests per Minute.
   </Tooltip>
 )
@@ -227,6 +227,11 @@ class LoginForm extends React.Component {
 
     if (!password) {
       ipcRenderer.send('error-message', 'A password is required to login.')
+      return
+    }
+
+    if (!hashingKey) {
+      ipcRenderer.send('error-message', 'A hashingKey is required to login.')
       return
     }
 
