@@ -25,6 +25,8 @@ function getAccountCredentials() {
     method: credentials.method,
     username: credentials.username,
     password: credentials.password,
+    hashingKey: credentials.hashingKey,
+    apiVersion: credentials.apiVersion,
   }
 }
 
