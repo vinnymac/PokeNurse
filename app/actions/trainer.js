@@ -459,7 +459,7 @@ function transferPokemon(selectedPokemon) {
   return async (dispatch) => {
     const idArray = []
     const monArray = []
-    selectedPokemon.forEach(function(currentPokemon) {
+    selectedPokemon.forEach((currentPokemon) => {
       idArray.push(currentPokemon.id)
       monArray.push(currentPokemon)
     })
