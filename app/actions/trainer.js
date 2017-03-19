@@ -457,8 +457,8 @@ function handlePogobufError(error) {
 
 function transferPokemon(selectedPokemon) {
   return async (dispatch) => {
-    let idArray = []
-    let monArray = []
+    const idArray = []
+    const monArray = []
     for (let i = 0; i < selectedPokemon.length; i++) {
       idArray[i] = selectedPokemon[i].id
       monArray[i] = selectedPokemon[i]
