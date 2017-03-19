@@ -329,7 +329,7 @@ export default handleActions({
     const selectedPokemon = action.payload
     selectedPokemon.forEach((currentPokemon) => {
       console.info(`Transferred ${currentPokemon.id}`) // eslint-disable-line
-    }
+    })
     return state
   },
 
