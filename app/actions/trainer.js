@@ -459,10 +459,10 @@ function transferPokemon(selectedPokemon) {
   return async (dispatch) => {
     const idArray = []
     const monArray = []
-    for (let i = 0; i < selectedPokemon.length; i++) {
-      idArray[i] = selectedPokemon[i].id
-      monArray[i] = selectedPokemon[i]
-    }
+    selectedPokemon.forEach(function(currentPokemon) {
+      idArray.push(currentPokemon.id)
+      monArray.push(currentPokemon)
+    })
     try {
       await getClient().releasePokemon(idArray)
       dispatch(transferPokemonSuccess(monArray))
