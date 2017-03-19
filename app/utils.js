@@ -344,7 +344,7 @@ const utils = {
   },
 
   getEvolvesCount(evolveCost, candy, count) {
-    let evolves = Math.floor(candy / evolveCost)
+    let evolves = Math.floor((candy + Math.floor(candy / evolveCost)) / evolveCost)
 
     if ((evolves === Infinity || isNaN(evolves))) {
       evolves = 0
