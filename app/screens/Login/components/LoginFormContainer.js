@@ -155,6 +155,7 @@ class LoginForm extends React.Component {
               type="text"
               placeholder="Token only required for safer API interactions"
               ref={(c) => { this.hashKey = c }}
+              onKeyPress={this.handleEnterKey}
               defaultValue={credentials.hashingKey || ''}
             />
 
@@ -167,6 +168,7 @@ class LoginForm extends React.Component {
               type="text"
               placeholder="5704"
               ref={(c) => { this.apiVersion = c }}
+              onKeyPress={this.handleEnterKey}
               defaultValue={credentials.apiVersion || ''}
             />
           </InputGroup>
