@@ -455,29 +455,20 @@ function handlePogobufError(error) {
   }
 }
 
-function transferPokemon(pokemon, delay) {
+function transferPokemon(selectedPokemon) {
   return async (dispatch) => {
+    let idArray = []
+    let monArray = []
+    for (let i = 0; i < selectedPokemon.length; i++) {
+      idArray[i] = selectedPokemon[i].id
+      monArray[i] = selectedPokemon[i]
+    }
     try {
-      await sleep(delay)
-      await getClient().releasePokemon(pokemon.id)
-      dispatch(transferPokemonSuccess(pokemon))
+      await getClient().releasePokemon(idArray)
+      dispatch(transferPokemonSuccess(monArray))
     } catch (error) {
       dispatch(transferPokemonFailed(error))
       handlePogobufError(error)
-    }
-  }
-}
-
-function transferMultiplePokemon(selectedPokemon) {
-  return async (dispatch) => {
-    for (let i = 0; i < selectedPokemon.length; i++) {
-      try {
-        await getClient().releasePokemon(selectedPokemon[i].id)
-        dispatch(transferPokemonSuccess(selectedPokemon[i]))
-      } catch (error) {
-        dispatch(transferPokemonFailed(error))
-        handlePogobufError(error)
-      }
     }
     await dispatch(refreshPokemon())
   }
@@ -542,8 +533,7 @@ function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
   }
 }
 
-const transferSelectedPokemon = transferMultiplePokemon.bind('releasePokemon')
-
+const transferSelectedPokemon = transferPokemon.bind('releasePokemon')
 const evolveSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Evolve', 'evolvePokemon')
 
 export default {
