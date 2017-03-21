@@ -469,16 +469,22 @@ function transferPokemon(selectedPokemon) {
   }
 }
 
-function evolvePokemon(pokemon, delay) {
+function evolvePokemon(selectedPokemon) {
   return async (dispatch) => {
-    try {
-      await sleep(delay)
-      await getClient().evolvePokemon(pokemon.id)
-      dispatch(evolvePokemonSuccess(pokemon))
-    } catch (error) {
-      dispatch(evolvePokemonFailed(error))
-      handlePogobufError(error)
-    }
+    const delayMin = 4000
+    const delayMax = 12000
+    selectedPokemon.forEach(async (currentPokemon) => {
+      try {
+        await getClient().evolvePokemon(currentPokemon.id)
+        // Wait for a random number of seconds between delayMin and delayMax, both included
+        await sleep(Math.floor(Math.random() * (delayMax - delayMin + 1)) + delayMin)
+        dispatch(evolvePokemonSuccess(currentPokemon))
+      } catch (error) {
+        dispatch(evolvePokemonFailed(error))
+        handlePogobufError(error)
+      }
+    })
+    await dispatch(refreshPokemon())
   }
 }
 
@@ -529,7 +535,7 @@ function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
 }
 
 const transferSelectedPokemon = transferPokemon
-const evolveSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Evolve', 'evolvePokemon')
+const evolveSelectedPokemon = evolvePokemon
 
 export default {
   updateMonster,
