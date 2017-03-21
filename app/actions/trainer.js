@@ -16,7 +16,7 @@ import { getClient } from '../client'
 import utils from '../utils'
 
 import {
-  // updateStatus,
+  updateStatus,
   resetStatus,
 } from './status'
 
@@ -490,11 +490,13 @@ function evolvePokemon(selectedPokemon) {
 
     try {
       // Wait for all selectedPokemon to be evolved
+      dispatch(updateStatus({ method: 'evolve' }))
       await promiseChainFromArray(selectedPokemon, async (currentPokemon, index) => {
         try {
           console.log(`Attempting to evolve ${currentPokemon.id}`)
           await getClient().evolvePokemon(currentPokemon.id)
           console.log('Delaying to evolve next!')
+
           await sleep(randomDelay([delayMin, delayMax]))
 
           console.log('Finished pokemon with index', index)

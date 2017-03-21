@@ -1,11 +1,12 @@
 import React, {
-  PropTypes
+  PropTypes,
+  Component,
 } from 'react'
 import {
   ProgressBar
 } from 'react-bootstrap'
 
-class Progress extends React.Component {
+class Progress extends Component {
   static displayName = 'Progress'
 
   static propTypes = {

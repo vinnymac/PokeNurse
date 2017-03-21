@@ -1,5 +1,6 @@
 import React, {
-  PropTypes
+  PropTypes,
+  Component,
 } from 'react'
 import {
   connect
@@ -7,7 +8,7 @@ import {
 
 import Progress from './Progress'
 
-class Status extends React.Component {
+class Status extends Component {
   static displayName = 'Status'
 
   static propTypes = {
