@@ -31,7 +31,7 @@ install:
   - npm install once
   - cd ../../
   - npm install har-validator
-  - cp ./node_modules/har-validator/lib/promise.js ./node_modules/har-validator/lib/index.js
+  - ln -s $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/promise.js $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/index.js
   - cd $BACK_TO_WORKSPACE
   # END PATCH
   - yarn
