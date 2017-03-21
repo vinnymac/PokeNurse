@@ -465,6 +465,7 @@ function transferPokemon(selectedPokemon) {
       dispatch(transferPokemonFailed(error))
       handlePogobufError(error)
     }
+    ipcRenderer.send('information-dialog', 'Complete!', `Finished Transfer`)
     await dispatch(refreshPokemon())
   }
 }
@@ -484,6 +485,7 @@ function evolvePokemon(selectedPokemon) {
         handlePogobufError(error)
       }
     })
+    ipcRenderer.send('information-dialog', 'Complete!', `Finished Evolve`)
     await dispatch(refreshPokemon())
   }
 }
@@ -514,25 +516,25 @@ function resetStatusAndGetPokemon(errorMessage) {
   }
 }
 
-function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
-  return async (dispatch) => {
-    dispatch(updateStatus({
-      method,
-      selectedPokemon: null,
-      time: null,
-    }))
+// function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
+//   return async (dispatch) => {
+//     dispatch(updateStatus({
+//       method,
+//       selectedPokemon: null,
+//       time: null,
+//     }))
 
-    const batchCall = batchStart(selectedPokemon, batchMethod)
+//     const batchCall = batchStart(selectedPokemon, batchMethod)
 
-    try {
-      await batchCall()
-      await dispatch(resetStatusAndGetPokemon())
-      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-    } catch (e) {
-      dispatch(resetStatusAndGetPokemon(`Error while running ${method.toLowerCase()}:\n\n${e}`))
-    }
-  }
-}
+//     try {
+//       await batchCall()
+//       await dispatch(resetStatusAndGetPokemon())
+//       ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
+//     } catch (e) {
+//       dispatch(resetStatusAndGetPokemon(`Error while running ${method.toLowerCase()}:\n\n${e}`))
+//     }
+//   }
+// }
 
 const transferSelectedPokemon = transferPokemon
 const evolveSelectedPokemon = evolvePokemon
