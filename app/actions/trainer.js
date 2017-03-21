@@ -485,8 +485,8 @@ const promiseChainFromArray = (array, iterator) => {
 
 function evolvePokemon(selectedPokemon) {
   return async (dispatch) => {
-    const delayMin = 4000 // 4 seconds
-    const delayMax = 12000 // 12 seconds
+    const delayMin = 4 // 4 seconds
+    const delayMax = 12 // 12 seconds
 
     try {
       // Wait for all selectedPokemon to be evolved
