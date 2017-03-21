@@ -455,29 +455,38 @@ function handlePogobufError(error) {
   }
 }
 
-function transferPokemon(pokemon, delay) {
+function transferPokemon(selectedPokemon) {
   return async (dispatch) => {
+    const ids = selectedPokemon.map(p => p.id)
     try {
-      await sleep(delay)
-      await getClient().releasePokemon(pokemon.id)
-      dispatch(transferPokemonSuccess(pokemon))
+      await getClient().releasePokemon(ids)
+      dispatch(transferPokemonSuccess(selectedPokemon))
     } catch (error) {
       dispatch(transferPokemonFailed(error))
       handlePogobufError(error)
     }
+    ipcRenderer.send('information-dialog', 'Complete!', `Finished Transfer`)
+    await dispatch(refreshPokemon())
   }
 }
 
-function evolvePokemon(pokemon, delay) {
+function evolvePokemon(selectedPokemon) {
   return async (dispatch) => {
-    try {
-      await sleep(delay)
-      await getClient().evolvePokemon(pokemon.id)
-      dispatch(evolvePokemonSuccess(pokemon))
-    } catch (error) {
-      dispatch(evolvePokemonFailed(error))
-      handlePogobufError(error)
-    }
+    const delayMin = 4000
+    const delayMax = 12000
+    selectedPokemon.forEach(async (currentPokemon) => {
+      try {
+        await getClient().evolvePokemon(currentPokemon.id)
+        // Wait for a random number of seconds between delayMin and delayMax, both included
+        await sleep(Math.floor(Math.random() * (delayMax - delayMin + 1)) + delayMin)
+        dispatch(evolvePokemonSuccess(currentPokemon))
+      } catch (error) {
+        dispatch(evolvePokemonFailed(error))
+        handlePogobufError(error)
+      }
+    })
+    ipcRenderer.send('information-dialog', 'Complete!', `Finished Evolve`)
+    await dispatch(refreshPokemon())
   }
 }
 
@@ -507,29 +516,28 @@ function resetStatusAndGetPokemon(errorMessage) {
   }
 }
 
-function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
-  return async (dispatch) => {
-    dispatch(updateStatus({
-      method,
-      selectedPokemon: null,
-      time: null,
-    }))
+// function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
+//   return async (dispatch) => {
+//     dispatch(updateStatus({
+//       method,
+//       selectedPokemon: null,
+//       time: null,
+//     }))
 
-    const batchCall = batchStart(selectedPokemon, batchMethod)
+//     const batchCall = batchStart(selectedPokemon, batchMethod)
 
-    try {
-      await batchCall()
-      await dispatch(resetStatusAndGetPokemon())
-      ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-    } catch (e) {
-      dispatch(resetStatusAndGetPokemon(`Error while running ${method.toLowerCase()}:\n\n${e}`))
-    }
-  }
-}
+//     try {
+//       await batchCall()
+//       await dispatch(resetStatusAndGetPokemon())
+//       ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
+//     } catch (e) {
+//       dispatch(resetStatusAndGetPokemon(`Error while running ${method.toLowerCase()}:\n\n${e}`))
+//     }
+//   }
+// }
 
-const transferSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Transfer', 'releasePokemon')
-
-const evolveSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Evolve', 'evolvePokemon')
+const transferSelectedPokemon = transferPokemon
+const evolveSelectedPokemon = evolvePokemon
 
 export default {
   updateMonster,

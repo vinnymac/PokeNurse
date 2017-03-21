@@ -326,8 +326,10 @@ export default handleActions({
   },
 
   TRANSFER_POKEMON_SUCCESS(state, action) {
-    const pokemon = action.payload
-    console.info(`Transferred ${pokemon.id}`) // eslint-disable-line
+    const selectedPokemon = action.payload
+    selectedPokemon.forEach((currentPokemon) => {
+      console.info(`Transferred ${currentPokemon.id}`) // eslint-disable-line
+    })
     return state
   },
 
