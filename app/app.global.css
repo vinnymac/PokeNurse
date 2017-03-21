@@ -407,8 +407,9 @@ margin: auto;
 left: 0;
 right: 0;
 cursor: pointer;
-//max-width: 400px;
+max-width: 400px;
 height: 90%;
+object-fit: contain;
 image-rendering: pixelated;
 }
 
