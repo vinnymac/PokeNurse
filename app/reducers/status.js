@@ -11,7 +11,10 @@ const initialState = {
 
 export default handleActions({
   UPDATE_STATUS(state, action) {
-    return Object.assign({}, state, action.payload)
+    return {
+      ...state,
+      ...action.payload,
+    }
   },
 
   RESET_STATUS() {

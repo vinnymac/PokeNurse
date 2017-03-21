@@ -16,7 +16,7 @@ import { getClient } from '../client'
 import utils from '../utils'
 
 import {
-  updateStatus,
+  // updateStatus,
   resetStatus,
 } from './status'
 
@@ -465,8 +465,9 @@ function transferPokemon(selectedPokemon) {
       dispatch(transferPokemonFailed(error))
       handlePogobufError(error)
     }
-    ipcRenderer.send('information-dialog', 'Complete!', `Finished Transfer`)
-    await dispatch(refreshPokemon())
+    resetStatusAndGetPokemon(null, () => {
+      ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
+    })
   }
 }
 
@@ -485,29 +486,22 @@ function evolvePokemon(selectedPokemon) {
         handlePogobufError(error)
       }
     })
-    ipcRenderer.send('information-dialog', 'Complete!', `Finished Evolve`)
-    await dispatch(refreshPokemon())
+
+    resetStatusAndGetPokemon(null, () => {
+      ipcRenderer.send('information-dialog', 'Complete!', 'Finished Evolve')
+    })
   }
 }
 
 const updateMonster = createAction('UPDATE_MONSTER')
 
-function batchStart(selectedPokemon, method) {
-  let batch = getClient().batchStart()
-
-  selectedPokemon.forEach((p) => {
-    batch = batch[method](p.id)
-  })
-
-  return () => batch.batchCall()
-}
-
-function resetStatusAndGetPokemon(errorMessage) {
+function resetStatusAndGetPokemon(errorMessage, success) {
   return async (dispatch) => {
     try {
       dispatch(resetStatus())
       await sleep(100) // Pogobuf may need a tick after a large batch
       await dispatch(refreshPokemon())
+      if (success) success()
       if (errorMessage) ipcRenderer.send('error-message', errorMessage)
     } catch (e) {
       errorMessage = errorMessage ? `${errorMessage}\n\n${e}` : `Failed to fetch pokemon:\n\n${e}`
@@ -515,26 +509,6 @@ function resetStatusAndGetPokemon(errorMessage) {
     }
   }
 }
-
-// function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
-//   return async (dispatch) => {
-//     dispatch(updateStatus({
-//       method,
-//       selectedPokemon: null,
-//       time: null,
-//     }))
-
-//     const batchCall = batchStart(selectedPokemon, batchMethod)
-
-//     try {
-//       await batchCall()
-//       await dispatch(resetStatusAndGetPokemon())
-//       ipcRenderer.send('information-dialog', 'Complete!', `Finished ${method}`)
-//     } catch (e) {
-//       dispatch(resetStatusAndGetPokemon(`Error while running ${method.toLowerCase()}:\n\n${e}`))
-//     }
-//   }
-// }
 
 const transferSelectedPokemon = transferPokemon
 const evolveSelectedPokemon = evolvePokemon
