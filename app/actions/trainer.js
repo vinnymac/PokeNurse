@@ -491,22 +491,24 @@ function evolvePokemon(selectedPokemon) {
     const delayMin = 4000
     const delayMax = 12000
 
+    const evolve = async (currentPokemon) => {
+      try {
+        await getClient().evolvePokemon(currentPokemon.id)
+        await sleep(randomDelay([delayMin, delayMax]))
+
+        dispatch(evolvePokemonSuccess(currentPokemon))
+      } catch (error) {
+        dispatch(evolvePokemonFailed(error))
+        handlePogobufError(error)
+      }
+    }
+
     try {
-      await promiseChainFromArray(selectedPokemon, async (currentPokemon) => {
-        try {
-          await getClient().evolvePokemon(currentPokemon.id)
-          await sleep(randomDelay([delayMin, delayMax]))
-
-          dispatch(evolvePokemonSuccess(currentPokemon))
-        } catch (error) {
-          dispatch(evolvePokemonFailed(error))
-          handlePogobufError(error)
-        }
-      })
-
-      await resetStatusAndGetPokemon(null, () => {
-        ipcRenderer.send('information-dialog', 'Complete!', 'Finished Evolve')
-      })
+      await promiseChainFromArray(selectedPokemon, currentPokemon => evolve(currentPokemon))
+      // await resetStatusAndGetPokemon(null, () => {
+      //   ipcRenderer.send('information-dialog', 'Complete!', 'Finished Evolve')
+      // })
+      await dispatch(refreshPokemon())
     } catch (error) {
       resetStatusAndGetPokemon('Failed to evolve all pokemon.')
     }
