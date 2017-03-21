@@ -455,20 +455,34 @@ function handlePogobufError(error) {
   }
 }
 
+function promiseChainFromArray(array, iterator) {
+  let promise = Promise.resolve()
+
+  array.forEach((value, index) => {
+    promise = promise.then(() => iterator(value, index))
+  })
+
+  return promise
+}
+
+// Wait for a random number of seconds between min and max
+const randomDelay = ([min, max]) => Math.round((min + Math.random() * (max - min)) * 1000)
+
 function transferPokemon(selectedPokemon) {
   return async (dispatch) => {
     const ids = selectedPokemon.map(p => p.id)
     try {
       await getClient().releasePokemon(ids)
       dispatch(transferPokemonSuccess(selectedPokemon))
+
+      await resetStatusAndGetPokemon(null, () => {
+        ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
+      })
     } catch (error) {
       dispatch(transferPokemonFailed(error))
       handlePogobufError(error)
+      resetStatusAndGetPokemon('Failed to transfer all pokemon.')
     }
-
-    await resetStatusAndGetPokemon(null, () => {
-      ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
-    })
   }
 }
 
@@ -476,21 +490,26 @@ function evolvePokemon(selectedPokemon) {
   return async (dispatch) => {
     const delayMin = 4000
     const delayMax = 12000
-    selectedPokemon.forEach(async (currentPokemon) => {
-      try {
-        await getClient().evolvePokemon(currentPokemon.id)
-        // Wait for a random number of seconds between delayMin and delayMax, both included
-        await sleep(Math.floor(Math.random() * (delayMax - delayMin + 1)) + delayMin)
-        dispatch(evolvePokemonSuccess(currentPokemon))
-      } catch (error) {
-        dispatch(evolvePokemonFailed(error))
-        handlePogobufError(error)
-      }
-    })
 
-    await resetStatusAndGetPokemon(null, () => {
-      ipcRenderer.send('information-dialog', 'Complete!', 'Finished Evolve')
-    })
+    try {
+      await promiseChainFromArray(selectedPokemon, async (currentPokemon) => {
+        try {
+          await getClient().evolvePokemon(currentPokemon.id)
+          await sleep(randomDelay([delayMin, delayMax]))
+
+          dispatch(evolvePokemonSuccess(currentPokemon))
+        } catch (error) {
+          dispatch(evolvePokemonFailed(error))
+          handlePogobufError(error)
+        }
+      })
+
+      await resetStatusAndGetPokemon(null, () => {
+        ipcRenderer.send('information-dialog', 'Complete!', 'Finished Evolve')
+      })
+    } catch (error) {
+      resetStatusAndGetPokemon('Failed to evolve all pokemon.')
+    }
   }
 }
 
@@ -511,9 +530,6 @@ function resetStatusAndGetPokemon(errorMessage, success) {
   }
 }
 
-const transferSelectedPokemon = transferPokemon
-const evolveSelectedPokemon = evolvePokemon
-
 export default {
   updateMonster,
   updateSpecies: createAction('UPDATE_SPECIES'),
@@ -532,7 +548,7 @@ export default {
   renamePokemon,
   transferPokemon,
   evolvePokemon,
-  evolveSelectedPokemon,
-  transferSelectedPokemon,
+  evolveSelectedPokemon: transferPokemon,
+  transferSelectedPokemon: evolvePokemon,
   refreshPokemon,
 }
