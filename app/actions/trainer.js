@@ -492,10 +492,8 @@ function evolvePokemon(selectedPokemon) {
       // Wait for all selectedPokemon to be evolved
       await promiseChainFromArray(selectedPokemon, async (currentPokemon, index) => {
         try {
-          console.log(`Pretending to evolve ${currentPokemon.id}`)
-          // await getClient().evolvePokemon(currentPokemon.id)
-          const pretendEvolveTime = 200
-          await sleep(pretendEvolveTime)
+          console.log(`Attempting to evolve ${currentPokemon.id}`)
+          await getClient().evolvePokemon(currentPokemon.id)
           console.log('Delaying to evolve next!')
           await sleep(randomDelay([delayMin, delayMax]))
 
