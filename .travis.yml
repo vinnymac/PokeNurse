@@ -24,13 +24,15 @@ addons:
 
 install:
   - export CXX="g++-4.8"
-  - npm install -g yarn
+  - npm install -g yarn@0.16.1
   # BEGIN PATCH TO FIX MISSING DEP
   - export BACK_TO_WORKSPACE=$(pwd)
   - cd $(npm config get prefix)/lib/node_modules/yarn/node_modules/end-of-stream
   - npm install once
   - cd ../../
   - npm install har-validator
+  - mkdir $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/node4
+  - ln -s $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/promise.js $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/node4/index.js
   - ln -s $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/promise.js $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/index.js
   - cd $BACK_TO_WORKSPACE
   # END PATCH
