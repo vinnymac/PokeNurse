@@ -477,11 +477,11 @@ function transferPokemon(selectedPokemon) {
 
 function evolvePokemon(selectedPokemon) {
   return async (dispatch) => {
-    const delayMin = 4000
-    const delayMax = 12000
+    const delayMin = 4000 // 4 seconds
+    const delayMax = 12000 // 12 seconds
 
     try {
-      // Wait for all selectedPokemon to be transferred
+      // Wait for all selectedPokemon to be evolved
       await Promise.all(selectedPokemon.map(async (currentPokemon) => {
         try {
           await getClient().evolvePokemon(currentPokemon.id)
