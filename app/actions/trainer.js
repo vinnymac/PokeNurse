@@ -234,9 +234,7 @@ function parseInventory(inventory) {
   }
 }
 
-function sleep(time) {
-  return new Promise(r => setTimeout(r, time))
-}
+const sleep = time => new Promise(r => setTimeout(r, time))
 
 const getTrainerInfoSuccess = createAction('GET_TRAINER_INFO_SUCCESS')
 const getTrainerInfoFailed = createAction('GET_TRAINER_INFO_FAILED')
@@ -475,6 +473,16 @@ function transferPokemon(selectedPokemon) {
   }
 }
 
+const promiseChainFromArray = (array, iterator) => {
+  let promise = Promise.resolve()
+
+  array.forEach((value, index) => {
+    promise = promise.then(() => iterator(value, index))
+  })
+
+  return promise
+}
+
 function evolvePokemon(selectedPokemon) {
   return async (dispatch) => {
     const delayMin = 4000 // 4 seconds
@@ -482,7 +490,7 @@ function evolvePokemon(selectedPokemon) {
 
     try {
       // Wait for all selectedPokemon to be evolved
-      await Promise.all(selectedPokemon.map(async (currentPokemon, index) => {
+      await promiseChainFromArray(selectedPokemon, async (currentPokemon, index) => {
         try {
           console.log(`Attempting to evolve ${currentPokemon.id}`)
           await getClient().evolvePokemon(currentPokemon.id)
@@ -496,7 +504,7 @@ function evolvePokemon(selectedPokemon) {
           dispatch(evolvePokemonFailed(error))
           handlePogobufError(error)
         }
-      }))
+      })
 
       console.log('FINISHED ALL EVOLVES!', selectedPokemon)
 
