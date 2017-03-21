@@ -482,17 +482,23 @@ function evolvePokemon(selectedPokemon) {
 
     try {
       // Wait for all selectedPokemon to be evolved
-      await Promise.all(selectedPokemon.map(async (currentPokemon) => {
+      await Promise.all(selectedPokemon.map(async (currentPokemon, index) => {
         try {
+          console.log(`Attempting to evolve ${currentPokemon.id}`)
           await getClient().evolvePokemon(currentPokemon.id)
+          console.log('Delaying to evolve next!')
           await sleep(randomDelay([delayMin, delayMax]))
 
+          console.log('Finished pokemon with index', index)
           dispatch(evolvePokemonSuccess(currentPokemon))
         } catch (error) {
+          console.log('FAILED EVOLVE', error)
           dispatch(evolvePokemonFailed(error))
           handlePogobufError(error)
         }
       }))
+
+      console.log('FINISHED ALL EVOLVES!', selectedPokemon)
 
       await dispatch(resetStatusAndGetPokemon(null, () => {
         ipcRenderer.send('information-dialog', 'Complete!', 'Finished Evolve')
