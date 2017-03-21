@@ -457,15 +457,10 @@ function handlePogobufError(error) {
 
 function transferPokemon(selectedPokemon) {
   return async (dispatch) => {
-    const idArray = []
-    const monArray = []
-    selectedPokemon.forEach((currentPokemon) => {
-      idArray.push(currentPokemon.id)
-      monArray.push(currentPokemon)
-    })
+    const ids = selectedPokemon.map(p => p.id)
     try {
-      await getClient().releasePokemon(idArray)
-      dispatch(transferPokemonSuccess(monArray))
+      await getClient().releasePokemon(ids)
+      dispatch(transferPokemonSuccess(selectedPokemon))
     } catch (error) {
       dispatch(transferPokemonFailed(error))
       handlePogobufError(error)
@@ -533,7 +528,7 @@ function batchProcessSelectedPokemon(method, batchMethod, selectedPokemon) {
   }
 }
 
-const transferSelectedPokemon = transferPokemon.bind('releasePokemon')
+const transferSelectedPokemon = transferPokemon
 const evolveSelectedPokemon = batchProcessSelectedPokemon.bind(null, 'Evolve', 'evolvePokemon')
 
 export default {
