@@ -480,9 +480,11 @@ function transferPokemon(selectedPokemon) {
       // resetStatusAndGetPokemon('Failed to transfer all pokemon.')
     }
 
-    await resetStatusAndGetPokemon(null, () => {
-      ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
-    })
+    // await resetStatusAndGetPokemon(null, () => {
+    //   ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
+    // })
+    ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
+    await dispatch(refreshPokemon())
   }
 }
 
