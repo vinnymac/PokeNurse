@@ -29,6 +29,8 @@ install:
   - export BACK_TO_WORKSPACE=$(pwd)
   - cd $(npm config get prefix)/lib/node_modules/yarn/node_modules/end-of-stream
   - npm install once
+  - cd $(npm config get prefix)/lib/node_modules/yarn/node_modules/
+  - npm install har-validator
   - cd $BACK_TO_WORKSPACE
   # END PATCH
   - yarn
