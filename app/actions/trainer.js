@@ -473,10 +473,11 @@ function transferPokemon(selectedPokemon) {
     const ids = selectedPokemon.map(p => p.id)
     try {
       await getClient().releasePokemon(ids)
-      dispatch(transferPokemonSuccess(selectedPokemon))
-      await resetStatusAndGetPokemon(null, () => {
-        ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
-      })
+      // dispatch(transferPokemonSuccess(selectedPokemon))
+      // await resetStatusAndGetPokemon(null, () => {
+      //   ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
+      // })
+      await dispatch(refreshPokemon())
     } catch (error) {
       dispatch(transferPokemonFailed(error))
       handlePogobufError(error)
