@@ -465,7 +465,8 @@ function transferPokemon(selectedPokemon) {
       dispatch(transferPokemonFailed(error))
       handlePogobufError(error)
     }
-    resetStatusAndGetPokemon(null, () => {
+
+    await resetStatusAndGetPokemon(null, () => {
       ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
     })
   }
@@ -487,7 +488,7 @@ function evolvePokemon(selectedPokemon) {
       }
     })
 
-    resetStatusAndGetPokemon(null, () => {
+    await resetStatusAndGetPokemon(null, () => {
       ipcRenderer.send('information-dialog', 'Complete!', 'Finished Evolve')
     })
   }
