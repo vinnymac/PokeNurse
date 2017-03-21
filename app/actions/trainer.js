@@ -495,9 +495,10 @@ function evolvePokemon(selectedPokemon) {
         try {
           console.log(`Attempting to evolve ${currentPokemon.id}`)
           await getClient().evolvePokemon(currentPokemon.id)
-          console.log('Delaying to evolve next!')
-
-          await sleep(randomDelay([delayMin, delayMax]))
+          const delay = randomDelay([delayMin, delayMax])
+          console.log(`Simulating Human Behavior, ${delayMin} to ${delayMax} seconds`)
+          console.log(`Delaying evolve for ${delay / 1000} seconds`)
+          await sleep(delay)
 
           console.log('Finished pokemon with index', index)
           dispatch(evolvePokemonSuccess(currentPokemon))
