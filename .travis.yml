@@ -32,7 +32,7 @@ install:
   - cd ../../
   - npm install har-validator
   - mkdir $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/node4
-  - ln -s $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/promise.js $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/node4/index.js
+  - ln -s $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/promise.js $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/node4/promise.js
   - ln -s $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/promise.js $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/index.js
   - cd $BACK_TO_WORKSPACE
   # END PATCH
