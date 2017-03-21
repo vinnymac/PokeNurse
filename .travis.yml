@@ -31,6 +31,7 @@ install:
   - npm install once
   - cd ../../
   - npm install har-validator
+  - mkdir $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/node4
   - ln -s $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/promise.js $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/node4/promise.js
   - ln -s $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/error.js $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/node4/error.js
   - ln -s $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/async.js $(npm config get prefix)/lib/node_modules/yarn/node_modules/har-validator/lib/node4/async.js
