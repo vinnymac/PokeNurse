@@ -474,15 +474,15 @@ function transferPokemon(selectedPokemon) {
     try {
       await getClient().releasePokemon(ids)
       dispatch(transferPokemonSuccess(selectedPokemon))
-
-      await resetStatusAndGetPokemon(null, () => {
-        ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
-      })
     } catch (error) {
       dispatch(transferPokemonFailed(error))
       handlePogobufError(error)
-      resetStatusAndGetPokemon('Failed to transfer all pokemon.')
+      // resetStatusAndGetPokemon('Failed to transfer all pokemon.')
     }
+
+    await resetStatusAndGetPokemon(null, () => {
+      ipcRenderer.send('information-dialog', 'Complete!', 'Finished Transfer')
+    })
   }
 }
 
