@@ -454,7 +454,7 @@ function handlePogobufError(error) {
 }
 
 // Wait for a random number of seconds between min and max
-const randomDelay = ([min, max]) => Math.round((min + Math.random() * (max - min)) * 1000)
+const randomDelay = ([min, max]) => Math.floor(Math.random() * (max - min + 1)) + min
 
 function transferPokemon(selectedPokemon) {
   return async (dispatch) => {
