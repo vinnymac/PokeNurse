@@ -459,6 +459,7 @@ const randomDelay = ([min, max]) => Math.round((min + Math.random() * (max - min
 function transferPokemon(selectedPokemon) {
   return async (dispatch) => {
     const ids = selectedPokemon.map(p => p.id)
+    dispatch(updateStatus({ method: 'transfer' }))
     try {
       await getClient().releasePokemon(ids)
       dispatch(transferPokemonSuccess(selectedPokemon))
@@ -491,25 +492,20 @@ function evolvePokemon(selectedPokemon) {
     try {
       // Wait for all selectedPokemon to be evolved
       dispatch(updateStatus({ method: 'evolve' }))
-      await promiseChainFromArray(selectedPokemon, async (currentPokemon, index) => {
+      await promiseChainFromArray(selectedPokemon, async (currentPokemon) => {
         try {
-          console.log(`Attempting to evolve ${currentPokemon.id}`)
           await getClient().evolvePokemon(currentPokemon.id)
           const delay = randomDelay([delayMin, delayMax])
           console.log(`Simulating Human Behavior, ${delayMin} to ${delayMax} seconds`)
           console.log(`Delaying evolve for ${delay / 1000} seconds`)
           await sleep(delay)
 
-          console.log('Finished pokemon with index', index)
           dispatch(evolvePokemonSuccess(currentPokemon))
         } catch (error) {
-          console.log('FAILED EVOLVE', error)
           dispatch(evolvePokemonFailed(error))
           handlePogobufError(error)
         }
       })
-
-      console.log('FINISHED ALL EVOLVES!', selectedPokemon)
 
       await dispatch(resetStatusAndGetPokemon(null, () => {
         ipcRenderer.send('information-dialog', 'Complete!', 'Finished Evolve')
