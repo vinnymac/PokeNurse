@@ -4886,7 +4886,7 @@ node-pogo-signature@starkevin/node-pogo-signature:
   resolved "https://codeload.github.com/starkevin/node-pogo-signature/tar.gz/c307d5b9260b735883ec1a209872a4feffcb214f"
   dependencies:
     long "^3.2.0"
-    pcrypt starkevin/pcrypt
+    pcrypt laverdet/pcrypt
     protobufjs "^5.0.1"
 
 node-pre-gyp@^0.6.29:
