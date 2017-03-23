@@ -146,15 +146,15 @@ class Species extends React.Component {
       let extraPokemonNeededSpan
 
       if (specie.evolves > 0) {
-        const totalCandyNeeded = specie.candyToEvolve * specie.count
+        const totalCandyNeeded = (specie.candyToEvolve - 1) * specie.count + 1
         const extraCandyNeeded = totalCandyNeeded - specie.candy
-        const extraPokemonNeeded = Math.floor((extraCandyNeeded * -1) / specie.candyToEvolve)
+        const extraPokemonNeeded = Math.floor((extraCandyNeeded * -1) / (specie.candyToEvolve - 1))
 
         if (extraCandyNeeded > 0) {
           extraCandyNeededSpan = (
             <span
               className="additional-info"
-              alt="Extra candy required to evolve all pokemon"
+              title="Extra candy required to evolve all pokemon"
             >
               {` +${extraCandyNeeded}`}
             </span>
@@ -163,7 +163,7 @@ class Species extends React.Component {
           extraPokemonNeededSpan = (
             <span
               className="additional-info"
-              alt="Extra pokemon required to use all candy"
+              title="Extra pokemon required to use all candy"
             >
               {` +${extraPokemonNeeded}`}
             </span>

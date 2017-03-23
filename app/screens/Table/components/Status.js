@@ -1,5 +1,6 @@
 import React, {
-  PropTypes
+  PropTypes,
+  Component,
 } from 'react'
 import {
   connect
@@ -7,7 +8,7 @@ import {
 
 import Progress from './Progress'
 
-class Status extends React.Component {
+class Status extends Component {
   static displayName = 'Status'
 
   static propTypes = {
@@ -17,12 +18,28 @@ class Status extends React.Component {
   render() {
     const {
       method,
+    } = this.props.status
+
+    return (
+      <div className="status-container flex p5 flex-row">
+        <div className="status mra">
+          <span>{`Status: ${this.getLabel()}`}</span>
+        </div>
+        <div className="progressbar">
+          {method ? <Progress progress={this.props.status} /> : null}
+        </div>
+      </div>
+    )
+  }
+
+  getLabel = () => {
+    const {
+      method,
       time,
       current
     } = this.props.status
 
     let label = 'Idle'
-    let progress = null
 
     if (method) {
       if (current) {
@@ -32,20 +49,9 @@ class Status extends React.Component {
       } else {
         label = `Running Batch ${method}`
       }
-
-      progress = <Progress progress={this.props.status} />
     }
 
-    return (
-      <div className="status-container flex p5 flex-row">
-        <div className="status mra">
-          <span>{`Status: ${label}`}</span>
-        </div>
-        <div className="progressbar">
-          {progress}
-        </div>
-      </div>
-    )
+    return label
   }
 }
 
