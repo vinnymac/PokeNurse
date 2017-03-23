@@ -48,6 +48,22 @@ class PokemonRow extends React.PureComponent {
     const pokemonState = getPokemonState(pokemon.pokemon_id)
     const isChecked = pokemonState[String(pokemon.id)].check
 
+    // Calculating the Waving damage
+    let stabMultiplierMove1 = 1;
+    let stabMultiplierMove2 = 1;
+    if ( pokemon.move_1.type == pokemon.type[0] || pokemon.move_1.type == pokemon.type[1]) {stabMultiplierMove1 = 1.25 }
+    if ( pokemon.move_2.type == pokemon.type[0] || pokemon.move_2.type == pokemon.type[1]) {stabMultiplierMove2 = 1.25 }
+    let cpMultiplier = pokemon.cp_multiplier + pokemon.additional_cp_multiplier; // real cp multiplier
+    // let cpMultiplier = 0.79030001; //cp multiplier ad lvl 40 // false cp multiplier 
+    const realAttack = ( pokemon.base_attack + pokemon.attack ) * (cpMultiplier); // real attack
+    //const realAttack = ( pokemon.base_attack + 0 ) * (cpMultiplier); // false attack (pokemon.attack = 0)
+    const realDefence = 100;
+    const effectivines = 1;
+    const realDamage = Math.floor(1/2 * pokemon.move_1.power * realAttack / realDefence * stabMultiplierMove1 * effectivines) +1;
+    console.log(realAttack)
+    console.log(realDefence)
+
+
     return (
       <tr key={pokemon.id}>
         <td>
@@ -117,6 +133,9 @@ class PokemonRow extends React.PureComponent {
           >
             {pokeiv}
           </Tooltip>
+        </td>
+        <td>
+        {realDamage}
         </td>
       </tr>
     )
