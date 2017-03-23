@@ -101,6 +101,17 @@ class PokemonTableHead extends React.PureComponent {
           >
             IV
           </th>
+          <th
+            className={this.getSortDirectionClassName('WD')}
+            tabIndex="0"
+            rowSpan="1"
+            colSpan="1"
+            aria-controls="pokemon-data"
+            aria-label="IV: activate to sort column ascending"
+            onClick={this.createHandleSortPokemon('WD')}
+          >
+            WD edited 
+          </th>
         </tr>
       </thead>
     )
