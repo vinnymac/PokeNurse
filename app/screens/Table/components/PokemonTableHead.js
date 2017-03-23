@@ -110,7 +110,7 @@ class PokemonTableHead extends React.PureComponent {
             aria-label="IV: activate to sort column ascending"
             onClick={this.createHandleSortPokemon('WD')}
           >
-            WD edited 
+            WD 
           </th>
         </tr>
       </thead>
