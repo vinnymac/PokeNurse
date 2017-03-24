@@ -102,15 +102,28 @@ class PokemonTableHead extends React.PureComponent {
             IV
           </th>
           <th
-            className={this.getSortDirectionClassName('WD')}
+            className={this.getSortDirectionClassName('NWDPWD')}
             tabIndex="0"
             rowSpan="1"
             colSpan="1"
             aria-controls="pokemon-data"
-            aria-label="IV: activate to sort column ascending"
-            onClick={this.createHandleSortPokemon('WD')}
+            aria-label="NWD/PWD: activate to sort column ascending"
+            onClick={this.createHandleSortPokemon('NWDPWD')}
+            title="No Waving Damage per sec / Pefect Waving Damage per sec"
           >
-            WD 
+            NWD / PWD
+          </th>
+          <th
+            className={this.getSortDirectionClassName('pwdRate')}
+            tabIndex="0"
+            rowSpan="1"
+            colSpan="1"
+            aria-controls="pokemon-data"
+            aria-label="Perfect Waving Damage Rating: activate to sort column ascending"
+            onClick={this.createHandleSortPokemon('pwdRate')}
+            title="Perfect Waving Damage based on the moveset Confusion/Solar Beam"
+          >
+            PWD%
           </th>
         </tr>
       </thead>
