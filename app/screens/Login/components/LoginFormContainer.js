@@ -153,7 +153,7 @@ class LoginForm extends React.Component {
             </InputGroup.Addon>
             <FormControl
               type="text"
-              placeholder="Token required"
+              placeholder="Token required for API interactions"
               ref={(c) => { this.hashKey = c }}
               onKeyPress={this.handleEnterKey}
               defaultValue={credentials.hashingKey || ''}
