@@ -55,14 +55,14 @@ class PokemonRow extends React.PureComponent {
     if (pokemon.move_2.type === pokemon.type[0] || pokemon.move_2.type === pokemon.type[1]) { stabMultiplierMove2 = 1.25 }
     const cpMultiplier = pokemon.cp_multiplier + pokemon.additional_cp_multiplier  // real cp multiplier
     // let cpMultiplier = 0.79030001  // false cp multiplier at lvl 40
-    const realAttack = (pokemon.base_attack + pokemon.attack ) * (cpMultiplier) // real attack
+    const realAttack = (pokemon.base_attack + pokemon.attack) * (cpMultiplier) // real attack
     // const realAttack = (pokemon.base_attack + 0 ) * (cpMultiplier) // false attack (pokemon.attack = 0)
-    //const realAttack = (pokemon.base_attack + 15) * (cpMultiplier) // false attack (pokemon.attack = 15)
+    // const realAttack = (pokemon.base_attack + 15) * (cpMultiplier) // false attack (pokemon.attack = 15)
     const targetDefence = 100
     const targetEffectivines = 1
     // Quick attack = move 1
     const realPowerMove1 = (Math.floor(1 / 2 * pokemon.move_1.power * realAttack / targetDefence * stabMultiplierMove1 * targetEffectivines)) + 1
-    const noWavingDamage = realPowerMove1*Math.floor((100000 / pokemon.move_1.duration_ms)) // Damage done by spamming the quick attack
+    const noWavingDamage = realPowerMove1 * Math.floor((100000 / pokemon.move_1.duration_ms)) // Damage done by spamming the quick attack
     // Charge Attack = move 2
     const chargeDealay = 500 // 500 ms
     const realPowerMove2 = (Math.floor(1 / 2 * pokemon.move_2.power * realAttack / targetDefence * stabMultiplierMove2 * targetEffectivines)) + 1
@@ -84,7 +84,7 @@ class PokemonRow extends React.PureComponent {
     }
     avgWaveCycleDamage = avgWaveCycleDamage * realPowerMove1 + realPowerMove2 * (1 + pokemon.move_2.critical_chance / 100)
     // Waving Damage
-    const wavingDamage = avgWaveCycleDamage/avgWaveCycleLenght * (100 * 1000) //100 s *1/1000
+    const wavingDamage = avgWaveCycleDamage / avgWaveCycleLenght * (100 * 1000) // 100 s *1 / 1000
 
     // Waving Damage and rating Shown
     const tierWavingDamage = 24.19  // perfect Charizard # firespin + overheat 375/15500*1000 = 24.19
