@@ -49,51 +49,49 @@ class PokemonRow extends React.PureComponent {
     const isChecked = pokemonState[String(pokemon.id)].check
 
     // Calculating the Waving damage
-    let stabMultiplierMove1 = 1;
-    let stabMultiplierMove2 = 1;
-    if ( pokemon.move_1.type == pokemon.type[0] || pokemon.move_1.type == pokemon.type[1]) {stabMultiplierMove1 = 1.25 }
-    if ( pokemon.move_2.type == pokemon.type[0] || pokemon.move_2.type == pokemon.type[1]) {stabMultiplierMove2 = 1.25 }
-    //const cpMultiplier = pokemon.cp_multiplier + pokemon.additional_cp_multiplier;  // real cp multiplier
+    let stabMultiplierMove1 = 1
+    let stabMultiplierMove2 = 1
+    if (pokemon.move_1.type === pokemon.type[0] || pokemon.move_1.type === pokemon.type[1]) { stabMultiplierMove1 = 1.25 }
+    if (pokemon.move_2.type === pokemon.type[0] || pokemon.move_2.type === pokemon.type[1]) { stabMultiplierMove2 = 1.25 }
+    // const cpMultiplier = pokemon.cp_multiplier + pokemon.additional_cp_multiplier;  // real cp multiplier
     let cpMultiplier = 0.79030001;                                                  // false cp multiplier at lvl 40
-    //const realAttack = ( pokemon.base_attack + pokemon.attack ) * (cpMultiplier); // real attack
-    //const realAttack = ( pokemon.base_attack + 0 ) * (cpMultiplier); // false attack (pokemon.attack = 0)
-    const realAttack = ( pokemon.base_attack + 15 ) * (cpMultiplier); // false attack (pokemon.attack = 15)
-    const targetDefence = 100;
-    const targetEffectivines = 1;
+    // const realAttack = ( pokemon.base_attack + pokemon.attack ) * (cpMultiplier); // real attack
+    // const realAttack = ( pokemon.base_attack + 0 ) * (cpMultiplier); // false attack (pokemon.attack = 0)
+    const realAttack = (pokemon.base_attack + 15) * (cpMultiplier) // false attack (pokemon.attack = 15)
+    const targetDefence = 100
+    const targetEffectivines = 1
     // Quick attack = move 1
-    const realPowerMove1 = (Math.floor(1/2 * pokemon.move_1.power * realAttack / targetDefence * stabMultiplierMove1 * targetEffectivines) )+ 1;
-    const noWavingDamage = realPowerMove1*Math.floor((100000/pokemon.move_1.duration_ms)); // Damage done by spamming the quick attack
+    const realPowerMove1 = (Math.floor(1 / 2 * pokemon.move_1.power * realAttack / targetDefence * stabMultiplierMove1 * targetEffectivines))+ 1
+    const noWavingDamage = realPowerMove1*Math.floor((100000/pokemon.move_1.duration_ms)) // Damage done by spamming the quick attack
     // Charge Attack = move 2
     const chargeDealay = 500 // 500 ms
-    const realPowerMove2 = (Math.floor(1/2 * pokemon.move_2.power * realAttack / targetDefence * stabMultiplierMove1 * targetEffectivines) )+ 1;
+    const realPowerMove2 = (Math.floor(1 / 2 * pokemon.move_2.power * realAttack / targetDefence * stabMultiplierMove2 * targetEffectivines))+ 1
     // calculating the avg wave cycle lenght [ms] and damage
-    //Cycle Lenght
-    let avgWaveCycleLenght = 0; //initiating  variable
-    if (pokemon.move_2.energy_cost == 100) {
-      avgWaveCycleLenght = Math.ceil(pokemon.move_2.energy_cost / pokemon.move_1.energy_gain,1);
+    // Cycle Lenght
+    let avgWaveCycleLenght = 0 // initiating  variable
+    if (pokemon.move_2.energy_cost === 100) {
+      avgWaveCycleLenght = Math.ceil(pokemon.move_2.energy_cost / pokemon.move_1.energy_gain, 1)
     } else {
-      avgWaveCycleLenght = pokemon.move_2.energy_cost / pokemon.move_1.energy_gain;
+      avgWaveCycleLenght = pokemon.move_2.energy_cost / pokemon.move_1.energy_gain
     }
-    avgWaveCycleLenght = avgWaveCycleLenght * pokemon.move_1.duration_ms + pokemon.move_2.duration_ms + chargeDealay;
+    avgWaveCycleLenght = avgWaveCycleLenght * pokemon.move_1.duration_ms + pokemon.move_2.duration_ms + chargeDealay
     // sycle Damage
-    let avgWaveCycleDamage = 0; //initiating variable
-    if (pokemon.move_2.energy_cost == 100) {
-      avgWaveCycleDamage = Math.ceil(pokemon.move_2.energy_cost / pokemon.move_1.energy_gain,1);
+    let avgWaveCycleDamage = 0 // initiating variable
+    if (pokemon.move_2.energy_cost === 100) {
+      avgWaveCycleDamage = Math.ceil(pokemon.move_2.energy_cost / pokemon.move_1.energy_gain,1)
     } else {
-      avgWaveCycleDamage = pokemon.move_2.energy_cost / pokemon.move_1.energy_gain;
+      avgWaveCycleDamage = pokemon.move_2.energy_cost / pokemon.move_1.energy_gain
     }
-    avgWaveCycleDamage = avgWaveCycleDamage * realPowerMove1 + realPowerMove2 * (1 + pokemon.move_2.critical_chance/100);
+    avgWaveCycleDamage = avgWaveCycleDamage * realPowerMove1 + realPowerMove2 * (1 + pokemon.move_2.critical_chance / 100)
     // Waving Damage
-    const wavingDamage = avgWaveCycleDamage/avgWaveCycleLenght*(100*1000); //100 s *1/1000
-    console.log(wavingDamage)
+    const wavingDamage = avgWaveCycleDamage/avgWaveCycleLenght*(100*1000) //100 s *1/1000
 
     // Waving Damage and rating Shown
     const tierWavingDamage = 24.19  // perfect Charizard # firespin + overheat 375/15500*1000 = 24.19
-    const nwd = Math.floor(noWavingDamage)/100;
-    const pwd = Math.floor(wavingDamage)/100;
-    const nwdpwd = `${nwd}` + ` / ` + `${pwd}`;
-    const pwdRating = Math.floor(pwd/tierWavingDamage*1000)/10; 
-
+    const nwd = Math.floor(noWavingDamage) / 100
+    const pwd = Math.floor(wavingDamage) / 100
+    const nwdpwd = `${nwd}` + ` / ` + `${pwd}`
+    const pwdRating = Math.floor(pwd/tierWavingDamage*1000) / 10
 
     return (
       <tr key={pokemon.id}>
