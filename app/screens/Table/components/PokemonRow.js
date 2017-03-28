@@ -14,7 +14,7 @@ function hasMaxCP(pokemon) {
   return pokemon.cp.toFixed(0) === pokemon.max_cp.toFixed(0)
 }
 
-function getWavingDamagePS(pokemon, targetDefence, targetEffectivines) {
+function getWavingDamagePS(pokemon, targetDefence, targetEffectivines) { 
   // Calculating the Waving damage
   let stabMultiplierMove1 = 1
   let stabMultiplierMove2 = 1
