@@ -4875,9 +4875,15 @@ node-libs-browser@^1.0.0:
     util "^0.10.3"
     vm-browserify "0.0.4"
 
-node-pogo-protos@^2.7.0, node-pogo-protos@2.7.0:
+node-pogo-protos@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/node-pogo-protos/-/node-pogo-protos-2.7.0.tgz#5ae53d851454405a1c76896cd35b48d0a4512daf"
+  dependencies:
+    protobufjs "^5.0.1"
+
+node-pogo-protos@2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/node-pogo-protos/-/node-pogo-protos-2.7.1.tgz#8e2d4def1e5a166b4631a48076d474ba5b33af73"
   dependencies:
     protobufjs "^5.0.1"
 
@@ -5236,9 +5242,9 @@ pbkdf2@^3.0.3:
   dependencies:
     create-hmac "^1.1.2"
 
-pcrypt@starkevin/pcrypt:
+pcrypt@laverdet/pcrypt:
   version "1.0.0"
-  resolved "https://codeload.github.com/starkevin/pcrypt/tar.gz/4b6dc0be094f0d891bff01c09d1225a5e5330dbe"
+  resolved "https://codeload.github.com/laverdet/pcrypt/tar.gz/a74de46ae39d54c2d9897f6b081a0f3a31b45f50"
 
 pend@~1.2.0:
   version "1.2.0"

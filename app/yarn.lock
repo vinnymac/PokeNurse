@@ -376,18 +376,24 @@ minimatch@^3.0.2, "minimatch@2 || 3":
   dependencies:
     brace-expansion "^1.0.0"
 
-node-pogo-protos@^2.7.0, node-pogo-protos@2.7.0:
+node-pogo-protos@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/node-pogo-protos/-/node-pogo-protos-2.7.0.tgz#5ae53d851454405a1c76896cd35b48d0a4512daf"
   dependencies:
     protobufjs "^5.0.1"
 
-"node-pogo-signature@github:starkevin/node-pogo-signature":
+node-pogo-protos@2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/node-pogo-protos/-/node-pogo-protos-2.7.1.tgz#8e2d4def1e5a166b4631a48076d474ba5b33af73"
+  dependencies:
+    protobufjs "^5.0.1"
+
+node-pogo-signature@starkevin/node-pogo-signature:
   version "4.0.0"
-  resolved "https://codeload.github.com/starkevin/node-pogo-signature/tar.gz/c307d5b9260b735883ec1a209872a4feffcb214f"
+  resolved "https://codeload.github.com/starkevin/node-pogo-signature/tar.gz/9ab52c922d598da41c101dc4b6f122d41d5c482d"
   dependencies:
     long "^3.2.0"
-    pcrypt starkevin/pcrypt
+    pcrypt laverdet/pcrypt
     protobufjs "^5.0.1"
 
 number-is-nan@^1.0.0:
