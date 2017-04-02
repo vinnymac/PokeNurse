@@ -75,7 +75,8 @@ class ModalBody extends React.Component {
           title="Listen to Cry"
           alt="Profile Sprite"
           id="pokemon_profile_sprite"
-          src={`./imgs/3d/${pokemon.pokemon_id}.webp`}
+          src={this.handleSprite(pokemon)}
+          onError={() => { document.getElementById('pokemon_profile_sprite').src = `./imgs/3d/${pokemon.pokemon_id}.webp` }}
         />
         <audio
           id="pokemonCry"
@@ -149,6 +150,26 @@ class ModalBody extends React.Component {
 
   handleCry = () => {
     this.cry.play()
+  }
+
+  handleSprite = (pokemon) => {
+    let imgPath
+    if (pokemon.gender === 'Female') {
+      if (pokemon.shiny) {
+        // Is FEMALE and SHINY
+        imgPath = `./imgs/3d/${pokemon.pokemon_id}-fs.webp`
+      } else {
+        // Is FEMALE
+        imgPath = `./imgs/3d/${pokemon.pokemon_id}-f.webp`
+      }
+    } else if (pokemon.shiny) {
+      // Is MALE or GENDERLESS and SHINY
+      imgPath = `./imgs/3d/${pokemon.pokemon_id}-s.webp`
+    } else {
+      // Is MALE or GENDERLESS
+      imgPath = `./imgs/3d/${pokemon.pokemon_id}.webp`
+    }
+    return imgPath
   }
 }
 
