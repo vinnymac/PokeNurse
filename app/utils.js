@@ -32,6 +32,18 @@ const NAMES = Object
       .replace('Male', '♂')
   )
 
+const COSTUMES = Object
+  .keys(POGOProtos.Enums.Costume)
+  .map(c => c.split('_').map(word => capitalize(word)).join(' '))
+
+const GENDERS = Object
+  .keys(POGOProtos.Enums.Gender)
+  .map(g => g.split('_').map(word => capitalize(word)).join(' '))
+
+const FORMS = Object
+  .keys(POGOProtos.Enums.Form)
+  .map(f => f.split('_').map(word => capitalize(word)).join(' '))
+
 const levelCpMultiplier = {
   1: 0.094,
   1.5: 0.135137432,
@@ -359,6 +371,18 @@ const utils = {
 
   getName(id) {
     return NAMES[id] || 'Unknown'
+  },
+
+  getCostume(costume) {
+    return COSTUMES[costume]
+  },
+
+  getGender(gender) {
+    return GENDERS[gender]
+  },
+
+  getForm(form) {
+    return FORMS[form]
   },
 
   capitalize,
