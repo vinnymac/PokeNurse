@@ -32,7 +32,7 @@ class ModalBody extends React.Component {
   render() {
     const {
       transform,
-      name,
+      // name,
       hp,
       cp,
       pokemon,
