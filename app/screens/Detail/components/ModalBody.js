@@ -5,6 +5,7 @@ import QuickMove from './QuickMove'
 import CinematicMove from './CinematicMove'
 import Nickname from './Nickname'
 import Evolutions from './Evolutions'
+import utils from '../../../utils'
 
 class ModalBody extends React.Component {
   static propTypes = {
@@ -31,7 +32,7 @@ class ModalBody extends React.Component {
   render() {
     const {
       transform,
-      name,
+      // name,
       hp,
       cp,
       pokemon,
@@ -120,7 +121,7 @@ class ModalBody extends React.Component {
           </div>
           <div className="pokemon-info-item split-2-way">
             <div className="pokemon-info-item-text candy-count">{candies}</div>
-            <div className="pokemon-info-item-title">{`${name} Candy`}</div>
+            <div className="pokemon-info-item-title">{`${utils.getName(pokemon.family_id)} Candy`}</div>
           </div>
         </div>
         <div className="pokemon_info">
