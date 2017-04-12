@@ -36,7 +36,7 @@ const hashKeyTooltip = (
 
 const apiVersionTooltip = (
   <Tooltip id="apiVersionTooltip">
-    Use specific API Version, 0.53 is 5300, 0.57.4 is 5704, etc.
+    Use specific API Version, 0.53 is 5300, 0.57.4 is 6100, etc.
   </Tooltip>
 )
 
@@ -166,7 +166,7 @@ class LoginForm extends React.Component {
             </InputGroup.Addon>
             <FormControl
               type="text"
-              placeholder="5704"
+              placeholder="6100"
               ref={(c) => { this.apiVersion = c }}
               onKeyPress={this.handleEnterKey}
               defaultValue={credentials.apiVersion || ''}
