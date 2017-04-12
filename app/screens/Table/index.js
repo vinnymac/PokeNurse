@@ -68,6 +68,8 @@ const teams = [
 function getHeaderBackgroundStyles(teamIndex) {
   const team = teams[teamIndex]
 
+  if (team.name === 'default') team.name = 'bg'
+
   return {
     backgroundColor: team.color,
     backgroundImage: `url('./imgs/${team.name}.jpg')`,

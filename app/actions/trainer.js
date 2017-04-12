@@ -159,6 +159,10 @@ function parseInventory(inventory) {
       .map(utils.getName)
       .join('/')
 
+    const pokemonCostume = utils.getCostume(p.pokemon_display.costume)
+    const pokemonGender = utils.getGender(p.pokemon_display.gender)
+    const pokemonForm = utils.getForm(p.pokemon_display.form)
+
     const quickMoves = pokemonSetting.quick_moves.map(m => getMove(type, moveSettings, m, true))
 
     const cinematicMoves = pokemonSetting.cinematic_moves.map(m => getMove(type, moveSettings, m, false))
@@ -207,7 +211,11 @@ function parseInventory(inventory) {
       // Multiply by -1 for sorting
       favorite: p.favorite * -1,
       move_1: move1,
-      move_2: move2
+      move_2: move2,
+      costume: pokemonCostume,
+      gender: pokemonGender,
+      shiny: p.pokemon_display.shiny,
+      form: pokemonForm
     }
 
     const speciesIndex = p.pokemon_id - 1

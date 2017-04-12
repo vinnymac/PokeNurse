@@ -1,7 +1,7 @@
 {
   "name": "PokeNurse",
   "productName": "PokeNurse",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "A tool for Pokémon Go to aid in transferring and evolving Pokémon",
   "main": "./main.js",
   "author": {
@@ -12,8 +12,8 @@
   "license": "MIT",
   "dependencies": {
     "async-file": "^2.0.2",
-    "electron-localshortcut": "^1.0.0",
-    "node-pogo-protos": "2.7.0",
+    "electron-localshortcut": "1.1.1",
+    "node-pogo-protos": "2.9.1",
     "pogobuf": "1.10.0"
   }
 }

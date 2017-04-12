@@ -8,14 +8,14 @@
 
 **PokéNurse** is a desktop application for Windows and Mac that allows you to manage your pokémon from Pokémon Go without the need for a mobile device. You can now favorite, transfer, and evolve from the comfort of your own home!
 
-## Downloads for v2.3.0
+## Downloads for v2.3.1
 You may view all the releases [here](https://github.com/vinnymac/PokeNurse/releases)
-* [macOS](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.0/PokeNurse.dmg)
-* [Windows](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.0/PokeNurse.exe)
-* [Debian 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.0/PokeNurse-ia32.deb)
-* [Debian 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.0/PokeNurse-x64.deb)
-* [AppImage 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.0/PokeNurse-ia32.AppImage)
-* [AppImage 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.0/PokeNurse-x64.AppImage)
+* [macOS](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.1/PokeNurse.dmg)
+* [Windows](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.1/PokeNurse.exe)
+* [Debian 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.1/PokeNurse-ia32.deb)
+* [Debian 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.1/PokeNurse-x64.deb)
+* [AppImage 32 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.1/PokeNurse-ia32.AppImage)
+* [AppImage 64 bit](https://github.com/vinnymac/PokeNurse/releases/download/v2.3.1/PokeNurse-x64.AppImage)
 
 ## Examples
 ![Login Window](app/loginExample.png)
@@ -81,6 +81,7 @@ The API Hashing service is a paid service that allows third party Pokémon GO de
 ## Credit
 * [cyraxx](https://github.com/cyraxx) for [pogobuf](https://github.com/cyraxx/pogobuf) and [node-pogo-protos](https://github.com/cyraxx/node-pogo-protos)
 * [AeonLucid](https://github.com/AeonLucid) for [POGOProtos](https://github.com/AeonLucid/POGOProtos)
+* [PkParaíso](https://www.pkparaiso.com) for the [animated sprites](https://www.pkparaiso.com/xy/sprites_pokemon.php), licensed under [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/)
 
 ## Legal
 This Project is in no way affiliated with, authorized, maintained, sponsored or endorsed by Niantic, The Pokémon Company, Nintendo or any of its affiliates or subsidiaries. This is an independent and unofficial API for educational use ONLY. Using the Project might be against the TOS
