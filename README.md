@@ -81,6 +81,7 @@ The API Hashing service is a paid service that allows third party Pokémon GO de
 ## Credit
 * [cyraxx](https://github.com/cyraxx) for [pogobuf](https://github.com/cyraxx/pogobuf) and [node-pogo-protos](https://github.com/cyraxx/node-pogo-protos)
 * [AeonLucid](https://github.com/AeonLucid) for [POGOProtos](https://github.com/AeonLucid/POGOProtos)
+* [PkParaíso](https://www.pkparaiso.com) for the [animated sprites](https://www.pkparaiso.com/xy/sprites_pokemon.php), licensed under [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/)
 
 ## Legal
 This Project is in no way affiliated with, authorized, maintained, sponsored or endorsed by Niantic, The Pokémon Company, Nintendo or any of its affiliates or subsidiaries. This is an independent and unofficial API for educational use ONLY. Using the Project might be against the TOS
