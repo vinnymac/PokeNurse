@@ -36,7 +36,7 @@ const hashKeyTooltip = (
 
 const apiVersionTooltip = (
   <Tooltip id="apiVersionTooltip">
-    Use specific API Version, 0.53 is 5300, 0.57.4 is 6100, etc.
+    Use specific API Version, 0.57.4 is 5704, 0.61.0 is 6100, etc.
   </Tooltip>
 )
 
