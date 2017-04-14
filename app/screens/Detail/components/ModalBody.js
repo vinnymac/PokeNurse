@@ -120,7 +120,15 @@ class ModalBody extends React.Component {
             <div className="pokemon-info-item-title">CP Per Upgrade</div>
           </div>
           <div className="pokemon-info-item split-2-way">
-            <div className="pokemon-info-item-text candy-count">{candies}</div>
+            <div className="pokemon-info-item-text candy-count">
+              <img
+                title="Pokémon Candy Icon"
+                alt="Candy Icon"
+                id="pokemon_candy_icon"
+                src="./imgs/candy/candy_base_color.png"
+              />
+              {candies}
+            </div>
             <div className="pokemon-info-item-title">{`${utils.getName(pokemon.family_id)} Candy`}</div>
           </div>
         </div>
