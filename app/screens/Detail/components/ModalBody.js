@@ -121,12 +121,13 @@ class ModalBody extends React.Component {
           </div>
           <div className="pokemon-info-item split-2-way">
             <div className="pokemon-info-item-text candy-count">
-              <img
+              <div
                 title="Pokémon Candy Icon"
                 alt="Candy Icon"
                 id="pokemon_candy_icon"
-                src="./imgs/candy/candy_base_color.png"
-              />
+              >
+                {this.handleCandyIcon(pokemon)}
+              </div>
               {candies}
             </div>
             <div className="pokemon-info-item-title">{`${utils.getName(pokemon.family_id)} Candy`}</div>
@@ -179,6 +180,107 @@ class ModalBody extends React.Component {
       imgPath = `./imgs/3d/${pokemon.pokemon_id}.webp`
     }
     return imgPath
+  }
+
+  handleCandyIcon = (pokemon) => {
+    // http://rmkane.com/experiment/pokemon/candy/index.html
+    let imagesLoaded = 0
+
+    const WIDTH = 256
+    const HEIGHT = 256
+    const IMAGES = {
+      primaryColor: {
+        src: './imgs/candy/candy_base_color.png',
+        obj: null
+      },
+      secondaryColor: {
+        src: './imgs/candy/candy_secondary_color.png',
+        obj: null
+      },
+      highlight: {
+        src: './imgs/candy/candy_highlight.png',
+        obj: null
+      }
+    }
+    const COLORS = [utils.getCandyColor(pokemon.family_id)]
+
+    function render(record, targetSelector) {
+      const layer = [
+        createLayer(WIDTH, HEIGHT),
+        createLayer(WIDTH, HEIGHT),
+        createLayer(WIDTH, HEIGHT),
+      ]
+
+      layer[0].drawImage(IMAGES.primaryColor.obj, 0, 0)
+      applyColorMask(layer[0], COLORS[0].primaryColor)
+
+      layer[1].drawImage(IMAGES.secondaryColor.obj, 0, 0)
+      applyColorMask(layer[1], COLORS[0].secondaryColor)
+
+      layer[0].drawImage(layer[1].canvas, 0, 0)
+      layer[0].drawImage(IMAGES.highlight.obj, 0, 0)
+
+      const canvas = layer[0].canvas
+      document.getElementById(targetSelector).appendChild(canvas)
+    }
+
+    function loadImages(images, callback) {
+      const keys = Object.keys(images)
+      for (let index = 0; index < keys.length; index++) {
+        loadImage(images[keys[index]], callback)
+      }
+    }
+
+    function loadImage(image, callback) {
+      image.obj = new Image()
+      image.obj.onload = () => {
+        if (imagesLoaded++ >= Object.keys(IMAGES).length - 1) {
+          callback()
+        }
+      }
+      image.obj.src = image.src
+    }
+
+    function createLayer(width, height) {
+      const layer = document.createElement('canvas')
+      layer.className = 'layer'
+      layer.width = width
+      layer.height = height || width
+      return layer.getContext('2d')
+    }
+
+    function applyColorMask(ctx, color) {
+      if (color.indexOf('#') !== 0) color = `# ${color}`
+      const rgba = hexToRgbA(color)
+      const imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT)
+      for (let byte = 0; byte < imgData.data.length; byte += 4) {
+        for (let p = 0; p < 4; p++) {
+          imgData.data[byte + p] = rgba[p] * (imgData.data[byte + p] / 255)
+        }
+      }
+      ctx.putImageData(imgData, 0, 0)
+    }
+
+    function hexToRgbA(hex) {
+      if (/^#([A-F0-9]{3}){1,2}$/i.test(hex)) {
+        let c = hex.substring(1).split('')
+        if (c.length === 3) {
+          c = [c[0], c[0], c[1], c[1], c[2], c[2]]
+        }
+        c = parseInt(c.join(''), 16)
+        return [(c >> 16) & 0xFF, (c >> 8) & 0xFF, c & 0xFF, 0xFF]
+      }
+    }
+
+    function onLoad(records) {
+      records.forEach(record => {
+        render(record, 'pokemon_candy_icon')
+      })
+    }
+
+    loadImages(IMAGES, () => {
+      onLoad(COLORS)
+    })
   }
 }
 

@@ -551,10 +551,15 @@ color: #3c605c;
 
 #pokemon_candy_icon {
   height: 24px;
-  width: auto;
+  width: 24px;
   position: relative;
-  top: -2px;
+  bottom: -6px;
   margin-right: 4px;
+  display: inline-block;
+}
+
+#pokemon_candy_icon canvas {
+  max-width: 24px;
 }
 
 #pokemon_evolve_info {
