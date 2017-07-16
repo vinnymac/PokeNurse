@@ -166,7 +166,7 @@ class LoginForm extends React.Component {
             </InputGroup.Addon>
             <FormControl
               type="text"
-              placeholder="6100"
+              placeholder="6702"
               ref={(c) => { this.apiVersion = c }}
               onKeyPress={this.handleEnterKey}
               defaultValue={credentials.apiVersion || ''}
