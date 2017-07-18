@@ -149,7 +149,7 @@
     "source-map-support": "0.4.14"
   },
   "devEngines": {
-    "node": ">=6.x",
+    "node": ">=7.0.0",
     "npm": ">=3.x"
   }
 }
