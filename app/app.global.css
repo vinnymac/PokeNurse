@@ -549,6 +549,19 @@ color: #32b741;
 color: #3c605c;
 }
 
+#pokemon_candy_icon {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  bottom: -6px;
+  margin-right: 4px;
+  display: inline-block;
+}
+
+#pokemon_candy_icon canvas {
+  max-width: 24px;
+}
+
 #pokemon_evolve_info {
 display: block;
 width: 100%;
