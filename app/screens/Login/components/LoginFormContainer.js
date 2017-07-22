@@ -16,6 +16,7 @@ import {
   Button,
 } from 'react-bootstrap'
 
+import api from '../../../api'
 import {
   checkAndDeleteCredentials,
   saveAccountCredentials,
@@ -166,7 +167,7 @@ class LoginForm extends React.Component {
             </InputGroup.Addon>
             <FormControl
               type="text"
-              placeholder="6702"
+              placeholder={String(api.version)}
               ref={(c) => { this.apiVersion = c }}
               onKeyPress={this.handleEnterKey}
               defaultValue={credentials.apiVersion || ''}

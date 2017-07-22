@@ -9,6 +9,7 @@ import {
 
 import * as fs from 'async-file'
 
+import api from '../api'
 import { setClient } from '../client'
 
 import {
@@ -50,7 +51,7 @@ export default {
         }
 
         // Use default API version
-        if (hashingKey) options.version = apiVersion || 6702
+        if (hashingKey) options.version = apiVersion || api.version
 
         const client = new pogobuf.Client(options)
 
