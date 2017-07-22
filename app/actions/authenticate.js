@@ -1,5 +1,5 @@
 import path from 'path'
-import pogobuf from 'pogobuf'
+import pogobuf from 'pogobuf-vnext'
 import {
   remote
 } from 'electron'
@@ -50,7 +50,7 @@ export default {
         }
 
         // Use default API version
-        if (hashingKey) options.version = apiVersion || 6100
+        if (hashingKey) options.version = apiVersion || 6702
 
         const client = new pogobuf.Client(options)
 

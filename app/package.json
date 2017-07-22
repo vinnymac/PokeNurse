@@ -13,7 +13,7 @@
   "dependencies": {
     "async-file": "^2.0.2",
     "electron-localshortcut": "1.1.1",
-    "node-pogo-protos": "2.9.1",
-    "pogobuf": "1.10.0"
+    "node-pogo-protos": "2.10.3",  
+    "pogobuf-vnext": "2.3.3"
   }
 }

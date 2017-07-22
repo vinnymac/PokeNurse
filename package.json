@@ -139,8 +139,8 @@
     "electron-debug": "^1.1.0",
     "electron-localshortcut": "1.1.1",
     "font-awesome": "^4.7.0",
-    "node-pogo-protos": "2.9.1",
-    "pogobuf": "1.10.0",
+    "node-pogo-protos": "2.10.3",    
+    "pogobuf-vnext": "2.3.3",
     "react": "15.4.2",
     "react-dom": "15.4.2",
     "react-redux": "5.0.3",
@@ -149,7 +149,7 @@
     "source-map-support": "0.4.14"
   },
   "devEngines": {
-    "node": ">=6.x",
+    "node": ">=7.0.0",
     "npm": ">=3.x"
   }
 }

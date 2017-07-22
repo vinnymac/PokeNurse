@@ -5,7 +5,7 @@ import {
   times,
   keyBy,
 } from 'lodash'
-import pogobuf from 'pogobuf'
+import pogobuf from 'pogobuf-vnext'
 import {
   ipcRenderer,
 } from 'electron'
