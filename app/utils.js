@@ -2,7 +2,7 @@ import {
   times
 } from 'lodash'
 
-import POGOProtos from 'node-pogo-protos'
+import POGOProtos from 'node-pogo-protos-vnext'
 
 import {
   defaultSettings

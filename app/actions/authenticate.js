@@ -50,7 +50,7 @@ export default {
         }
 
         // Use default API version
-        if (hashingKey) options.version = apiVersion || 6702
+        if (hashingKey) options.version = apiVersion || 7100
 
         const client = new pogobuf.Client(options)
 
